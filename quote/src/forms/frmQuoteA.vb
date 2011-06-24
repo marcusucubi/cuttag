@@ -2,8 +2,10 @@
 Imports System.Data.OleDb
 Imports System.Data.SqlClient
 Imports System.Data.Common
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmQuoteA
+    Inherits DockContent
 
     Private m_QuoteHeader As New EditableQuoteHeader
 
