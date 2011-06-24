@@ -3,6 +3,7 @@ Imports System.Data.OleDb
 Imports System.Data.SqlClient
 Imports System.Data.Common
 Imports WeifenLuo.WinFormsUI.Docking
+Imports DCS.Quote.Model
 
 Public Class frmQuoteA
     Inherits DockContent

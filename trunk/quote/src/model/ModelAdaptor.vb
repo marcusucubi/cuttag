@@ -1,69 +1,72 @@
 ﻿Imports System.ComponentModel
 
-Public Class EditableQuoteHeader
-    Inherits QuoteHeader
-    Implements IEditableObject, INotifyPropertyChanged
+Namespace Model
 
-    Public Function NewEditableQuoteDetail() As EditableQuoteDetail
+    Public Class EditableQuoteHeader
+        Inherits QuoteHeader
+        Implements IEditableObject, INotifyPropertyChanged
 
-        Dim oo As New EditableQuoteDetail(Me)
+        Public Function NewEditableQuoteDetail() As EditableQuoteDetail
 
-        RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Qty"))
+            Dim oo As New EditableQuoteDetail(Me)
 
-        AddHandler oo.PropertyChanged,
-            Sub(sender, e)
-                RaiseEvent PropertyChanged(sender, e)
-            End Sub
-        MyBase._col.Add(oo)
+            RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Qty"))
 
-        Return oo
-    End Function
+            AddHandler oo.PropertyChanged,
+                Sub(sender, e)
+                    RaiseEvent PropertyChanged(sender, e)
+                End Sub
+            MyBase._col.Add(oo)
 
-    Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
-    End Sub
+            Return oo
+        End Function
 
-    Public Sub CancelEdit() Implements System.ComponentModel.IEditableObject.CancelEdit
-    End Sub
+        Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
+        End Sub
 
-    Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
-    End Sub
+        Public Sub CancelEdit() Implements System.ComponentModel.IEditableObject.CancelEdit
+        End Sub
 
-    Public Shadows Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
+        End Sub
 
-End Class
+        Public Shadows Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+    End Class
 
 
-Public Class EditableQuoteDetail
-    Inherits QuoteDetail
-    Implements IEditableObject, INotifyPropertyChanged
+    Public Class EditableQuoteDetail
+        Inherits QuoteDetail
+        Implements IEditableObject, INotifyPropertyChanged
 
-    Private m_backupData As QuoteDetail
-    Private m_inTx As Boolean
+        Private m_backupData As QuoteDetail
+        Private m_inTx As Boolean
 
-    Public Sub New(ByVal QuoteHeader As QuoteHeader)
-        MyBase.New(QuoteHeader)
-        m_backupData = New QuoteDetail
-    End Sub
+        Public Sub New(ByVal QuoteHeader As QuoteHeader)
+            MyBase.New(QuoteHeader)
+            m_backupData = New QuoteDetail
+        End Sub
 
-    Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
-        If Not m_inTx Then
-            m_backupData.Qty = Me.Qty
-            m_inTx = True
-        End If
-    End Sub
+        Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
+            If Not m_inTx Then
+                m_backupData.Qty = Me.Qty
+                m_inTx = True
+            End If
+        End Sub
 
-    Public Sub CancelEdit() Implements System.ComponentModel.IEditableObject.CancelEdit
-        If m_inTx Then
-            Me.Qty = m_backupData.Qty
-            m_inTx = False
-        End If
-    End Sub
+        Public Sub CancelEdit() Implements System.ComponentModel.IEditableObject.CancelEdit
+            If m_inTx Then
+                Me.Qty = m_backupData.Qty
+                m_inTx = False
+            End If
+        End Sub
 
-    Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
-        If m_inTx Then
-            m_inTx = False
-        End If
-    End Sub
+        Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
+            If m_inTx Then
+                m_inTx = False
+            End If
+        End Sub
 
-End Class
+    End Class
+End Namespace
 

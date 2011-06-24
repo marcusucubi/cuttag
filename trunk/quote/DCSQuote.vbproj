@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>DCS.My.MyApplication</StartupObject>
-    <RootNamespace>DCS</RootNamespace>
+    <StartupObject>DCS.Quote.My.MyApplication</StartupObject>
+    <RootNamespace>DCS.Quote</RootNamespace>
     <AssemblyName>Quote</AssemblyName>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
@@ -77,6 +77,11 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\forms\CuttagSKEDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CuttagSKEDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="src\forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -157,6 +162,17 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="src\forms\CuttagSKEDataSet.xsc">
+      <DependentUpon>CuttagSKEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="src\forms\CuttagSKEDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CuttagSKEDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="src\forms\CuttagSKEDataSet.xss">
+      <DependentUpon>CuttagSKEDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DCSDataCommon\DCSDataCommon.vbproj">
@@ -201,6 +217,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cuttagSKE.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="cuttagSKE_log.ldf">
+      <DependentUpon>cuttagSKE.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
