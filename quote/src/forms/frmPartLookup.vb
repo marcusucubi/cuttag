@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports DCS.Quote.Model
 
+
 Public Class frmPartLookup
 
     Public Shared Property Product As New Product
