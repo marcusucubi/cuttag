@@ -1,4 +1,6 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports DCS.Quote.Model
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmQuoteA
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
@@ -197,7 +199,7 @@ Partial Class frmQuoteA
         '
         'HeaderSource
         '
-        Me.HeaderSource.DataSource = GetType(DCS.EditableQuoteHeader)
+        Me.HeaderSource.DataSource = GetType(EditableQuoteHeader)
         '
         'DataGridViewTextBoxColumn12
         '
@@ -207,7 +209,7 @@ Partial Class frmQuoteA
         '
         'DetailSource
         '
-        Me.DetailSource.DataSource = GetType(DCS.EditableQuoteDetail)
+        Me.DetailSource.DataSource = GetType(EditableQuoteDetail)
         '
         'frmQuoteA
         '

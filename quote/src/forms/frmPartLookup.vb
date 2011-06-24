@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports DCS.Quote.Model
 
 Public Class frmPartLookup
 

@@ -58,7 +58,7 @@ Public Class frmQuoteMain
 		'	OpenQuote(dgvSearchResults.SelectedRows(0).Cells(0).Value)
 	End Sub
 	Private Sub mniImport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mniImport.Click
-		Dim xl As New DCS.LoadXL
+        Dim xl As New LoadXL
 		Dim gQuoteID As Guid
 		gQuoteID = xl.Connect2XL()
 		If Not gQuoteID.Equals(Guid.Empty) Then

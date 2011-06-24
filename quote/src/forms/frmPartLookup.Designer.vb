@@ -26,9 +26,9 @@ Partial Class frmPartLookup
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.CuttagSKEDataSet = New DCS.cuttagSKEDataSet()
+        Me.CuttagSKEDataSet = New DCS.Quote.CuttagSKEDataSet()
         Me.PartsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me._PartsTableAdapter = New DCS.cuttagSKEDataSetTableAdapters._PartsTableAdapter()
+        Me._PartsTableAdapter = New CuttagSKEDataSetTableAdapters._PartsTableAdapter()
         Me.lstParts = New System.Windows.Forms.ListBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.CuttagSKEDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,9 +118,9 @@ Partial Class frmPartLookup
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents CuttagSKEDataSet As DCS.cuttagSKEDataSet
+    Friend WithEvents CuttagSKEDataSet As DCS.Quote.CuttagSKEDataSet
     Friend WithEvents PartsBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _PartsTableAdapter As DCS.cuttagSKEDataSetTableAdapters._PartsTableAdapter
+    Friend WithEvents _PartsTableAdapter As CuttagSKEDataSetTableAdapters._PartsTableAdapter
     Friend WithEvents lstParts As System.Windows.Forms.ListBox
 
 End Class
