@@ -1,6 +1,12 @@
 ﻿Imports System.ComponentModel
 
 Namespace Model
+
+    ''' <summary>
+    ''' Represents the quote header
+    ''' </summary>
+    ''' <remarks>
+    ''' </remarks>
     Public Class QuoteHeader
         Implements INotifyPropertyChanged
 
