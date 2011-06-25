@@ -5,10 +5,8 @@ Namespace Model
     Public Class QuoteDetail
         Implements INotifyPropertyChanged
 
-#Region "Private Members"
-        Private _qty As Integer
-        Private _product As Product
-#End Region
+        Public Event PropertyChanged As PropertyChangedEventHandler _
+            Implements INotifyPropertyChanged.PropertyChanged
 
 #Region "Properties"
 
@@ -59,6 +57,8 @@ Namespace Model
 
 #End Region
 
+#Region "Public Members and Methods"
+
         Friend Sub New()
         End Sub
 
@@ -67,12 +67,18 @@ Namespace Model
             Me._qty = 1
         End Sub
 
-        Public Event PropertyChanged As PropertyChangedEventHandler _
-            Implements INotifyPropertyChanged.PropertyChanged
+#End Region
+
+#Region "Private Members and Methods"
+
+        Private _qty As Integer
+        Private _product As Product
 
         Private Sub NotifyPropertyChanged(ByVal name As String)
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
         End Sub
+
+#End Region
 
     End Class
 End Namespace

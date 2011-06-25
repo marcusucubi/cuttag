@@ -2,6 +2,10 @@
 
 Namespace Model
 
+    ''' <summary>
+    ''' Allows the QuoteHeader to be displayed in the DataGridView
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Class EditableQuoteHeader
         Inherits QuoteHeader
         Implements IEditableObject, INotifyPropertyChanged
@@ -16,7 +20,7 @@ Namespace Model
                 Sub(sender, e)
                     RaiseEvent PropertyChanged(sender, e)
                 End Sub
-            MyBase._col.Add(oo)
+            MyBase.QuoteDetails.Add(oo)
 
             Return oo
         End Function
@@ -34,7 +38,10 @@ Namespace Model
 
     End Class
 
-
+    ''' <summary>
+    ''' Allows the QuoteDetail to be displayed in the DataGridView
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Class EditableQuoteDetail
         Inherits QuoteDetail
         Implements IEditableObject, INotifyPropertyChanged
