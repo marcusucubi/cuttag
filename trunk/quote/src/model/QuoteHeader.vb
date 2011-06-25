@@ -4,13 +4,16 @@ Namespace Model
     Public Class QuoteHeader
         Implements INotifyPropertyChanged
 
+        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+
+#Region "Private Data"
+
         Private _qty As Integer
         Protected _col As New List(Of QuoteDetail)
 
-        Public Sub Remove(ByVal detail As QuoteDetail)
-            _col.Remove(detail)
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Qty"))
-        End Sub
+#End Region
+
+#Region "Properties"
 
         Public ReadOnly Property Price() As Decimal
             Get
@@ -23,6 +26,15 @@ Namespace Model
                 Return Sum()
             End Get
         End Property
+
+#End Region
+
+        Public Sub Remove(ByVal detail As QuoteDetail)
+            _col.Remove(detail)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Qty"))
+        End Sub
+
+#Region "Private Methods"
 
         Private Function Sum() As Integer
             Dim result As Integer
@@ -40,7 +52,7 @@ Namespace Model
             Return result
         End Function
 
-        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+#End Region
 
     End Class
 End Namespace

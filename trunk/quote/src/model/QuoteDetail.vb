@@ -5,8 +5,12 @@ Namespace Model
     Public Class QuoteDetail
         Implements INotifyPropertyChanged
 
+#Region "Private Members"
         Private _qty As Integer
         Private _product As Product
+#End Region
+
+#Region "Properties"
 
         Property Type As String
         Property QtyUnit As String
@@ -39,6 +43,22 @@ Namespace Model
             End Get
         End Property
 
+        Public Property Qty() As Integer
+            Get
+                Return Me._qty
+            End Get
+
+            Set(ByVal value As Integer)
+                If Not (value = _qty) Then
+                    Me._qty = value
+                    NotifyPropertyChanged("Qty")
+                    NotifyPropertyChanged("Price")
+                End If
+            End Set
+        End Property
+
+#End Region
+
         Friend Sub New()
         End Sub
 
@@ -54,18 +74,5 @@ Namespace Model
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
         End Sub
 
-        Public Property Qty() As Integer
-            Get
-                Return Me._qty
-            End Get
-
-            Set(ByVal value As Integer)
-                If Not (value = _qty) Then
-                    Me._qty = value
-                    NotifyPropertyChanged("Qty")
-                    NotifyPropertyChanged("Price")
-                End If
-            End Set
-        End Property
     End Class
 End Namespace
