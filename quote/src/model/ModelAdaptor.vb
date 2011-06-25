@@ -3,26 +3,15 @@
 Namespace Model
 
     ''' <summary>
-    ''' Allows the QuoteHeader to be displayed in the DataGridView
+    ''' Allows display in a DataGridView
     ''' </summary>
     ''' <remarks></remarks>
     Public Class EditableQuoteHeader
         Inherits QuoteHeader
-        Implements IEditableObject, INotifyPropertyChanged
+        Implements IEditableObject
 
-        Public Function NewEditableQuoteDetail() As EditableQuoteDetail
-
-            Dim oo As New EditableQuoteDetail(Me)
-
-            RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Qty"))
-
-            AddHandler oo.PropertyChanged,
-                Sub(sender, e)
-                    RaiseEvent PropertyChanged(sender, e)
-                End Sub
-            MyBase.QuoteDetails.Add(oo)
-
-            Return oo
+        Protected Overrides Function FactoryMethod() As QuoteDetail
+            Return New EditableQuoteDetail(Me)
         End Function
 
         Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
@@ -34,17 +23,15 @@ Namespace Model
         Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
         End Sub
 
-        Public Shadows Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-
     End Class
 
     ''' <summary>
-    ''' Allows the QuoteDetail to be displayed in the DataGridView
+    ''' Allows display in a DataGridView
     ''' </summary>
     ''' <remarks></remarks>
     Public Class EditableQuoteDetail
         Inherits QuoteDetail
-        Implements IEditableObject, INotifyPropertyChanged
+        Implements IEditableObject
 
         Private m_backupData As QuoteDetail
         Private m_inTx As Boolean

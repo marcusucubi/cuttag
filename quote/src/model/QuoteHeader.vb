@@ -30,10 +30,37 @@ Namespace Model
 
 #Region "Public Members and Methods"
 
+        Public Function NewEditableQuoteDetail() As EditableQuoteDetail
+
+            Dim oo As New EditableQuoteDetail(Me)
+
+            RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Qty"))
+            RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Price"))
+
+            AddHandler oo.PropertyChanged,
+                Sub(sender, e)
+                    RaiseEvent PropertyChanged(sender, e)
+                End Sub
+            Me.QuoteDetails.Add(oo)
+
+            Return oo
+        End Function
+
         Public Sub Remove(ByVal detail As QuoteDetail)
+
             _col.Remove(detail)
+
+            RemoveHandler detail.PropertyChanged
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Qty"))
         End Sub
+
+#End Region
+
+#Region "Protected Members and Methods"
+
+        Protected Overridable Function FactoryMethod() As QuoteDetail
+            Return New QuoteDetail(Me)
+        End Function
 
 #End Region
 
