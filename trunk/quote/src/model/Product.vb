@@ -1,5 +1,10 @@
 ﻿
 Namespace Model
+
+    ''' <summary>
+    ''' Represent a product
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Structure Product
 
         Property Code As String
@@ -11,5 +16,6 @@ Namespace Model
         End Sub
 
     End Structure
+
 End Namespace
 
