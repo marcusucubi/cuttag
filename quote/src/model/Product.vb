@@ -1,6 +1,7 @@
 ﻿
 Namespace Model
     Public Structure Product
+
         Property Code As String
         Property UnitPrice As Decimal
 
@@ -8,6 +9,7 @@ Namespace Model
             Me.Code = Code
             Me.UnitPrice = UnitPrice
         End Sub
+
     End Structure
 End Namespace
 
