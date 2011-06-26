@@ -1,18 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WindowsApplication1", "WindowsApplication1\WindowsApplication1.vbproj", "{FCAE70B2-00E7-4B4A-B49E-C0420FEA38AF}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSQuote", "DCSQuote.vbproj", "{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FCAE70B2-00E7-4B4A-B49E-C0420FEA38AF}.Debug|x86.ActiveCfg = Debug|x86
-		{FCAE70B2-00E7-4B4A-B49E-C0420FEA38AF}.Debug|x86.Build.0 = Debug|x86
-		{FCAE70B2-00E7-4B4A-B49E-C0420FEA38AF}.Release|x86.ActiveCfg = Release|x86
-		{FCAE70B2-00E7-4B4A-B49E-C0420FEA38AF}.Release|x86.Build.0 = Release|x86
+		{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
