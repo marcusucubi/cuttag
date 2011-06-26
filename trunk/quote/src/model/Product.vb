@@ -8,11 +8,15 @@ Namespace Model
     Public Structure Product
 
         Property Code As String
-        Property UnitPrice As Decimal
+        Property UnitCost As Decimal
+        Property ProductClass As ProductClass
 
-        Public Sub New(ByVal Code As String, ByVal UnitPrice As Decimal)
+        Public Sub New(ByVal Code As String, _
+                       ByVal UnitCost As Decimal, _
+                       ByVal ProductClass As ProductClass)
             Me.Code = Code
-            Me.UnitPrice = UnitPrice
+            Me.UnitCost = UnitCost
+            Me.ProductClass = ProductClass
         End Sub
 
     End Structure
