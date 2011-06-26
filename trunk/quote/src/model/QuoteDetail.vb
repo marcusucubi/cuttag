@@ -14,7 +14,7 @@ Namespace Model
         Property QtyUnit As String
         Property QuoteHeader As QuoteHeader
 
-        ReadOnly Property Price As Double
+        ReadOnly Property Price As Decimal
             Get
                 Return System.Math.Round(Me.UnitPrice * Me.Qty, 2)
             End Get
@@ -35,7 +35,7 @@ Namespace Model
             End Get
         End Property
 
-        ReadOnly Property UnitPrice As Double
+        ReadOnly Property UnitPrice As Decimal
             Get
                 Return Product.UnitPrice
             End Get
