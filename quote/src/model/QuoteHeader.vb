@@ -85,7 +85,7 @@ Namespace Model
         Private Function SumPrice() As Decimal
             Dim result As Decimal
             For Each detail As QuoteDetail In _col
-                result += System.Math.Round(detail.Price, 2)
+                result += System.Math.Round(detail.TotalCost, 2)
             Next
             Return result
         End Function

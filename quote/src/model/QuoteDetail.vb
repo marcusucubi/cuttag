@@ -10,11 +10,9 @@ Namespace Model
 
 #Region "Properties"
 
-        Property Type As String
-        Property QtyUnit As String
         Property QuoteHeader As QuoteHeader
 
-        ReadOnly Property Price As Decimal
+        ReadOnly Property TotalCost As Decimal
             Get
                 Return System.Math.Round(Me.UnitPrice * Me.Qty, 2)
             End Get
