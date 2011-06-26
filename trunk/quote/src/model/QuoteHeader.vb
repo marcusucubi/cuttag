@@ -27,7 +27,7 @@ Namespace Model
             End Get
         End Property
 
-        Public ReadOnly Property Cost() As Integer
+        Public ReadOnly Property Cost() As Decimal
             Get
                 Return SumCost()
             End Get
@@ -78,8 +78,8 @@ Namespace Model
             End Get
         End Property
 
-        Private Function SumCost() As Integer
-            Dim result As Integer
+        Private Function SumCost() As Decimal
+            Dim result As Decimal
             For Each detail As QuoteDetail In _col
                 result += detail.TotalCost
             Next
