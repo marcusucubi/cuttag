@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Reflection
 
 Namespace Model
 
@@ -14,7 +15,7 @@ Namespace Model
 
         ReadOnly Property TotalCost As Decimal
             Get
-                Return System.Math.Round(Me.UnitPrice * Me.Qty, 2)
+                Return System.Math.Round(Me.UnitCost * Me.Qty, 2)
             End Get
         End Property
 
@@ -33,22 +34,33 @@ Namespace Model
             End Get
         End Property
 
-        ReadOnly Property UnitPrice As Decimal
+        ReadOnly Property UnitCost As Decimal
             Get
-                Return Product.UnitPrice
+                Return Product.UnitCost
             End Get
         End Property
 
-        Public Property Qty() As Integer
+        ReadOnly Property DisplayableProductClass As String
+            Get
+                Return IIf(Product.ProductClass = ProductClass.WIRE, "Wire", "Component")
+            End Get
+        End Property
+
+        ReadOnly Property UnitOfMeasure As UnitOfMeasure
+            Get
+                Return Product.ProductClass
+            End Get
+        End Property
+
+        Public Property Qty() As Decimal
             Get
                 Return Me._qty
             End Get
 
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 If Not (value = _qty) Then
                     Me._qty = value
-                    NotifyPropertyChanged("Qty")
-                    NotifyPropertyChanged("Price")
+                    SendEvents()
                 End If
             End Set
         End Property
@@ -69,11 +81,19 @@ Namespace Model
 
 #Region "Private Members and Methods"
 
-        Private _qty As Integer
+        Private _qty As Decimal
         Private _product As Product
 
         Private Sub NotifyPropertyChanged(ByVal name As String)
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
+        End Sub
+
+        Private Sub SendEvents()
+            Dim info() As PropertyInfo
+            info = GetType(QuoteDetail).GetProperties()
+            For Each i As PropertyInfo In info
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
+            Next
         End Sub
 
 #End Region

@@ -11,9 +11,11 @@ Public Class frmPartLookup
         Dim data As DataRowView
         data = Me.lstParts.SelectedValue
 
-        Dim code As Product = _
-            New Product(data.Row("PartNumber"), data.Row("UnitCost"))
-        Product = code
+        Dim number As String = data.Row("PartNumber")
+        Dim cost As Decimal = data.Row("UnitCost")
+        Dim type As ProductClass = ProductClass.WIRE
+
+        Product = New Product(number, cost, type)
 
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()

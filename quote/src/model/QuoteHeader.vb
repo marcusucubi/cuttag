@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Reflection
 
 Namespace Model
 
@@ -14,15 +15,21 @@ Namespace Model
 
 #Region "Properties"
 
-        Public ReadOnly Property Price() As Decimal
+        Public ReadOnly Property TotalLength() As Decimal
             Get
-                Return SumPrice()
+                Return SumQty(UnitOfMeasure.LENGTH)
             End Get
         End Property
 
-        Public ReadOnly Property Qty() As Integer
+        Public ReadOnly Property TotalQty() As Decimal
             Get
-                Return Sum()
+                Return SumQty(UnitOfMeasure.PIECES)
+            End Get
+        End Property
+
+        Public ReadOnly Property Cost() As Integer
+            Get
+                Return SumCost()
             End Get
         End Property
 
@@ -34,8 +41,7 @@ Namespace Model
 
             Dim oo As New EditableQuoteDetail(Me)
 
-            RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Qty"))
-            RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Price"))
+            SendEvents()
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
@@ -49,8 +55,7 @@ Namespace Model
                 Me.QuoteDetails.Remove(detail)
 
                 RemoveHandler detail.PropertyChanged, AddressOf ForwardEvent
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Qty"))
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Price"))
+                SendEvents()
             End If
         End Sub
 
@@ -74,21 +79,31 @@ Namespace Model
             End Get
         End Property
 
-        Private Function Sum() As Integer
+        Private Function SumCost() As Integer
             Dim result As Integer
             For Each detail As QuoteDetail In _col
-                result += detail.Qty
+                result += detail.TotalCost
             Next
             Return result
         End Function
 
-        Private Function SumPrice() As Decimal
+        Private Function SumQty(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
             For Each detail As QuoteDetail In _col
-                result += System.Math.Round(detail.TotalCost, 2)
+                If detail.UnitOfMeasure = measure Then
+                    result += detail.Qty
+                End If
             Next
             Return result
         End Function
+
+        Private Sub SendEvents()
+            Dim info() As PropertyInfo
+            info = GetType(QuoteHeader).GetProperties()
+            For Each i As PropertyInfo In info
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
+            Next
+        End Sub
 
         Private Sub ForwardEvent(ByVal sender, ByVal e)
             RaiseEvent PropertyChanged(sender, e)
