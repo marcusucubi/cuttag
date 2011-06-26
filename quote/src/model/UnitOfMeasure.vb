@@ -8,7 +8,7 @@ Namespace Model
     ''' Componenets = PEICES
     ''' </remarks>
     Public Enum UnitOfMeasure As Integer
-        LENGTH = 1
-        PIECES = 2
+        LENGTH = 0
+        PIECES = 1
     End Enum
 End Namespace
