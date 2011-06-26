@@ -41,8 +41,6 @@ Namespace Model
 
             Dim oo As New EditableQuoteDetail(Me)
 
-            SendEvents()
-
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
             SendEvents()
