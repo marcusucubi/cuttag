@@ -27,7 +27,12 @@ Public Class frmPartLookup
     End Sub
 
     Private Sub frmPartLookup_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me._PartsTableAdapter.Fill(Me.CuttagSKEDataSet._Parts)
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            Me._PartsTableAdapter.Fill(Me.CuttagSKEDataSet._Parts)
+        Finally
+            Me.Cursor = Cursors.Default
+        End Try
     End Sub
 
 End Class
