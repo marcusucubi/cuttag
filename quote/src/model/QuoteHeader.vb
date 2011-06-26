@@ -45,6 +45,7 @@ Namespace Model
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
+            SendEvents()
 
             Return oo
         End Function

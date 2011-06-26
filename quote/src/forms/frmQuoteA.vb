@@ -16,7 +16,7 @@ Public Class frmQuoteA
         Me.HeaderSource.Add(m_QuoteHeader)
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+    Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs)
 
         Dim result As DialogResult = frmPartLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
@@ -30,14 +30,17 @@ Public Class frmQuoteA
 
     End Sub
 
-    Private Sub gridDetail_RowsRemoved(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsRemovedEventArgs) Handles gridDetail.RowsRemoved
+    Private Sub gridDetail_RowsRemoved(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsRemovedEventArgs)
         Console.WriteLine(e)
         m_QuoteHeader.Remove(m_Detail)
     End Sub
 
-    Private Sub gridDetail_RowStateChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowStateChangedEventArgs) Handles gridDetail.RowStateChanged
+    Private Sub gridDetail_RowStateChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowStateChangedEventArgs)
         Console.WriteLine(e.Row.DataBoundItem)
         m_Detail = e.Row.DataBoundItem
     End Sub
 
+    Private Sub GroupBox1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox1.Enter
+
+    End Sub
 End Class
