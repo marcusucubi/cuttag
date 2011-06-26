@@ -9,7 +9,7 @@ Public Class frmQuoteA
     Inherits DockContent
 
     Private m_QuoteHeader As New EditableQuoteHeader
-
+    Private m_Detail As QuoteDetail
 
     Public Sub New()
         InitializeComponent()
@@ -30,13 +30,14 @@ Public Class frmQuoteA
 
     End Sub
 
-    Private Sub gridDetail_UserDeletedRow(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) _
-        Handles gridDetail.UserDeletedRow
-        Me.m_QuoteHeader.Remove(e.Row.DataBoundItem)
+    Private Sub gridDetail_RowsRemoved(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsRemovedEventArgs) Handles gridDetail.RowsRemoved
+        Console.WriteLine(e)
+        m_QuoteHeader.Remove(m_Detail)
     End Sub
 
-    Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        Console.WriteLine("frmQuoteA_FormClosing")
+    Private Sub gridDetail_RowStateChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowStateChangedEventArgs) Handles gridDetail.RowStateChanged
+        Console.WriteLine(e.Row.DataBoundItem)
+        m_Detail = e.Row.DataBoundItem
     End Sub
 
 End Class

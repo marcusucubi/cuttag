@@ -32,19 +32,20 @@ Partial Class frmQuoteA
         Me.gridDetail = New System.Windows.Forms.DataGridView()
         Me.ProductCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitPrice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Price = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelButtons = New System.Windows.Forms.Panel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.gridHeader = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelButtons.SuspendLayout()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -54,7 +55,6 @@ Partial Class frmQuoteA
         Me.SplitContainer2.SuspendLayout()
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeaderSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAdd
@@ -100,6 +100,12 @@ Partial Class frmQuoteA
         Me.UnitPrice.Name = "UnitPrice"
         Me.UnitPrice.ReadOnly = True
         '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Qty"
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Qty"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        '
         'Price
         '
         Me.Price.DataPropertyName = "Price"
@@ -109,6 +115,10 @@ Partial Class frmQuoteA
         Me.Price.HeaderText = "Price"
         Me.Price.Name = "Price"
         Me.Price.ReadOnly = True
+        '
+        'DetailSource
+        '
+        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
         'panelButtons
         '
@@ -169,12 +179,23 @@ Partial Class frmQuoteA
         Me.gridHeader.Size = New System.Drawing.Size(340, 146)
         Me.gridHeader.TabIndex = 0
         '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Qty"
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Qty"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.ReadOnly = True
+        '
         'Column1
         '
         Me.Column1.DataPropertyName = "Price"
         Me.Column1.HeaderText = "Price"
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
+        '
+        'HeaderSource
+        '
+        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteHeader)
         '
         'DataGridViewTextBoxColumn10
         '
@@ -190,27 +211,6 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         '
-        'DataGridViewTextBoxColumn15
-        '
-        Me.DataGridViewTextBoxColumn15.DataPropertyName = "Qty"
-        Me.DataGridViewTextBoxColumn15.HeaderText = "Qty"
-        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
-        Me.DataGridViewTextBoxColumn15.ReadOnly = True
-        '
-        'HeaderSource
-        '
-        Me.HeaderSource.DataSource = GetType(EditableQuoteHeader)
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Qty"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Qty"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        '
-        'DetailSource
-        '
-        Me.DetailSource.DataSource = GetType(EditableQuoteDetail)
-        '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -221,6 +221,7 @@ Partial Class frmQuoteA
         Me.Name = "frmQuoteA"
         Me.Text = "New"
         CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelButtons.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
@@ -230,7 +231,6 @@ Partial Class frmQuoteA
         Me.SplitContainer2.ResumeLayout(False)
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HeaderSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

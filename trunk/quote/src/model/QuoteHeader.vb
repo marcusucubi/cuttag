@@ -37,10 +37,7 @@ Namespace Model
             RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Qty"))
             RaiseEvent PropertyChanged(oo, New PropertyChangedEventArgs("Price"))
 
-            AddHandler oo.PropertyChanged,
-                Sub(sender, e)
-                    RaiseEvent PropertyChanged(sender, e)
-                End Sub
+            AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
 
             Return oo
@@ -48,10 +45,13 @@ Namespace Model
 
         Public Sub Remove(ByVal detail As QuoteDetail)
 
-            _col.Remove(detail)
+            If detail IsNot Nothing Then
+                Me.QuoteDetails.Remove(detail)
 
-            RemoveHandler detail.PropertyChanged
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Qty"))
+                RemoveHandler detail.PropertyChanged, AddressOf ForwardEvent
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Qty"))
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Price"))
+            End If
         End Sub
 
 #End Region
@@ -66,7 +66,6 @@ Namespace Model
 
 #Region "Private Members and Methods"
 
-        Private _qty As Integer
         Private _col As New List(Of QuoteDetail)
 
         Protected ReadOnly Property QuoteDetails As List(Of QuoteDetail)
@@ -86,10 +85,14 @@ Namespace Model
         Private Function SumPrice() As Decimal
             Dim result As Decimal
             For Each detail As QuoteDetail In _col
-                result += System.Math.Round(detail.Price)
+                result += System.Math.Round(detail.Price, 2)
             Next
             Return result
         End Function
+
+        Private Sub ForwardEvent(ByVal sender, ByVal e)
+            RaiseEvent PropertyChanged(sender, e)
+        End Sub
 
 #End Region
 
