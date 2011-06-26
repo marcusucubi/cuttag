@@ -26,12 +26,12 @@ Partial Class frmPartLookup
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.CuttagSKEDataSet = New DCS.Quote.CuttagSKEDataSet()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.DevDataSet = New DCS.Quote.devDataSet()
         Me.PartsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me._PartsTableAdapter = New CuttagSKEDataSetTableAdapters._PartsTableAdapter()
-        Me.lstParts = New System.Windows.Forms.ListBox()
+        Me._PartsTableAdapter = New DCS.Quote.devDataSetTableAdapters._PartsTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.CuttagSKEDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -43,7 +43,7 @@ Partial Class frmPartLookup
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(54, 274)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(50, 221)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -69,29 +69,29 @@ Partial Class frmPartLookup
         Me.Cancel_Button.TabIndex = 1
         Me.Cancel_Button.Text = "Cancel"
         '
-        'CuttagSKEDataSet
+        'ListBox1
         '
-        Me.CuttagSKEDataSet.DataSetName = "cuttagSKEDataSet"
-        Me.CuttagSKEDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.ListBox1.DataSource = Me.PartsBindingSource
+        Me.ListBox1.DisplayMember = "PartNumber"
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(12, 12)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(181, 199)
+        Me.ListBox1.TabIndex = 1
+        '
+        'DevDataSet
+        '
+        Me.DevDataSet.DataSetName = "devDataSet"
+        Me.DevDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'PartsBindingSource
         '
         Me.PartsBindingSource.DataMember = "_Parts"
-        Me.PartsBindingSource.DataSource = Me.CuttagSKEDataSet
+        Me.PartsBindingSource.DataSource = Me.DevDataSet
         '
         '_PartsTableAdapter
         '
         Me._PartsTableAdapter.ClearBeforeFill = True
-        '
-        'lstParts
-        '
-        Me.lstParts.DataSource = Me.PartsBindingSource
-        Me.lstParts.DisplayMember = "PartNumber"
-        Me.lstParts.FormattingEnabled = True
-        Me.lstParts.Location = New System.Drawing.Point(12, 12)
-        Me.lstParts.Name = "lstParts"
-        Me.lstParts.Size = New System.Drawing.Size(182, 238)
-        Me.lstParts.TabIndex = 1
         '
         'frmPartLookup
         '
@@ -99,8 +99,8 @@ Partial Class frmPartLookup
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(212, 315)
-        Me.Controls.Add(Me.lstParts)
+        Me.ClientSize = New System.Drawing.Size(208, 262)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -108,9 +108,9 @@ Partial Class frmPartLookup
         Me.Name = "frmPartLookup"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Part Lookup"
+        Me.Text = "Dialog1"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.CuttagSKEDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -118,9 +118,9 @@ Partial Class frmPartLookup
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents CuttagSKEDataSet As DCS.Quote.CuttagSKEDataSet
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents DevDataSet As DCS.Quote.devDataSet
     Friend WithEvents PartsBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _PartsTableAdapter As CuttagSKEDataSetTableAdapters._PartsTableAdapter
-    Friend WithEvents lstParts As System.Windows.Forms.ListBox
+    Friend WithEvents _PartsTableAdapter As DCS.Quote.devDataSetTableAdapters._PartsTableAdapter
 
 End Class
