@@ -56,7 +56,7 @@ Partial Class frmMain
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(428, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(610, 24)
         Me.MenuStrip.TabIndex = 5
         Me.MenuStrip.Text = "MenuStrip"
         '
@@ -107,7 +107,7 @@ Partial Class frmMain
         Me.DockPanel1.DockBackColor = System.Drawing.SystemColors.Window
         Me.DockPanel1.Location = New System.Drawing.Point(0, 24)
         Me.DockPanel1.Name = "DockPanel1"
-        Me.DockPanel1.Size = New System.Drawing.Size(428, 244)
+        Me.DockPanel1.Size = New System.Drawing.Size(610, 315)
         DockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight
         DockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight
         AutoHideStripSkin1.DockStripGradient = DockPanelGradient1
@@ -160,7 +160,7 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(428, 268)
+        Me.ClientSize = New System.Drawing.Size(610, 339)
         Me.Controls.Add(Me.DockPanel1)
         Me.Controls.Add(Me.MenuStrip)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
