@@ -15,7 +15,7 @@ Namespace Model
 
         ReadOnly Property TotalCost As Decimal
             Get
-                Return System.Math.Round(Me.UnitCost * Me.Qty, 2)
+                Return Me.UnitCost * Me.Qty
             End Get
         End Property
 
