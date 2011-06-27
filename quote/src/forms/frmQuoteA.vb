@@ -16,11 +16,11 @@ Public Class frmQuoteA
         Me.HeaderSource.Add(m_QuoteHeader)
     End Sub
 
-    Private Sub gridDetail_RowsRemoved(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsRemovedEventArgs)
+    Private Sub gridDetail_RowsRemoved(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsRemovedEventArgs) Handles gridDetail.RowsRemoved
         m_QuoteHeader.Remove(m_Detail)
     End Sub
 
-    Private Sub gridDetail_RowStateChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowStateChangedEventArgs)
+    Private Sub gridDetail_RowStateChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowStateChangedEventArgs) Handles gridDetail.RowStateChanged
         m_Detail = e.Row.DataBoundItem
     End Sub
 
@@ -37,4 +37,5 @@ Public Class frmQuoteA
         End If
 
     End Sub
+
 End Class
