@@ -37,9 +37,9 @@ Namespace Model
 
 #Region "Public Members and Methods"
 
-        Public Function NewEditableQuoteDetail() As EditableQuoteDetail
+        Public Function NewQuoteDetail() As QuoteDetail
 
-            Dim oo As New EditableQuoteDetail(Me)
+            Dim oo As QuoteDetail = FactoryMethod()
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
