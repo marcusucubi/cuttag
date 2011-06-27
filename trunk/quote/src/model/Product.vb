@@ -11,6 +11,12 @@ Namespace Model
         Property UnitCost As Decimal
         Property ProductClass As ProductClass
 
+        ReadOnly Property UnitOfMeasure As UnitOfMeasure
+            Get
+                Return IIf(ProductClass = Model.ProductClass.WIRE, UnitOfMeasure.LENGTH, UnitOfMeasure.PIECES)
+            End Get
+        End Property
+
         Public Sub New(ByVal Code As String, _
                        ByVal UnitCost As Decimal, _
                        ByVal ProductClass As ProductClass)

@@ -89,7 +89,7 @@ Namespace Model
         Private Function SumQty(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
             For Each detail As QuoteDetail In _col
-                If detail.UnitOfMeasure = measure Then
+                If detail.Product.UnitOfMeasure = measure Then
                     result += detail.Qty
                 End If
             Next
