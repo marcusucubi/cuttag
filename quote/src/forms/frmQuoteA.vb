@@ -29,7 +29,7 @@ Public Class frmQuoteA
         Dim result As DialogResult = frmPartLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
             Dim detail As EditableQuoteDetail
-            detail = m_QuoteHeader.NewEditableQuoteDetail
+            detail = m_QuoteHeader.NewQuoteDetail
             detail.Product = frmPartLookup.Product
 
             Me.DetailSource.Add(detail)
