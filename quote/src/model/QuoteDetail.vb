@@ -46,9 +46,9 @@ Namespace Model
             End Get
         End Property
 
-        ReadOnly Property UnitOfMeasure As UnitOfMeasure
+        ReadOnly Property DisplayableUnitOfMeasure As String
             Get
-                Return Product.ProductClass
+                Return IIf(Product.ProductClass = ProductClass.WIRE, "Feet", "Each")
             End Get
         End Property
 
