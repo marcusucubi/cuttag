@@ -4,7 +4,7 @@
     ''' </summary>
     ''' <remarks></remarks>
     Public Enum ProductClass As Integer
-        WIRE = 0
-        COMPONENT = 1
+        WIRE = 1
+        COMPONENT = 0
     End Enum
 End Namespace

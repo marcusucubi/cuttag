@@ -10,8 +10,8 @@ Namespace Model
         Inherits QuoteHeader
         Implements IEditableObject
 
-        Protected Overrides Function FactoryMethod() As QuoteDetail
-            Return New EditableQuoteDetail(Me)
+        Protected Overrides Function FactoryMethod(ByVal product As Product) As QuoteDetail
+            Return New EditableQuoteDetail(Me, product)
         End Function
 
         Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
@@ -36,9 +36,9 @@ Namespace Model
         Private m_backupData As QuoteDetail
         Private m_inTx As Boolean
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader)
-            MyBase.New(QuoteHeader)
-            m_backupData = New QuoteDetail
+        Public Sub New(ByVal header As QuoteHeader, ByVal product As Product)
+            MyBase.New(header, product)
+            m_backupData = New QuoteDetail(header, product)
         End Sub
 
         Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit

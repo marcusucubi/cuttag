@@ -17,13 +17,13 @@ Namespace Model
 
         Public ReadOnly Property TotalLength() As Decimal
             Get
-                Return SumQty(UnitOfMeasure.LENGTH)
+                Return SumQty(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
         Public ReadOnly Property TotalQty() As Decimal
             Get
-                Return SumQty(UnitOfMeasure.PIECES)
+                Return SumQty(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
@@ -37,9 +37,9 @@ Namespace Model
 
 #Region "Public Members and Methods"
 
-        Public Function NewQuoteDetail() As QuoteDetail
+        Public Function NewQuoteDetail(ByVal product As Product) As QuoteDetail
 
-            Dim oo As QuoteDetail = FactoryMethod()
+            Dim oo As QuoteDetail = FactoryMethod(product)
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
@@ -62,8 +62,8 @@ Namespace Model
 
 #Region "Protected Members and Methods"
 
-        Protected Overridable Function FactoryMethod() As QuoteDetail
-            Return New QuoteDetail(Me)
+        Protected Overridable Function FactoryMethod(ByVal product As Product) As QuoteDetail
+            Return New QuoteDetail(Me, product)
         End Function
 
 #End Region

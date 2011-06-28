@@ -83,6 +83,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>devDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="src\forms\frmWireLookup.Designer.vb">
+      <DependentUpon>frmWireLookup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmWireLookup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmPartLookup.Designer.vb">
       <DependentUpon>frmPartLookup.vb</DependentUpon>
     </Compile>
@@ -95,8 +101,8 @@
     <Compile Include="src\forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\model\ProductClass.vb" />
     <Compile Include="src\model\UnitOfMeasure.vb" />
+    <Compile Include="src\model\ProductClass.vb" />
     <Compile Include="src\model\QuoteHeader.vb" />
     <Compile Include="src\model\QuoteDetail.vb" />
     <Compile Include="src\model\ModelAdaptor.vb" />
@@ -138,6 +144,9 @@
     <EmbeddedResource Include="src\forms\frmQuoteA.resx">
       <DependentUpon>frmQuoteA.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmWireLookup.resx">
+      <DependentUpon>frmWireLookup.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\misc\frmQuoteMain.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmQuoteMain.vb</DependentUpon>
@@ -169,8 +178,6 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\DataSources\EditableQuoteDetail.datasource" />
-    <None Include="My Project\DataSources\EditableQuoteHeader.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
@@ -224,6 +231,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,27 +5,21 @@ Namespace Model
     ''' Represent a product
     ''' </summary>
     ''' <remarks></remarks>
-    Public Structure Product
+    Public Class Product
 
         Property Code As String
         Property UnitCost As Decimal
-        Property ProductClass As ProductClass
-
-        ReadOnly Property UnitOfMeasure As UnitOfMeasure
-            Get
-                Return IIf(ProductClass = Model.ProductClass.WIRE, UnitOfMeasure.LENGTH, UnitOfMeasure.PIECES)
-            End Get
-        End Property
+        Property UnitOfMeasure As UnitOfMeasure
 
         Public Sub New(ByVal Code As String, _
                        ByVal UnitCost As Decimal, _
-                       ByVal ProductClass As ProductClass)
+                       ByVal UnitOfMeasure As UnitOfMeasure)
             Me.Code = Code
             Me.UnitCost = UnitCost
-            Me.ProductClass = ProductClass
+            Me.UnitOfMeasure = UnitOfMeasure
         End Sub
 
-    End Structure
+    End Class
 
 End Namespace
 

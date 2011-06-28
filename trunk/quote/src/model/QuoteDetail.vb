@@ -19,13 +19,10 @@ Namespace Model
             End Get
         End Property
 
-        Property Product As Product
+        ReadOnly Property Product As Product
             Get
                 Return _product
             End Get
-            Set(ByVal value As Product)
-                _product = value
-            End Set
         End Property
 
         ReadOnly Property ProductCode As String
@@ -42,13 +39,13 @@ Namespace Model
 
         ReadOnly Property DisplayableProductClass As String
             Get
-                Return IIf(Product.ProductClass = ProductClass.WIRE, "Wire", "Component")
+                Return IIf(Product.UnitOfMeasure = UnitOfMeasure.BY_EACH, "Wire", "Component")
             End Get
         End Property
 
         ReadOnly Property DisplayableUnitOfMeasure As String
             Get
-                Return IIf(Product.ProductClass = ProductClass.WIRE, "Feet", "Each")
+                Return Product.UnitOfMeasure.ToString
             End Get
         End Property
 
@@ -69,11 +66,9 @@ Namespace Model
 
 #Region "Public Members and Methods"
 
-        Friend Sub New()
-        End Sub
-
-        Friend Sub New(ByVal QuoteHeader As QuoteHeader)
-            Me.QuoteHeader = QuoteHeader
+        Friend Sub New(ByVal header As QuoteHeader, ByVal product As Product)
+            Me.QuoteHeader = header
+            Me._product = product
             Me._qty = 1
         End Sub
 
