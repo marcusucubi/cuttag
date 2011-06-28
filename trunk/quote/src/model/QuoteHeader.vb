@@ -33,6 +33,12 @@ Namespace Model
             End Get
         End Property
 
+        Public ReadOnly Property QuoteDetails As QuoteDetailCollection
+            Get
+                Return _col
+            End Get
+        End Property
+
 #End Region
 
 #Region "Public Members and Methods"
@@ -70,13 +76,7 @@ Namespace Model
 
 #Region "Private Members and Methods"
 
-        Private _col As New List(Of QuoteDetail)
-
-        Protected ReadOnly Property QuoteDetails As List(Of QuoteDetail)
-            Get
-                Return _col
-            End Get
-        End Property
+        Private _col As New QuoteDetailCollection
 
         Private Function SumCost() As Decimal
             Dim result As Decimal
