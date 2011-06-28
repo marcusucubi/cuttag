@@ -7,16 +7,36 @@ Namespace Model
     ''' <remarks></remarks>
     Public Class Product
 
-        Property Code As String
-        Property UnitCost As Decimal
-        Property UnitOfMeasure As UnitOfMeasure
+        ReadOnly Property Code As String
+            Get
+                Return m_code
+            End Get
+        End Property
 
-        Public Sub New(ByVal Code As String, _
+        ReadOnly Property UnitCost As Decimal
+            Get
+                Return m_unitCost
+            End Get
+        End Property
+
+        ReadOnly Property UnitOfMeasure As UnitOfMeasure
+            Get
+                Return m_unitOfMeasure
+            End Get
+        End Property
+
+        Private m_code As String
+        Private m_unitCost As Decimal
+        Private m_unitOfMeasure As UnitOfMeasure
+
+        Public Sub New( _
+                       ByVal Code As String, _
                        ByVal UnitCost As Decimal, _
-                       ByVal UnitOfMeasure As UnitOfMeasure)
-            Me.Code = Code
-            Me.UnitCost = UnitCost
-            Me.UnitOfMeasure = UnitOfMeasure
+                       ByVal UnitOfMeasure As UnitOfMeasure _
+                       )
+            Me.m_code = Code
+            Me.m_unitCost = UnitCost
+            Me.m_unitOfMeasure = UnitOfMeasure
         End Sub
 
     End Class
