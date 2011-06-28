@@ -4,6 +4,7 @@ Imports System.Data.SqlClient
 Imports System.Data.Common
 Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
+Imports System.ComponentModel
 
 Public Class frmQuoteA
     Inherits DockContent
@@ -13,6 +14,12 @@ Public Class frmQuoteA
     Public Sub New()
         InitializeComponent()
         Me.HeaderSource.Add(m_QuoteHeader)
+        Me.gridDetail.DataSource = m_QuoteHeader.QuoteDetails
+    End Sub
+
+    Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles gridDetail.ColumnHeaderMouseClick
+        Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
+        Me.m_QuoteHeader.QuoteDetails.Sort = "Qty"
     End Sub
 
     Private Sub gridDetail_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles gridDetail.UserDeletingRow
@@ -42,4 +49,7 @@ Public Class frmQuoteA
         End If
     End Sub
 
+    Private Sub gridDetail_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.CellContentClick
+
+    End Sub
 End Class
