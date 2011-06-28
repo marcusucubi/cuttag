@@ -19,7 +19,8 @@ Public Class frmQuoteA
 
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles gridDetail.ColumnHeaderMouseClick
         Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
-        Me.m_QuoteHeader.QuoteDetails.Sort = "Qty"
+        Dim name As String = c.DataPropertyName
+        Me.m_QuoteHeader.QuoteDetails.Sort = name
     End Sub
 
     Private Sub gridDetail_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles gridDetail.UserDeletingRow
@@ -28,7 +29,9 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub btnAddWire_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
+
         Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
+
         If result = DialogResult.OK Then
             Dim detail As EditableQuoteDetail
             detail = m_QuoteHeader.NewQuoteDetail(frmComponentLookup.Product)
@@ -49,7 +52,4 @@ Public Class frmQuoteA
         End If
     End Sub
 
-    Private Sub gridDetail_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.CellContentClick
-
-    End Sub
 End Class
