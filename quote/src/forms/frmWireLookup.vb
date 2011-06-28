@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports DCS.Quote.Model
 
-Public Class frmComponentLookup
+Public Class frmWireLookup
 
     Public Property Product As Product
 
@@ -18,7 +18,7 @@ Public Class frmComponentLookup
         Dim num As String = View.Row.ItemArray(1)
         Dim cost As Decimal = View.Row.ItemArray(2)
 
-        Product = New Product(num, cost, UnitOfMeasure.BY_EACH)
+        Product = New Product(num, cost, UnitOfMeasure.BY_LENGTH)
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
@@ -29,7 +29,7 @@ Public Class frmComponentLookup
     Private Sub frmPartLookup_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Try
-            Me._PartsTableAdapter.Fill(Me.DevDataSet._Parts)
+            Me._WiresTableAdapter.Fill(Me.DevDataSet1._Wires)
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             MsgBox(ex.Message)

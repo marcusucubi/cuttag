@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmComponentLookup
+Partial Class frmWireLookup
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -27,12 +27,12 @@ Partial Class frmComponentLookup
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.PartsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DevDataSet = New DCS.Quote.devDataSet()
-        Me._PartsTableAdapter = New DCS.Quote.devDataSetTableAdapters._PartsTableAdapter()
+        Me.DevDataSet1 = New DCS.Quote.devDataSet()
+        Me.WiresBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me._WiresTableAdapter = New DCS.Quote.devDataSetTableAdapters._WiresTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DevDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.WiresBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -43,7 +43,7 @@ Partial Class frmComponentLookup
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(50, 221)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(34, 222)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -53,7 +53,6 @@ Partial Class frmComponentLookup
         'OK_Button
         '
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.OK_Button.Enabled = False
         Me.OK_Button.Location = New System.Drawing.Point(3, 3)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(67, 23)
@@ -72,47 +71,46 @@ Partial Class frmComponentLookup
         '
         'ListBox1
         '
-        Me.ListBox1.DataSource = Me.PartsBindingSource
+        Me.ListBox1.DataSource = Me.WiresBindingSource
         Me.ListBox1.DisplayMember = "PartNumber"
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(12, 12)
+        Me.ListBox1.Location = New System.Drawing.Point(12, 23)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(187, 199)
+        Me.ListBox1.Size = New System.Drawing.Size(165, 186)
         Me.ListBox1.TabIndex = 1
         '
-        'PartsBindingSource
+        'DevDataSet1
         '
-        Me.PartsBindingSource.DataMember = "_Parts"
-        Me.PartsBindingSource.DataSource = Me.DevDataSet
+        Me.DevDataSet1.DataSetName = "devDataSet1"
+        Me.DevDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'DevDataSet
+        'WiresBindingSource
         '
-        Me.DevDataSet.DataSetName = "devDataSet"
-        Me.DevDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.WiresBindingSource.DataMember = "_Wires"
+        Me.WiresBindingSource.DataSource = Me.DevDataSet1
         '
-        '_PartsTableAdapter
+        '_WiresTableAdapter
         '
-        Me._PartsTableAdapter.ClearBeforeFill = True
+        Me._WiresTableAdapter.ClearBeforeFill = True
         '
-        'frmPartLookup
+        'frmWireLookup
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(211, 262)
+        Me.ClientSize = New System.Drawing.Size(192, 263)
         Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmPartLookup"
+        Me.Name = "frmWireLookup"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Components"
+        Me.Text = "Wires"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DevDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.WiresBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -120,8 +118,8 @@ Partial Class frmComponentLookup
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents DevDataSet As DCS.Quote.devDataSet
-    Friend WithEvents PartsBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _PartsTableAdapter As DCS.Quote.devDataSetTableAdapters._PartsTableAdapter
+    Friend WithEvents DevDataSet1 As DCS.Quote.devDataSet
+    Friend WithEvents WiresBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents _WiresTableAdapter As DCS.Quote.devDataSetTableAdapters._WiresTableAdapter
 
 End Class

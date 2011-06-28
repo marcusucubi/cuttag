@@ -21,11 +21,21 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub btnAddWire_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
-        Dim result As DialogResult = frmPartLookup.ShowDialog(Me)
+        Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
             Dim detail As EditableQuoteDetail
-            detail = m_QuoteHeader.NewQuoteDetail
-            detail.Product = frmPartLookup.Product
+            detail = m_QuoteHeader.NewQuoteDetail(frmComponentLookup.Product)
+
+            Me.DetailSource.Add(detail)
+            Me.DetailSource.MoveNext()
+        End If
+    End Sub
+
+    Private Sub bntAddWire_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bntAddWire.Click
+        Dim result As DialogResult = frmWireLookup.ShowDialog(Me)
+        If result = DialogResult.OK Then
+            Dim detail As EditableQuoteDetail
+            detail = m_QuoteHeader.NewQuoteDetail(frmWireLookup.Product)
 
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
