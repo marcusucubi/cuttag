@@ -25,17 +25,21 @@ Partial Class frmQuoteA
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.CtrPartsAndWires1 = New DCS.Quote.ctrPartsAndWires()
-        Me.CtrParts1 = New DCS.Quote.ctrParts()
-        Me.CtrWires33 = New DCS.Quote.ctrWires3()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.panelButtons = New System.Windows.Forms.Panel()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.bntAddWire = New System.Windows.Forms.Button()
+        Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.gridHeader = New System.Windows.Forms.DataGridView()
         Me.Fill = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -48,28 +52,19 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.panelButtons = New System.Windows.Forms.Panel()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.bntAddWire = New System.Windows.Forms.Button()
-        Me.btnAddComponent = New System.Windows.Forms.Button()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
+        Me.panelButtons.SuspendLayout()
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HeaderSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.panelButtons.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
         '
         Me.SplitContainer1.BackColor = System.Drawing.SystemColors.Control
         Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
@@ -77,51 +72,85 @@ Partial Class frmQuoteA
         'SplitContainer1.Panel1
         '
         Me.SplitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.SplitContainer1.Panel1.Controls.Add(Me.CtrPartsAndWires1)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.CtrParts1)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.CtrWires33)
         '
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(641, 432)
-        Me.SplitContainer1.SplitterDistance = 218
+        Me.SplitContainer1.Size = New System.Drawing.Size(362, 277)
+        Me.SplitContainer1.SplitterDistance = 139
         Me.SplitContainer1.TabIndex = 4
-        '
-        'CtrPartsAndWires1
-        '
-        Me.CtrPartsAndWires1.Location = New System.Drawing.Point(421, 3)
-        Me.CtrPartsAndWires1.Name = "CtrPartsAndWires1"
-        Me.CtrPartsAndWires1.QuoteHeader = Nothing
-        Me.CtrPartsAndWires1.Size = New System.Drawing.Size(182, 208)
-        Me.CtrPartsAndWires1.TabIndex = 2
-        '
-        'CtrParts1
-        '
-        Me.CtrParts1.Location = New System.Drawing.Point(230, 3)
-        Me.CtrParts1.Name = "CtrParts1"
-        Me.CtrParts1.QuoteHeader = Nothing
-        Me.CtrParts1.Size = New System.Drawing.Size(185, 208)
-        Me.CtrParts1.TabIndex = 1
-        '
-        'CtrWires33
-        '
-        Me.CtrWires33.Location = New System.Drawing.Point(3, 3)
-        Me.CtrWires33.Name = "CtrWires33"
-        Me.CtrWires33.QuoteHeader = Nothing
-        Me.CtrWires33.Size = New System.Drawing.Size(221, 208)
-        Me.CtrWires33.TabIndex = 0
         '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.gridHeader)
-        Me.Panel2.Controls.Add(Me.gridDetail)
-        Me.Panel2.Controls.Add(Me.panelButtons)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(637, 206)
+        Me.Panel2.Size = New System.Drawing.Size(358, 130)
         Me.Panel2.TabIndex = 4
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.DataPropertyName = "ProductCode"
+        Me.DataGridViewTextBoxColumn10.HeaderText = "ProductCode"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.DataPropertyName = "ProductCode"
+        Me.DataGridViewTextBoxColumn11.HeaderText = "ProductCode"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        Me.DataGridViewTextBoxColumn11.ReadOnly = True
+        '
+        'panelButtons
+        '
+        Me.panelButtons.Controls.Add(Me.LinkLabel2)
+        Me.panelButtons.Controls.Add(Me.LinkLabel1)
+        Me.panelButtons.Controls.Add(Me.bntAddWire)
+        Me.panelButtons.Controls.Add(Me.btnAddComponent)
+        Me.panelButtons.Dock = System.Windows.Forms.DockStyle.Left
+        Me.panelButtons.Location = New System.Drawing.Point(0, 0)
+        Me.panelButtons.Name = "panelButtons"
+        Me.panelButtons.Size = New System.Drawing.Size(106, 218)
+        Me.panelButtons.TabIndex = 5
+        '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Location = New System.Drawing.Point(12, 36)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(75, 13)
+        Me.LinkLabel2.TabIndex = 4
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "Wire Summary"
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.Location = New System.Drawing.Point(10, 11)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(70, 13)
+        Me.LinkLabel1.TabIndex = 3
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Header Page"
+        '
+        'bntAddWire
+        '
+        Me.bntAddWire.Location = New System.Drawing.Point(12, 111)
+        Me.bntAddWire.Name = "bntAddWire"
+        Me.bntAddWire.Size = New System.Drawing.Size(75, 23)
+        Me.bntAddWire.TabIndex = 1
+        Me.bntAddWire.Text = "Add Wire"
+        Me.bntAddWire.UseVisualStyleBackColor = True
+        '
+        'btnAddComponent
+        '
+        Me.btnAddComponent.Location = New System.Drawing.Point(13, 66)
+        Me.btnAddComponent.Name = "btnAddComponent"
+        Me.btnAddComponent.Size = New System.Drawing.Size(75, 39)
+        Me.btnAddComponent.TabIndex = 0
+        Me.btnAddComponent.Text = "Add Component"
+        Me.btnAddComponent.UseVisualStyleBackColor = True
         '
         'gridHeader
         '
@@ -132,19 +161,19 @@ Partial Class frmQuoteA
         Me.gridHeader.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Fill, Me.CostDataGridViewTextBoxColumn})
         Me.gridHeader.DataSource = Me.HeaderSource
         Me.gridHeader.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.gridHeader.Location = New System.Drawing.Point(106, 154)
+        Me.gridHeader.Location = New System.Drawing.Point(106, 166)
         Me.gridHeader.Name = "gridHeader"
         Me.gridHeader.ReadOnly = True
         Me.gridHeader.RowHeadersVisible = False
-        Me.gridHeader.Size = New System.Drawing.Size(531, 52)
-        Me.gridHeader.TabIndex = 6
+        Me.gridHeader.Size = New System.Drawing.Size(535, 52)
+        Me.gridHeader.TabIndex = 7
         '
         'Fill
         '
         Me.Fill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle1.Format = "C2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.Fill.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Format = "C2"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.Fill.DefaultCellStyle = DataGridViewCellStyle7
         Me.Fill.HeaderText = ""
         Me.Fill.Name = "Fill"
         Me.Fill.ReadOnly = True
@@ -152,10 +181,10 @@ Partial Class frmQuoteA
         'CostDataGridViewTextBoxColumn
         '
         Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.CostDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle8.Format = "C2"
+        DataGridViewCellStyle8.NullValue = Nothing
+        Me.CostDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle8
         Me.CostDataGridViewTextBoxColumn.HeaderText = "Total Cost"
         Me.CostDataGridViewTextBoxColumn.Name = "CostDataGridViewTextBoxColumn"
         Me.CostDataGridViewTextBoxColumn.ReadOnly = True
@@ -175,8 +204,8 @@ Partial Class frmQuoteA
         Me.gridDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gridDetail.Location = New System.Drawing.Point(106, 0)
         Me.gridDetail.Name = "gridDetail"
-        Me.gridDetail.Size = New System.Drawing.Size(531, 206)
-        Me.gridDetail.TabIndex = 5
+        Me.gridDetail.Size = New System.Drawing.Size(535, 166)
+        Me.gridDetail.TabIndex = 8
         '
         'Fill3
         '
@@ -196,9 +225,9 @@ Partial Class frmQuoteA
         'ProductCode
         '
         Me.ProductCode.DataPropertyName = "ProductCode"
-        DataGridViewCellStyle3.Format = "C5"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.ProductCode.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Format = "C5"
+        DataGridViewCellStyle9.NullValue = Nothing
+        Me.ProductCode.DefaultCellStyle = DataGridViewCellStyle9
         Me.ProductCode.HeaderText = "ProductCode"
         Me.ProductCode.Name = "ProductCode"
         Me.ProductCode.ReadOnly = True
@@ -206,10 +235,10 @@ Partial Class frmQuoteA
         'UnitCost
         '
         Me.UnitCost.DataPropertyName = "UnitCost"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "C5"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.UnitCost.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "C5"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.UnitCost.DefaultCellStyle = DataGridViewCellStyle10
         Me.UnitCost.HeaderText = "Unit Cost"
         Me.UnitCost.Name = "UnitCost"
         Me.UnitCost.ReadOnly = True
@@ -217,20 +246,20 @@ Partial Class frmQuoteA
         'DataGridViewTextBoxColumn12
         '
         Me.DataGridViewTextBoxColumn12.DataPropertyName = "Qty"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N0"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn12.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Format = "N0"
+        DataGridViewCellStyle11.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn12.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn12.HeaderText = "Qty"
         Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         '
         'TotalCost
         '
         Me.TotalCost.DataPropertyName = "TotalCost"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.TotalCost.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "C2"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.TotalCost.DefaultCellStyle = DataGridViewCellStyle12
         Me.TotalCost.HeaderText = "Total Cost"
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True
@@ -239,78 +268,26 @@ Partial Class frmQuoteA
         '
         Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
-        'panelButtons
-        '
-        Me.panelButtons.Controls.Add(Me.LinkLabel1)
-        Me.panelButtons.Controls.Add(Me.bntAddWire)
-        Me.panelButtons.Controls.Add(Me.btnAddComponent)
-        Me.panelButtons.Dock = System.Windows.Forms.DockStyle.Left
-        Me.panelButtons.Location = New System.Drawing.Point(0, 0)
-        Me.panelButtons.Name = "panelButtons"
-        Me.panelButtons.Size = New System.Drawing.Size(106, 206)
-        Me.panelButtons.TabIndex = 4
-        '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(10, 11)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(70, 13)
-        Me.LinkLabel1.TabIndex = 3
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Header Page"
-        '
-        'bntAddWire
-        '
-        Me.bntAddWire.Location = New System.Drawing.Point(12, 82)
-        Me.bntAddWire.Name = "bntAddWire"
-        Me.bntAddWire.Size = New System.Drawing.Size(75, 23)
-        Me.bntAddWire.TabIndex = 1
-        Me.bntAddWire.Text = "Add Wire"
-        Me.bntAddWire.UseVisualStyleBackColor = True
-        '
-        'btnAddComponent
-        '
-        Me.btnAddComponent.Location = New System.Drawing.Point(12, 37)
-        Me.btnAddComponent.Name = "btnAddComponent"
-        Me.btnAddComponent.Size = New System.Drawing.Size(75, 39)
-        Me.btnAddComponent.TabIndex = 0
-        Me.btnAddComponent.Text = "Add Component"
-        Me.btnAddComponent.UseVisualStyleBackColor = True
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.DataPropertyName = "ProductCode"
-        Me.DataGridViewTextBoxColumn10.HeaderText = "ProductCode"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        Me.DataGridViewTextBoxColumn10.ReadOnly = True
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.DataPropertyName = "ProductCode"
-        Me.DataGridViewTextBoxColumn11.HeaderText = "ProductCode"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.ReadOnly = True
-        '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(641, 432)
+        Me.ClientSize = New System.Drawing.Size(641, 218)
+        Me.Controls.Add(Me.gridDetail)
+        Me.Controls.Add(Me.gridHeader)
+        Me.Controls.Add(Me.panelButtons)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmQuoteA"
         Me.Text = "New Quote"
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
+        Me.panelButtons.ResumeLayout(False)
+        Me.panelButtons.PerformLayout()
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HeaderSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.panelButtons.ResumeLayout(False)
-        Me.panelButtons.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -334,23 +311,21 @@ Partial Class frmQuoteA
     Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents gridHeader As System.Windows.Forms.DataGridView
-    Friend WithEvents gridDetail As System.Windows.Forms.DataGridView
+    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
+    Friend WithEvents CtrWires32 As DCS.Quote.ctrWires3
     Friend WithEvents panelButtons As System.Windows.Forms.Panel
+    Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
+    Friend WithEvents bntAddWire As System.Windows.Forms.Button
     Friend WithEvents btnAddComponent As System.Windows.Forms.Button
+    Friend WithEvents gridHeader As System.Windows.Forms.DataGridView
+    Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents gridDetail As System.Windows.Forms.DataGridView
     Friend WithEvents Fill3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UnitOfMeasure As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ProductCode As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UnitCost As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TotalCost As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents bntAddWire As System.Windows.Forms.Button
-    Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
-    Friend WithEvents CtrWires32 As DCS.Quote.ctrWires3
-    Friend WithEvents CtrWires33 As DCS.Quote.ctrWires3
-    Friend WithEvents CtrParts1 As DCS.Quote.ctrParts
-    Friend WithEvents CtrPartsAndWires1 As DCS.Quote.ctrPartsAndWires
-    Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
 End Class
