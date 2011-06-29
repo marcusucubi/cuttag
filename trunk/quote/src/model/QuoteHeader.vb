@@ -55,6 +55,12 @@ Namespace Model
             End Get
         End Property
 
+        Public ReadOnly Property PartAndWireCount() As Integer
+            Get
+                Return Count(UnitOfMeasure.BY_EACH) + Count(UnitOfMeasure.BY_LENGTH)
+            End Get
+        End Property
+
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _col
