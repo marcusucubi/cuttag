@@ -34,9 +34,6 @@ Partial Class frmQuoteA
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.groupWires = New System.Windows.Forms.GroupBox()
-        Me.lblTotalLength = New System.Windows.Forms.Label()
-        Me.txtTotalLength = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.gridHeader = New System.Windows.Forms.DataGridView()
         Me.Fill = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -51,19 +48,15 @@ Partial Class frmQuoteA
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtLengthFeet = New System.Windows.Forms.TextBox()
-        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.CtrWires1 = New DCS.Quote.ctrWires()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        Me.groupWires.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,8 +85,8 @@ Partial Class frmQuoteA
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.CtrWires1)
         Me.Panel1.Controls.Add(Me.GroupBox1)
-        Me.Panel1.Controls.Add(Me.groupWires)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
@@ -102,46 +95,12 @@ Partial Class frmQuoteA
         '
         'GroupBox1
         '
-        Me.GroupBox1.Location = New System.Drawing.Point(218, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(235, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(190, 89)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Components"
-        '
-        'groupWires
-        '
-        Me.groupWires.Controls.Add(Me.TextBox1)
-        Me.groupWires.Controls.Add(Me.Label2)
-        Me.groupWires.Controls.Add(Me.txtLengthFeet)
-        Me.groupWires.Controls.Add(Me.Label1)
-        Me.groupWires.Controls.Add(Me.lblTotalLength)
-        Me.groupWires.Controls.Add(Me.txtTotalLength)
-        Me.groupWires.Location = New System.Drawing.Point(12, 12)
-        Me.groupWires.Name = "groupWires"
-        Me.groupWires.Size = New System.Drawing.Size(200, 105)
-        Me.groupWires.TabIndex = 0
-        Me.groupWires.TabStop = False
-        Me.groupWires.Text = "Wires"
-        '
-        'lblTotalLength
-        '
-        Me.lblTotalLength.AutoSize = True
-        Me.lblTotalLength.Location = New System.Drawing.Point(8, 19)
-        Me.lblTotalLength.Name = "lblTotalLength"
-        Me.lblTotalLength.Size = New System.Drawing.Size(90, 13)
-        Me.lblTotalLength.TabIndex = 1
-        Me.lblTotalLength.Text = "Total Length (dm)"
-        '
-        'txtTotalLength
-        '
-        Me.txtTotalLength.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.HeaderSource, "TotalLength", True))
-        Me.txtTotalLength.Location = New System.Drawing.Point(115, 16)
-        Me.txtTotalLength.Name = "txtTotalLength"
-        Me.txtTotalLength.ReadOnly = True
-        Me.txtTotalLength.Size = New System.Drawing.Size(79, 20)
-        Me.txtTotalLength.TabIndex = 0
-        Me.txtTotalLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Panel2
         '
@@ -283,29 +242,6 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(8, 46)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(94, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Total Length (feet)"
-        '
-        'txtLengthFeet
-        '
-        Me.txtLengthFeet.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.HeaderSource, "TotalLengthFeet", True))
-        Me.txtLengthFeet.Location = New System.Drawing.Point(115, 43)
-        Me.txtLengthFeet.Name = "txtLengthFeet"
-        Me.txtLengthFeet.ReadOnly = True
-        Me.txtLengthFeet.Size = New System.Drawing.Size(79, 20)
-        Me.txtLengthFeet.TabIndex = 3
-        Me.txtLengthFeet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'HeaderSource
-        '
-        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteHeader)
-        '
         'CostDataGridViewTextBoxColumn
         '
         Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
@@ -316,6 +252,10 @@ Partial Class frmQuoteA
         Me.CostDataGridViewTextBoxColumn.HeaderText = "Total Cost"
         Me.CostDataGridViewTextBoxColumn.Name = "CostDataGridViewTextBoxColumn"
         Me.CostDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'HeaderSource
+        '
+        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteHeader)
         '
         'DataGridViewTextBoxColumn12
         '
@@ -331,24 +271,13 @@ Partial Class frmQuoteA
         '
         Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
-        'Label2
+        'CtrWires1
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(8, 72)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(35, 13)
-        Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Count"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.HeaderSource, "WireCount", True))
-        Me.TextBox1.Location = New System.Drawing.Point(115, 69)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(79, 20)
-        Me.TextBox1.TabIndex = 5
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.CtrWires1.Location = New System.Drawing.Point(12, 12)
+        Me.CtrWires1.Name = "CtrWires1"
+        Me.CtrWires1.QuoteHeader = Nothing
+        Me.CtrWires1.Size = New System.Drawing.Size(217, 98)
+        Me.CtrWires1.TabIndex = 2
         '
         'frmQuoteA
         '
@@ -363,8 +292,6 @@ Partial Class frmQuoteA
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
-        Me.groupWires.ResumeLayout(False)
-        Me.groupWires.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).EndInit()
@@ -394,9 +321,6 @@ Partial Class frmQuoteA
     Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents groupWires As System.Windows.Forms.GroupBox
-    Friend WithEvents lblTotalLength As System.Windows.Forms.Label
-    Friend WithEvents txtTotalLength As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents gridHeader As System.Windows.Forms.DataGridView
@@ -412,8 +336,5 @@ Partial Class frmQuoteA
     Friend WithEvents bntAddWire As System.Windows.Forms.Button
     Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents txtLengthFeet As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents CtrWires1 As DCS.Quote.ctrWires
 End Class
