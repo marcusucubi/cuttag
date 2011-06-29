@@ -83,10 +83,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>devDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="src\controls\ctrWires.Designer.vb">
-      <DependentUpon>ctrWires.vb</DependentUpon>
+    <Compile Include="src\controls\ctrWires3.Designer.vb">
+      <DependentUpon>ctrWires3.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\controls\ctrWires.vb">
+    <Compile Include="src\controls\ctrWires3.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\forms\frmWireLookup.Designer.vb">
@@ -144,8 +144,8 @@
     <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\controls\ctrWires.resx">
-      <DependentUpon>ctrWires.vb</DependentUpon>
+    <EmbeddedResource Include="src\controls\ctrWires3.resx">
+      <DependentUpon>ctrWires3.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmPartLookup.resx">
       <DependentUpon>frmPartLookup.vb</DependentUpon>
