@@ -11,6 +11,12 @@ Public Class frmQuoteA
 
     Private m_QuoteHeader As New EditableQuoteHeader
 
+    Public ReadOnly Property QuoteHeader As QuoteHeader
+        Get
+            Return m_QuoteHeader
+        End Get
+    End Property
+
     Public Sub New()
         InitializeComponent()
         Me.HeaderSource.Add(m_QuoteHeader)
@@ -50,4 +56,10 @@ Public Class frmQuoteA
         End If
     End Sub
 
+    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Dim ChildForm As New frmQuoteHeader
+        ChildForm.MdiParent = frmMain.frmMain
+        ChildForm.frmQuoteA = Me
+        ChildForm.Show(frmMain.frmMain.DockPanel1)
+    End Sub
 End Class
