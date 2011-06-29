@@ -54,7 +54,7 @@ Partial Class frmMain
         Me.DockPanel1.DockBackColor = System.Drawing.SystemColors.Window
         Me.DockPanel1.Location = New System.Drawing.Point(0, 0)
         Me.DockPanel1.Name = "DockPanel1"
-        Me.DockPanel1.Size = New System.Drawing.Size(610, 339)
+        Me.DockPanel1.Size = New System.Drawing.Size(705, 375)
         DockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight
         DockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight
         AutoHideStripSkin1.DockStripGradient = DockPanelGradient1
@@ -108,7 +108,7 @@ Partial Class frmMain
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(610, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(705, 25)
         Me.ToolStrip1.TabIndex = 10
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -125,7 +125,7 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(610, 339)
+        Me.ClientSize = New System.Drawing.Size(705, 375)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.DockPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
