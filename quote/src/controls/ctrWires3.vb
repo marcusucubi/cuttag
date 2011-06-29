@@ -5,6 +5,7 @@ Public Class ctrWires3
     Dim WithEvents _TotalLengthBinding As Binding
     Dim WithEvents _TotalLengthFeetBinding As Binding
     Dim WithEvents _WireCountBinding As Binding
+    Dim WithEvents _WireTimeBinding As Binding
     Private _QuoteHeader As QuoteHeader
 
     Public Property QuoteHeader As QuoteHeader
@@ -22,6 +23,9 @@ Public Class ctrWires3
 
                 _WireCountBinding = New Binding("Text", QuoteHeader, "WireCount")
                 Me.txtWireCount.DataBindings.Add(_WireCountBinding)
+
+                _WireTimeBinding = New Binding("Text", QuoteHeader.QuoteComputer, "WireTime")
+                Me.txtWireTime.DataBindings.Add(_WireTimeBinding)
             End If
         End Set
     End Property

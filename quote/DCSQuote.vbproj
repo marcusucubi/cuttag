@@ -83,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>devDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="src\controller\QuoteComputer.vb" />
     <Compile Include="src\controls\ctrPartsAndWires.Designer.vb">
       <DependentUpon>ctrPartsAndWires.vb</DependentUpon>
     </Compile>
