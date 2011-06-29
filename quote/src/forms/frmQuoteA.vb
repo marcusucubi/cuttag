@@ -16,6 +16,7 @@ Public Class frmQuoteA
         Me.HeaderSource.Add(m_QuoteHeader)
         Me.gridDetail.DataSource = m_QuoteHeader.QuoteDetails
         Me.CtrWires33.QuoteHeader = m_QuoteHeader
+        Me.CtrParts1.QuoteHeader = m_QuoteHeader
     End Sub
 
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles gridDetail.ColumnHeaderMouseClick

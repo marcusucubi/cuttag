@@ -3,16 +3,19 @@
 Public Class ctrParts
 
     Dim WithEvents _PartCountBinding As Binding
+    Private _QuoteHeader As QuoteHeader
 
     Public Property QuoteHeader As QuoteHeader
-
-    Private Sub Form2_Load(ByVal sender As Object, _
-                           ByVal e As System.EventArgs) _
-                Handles MyBase.Load
-
-        _PartCountBinding = New Binding("Text", QuoteHeader, "PartCount")
-        Me.txtPartCount.DataBindings.Add(_PartCountBinding)
-
-    End Sub
+        Get
+            Return _QuoteHeader
+        End Get
+        Set(ByVal value As QuoteHeader)
+            _QuoteHeader = value
+            If value IsNot Nothing Then
+                _PartCountBinding = New Binding("Text", QuoteHeader, "PartCount")
+                Me.txtCount.DataBindings.Add(_PartCountBinding)
+            End If
+        End Set
+    End Property
 
 End Class

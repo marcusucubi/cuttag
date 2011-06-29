@@ -51,7 +51,7 @@ Partial Class ctrWires3
         'txtWireCount
         '
         Me.txtWireCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtWireCount.Location = New System.Drawing.Point(131, 71)
+        Me.txtWireCount.Location = New System.Drawing.Point(131, 16)
         Me.txtWireCount.Name = "txtWireCount"
         Me.txtWireCount.Size = New System.Drawing.Size(78, 20)
         Me.txtWireCount.TabIndex = 5
@@ -61,16 +61,16 @@ Partial Class ctrWires3
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 75)
+        Me.Label4.Location = New System.Drawing.Point(10, 20)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(63, 13)
+        Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Wire Count:"
+        Me.Label4.Text = "Count:"
         '
         'txtTotalLengthFeet
         '
         Me.txtTotalLengthFeet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtTotalLengthFeet.Location = New System.Drawing.Point(131, 43)
+        Me.txtTotalLengthFeet.Location = New System.Drawing.Point(131, 36)
         Me.txtTotalLengthFeet.Name = "txtTotalLengthFeet"
         Me.txtTotalLengthFeet.Size = New System.Drawing.Size(78, 20)
         Me.txtTotalLengthFeet.TabIndex = 3
@@ -80,7 +80,7 @@ Partial Class ctrWires3
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 47)
+        Me.Label2.Location = New System.Drawing.Point(10, 40)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(97, 13)
         Me.Label2.TabIndex = 2
@@ -89,7 +89,7 @@ Partial Class ctrWires3
         'txtTotalLengthDm
         '
         Me.txtTotalLengthDm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtTotalLengthDm.Location = New System.Drawing.Point(131, 16)
+        Me.txtTotalLengthDm.Location = New System.Drawing.Point(131, 56)
         Me.txtTotalLengthDm.Name = "txtTotalLengthDm"
         Me.txtTotalLengthDm.Size = New System.Drawing.Size(78, 20)
         Me.txtTotalLengthDm.TabIndex = 1
@@ -99,7 +99,7 @@ Partial Class ctrWires3
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 20)
+        Me.Label1.Location = New System.Drawing.Point(10, 60)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(93, 13)
         Me.Label1.TabIndex = 0
