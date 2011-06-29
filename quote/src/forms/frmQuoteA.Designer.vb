@@ -25,12 +25,12 @@ Partial Class frmQuoteA
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -39,6 +39,7 @@ Partial Class frmQuoteA
         Me.txtTotalLength = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.gridHeader = New System.Windows.Forms.DataGridView()
+        Me.Fill = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gridDetail = New System.Windows.Forms.DataGridView()
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitOfMeasure = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -50,11 +51,14 @@ Partial Class frmQuoteA
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtLengthFeet = New System.Windows.Forms.TextBox()
         Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Fill = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -82,8 +86,8 @@ Partial Class frmQuoteA
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(585, 327)
-        Me.SplitContainer1.SplitterDistance = 115
+        Me.SplitContainer1.Size = New System.Drawing.Size(600, 342)
+        Me.SplitContainer1.SplitterDistance = 120
         Me.SplitContainer1.TabIndex = 4
         '
         'Panel1
@@ -93,7 +97,7 @@ Partial Class frmQuoteA
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(585, 115)
+        Me.Panel1.Size = New System.Drawing.Size(600, 120)
         Me.Panel1.TabIndex = 0
         '
         'GroupBox1
@@ -107,11 +111,15 @@ Partial Class frmQuoteA
         '
         'groupWires
         '
+        Me.groupWires.Controls.Add(Me.TextBox1)
+        Me.groupWires.Controls.Add(Me.Label2)
+        Me.groupWires.Controls.Add(Me.txtLengthFeet)
+        Me.groupWires.Controls.Add(Me.Label1)
         Me.groupWires.Controls.Add(Me.lblTotalLength)
         Me.groupWires.Controls.Add(Me.txtTotalLength)
         Me.groupWires.Location = New System.Drawing.Point(12, 12)
         Me.groupWires.Name = "groupWires"
-        Me.groupWires.Size = New System.Drawing.Size(200, 89)
+        Me.groupWires.Size = New System.Drawing.Size(200, 105)
         Me.groupWires.TabIndex = 0
         Me.groupWires.TabStop = False
         Me.groupWires.Text = "Wires"
@@ -128,10 +136,10 @@ Partial Class frmQuoteA
         'txtTotalLength
         '
         Me.txtTotalLength.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.HeaderSource, "TotalLength", True))
-        Me.txtTotalLength.Location = New System.Drawing.Point(111, 16)
+        Me.txtTotalLength.Location = New System.Drawing.Point(115, 16)
         Me.txtTotalLength.Name = "txtTotalLength"
         Me.txtTotalLength.ReadOnly = True
-        Me.txtTotalLength.Size = New System.Drawing.Size(70, 20)
+        Me.txtTotalLength.Size = New System.Drawing.Size(79, 20)
         Me.txtTotalLength.TabIndex = 0
         Me.txtTotalLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -143,7 +151,7 @@ Partial Class frmQuoteA
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(585, 208)
+        Me.Panel2.Size = New System.Drawing.Size(600, 218)
         Me.Panel2.TabIndex = 4
         '
         'gridHeader
@@ -155,12 +163,22 @@ Partial Class frmQuoteA
         Me.gridHeader.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Fill, Me.CostDataGridViewTextBoxColumn})
         Me.gridHeader.DataSource = Me.HeaderSource
         Me.gridHeader.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.gridHeader.Location = New System.Drawing.Point(106, 156)
+        Me.gridHeader.Location = New System.Drawing.Point(106, 166)
         Me.gridHeader.Name = "gridHeader"
         Me.gridHeader.ReadOnly = True
         Me.gridHeader.RowHeadersVisible = False
-        Me.gridHeader.Size = New System.Drawing.Size(479, 52)
+        Me.gridHeader.Size = New System.Drawing.Size(494, 52)
         Me.gridHeader.TabIndex = 6
+        '
+        'Fill
+        '
+        Me.Fill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        DataGridViewCellStyle1.Format = "C2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.Fill.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Fill.HeaderText = ""
+        Me.Fill.Name = "Fill"
+        Me.Fill.ReadOnly = True
         '
         'gridDetail
         '
@@ -173,7 +191,7 @@ Partial Class frmQuoteA
         Me.gridDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gridDetail.Location = New System.Drawing.Point(106, 0)
         Me.gridDetail.Name = "gridDetail"
-        Me.gridDetail.Size = New System.Drawing.Size(479, 208)
+        Me.gridDetail.Size = New System.Drawing.Size(494, 218)
         Me.gridDetail.TabIndex = 5
         '
         'Fill3
@@ -230,7 +248,7 @@ Partial Class frmQuoteA
         Me.panelButtons.Dock = System.Windows.Forms.DockStyle.Left
         Me.panelButtons.Location = New System.Drawing.Point(0, 0)
         Me.panelButtons.Name = "panelButtons"
-        Me.panelButtons.Size = New System.Drawing.Size(106, 208)
+        Me.panelButtons.Size = New System.Drawing.Size(106, 218)
         Me.panelButtons.TabIndex = 4
         '
         'bntAddWire
@@ -265,9 +283,39 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(8, 46)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(94, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Total Length (feet)"
+        '
+        'txtLengthFeet
+        '
+        Me.txtLengthFeet.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.HeaderSource, "TotalLengthFeet", True))
+        Me.txtLengthFeet.Location = New System.Drawing.Point(115, 43)
+        Me.txtLengthFeet.Name = "txtLengthFeet"
+        Me.txtLengthFeet.ReadOnly = True
+        Me.txtLengthFeet.Size = New System.Drawing.Size(79, 20)
+        Me.txtLengthFeet.TabIndex = 3
+        Me.txtLengthFeet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'HeaderSource
         '
         Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteHeader)
+        '
+        'CostDataGridViewTextBoxColumn
+        '
+        Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.CostDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.CostDataGridViewTextBoxColumn.HeaderText = "Total Cost"
+        Me.CostDataGridViewTextBoxColumn.Name = "CostDataGridViewTextBoxColumn"
+        Me.CostDataGridViewTextBoxColumn.ReadOnly = True
         '
         'DataGridViewTextBoxColumn12
         '
@@ -283,32 +331,30 @@ Partial Class frmQuoteA
         '
         Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
-        'Fill
+        'Label2
         '
-        Me.Fill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        DataGridViewCellStyle1.Format = "C2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.Fill.DefaultCellStyle = DataGridViewCellStyle1
-        Me.Fill.HeaderText = ""
-        Me.Fill.Name = "Fill"
-        Me.Fill.ReadOnly = True
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(8, 72)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Count"
         '
-        'CostDataGridViewTextBoxColumn
+        'TextBox1
         '
-        Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.CostDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.CostDataGridViewTextBoxColumn.HeaderText = "Total Cost"
-        Me.CostDataGridViewTextBoxColumn.Name = "CostDataGridViewTextBoxColumn"
-        Me.CostDataGridViewTextBoxColumn.ReadOnly = True
+        Me.TextBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.HeaderSource, "WireCount", True))
+        Me.TextBox1.Location = New System.Drawing.Point(115, 69)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(79, 20)
+        Me.TextBox1.TabIndex = 5
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(585, 327)
+        Me.ClientSize = New System.Drawing.Size(600, 342)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmQuoteA"
@@ -366,4 +412,8 @@ Partial Class frmQuoteA
     Friend WithEvents bntAddWire As System.Windows.Forms.Button
     Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents txtLengthFeet As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 End Class

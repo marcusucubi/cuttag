@@ -25,6 +25,12 @@ Namespace Model
             End Get
         End Property
 
+        Public ReadOnly Property TotalLengthFeet() As Decimal
+            Get
+                Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 2)
+            End Get
+        End Property
+
         Public ReadOnly Property TotalQty() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_EACH)
@@ -34,6 +40,12 @@ Namespace Model
         Public ReadOnly Property Cost() As Decimal
             Get
                 Return SumCost()
+            End Get
+        End Property
+
+        Public ReadOnly Property WireCount() As Integer
+            Get
+                Return Count(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
@@ -84,6 +96,16 @@ Namespace Model
             For Each detail As QuoteDetail In _col
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.Qty
+                End If
+            Next
+            Return result
+        End Function
+
+        Private Function Count(ByVal measure As UnitOfMeasure) As Integer
+            Dim result As Integer
+            For Each detail As QuoteDetail In _col
+                If detail.Product.UnitOfMeasure = measure Then
+                    result += 1
                 End If
             Next
             Return result
