@@ -19,6 +19,8 @@ Namespace Model
 
 #Region "Properties"
 
+        Public Property QuoteComputer As New QuoteComputer(Me)
+
         Public ReadOnly Property TotalLength() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_LENGTH)

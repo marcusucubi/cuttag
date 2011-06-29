@@ -29,11 +29,15 @@ Partial Class ctrWires3
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtTotalLengthDm = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtWireTime = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txtWireTime)
+        Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.txtWireCount)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.txtTotalLengthFeet)
@@ -105,6 +109,24 @@ Partial Class ctrWires3
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Total Length: (dm)"
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(10, 80)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(58, 13)
+        Me.Label5.TabIndex = 6
+        Me.Label5.Text = "Wire Time:"
+        '
+        'txtWireTime
+        '
+        Me.txtWireTime.Location = New System.Drawing.Point(132, 77)
+        Me.txtWireTime.Name = "txtWireTime"
+        Me.txtWireTime.Size = New System.Drawing.Size(77, 20)
+        Me.txtWireTime.TabIndex = 7
+        Me.txtWireTime.Text = "25"
+        Me.txtWireTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'ctrWires3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -124,5 +146,7 @@ Partial Class ctrWires3
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtWireCount As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtWireTime As System.Windows.Forms.TextBox
 
 End Class
