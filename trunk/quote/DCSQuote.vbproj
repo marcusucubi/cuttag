@@ -102,6 +102,12 @@
     <Compile Include="src\controls\ctrParts.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="src\forms\frmQuotePartsHeader.Designer.vb">
+      <DependentUpon>frmQuotePartsHeader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmQuotePartsHeader.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmQuoteWireHeader.Designer.vb">
       <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteHeader.resx">
       <DependentUpon>frmQuoteHeader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmQuotePartsHeader.resx">
+      <DependentUpon>frmQuotePartsHeader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteWireHeader.resx">
       <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>

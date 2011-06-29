@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmQuoteWireHeader
+Partial Class frmQuotePartsHeader
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
@@ -22,29 +22,28 @@ Partial Class frmQuoteWireHeader
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CtrWires31 = New DCS.Quote.ctrWires3()
+        Me.CtrParts1 = New DCS.Quote.ctrParts()
         Me.SuspendLayout()
         '
-        'CtrWires31
+        'CtrParts1
         '
-        Me.CtrWires31.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CtrWires31.Location = New System.Drawing.Point(0, 0)
-        Me.CtrWires31.Name = "CtrWires31"
-        Me.CtrWires31.QuoteHeader = Nothing
-        Me.CtrWires31.Size = New System.Drawing.Size(240, 177)
-        Me.CtrWires31.TabIndex = 1
+        Me.CtrParts1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CtrParts1.Location = New System.Drawing.Point(0, 0)
+        Me.CtrParts1.Name = "CtrParts1"
+        Me.CtrParts1.QuoteHeader = Nothing
+        Me.CtrParts1.Size = New System.Drawing.Size(299, 143)
+        Me.CtrParts1.TabIndex = 2
         '
-        'frmQuoteWireHeader
+        'frmQuotePartsHeader
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(240, 177)
-        Me.Controls.Add(Me.CtrWires31)
-        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "frmQuoteWireHeader"
-        Me.Text = "New Quote - Wire Summary"
+        Me.ClientSize = New System.Drawing.Size(299, 143)
+        Me.Controls.Add(Me.CtrParts1)
+        Me.Name = "frmQuotePartsHeader"
+        Me.Text = "New Header - Part Summary"
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
+    Friend WithEvents CtrParts1 As DCS.Quote.ctrParts
 End Class
