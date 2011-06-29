@@ -7,7 +7,7 @@ Namespace Model
 
 #Region " Types "
 
-        Private Class PersonComparer
+        Private Class QuoteHeaderComparer
             Implements System.Collections.Generic.IComparer(Of QuoteDetail)
 
             Private prop As PropertyDescriptor
@@ -95,7 +95,7 @@ Namespace Model
             Me.Items.CopyTo(items, 0)
 
             Array.Sort(items, _
-            New PersonComparer(prop, _
+            New QuoteHeaderComparer(prop, _
             direction))
 
             For index As Integer = 0 To upperBound
