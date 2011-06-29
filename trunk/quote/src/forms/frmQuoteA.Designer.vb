@@ -26,43 +26,43 @@ Partial Class frmQuoteA
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CtrWires31 = New DCS.Quote.ctrWires3()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.gridHeader = New System.Windows.Forms.DataGridView()
         Me.Fill = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.gridDetail = New System.Windows.Forms.DataGridView()
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitOfMeasure = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ProductCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelButtons = New System.Windows.Forms.Panel()
         Me.bntAddWire = New System.Windows.Forms.Button()
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CtrWires1 = New DCS.Quote.ctrWires()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.panelButtons.SuspendLayout()
         CType(Me.HeaderSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panelButtons.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -85,7 +85,7 @@ Partial Class frmQuoteA
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.CtrWires1)
+        Me.Panel1.Controls.Add(Me.CtrWires31)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
@@ -93,11 +93,19 @@ Partial Class frmQuoteA
         Me.Panel1.Size = New System.Drawing.Size(600, 120)
         Me.Panel1.TabIndex = 0
         '
+        'CtrWires31
+        '
+        Me.CtrWires31.Location = New System.Drawing.Point(8, 12)
+        Me.CtrWires31.Name = "CtrWires31"
+        Me.CtrWires31.QuoteHeader = Nothing
+        Me.CtrWires31.Size = New System.Drawing.Size(222, 98)
+        Me.CtrWires31.TabIndex = 5
+        '
         'GroupBox1
         '
-        Me.GroupBox1.Location = New System.Drawing.Point(235, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(236, 13)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(190, 89)
+        Me.GroupBox1.Size = New System.Drawing.Size(352, 97)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Components"
@@ -138,6 +146,21 @@ Partial Class frmQuoteA
         Me.Fill.HeaderText = ""
         Me.Fill.Name = "Fill"
         Me.Fill.ReadOnly = True
+        '
+        'CostDataGridViewTextBoxColumn
+        '
+        Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.CostDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
+        Me.CostDataGridViewTextBoxColumn.HeaderText = "Total Cost"
+        Me.CostDataGridViewTextBoxColumn.Name = "CostDataGridViewTextBoxColumn"
+        Me.CostDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'HeaderSource
+        '
+        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteHeader)
         '
         'gridDetail
         '
@@ -189,6 +212,16 @@ Partial Class frmQuoteA
         Me.UnitCost.Name = "UnitCost"
         Me.UnitCost.ReadOnly = True
         '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Qty"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N0"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn12.DefaultCellStyle = DataGridViewCellStyle5
+        Me.DataGridViewTextBoxColumn12.HeaderText = "Qty"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        '
         'TotalCost
         '
         Me.TotalCost.DataPropertyName = "TotalCost"
@@ -199,6 +232,10 @@ Partial Class frmQuoteA
         Me.TotalCost.HeaderText = "Total Cost"
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True
+        '
+        'DetailSource
+        '
+        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
         'panelButtons
         '
@@ -242,43 +279,6 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         '
-        'CostDataGridViewTextBoxColumn
-        '
-        Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.CostDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle2
-        Me.CostDataGridViewTextBoxColumn.HeaderText = "Total Cost"
-        Me.CostDataGridViewTextBoxColumn.Name = "CostDataGridViewTextBoxColumn"
-        Me.CostDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'HeaderSource
-        '
-        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteHeader)
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "Qty"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N0"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn12.DefaultCellStyle = DataGridViewCellStyle5
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Qty"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        '
-        'DetailSource
-        '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
-        '
-        'CtrWires1
-        '
-        Me.CtrWires1.Location = New System.Drawing.Point(12, 12)
-        Me.CtrWires1.Name = "CtrWires1"
-        Me.CtrWires1.QuoteHeader = Nothing
-        Me.CtrWires1.Size = New System.Drawing.Size(217, 98)
-        Me.CtrWires1.TabIndex = 2
-        '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -294,10 +294,10 @@ Partial Class frmQuoteA
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         CType(Me.gridHeader, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.panelButtons.ResumeLayout(False)
         CType(Me.HeaderSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DetailSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panelButtons.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -336,5 +336,5 @@ Partial Class frmQuoteA
     Friend WithEvents bntAddWire As System.Windows.Forms.Button
     Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CtrWires1 As DCS.Quote.ctrWires
+    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
 End Class
