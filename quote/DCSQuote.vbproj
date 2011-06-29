@@ -89,6 +89,12 @@
     <Compile Include="src\controls\ctrWires3.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="src\controls\ctrParts.Designer.vb">
+      <DependentUpon>ctrParts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\controls\ctrParts.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\forms\frmWireLookup.Designer.vb">
       <DependentUpon>frmWireLookup.vb</DependentUpon>
     </Compile>
@@ -144,6 +150,9 @@
     <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="src\controls\ctrParts.resx">
+      <DependentUpon>ctrParts.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\controls\ctrWires3.resx">
       <DependentUpon>ctrWires3.vb</DependentUpon>
     </EmbeddedResource>
@@ -192,16 +201,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DCSDataCommon\DCSDataCommon.vbproj">
-      <Project>{9A59AF91-9074-4358-AD27-41D9C9D50986}</Project>
-      <Name>DCSDataCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DCSImport\DCSImport.vbproj">
-      <Project>{D51D8E59-B7DE-4FE5-9B70-4031868CB6AE}</Project>
-      <Name>DCSImport</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
