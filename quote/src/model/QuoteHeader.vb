@@ -13,6 +13,10 @@ Namespace Model
 
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
+#Region "Variables"
+        Private WithEvents _col As New QuoteDetailCollection
+#End Region
+
 #Region "Properties"
 
         Public ReadOnly Property TotalLength() As Decimal
@@ -41,7 +45,7 @@ Namespace Model
 
 #End Region
 
-#Region "Public Members and Methods"
+#Region "Methods"
 
         Public Function NewQuoteDetail(ByVal product As Product) As QuoteDetail
 
@@ -55,7 +59,6 @@ Namespace Model
         End Function
 
         Public Sub Remove(ByVal detail As QuoteDetail)
-
             If detail IsNot Nothing Then
                 Me.QuoteDetails.Remove(detail)
 
@@ -64,19 +67,9 @@ Namespace Model
             End If
         End Sub
 
-#End Region
-
-#Region "Protected Members and Methods"
-
         Protected Overridable Function FactoryMethod(ByVal product As Product) As QuoteDetail
             Return New QuoteDetail(Me, product)
         End Function
-
-#End Region
-
-#Region "Private Members and Methods"
-
-        Private _col As New QuoteDetailCollection
 
         Private Function SumCost() As Decimal
             Dim result As Decimal
@@ -106,6 +99,10 @@ Namespace Model
 
         Private Sub ForwardEvent(ByVal sender, ByVal e)
             RaiseEvent PropertyChanged(sender, e)
+        End Sub
+
+        Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _col.ListChanged
+            SendEvents()
         End Sub
 
 #End Region
