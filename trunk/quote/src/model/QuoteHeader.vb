@@ -49,6 +49,12 @@ Namespace Model
             End Get
         End Property
 
+        Public ReadOnly Property PartCount() As Integer
+            Get
+                Return Count(UnitOfMeasure.BY_EACH)
+            End Get
+        End Property
+
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _col

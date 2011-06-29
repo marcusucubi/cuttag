@@ -23,13 +23,21 @@ Partial Class ctrWires3
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtWireCount = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtTotalLengthFeet = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.txtTotalLengthDm = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txtWireCount)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.txtTotalLengthFeet)
+        Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtTotalLengthDm)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -40,14 +48,43 @@ Partial Class ctrWires3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Wires"
         '
-        'Label1
+        'txtWireCount
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 20)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(90, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Total Lengh: (dm)"
+        Me.txtWireCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtWireCount.Location = New System.Drawing.Point(131, 71)
+        Me.txtWireCount.Name = "txtWireCount"
+        Me.txtWireCount.Size = New System.Drawing.Size(78, 20)
+        Me.txtWireCount.TabIndex = 5
+        Me.txtWireCount.Text = "0"
+        Me.txtWireCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(6, 75)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(63, 13)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "Wire Count:"
+        '
+        'txtTotalLengthFeet
+        '
+        Me.txtTotalLengthFeet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTotalLengthFeet.Location = New System.Drawing.Point(131, 43)
+        Me.txtTotalLengthFeet.Name = "txtTotalLengthFeet"
+        Me.txtTotalLengthFeet.Size = New System.Drawing.Size(78, 20)
+        Me.txtTotalLengthFeet.TabIndex = 3
+        Me.txtTotalLengthFeet.Text = "0"
+        Me.txtTotalLengthFeet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(6, 47)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(97, 13)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Total Length: (feet)"
         '
         'txtTotalLengthDm
         '
@@ -58,6 +95,15 @@ Partial Class ctrWires3
         Me.txtTotalLengthDm.TabIndex = 1
         Me.txtTotalLengthDm.Text = "0"
         Me.txtTotalLengthDm.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 20)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(93, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Total Length: (dm)"
         '
         'ctrWires3
         '
@@ -74,5 +120,9 @@ Partial Class ctrWires3
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtTotalLengthDm As System.Windows.Forms.Label
+    Friend WithEvents txtTotalLengthFeet As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents txtWireCount As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class
