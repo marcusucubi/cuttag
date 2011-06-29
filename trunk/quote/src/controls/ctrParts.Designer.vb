@@ -23,14 +23,14 @@ Partial Class ctrParts
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtPartCount = New System.Windows.Forms.Label()
+        Me.txtCount = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.txtPartCount)
+        Me.GroupBox1.Controls.Add(Me.txtCount)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
@@ -38,26 +38,26 @@ Partial Class ctrParts
         Me.GroupBox1.Size = New System.Drawing.Size(185, 211)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Wires"
+        Me.GroupBox1.Text = "Components"
         '
-        'txtPartCount
+        'txtCount
         '
-        Me.txtPartCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPartCount.Location = New System.Drawing.Point(96, 16)
-        Me.txtPartCount.Name = "txtPartCount"
-        Me.txtPartCount.Size = New System.Drawing.Size(78, 20)
-        Me.txtPartCount.TabIndex = 5
-        Me.txtPartCount.Text = "0"
-        Me.txtPartCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.txtCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtCount.Location = New System.Drawing.Point(96, 16)
+        Me.txtCount.Name = "txtCount"
+        Me.txtCount.Size = New System.Drawing.Size(78, 20)
+        Me.txtCount.TabIndex = 5
+        Me.txtCount.Text = "0"
+        Me.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(10, 20)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(63, 13)
+        Me.Label4.Size = New System.Drawing.Size(38, 13)
         Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Wire Count:"
+        Me.Label4.Text = "Count:"
         '
         'ctrParts
         '
@@ -72,7 +72,7 @@ Partial Class ctrParts
 
     End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents txtPartCount As System.Windows.Forms.Label
+    Friend WithEvents txtCount As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class

@@ -46,11 +46,12 @@ Partial Class frmQuoteA
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CtrWires33 = New DCS.Quote.ctrWires3()
         Me.CostDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CtrWires33 = New DCS.Quote.ctrWires3()
+        Me.CtrParts1 = New DCS.Quote.ctrParts()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -71,6 +72,7 @@ Partial Class frmQuoteA
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.CtrParts1)
         Me.SplitContainer1.Panel1.Controls.Add(Me.CtrWires33)
         '
         'SplitContainer1.Panel2
@@ -220,6 +222,14 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
         Me.DataGridViewTextBoxColumn11.ReadOnly = True
         '
+        'CtrWires33
+        '
+        Me.CtrWires33.Location = New System.Drawing.Point(3, 3)
+        Me.CtrWires33.Name = "CtrWires33"
+        Me.CtrWires33.QuoteHeader = Nothing
+        Me.CtrWires33.Size = New System.Drawing.Size(221, 106)
+        Me.CtrWires33.TabIndex = 0
+        '
         'CostDataGridViewTextBoxColumn
         '
         Me.CostDataGridViewTextBoxColumn.DataPropertyName = "Cost"
@@ -249,13 +259,13 @@ Partial Class frmQuoteA
         '
         Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
-        'CtrWires33
+        'CtrParts1
         '
-        Me.CtrWires33.Location = New System.Drawing.Point(3, 3)
-        Me.CtrWires33.Name = "CtrWires33"
-        Me.CtrWires33.QuoteHeader = Nothing
-        Me.CtrWires33.Size = New System.Drawing.Size(221, 106)
-        Me.CtrWires33.TabIndex = 0
+        Me.CtrParts1.Location = New System.Drawing.Point(230, 3)
+        Me.CtrParts1.Name = "CtrParts1"
+        Me.CtrParts1.QuoteHeader = Nothing
+        Me.CtrParts1.Size = New System.Drawing.Size(185, 106)
+        Me.CtrParts1.TabIndex = 1
         '
         'frmQuoteA
         '
@@ -314,4 +324,5 @@ Partial Class frmQuoteA
     Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
     Friend WithEvents CtrWires32 As DCS.Quote.ctrWires3
     Friend WithEvents CtrWires33 As DCS.Quote.ctrWires3
+    Friend WithEvents CtrParts1 As DCS.Quote.ctrParts
 End Class
