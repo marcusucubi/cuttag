@@ -18,57 +18,18 @@ Namespace Model
 #End Region
 
 #Region "Properties"
-
-        Public Property QuoteComputer As New QuoteComputer(Me)
-
-        Public ReadOnly Property TotalLength() As Decimal
-            Get
-                Return SumQty(UnitOfMeasure.BY_LENGTH)
-            End Get
-        End Property
-
-        Public ReadOnly Property TotalLengthFeet() As Decimal
-            Get
-                Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 2)
-            End Get
-        End Property
-
-        Public ReadOnly Property TotalQty() As Decimal
-            Get
-                Return SumQty(UnitOfMeasure.BY_EACH)
-            End Get
-        End Property
-
-        Public ReadOnly Property Cost() As Decimal
-            Get
-                Return SumCost()
-            End Get
-        End Property
-
-        Public ReadOnly Property WireCount() As Integer
-            Get
-                Return Count(UnitOfMeasure.BY_LENGTH)
-            End Get
-        End Property
-
-        Public ReadOnly Property PartCount() As Integer
-            Get
-                Return Count(UnitOfMeasure.BY_EACH)
-            End Get
-        End Property
-
-        Public ReadOnly Property PartAndWireCount() As Integer
-            Get
-                Return Count(UnitOfMeasure.BY_EACH) + Count(UnitOfMeasure.BY_LENGTH)
-            End Get
-        End Property
-
+        Public Property QuoteProperties As New QuoteProperties(Me)
+        Public Property QuoteComputer As New QuoteEngine(Me)
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _col
             End Get
         End Property
-
+        Public ReadOnly Property TotalCost() As Decimal
+            Get
+                Return QuoteProperties.TotalCost
+            End Get
+        End Property
 #End Region
 
 #Region "Methods"
@@ -97,40 +58,13 @@ Namespace Model
             Return New QuoteDetail(Me, product)
         End Function
 
-        Private Function SumCost() As Decimal
-            Dim result As Decimal
-            For Each detail As QuoteDetail In _col
-                result += detail.TotalCost
-            Next
-            Return result
-        End Function
-
-        Private Function SumQty(ByVal measure As UnitOfMeasure) As Decimal
-            Dim result As Decimal
-            For Each detail As QuoteDetail In _col
-                If detail.Product.UnitOfMeasure = measure Then
-                    result += detail.Qty
-                End If
-            Next
-            Return result
-        End Function
-
-        Private Function Count(ByVal measure As UnitOfMeasure) As Integer
-            Dim result As Integer
-            For Each detail As QuoteDetail In _col
-                If detail.Product.UnitOfMeasure = measure Then
-                    result += 1
-                End If
-            Next
-            Return result
-        End Function
-
         Private Sub SendEvents()
             Dim info() As PropertyInfo
             info = GetType(QuoteHeader).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
+            Me.QuoteProperties.SendEvents()
         End Sub
 
         Private Sub ForwardEvent(ByVal sender, ByVal e)
