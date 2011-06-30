@@ -63,6 +63,7 @@ Public Class frmQuoteA
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
+        ChildForm.DockState = DockState.DockLeft
     End Sub
 
     Private Sub LinkLabel4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
@@ -70,6 +71,7 @@ Public Class frmQuoteA
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
+        ChildForm.DockState = DockState.DockLeft
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
@@ -77,5 +79,7 @@ Public Class frmQuoteA
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
+        ChildForm.DockState = DockState.DockLeft
     End Sub
+
 End Class
