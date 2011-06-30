@@ -4,7 +4,6 @@ Imports DCS.Quote.Model
 Public Class frmProperties
     Inherits DockContent
 
-    'Private WithEvents _frmMain As frmMain
     Private WithEvents _ActiveQuote As ActiveQuote
     Private WithEvents _QuoteProperties As QuoteProperties
 
@@ -13,14 +12,9 @@ Public Class frmProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        '_frmMain = frmMain.frmMain
         _ActiveQuote = ActiveQuote.ActiveQuote
         UpdateProperties()
     End Sub
-
-    '    Private Sub _frmMain_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _frmMain.PropertyChanged
-    '        UpdateProperties()
-    '    End Sub
 
     Private Sub UpdateProperties()
         If ActiveQuote.ActiveQuote.QuoteHeader IsNot Nothing Then
@@ -28,7 +22,15 @@ Public Class frmProperties
                 ActiveQuote.ActiveQuote.QuoteHeader.QuoteProperties
             _QuoteProperties = _
                 ActiveQuote.ActiveQuote.QuoteHeader.QuoteProperties
+        Else
+            Me.PropertyGrid1.SelectedObject = Nothing
+            _QuoteProperties = Nothing
         End If
+    End Sub
+
+    Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
+        _ActiveQuote = ActiveQuote.ActiveQuote
+        UpdateProperties()
     End Sub
 
 End Class
