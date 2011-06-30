@@ -18,18 +18,22 @@ Namespace Model
 #End Region
 
 #Region "Properties"
+
         Public Property QuoteProperties As New QuoteProperties(Me)
         Public Property QuoteEngine As New QuoteEngine(Me)
+
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _col
             End Get
         End Property
+
         Public ReadOnly Property TotalCost() As Decimal
             Get
                 Return QuoteProperties.TotalCost
             End Get
         End Property
+
 #End Region
 
 #Region "Methods"
