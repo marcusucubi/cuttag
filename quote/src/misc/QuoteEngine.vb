@@ -4,7 +4,7 @@ Public Class QuoteEngine
 
     Private _QuoteHeader As QuoteHeader
 
-    Public Property WireTime As Integer
+    Public Property WireUnitTime As Integer
     Public Property CutTime As Integer
     Public Property NumberOfCuts As Integer
 
@@ -12,10 +12,10 @@ Public Class QuoteEngine
         Me._QuoteHeader = header
     End Sub
 
-    Public ReadOnly Property TotalWireTime As Decimal
+    Public ReadOnly Property WireTime As Decimal
         Get
             Dim prop As QuoteProperties = _QuoteHeader.QuoteProperties
-            Dim time1 As Decimal = prop.TotalLengthFeet * WireTime
+            Dim time1 As Decimal = prop.WireLengthFeet * WireUnitTime
             Dim time2 As Decimal = (NumberOfCuts * CutTime)
 
             Dim x As Decimal

@@ -7,6 +7,10 @@ Namespace Model
     Public Class QuoteProperties
         Implements INotifyPropertyChanged
 
+        Public Sub New(ByVal QuoteHeader As QuoteHeader)
+            _QuoteHeader = QuoteHeader
+        End Sub
+
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Private _QuoteHeader As QuoteHeader
@@ -27,23 +31,23 @@ Namespace Model
         Public Property LaborMinutes As Integer
 
         <CategoryAttribute("Wires")> _
-        Public ReadOnly Property TotalLength() As Decimal
+        Public ReadOnly Property WireLengthDecemeter() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
         <CategoryAttribute("Wires")> _
-        Public ReadOnly Property TotalLengthFeet() As Decimal
+        Public ReadOnly Property WireLengthFeet() As Decimal
             Get
                 Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 2)
             End Get
         End Property
 
-        <CategoryAttribute("Total")> _
-        Public ReadOnly Property TotalCost() As Decimal
+        <CategoryAttribute("Wires")> _
+        Public ReadOnly Property WireCost() As Decimal
             Get
-                Return SumCost()
+                Return SumCost(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
@@ -62,6 +66,13 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Parts")> _
+        Public ReadOnly Property PartCost() As Decimal
+            Get
+                Return SumCost(UnitOfMeasure.BY_EACH)
+            End Get
+        End Property
+
+        <CategoryAttribute("Parts")> _
         Public ReadOnly Property PartQty() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_EACH)
@@ -69,20 +80,25 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Total")> _
-        Public ReadOnly Property PartAndWireCount() As Integer
+        Public ReadOnly Property TotalCost() As Decimal
+            Get
+                Return SumCost(UnitOfMeasure.BY_EACH) + SumCost(UnitOfMeasure.BY_LENGTH)
+            End Get
+        End Property
+
+        <CategoryAttribute("Total")> _
+        Public ReadOnly Property TotalCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_EACH) + Count(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader)
-            _QuoteHeader = QuoteHeader
-        End Sub
-
-        Private Function SumCost() As Decimal
+        Private Function SumCost(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
-                result += detail.TotalCost
+                If detail.Product.UnitOfMeasure = measure Then
+                    result += detail.TotalCost
+                End If
             Next
             Return result
         End Function
