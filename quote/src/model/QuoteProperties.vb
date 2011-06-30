@@ -39,6 +39,36 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Wires")> _
+        Public Property WireUnitCutTime As Integer
+            Get
+                Return Me._QuoteHeader.QuoteEngine.WireUnitCutTime
+            End Get
+            Set(ByVal value As Integer)
+                Me._QuoteHeader.QuoteEngine.WireUnitCutTime = value
+            End Set
+        End Property
+
+        <CategoryAttribute("Wires")> _
+        Public Property WireUnitTime As Decimal
+            Get
+                Return Me._QuoteHeader.QuoteEngine.WireUnitTime
+            End Get
+            Set(ByVal value As Decimal)
+                Me._QuoteHeader.QuoteEngine.WireUnitTime = value
+            End Set
+        End Property
+
+        <CategoryAttribute("Wires")> _
+        Public Property NumberOfCuts As Decimal
+            Get
+                Return Me._QuoteHeader.QuoteEngine.NumberOfCuts
+            End Get
+            Set(ByVal value As Decimal)
+                Me._QuoteHeader.QuoteEngine.NumberOfCuts = value
+            End Set
+        End Property
+
+        <CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthDecemeter() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_LENGTH)
