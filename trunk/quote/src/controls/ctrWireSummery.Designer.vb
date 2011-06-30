@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ctrWires3
+Partial Class ctrWireSummery
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -23,6 +23,8 @@ Partial Class ctrWires3
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtNumberOfCuts = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtCutTime = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtWireTime = New System.Windows.Forms.TextBox()
@@ -33,8 +35,6 @@ Partial Class ctrWires3
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtTotalLengthDm = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtNumberOfCuts = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -58,7 +58,25 @@ Partial Class ctrWires3
         Me.GroupBox1.Size = New System.Drawing.Size(221, 228)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Wires"
+        Me.GroupBox1.Text = "Wire Summery"
+        '
+        'txtNumberOfCuts
+        '
+        Me.txtNumberOfCuts.Location = New System.Drawing.Point(132, 119)
+        Me.txtNumberOfCuts.Name = "txtNumberOfCuts"
+        Me.txtNumberOfCuts.Size = New System.Drawing.Size(77, 20)
+        Me.txtNumberOfCuts.TabIndex = 11
+        Me.txtNumberOfCuts.Text = "25"
+        Me.txtNumberOfCuts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(10, 122)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(85, 13)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "Number Of Cuts:"
         '
         'txtCutTime
         '
@@ -152,24 +170,6 @@ Partial Class ctrWires3
         Me.Label1.Size = New System.Drawing.Size(93, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Total Length: (dm)"
-        '
-        'txtNumberOfCuts
-        '
-        Me.txtNumberOfCuts.Location = New System.Drawing.Point(132, 119)
-        Me.txtNumberOfCuts.Name = "txtNumberOfCuts"
-        Me.txtNumberOfCuts.Size = New System.Drawing.Size(77, 20)
-        Me.txtNumberOfCuts.TabIndex = 11
-        Me.txtNumberOfCuts.Text = "25"
-        Me.txtNumberOfCuts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(10, 122)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(85, 13)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "Number Of Cuts:"
         '
         'ctrWires3
         '

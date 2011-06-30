@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ctrPartsAndWires
+Partial Class ctrSummery
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -38,7 +38,7 @@ Partial Class ctrPartsAndWires
         Me.GroupBox1.Size = New System.Drawing.Size(222, 150)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "All"
+        Me.GroupBox1.Text = "Summary"
         '
         'txtCount
         '
@@ -59,12 +59,12 @@ Partial Class ctrPartsAndWires
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Count:"
         '
-        'ctrPartsAndWires
+        'ctrSummery
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.GroupBox1)
-        Me.Name = "ctrPartsAndWires"
+        Me.Name = "ctrSummery"
         Me.Size = New System.Drawing.Size(222, 150)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

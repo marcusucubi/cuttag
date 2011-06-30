@@ -1,6 +1,6 @@
 ﻿Imports DCS.Quote.Model
 
-Public Class ctrPartsAndWires
+Public Class ctrSummery
 
     Dim WithEvents _CountBinding As Binding
     Private _QuoteHeader As QuoteHeader

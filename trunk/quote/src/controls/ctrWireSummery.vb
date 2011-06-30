@@ -1,6 +1,6 @@
 ﻿Imports DCS.Quote.Model
 
-Public Class ctrWires3
+Public Class ctrWireSummery
 
     Dim WithEvents _TotalLengthBinding As Binding
     Dim WithEvents _TotalLengthFeetBinding As Binding
