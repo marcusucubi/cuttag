@@ -12,10 +12,21 @@ Public Class ctrSummery
         Set(ByVal value As QuoteHeader)
             _QuoteHeader = value
             If value IsNot Nothing Then
-                _CountBinding = New Binding("Text", QuoteHeader, "PartAndWireCount")
-                Me.txtCount.DataBindings.Add(_CountBinding)
+                Me.PropertyGrid1.SelectedObject = value
             End If
         End Set
     End Property
 
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Dim OptionsPropertyGrid As PropertyGrid = New PropertyGrid()
+        OptionsPropertyGrid.Size = New Drawing.Size(300, 250)
+
+        Me.Controls.Add(OptionsPropertyGrid)
+        Me.Text = "Options Dialog"
+    End Sub
 End Class

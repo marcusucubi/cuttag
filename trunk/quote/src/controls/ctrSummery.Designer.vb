@@ -23,41 +23,29 @@ Partial Class ctrSummery
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtCount = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.txtCount)
-        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.PropertyGrid1)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(222, 150)
+        Me.GroupBox1.Size = New System.Drawing.Size(194, 242)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Summary"
         '
-        'txtCount
+        'PropertyGrid1
         '
-        Me.txtCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtCount.Location = New System.Drawing.Point(96, 16)
-        Me.txtCount.Name = "txtCount"
-        Me.txtCount.Size = New System.Drawing.Size(78, 20)
-        Me.txtCount.TabIndex = 5
-        Me.txtCount.Text = "0"
-        Me.txtCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(10, 20)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(38, 13)
-        Me.Label4.TabIndex = 4
-        Me.Label4.Text = "Count:"
+        Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PropertyGrid1.Location = New System.Drawing.Point(3, 16)
+        Me.PropertyGrid1.Name = "PropertyGrid1"
+        Me.PropertyGrid1.PropertySort = System.Windows.Forms.PropertySort.Alphabetical
+        Me.PropertyGrid1.Size = New System.Drawing.Size(188, 223)
+        Me.PropertyGrid1.TabIndex = 6
         '
         'ctrSummery
         '
@@ -65,14 +53,12 @@ Partial Class ctrSummery
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "ctrSummery"
-        Me.Size = New System.Drawing.Size(222, 150)
+        Me.Size = New System.Drawing.Size(194, 242)
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents txtCount As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents PropertyGrid1 As System.Windows.Forms.PropertyGrid
 
 End Class

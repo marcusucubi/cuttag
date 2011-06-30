@@ -1,6 +1,6 @@
 ﻿Imports DCS.Quote.Model
 
-Public Class QuoteComputer
+Public Class QuoteEngine
 
     Private _QuoteHeader As QuoteHeader
 
@@ -14,10 +14,12 @@ Public Class QuoteComputer
 
     Public ReadOnly Property TotalWireTime As Decimal
         Get
-            Dim time As Decimal = _QuoteHeader.TotalLengthFeet * WireTime
+            Dim prop As QuoteProperties = _QuoteHeader.QuoteProperties
+            Dim time1 As Decimal = prop.TotalLengthFeet * WireTime
+            Dim time2 As Decimal = (NumberOfCuts * CutTime)
 
             Dim x As Decimal
-            x += time
+            x += (time1 + time2)
             Return x
         End Get
     End Property
