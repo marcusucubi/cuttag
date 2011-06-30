@@ -11,50 +11,64 @@ Namespace Model
 
         Private _QuoteHeader As QuoteHeader
 
+        <CategoryAttribute("Input")> _
         Public Property Minimum As Integer
+        <CategoryAttribute("Input")> _
         Public Property LeadTimeInitial As Integer
+        <CategoryAttribute("Input")> _
         Public Property LeadTimeStandard As Integer
+        <CategoryAttribute("Input")> _
         Public Property EstimatedAnnualUnits As Integer
+        <CategoryAttribute("Input")> _
         Public Property MaterialMarkUp As Decimal
+        <CategoryAttribute("Input")> _
         Public Property CU_Scrap As Decimal
+        <CategoryAttribute("Input")> _
         Public Property LaborMinutes As Integer
 
+        <CategoryAttribute("Wires")> _
         Public ReadOnly Property TotalLength() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
+        <CategoryAttribute("Wires")> _
         Public ReadOnly Property TotalLengthFeet() As Decimal
             Get
                 Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 2)
             End Get
         End Property
 
+        <CategoryAttribute("Total")> _
         Public ReadOnly Property TotalQty() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
+        <CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
                 Return SumCost()
             End Get
         End Property
 
+        <CategoryAttribute("Wires")> _
         Public ReadOnly Property WireCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
+        <CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
+        <CategoryAttribute("Total")> _
         Public ReadOnly Property PartAndWireCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_EACH) + Count(UnitOfMeasure.BY_LENGTH)
