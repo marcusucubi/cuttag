@@ -22,28 +22,28 @@ Partial Class frmSummary
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CtrPartsAndWires1 = New DCS.Quote.ctrSummery()
+        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
         Me.SuspendLayout()
         '
-        'CtrPartsAndWires1
+        'PropertyGrid1
         '
-        Me.CtrPartsAndWires1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CtrPartsAndWires1.Location = New System.Drawing.Point(0, 0)
-        Me.CtrPartsAndWires1.Name = "CtrPartsAndWires1"
-        Me.CtrPartsAndWires1.QuoteHeader = Nothing
-        Me.CtrPartsAndWires1.Size = New System.Drawing.Size(284, 112)
-        Me.CtrPartsAndWires1.TabIndex = 0
+        Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PropertyGrid1.Location = New System.Drawing.Point(0, 0)
+        Me.PropertyGrid1.Name = "PropertyGrid1"
+        Me.PropertyGrid1.Size = New System.Drawing.Size(284, 112)
+        Me.PropertyGrid1.TabIndex = 0
         '
-        'frmQuoteSummary
+        'frmSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 112)
-        Me.Controls.Add(Me.CtrPartsAndWires1)
-        Me.Name = "frmQuoteSummary"
+        Me.Controls.Add(Me.PropertyGrid1)
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Name = "frmSummary"
         Me.Text = "New Quote - Summary"
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents CtrPartsAndWires1 As DCS.Quote.ctrSummery
+    Friend WithEvents PropertyGrid1 As System.Windows.Forms.PropertyGrid
 End Class

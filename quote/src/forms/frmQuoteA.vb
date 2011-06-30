@@ -10,8 +10,6 @@ Public Class frmQuoteA
     Inherits DockContent
 
     Private m_QuoteHeader As New EditableQuoteHeader
-    Private _PartSummary As frmPartSummary
-    Private _WireSummery As frmWireSummery
     Private _Summary As frmSummary
 
     Public ReadOnly Property QuoteHeader As QuoteHeader
@@ -54,20 +52,7 @@ Public Class frmQuoteA
         End If
     End Sub
 
-    Private Sub LinkLabel3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
-        If (_PartSummary Is Nothing) Then
-            _PartSummary = New frmPartSummary
-            _PartSummary.frmQuoteA = Me
-            InitChild(_PartSummary)
-        End If
-        If (_PartSummary.IsHidden Or _PartSummary.IsDisposed) Then
-            _PartSummary = New frmPartSummary
-            _PartSummary.frmQuoteA = Me
-            InitChild(_PartSummary)
-        End If
-    End Sub
-
-    Private Sub LinkLabel4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
+    Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
         If (_Summary Is Nothing) Then
             _Summary = New frmSummary
             _Summary.frmQuoteA = Me
@@ -77,19 +62,6 @@ Public Class frmQuoteA
             _Summary = New frmSummary
             _Summary.frmQuoteA = Me
             InitChild(_Summary)
-        End If
-    End Sub
-
-    Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        If (_WireSummery Is Nothing) Then
-            _WireSummery = New frmWireSummery
-            _WireSummery.frmQuoteA = Me
-            InitChild(_WireSummery)
-        End If
-        If (_WireSummery.IsHidden Or _WireSummery.IsDisposed) Then
-            _WireSummery = New frmWireSummery
-            _WireSummery.frmQuoteA = Me
-            InitChild(_WireSummery)
         End If
     End Sub
 
