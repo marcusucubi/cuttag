@@ -28,6 +28,8 @@ Public Class frmMain
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
+        QuoteProperties = ChildForm.QuoteHeader.QuoteProperties
+        ShowProperties()
     End Sub
 
     Public Sub New()
@@ -40,6 +42,10 @@ Public Class frmMain
     End Sub
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
+        ShowProperties()
+    End Sub
+
+    Private Sub ShowProperties()
         If (_Summary Is Nothing) Then
             _Summary = New frmProperties
             InitChild(_Summary)

@@ -16,7 +16,7 @@ Public Class frmProperties
     End Sub
 
     Private Sub _frmMain_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _frmMain.PropertyChanged
-        Me.PropertyGrid1.SelectedObject = frmMain.QuoteProperties
+        Me.PropertyGrid1.SelectedObject = _frmMain.QuoteProperties
         _QuoteProperties = frmMain.QuoteProperties
     End Sub
 
