@@ -30,6 +30,14 @@ Namespace Model
         <CategoryAttribute("Input")> _
         Public Property LaborMinutes As Integer
 
+        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)"), _
+        CategoryAttribute("Wires")> _
+        Public ReadOnly Property WireTime As Decimal
+            Get
+                Return Me._QuoteHeader.QuoteEngine.WireTime
+            End Get
+        End Property
+
         <CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthDecemeter() As Decimal
             Get

@@ -19,7 +19,7 @@ Namespace Model
 
 #Region "Properties"
         Public Property QuoteProperties As New QuoteProperties(Me)
-        Public Property QuoteComputer As New QuoteEngine(Me)
+        Public Property QuoteEngine As New QuoteEngine(Me)
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _col
