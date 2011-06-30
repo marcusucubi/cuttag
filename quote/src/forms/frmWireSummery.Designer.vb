@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmQuoteWireHeader
+Partial Class frmWireSummery
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class frmQuoteWireHeader
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CtrWires31 = New DCS.Quote.ctrWires3()
+        Me.CtrWires31 = New DCS.Quote.ctrWireSummery()
         Me.SuspendLayout()
         '
         'CtrWires31
@@ -46,5 +46,5 @@ Partial Class frmQuoteWireHeader
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
+    Friend WithEvents CtrWires31 As DCS.Quote.ctrWireSummery
 End Class

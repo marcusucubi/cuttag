@@ -323,8 +323,8 @@ Partial Class frmQuoteA
     Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
-    Friend WithEvents CtrWires32 As DCS.Quote.ctrWires3
+    Friend WithEvents CtrWires31 As DCS.Quote.ctrWireSummery
+    Friend WithEvents CtrWires32 As DCS.Quote.ctrWireSummery
     Friend WithEvents panelButtons As System.Windows.Forms.Panel
     Friend WithEvents bntAddWire As System.Windows.Forms.Button
     Friend WithEvents btnAddComponent As System.Windows.Forms.Button

@@ -1,6 +1,6 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
-Public Class frmQuotePartsHeader
+Public Class frmPartSummary
     Inherits DockContent
 
     Public Property frmQuoteA As frmQuoteA

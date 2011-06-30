@@ -84,40 +84,40 @@
       <DependentUpon>devDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="src\controller\QuoteComputer.vb" />
-    <Compile Include="src\controls\ctrPartsAndWires.Designer.vb">
-      <DependentUpon>ctrPartsAndWires.vb</DependentUpon>
+    <Compile Include="src\controls\ctrSummery.Designer.vb">
+      <DependentUpon>ctrSummery.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\controls\ctrPartsAndWires.vb">
+    <Compile Include="src\controls\ctrSummery.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\controls\ctrWires3.Designer.vb">
-      <DependentUpon>ctrWires3.vb</DependentUpon>
+    <Compile Include="src\controls\ctrWireSummery.Designer.vb">
+      <DependentUpon>ctrWireSummery.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\controls\ctrWires3.vb">
+    <Compile Include="src\controls\ctrWireSummery.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\controls\ctrParts.Designer.vb">
-      <DependentUpon>ctrParts.vb</DependentUpon>
+    <Compile Include="src\controls\ctrPartSummery.Designer.vb">
+      <DependentUpon>ctrPartSummery.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\controls\ctrParts.vb">
+    <Compile Include="src\controls\ctrPartSummery.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\forms\frmQuotePartsHeader.Designer.vb">
-      <DependentUpon>frmQuotePartsHeader.vb</DependentUpon>
+    <Compile Include="src\forms\frmPartSummary.Designer.vb">
+      <DependentUpon>frmPartSummary.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmQuotePartsHeader.vb">
+    <Compile Include="src\forms\frmPartSummary.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmQuoteSummary.Designer.vb">
-      <DependentUpon>frmQuoteSummary.vb</DependentUpon>
+    <Compile Include="src\forms\frmSummary.Designer.vb">
+      <DependentUpon>frmSummary.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmQuoteSummary.vb">
+    <Compile Include="src\forms\frmSummary.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmQuoteWireHeader.Designer.vb">
-      <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>
+    <Compile Include="src\forms\frmWireSummery.Designer.vb">
+      <DependentUpon>frmWireSummery.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmQuoteWireHeader.vb">
+    <Compile Include="src\forms\frmWireSummery.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmWireLookup.Designer.vb">
@@ -175,14 +175,14 @@
     <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\controls\ctrParts.resx">
-      <DependentUpon>ctrParts.vb</DependentUpon>
+    <EmbeddedResource Include="src\controls\ctrPartSummery.resx">
+      <DependentUpon>ctrPartSummery.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\controls\ctrPartsAndWires.resx">
-      <DependentUpon>ctrPartsAndWires.vb</DependentUpon>
+    <EmbeddedResource Include="src\controls\ctrSummery.resx">
+      <DependentUpon>ctrSummery.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\controls\ctrWires3.resx">
-      <DependentUpon>ctrWires3.vb</DependentUpon>
+    <EmbeddedResource Include="src\controls\ctrWireSummery.resx">
+      <DependentUpon>ctrWireSummery.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmPartLookup.resx">
       <DependentUpon>frmPartLookup.vb</DependentUpon>
@@ -190,14 +190,14 @@
     <EmbeddedResource Include="src\forms\frmQuoteA.resx">
       <DependentUpon>frmQuoteA.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmQuoteWireHeader.resx">
-      <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmWireSummery.resx">
+      <DependentUpon>frmWireSummery.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmQuotePartsHeader.resx">
-      <DependentUpon>frmQuotePartsHeader.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmPartSummary.resx">
+      <DependentUpon>frmPartSummary.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmQuoteSummary.resx">
-      <DependentUpon>frmQuoteSummary.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmSummary.resx">
+      <DependentUpon>frmSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmWireLookup.resx">
       <DependentUpon>frmWireLookup.vb</DependentUpon>

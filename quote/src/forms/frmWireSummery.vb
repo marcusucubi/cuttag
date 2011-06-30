@@ -1,7 +1,7 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 
-Public Class frmQuoteWireHeader
+Public Class frmWireSummery
     Inherits DockContent
 
     Public Property frmQuoteA As frmQuoteA

@@ -30,7 +30,7 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
-        Dim ChildForm As New frmQuoteWireHeader
+        Dim ChildForm As New frmWireSummery
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
@@ -59,21 +59,21 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub LinkLabel3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
-        Dim ChildForm As New frmQuotePartsHeader
+        Dim ChildForm As New frmPartSummary
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
     End Sub
 
     Private Sub LinkLabel4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
-        Dim ChildForm As New frmQuoteSummary
+        Dim ChildForm As New frmSummary
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Dim ChildForm As New frmQuoteWireHeader
+        Dim ChildForm As New frmWireSummery
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
