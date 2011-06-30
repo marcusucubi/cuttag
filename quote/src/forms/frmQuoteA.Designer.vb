@@ -36,8 +36,9 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelButtons = New System.Windows.Forms.Panel()
+        Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.bntAddWire = New System.Windows.Forms.Button()
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.gridHeader = New System.Windows.Forms.DataGridView()
@@ -52,7 +53,6 @@ Partial Class frmQuoteA
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.panelButtons.SuspendLayout()
@@ -105,9 +105,9 @@ Partial Class frmQuoteA
         '
         'panelButtons
         '
+        Me.panelButtons.Controls.Add(Me.LinkLabel4)
         Me.panelButtons.Controls.Add(Me.LinkLabel3)
         Me.panelButtons.Controls.Add(Me.LinkLabel2)
-        Me.panelButtons.Controls.Add(Me.LinkLabel1)
         Me.panelButtons.Controls.Add(Me.bntAddWire)
         Me.panelButtons.Controls.Add(Me.btnAddComponent)
         Me.panelButtons.Dock = System.Windows.Forms.DockStyle.Left
@@ -115,6 +115,26 @@ Partial Class frmQuoteA
         Me.panelButtons.Name = "panelButtons"
         Me.panelButtons.Size = New System.Drawing.Size(106, 218)
         Me.panelButtons.TabIndex = 5
+        '
+        'LinkLabel4
+        '
+        Me.LinkLabel4.AutoSize = True
+        Me.LinkLabel4.Location = New System.Drawing.Point(12, 9)
+        Me.LinkLabel4.Name = "LinkLabel4"
+        Me.LinkLabel4.Size = New System.Drawing.Size(50, 13)
+        Me.LinkLabel4.TabIndex = 6
+        Me.LinkLabel4.TabStop = True
+        Me.LinkLabel4.Text = "Summary"
+        '
+        'LinkLabel3
+        '
+        Me.LinkLabel3.AutoSize = True
+        Me.LinkLabel3.Location = New System.Drawing.Point(12, 62)
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.Size = New System.Drawing.Size(72, 13)
+        Me.LinkLabel3.TabIndex = 5
+        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.Text = "Part Summary"
         '
         'LinkLabel2
         '
@@ -126,19 +146,9 @@ Partial Class frmQuoteA
         Me.LinkLabel2.TabStop = True
         Me.LinkLabel2.Text = "Wire Summary"
         '
-        'LinkLabel1
-        '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(10, 11)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(70, 13)
-        Me.LinkLabel1.TabIndex = 3
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Header Page"
-        '
         'bntAddWire
         '
-        Me.bntAddWire.Location = New System.Drawing.Point(12, 130)
+        Me.bntAddWire.Location = New System.Drawing.Point(12, 157)
         Me.bntAddWire.Name = "bntAddWire"
         Me.bntAddWire.Size = New System.Drawing.Size(75, 23)
         Me.bntAddWire.TabIndex = 1
@@ -147,7 +157,7 @@ Partial Class frmQuoteA
         '
         'btnAddComponent
         '
-        Me.btnAddComponent.Location = New System.Drawing.Point(13, 85)
+        Me.btnAddComponent.Location = New System.Drawing.Point(13, 112)
         Me.btnAddComponent.Name = "btnAddComponent"
         Me.btnAddComponent.Size = New System.Drawing.Size(75, 39)
         Me.btnAddComponent.TabIndex = 0
@@ -270,16 +280,6 @@ Partial Class frmQuoteA
         '
         Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
-        'LinkLabel3
-        '
-        Me.LinkLabel3.AutoSize = True
-        Me.LinkLabel3.Location = New System.Drawing.Point(12, 59)
-        Me.LinkLabel3.Name = "LinkLabel3"
-        Me.LinkLabel3.Size = New System.Drawing.Size(72, 13)
-        Me.LinkLabel3.TabIndex = 5
-        Me.LinkLabel3.TabStop = True
-        Me.LinkLabel3.Text = "Part Summary"
-        '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -326,7 +326,6 @@ Partial Class frmQuoteA
     Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
     Friend WithEvents CtrWires32 As DCS.Quote.ctrWires3
     Friend WithEvents panelButtons As System.Windows.Forms.Panel
-    Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents bntAddWire As System.Windows.Forms.Button
     Friend WithEvents btnAddComponent As System.Windows.Forms.Button
     Friend WithEvents gridHeader As System.Windows.Forms.DataGridView
@@ -341,4 +340,5 @@ Partial Class frmQuoteA
     Friend WithEvents TotalCost As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
     Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel4 As System.Windows.Forms.LinkLabel
 End Class

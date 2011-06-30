@@ -29,8 +29,8 @@ Public Class frmQuoteA
         Me.m_QuoteHeader.QuoteDetails.Sort = name
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        Dim ChildForm As New frmQuoteHeader
+    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
+        Dim ChildForm As New frmQuoteWireHeader
         ChildForm.MdiParent = frmMain.frmMain
         ChildForm.frmQuoteA = Me
         ChildForm.Show(frmMain.frmMain.DockPanel1)
@@ -58,13 +58,6 @@ Public Class frmQuoteA
         End If
     End Sub
 
-    Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Dim ChildForm As New frmQuoteWireHeader
-        ChildForm.MdiParent = frmMain.frmMain
-        ChildForm.frmQuoteA = Me
-        ChildForm.Show(frmMain.frmMain.DockPanel1)
-    End Sub
-
     Private Sub LinkLabel3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
         Dim ChildForm As New frmQuotePartsHeader
         ChildForm.MdiParent = frmMain.frmMain
@@ -72,4 +65,17 @@ Public Class frmQuoteA
         ChildForm.Show(frmMain.frmMain.DockPanel1)
     End Sub
 
+    Private Sub LinkLabel4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
+        Dim ChildForm As New frmQuoteSummary
+        ChildForm.MdiParent = frmMain.frmMain
+        ChildForm.frmQuoteA = Me
+        ChildForm.Show(frmMain.frmMain.DockPanel1)
+    End Sub
+
+    Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Dim ChildForm As New frmQuoteWireHeader
+        ChildForm.MdiParent = frmMain.frmMain
+        ChildForm.frmQuoteA = Me
+        ChildForm.Show(frmMain.frmMain.DockPanel1)
+    End Sub
 End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmQuoteWireHeader
+Partial Class frmQuoteSummary
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
@@ -22,29 +22,28 @@ Partial Class frmQuoteWireHeader
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CtrWires31 = New DCS.Quote.ctrWires3()
+        Me.CtrPartsAndWires1 = New DCS.Quote.ctrPartsAndWires()
         Me.SuspendLayout()
         '
-        'CtrWires31
+        'CtrPartsAndWires1
         '
-        Me.CtrWires31.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CtrWires31.Location = New System.Drawing.Point(0, 0)
-        Me.CtrWires31.Name = "CtrWires31"
-        Me.CtrWires31.QuoteHeader = Nothing
-        Me.CtrWires31.Size = New System.Drawing.Size(584, 225)
-        Me.CtrWires31.TabIndex = 0
+        Me.CtrPartsAndWires1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CtrPartsAndWires1.Location = New System.Drawing.Point(0, 0)
+        Me.CtrPartsAndWires1.Name = "CtrPartsAndWires1"
+        Me.CtrPartsAndWires1.QuoteHeader = Nothing
+        Me.CtrPartsAndWires1.Size = New System.Drawing.Size(284, 112)
+        Me.CtrPartsAndWires1.TabIndex = 0
         '
-        'frmQuoteHeader
+        'frmQuoteSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(584, 225)
-        Me.Controls.Add(Me.CtrWires31)
-        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "frmQuoteHeader"
-        Me.Text = "New Quote - Wire Summary"
+        Me.ClientSize = New System.Drawing.Size(284, 112)
+        Me.Controls.Add(Me.CtrPartsAndWires1)
+        Me.Name = "frmQuoteSummary"
+        Me.Text = "New Quote - Summary"
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents CtrWires31 As DCS.Quote.ctrWires3
+    Friend WithEvents CtrPartsAndWires1 As DCS.Quote.ctrPartsAndWires
 End Class

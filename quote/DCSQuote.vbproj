@@ -108,16 +108,16 @@
     <Compile Include="src\forms\frmQuotePartsHeader.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\forms\frmQuoteSummary.Designer.vb">
+      <DependentUpon>frmQuoteSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmQuoteSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmQuoteWireHeader.Designer.vb">
       <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>
     </Compile>
     <Compile Include="src\forms\frmQuoteWireHeader.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmQuoteHeader.Designer.vb">
-      <DependentUpon>frmQuoteHeader.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmQuoteHeader.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmWireLookup.Designer.vb">
@@ -190,14 +190,14 @@
     <EmbeddedResource Include="src\forms\frmQuoteA.resx">
       <DependentUpon>frmQuoteA.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmQuoteHeader.resx">
-      <DependentUpon>frmQuoteHeader.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmQuoteWireHeader.resx">
+      <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuotePartsHeader.resx">
       <DependentUpon>frmQuotePartsHeader.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmQuoteWireHeader.resx">
-      <DependentUpon>frmQuoteWireHeader.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmQuoteSummary.resx">
+      <DependentUpon>frmQuoteSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmWireLookup.resx">
       <DependentUpon>frmWireLookup.vb</DependentUpon>
