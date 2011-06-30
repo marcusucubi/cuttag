@@ -11,6 +11,11 @@ Public Class frmProperties
         Me.PropertyGrid1.Refresh()
     End Sub
 
+    Private Sub frmProperties_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
+        Me.PropertyGrid1.SelectedObject = Nothing
+        _QuoteProperties = Nothing
+    End Sub
+
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _ActiveQuote = ActiveQuote.ActiveQuote
         UpdateProperties()

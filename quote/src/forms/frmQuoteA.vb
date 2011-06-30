@@ -34,7 +34,6 @@ Public Class frmQuoteA
         If result = DialogResult.OK Then
             Dim detail As EditableQuoteDetail
             detail = _QuoteHeader.NewQuoteDetail(frmComponentLookup.Product)
-
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
         End If
@@ -45,7 +44,6 @@ Public Class frmQuoteA
         If result = DialogResult.OK Then
             Dim detail As EditableQuoteDetail
             detail = _QuoteHeader.NewQuoteDetail(frmWireLookup.Product)
-
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
         End If
