@@ -108,6 +108,7 @@
     <Compile Include="src\forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\model\ActiveQuote.vb" />
     <Compile Include="src\model\QuoteProperties.vb" />
     <Compile Include="src\model\QuoteDetailCollection.vb" />
     <Compile Include="src\model\UnitOfMeasure.vb" />

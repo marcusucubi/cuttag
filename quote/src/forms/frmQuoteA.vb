@@ -52,11 +52,13 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub frmQuoteA_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
-        frmMain.QuoteProperties = Me.m_QuoteHeader.QuoteProperties
+        'frmMain.QuoteProperties = Me.m_QuoteHeader.QuoteProperties
+        ActiveQuote.ActiveQuote.QuoteHeader = Me.m_QuoteHeader
     End Sub
 
     Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
-        frmMain.QuoteProperties = Nothing
+        'frmMain.QuoteProperties = Nothing
+        ActiveQuote.ActiveQuote.QuoteHeader = Nothing
     End Sub
 
 End Class
