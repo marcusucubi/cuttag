@@ -10,7 +10,6 @@ Public Class frmQuoteA
     Inherits DockContent
 
     Private m_QuoteHeader As New EditableQuoteHeader
-    Private _Summary As frmProperties
 
     Public ReadOnly Property QuoteHeader As QuoteHeader
         Get
@@ -52,23 +51,12 @@ Public Class frmQuoteA
         End If
     End Sub
 
-    Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        If (_Summary Is Nothing) Then
-            _Summary = New frmProperties
-            _Summary.frmQuoteA = Me
-            InitChild(_Summary)
-        End If
-        If (_Summary.IsHidden Or _Summary.IsDisposed) Then
-            _Summary = New frmProperties
-            _Summary.frmQuoteA = Me
-            InitChild(_Summary)
-        End If
+    Private Sub frmQuoteA_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
+        frmMain.QuoteProperties = Me.m_QuoteHeader.QuoteProperties
     End Sub
 
-    Private Sub InitChild(ByVal frm As DockContent)
-        frm.MdiParent = frmMain.frmMain
-        frm.Show(frmMain.frmMain.DockPanel1)
-        frm.DockState = DockState.DockLeft
+    Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
+        frmMain.QuoteProperties = Nothing
     End Sub
 
 End Class
