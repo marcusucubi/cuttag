@@ -10,6 +10,9 @@ Public Class frmQuoteA
     Inherits DockContent
 
     Private m_QuoteHeader As New EditableQuoteHeader
+    Private _PartSummary As frmPartSummary
+    Private _WireSummery As frmWireSummery
+    Private _Summary As frmSummary
 
     Public ReadOnly Property QuoteHeader As QuoteHeader
         Get
@@ -27,13 +30,6 @@ Public Class frmQuoteA
         Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
         Dim name As String = c.DataPropertyName
         Me.m_QuoteHeader.QuoteDetails.Sort = name
-    End Sub
-
-    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
-        Dim ChildForm As New frmWireSummery
-        ChildForm.MdiParent = frmMain.frmMain
-        ChildForm.frmQuoteA = Me
-        ChildForm.Show(frmMain.frmMain.DockPanel1)
     End Sub
 
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
@@ -59,27 +55,48 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub LinkLabel3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
-        Dim ChildForm As New frmPartSummary
-        ChildForm.MdiParent = frmMain.frmMain
-        ChildForm.frmQuoteA = Me
-        ChildForm.Show(frmMain.frmMain.DockPanel1)
-        ChildForm.DockState = DockState.DockLeft
+        If (_PartSummary Is Nothing) Then
+            _PartSummary = New frmPartSummary
+            _PartSummary.frmQuoteA = Me
+            InitChild(_PartSummary)
+        End If
+        If (_PartSummary.IsHidden Or _PartSummary.IsDisposed) Then
+            _PartSummary = New frmPartSummary
+            _PartSummary.frmQuoteA = Me
+            InitChild(_PartSummary)
+        End If
     End Sub
 
     Private Sub LinkLabel4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
-        Dim ChildForm As New frmSummary
-        ChildForm.MdiParent = frmMain.frmMain
-        ChildForm.frmQuoteA = Me
-        ChildForm.Show(frmMain.frmMain.DockPanel1)
-        ChildForm.DockState = DockState.DockLeft
+        If (_Summary Is Nothing) Then
+            _Summary = New frmSummary
+            _Summary.frmQuoteA = Me
+            InitChild(_Summary)
+        End If
+        If (_Summary.IsHidden Or _Summary.IsDisposed) Then
+            _Summary = New frmSummary
+            _Summary.frmQuoteA = Me
+            InitChild(_Summary)
+        End If
     End Sub
 
     Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-        Dim ChildForm As New frmWireSummery
-        ChildForm.MdiParent = frmMain.frmMain
-        ChildForm.frmQuoteA = Me
-        ChildForm.Show(frmMain.frmMain.DockPanel1)
-        ChildForm.DockState = DockState.DockLeft
+        If (_WireSummery Is Nothing) Then
+            _WireSummery = New frmWireSummery
+            _WireSummery.frmQuoteA = Me
+            InitChild(_WireSummery)
+        End If
+        If (_WireSummery.IsHidden Or _WireSummery.IsDisposed) Then
+            _WireSummery = New frmWireSummery
+            _WireSummery.frmQuoteA = Me
+            InitChild(_WireSummery)
+        End If
+    End Sub
+
+    Private Sub InitChild(ByVal frm As DockContent)
+        frm.MdiParent = frmMain.frmMain
+        frm.Show(frmMain.frmMain.DockPanel1)
+        frm.DockState = DockState.DockLeft
     End Sub
 
 End Class
