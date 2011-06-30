@@ -41,13 +41,6 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Total")> _
-        Public ReadOnly Property TotalQty() As Decimal
-            Get
-                Return SumQty(UnitOfMeasure.BY_EACH)
-            End Get
-        End Property
-
-        <CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
                 Return SumCost()
@@ -65,6 +58,13 @@ Namespace Model
         Public ReadOnly Property PartCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_EACH)
+            End Get
+        End Property
+
+        <CategoryAttribute("Parts")> _
+        Public ReadOnly Property PartQty() As Decimal
+            Get
+                Return SumQty(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
