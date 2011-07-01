@@ -14,6 +14,8 @@ Namespace Model
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Private _QuoteHeader As QuoteHeader
+        Private _ShippingCost As Decimal
+        Private _ShippingBox As String
 
         <CategoryAttribute("Input")> _
         Public Property MinimumOrderQuantity As Integer = 10
@@ -29,6 +31,29 @@ Namespace Model
         Public Property CU_Scrap As Decimal
         <CategoryAttribute("Input")> _
         Public Property LaborMinutes As Integer
+
+        <CategoryAttribute("Shipping")> _
+        Public ReadOnly Property ShippingCost As Decimal
+            Get
+                If (_ShippingBox Is Nothing) Then
+                    Return 0
+                End If
+                Return Math.Round(Shipping.Shipping.Lookup(Me._ShippingBox), 2)
+            End Get
+        End Property
+
+        <TypeConverter(GetType(ShippingList)), _
+            CategoryAttribute("Shipping"), _
+            DescriptionAttribute("Shipping Container")> _
+        Public Property ShippingBox() As String
+            Get
+                Return _ShippingBox
+            End Get
+            Set(ByVal Value As String)
+                _ShippingBox = Value
+                Me.SendEvents()
+            End Set
+        End Property
 
         <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime) / MinimumOrderQuantity"), _
         CategoryAttribute("Wires")> _
@@ -118,7 +143,7 @@ Namespace Model
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCost() As Decimal
             Get
-                Return Math.Round(SumCost(UnitOfMeasure.BY_EACH))
+                Return Math.Round(SumCost(UnitOfMeasure.BY_EACH), 2)
             End Get
         End Property
 
