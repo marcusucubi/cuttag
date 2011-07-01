@@ -16,7 +16,7 @@ Namespace Model
         Private _QuoteHeader As QuoteHeader
 
         <CategoryAttribute("Input")> _
-        Public Property Minimum As Integer
+        Public Property MinimumOrderQuantity As Integer
         <CategoryAttribute("Input")> _
         Public Property LeadTimeInitial As Integer
         <CategoryAttribute("Input")> _
@@ -30,7 +30,7 @@ Namespace Model
         <CategoryAttribute("Input")> _
         Public Property LaborMinutes As Integer
 
-        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)"), _
+        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime) / MinimumOrderQuantity"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireTime As Decimal
             Get
@@ -38,7 +38,8 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Wires")> _
+        <DescriptionAttribute("Seconds / Cuts"), _
+        CategoryAttribute("Wires")> _
         Public Property WireUnitCutTime As Integer
             Get
                 Return Me._QuoteHeader.QuoteEngine.WireUnitCutTime
@@ -49,7 +50,8 @@ Namespace Model
             End Set
         End Property
 
-        <CategoryAttribute("Wires")> _
+        <DescriptionAttribute("Seconds / Feet"), _
+        CategoryAttribute("Wires")> _
         Public Property WireUnitTime As Decimal
             Get
                 Return Me._QuoteHeader.QuoteEngine.WireUnitTime
@@ -60,7 +62,8 @@ Namespace Model
             End Set
         End Property
 
-        <CategoryAttribute("Wires")> _
+        <DescriptionAttribute("Number of wire cuts"), _
+        CategoryAttribute("Wires")> _
         Public Property NumberOfCuts As Decimal
             Get
                 Return Me._QuoteHeader.QuoteEngine.NumberOfCuts
@@ -71,66 +74,75 @@ Namespace Model
             End Set
         End Property
 
-        <CategoryAttribute("Wires")> _
-        Public ReadOnly Property WireLengthDecemeter() As Decimal
+        <DescriptionAttribute("Wire length in decameters (dm)"), _
+        CategoryAttribute("Wires")> _
+        Public ReadOnly Property WireLengthDecameter() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
-        <CategoryAttribute("Wires")> _
+        <DescriptionAttribute("WireLengthDecameter / 3.048"), _
+        CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
             Get
-                Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 2)
+                Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 4)
             End Get
         End Property
 
-        <CategoryAttribute("Wires")> _
+        <DescriptionAttribute("Sum(UnitCost * Quantity)"), _
+        CategoryAttribute("Wires")> _
         Public ReadOnly Property WireCost() As Decimal
             Get
-                Return SumCost(UnitOfMeasure.BY_LENGTH)
+                Return Math.Round(SumCost(UnitOfMeasure.BY_LENGTH), 2)
             End Get
         End Property
 
-        <CategoryAttribute("Wires")> _
+        <DescriptionAttribute("Number of Different Kinds of Wires"), _
+        CategoryAttribute("Wires")> _
         Public ReadOnly Property WireCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
-        <CategoryAttribute("Parts")> _
+        <DescriptionAttribute("Number of Different Kinds of Parts"), _
+        CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCount() As Integer
             Get
                 Return Count(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
-        <CategoryAttribute("Parts")> _
+        <DescriptionAttribute("Sum(UnitCost * Quantity)"), _
+        CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCost() As Decimal
             Get
-                Return SumCost(UnitOfMeasure.BY_EACH)
+                Return Math.Round(SumCost(UnitOfMeasure.BY_EACH))
             End Get
         End Property
 
-        <CategoryAttribute("Parts")> _
+        <DescriptionAttribute("Sum(Quantity)"), _
+        CategoryAttribute("Parts")> _
         Public ReadOnly Property PartQty() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
-        <CategoryAttribute("Total")> _
+        <DescriptionAttribute("WireCost + PartCost"), _
+        CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
-                Return SumCost(UnitOfMeasure.BY_EACH) + SumCost(UnitOfMeasure.BY_LENGTH)
+                Return PartCost + WireCost
             End Get
         End Property
 
-        <CategoryAttribute("Total")> _
+        <DescriptionAttribute("WireCount + PartCount"), _
+        CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCount() As Integer
             Get
-                Return Count(UnitOfMeasure.BY_EACH) + Count(UnitOfMeasure.BY_LENGTH)
+                Return WireCount + PartCount
             End Get
         End Property
 

@@ -41,13 +41,13 @@ Partial Class frmQuoteA
         Me.gridHeader = New System.Windows.Forms.DataGridView()
         Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.gridDetail = New System.Windows.Forms.DataGridView()
-        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitOfMeasure = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ProductCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Fill = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TostCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -162,10 +162,6 @@ Partial Class frmQuoteA
         Me.gridDetail.Size = New System.Drawing.Size(535, 166)
         Me.gridDetail.TabIndex = 8
         '
-        'DetailSource
-        '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
-        '
         'Fill3
         '
         Me.Fill3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -222,6 +218,10 @@ Partial Class frmQuoteA
         Me.TotalCost.HeaderText = "Total Cost"
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True
+        '
+        'DetailSource
+        '
+        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.EditableQuoteDetail)
         '
         'Fill
         '
@@ -292,12 +292,12 @@ Partial Class frmQuoteA
     Friend WithEvents gridHeader As System.Windows.Forms.DataGridView
     Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents gridDetail As System.Windows.Forms.DataGridView
-    Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TostCost As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Fill3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UnitOfMeasure As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ProductCode As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UnitCost As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TotalCost As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Fill As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TostCost As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
