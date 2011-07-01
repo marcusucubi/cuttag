@@ -14,12 +14,19 @@ Public Class QuoteEngine
 
     Public ReadOnly Property WireTime As Decimal
         Get
-            Dim prop As QuoteProperties = _QuoteHeader.QuoteProperties
-            Dim time1 As Decimal = (prop.WireLengthFeet * WireUnitTime)
-            Dim time2 As Decimal = (NumberOfCuts * WireUnitCutTime)
-
             Dim x As Decimal
-            x += (time1 + time2)
+            Dim min = _QuoteHeader.QuoteProperties.MinimumOrderQuantity
+
+            If min > 0 Then
+                Dim prop As QuoteProperties = _QuoteHeader.QuoteProperties
+                Dim time1 As Decimal = (prop.WireLengthFeet * WireUnitTime)
+                Dim time2 As Decimal = (NumberOfCuts * WireUnitCutTime) _
+                    / _QuoteHeader.QuoteProperties.MinimumOrderQuantity
+
+                x += (time1 + time2)
+                x = Math.Round(x, 4)
+            End If
+
             Return x
         End Get
     End Property
