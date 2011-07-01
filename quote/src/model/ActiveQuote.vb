@@ -6,7 +6,6 @@ Namespace Model
         Implements INotifyPropertyChanged
 
         Private _QuoteHeader As QuoteHeader
-        Private _Lock As New Object
 
         Public Shared ReadOnly ActiveQuote As ActiveQuote = New ActiveQuote
 
@@ -18,10 +17,10 @@ Namespace Model
                 Return _QuoteHeader
             End Get
             Friend Set(ByVal value As QuoteHeader)
-                SyncLock _Lock
+                If (_QuoteHeader IsNot value) Then
                     _QuoteHeader = value
                     RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("QuoteHeader"))
-                End SyncLock
+                End If
             End Set
         End Property
 
