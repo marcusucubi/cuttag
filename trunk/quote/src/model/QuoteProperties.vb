@@ -16,7 +16,7 @@ Namespace Model
         Private _QuoteHeader As QuoteHeader
 
         <CategoryAttribute("Input")> _
-        Public Property MinimumOrderQuantity As Integer
+        Public Property MinimumOrderQuantity As Integer = 10
         <CategoryAttribute("Input")> _
         Public Property LeadTimeInitial As Integer
         <CategoryAttribute("Input")> _
@@ -38,7 +38,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Seconds / Cuts"), _
+        <DescriptionAttribute("Seconds / Cut"), _
         CategoryAttribute("Wires")> _
         Public Property WireUnitCutTime As Integer
             Get
@@ -50,7 +50,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Seconds / Feet"), _
+        <DescriptionAttribute("Seconds / Foot"), _
         CategoryAttribute("Wires")> _
         Public Property WireUnitTime As Decimal
             Get
@@ -62,7 +62,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Number of wire cuts"), _
+        <DescriptionAttribute("Number of Cuts"), _
         CategoryAttribute("Wires")> _
         Public Property NumberOfCuts As Decimal
             Get
@@ -74,7 +74,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Wire length in decameters (dm)"), _
+        <DescriptionAttribute("Wire Length in DecaMeters (dm)"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthDecameter() As Decimal
             Get
