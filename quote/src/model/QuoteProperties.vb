@@ -45,6 +45,7 @@ Namespace Model
             End Get
             Set(ByVal value As Integer)
                 Me._QuoteHeader.QuoteEngine.WireUnitCutTime = value
+                Me.SendEvents()
             End Set
         End Property
 
@@ -55,6 +56,7 @@ Namespace Model
             End Get
             Set(ByVal value As Decimal)
                 Me._QuoteHeader.QuoteEngine.WireUnitTime = value
+                Me.SendEvents()
             End Set
         End Property
 
@@ -65,6 +67,7 @@ Namespace Model
             End Get
             Set(ByVal value As Decimal)
                 Me._QuoteHeader.QuoteEngine.NumberOfCuts = value
+                Me.SendEvents()
             End Set
         End Property
 
