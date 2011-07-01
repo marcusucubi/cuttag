@@ -44,8 +44,13 @@ Partial Class frmMain
         Me.DockPanel1 = New WeifenLuo.WinFormsUI.Docking.DockPanel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.btnNew = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.menuQuote = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuNewQuote = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DockPanel1
@@ -106,8 +111,8 @@ Partial Class frmMain
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.ToolStripButton1})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(705, 25)
         Me.ToolStrip1.TabIndex = 10
@@ -119,17 +124,43 @@ Partial Class frmMain
         Me.btnNew.Image = CType(resources.GetObject("btnNew.Image"), System.Drawing.Image)
         Me.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(35, 22)
-        Me.btnNew.Text = "New"
+        Me.btnNew.Size = New System.Drawing.Size(71, 22)
+        Me.btnNew.Text = "New Quote"
         '
-        'ToolStripButton1
+        'MenuStrip1
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(46, 22)
-        Me.ToolStripButton1.Text = "Details"
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuQuote, Me.ViewToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Size = New System.Drawing.Size(705, 24)
+        Me.MenuStrip1.TabIndex = 13
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'menuQuote
+        '
+        Me.menuQuote.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote})
+        Me.menuQuote.Name = "menuQuote"
+        Me.menuQuote.Size = New System.Drawing.Size(52, 20)
+        Me.menuQuote.Text = "Quote"
+        '
+        'menuNewQuote
+        '
+        Me.menuNewQuote.Name = "menuNewQuote"
+        Me.menuNewQuote.Size = New System.Drawing.Size(152, 22)
+        Me.menuNewQuote.Text = "New"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'PropertiesToolStripMenuItem
+        '
+        Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
+        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.PropertiesToolStripMenuItem.Text = "Properties"
         '
         'frmMain
         '
@@ -137,13 +168,17 @@ Partial Class frmMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(705, 375)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.DockPanel1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IsMdiContainer = True
+        Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmMain"
         Me.Text = "Quotes"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -152,6 +187,10 @@ Partial Class frmMain
     Friend WithEvents DockPanel1 As WeifenLuo.WinFormsUI.Docking.DockPanel
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents btnNew As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents menuQuote As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuNewQuote As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

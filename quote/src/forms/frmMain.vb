@@ -9,19 +9,27 @@ Public Class frmMain
 
     Public Shared Property frmMain As frmMain
 
-    Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
-        Dim ChildForm As New frmQuoteA
-        ChildForm.MdiParent = Me
-        ChildForm.Show(Me.DockPanel1)
-        ShowProperties()
-    End Sub
-
     Public Sub New()
         InitializeComponent()
         frmMain = Me
     End Sub
 
-    Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
+    Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
+        CreateNewQuote()
+    End Sub
+
+    Private Sub menuNewQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles menuNewQuote.Click
+        CreateNewQuote()
+    End Sub
+
+    Private Sub PropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PropertiesToolStripMenuItem.Click
+        ShowProperties()
+    End Sub
+
+    Private Sub CreateNewQuote()
+        Dim ChildForm As New frmQuoteA
+        ChildForm.MdiParent = Me
+        ChildForm.Show(Me.DockPanel1)
         ShowProperties()
     End Sub
 
