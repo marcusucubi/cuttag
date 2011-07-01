@@ -11,17 +11,17 @@ Public Class frmQuoteA
 
     Private _QuoteHeader As New EditableQuoteHeader
 
-    Public ReadOnly Property QuoteHeader As QuoteHeader
-        Get
-            Return _QuoteHeader
-        End Get
-    End Property
-
     Public Sub New()
         InitializeComponent()
         Me.HeaderSource.Add(_QuoteHeader)
         Me.gridDetail.DataSource = _QuoteHeader.QuoteDetails
     End Sub
+
+    Public ReadOnly Property QuoteHeader As QuoteHeader
+        Get
+            Return _QuoteHeader
+        End Get
+    End Property
 
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
         Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
