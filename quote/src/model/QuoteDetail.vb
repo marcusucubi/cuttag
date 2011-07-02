@@ -62,6 +62,22 @@ Namespace Model
             End Set
         End Property
 
+        Public Property PartTime() As Integer
+            Get
+                Return Me._PartTime
+            End Get
+            Set(ByVal value As Integer)
+                If Me._product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
+                    MsgBox("PartTime is for parts")
+                Else
+                    If Not (value = _PartTime) Then
+                        Me._PartTime = value
+                        SendEvents()
+                    End If
+                End If
+            End Set
+        End Property
+
 #End Region
 
 #Region "Public Members and Methods"
@@ -77,6 +93,7 @@ Namespace Model
 #Region "Private Members and Methods"
 
         Private _qty As Decimal
+        Private _PartTime As Integer
         Private _product As Product
 
         Private Sub NotifyPropertyChanged(ByVal name As String)
