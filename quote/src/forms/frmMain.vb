@@ -5,7 +5,8 @@ Imports System.ComponentModel
 
 Public Class frmMain
 
-    Private _Properties As frmProperties
+    Private _Properties As frmComputationProperties
+    Private _NonComputationProperties As frmNonComputationProperties
 
     Public Shared Property frmMain As frmMain
 
@@ -23,24 +24,40 @@ Public Class frmMain
     End Sub
 
     Private Sub PropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PropertiesToolStripMenuItem.Click
-        ShowProperties()
+        ShowComputationProperties()
+    End Sub
+
+    Private Sub ComputationalPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComputationalPropertiesToolStripMenuItem.Click
+        ShowNonComputationProperties()
     End Sub
 
     Private Sub CreateNewQuote()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
-        ShowProperties()
+        ShowNonComputationProperties()
+        ShowComputationProperties()
     End Sub
 
-    Private Sub ShowProperties()
+    Private Sub ShowComputationProperties()
         If (_Properties Is Nothing) Then
-            _Properties = New frmProperties
+            _Properties = New frmComputationProperties
             InitChild(_Properties)
         End If
         If (_Properties.IsHidden Or _Properties.IsDisposed) Then
-            _Properties = New frmProperties
+            _Properties = New frmComputationProperties
             InitChild(_Properties)
+        End If
+    End Sub
+
+    Private Sub ShowNonComputationProperties()
+        If (_NonComputationProperties Is Nothing) Then
+            _NonComputationProperties = New frmNonComputationProperties
+            InitChild(_NonComputationProperties)
+        End If
+        If (_NonComputationProperties.IsHidden Or _NonComputationProperties.IsDisposed) Then
+            _NonComputationProperties = New frmNonComputationProperties
+            InitChild(_NonComputationProperties)
         End If
     End Sub
 

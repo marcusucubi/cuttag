@@ -49,6 +49,7 @@ Partial Class frmMain
         Me.menuNewQuote = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComputationalPropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -146,12 +147,12 @@ Partial Class frmMain
         'menuNewQuote
         '
         Me.menuNewQuote.Name = "menuNewQuote"
-        Me.menuNewQuote.Size = New System.Drawing.Size(152, 22)
+        Me.menuNewQuote.Size = New System.Drawing.Size(98, 22)
         Me.menuNewQuote.Text = "New"
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -159,8 +160,14 @@ Partial Class frmMain
         'PropertiesToolStripMenuItem
         '
         Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
-        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
-        Me.PropertiesToolStripMenuItem.Text = "Properties"
+        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.PropertiesToolStripMenuItem.Text = "Computational Properties"
+        '
+        'ComputationalPropertiesToolStripMenuItem
+        '
+        Me.ComputationalPropertiesToolStripMenuItem.Name = "ComputationalPropertiesToolStripMenuItem"
+        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.ComputationalPropertiesToolStripMenuItem.Text = "NonComputational Properties"
         '
         'frmMain
         '
@@ -192,5 +199,6 @@ Partial Class frmMain
     Friend WithEvents menuNewQuote As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ComputationalPropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

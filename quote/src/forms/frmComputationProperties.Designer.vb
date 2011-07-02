@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmProperties
+Partial Class frmComputationProperties
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
@@ -33,15 +33,15 @@ Partial Class frmProperties
         Me.PropertyGrid1.Size = New System.Drawing.Size(284, 112)
         Me.PropertyGrid1.TabIndex = 0
         '
-        'frmProperties
+        'frmComputationProperties
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 112)
         Me.Controls.Add(Me.PropertyGrid1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "frmProperties"
-        Me.Text = "Properties"
+        Me.Name = "frmComputationProperties"
+        Me.Text = "Computation Properties"
         Me.ResumeLayout(False)
 
     End Sub
