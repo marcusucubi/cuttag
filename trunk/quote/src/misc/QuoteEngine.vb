@@ -4,9 +4,9 @@ Public Class QuoteEngine
 
     Private _QuoteHeader As QuoteHeader
 
-    Public Property WireUnitTime As Integer
-    Public Property WireUnitCutTime As Integer
-    Public Property NumberOfCuts As Integer
+    Public Property WireUnitTime As Integer = 25
+    Public Property WireUnitCutTime As Integer = 120
+    Public Property NumberOfCuts As Integer = 18
 
     Public Sub New(ByVal header As QuoteHeader)
         Me._QuoteHeader = header
