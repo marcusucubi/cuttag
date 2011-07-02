@@ -12,7 +12,7 @@ Public Class QuoteEngine
         Me._QuoteHeader = header
     End Sub
 
-    Public ReadOnly Property WireTime As Decimal
+    Public ReadOnly Property WireTime As Integer
         Get
             Dim x As Decimal
             Dim min = _QuoteHeader.QuoteProperties.MinimumOrderQuantity
@@ -24,7 +24,7 @@ Public Class QuoteEngine
                     / _QuoteHeader.QuoteProperties.MinimumOrderQuantity
 
                 x += (time1 + time2)
-                x = Math.Round(x, 4)
+                x = Math.Round(x)
             End If
 
             Return x

@@ -63,16 +63,24 @@ Namespace Model
             End Set
         End Property
 
+        <DescriptionAttribute("Sum(PartTime) (seconds)"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property PartTime As Decimal
+            Get
+                Return Me.SumTime
+            End Get
+        End Property
+
         <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime) / MinimumOrderQuantity"), _
-        CategoryAttribute("Wires")> _
-        Public ReadOnly Property WireTime As Decimal
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property WireTime As Integer
             Get
                 Return Me._QuoteHeader.QuoteEngine.WireTime
             End Get
         End Property
 
         <DescriptionAttribute("Seconds / Cut"), _
-        CategoryAttribute("Wires")> _
+        CategoryAttribute("Time")> _
         Public Property WireUnitCutTime As Integer
             Get
                 Return Me._QuoteHeader.QuoteEngine.WireUnitCutTime
@@ -84,7 +92,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Seconds / Foot"), _
-        CategoryAttribute("Wires")> _
+        CategoryAttribute("Time")> _
         Public Property WireUnitTime As Decimal
             Get
                 Return Me._QuoteHeader.QuoteEngine.WireUnitTime
@@ -139,14 +147,6 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Sum(PartTime)"), _
-        CategoryAttribute("Parts")> _
-        Public ReadOnly Property PartTime As Decimal
-            Get
-                Return Me.SumTime
-            End Get
-        End Property
-
         <DescriptionAttribute("Number of Different Kinds of Parts"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCount() As Integer
@@ -184,6 +184,14 @@ Namespace Model
         Public ReadOnly Property TotalCount() As Integer
             Get
                 Return WireCount + PartCount
+            End Get
+        End Property
+
+        <DescriptionAttribute("WireTime + PartTime"), _
+        CategoryAttribute("Total")> _
+        Public ReadOnly Property TotalTime() As Integer
+            Get
+                Return WireTime + PartTime
             End Get
         End Property
 
