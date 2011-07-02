@@ -9,6 +9,10 @@ Namespace Model
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
+        Private _qty As Decimal
+        Private _PartTime As Integer
+        Private _product As Product
+
 #Region "Properties"
 
         Property QuoteHeader As QuoteHeader
@@ -80,21 +84,14 @@ Namespace Model
 
 #End Region
 
-#Region "Public Members and Methods"
+#Region "Methods"
 
         Friend Sub New(ByVal header As QuoteHeader, ByVal product As Product)
             Me.QuoteHeader = header
             Me._product = product
             Me._qty = 1
+            Me.PartTime = 10
         End Sub
-
-#End Region
-
-#Region "Private Members and Methods"
-
-        Private _qty As Decimal
-        Private _PartTime As Integer
-        Private _product As Product
 
         Private Sub NotifyPropertyChanged(ByVal name As String)
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(name))
