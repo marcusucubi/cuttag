@@ -5,7 +5,7 @@ Public Class frmProperties
     Inherits DockContent
 
     Private WithEvents _ActiveQuote As ActiveQuote
-    Private WithEvents _QuoteProperties As QuoteProperties
+    Private WithEvents _QuoteProperties As ComputationProperties
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _QuoteProperties.PropertyChanged
         Me.PropertyGrid1.Refresh()
@@ -24,8 +24,8 @@ Public Class frmProperties
 
     Private Sub UpdateProperties()
         If ActiveQuote.ActiveQuote.QuoteHeader IsNot Nothing Then
-            Me.PropertyGrid1.SelectedObject = ActiveQuote.ActiveQuote.QuoteHeader.QuoteProperties
-            _QuoteProperties = ActiveQuote.ActiveQuote.QuoteHeader.QuoteProperties
+            Me.PropertyGrid1.SelectedObject = ActiveQuote.ActiveQuote.QuoteHeader.ComputationProperties
+            _QuoteProperties = ActiveQuote.ActiveQuote.QuoteHeader.ComputationProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
             _QuoteProperties = Nothing

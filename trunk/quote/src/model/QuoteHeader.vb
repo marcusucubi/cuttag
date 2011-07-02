@@ -14,23 +14,23 @@ Namespace Model
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
 #Region "Variables"
-        Private WithEvents _col As New QuoteDetailCollection
+        Private WithEvents _QuoteDetails As New QuoteDetailCollection
 #End Region
 
 #Region "Properties"
 
-        Public Property QuoteProperties As New QuoteProperties(Me)
-        Public Property QuoteEngine As New QuoteEngine(Me)
+        Public Property ComputationProperties As New ComputationProperties(Me)
+        Public Property NonComputationProperties As New NonComputationProperties(Me)
 
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
-                Return _col
+                Return _QuoteDetails
             End Get
         End Property
 
         Public ReadOnly Property TotalCost() As Decimal
             Get
-                Return QuoteProperties.TotalCost
+                Return ComputationProperties.TotalCost
             End Get
         End Property
 
@@ -68,14 +68,14 @@ Namespace Model
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
-            Me.QuoteProperties.SendEvents()
+            Me.ComputationProperties.SendEvents()
         End Sub
 
         Private Sub ForwardEvent(ByVal sender, ByVal e)
             RaiseEvent PropertyChanged(sender, e)
         End Sub
 
-        Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _col.ListChanged
+        Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _QuoteDetails.ListChanged
             SendEvents()
         End Sub
 
