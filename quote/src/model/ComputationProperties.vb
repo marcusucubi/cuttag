@@ -4,7 +4,7 @@ Imports System.Reflection
 
 Namespace Model
 
-    Public Class QuoteProperties
+    Public Class ComputationProperties
         Implements INotifyPropertyChanged
 
         Public Sub New(ByVal QuoteHeader As QuoteHeader)
@@ -17,22 +17,12 @@ Namespace Model
         Private _ShippingCost As Decimal
         Private _ShippingBox As String
         Private _TimeMultipler As Decimal = 1
-        Private _LaborMultiplier As Decimal = 0.01
+        Private _LaborMultiplier As Decimal = 0.001
+        Private _WireUnitCutTime As Integer = 120
+        Private _WireUnitTime As Decimal = 30
+        Private _NumberOfCuts As Decimal = 0
 
-        <CategoryAttribute("Input")> _
-        Public Property MinimumOrderQuantity As Integer = 10
-        <CategoryAttribute("Input")> _
-        Public Property LeadTimeInitial As Integer
-        <CategoryAttribute("Input")> _
-        Public Property LeadTimeStandard As Integer
-        <CategoryAttribute("Input")> _
-        Public Property EstimatedAnnualUnits As Integer
-        <CategoryAttribute("Input")> _
-        Public Property MaterialMarkUp As Decimal
-        <CategoryAttribute("Input")> _
-        Public Property CopperScrap As Decimal
-
-        <CategoryAttribute("Time"), _
+        <CategoryAttribute("Labor"), _
         DescriptionAttribute("Used to computer labor costs. " + Chr(10) + "(Dollars Per Seconds)")> _
         Public Property LaborMultiplier As Decimal
             Get
@@ -49,7 +39,7 @@ Namespace Model
         Public ReadOnly Property LaborCost As Decimal
             Get
                 Dim y As Decimal
-                y = TotalTimeSeconds * LaborMultiplier
+                y = TotalTime * LaborMultiplier
                 Return Math.Round(y, 2)
             End Get
         End Property
@@ -89,7 +79,13 @@ Namespace Model
         CategoryAttribute("Time")> _
         Public ReadOnly Property WireTime As Integer
             Get
-                Return Me._QuoteHeader.QuoteEngine.WireTime
+                Dim x As Decimal
+                Dim prop As ComputationProperties = _QuoteHeader.ComputationProperties
+                Dim time1 As Decimal = (prop.WireLengthFeet * WireUnitTime)
+                Dim time2 As Decimal = (NumberOfCuts * WireUnitCutTime)
+                x += (time1 + time2)
+                x = Math.Round(x)
+                Return x
             End Get
         End Property
 
@@ -97,10 +93,10 @@ Namespace Model
         CategoryAttribute("Time")> _
         Public Property WireUnitCutTime As Integer
             Get
-                Return Me._QuoteHeader.QuoteEngine.WireUnitCutTime
+                Return _WireUnitCutTime
             End Get
             Set(ByVal value As Integer)
-                Me._QuoteHeader.QuoteEngine.WireUnitCutTime = value
+                _WireUnitCutTime = value
                 Me.SendEvents()
             End Set
         End Property
@@ -109,27 +105,19 @@ Namespace Model
         CategoryAttribute("Time")> _
         Public Property WireUnitTime As Decimal
             Get
-                Return Me._QuoteHeader.QuoteEngine.WireUnitTime
+                Return _WireUnitTime
             End Get
             Set(ByVal value As Decimal)
-                Me._QuoteHeader.QuoteEngine.WireUnitTime = value
+                _WireUnitTime = value
                 Me.SendEvents()
             End Set
         End Property
 
         <DescriptionAttribute("WireTime + PartTime"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property TotalTimeSeconds() As Integer
+        CategoryAttribute("Total")> _
+        Public ReadOnly Property TotalTime() As Integer
             Get
                 Return WireTime + PartTime
-            End Get
-        End Property
-
-        <DescriptionAttribute("PartTimeTotalSeconds / 60"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property TotalTimeMinutes() As Decimal
-            Get
-                Return Math.Round(CDec(TotalTimeSeconds) / 60, 4)
             End Get
         End Property
 
@@ -137,10 +125,10 @@ Namespace Model
         CategoryAttribute("Wires")> _
         Public Property NumberOfCuts As Decimal
             Get
-                Return Me._QuoteHeader.QuoteEngine.NumberOfCuts
+                Return _NumberOfCuts
             End Get
             Set(ByVal value As Decimal)
-                Me._QuoteHeader.QuoteEngine.NumberOfCuts = value
+                _NumberOfCuts = value
                 Me.SendEvents()
             End Set
         End Property
@@ -169,22 +157,6 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Number of kinds of wires"), _
-        CategoryAttribute("Wires")> _
-        Public ReadOnly Property WireCount() As Integer
-            Get
-                Return Count(UnitOfMeasure.BY_LENGTH)
-            End Get
-        End Property
-
-        <DescriptionAttribute("Number of kinds of parts"), _
-        CategoryAttribute("Parts")> _
-        Public ReadOnly Property PartCount() As Integer
-            Get
-                Return Count(UnitOfMeasure.BY_EACH)
-            End Get
-        End Property
-
         <DescriptionAttribute("Sum(UnitCost * Quantity)"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCost() As Decimal
@@ -206,14 +178,6 @@ Namespace Model
         Public ReadOnly Property TotalCost() As Decimal
             Get
                 Return PartCost + WireCost
-            End Get
-        End Property
-
-        <DescriptionAttribute("WireCount + PartCount"), _
-        CategoryAttribute("Total")> _
-        Public ReadOnly Property TotalCount() As Integer
-            Get
-                Return WireCount + PartCount
             End Get
         End Property
 
@@ -242,16 +206,6 @@ Namespace Model
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.Qty
-                End If
-            Next
-            Return result
-        End Function
-
-        Private Function Count(ByVal measure As UnitOfMeasure) As Integer
-            Dim result As Integer
-            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
-                If detail.Product.UnitOfMeasure = measure Then
-                    result += 1
                 End If
             Next
             Return result
