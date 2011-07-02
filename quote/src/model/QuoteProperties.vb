@@ -16,7 +16,8 @@ Namespace Model
         Private _QuoteHeader As QuoteHeader
         Private _ShippingCost As Decimal
         Private _ShippingBox As String
-        Private _TimeMultipler As Decimal = 1.15
+        Private _TimeMultipler As Decimal = 1
+        Private _LaborMultiplier As Decimal = 0.01
 
         <CategoryAttribute("Input")> _
         Public Property MinimumOrderQuantity As Integer = 10
@@ -32,8 +33,16 @@ Namespace Model
         Public Property CopperScrap As Decimal
 
         <CategoryAttribute("Time"), _
-        DescriptionAttribute("(Dollars Per Seconds) Used to computer labor costs.")> _
-        Public Property LaborMultiplier As Decimal = 18 / 60
+        DescriptionAttribute("Used to computer labor costs. " + Chr(10) + "(Dollars Per Seconds)")> _
+        Public Property LaborMultiplier As Decimal
+            Get
+                Return _LaborMultiplier
+            End Get
+            Set(ByVal Value As Decimal)
+                _LaborMultiplier = Value
+                Me.SendEvents()
+            End Set
+        End Property
 
         <CategoryAttribute("Labor"), _
         DescriptionAttribute("TotalTimeSeconds * LaborMultiplier")> _
@@ -68,7 +77,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Sum(PartTime) (seconds)"), _
+        <DescriptionAttribute("Sum(PartTime) " + Chr(10) + " (seconds)"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property PartTime As Decimal
             Get
@@ -76,7 +85,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime) / MinimumOrderQuantity"), _
+        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property WireTime As Integer
             Get
@@ -84,7 +93,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("(Seconds Per Cut) Time to preform one cut"), _
+        <DescriptionAttribute("Time to preform one cut. " + Chr(10) + "(Seconds Per Cut)"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitCutTime As Integer
             Get
@@ -96,7 +105,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("(Seconds Per Foot) Time to process one foot"), _
+        <DescriptionAttribute("Time to process one foot. " + Chr(10) + "(Seconds Per Foot)"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitTime As Decimal
             Get
@@ -136,7 +145,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Wire Length in DecaMeters (dm)"), _
+        <DescriptionAttribute("Wire Length" + Chr(10) + "(dm)"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthDecameter() As Decimal
             Get
@@ -160,7 +169,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Number of Different Kinds of Wires"), _
+        <DescriptionAttribute("Number of kinds of wires"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireCount() As Integer
             Get
@@ -168,7 +177,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Number of Different Kinds of Parts"), _
+        <DescriptionAttribute("Number of kinds of parts"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCount() As Integer
             Get
