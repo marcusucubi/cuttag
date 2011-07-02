@@ -32,6 +32,14 @@ Namespace Model
         <CategoryAttribute("Input")> _
         Public Property LaborMinutes As Integer
 
+        <CategoryAttribute("Labor"), _
+        DescriptionAttribute("(1+J9/100)*(J7/60)*N7")> _
+        Public Property LaborCost As Decimal
+
+        <CategoryAttribute("Labor"), _
+        DescriptionAttribute("(1+J9/100)*(J7/60)*N7")> _
+        Public Property LaborMinutesAdd As Integer
+
         <CategoryAttribute("Shipping")> _
         Public ReadOnly Property ShippingCost As Decimal
             Get
@@ -131,6 +139,14 @@ Namespace Model
             End Get
         End Property
 
+        <DescriptionAttribute("Sum(PartTime)"), _
+        CategoryAttribute("Parts")> _
+        Public ReadOnly Property PartTime As Decimal
+            Get
+                Return Me.SumTime
+            End Get
+        End Property
+
         <DescriptionAttribute("Number of Different Kinds of Parts"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCount() As Integer
@@ -176,6 +192,16 @@ Namespace Model
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.TotalCost
+                End If
+            Next
+            Return result
+        End Function
+
+        Private Function SumTime() As Integer
+            Dim result As Integer
+            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
+                If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
+                    result += detail.PartTime
                 End If
             Next
             Return result
