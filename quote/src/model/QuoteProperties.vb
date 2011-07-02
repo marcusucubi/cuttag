@@ -29,17 +29,21 @@ Namespace Model
         <CategoryAttribute("Input")> _
         Public Property MaterialMarkUp As Decimal
         <CategoryAttribute("Input")> _
-        Public Property CU_Scrap As Decimal
-        <CategoryAttribute("Input")> _
-        Public Property LaborMinutes As Integer
+        Public Property CopperScrap As Decimal
+
+        <CategoryAttribute("Time"), _
+        DescriptionAttribute("(Dollars Per Seconds) Used to computer labor costs.")> _
+        Public Property LaborMultiplier As Decimal = 18 / 60
 
         <CategoryAttribute("Labor"), _
-        DescriptionAttribute("(1+J9/100)*(J7/60)*N7")> _
-        Public Property LaborCost As Decimal
-
-        <CategoryAttribute("Labor"), _
-        DescriptionAttribute("(1+J9/100)*(J7/60)*N7")> _
-        Public Property LaborMinutesAdd As Integer
+        DescriptionAttribute("TotalTimeSeconds * LaborMultiplier")> _
+        Public ReadOnly Property LaborCost As Decimal
+            Get
+                Dim y As Decimal
+                y = TotalTimeSeconds * LaborMultiplier
+                Return Math.Round(y, 2)
+            End Get
+        End Property
 
         <CategoryAttribute("Shipping")> _
         Public ReadOnly Property ShippingCost As Decimal
@@ -80,29 +84,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Adjustment for Total Time"), _
-        CategoryAttribute("Time")> _
-        Public Property TimeMultipler As Decimal
-            Get
-                Return Me._TimeMultipler
-            End Get
-            Set(ByVal value As Decimal)
-                If (Me._TimeMultipler <> value) Then
-                    Me._TimeMultipler = value
-                    Me.SendEvents()
-                End If
-            End Set
-        End Property
-
-        <DescriptionAttribute("TotalTime * TimeMultipler"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property FinalTimeMinutes As Decimal
-            Get
-                Return Math.Round(Me.TotalTimeMinutes * Me.TimeMultipler, 4)
-            End Get
-        End Property
-
-        <DescriptionAttribute("Seconds / Cut"), _
+        <DescriptionAttribute("(Seconds Per Cut) Time to preform one cut"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitCutTime As Integer
             Get
@@ -114,7 +96,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Seconds / Foot"), _
+        <DescriptionAttribute("(Seconds Per Foot) Time to process one foot"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitTime As Decimal
             Get
