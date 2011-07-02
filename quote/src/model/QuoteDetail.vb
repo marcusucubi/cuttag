@@ -9,9 +9,9 @@ Namespace Model
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
-        Private _qty As Decimal
+        Private _Quantity As Decimal
         Private _PartTime As Integer
-        Private _product As Product
+        Private _Product As Product
 
 #Region "Properties"
 
@@ -25,7 +25,7 @@ Namespace Model
 
         ReadOnly Property Product As Product
             Get
-                Return _product
+                Return _Product
             End Get
         End Property
 
@@ -55,12 +55,12 @@ Namespace Model
 
         Public Property Qty() As Decimal
             Get
-                Return Me._qty
+                Return Me._Quantity
             End Get
 
             Set(ByVal value As Decimal)
-                If Not (value = _qty) Then
-                    Me._qty = value
+                If Not (value = _Quantity) Then
+                    Me._Quantity = value
                     SendEvents()
                 End If
             End Set
@@ -68,11 +68,14 @@ Namespace Model
 
         Public Property PartTime() As Integer
             Get
+                If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
+                    Return Nothing
+                End If
                 Return Me._PartTime
             End Get
             Set(ByVal value As Integer)
-                If Me._product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    MsgBox("PartTime is for parts")
+                If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
+                    MsgBox("PartTime can only be set for parts")
                 Else
                     If Not (value = _PartTime) Then
                         Me._PartTime = value
@@ -82,15 +85,23 @@ Namespace Model
             End Set
         End Property
 
+        Public ReadOnly Property TotalPartTime() As Integer
+            Get
+                Return (Me._PartTime * Me._Quantity)
+            End Get
+        End Property
+
 #End Region
 
 #Region "Methods"
 
         Friend Sub New(ByVal header As QuoteHeader, ByVal product As Product)
             Me.QuoteHeader = header
-            Me._product = product
-            Me._qty = 1
-            Me.PartTime = 10
+            Me._Product = product
+            Me._Quantity = 1
+            If (product.UnitOfMeasure = UnitOfMeasure.BY_EACH) Then
+                Me.PartTime = 10
+            End If
         End Sub
 
         Private Sub NotifyPropertyChanged(ByVal name As String)

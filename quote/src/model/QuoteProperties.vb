@@ -16,6 +16,7 @@ Namespace Model
         Private _QuoteHeader As QuoteHeader
         Private _ShippingCost As Decimal
         Private _ShippingBox As String
+        Private _TimeMultipler As Decimal = 1.15
 
         <CategoryAttribute("Input")> _
         Public Property MinimumOrderQuantity As Integer = 10
@@ -79,6 +80,28 @@ Namespace Model
             End Get
         End Property
 
+        <DescriptionAttribute("Adjustment for Total Time"), _
+        CategoryAttribute("Time")> _
+        Public Property TimeMultipler As Decimal
+            Get
+                Return Me._TimeMultipler
+            End Get
+            Set(ByVal value As Decimal)
+                If (Me._TimeMultipler <> value) Then
+                    Me._TimeMultipler = value
+                    Me.SendEvents()
+                End If
+            End Set
+        End Property
+
+        <DescriptionAttribute("TotalTime * TimeMultipler"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property FinalTimeMinutes As Decimal
+            Get
+                Return Math.Round(Me.TotalTimeMinutes * Me.TimeMultipler, 4)
+            End Get
+        End Property
+
         <DescriptionAttribute("Seconds / Cut"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitCutTime As Integer
@@ -101,6 +124,22 @@ Namespace Model
                 Me._QuoteHeader.QuoteEngine.WireUnitTime = value
                 Me.SendEvents()
             End Set
+        End Property
+
+        <DescriptionAttribute("WireTime + PartTime"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property TotalTimeSeconds() As Integer
+            Get
+                Return WireTime + PartTime
+            End Get
+        End Property
+
+        <DescriptionAttribute("PartTimeTotalSeconds / 60"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property TotalTimeMinutes() As Decimal
+            Get
+                Return Math.Round(CDec(TotalTimeSeconds) / 60, 4)
+            End Get
         End Property
 
         <DescriptionAttribute("Number of Cuts"), _
@@ -187,14 +226,6 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("WireTime + PartTime"), _
-        CategoryAttribute("Total")> _
-        Public ReadOnly Property TotalTime() As Integer
-            Get
-                Return WireTime + PartTime
-            End Get
-        End Property
-
         Private Function SumCost(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
@@ -209,7 +240,7 @@ Namespace Model
             Dim result As Integer
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
-                    result += detail.PartTime
+                    result += detail.TotalPartTime
                 End If
             Next
             Return result
