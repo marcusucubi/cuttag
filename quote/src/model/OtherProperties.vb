@@ -16,8 +16,6 @@ Namespace Model
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         <CategoryAttribute("Input")> _
-        Public Property MinimumOrderQuantity As Integer = 10
-        <CategoryAttribute("Input")> _
         Public Property LeadTimeInitial As Integer
         <CategoryAttribute("Input")> _
         Public Property LeadTimeStandard As Integer
