@@ -43,7 +43,7 @@ Namespace Model
 
         Private WithEvents _QuoteHeader As QuoteHeader
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage18 As Decimal
             Get
@@ -52,7 +52,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage16 As Decimal
             Get
@@ -61,7 +61,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage14 As Decimal
             Get
@@ -70,7 +70,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage12 As Decimal
             Get
@@ -79,7 +79,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage10 As Decimal
             Get
@@ -88,7 +88,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage08 As Decimal
             Get
@@ -97,7 +97,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage06 As Decimal
             Get
@@ -106,7 +106,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage04 As Decimal
             Get
@@ -115,7 +115,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage02 As Decimal
             Get
@@ -124,7 +124,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("A"), _
+        <CategoryAttribute("Gage Range 1"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage01 As Decimal
             Get
@@ -133,7 +133,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("B"), _
+        <CategoryAttribute("Gage Range 2"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_1 As Decimal
             Get
@@ -142,7 +142,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("B"), _
+        <CategoryAttribute("Gage Range 2"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_2 As Decimal
             Get
@@ -151,7 +151,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("B"), _
+        <CategoryAttribute("Gage Range 2"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_3 As Decimal
             Get
@@ -160,7 +160,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("B"), _
+        <CategoryAttribute("Gage Range 2"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_4 As Decimal
             Get
@@ -169,7 +169,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("C"), _
+        <CategoryAttribute("Gage Range 3"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage373MCM As Decimal
             Get
@@ -178,7 +178,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("C"), _
+        <CategoryAttribute("Gage Range 3"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage444MCM As Decimal
             Get
@@ -187,7 +187,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("C"), _
+        <CategoryAttribute("Gage Range 3"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage777MCM As Decimal
             Get
@@ -197,7 +197,7 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Total"), _
-        DescriptionAttribute("")> _
+        DescriptionAttribute("Total Length" + Chr(10) + "(Decameters)")> _
         Public ReadOnly Property Length As Decimal
             Get
                 Return CalcQty(Nothing)
@@ -205,7 +205,7 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Total"), _
-        DescriptionAttribute("")> _
+        DescriptionAttribute("Total Weight" + Chr(10) + "(Pounds)")> _
         Public ReadOnly Property Weight As Decimal
             Get
                 Return Math.Round(CalcWeight(), 4)
