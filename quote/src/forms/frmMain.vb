@@ -6,7 +6,8 @@ Imports System.ComponentModel
 Public Class frmMain
 
     Private _Properties As frmComputationProperties
-    Private _NonComputationProperties As frmNonComputationProperties
+    Private _OtherProperties As frmOtherProperties
+    Private _GageProperties As frmGageProperties
 
     Public Shared Property frmMain As frmMain
 
@@ -28,14 +29,18 @@ Public Class frmMain
     End Sub
 
     Private Sub ComputationalPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComputationalPropertiesToolStripMenuItem.Click
-        ShowNonComputationProperties()
+        ShowOtherProperties()
+    End Sub
+
+    Private Sub GagePropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GagePropertiesToolStripMenuItem.Click
+        ShowGageProperties()
     End Sub
 
     Private Sub CreateNewQuote()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
-        ShowNonComputationProperties()
+        ShowOtherProperties()
         ShowComputationProperties()
     End Sub
 
@@ -50,14 +55,25 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub ShowNonComputationProperties()
-        If (_NonComputationProperties Is Nothing) Then
-            _NonComputationProperties = New frmNonComputationProperties
-            InitChild(_NonComputationProperties)
+    Private Sub ShowOtherProperties()
+        If (_OtherProperties Is Nothing) Then
+            _OtherProperties = New frmOtherProperties
+            InitChild(_OtherProperties)
         End If
-        If (_NonComputationProperties.IsHidden Or _NonComputationProperties.IsDisposed) Then
-            _NonComputationProperties = New frmNonComputationProperties
-            InitChild(_NonComputationProperties)
+        If (_OtherProperties.IsHidden Or _OtherProperties.IsDisposed) Then
+            _OtherProperties = New frmOtherProperties
+            InitChild(_OtherProperties)
+        End If
+    End Sub
+
+    Private Sub ShowGageProperties()
+        If (_GageProperties Is Nothing) Then
+            _GageProperties = New frmGageProperties
+            InitChild(_GageProperties)
+        End If
+        If (_GageProperties.IsHidden Or _GageProperties.IsDisposed) Then
+            _GageProperties = New frmGageProperties
+            InitChild(_GageProperties)
         End If
     End Sub
 

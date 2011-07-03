@@ -3,7 +3,7 @@ Imports DCS.Quote.Model
 Imports System.Reflection
 
 Namespace Model
-    Public Class WireGageProperties
+    Public Class GageProperties
         Implements INotifyPropertyChanged
 
         Public Sub New(ByVal QuoteHeader As QuoteHeader)

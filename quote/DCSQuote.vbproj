@@ -84,10 +84,16 @@
       <DependentUpon>devDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Settings.vb" />
-    <Compile Include="src\forms\frmNonComputationProperties.Designer.vb">
-      <DependentUpon>frmNonComputationProperties.vb</DependentUpon>
+    <Compile Include="src\forms\frmGageProperties.Designer.vb">
+      <DependentUpon>frmGageProperties.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmNonComputationProperties.vb">
+    <Compile Include="src\forms\frmGageProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmOtherProperties.Designer.vb">
+      <DependentUpon>frmOtherProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmOtherProperties.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmComputationProperties.Designer.vb">
@@ -116,7 +122,7 @@
     </Compile>
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\model\ActiveQuote.vb" />
-    <Compile Include="src\model\NonComputationProperties.vb" />
+    <Compile Include="src\model\OtherProperties.vb" />
     <Compile Include="src\model\Shipping.vb" />
     <Compile Include="src\model\ComputationProperties.vb" />
     <Compile Include="src\model\QuoteDetailCollection.vb" />
@@ -154,10 +160,14 @@
     </Compile>
     <Compile Include="src\misc\Quote.vb" />
     <Compile Include="src\model\Product.vb" />
+    <Compile Include="src\model\GageProperties.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\forms\frmNonComputationProperties.resx">
-      <DependentUpon>frmNonComputationProperties.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmGageProperties.resx">
+      <DependentUpon>frmGageProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmOtherProperties.resx">
+      <DependentUpon>frmOtherProperties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmPartLookup.resx">
       <DependentUpon>frmPartLookup.vb</DependentUpon>
