@@ -69,7 +69,7 @@ Namespace Model
 
         <TypeConverter(GetType(ShippingList)), _
             CategoryAttribute("Shipping"), _
-            DescriptionAttribute("Shipping Container")> _
+            DescriptionAttribute("Description of the Shipping Container")> _
         Public Property ShippingBox() As String
             Get
                 Return _ShippingBox
@@ -80,7 +80,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Sum(PartTime) " + Chr(10) + " (Seconds)"), _
+        <DescriptionAttribute("Sum(PartTime) " + Chr(10) + "(Seconds)"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property PartTime As Decimal
             Get
@@ -114,7 +114,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Time to process one foot. " + Chr(10) + "(Seconds Per Foot)"), _
+        <DescriptionAttribute("Time to Process One Foot. " + Chr(10) + "(Seconds Per Foot)"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitTime As Decimal
             Get
