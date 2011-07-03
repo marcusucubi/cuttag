@@ -5,9 +5,9 @@ Imports System.ComponentModel
 
 Public Class frmMain
 
-    Private _Properties As frmComputationProperties
-    Private _OtherProperties As frmOtherProperties
-    Private _WeightProperties As frmWeights
+    Private _Properties As New frmComputationProperties
+    Private _OtherProperties As New frmOtherProperties
+    Private _WeightProperties As New frmWeights
 
     Public Shared Property frmMain As frmMain
 
@@ -41,6 +41,7 @@ Public Class frmMain
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
         ShowOtherProperties()
+        ShowWeights()
         ShowComputationProperties()
     End Sub
 
@@ -78,15 +79,9 @@ Public Class frmMain
     End Sub
 
     Private Sub InitChild(ByVal frm As DockContent)
-        frm.MdiParent = frmMain.frmMain
-        frm.Show(frmMain.frmMain.DockPanel1)
-        For Each w As DockWindow In DockPanel1.DockWindows
-            If w.DockState = DockState.DockRight Then
-                frm.DockHandler.DockTo(w.DockPanel, DockStyle.Fill)
-                frm.Show(w.DockPanel, DockState.DockRight)
-            End If
-        Next
-
+        DockPanel1.SuspendLayout(True)
+        frm.Show(DockPanel1, DockState.DockRight)
+        DockPanel1.ResumeLayout(True, True)
     End Sub
 
 End Class
