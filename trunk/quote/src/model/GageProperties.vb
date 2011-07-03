@@ -6,33 +6,33 @@ Namespace Model
     Public Class GageProperties
         Implements INotifyPropertyChanged
 
-        Class W
-            Sub New(ByVal Gage As Integer, ByVal Value As Decimal)
+        Class Weight
+            Sub New(ByVal Gage As String, ByVal Value As Decimal)
                 Me.Gage = Gage
                 Me.Value = Value
             End Sub
-            Property Gage As Integer
+            Property Gage As String
             Property Value As Decimal
         End Class
 
-        Private Wieghts() = New W() { _
-            New W(18, 0.00159),
-            New W(16, 0.00242),
-            New W(14, 0.00387),
-            New W(12, 0.00602),
-            New W(10, 0.00959),
-            New W(8, 0.01541),
-            New W(6, 0.02657),
-            New W(4, 0.04206),
-            New W(2, 0.39),
-            New W(1, 0.198),
-            New W(0.1, 0.244),
-            New W(0.2, 0.311),
-            New W(0.3, 0.492),
-            New W(0.4, 0.673),
-            New W(0.5, 1.176),
-            New W(0.6, 1.413),
-            New W(0.7, 2.435)
+        Private Weights() = New Weight() { _
+            New Weight("18", 0.00159),
+            New Weight("16", 0.00242),
+            New Weight("14", 0.00387),
+            New Weight("12", 0.00602),
+            New Weight("10", 0.00959),
+            New Weight("8", 0.01541),
+            New Weight("6", 0.02657),
+            New Weight("4", 0.04206),
+            New Weight("2", 0.39),
+            New Weight("1", 0.198),
+            New Weight("1/0", 0.244),
+            New Weight("2/0", 0.311),
+            New Weight("3/0", 0.492),
+            New Weight("4/0", 0.673),
+            New Weight("373 MCM", 1.176),
+            New Weight("444 MCM", 1.413),
+            New Weight("777 MCM", 2.435)
         }
 
         Public Sub New(ByVal QuoteHeader As QuoteHeader)
@@ -133,7 +133,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Big"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_1 As Decimal
             Get
@@ -142,7 +142,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Big"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_2 As Decimal
             Get
@@ -151,7 +151,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Big"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_3 As Decimal
             Get
@@ -160,7 +160,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Big"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage00_4 As Decimal
             Get
@@ -169,7 +169,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Large"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage373MCM As Decimal
             Get
@@ -178,7 +178,7 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Large"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage444MCM As Decimal
             Get
@@ -187,12 +187,28 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Gage"), _
+        <CategoryAttribute("Large"), _
         DescriptionAttribute("")> _
         Public ReadOnly Property Gage777MCM As Decimal
             Get
                 Dim gage As Integer = CalcQty("777 MCM")
                 Return gage
+            End Get
+        End Property
+
+        <CategoryAttribute("Total"), _
+        DescriptionAttribute("")> _
+        Public ReadOnly Property TotalLength As Decimal
+            Get
+                Return CalcQty(Nothing)
+            End Get
+        End Property
+
+        <CategoryAttribute("Total"), _
+        DescriptionAttribute("")> _
+        Public ReadOnly Property TotalWeight As Decimal
+            Get
+                Return CalcWeight()
             End Get
         End Property
 
@@ -203,13 +219,38 @@ Namespace Model
                     qty += q.Qty
                 ElseIf q.Gage.Contains("-" & gage) Then
                     qty += q.Qty
+                ElseIf gage Is Nothing Then
+                    qty += q.Qty
                 End If
             Next
             Return qty
         End Function
 
+        Private Function CalcWeight() As Decimal
+            Dim r As Decimal
+            For Each w As Weight In Me.Weights
+                Dim x As Decimal
+                x += FindWeight(w.Gage) + CalcQty(w.Gage)
+            Next
+            Return r
+        End Function
+
+        Private Function FindWeight(ByVal gage As String) As Integer
+            Dim r As Integer
+            For Each w As Weight In Me.Weights
+                If w.Gage = gage Then
+                    r = w.Value
+                ElseIf w.Gage.Contains("-" & gage) Then
+                    r = w.Value
+                ElseIf gage Is Nothing Then
+                    r = w.Value
+                End If
+            Next
+            Return r
+        End Function
+
         Private Sub _QuoteHeader_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _QuoteHeader.PropertyChanged
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("Gage18"))
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
         End Sub
 
     End Class
