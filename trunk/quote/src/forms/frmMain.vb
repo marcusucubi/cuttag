@@ -80,7 +80,13 @@ Public Class frmMain
     Private Sub InitChild(ByVal frm As DockContent)
         frm.MdiParent = frmMain.frmMain
         frm.Show(frmMain.frmMain.DockPanel1)
-        frm.DockState = DockState.DockRight
+        For Each w As DockWindow In DockPanel1.DockWindows
+            If w.DockState = DockState.DockRight Then
+                frm.DockHandler.DockTo(w.DockPanel, DockStyle.Fill)
+                frm.Show(w.DockPanel, DockState.DockRight)
+            End If
+        Next
+
     End Sub
 
 End Class
