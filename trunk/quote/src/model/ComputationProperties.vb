@@ -17,40 +17,53 @@ Namespace Model
         Private _ShippingCost As Decimal
         Private _ShippingBox As String
         Private _TimeMultipler As Decimal = 1
-        Private _LaborMultiplier As Decimal = 0.001
+        Private _LaborRate As Decimal = 18
         Private _WireUnitCutTime As Integer = 120
         Private _WireUnitTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
 
         <CategoryAttribute("Labor"), _
-        DescriptionAttribute("Used to computer labor costs. " + Chr(10) + "(Dollars Per Seconds)")> _
-        Public Property LaborMultiplier As Decimal
+        DescriptionAttribute("Used to Computer Labor Costs. " + Chr(10) + "(Dollars Per Hour)")> _
+        Public Property LaborRate As Decimal
             Get
-                Return _LaborMultiplier
+                Return _LaborRate
             End Get
             Set(ByVal Value As Decimal)
-                _LaborMultiplier = Value
+                _LaborRate = Value
                 Me.SendEvents()
             End Set
         End Property
 
         <CategoryAttribute("Labor"), _
-        DescriptionAttribute("TotalTimeSeconds * LaborMultiplier")> _
+        DescriptionAttribute("TotalTimeHours * LaborRate" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property LaborCost As Decimal
             Get
-                Dim y As Decimal
-                y = TotalTime * LaborMultiplier
-                Return Math.Round(y, 2)
+                Return Math.Round(TotalTimeHours * LaborRate, 2)
             End Get
         End Property
 
         <CategoryAttribute("Shipping")> _
-        Public ReadOnly Property ShippingCost As Decimal
+        Public Property MinimumOrderQuantity As Integer = 25
+
+        <CategoryAttribute("Shipping"), _
+        DescriptionAttribute("Cost of the Shipping Container" + Chr(10) + "(Dollars)")> _
+        Public ReadOnly Property ShippingContainerCost As Decimal
             Get
                 If (_ShippingBox Is Nothing) Then
                     Return 0
                 End If
                 Return Math.Round(Shipping.Shipping.Lookup(Me._ShippingBox), 2)
+            End Get
+        End Property
+
+        <CategoryAttribute("Shipping"), _
+        DescriptionAttribute("ShippingContainerCost / MinimumOrderQuantity" + Chr(10) + "(Dollars)")> _
+        Public ReadOnly Property ShippingCost As Decimal
+            Get
+                If (Me.MinimumOrderQuantity = 0) Then
+                    Return 0
+                End If
+                Return Math.Round(Me.ShippingContainerCost / Me.MinimumOrderQuantity, 2)
             End Get
         End Property
 
@@ -67,7 +80,7 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Sum(PartTime) " + Chr(10) + " (seconds)"), _
+        <DescriptionAttribute("Sum(PartTime) " + Chr(10) + " (Seconds)"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property PartTime As Decimal
             Get
@@ -75,7 +88,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)"), _
+        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)" + Chr(10) + "(Seconds)"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property WireTime As Integer
             Get
@@ -113,11 +126,19 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("WireTime + PartTime"), _
+        <DescriptionAttribute("WireTime + PartTime" + Chr(10) + "(Seconds)"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalTime() As Integer
             Get
                 Return WireTime + PartTime
+            End Get
+        End Property
+
+        <DescriptionAttribute("TotalTime / (60 * 60)" + Chr(10) + "(Hours)"), _
+        CategoryAttribute("Total")> _
+        Public ReadOnly Property TotalTimeHours() As Decimal
+            Get
+                Return Math.Round(CDec(TotalTime) / (60 * 60), 4)
             End Get
         End Property
 
@@ -141,7 +162,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("WireLengthDecameter / 3.048"), _
+        <DescriptionAttribute("WireLengthDecameter / 3.048" + Chr(10) + "(Feet)"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
             Get
@@ -149,7 +170,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Sum(UnitCost * Quantity)"), _
+        <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireCost() As Decimal
             Get
@@ -157,7 +178,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Sum(UnitCost * Quantity)"), _
+        <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCost() As Decimal
             Get
@@ -173,11 +194,11 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("WireCost + PartCost"), _
+        <DescriptionAttribute("WireCost + PartCost + ShippingCost" + Chr(10) + "(Dollars)"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
-                Return PartCost + WireCost
+                Return Me.PartCost + Me.WireCost + Me.ShippingCost
             End Get
         End Property
 
