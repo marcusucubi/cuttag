@@ -20,17 +20,12 @@ Namespace Model
 #Region "Properties"
 
         Public Property ComputationProperties As New ComputationProperties(Me)
-        Public Property NonComputationProperties As New NonComputationProperties(Me)
+        Public Property NonComputationProperties As New OtherProperties(Me)
+        Public Property GageProperties As New GageProperties(Me)
 
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _QuoteDetails
-            End Get
-        End Property
-
-        Public ReadOnly Property TotalCost() As Decimal
-            Get
-                Return ComputationProperties.TotalCost
             End Get
         End Property
 

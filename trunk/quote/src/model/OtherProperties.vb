@@ -4,7 +4,7 @@ Imports System.Reflection
 
 Namespace Model
 
-    Public Class NonComputationProperties
+    Public Class OtherProperties
         Implements INotifyPropertyChanged
 
         Private _QuoteHeader As QuoteHeader

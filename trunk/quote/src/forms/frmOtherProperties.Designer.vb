@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmNonComputationProperties
+Partial Class frmOtherProperties
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
