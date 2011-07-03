@@ -1,11 +1,11 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 
-Public Class frmGageProperties
+Public Class frmWeights
     Inherits DockContent
 
     Private WithEvents _ActiveQuote As ActiveQuote
-    Private WithEvents _GageProperties As GageProperties
+    Private WithEvents _GageProperties As Weights
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _GageProperties.PropertyChanged
         Me.PropertyGrid1.Refresh()

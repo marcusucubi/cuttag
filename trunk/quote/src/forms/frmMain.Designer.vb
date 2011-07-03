@@ -153,7 +153,7 @@ Partial Class frmMain
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.GagePropertiesToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.GagePropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -161,20 +161,20 @@ Partial Class frmMain
         'PropertiesToolStripMenuItem
         '
         Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
-        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
-        Me.PropertiesToolStripMenuItem.Text = "Computational Properties"
+        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PropertiesToolStripMenuItem.Text = "Costs"
         '
         'ComputationalPropertiesToolStripMenuItem
         '
         Me.ComputationalPropertiesToolStripMenuItem.Name = "ComputationalPropertiesToolStripMenuItem"
-        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
-        Me.ComputationalPropertiesToolStripMenuItem.Text = "Other Properties"
+        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ComputationalPropertiesToolStripMenuItem.Text = "Other"
         '
         'GagePropertiesToolStripMenuItem
         '
         Me.GagePropertiesToolStripMenuItem.Name = "GagePropertiesToolStripMenuItem"
-        Me.GagePropertiesToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
-        Me.GagePropertiesToolStripMenuItem.Text = "Gage Properties"
+        Me.GagePropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GagePropertiesToolStripMenuItem.Text = "Weight"
         '
         'frmMain
         '

@@ -21,7 +21,7 @@ Namespace Model
 
         Public Property ComputationProperties As New ComputationProperties(Me)
         Public Property NonComputationProperties As New OtherProperties(Me)
-        Public Property GageProperties As New GageProperties(Me)
+        Public Property GageProperties As New Weights(Me)
 
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
