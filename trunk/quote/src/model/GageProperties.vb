@@ -208,7 +208,7 @@ Namespace Model
         DescriptionAttribute("")> _
         Public ReadOnly Property TotalWeight As Decimal
             Get
-                Return CalcWeight()
+                Return Math.Round(CalcWeight(), 4)
             End Get
         End Property
 
@@ -229,14 +229,13 @@ Namespace Model
         Private Function CalcWeight() As Decimal
             Dim r As Decimal
             For Each w As Weight In Me.Weights
-                Dim x As Decimal
-                x += FindWeight(w.Gage) + CalcQty(w.Gage)
+                r += FindWeight(w.Gage) * CalcQty(w.Gage)
             Next
             Return r
         End Function
 
-        Private Function FindWeight(ByVal gage As String) As Integer
-            Dim r As Integer
+        Private Function FindWeight(ByVal gage As String) As Decimal
+            Dim r As Decimal
             For Each w As Weight In Me.Weights
                 If w.Gage = gage Then
                     r = w.Value
