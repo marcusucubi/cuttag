@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmGageProperties
+Partial Class frmWeights
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
@@ -33,14 +33,15 @@ Partial Class frmGageProperties
         Me.PropertyGrid1.Size = New System.Drawing.Size(218, 138)
         Me.PropertyGrid1.TabIndex = 0
         '
-        'frmGageProperties
+        'frmWeights
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(218, 138)
         Me.Controls.Add(Me.PropertyGrid1)
-        Me.Name = "frmGageProperties"
-        Me.Text = "Gages"
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Name = "frmWeights"
+        Me.Text = "Weight"
         Me.ResumeLayout(False)
 
     End Sub

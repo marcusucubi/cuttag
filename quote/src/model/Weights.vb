@@ -3,7 +3,7 @@ Imports DCS.Quote.Model
 Imports System.Reflection
 
 Namespace Model
-    Public Class GageProperties
+    Public Class Weights
         Implements INotifyPropertyChanged
 
         Class WireWeight
@@ -15,7 +15,7 @@ Namespace Model
             Property Value As Decimal
         End Class
 
-        Private Weights() = New WireWeight() { _
+        Private WeightArray() = New WireWeight() { _
             New WireWeight("18", 0.00159),
             New WireWeight("16", 0.00242),
             New WireWeight("14", 0.00387),
@@ -228,7 +228,7 @@ Namespace Model
 
         Private Function CalcWeight() As Decimal
             Dim r As Decimal
-            For Each w As WireWeight In Me.Weights
+            For Each w As WireWeight In Me.WeightArray
                 r += FindWeight(w.Gage) * CalcQty(w.Gage)
             Next
             Return r
@@ -236,7 +236,7 @@ Namespace Model
 
         Private Function FindWeight(ByVal gage As String) As Decimal
             Dim r As Decimal
-            For Each w As WireWeight In Me.Weights
+            For Each w As WireWeight In Me.WeightArray
                 If w.Gage = gage Then
                     r = w.Value
                 ElseIf w.Gage.Contains("-" & gage) Then

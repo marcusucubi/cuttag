@@ -7,7 +7,7 @@ Public Class frmMain
 
     Private _Properties As frmComputationProperties
     Private _OtherProperties As frmOtherProperties
-    Private _GageProperties As frmGageProperties
+    Private _WeightProperties As frmWeights
 
     Public Shared Property frmMain As frmMain
 
@@ -32,8 +32,8 @@ Public Class frmMain
         ShowOtherProperties()
     End Sub
 
-    Private Sub GagePropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GagePropertiesToolStripMenuItem.Click
-        ShowGageProperties()
+    Private Sub WeightToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GagePropertiesToolStripMenuItem.Click
+        ShowWeights()
     End Sub
 
     Private Sub CreateNewQuote()
@@ -66,14 +66,14 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub ShowGageProperties()
-        If (_GageProperties Is Nothing) Then
-            _GageProperties = New frmGageProperties
-            InitChild(_GageProperties)
+    Private Sub ShowWeights()
+        If (_WeightProperties Is Nothing) Then
+            _WeightProperties = New frmWeights
+            InitChild(_WeightProperties)
         End If
-        If (_GageProperties.IsHidden Or _GageProperties.IsDisposed) Then
-            _GageProperties = New frmGageProperties
-            InitChild(_GageProperties)
+        If (_WeightProperties.IsHidden Or _WeightProperties.IsDisposed) Then
+            _WeightProperties = New frmWeights
+            InitChild(_WeightProperties)
         End If
     End Sub
 
