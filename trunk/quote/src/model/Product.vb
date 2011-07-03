@@ -13,6 +13,12 @@ Namespace Model
             End Get
         End Property
 
+        ReadOnly Property Gage As String
+            Get
+                Return m_gage
+            End Get
+        End Property
+
         ReadOnly Property UnitCost As Decimal
             Get
                 Return m_unitCost
@@ -26,16 +32,19 @@ Namespace Model
         End Property
 
         Private m_code As String
+        Private m_gage As String
         Private m_unitCost As Decimal
         Private m_unitOfMeasure As UnitOfMeasure
 
         Public Sub New( _
                        ByVal Code As String, _
                        ByVal UnitCost As Decimal, _
+                       ByVal Gage As String, _
                        ByVal UnitOfMeasure As UnitOfMeasure _
                        )
             Me.m_code = Code
             Me.m_unitCost = UnitCost
+            Me.m_gage = Gage
             Me.m_unitOfMeasure = UnitOfMeasure
         End Sub
 
