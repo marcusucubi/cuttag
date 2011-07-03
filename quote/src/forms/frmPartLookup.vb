@@ -18,7 +18,7 @@ Public Class frmComponentLookup
         Dim num As String = View.Row.ItemArray(1)
         Dim cost As Decimal = View.Row.ItemArray(2)
 
-        Product = New Product(num, cost, UnitOfMeasure.BY_EACH)
+        Product = New Product(num, cost, "", UnitOfMeasure.BY_EACH)
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click

@@ -15,7 +15,8 @@ Public Class frmWireLookup
         Dim View As System.Data.DataRowView = Me.ListBox1.SelectedItem
         Dim num As String = View.Row.ItemArray(1)
         Dim cost As Decimal = View.Row.ItemArray(2)
-        Product = New Product(num, cost, UnitOfMeasure.BY_LENGTH)
+        Dim gage As String = View.Row.ItemArray(3)
+        Product = New Product(num, cost, gage, UnitOfMeasure.BY_LENGTH)
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click

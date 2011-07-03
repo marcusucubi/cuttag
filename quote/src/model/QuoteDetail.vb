@@ -35,6 +35,12 @@ Namespace Model
             End Get
         End Property
 
+        ReadOnly Property Gage As String
+            Get
+                Return Product.Gage.Trim
+            End Get
+        End Property
+
         ReadOnly Property UnitCost As Decimal
             Get
                 Return Product.UnitCost
