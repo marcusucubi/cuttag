@@ -59,6 +59,12 @@ Namespace Model
             End Get
         End Property
 
+        Public ReadOnly Property TotalPartTime() As Integer
+            Get
+                Return (Me._PartTime * Me._Quantity)
+            End Get
+        End Property
+
         Public Property Qty() As Decimal
             Get
                 Return Me._Quantity
@@ -89,12 +95,6 @@ Namespace Model
                     End If
                 End If
             End Set
-        End Property
-
-        Public ReadOnly Property TotalPartTime() As Integer
-            Get
-                Return (Me._PartTime * Me._Quantity)
-            End Get
         End Property
 
 #End Region

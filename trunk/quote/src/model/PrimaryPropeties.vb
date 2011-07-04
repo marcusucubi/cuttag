@@ -8,6 +8,7 @@ Namespace Model
         Implements INotifyPropertyChanged
 
         Private _QuoteHeader As QuoteHeader
+        Private _QuoteNumnber As Integer
 
         Public Sub New(ByVal QuoteHeader As QuoteHeader)
             _QuoteHeader = QuoteHeader
@@ -30,6 +31,15 @@ Namespace Model
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _
         Public Property PartNumber As String
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("QuoteNumnber"), _
+        DescriptionAttribute("Quote Numnber")> _
+        Public ReadOnly Property QuoteNumnber As Integer
+            Get
+                Return Me._QuoteNumnber
+            End Get
+        End Property
 
     End Class
 End Namespace

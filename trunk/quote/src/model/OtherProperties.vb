@@ -40,20 +40,25 @@ Namespace Model
         DescriptionAttribute("")> _
         Public Property CopperScrap As Decimal
 
-        <CategoryAttribute("Misc"), _
+        <CategoryAttribute("Date"), _
         DisplayName("Start Date"), _
         DescriptionAttribute("Date the quote is started")> _
         Public Property StartDate As DateTime
 
-        <CategoryAttribute("Misc"), _
+        <CategoryAttribute("Date"), _
         DisplayName("Completed Date"), _
         DescriptionAttribute("Date the quote is completed")> _
         Public Property CompletedDate As DateTime
 
-        <CategoryAttribute("Misc"), _
+        <CategoryAttribute("Date"), _
         DisplayName("Verified Date"), _
         DescriptionAttribute("Date the quote is verified")> _
         Public Property VerifiedDate As DateTime
+
+        <CategoryAttribute("Date"), _
+        DisplayName("Due Date"), _
+        DescriptionAttribute("Date the quote is to be given to the customer")> _
+        Public Property DueDate As DateTime
 
         Friend Sub SendEvents()
             Dim info() As PropertyInfo
