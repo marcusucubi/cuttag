@@ -49,8 +49,9 @@ Partial Class frmMain
         Me.menuNewQuote = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComputationalPropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GagePropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComputationalPropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrimaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -153,7 +154,7 @@ Partial Class frmMain
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.GagePropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.GagePropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.PrimaryToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -164,17 +165,23 @@ Partial Class frmMain
         Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PropertiesToolStripMenuItem.Text = "Costs"
         '
+        'GagePropertiesToolStripMenuItem
+        '
+        Me.GagePropertiesToolStripMenuItem.Name = "GagePropertiesToolStripMenuItem"
+        Me.GagePropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GagePropertiesToolStripMenuItem.Text = "Weight"
+        '
         'ComputationalPropertiesToolStripMenuItem
         '
         Me.ComputationalPropertiesToolStripMenuItem.Name = "ComputationalPropertiesToolStripMenuItem"
         Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ComputationalPropertiesToolStripMenuItem.Text = "Other"
         '
-        'GagePropertiesToolStripMenuItem
+        'PrimaryToolStripMenuItem
         '
-        Me.GagePropertiesToolStripMenuItem.Name = "GagePropertiesToolStripMenuItem"
-        Me.GagePropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.GagePropertiesToolStripMenuItem.Text = "Weight"
+        Me.PrimaryToolStripMenuItem.Name = "PrimaryToolStripMenuItem"
+        Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PrimaryToolStripMenuItem.Text = "Primary"
         '
         'frmMain
         '
@@ -208,5 +215,6 @@ Partial Class frmMain
     Friend WithEvents PropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ComputationalPropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GagePropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PrimaryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
