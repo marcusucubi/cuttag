@@ -232,12 +232,14 @@ Namespace Model
         Private Function CalcQty(ByVal gage As String) As Integer
             Dim qty As Integer
             For Each q As QuoteDetail In _QuoteHeader.QuoteDetails
-                If q.Gage = gage Then
-                    qty += q.Qty
-                ElseIf q.Gage.Contains("-" & gage) Then
-                    qty += q.Qty
-                ElseIf gage Is Nothing Then
-                    qty += q.Qty
+                If q.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
+                    If q.Gage = gage Then
+                        qty += q.Qty
+                    ElseIf q.Gage.Contains("-" & gage) Then
+                        qty += q.Qty
+                    ElseIf gage Is Nothing Then
+                        qty += q.Qty
+                    End If
                 End If
             Next
             Return qty
