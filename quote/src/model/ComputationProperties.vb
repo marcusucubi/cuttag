@@ -15,7 +15,7 @@ Namespace Model
 
         Private _QuoteHeader As QuoteHeader
         Private _ShippingCost As Decimal
-        Private _ShippingBox As String
+        Private _ShippingBox As String = "NoBox"
         Private _TimeMultipler As Decimal = 1
         Private _LaborRate As Decimal = 18
         Private _WireUnitCutTime As Integer = 120

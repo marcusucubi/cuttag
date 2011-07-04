@@ -16,7 +16,7 @@ Public Class ShippingList : Inherits System.ComponentModel.StringConverter
         As System.ComponentModel.ITypeDescriptorContext) _
         As Boolean
 
-        Return False
+        Return True
     End Function
 
     Public Overrides Function GetStandardValuesSupported(ByVal context As System.ComponentModel.ITypeDescriptorContext) As Boolean
