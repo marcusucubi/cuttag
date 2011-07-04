@@ -21,6 +21,7 @@ Namespace Model
         Private _WireUnitCutTime As Integer = 120
         Private _WireUnitTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
+        Private _MinimumOrderQuantity As Integer = 25
 
         <CategoryAttribute("Labor"), _
         DisplayName("Labor Rate"), _
@@ -46,7 +47,15 @@ Namespace Model
 
         <CategoryAttribute("Shipping"), _
         DisplayName("Minimum Order Quantity")> _
-        Public Property MinimumOrderQuantity As Integer = 25
+        Public Property MinimumOrderQuantity As Integer
+            Get
+                Return _MinimumOrderQuantity
+            End Get
+            Set(ByVal Value As Integer)
+                _MinimumOrderQuantity = Value
+                Me.SendEvents()
+            End Set
+        End Property
 
         <CategoryAttribute("Shipping"), _
         DisplayName("Shipping Container Cost"), _
