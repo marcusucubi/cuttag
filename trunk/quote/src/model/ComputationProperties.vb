@@ -68,7 +68,7 @@ Namespace Model
         End Property
 
         <TypeConverter(GetType(ShippingList)), _
-            CategoryAttribute("Shipping"), _
+        CategoryAttribute("Shipping"), _
             DescriptionAttribute("Description of the Shipping Container")> _
         Public Property ShippingBox() As String
             Get

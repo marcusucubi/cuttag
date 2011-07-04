@@ -44,7 +44,8 @@ Namespace Model
         Private WithEvents _QuoteHeader As QuoteHeader
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("18"), _
+        DescriptionAttribute("Length of Gage 18")> _
         Public ReadOnly Property Gage18 As Decimal
             Get
                 Dim gage As Integer = CalcQty("18")
@@ -53,7 +54,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("16"), _
+        DescriptionAttribute("Length of Gage 16")> _
         Public ReadOnly Property Gage16 As Decimal
             Get
                 Dim gage As Integer = CalcQty("16")
@@ -62,7 +64,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("14"), _
+        DescriptionAttribute("Length of Gage 14")> _
         Public ReadOnly Property Gage14 As Decimal
             Get
                 Dim gage As Integer = CalcQty("14")
@@ -71,7 +74,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("12"), _
+        DescriptionAttribute("Length of Gage 12")> _
         Public ReadOnly Property Gage12 As Decimal
             Get
                 Dim gage As Integer = CalcQty("12")
@@ -80,7 +84,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("10"), _
+        DescriptionAttribute("Length of Gage 10")> _
         Public ReadOnly Property Gage10 As Decimal
             Get
                 Dim gage As Integer = CalcQty("10")
@@ -89,7 +94,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("08"), _
+        DescriptionAttribute("Length of Gage 8")> _
         Public ReadOnly Property Gage08 As Decimal
             Get
                 Dim gage As Integer = CalcQty("8")
@@ -98,7 +104,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("06"), _
+        DescriptionAttribute("Length of Gage 6")> _
         Public ReadOnly Property Gage06 As Decimal
             Get
                 Dim gage As Integer = CalcQty("6")
@@ -107,7 +114,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("04"), _
+        DescriptionAttribute("Length of Gage 4")> _
         Public ReadOnly Property Gage04 As Decimal
             Get
                 Dim gage As Integer = CalcQty("4")
@@ -116,7 +124,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("02"), _
+        DescriptionAttribute("Length of Gage 2")> _
         Public ReadOnly Property Gage02 As Decimal
             Get
                 Dim gage As Integer = CalcQty("2")
@@ -125,7 +134,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 1"), _
-        DescriptionAttribute("")> _
+        DisplayName("01"), _
+        DescriptionAttribute("Length of Gage 1")> _
         Public ReadOnly Property Gage01 As Decimal
             Get
                 Dim gage As Integer = CalcQty("1")
@@ -134,7 +144,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 2"), _
-        DescriptionAttribute("")> _
+        DisplayName("1/0"), _
+        DescriptionAttribute("Length of Gage 1/0")> _
         Public ReadOnly Property Gage00_1 As Decimal
             Get
                 Dim gage As Integer = CalcQty("1/0")
@@ -143,7 +154,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 2"), _
-        DescriptionAttribute("")> _
+        DisplayName("2/0"), _
+        DescriptionAttribute("Length of Gage 2/0")> _
         Public ReadOnly Property Gage00_2 As Decimal
             Get
                 Dim gage As Integer = CalcQty("2/0")
@@ -152,7 +164,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 2"), _
-        DescriptionAttribute("")> _
+        DisplayName("3/0"), _
+        DescriptionAttribute("Length of Gage 3/0")> _
         Public ReadOnly Property Gage00_3 As Decimal
             Get
                 Dim gage As Integer = CalcQty("3/0")
@@ -161,7 +174,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 2"), _
-        DescriptionAttribute("")> _
+        DisplayName("4/0"), _
+        DescriptionAttribute("Length of Gage 4/0")> _
         Public ReadOnly Property Gage00_4 As Decimal
             Get
                 Dim gage As Integer = CalcQty("4/0")
@@ -170,7 +184,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 3"), _
-        DescriptionAttribute("")> _
+        DisplayName("373 MCM"), _
+        DescriptionAttribute("Length of Gage 373 MCM")> _
         Public ReadOnly Property Gage373MCM As Decimal
             Get
                 Dim gage As Integer = CalcQty("373 MCM")
@@ -179,7 +194,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 3"), _
-        DescriptionAttribute("")> _
+        DisplayName("444 MCM"), _
+        DescriptionAttribute("Length of Gage 444 MCM")> _
         Public ReadOnly Property Gage444MCM As Decimal
             Get
                 Dim gage As Integer = CalcQty("444 MCM")
@@ -188,7 +204,8 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Gage Range 3"), _
-        DescriptionAttribute("")> _
+        DisplayName("777 MCM"), _
+        DescriptionAttribute("Length of Gage 777 MCM")> _
         Public ReadOnly Property Gage777MCM As Decimal
             Get
                 Dim gage As Integer = CalcQty("777 MCM")
