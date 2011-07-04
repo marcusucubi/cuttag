@@ -9,12 +9,24 @@ Public Class frmMain
     Private _OtherProperties As New frmOtherProperties
     Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
+    Private WithEvents _ActiveQuote As ActiveQuote
 
     Public Shared Property frmMain As frmMain
 
     Public Sub New()
         InitializeComponent()
         frmMain = Me
+        Me._ActiveQuote = ActiveQuote.ActiveQuote
+    End Sub
+
+    Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
+        If Me._ActiveQuote.QuoteHeader Is Nothing Then
+            SaveToolStripMenuItem.Enabled = False
+            SaveToolButton.Enabled = False
+        Else
+            SaveToolStripMenuItem.Enabled = True
+            SaveToolButton.Enabled = True
+        End If
     End Sub
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
@@ -39,6 +51,16 @@ Public Class frmMain
 
     Private Sub PrimaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrimaryToolStripMenuItem.Click
         ShowPrimaryProperties()
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
+        Dim loader As New QuoteLoader
+        loader.Save(Me._ActiveQuote.QuoteHeader)
+    End Sub
+
+    Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
+        Dim loader As New QuoteLoader
+        loader.Save(Me._ActiveQuote.QuoteHeader)
     End Sub
 
     Private Sub CreateNewQuote()
