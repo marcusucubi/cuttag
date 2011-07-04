@@ -84,10 +84,25 @@
       <DependentUpon>devDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Settings.vb" />
-    <Compile Include="src\forms\frmGageProperties.Designer.vb">
-      <DependentUpon>frmGageProperties.vb</DependentUpon>
+    <Compile Include="src\database\QuoteDataBase.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmGageProperties.vb">
+    <Compile Include="src\database\QuoteDataBase.vb">
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="src\database\QuoteLoader.vb" />
+    <Compile Include="src\forms\frmPrimaryProperties.Designer.vb">
+      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmPrimaryProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmWeights.Designer.vb">
+      <DependentUpon>frmWeights.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmWeights.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmOtherProperties.Designer.vb">
@@ -121,15 +136,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\misc\ShippingList.vb" />
-    <Compile Include="src\model\ActiveQuote.vb" />
+    <Compile Include="src\misc\ActiveQuote.vb" />
     <Compile Include="src\model\OtherProperties.vb" />
+    <Compile Include="src\model\PrimaryPropeties.vb" />
     <Compile Include="src\model\Shipping.vb" />
     <Compile Include="src\model\ComputationProperties.vb" />
     <Compile Include="src\model\QuoteDetailCollection.vb" />
     <Compile Include="src\model\UnitOfMeasure.vb" />
     <Compile Include="src\model\QuoteHeader.vb" />
     <Compile Include="src\model\QuoteDetail.vb" />
-    <Compile Include="src\model\ModelAdaptor.vb" />
+    <Compile Include="src\misc\EditableQuoteHeader.vb" />
     <Compile Include="src\forms\frmQuoteA.Designer.vb">
       <DependentUpon>frmQuoteA.vb</DependentUpon>
     </Compile>
@@ -160,11 +176,14 @@
     </Compile>
     <Compile Include="src\misc\Quote.vb" />
     <Compile Include="src\model\Product.vb" />
-    <Compile Include="src\model\GageProperties.vb" />
+    <Compile Include="src\model\Weights.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="src\forms\frmGageProperties.resx">
-      <DependentUpon>frmGageProperties.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmPrimaryProperties.resx">
+      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmWeights.resx">
+      <DependentUpon>frmWeights.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmOtherProperties.resx">
       <DependentUpon>frmOtherProperties.vb</DependentUpon>
@@ -217,6 +236,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="src\database\QuoteDataBase.xsc">
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
+    </None>
+    <None Include="src\database\QuoteDataBase.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuoteDataBase.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="src\database\QuoteDataBase.xss">
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </None>
     <None Include="src\model\ClassDiagram1.cd" />
   </ItemGroup>

@@ -95,7 +95,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)" + Chr(10) + "(Seconds)"), _
+        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)"), _
         DisplayName("Wire Time"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property WireTime As Integer
@@ -167,16 +167,16 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Wire Length" + Chr(10) + "(dm)"), _
-        DisplayName("Wire Length Decameter"), _
+        <DescriptionAttribute("Wire Length" + Chr(10) + "(Decameter)"), _
+        DisplayName("Wire Length"), _
         CategoryAttribute("Wires")> _
-        Public ReadOnly Property WireLengthDecameter() As Decimal
+        Public ReadOnly Property WireLength() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
-        <DescriptionAttribute("WireLengthDecameter / 3.048" + Chr(10) + "(Feet)"), _
+        <DescriptionAttribute("WireLength / 3.048" + Chr(10) + "(Feet)"), _
         DisplayName("Wire Length Feet"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
