@@ -13,9 +13,18 @@ Public Class frmWireLookup
 
     Private Sub SelectProduct()
         Dim View As System.Data.DataRowView = Me.ListBox1.SelectedItem
-        Dim num As String = View.Row.ItemArray(1)
-        Dim cost As Decimal = View.Row.ItemArray(2)
-        Dim gage As String = View.Row.ItemArray(3)
+        Dim num As String = ""
+        If View.Row.ItemArray(1) IsNot Nothing Then
+            num = View.Row.ItemArray(1)
+        End If
+        Dim cost As Decimal = 0
+        If View.Row.ItemArray(1) IsNot Nothing Then
+            cost = View.Row.ItemArray(2)
+        End If
+        Dim gage As String = ""
+        If View.Row.ItemArray(1) IsNot Nothing Then
+            gage = View.Row.ItemArray(3)
+        End If
         Product = New Product(num, cost, gage, UnitOfMeasure.BY_LENGTH)
     End Sub
 
