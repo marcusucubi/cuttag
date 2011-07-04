@@ -8,6 +8,7 @@ Public Class frmMain
     Private _Properties As New frmComputationProperties
     Private _OtherProperties As New frmOtherProperties
     Private _WeightProperties As New frmWeights
+    Private _PrimaryProperties As New frmPrimaryProperties
 
     Public Shared Property frmMain As frmMain
 
@@ -36,10 +37,15 @@ Public Class frmMain
         ShowWeights()
     End Sub
 
+    Private Sub PrimaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrimaryToolStripMenuItem.Click
+        ShowPrimaryProperties()
+    End Sub
+
     Private Sub CreateNewQuote()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
+        ShowPrimaryProperties()
         ShowOtherProperties()
         ShowWeights()
         ShowComputationProperties()
@@ -75,6 +81,17 @@ Public Class frmMain
         If (_WeightProperties.IsHidden Or _WeightProperties.IsDisposed) Then
             _WeightProperties = New frmWeights
             InitChild(_WeightProperties)
+        End If
+    End Sub
+
+    Private Sub ShowPrimaryProperties()
+        If (_PrimaryProperties Is Nothing) Then
+            _PrimaryProperties = New frmPrimaryProperties
+            InitChild(_PrimaryProperties)
+        End If
+        If (_PrimaryProperties.IsHidden Or _PrimaryProperties.IsDisposed) Then
+            _PrimaryProperties = New frmPrimaryProperties
+            InitChild(_PrimaryProperties)
         End If
     End Sub
 
