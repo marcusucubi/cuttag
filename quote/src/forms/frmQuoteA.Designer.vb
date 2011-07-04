@@ -41,7 +41,6 @@ Partial Class frmQuoteA
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.gridDetail = New System.Windows.Forms.DataGridView()
-        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gage = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PartTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -51,6 +50,7 @@ Partial Class frmQuoteA
         Me.UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.panelButtons.SuspendLayout()
@@ -146,10 +146,6 @@ Partial Class frmQuoteA
         Me.gridDetail.Size = New System.Drawing.Size(535, 218)
         Me.gridDetail.TabIndex = 8
         '
-        'DetailSource
-        '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.EditableQuoteDetail)
-        '
         'Fill3
         '
         Me.Fill3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -239,6 +235,10 @@ Partial Class frmQuoteA
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True
         '
+        'DetailSource
+        '
+        Me.DetailSource.DataSource = GetType(DCS.Quote.EditableQuoteDetail)
+        '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -247,6 +247,7 @@ Partial Class frmQuoteA
         Me.Controls.Add(Me.gridDetail)
         Me.Controls.Add(Me.panelButtons)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmQuoteA"
         Me.Text = "New Quote"
