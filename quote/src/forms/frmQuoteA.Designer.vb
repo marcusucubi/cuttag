@@ -25,13 +25,13 @@ Partial Class frmQuoteA
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -156,8 +156,8 @@ Partial Class frmQuoteA
         'Gage
         '
         Me.Gage.DataPropertyName = "Gage"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Gage.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Gage.DefaultCellStyle = DataGridViewCellStyle8
         Me.Gage.HeaderText = "Gage"
         Me.Gage.MinimumWidth = 50
         Me.Gage.Name = "Gage"
@@ -167,8 +167,8 @@ Partial Class frmQuoteA
         'PartTime
         '
         Me.PartTime.DataPropertyName = "PartTime"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.PartTime.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.PartTime.DefaultCellStyle = DataGridViewCellStyle9
         Me.PartTime.HeaderText = "PartTime"
         Me.PartTime.Name = "PartTime"
         Me.PartTime.Width = 60
@@ -176,8 +176,8 @@ Partial Class frmQuoteA
         'TotalPartTime
         '
         Me.TotalPartTime.DataPropertyName = "TotalPartTime"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.TotalPartTime.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.TotalPartTime.DefaultCellStyle = DataGridViewCellStyle10
         Me.TotalPartTime.HeaderText = "Total Part Time"
         Me.TotalPartTime.Name = "TotalPartTime"
         Me.TotalPartTime.ReadOnly = True
@@ -194,9 +194,9 @@ Partial Class frmQuoteA
         'ProductCode
         '
         Me.ProductCode.DataPropertyName = "ProductCode"
-        DataGridViewCellStyle4.Format = "C5"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.ProductCode.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle11.Format = "C5"
+        DataGridViewCellStyle11.NullValue = Nothing
+        Me.ProductCode.DefaultCellStyle = DataGridViewCellStyle11
         Me.ProductCode.HeaderText = "ProductCode"
         Me.ProductCode.Name = "ProductCode"
         Me.ProductCode.ReadOnly = True
@@ -204,10 +204,10 @@ Partial Class frmQuoteA
         'UnitCost
         '
         Me.UnitCost.DataPropertyName = "UnitCost"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "C2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.UnitCost.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "C2"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.UnitCost.DefaultCellStyle = DataGridViewCellStyle12
         Me.UnitCost.HeaderText = "Unit Cost"
         Me.UnitCost.Name = "UnitCost"
         Me.UnitCost.ReadOnly = True
@@ -216,10 +216,10 @@ Partial Class frmQuoteA
         'DataGridViewTextBoxColumn12
         '
         Me.DataGridViewTextBoxColumn12.DataPropertyName = "Qty"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "N0"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn12.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle13.Format = "N0"
+        DataGridViewCellStyle13.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn12.DefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewTextBoxColumn12.HeaderText = "Qty"
         Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
         Me.DataGridViewTextBoxColumn12.Width = 60
@@ -227,10 +227,10 @@ Partial Class frmQuoteA
         'TotalCost
         '
         Me.TotalCost.DataPropertyName = "TotalCost"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "C2"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.TotalCost.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle14.Format = "C2"
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.TotalCost.DefaultCellStyle = DataGridViewCellStyle14
         Me.TotalCost.HeaderText = "Total Cost"
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True

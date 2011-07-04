@@ -57,4 +57,8 @@ Public Class frmQuoteA
         ActiveQuote.ActiveQuote.QuoteHeader = Nothing
     End Sub
 
+    Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
+        ActiveQuote.ActiveQuote.QuoteHeader = Me._QuoteHeader
+    End Sub
+
 End Class
