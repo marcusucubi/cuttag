@@ -23,6 +23,7 @@ Namespace Model
         Private _NumberOfCuts As Decimal = 0
 
         <CategoryAttribute("Labor"), _
+        DisplayName("Labor Rate"), _
         DescriptionAttribute("Used to Computer Labor Costs. " + Chr(10) + "(Dollars Per Hour)")> _
         Public Property LaborRate As Decimal
             Get
@@ -35,6 +36,7 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Labor"), _
+        DisplayName("Labor Cost"), _
         DescriptionAttribute("TotalTimeHours * LaborRate" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property LaborCost As Decimal
             Get
@@ -42,10 +44,12 @@ Namespace Model
             End Get
         End Property
 
-        <CategoryAttribute("Shipping")> _
+        <CategoryAttribute("Shipping"), _
+        DisplayName("Minimum Order Quantity")> _
         Public Property MinimumOrderQuantity As Integer = 25
 
         <CategoryAttribute("Shipping"), _
+        DisplayName("Shipping Container Cost"), _
         DescriptionAttribute("Cost of the Shipping Container" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingContainerCost As Decimal
             Get
@@ -57,6 +61,7 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Shipping"), _
+        DisplayName("Shipping Cost"), _
         DescriptionAttribute("ShippingContainerCost / MinimumOrderQuantity" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingCost As Decimal
             Get
@@ -68,9 +73,10 @@ Namespace Model
         End Property
 
         <TypeConverter(GetType(ShippingList)), _
+        DisplayName("Shipping Container"), _
         CategoryAttribute("Shipping"), _
             DescriptionAttribute("Description of the Shipping Container")> _
-        Public Property ShippingBox() As String
+        Public Property ShippingContainer() As String
             Get
                 Return _ShippingBox
             End Get
@@ -81,6 +87,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Sum(PartTime) " + Chr(10) + "(Seconds)"), _
+        DisplayName("Part Time"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property PartTime As Decimal
             Get
@@ -89,6 +96,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)" + Chr(10) + "(Seconds)"), _
+        DisplayName("Wire Time"), _
         CategoryAttribute("Time")> _
         Public ReadOnly Property WireTime As Integer
             Get
@@ -103,6 +111,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Time to preform one cut. " + Chr(10) + "(Seconds Per Cut)"), _
+        DisplayName("Wire Unit Cut Time"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitCutTime As Integer
             Get
@@ -115,6 +124,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Time to Process One Foot. " + Chr(10) + "(Seconds Per Foot)"), _
+        DisplayName("Wire Unit Time"), _
         CategoryAttribute("Time")> _
         Public Property WireUnitTime As Decimal
             Get
@@ -127,6 +137,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("WireTime + PartTime" + Chr(10) + "(Seconds)"), _
+        DisplayName("Total Time"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalTime() As Integer
             Get
@@ -135,6 +146,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("TotalTime / (60 * 60)" + Chr(10) + "(Hours)"), _
+        DisplayName("Total Time Hours"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalTimeHours() As Decimal
             Get
@@ -143,6 +155,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Number of Cuts"), _
+        DisplayName("Number Of Cuts"), _
         CategoryAttribute("Wires")> _
         Public Property NumberOfCuts As Decimal
             Get
@@ -155,6 +168,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Wire Length" + Chr(10) + "(dm)"), _
+        DisplayName("Wire Length Decameter"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthDecameter() As Decimal
             Get
@@ -163,6 +177,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("WireLengthDecameter / 3.048" + Chr(10) + "(Feet)"), _
+        DisplayName("Wire Length Feet"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
             Get
@@ -171,6 +186,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
+        DisplayName("Wire Cost"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireCost() As Decimal
             Get
@@ -179,6 +195,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
+        DisplayName("Part Cost"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartCost() As Decimal
             Get
@@ -187,6 +204,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Sum(Quantity)"), _
+        DisplayName("Part Qty"), _
         CategoryAttribute("Parts")> _
         Public ReadOnly Property PartQty() As Decimal
             Get
@@ -195,6 +213,7 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("WireCost + PartCost + ShippingCost" + Chr(10) + "(Dollars)"), _
+        DisplayName("Total Cost"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
