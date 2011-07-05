@@ -52,7 +52,7 @@ Public Class QuoteLoader
             adaptor.Delete(row.ID)
         Next
         For Each detail As QuoteDetail In q.QuoteDetails
-            adaptor.Insert(id, detail.Qty, detail.PartTime, detail.ProductCode)
+            adaptor.Insert(id, detail.Qty, detail.ComponentTime, detail.ProductCode)
         Next
     End Sub
 

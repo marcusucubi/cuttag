@@ -11,7 +11,7 @@ Namespace Model
             Implements INotifyPropertyChanged.PropertyChanged
 
         Private _Quantity As Decimal
-        Private _PartTime As Integer
+        Private _ComponentTime As Integer
         Private _Product As Product
 
 #Region "Properties"
@@ -60,9 +60,9 @@ Namespace Model
             End Get
         End Property
 
-        Public ReadOnly Property TotalPartTime() As Integer
+        Public ReadOnly Property TotalComponentTime() As Integer
             Get
-                Return (Me._PartTime * Me._Quantity)
+                Return (Me._ComponentTime * Me._Quantity)
             End Get
         End Property
 
@@ -79,19 +79,19 @@ Namespace Model
             End Set
         End Property
 
-        Public Property PartTime() As Integer
+        Public Property ComponentTime() As Integer
             Get
                 If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
                     Return Nothing
                 End If
-                Return Me._PartTime
+                Return Me._ComponentTime
             End Get
             Set(ByVal value As Integer)
                 If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    MsgBox("PartTime can only be set for parts")
+                    MsgBox("ComponentTime can only be set for Component")
                 Else
-                    If Not (value = _PartTime) Then
-                        Me._PartTime = value
+                    If Not (value = _ComponentTime) Then
+                        Me._ComponentTime = value
                         SendEvents()
                     End If
                 End If
@@ -107,7 +107,7 @@ Namespace Model
             Me._Product = product
             Me._Quantity = 1
             If (product.UnitOfMeasure = UnitOfMeasure.BY_EACH) Then
-                Me.PartTime = 10
+                Me.ComponentTime = 10
             End If
         End Sub
 
