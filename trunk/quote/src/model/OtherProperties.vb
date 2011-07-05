@@ -30,16 +30,6 @@ Namespace Model
         DescriptionAttribute("Estimated Annual Units")> _
         Public Property EstimatedAnnualUnits As Integer
 
-        <CategoryAttribute("Misc"), _
-        DisplayName("Material MarkUp"), _
-        DescriptionAttribute("")> _
-        Public Property MaterialMarkUp As Decimal
-
-        <CategoryAttribute("Misc"), _
-        DisplayName("Copper Scrap"), _
-        DescriptionAttribute("")> _
-        Public Property CopperScrap As Decimal
-
         <CategoryAttribute("Date"), _
         DisplayName("Start Date"), _
         DescriptionAttribute("Date the quote is started")> _
