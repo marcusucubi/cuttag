@@ -19,6 +19,8 @@ Public Class frmQuoteLookup
     End Sub
 
     Private Sub ListBox1_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.DoubleClick
+        Dim view As DataRowView = Me.ListBox1.SelectedItem
+        QuoteID = view.Row(0)
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
