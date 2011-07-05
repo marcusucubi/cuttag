@@ -70,7 +70,7 @@ WHERE        (ID = ?)</CommandText>
               <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, QuoteID
+                    <CommandText>SELECT        ID, QuoteID, Qty, PartTime, ProductCode, CreatedBy
 FROM            [_QuoteDetail]
 WHERE        (QuoteID = ?)</CommandText>
                     <Parameters>
@@ -529,8 +529,8 @@ WHERE        (PartNumber = ?)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="_Quote__QuoteDetail" msdata:parent="_Quote" msdata:child="_QuoteDetail" msdata:parentkey="ID" msdata:childkey="QuoteID" msprop:Generator_UserChildTable="_QuoteDetail" msprop:Generator_ChildPropName="Get_QuoteDetailRows" msprop:Generator_UserParentTable="_Quote" msprop:Generator_UserRelationName="_Quote__QuoteDetail" msprop:Generator_RelationVarName="relation_Quote__QuoteDetail" msprop:Generator_ParentPropName="_QuoteRow" />
-      <msdata:Relationship name="_Quote__QuoteProperties" msdata:parent="_Quote" msdata:child="_QuoteProperties" msdata:parentkey="ID" msdata:childkey="QuoteID" msprop:Generator_UserChildTable="_QuoteProperties" msprop:Generator_ChildPropName="Get_QuotePropertiesRows" msprop:Generator_UserParentTable="_Quote" msprop:Generator_UserRelationName="_Quote__QuoteProperties" msprop:Generator_RelationVarName="relation_Quote__QuoteProperties" msprop:Generator_ParentPropName="_QuoteRow" />
+      <msdata:Relationship name="_Quote__QuoteDetail" msdata:parent="_Quote" msdata:child="_QuoteDetail" msdata:parentkey="ID" msdata:childkey="QuoteID" msprop:Generator_UserChildTable="_QuoteDetail" msprop:Generator_ChildPropName="Get_QuoteDetailRows" msprop:Generator_ParentPropName="_QuoteRow" msprop:Generator_UserRelationName="_Quote__QuoteDetail" msprop:Generator_RelationVarName="relation_Quote__QuoteDetail" msprop:Generator_UserParentTable="_Quote" />
+      <msdata:Relationship name="_Quote__QuoteProperties" msdata:parent="_Quote" msdata:child="_QuoteProperties" msdata:parentkey="ID" msdata:childkey="QuoteID" msprop:Generator_UserChildTable="_QuoteProperties" msprop:Generator_ChildPropName="Get_QuotePropertiesRows" msprop:Generator_ParentPropName="_QuoteRow" msprop:Generator_UserRelationName="_Quote__QuoteProperties" msprop:Generator_RelationVarName="relation_Quote__QuoteProperties" msprop:Generator_UserParentTable="_Quote" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
