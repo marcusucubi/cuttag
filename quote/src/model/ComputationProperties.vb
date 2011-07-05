@@ -18,6 +18,7 @@ Namespace Model
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
         Private _TimeMultipler As Decimal = 1
+        Private _ManufacturingMarkup As Decimal = 1.18
         Private _LaborRate As Decimal = 18
         Private _WireUnitCutTime As Integer = 120
         Private _WireUnitTime As Decimal = 30
@@ -266,8 +267,20 @@ Namespace Model
             End Get
         End Property
 
+        <CategoryAttribute("Total"), _
+        DisplayName("Manufacturing Markup"), _
+        DescriptionAttribute("Manufacturing Markup")> _
+        Public Property ManufacturingMarkup As Decimal
+            Get
+                Return _ManufacturingMarkup
+            End Get
+            Set(ByVal value As Decimal)
+                Me._ManufacturingMarkup = value
+            End Set
+        End Property
+
         <CategoryAttribute("Material Cost"), _
-        DisplayName("Material Markup" + Chr(10) + ""), _
+        DisplayName("Material Markup"), _
         DescriptionAttribute("Material Markup")> _
         Public Property MaterialMarkUp As Decimal
             Get
@@ -324,6 +337,15 @@ Namespace Model
             Get
                 Return Me.ComponentMaterialCost + Me.WireMaterialCost + _
                     Me.ShippingContainerCostPerOrder + Me.CopperCost + Me.LaborCost
+            End Get
+        End Property
+
+        <DescriptionAttribute("TotalCost * MaterialMarkup" + Chr(10) + "(Dollars)"), _
+        DisplayName("Final Total Cost"), _
+        CategoryAttribute("Total")> _
+        Public ReadOnly Property FinalTotalCost() As Decimal
+            Get
+                Return Math.Round(Me._ManufacturingMarkup * Me.TotalCost, 2)
             End Get
         End Property
 
