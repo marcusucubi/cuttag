@@ -20,8 +20,10 @@ Public Class frmQuoteA
         InitializeComponent()
         If q IsNot Nothing Then
             Me._QuoteHeader = q
+            Me._PrimaryProperties = q.PrimaryProperties
+        Else
+            Me._PrimaryProperties = _QuoteHeader.PrimaryProperties
         End If
-        Me._PrimaryProperties = q.PrimaryProperties
         Me.HeaderSource.Add(_QuoteHeader)
         Me.gridDetail.DataSource = _QuoteHeader.QuoteDetails
         UpdateText()

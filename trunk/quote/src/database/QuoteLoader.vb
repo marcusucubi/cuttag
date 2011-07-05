@@ -9,12 +9,9 @@ Public Class QuoteLoader
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim o As PrimaryPropeties = q.PrimaryProperties
         If q.PrimaryProperties.QuoteNumnber > 0 Then
-            Dim table As New QuoteDataBase._QuoteDataTable
-            Dim row As QuoteDataBase._QuoteRow = table.New_QuoteRow()
-            row.CustomerName = o.CustomerName
-            row.RequestForQuoteNumber = o.RequestForQuoteNumber
-            row.PartNumber = o.PartNumber
-            adaptor.Update(row)
+            adaptor.Update( _
+                o.CustomerName, o.RequestForQuoteNumber, _
+                o.PartNumber, o.QuoteNumnber)
         Else
             adaptor.Insert(o.CustomerName, o.PartNumber, o.RequestForQuoteNumber)
         End If
