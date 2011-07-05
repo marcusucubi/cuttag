@@ -14,6 +14,14 @@ Namespace Model
 
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
+        Public Sub New()
+            Me.New(0)
+        End Sub
+
+        Public Sub New(ByVal id As Long)
+            Me.PrimaryProperties = New PrimaryPropeties(Me, id)
+        End Sub
+
 #Region "Variables"
         Private WithEvents _QuoteDetails As New QuoteDetailCollection
 #End Region
@@ -23,7 +31,7 @@ Namespace Model
         Public Property ComputationProperties As New ComputationProperties(Me)
         Public Property NonComputationProperties As New OtherProperties(Me)
         Public Property WeightProperties As New Weights(Me)
-        Public Property PrimaryProperties As New PrimaryPropeties(Me)
+        Public Property PrimaryProperties As PrimaryPropeties
 
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
