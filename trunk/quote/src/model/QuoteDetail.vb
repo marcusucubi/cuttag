@@ -5,6 +5,7 @@ Namespace Model
 
     Public Class QuoteDetail
         Implements INotifyPropertyChanged
+        Implements IEditableObject
 
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
@@ -120,6 +121,15 @@ Namespace Model
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
+        End Sub
+
+        Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
+        End Sub
+
+        Public Sub CancelEdit() Implements System.ComponentModel.IEditableObject.CancelEdit
+        End Sub
+
+        Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
         End Sub
 
 #End Region

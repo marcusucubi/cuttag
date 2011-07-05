@@ -130,7 +130,7 @@ Partial Class frmQuoteA
         '
         'HeaderSource
         '
-        Me.HeaderSource.DataSource = GetType(DCS.Quote.EditableQuoteHeader)
+        Me.HeaderSource.DataSource = GetType(Model.QuoteHeader)
         '
         'gridDetail
         '
@@ -237,7 +237,7 @@ Partial Class frmQuoteA
         '
         'DetailSource
         '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.EditableQuoteDetail)
+        Me.DetailSource.DataSource = GetType(QuoteDetail)
         '
         'frmQuoteA
         '

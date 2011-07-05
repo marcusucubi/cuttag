@@ -1,59 +1,31 @@
 ﻿Imports System.Data.SqlClient
 Imports DCS.Quote.Model
+Imports DCS.Quote.QuoteDataBase
 
 Public Class QuoteLoader
 
     Public Sub Save(ByVal q As Model.QuoteHeader)
 
+        Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim o As PrimaryPropeties = q.PrimaryProperties
+        adaptor.Insert(o.CustomerName, o.PartNumber, o.QuoteNumnber)
+
+    End Sub
+
+    Public Function Load(ByVal id As Long) As Model.QuoteHeader
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
-        Dim i As Integer
-        adaptor.Connection.Open()
-        i = adaptor.Insert(o.CustomerName, o.PartNumber, o.QuoteNumnber)
-        adaptor.Connection.Close()
-        Console.WriteLine(i)
-    End Sub
+        Dim table As New QuoteDataBase._QuoteDataTable
 
-    Public Function FetchDetail(ByVal QuoteID As Integer) As QuoteDataBase._QuoteDetailDataTable
+        adaptor.FillByQuoteID(table, id)
+        Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
+        Dim q As New Model.QuoteHeader()
 
-        Dim sql = "SELECT ID, QuoteID, Qty, PartTime, ProductCode " + _
-            "FROM _QuoteDetail where QuoteID = @QuoteID"
+        q.PrimaryProperties.CustomerName = row.CustomerName
+        q.PrimaryProperties.PartNumber = row.PartNumber
+        q.PrimaryProperties.RequestForQuoteNumber = row.RequestForQuoteNumber
 
-        Dim cmd As New SqlCommand(sql)
-
-        Dim s As String = My.Settings.devConnectionString
-        cmd.Connection = New SqlConnection(s)
-
-        Dim params As New SqlParameter("@QuoteID", SqlDbType.Int)
-        params.Value = QuoteID
-        cmd.Parameters.Add(params)
-
-        Dim adaptor As New SqlDataAdapter(cmd)
-        Dim ds As New QuoteDataBase
-        cmd.Connection.Open()
-        adaptor.Fill(ds)
-        cmd.Connection.Close()
-
-        Return ds._QuoteDetail
+        Return q
     End Function
-
-    Public Sub SaveDetail(ByVal table As QuoteDataBase._QuoteDetailDataTable)
-
-        Dim sql = "SELECT ID, QuoteID, Qty, PartTime, ProductCode " + _
-            "FROM _QuoteDetail where QuoteID = @QuoteID"
-
-        Dim cmd As New SqlCommand(sql)
-
-        Dim s As String = My.Settings.devConnectionString
-        cmd.Connection = New SqlConnection(s)
-
-        Dim adaptor As New SqlDataAdapter(cmd)
-        Dim ds As New QuoteDataBase
-        cmd.Connection.Open()
-        adaptor.Update(table)
-        cmd.Connection.Close()
-
-    End Sub
 
 End Class

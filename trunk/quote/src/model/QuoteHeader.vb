@@ -10,6 +10,7 @@ Namespace Model
     ''' </remarks>
     Public Class QuoteHeader
         Implements INotifyPropertyChanged
+        Implements IEditableObject
 
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
@@ -36,7 +37,7 @@ Namespace Model
 
         Public Function NewQuoteDetail(ByVal product As Product) As QuoteDetail
 
-            Dim oo As QuoteDetail = FactoryMethod(product)
+            Dim oo As QuoteDetail = New QuoteDetail(Me, product)
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
@@ -54,10 +55,6 @@ Namespace Model
             End If
         End Sub
 
-        Protected Overridable Function FactoryMethod(ByVal product As Product) As QuoteDetail
-            Return New QuoteDetail(Me, product)
-        End Function
-
         Private Sub SendEvents()
             Dim info() As PropertyInfo
             info = GetType(QuoteHeader).GetProperties()
@@ -73,6 +70,15 @@ Namespace Model
 
         Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _QuoteDetails.ListChanged
             SendEvents()
+        End Sub
+
+        Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
+        End Sub
+
+        Public Sub CancelEdit() Implements System.ComponentModel.IEditableObject.CancelEdit
+        End Sub
+
+        Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
         End Sub
 
 #End Region
