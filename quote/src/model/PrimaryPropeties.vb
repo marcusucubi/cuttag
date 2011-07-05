@@ -20,17 +20,17 @@ Namespace Model
         <CategoryAttribute("Quote"), _
         DisplayName("Customer"), _
         DescriptionAttribute("The customer name")> _
-        Public Property CustomerName As String
+        Public Property CustomerName As String = ""
 
         <CategoryAttribute("Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _
-        Public Property RequestForQuoteNumber As String
+        Public Property RequestForQuoteNumber As String = ""
 
         <CategoryAttribute("Quote"), _
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _
-        Public Property PartNumber As String
+        Public Property PartNumber As String = ""
 
         <CategoryAttribute("Quote"), _
         DisplayName("QuoteNumnber"), _

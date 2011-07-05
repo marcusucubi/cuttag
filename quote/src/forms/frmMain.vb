@@ -54,19 +54,29 @@ Public Class frmMain
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
-        Dim loader As New QuoteLoader
-        loader.Save(Me._ActiveQuote.QuoteHeader)
+        SaveQuote()
     End Sub
 
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
-        Dim loader As New QuoteLoader
-        loader.Save(Me._ActiveQuote.QuoteHeader)
+        SaveQuote()
+    End Sub
+
+    Private Sub LoadToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadToolStripMenuItem.Click
+        LoadQuote()
+    End Sub
+
+    Private Sub LoadButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadButton.Click
+        LoadQuote()
     End Sub
 
     Private Sub CreateNewQuote()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
+        DisplayViews()
+    End Sub
+
+    Private Sub DisplayViews()
         ShowPrimaryProperties()
         ShowOtherProperties()
         ShowWeights()
@@ -121,6 +131,25 @@ Public Class frmMain
         DockPanel1.SuspendLayout(True)
         frm.Show(DockPanel1, DockState.DockRight)
         DockPanel1.ResumeLayout(True, True)
+    End Sub
+
+    Private Sub SaveQuote()
+        Dim loader As New QuoteLoader
+        loader.Save(Me._ActiveQuote.QuoteHeader)
+    End Sub
+
+    Private Sub LoadQuote()
+        Dim r As DialogResult = frmQuoteLookup.ShowDialog
+        If r = DialogResult.OK Then
+            Dim loader As New QuoteLoader
+            Dim q As Model.QuoteHeader
+
+            q = loader.Load(frmQuoteLookup.QuoteID)
+            Dim ChildForm As New frmQuoteA(q)
+            ChildForm.MdiParent = Me
+            ChildForm.Show(Me.DockPanel1)
+            Me.DisplayViews()
+        End If
     End Sub
 
 End Class

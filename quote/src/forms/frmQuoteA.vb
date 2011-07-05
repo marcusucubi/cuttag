@@ -9,10 +9,17 @@ Imports System.ComponentModel
 Public Class frmQuoteA
     Inherits DockContent
 
-    Private _QuoteHeader As New EditableQuoteHeader
+    Private _QuoteHeader As New QuoteHeader
 
     Public Sub New()
+        Me.New(Nothing)
+    End Sub
+
+    Public Sub New(ByVal q As Model.QuoteHeader)
         InitializeComponent()
+        If q IsNot Nothing Then
+            Me._QuoteHeader = q
+        End If
         Me.HeaderSource.Add(_QuoteHeader)
         Me.gridDetail.DataSource = _QuoteHeader.QuoteDetails
     End Sub
@@ -32,7 +39,7 @@ Public Class frmQuoteA
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
         Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
-            Dim detail As EditableQuoteDetail
+            Dim detail As QuoteDetail
             detail = _QuoteHeader.NewQuoteDetail(frmComponentLookup.Product)
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
@@ -42,7 +49,7 @@ Public Class frmQuoteA
     Private Sub bntAddWire_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bntAddWire.Click
         Dim result As DialogResult = frmWireLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
-            Dim detail As EditableQuoteDetail
+            Dim detail As QuoteDetail
             detail = _QuoteHeader.NewQuoteDetail(frmWireLookup.Product)
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
