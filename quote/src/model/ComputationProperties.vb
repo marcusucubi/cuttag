@@ -14,6 +14,7 @@ Namespace Model
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Private _QuoteHeader As QuoteHeader
+        Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
         Private _TimeMultipler As Decimal = 1
@@ -24,6 +25,7 @@ Namespace Model
         Private _MinimumOrderQuantity As Integer = 25
         Private _CopperScrap As Decimal = 0.03
         Private _CopperPrice As Decimal = 4.69
+        Private _MaterialMarkup As Decimal = 1.15
 
         <CategoryAttribute("Copper"), _
         DisplayName("Copper Weight"), _
@@ -117,9 +119,9 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Shipping"), _
-        DisplayName("Shipping Cost"), _
+        DisplayName("Shipping Container Cost Per Order"), _
         DescriptionAttribute("ShippingContainerCost / MinimumOrderQuantity" + Chr(10) + "(Dollars)")> _
-        Public ReadOnly Property ShippingCost As Decimal
+        Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
             Get
                 If (Me.MinimumOrderQuantity = 0) Then
                     Return 0
@@ -138,6 +140,19 @@ Namespace Model
             End Get
             Set(ByVal Value As String)
                 _ShippingBox = Value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DisplayName("Shipping Cost"), _
+        CategoryAttribute("Shipping"), _
+        DescriptionAttribute("Shipping Cost" + Chr(10) + "(Dollars)")> _
+        Public Property ShippingCost() As String
+            Get
+                Return _ShippingCost
+            End Get
+            Set(ByVal Value As String)
+                _ShippingCost = Value
                 Me.SendEvents()
             End Set
         End Property
@@ -241,19 +256,52 @@ Namespace Model
             End Get
         End Property
 
+        <DescriptionAttribute("ComponentCost + WireCost + ShippingContainerCostPerOrder" + Chr(10) + "(Dollar)"), _
+        DisplayName("Total Material Cost"), _
+        CategoryAttribute("Material Cost")> _
+        Public ReadOnly Property TotalMaterialCost() As Decimal
+            Get
+                Return Math.Round(Me.ComponentMaterialCost + _
+                    Me.WireMaterialCost + Me.ShippingContainerCostPerOrder, 2)
+            End Get
+        End Property
+
+        <CategoryAttribute("Material Cost"), _
+        DisplayName("Material Markup" + Chr(10) + ""), _
+        DescriptionAttribute("Material Markup")> _
+        Public Property MaterialMarkUp As Decimal
+            Get
+                Return _MaterialMarkup
+            End Get
+            Set(ByVal value As Decimal)
+                Me._MaterialMarkup = value
+            End Set
+        End Property
+
+        <DescriptionAttribute("(TotalMaterialCost * MaterialMarkup)" + _
+            " + CopperCost + ShippingCost" + Chr(10) + "(Dollar)"), _
+        DisplayName("Total Variable Material Cost"), _
+        CategoryAttribute("Material Cost")> _
+        Public ReadOnly Property TotalVariableMaterialCost() As Decimal
+            Get
+                Return Math.Round((Me.TotalMaterialCost * Me._MaterialMarkup) + _
+                    Me.CopperCost + Me.ShippingCost, 2)
+            End Get
+        End Property
+
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
-        DisplayName("Wire Cost"), _
+        DisplayName("Wire Material Cost"), _
         CategoryAttribute("Wires")> _
-        Public ReadOnly Property WireCost() As Decimal
+        Public ReadOnly Property WireMaterialCost() As Decimal
             Get
                 Return Math.Round(SumCost(UnitOfMeasure.BY_LENGTH), 2)
             End Get
         End Property
 
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
-        DisplayName("Component Cost"), _
+        DisplayName("Component Material Cost"), _
         CategoryAttribute("Components")> _
-        Public ReadOnly Property ComponentCost() As Decimal
+        Public ReadOnly Property ComponentMaterialCost() As Decimal
             Get
                 Return Math.Round(SumCost(UnitOfMeasure.BY_EACH), 2)
             End Get
@@ -268,13 +316,14 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Wire Cost + Component Cost + Shipping Cost + Copper Cost" _
+        <DescriptionAttribute("Wire Cost + Component Cost + Shipping Cost + Copper Cost + Labor Cost" _
             + Chr(10) + "(Dollars)"), _
         DisplayName("Total Cost"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
-                Return Me.ComponentCost + Me.WireCost + Me.ShippingCost + Me.CopperCost
+                Return Me.ComponentMaterialCost + Me.WireMaterialCost + _
+                    Me.ShippingContainerCostPerOrder + Me.CopperCost + Me.LaborCost
             End Get
         End Property
 

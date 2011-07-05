@@ -40,8 +40,6 @@ Partial Class frmQuoteA
         Me.bntAddWire = New System.Windows.Forms.Button()
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.gridDetail = New System.Windows.Forms.DataGridView()
-        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Gage = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ComponentTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -51,6 +49,8 @@ Partial Class frmQuoteA
         Me.UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.panelButtons.SuspendLayout()
@@ -123,9 +123,9 @@ Partial Class frmQuoteA
         '
         Me.btnAddComponent.Location = New System.Drawing.Point(12, 41)
         Me.btnAddComponent.Name = "btnAddComponent"
-        Me.btnAddComponent.Size = New System.Drawing.Size(75, 23)
+        Me.btnAddComponent.Size = New System.Drawing.Size(75, 38)
         Me.btnAddComponent.TabIndex = 0
-        Me.btnAddComponent.Text = "Add Part"
+        Me.btnAddComponent.Text = "Add Component"
         Me.btnAddComponent.UseVisualStyleBackColor = True
         '
         'gridDetail
@@ -141,14 +141,6 @@ Partial Class frmQuoteA
         Me.gridDetail.Name = "gridDetail"
         Me.gridDetail.Size = New System.Drawing.Size(535, 218)
         Me.gridDetail.TabIndex = 8
-        '
-        'DetailSource
-        '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.QuoteDetail)
-        '
-        'HeaderSource
-        '
-        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.QuoteHeader)
         '
         'Fill3
         '
@@ -238,6 +230,14 @@ Partial Class frmQuoteA
         Me.TotalCost.HeaderText = "Total Cost"
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True
+        '
+        'DetailSource
+        '
+        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.QuoteDetail)
+        '
+        'HeaderSource
+        '
+        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.QuoteHeader)
         '
         'frmQuoteA
         '
