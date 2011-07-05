@@ -38,6 +38,7 @@ Public Class QuoteLoader
         Me.DeleteProperties(id)
         Me.SaveProperties(id, q.NonComputationProperties, Nothing)
         Me.SaveProperties(id, q.ComputationProperties, Nothing)
+        Me.SaveComponents(q)
         adaptor.Connection.Close()
 
     End Sub
@@ -48,7 +49,7 @@ Public Class QuoteLoader
         Dim id As Integer = q.PrimaryProperties.QuoteNumnber
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
-            adaptor.Delete(id)
+            adaptor.Delete(row.ID)
         Next
         For Each detail As QuoteDetail In q.QuoteDetails
             adaptor.Insert(id, detail.Qty, detail.PartTime, detail.ProductCode)
