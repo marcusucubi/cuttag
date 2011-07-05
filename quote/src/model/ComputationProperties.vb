@@ -95,10 +95,10 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("Sum(PartTime) " + Chr(10) + "(Seconds)"), _
-        DisplayName("Part Time"), _
+        <DescriptionAttribute("Sum(ComponentTime) " + Chr(10) + "(Seconds)"), _
+        DisplayName("Component Time"), _
         CategoryAttribute("Time")> _
-        Public ReadOnly Property PartTime As Decimal
+        Public ReadOnly Property ComponentTime As Decimal
             Get
                 Return Me.SumTime
             End Get
@@ -145,12 +145,12 @@ Namespace Model
             End Set
         End Property
 
-        <DescriptionAttribute("WireTime + PartTime" + Chr(10) + "(Seconds)"), _
+        <DescriptionAttribute("WireTime + ComponentTime" + Chr(10) + "(Seconds)"), _
         DisplayName("Total Time"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalTime() As Integer
             Get
-                Return WireTime + PartTime
+                Return WireTime + ComponentTime
             End Get
         End Property
 
@@ -204,29 +204,29 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
-        DisplayName("Part Cost"), _
-        CategoryAttribute("Parts")> _
-        Public ReadOnly Property PartCost() As Decimal
+        DisplayName("Component Cost"), _
+        CategoryAttribute("Components")> _
+        Public ReadOnly Property ComponentCost() As Decimal
             Get
                 Return Math.Round(SumCost(UnitOfMeasure.BY_EACH), 2)
             End Get
         End Property
 
         <DescriptionAttribute("Sum(Quantity)"), _
-        DisplayName("Part Qty"), _
-        CategoryAttribute("Parts")> _
-        Public ReadOnly Property PartQty() As Decimal
+        DisplayName("Component Qty"), _
+        CategoryAttribute("Components")> _
+        Public ReadOnly Property ComponentQty() As Decimal
             Get
                 Return SumQty(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
-        <DescriptionAttribute("WireCost + PartCost + ShippingCost" + Chr(10) + "(Dollars)"), _
+        <DescriptionAttribute("WireCost + ComponentCost + ShippingCost" + Chr(10) + "(Dollars)"), _
         DisplayName("Total Cost"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
-                Return Me.PartCost + Me.WireCost + Me.ShippingCost
+                Return Me.ComponentCost + Me.WireCost + Me.ShippingCost
             End Get
         End Property
 
@@ -244,7 +244,7 @@ Namespace Model
             Dim result As Integer
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
-                    result += detail.TotalPartTime
+                    result += detail.TotalComponentTime
                 End If
             Next
             Return result
