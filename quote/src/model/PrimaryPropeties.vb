@@ -42,5 +42,14 @@ Namespace Model
             End Get
         End Property
 
+        Public Sub SetID(ByVal id As Integer)
+            Me._QuoteNumnber = id
+            SendEvents()
+        End Sub
+
+        Friend Sub SendEvents()
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
+        End Sub
+
     End Class
 End Namespace
