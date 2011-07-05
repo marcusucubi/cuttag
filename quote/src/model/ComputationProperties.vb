@@ -22,6 +22,53 @@ Namespace Model
         Private _WireUnitTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 25
+        Private _CopperScrap As Decimal = 0.03
+        Private _CopperPrice As Decimal = 4.69
+
+        <CategoryAttribute("Copper"), _
+        DisplayName("Copper Weight"), _
+        DescriptionAttribute("Total Weight of Copper. " + Chr(10) + "(Pounds)")> _
+        Public ReadOnly Property CopperWeight As Decimal
+            Get
+                Return Me._QuoteHeader.WeightProperties.Weight
+            End Get
+        End Property
+
+        <CategoryAttribute("Copper"), _
+        DisplayName("Copper Scrap"), _
+        DescriptionAttribute("Weight of Scrap Copper. " + Chr(10) + "(Pounds)")> _
+        Public Property CopperScrap As Decimal
+            Get
+                Return Me._CopperScrap
+            End Get
+            Set(ByVal value As Decimal)
+                Me._CopperScrap = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Copper"), _
+        DisplayName("Copper Price"), _
+        DescriptionAttribute("Copper Price" + Chr(10) + "(Dollars Per Pounds)")> _
+        Public Property CopperPrice As Decimal
+            Get
+                Return Me._CopperPrice
+            End Get
+            Set(ByVal value As Decimal)
+                Me._CopperPrice = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Copper"), _
+        DisplayName("Copper Cost"), _
+        DescriptionAttribute("Copper Weight + Copper Scrap) * Copper Price. " _
+            + Chr(10) + "(Dollars Per Pounds)")> _
+        Public ReadOnly Property CopperCost As Decimal
+            Get
+                Return Math.Round((Me.CopperWeight + Me.CopperScrap) * Me.CopperPrice, 2)
+            End Get
+        End Property
 
         <CategoryAttribute("Labor"), _
         DisplayName("Labor Rate"), _
@@ -221,12 +268,13 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("WireCost + ComponentCost + ShippingCost" + Chr(10) + "(Dollars)"), _
+        <DescriptionAttribute("Wire Cost + Component Cost + Shipping Cost + Copper Cost" _
+            + Chr(10) + "(Dollars)"), _
         DisplayName("Total Cost"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property TotalCost() As Decimal
             Get
-                Return Me.ComponentCost + Me.WireCost + Me.ShippingCost
+                Return Me.ComponentCost + Me.WireCost + Me.ShippingCost + Me.CopperCost
             End Get
         End Property
 
