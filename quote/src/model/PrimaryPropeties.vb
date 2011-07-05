@@ -10,8 +10,9 @@ Namespace Model
         Private _QuoteHeader As QuoteHeader
         Private _QuoteNumnber As Integer
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader)
+        Public Sub New(ByVal QuoteHeader As QuoteHeader, ByVal id As Long)
             _QuoteHeader = QuoteHeader
+            Me._QuoteNumnber = id
             CustomerName = "Caterpillar Inc."
         End Sub
 

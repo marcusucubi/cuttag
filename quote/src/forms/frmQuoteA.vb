@@ -10,6 +10,7 @@ Public Class frmQuoteA
     Inherits DockContent
 
     Private _QuoteHeader As New QuoteHeader
+    Private WithEvents _PrimaryProperties As PrimaryPropeties
 
     Public Sub New()
         Me.New(Nothing)
@@ -20,8 +21,10 @@ Public Class frmQuoteA
         If q IsNot Nothing Then
             Me._QuoteHeader = q
         End If
+        Me._PrimaryProperties = q.PrimaryProperties
         Me.HeaderSource.Add(_QuoteHeader)
         Me.gridDetail.DataSource = _QuoteHeader.QuoteDetails
+        UpdateText()
     End Sub
 
     Public ReadOnly Property QuoteHeader As QuoteHeader
@@ -66,6 +69,16 @@ Public Class frmQuoteA
 
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
         ActiveQuote.ActiveQuote.QuoteHeader = Me._QuoteHeader
+    End Sub
+
+    Private Sub _PrimaryProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _PrimaryProperties.PropertyChanged
+        UpdateText()
+    End Sub
+
+    Public Sub UpdateText()
+        If Me._PrimaryProperties.QuoteNumnber > 0 Then
+            Me.Text = "Quote " & Me._PrimaryProperties.QuoteNumnber
+        End If
     End Sub
 
 End Class
