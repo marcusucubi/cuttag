@@ -91,7 +91,7 @@ Namespace Model
         DescriptionAttribute("TotalTimeHours * LaborRate" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property LaborCost As Decimal
             Get
-                Return Math.Round(TotalTimeHours * LaborRate, 2)
+                Return Math.Round(TotalLaborTimeHours * LaborRate, 2)
             End Get
         End Property
 
@@ -218,9 +218,9 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("TotalTime / (60 * 60)" + Chr(10) + "(Hours)"), _
-        DisplayName("Total Time Hours"), _
+        DisplayName("Total Labor Time Hours"), _
         CategoryAttribute("Time")> _
-        Public ReadOnly Property TotalTimeHours() As Decimal
+        Public ReadOnly Property TotalLaborTimeHours() As Decimal
             Get
                 Return Math.Round(CDec(TotalLaborTime) / (60 * 60), 4)
             End Get
@@ -329,19 +329,10 @@ Namespace Model
 
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
         DisplayName("Component Material Cost"), _
-        CategoryAttribute("Components")> _
+        CategoryAttribute("Material Cost")> _
         Public ReadOnly Property ComponentMaterialCost() As Decimal
             Get
                 Return Math.Round(SumCost(UnitOfMeasure.BY_EACH), 2)
-            End Get
-        End Property
-
-        <DescriptionAttribute("Sum(Quantity)"), _
-        DisplayName("Component Qty"), _
-        CategoryAttribute("Components")> _
-        Public ReadOnly Property ComponentQty() As Decimal
-            Get
-                Return SumQty(UnitOfMeasure.BY_EACH)
             End Get
         End Property
 
@@ -358,9 +349,9 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("TotalCost * MaterialMarkup" + Chr(10) + "(Dollars)"), _
-        DisplayName("Adjusted Total Cost"), _
+        DisplayName("Adjusted Total Unit Cost"), _
         CategoryAttribute("Total")> _
-        Public ReadOnly Property AdjustedTotalCost() As Decimal
+        Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
             Get
                 Return Math.Round(Me._ManufacturingMarkup * Me.TotalUnitCost, 2)
             End Get
