@@ -2,6 +2,7 @@
 Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 Imports System.ComponentModel
+Imports System.Collections.Specialized
 
 Public Class frmMain
 
@@ -10,6 +11,7 @@ Public Class frmMain
     Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
     Private WithEvents _ActiveQuote As ActiveQuote
+    Private WithEvents menuLastTemplate As New ToolStripMenuItem
 
     Public Shared Property frmMain As frmMain
 
@@ -17,6 +19,14 @@ Public Class frmMain
         InitializeComponent()
         frmMain = Me
         Me._ActiveQuote = ActiveQuote.ActiveQuote
+    End Sub
+
+    Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        UpdateLastFilesMenu()
+    End Sub
+
+    Protected Overrides Sub OnClosing(ByVal e As  _
+        System.ComponentModel.CancelEventArgs)
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
@@ -54,19 +64,19 @@ Public Class frmMain
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
-        SaveQuote()
+        SaveTemplate()
     End Sub
 
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
-        SaveQuote()
+        SaveTemplate()
     End Sub
 
     Private Sub LoadToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadToolStripMenuItem.Click
-        LoadQuote()
+        LoadTemplate()
     End Sub
 
     Private Sub LoadButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadButton.Click
-        LoadQuote()
+        LoadTemplate()
     End Sub
 
     Private Sub CreateNewQuote()
@@ -133,23 +143,44 @@ Public Class frmMain
         DockPanel1.ResumeLayout(True, True)
     End Sub
 
-    Private Sub SaveQuote()
+    Private Sub SaveTemplate()
         Dim loader As New QuoteLoader
         loader.Save(Me._ActiveQuote.QuoteHeader)
+
+        My.Settings.LastTamplate1 = Me._ActiveQuote.QuoteHeader.PrimaryProperties.QuoteNumnber
+        UpdateLastFilesMenu()
     End Sub
 
-    Private Sub LoadQuote()
+    Private Sub LoadTemplate()
         Dim r As DialogResult = frmQuoteLookup.ShowDialog
         If r = DialogResult.OK Then
-            Dim loader As New QuoteLoader
-            Dim q As Model.QuoteHeader
-
-            q = loader.Load(frmQuoteLookup.QuoteID)
-            Dim ChildForm As New frmQuoteA(q)
-            ChildForm.MdiParent = Me
-            ChildForm.Show(Me.DockPanel1)
-            Me.DisplayViews()
+            LoadTemplate(frmQuoteLookup.QuoteID)
         End If
+    End Sub
+
+    Private Sub LoadTemplate(ByVal id As Integer)
+        Dim loader As New QuoteLoader
+        Dim q As Model.QuoteHeader
+
+        q = loader.Load(frmQuoteLookup.QuoteID)
+        Dim ChildForm As New frmQuoteA(q)
+        ChildForm.MdiParent = Me
+        ChildForm.Show(Me.DockPanel1)
+        Me.DisplayViews()
+    End Sub
+
+    Public Sub UpdateLastFilesMenu()
+        If My.Settings.LastTamplate1.Length > 0 Then
+            Me.menuTemplate.DropDownItems.AddRange( _
+                New ToolStripItem() {Me.menuLastTemplate})
+            Me.menuLastTemplate.Name = "menuLastTemplate"
+            Me.menuLastTemplate.Size = New System.Drawing.Size(152, 22)
+            Me.menuLastTemplate.Text = "Load " + My.Settings.LastTamplate1
+        End If
+    End Sub
+
+    Private Sub menuLastTemplate_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles menuLastTemplate.Click
+        LoadTemplate(My.Settings.LastTamplate1)
     End Sub
 
 End Class
