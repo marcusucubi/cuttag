@@ -19,13 +19,13 @@ Namespace Model
         Private _ShippingBox As String = "NoBox"
         Private _TimeMultiplier As Decimal = 1
         Private _ManufacturingMarkup As Decimal = 1
-        Private _LaborRate As Decimal = 18
+        Private _LaborRate As Decimal = 10
         Private _WireUnitCutTime As Integer = 120
         Private _WireUnitTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
-        Private _MinimumOrderQuantity As Integer = 25
-        Private _CopperScrap As Decimal = 0.01
-        Private _CopperPrice As Decimal = 5
+        Private _MinimumOrderQuantity As Integer = 10
+        Private _CopperScrap As Decimal = 0
+        Private _CopperPrice As Decimal = 1
         Private _MaterialMarkup As Decimal = 1
 
         <CategoryAttribute("Copper"), _
@@ -278,6 +278,7 @@ Namespace Model
             End Get
             Set(ByVal value As Decimal)
                 Me._ManufacturingMarkup = value
+                Me.SendEvents()
             End Set
         End Property
 
@@ -290,6 +291,7 @@ Namespace Model
             End Get
             Set(ByVal value As Decimal)
                 Me._TimeMultiplier = value
+                Me.SendEvents()
             End Set
         End Property
 
@@ -302,6 +304,7 @@ Namespace Model
             End Get
             Set(ByVal value As Decimal)
                 Me._MaterialMarkup = value
+                Me.SendEvents()
             End Set
         End Property
 
@@ -357,10 +360,10 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("TimeMultiplier * TotalTime" + Chr(10) + "(Seconds)"), _
-        DisplayName("Adjusted Total Time"), _
+        <DescriptionAttribute("TimeMultiplier * TotalLaborTime" + Chr(10) + "(Seconds)"), _
+        DisplayName("Adjusted Total Labor Time"), _
         CategoryAttribute("Time")> _
-        Public ReadOnly Property AdjustedTotalTime() As Decimal
+        Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
             Get
                 Return Math.Round(Me._TimeMultiplier * Me.TotalLaborTime)
             End Get
