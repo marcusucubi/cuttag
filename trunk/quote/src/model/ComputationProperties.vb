@@ -24,13 +24,23 @@ Namespace Model
         Private _WireUnitTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 10
-        Private _CopperScrap As Decimal = 0
+        Private _PercentCopperScrap As Decimal = 0
         Private _CopperPrice As Decimal = 1
         Private _MaterialMarkup As Decimal = 1
 
         <CategoryAttribute("Copper"), _
+        DisplayName("Copper Scrap Weight"), _
+        DescriptionAttribute("CopperWeight * PercentCopperScrap" + Chr(10) + "(Pounds)")> _
+        Public ReadOnly Property CopperScrapWeight As Decimal
+            Get
+                Dim percent As Decimal = (Me._PercentCopperScrap / 100)
+                Return Math.Round(Me.CopperWeight * percent, 4)
+            End Get
+        End Property
+
+        <CategoryAttribute("Copper"), _
         DisplayName("Copper Weight"), _
-        DescriptionAttribute("Total Weight of Copper. " + Chr(10) + "(Pounds)")> _
+        DescriptionAttribute("Weight of Copper Scrap. " + Chr(10) + "(Pounds)")> _
         Public ReadOnly Property CopperWeight As Decimal
             Get
                 Return Me._QuoteHeader.WeightProperties.Weight
@@ -38,14 +48,14 @@ Namespace Model
         End Property
 
         <CategoryAttribute("Copper"), _
-        DisplayName("Copper Scrap"), _
-        DescriptionAttribute("Weight of Scrap Copper. " + Chr(10) + "(Pounds)")> _
-        Public Property CopperScrap As Decimal
+        DisplayName("Percent Copper Scrap"), _
+        DescriptionAttribute("Percent of Scrap Copper. " + Chr(10) + "(Percent)")> _
+        Public Property PercentCopperScrap As Decimal
             Get
-                Return Me._CopperScrap
+                Return Me._PercentCopperScrap
             End Get
             Set(ByVal value As Decimal)
-                Me._CopperScrap = value
+                Me._PercentCopperScrap = value
                 Me.SendEvents()
             End Set
         End Property
@@ -65,11 +75,11 @@ Namespace Model
 
         <CategoryAttribute("Copper"), _
         DisplayName("Copper Cost"), _
-        DescriptionAttribute("Copper Weight + Copper Scrap) * Copper Price. " _
+        DescriptionAttribute("(CopperWeight + CopperScrapWeight) * CopperPrice. " _
             + Chr(10) + "(Dollars Per Pounds)")> _
         Public ReadOnly Property CopperCost As Decimal
             Get
-                Return Math.Round((Me.CopperWeight + Me.CopperScrap) * Me.CopperPrice, 2)
+                Return Math.Round((Me.CopperWeight + Me.CopperScrapWeight) * Me.CopperPrice, 2)
             End Get
         End Property
 
