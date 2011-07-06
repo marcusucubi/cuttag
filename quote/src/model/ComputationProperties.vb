@@ -269,6 +269,15 @@ Namespace Model
             End Get
         End Property
 
+        <CategoryAttribute("Material Cost"), _
+        DisplayName("Adjusted Total Material Cost"), _
+        DescriptionAttribute("TotalMaterialCost * LaborRate" + Chr(10) + "(Dollars)")> _
+        Public ReadOnly Property AdjustedTotalMaterialCost As Decimal
+            Get
+                Return Math.Round(TotalMaterialCost * Me._MaterialMarkup, 2)
+            End Get
+        End Property
+
         <CategoryAttribute("Total"), _
         DisplayName("Manufacturing Markup"), _
         DescriptionAttribute("Manufacturing Markup")> _
@@ -351,7 +360,7 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("TotalCost * MaterialMarkup" + Chr(10) + "(Dollars)"), _
+        <DescriptionAttribute("TotalUnitCost * ManufacturingMarkup" + Chr(10) + "(Dollars)"), _
         DisplayName("Adjusted Total Unit Cost"), _
         CategoryAttribute("Total")> _
         Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
