@@ -311,6 +311,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\quotes.jpg" />
     <None Include="Resources\load.png" />
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
