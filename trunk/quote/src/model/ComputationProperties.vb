@@ -17,16 +17,16 @@ Namespace Model
         Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
-        Private _TimeMultipler As Decimal = 1
-        Private _ManufacturingMarkup As Decimal = 1.18
+        Private _TimeMultiplier As Decimal = 1
+        Private _ManufacturingMarkup As Decimal = 1
         Private _LaborRate As Decimal = 18
         Private _WireUnitCutTime As Integer = 120
         Private _WireUnitTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 25
-        Private _CopperScrap As Decimal = 0.03
-        Private _CopperPrice As Decimal = 4.69
-        Private _MaterialMarkup As Decimal = 1.15
+        Private _CopperScrap As Decimal = 0.01
+        Private _CopperPrice As Decimal = 5
+        Private _MaterialMarkup As Decimal = 1
 
         <CategoryAttribute("Copper"), _
         DisplayName("Copper Weight"), _
@@ -209,9 +209,9 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("WireTime + ComponentTime" + Chr(10) + "(Seconds)"), _
-        DisplayName("Total Time"), _
-        CategoryAttribute("Total")> _
-        Public ReadOnly Property TotalTime() As Integer
+        DisplayName("Total Labor Time"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property TotalLaborTime() As Integer
             Get
                 Return WireTime + ComponentTime
             End Get
@@ -219,10 +219,10 @@ Namespace Model
 
         <DescriptionAttribute("TotalTime / (60 * 60)" + Chr(10) + "(Hours)"), _
         DisplayName("Total Time Hours"), _
-        CategoryAttribute("Total")> _
+        CategoryAttribute("Time")> _
         Public ReadOnly Property TotalTimeHours() As Decimal
             Get
-                Return Math.Round(CDec(TotalTime) / (60 * 60), 4)
+                Return Math.Round(CDec(TotalLaborTime) / (60 * 60), 4)
             End Get
         End Property
 
@@ -257,13 +257,15 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("ComponentCost + WireCost + ShippingContainerCostPerOrder" + Chr(10) + "(Dollar)"), _
+        <DescriptionAttribute("ComponentMaterialCost + WireMaterialCost + ShippingContainerCostPerOrder" + Chr(10) + "(Dollar)"), _
         DisplayName("Total Material Cost"), _
         CategoryAttribute("Material Cost")> _
         Public ReadOnly Property TotalMaterialCost() As Decimal
             Get
-                Return Math.Round(Me.ComponentMaterialCost + _
-                    Me.WireMaterialCost + Me.ShippingContainerCostPerOrder, 2)
+                Return Math.Round( _
+                    Me.ComponentMaterialCost + _
+                    Me.WireMaterialCost + _
+                    Me.ShippingContainerCostPerOrder, 2)
             End Get
         End Property
 
@@ -276,6 +278,18 @@ Namespace Model
             End Get
             Set(ByVal value As Decimal)
                 Me._ManufacturingMarkup = value
+            End Set
+        End Property
+
+        <CategoryAttribute("Time"), _
+        DisplayName("Time Multiplier"), _
+        DescriptionAttribute("Time Multiplier")> _
+        Public Property TimeMultiplier As Decimal
+            Get
+                Return _TimeMultiplier
+            End Get
+            Set(ByVal value As Decimal)
+                Me._TimeMultiplier = value
             End Set
         End Property
 
@@ -297,8 +311,10 @@ Namespace Model
         CategoryAttribute("Material Cost")> _
         Public ReadOnly Property TotalVariableMaterialCost() As Decimal
             Get
-                Return Math.Round((Me.TotalMaterialCost * Me._MaterialMarkup) + _
-                    Me.CopperCost + Me.ShippingCost, 2)
+                Return Math.Round( _
+                    (Me.TotalMaterialCost * Me._MaterialMarkup) + _
+                    Me.CopperCost + _
+                    Me.ShippingCost, 2)
             End Get
         End Property
 
@@ -329,23 +345,33 @@ Namespace Model
             End Get
         End Property
 
-        <DescriptionAttribute("Wire Cost + Component Cost + Shipping Cost + Copper Cost + Labor Cost" _
+        <DescriptionAttribute("TotalVariableMaterialCost + TotalLaborTime" _
             + Chr(10) + "(Dollars)"), _
-        DisplayName("Total Cost"), _
+        DisplayName("Total Unit Cost"), _
         CategoryAttribute("Total")> _
-        Public ReadOnly Property TotalCost() As Decimal
+        Public ReadOnly Property TotalUnitCost() As Decimal
             Get
-                Return Me.ComponentMaterialCost + Me.WireMaterialCost + _
-                    Me.ShippingContainerCostPerOrder + Me.CopperCost + Me.LaborCost
+                Return _
+                    Me.TotalVariableMaterialCost + _
+                    Me.TotalLaborTime
             End Get
         End Property
 
         <DescriptionAttribute("TotalCost * MaterialMarkup" + Chr(10) + "(Dollars)"), _
-        DisplayName("Final Total Cost"), _
+        DisplayName("Adjusted Total Cost"), _
         CategoryAttribute("Total")> _
-        Public ReadOnly Property FinalTotalCost() As Decimal
+        Public ReadOnly Property AdjustedTotalCost() As Decimal
             Get
-                Return Math.Round(Me._ManufacturingMarkup * Me.TotalCost, 2)
+                Return Math.Round(Me._ManufacturingMarkup * Me.TotalUnitCost, 2)
+            End Get
+        End Property
+
+        <DescriptionAttribute("TimeMultiplier * TotalTime" + Chr(10) + "(Seconds)"), _
+        DisplayName("Adjusted Total Time"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property AdjustedTotalTime() As Decimal
+            Get
+                Return Math.Round(Me._TimeMultiplier * Me.TotalLaborTime)
             End Get
         End Property
 
