@@ -88,10 +88,10 @@ Namespace Model
 
         <CategoryAttribute("Labor"), _
         DisplayName("Labor Cost"), _
-        DescriptionAttribute("TotalTimeHours * LaborRate" + Chr(10) + "(Dollars)")> _
+        DescriptionAttribute("AdjustedTotalLaborTimeHours * LaborRate" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property LaborCost As Decimal
             Get
-                Return Math.Round(TotalLaborTimeHours * LaborRate, 2)
+                Return Math.Round(AdjustedTotalLaborTimeHours * LaborRate, 2)
             End Get
         End Property
 
@@ -218,11 +218,11 @@ Namespace Model
         End Property
 
         <DescriptionAttribute("TotalTime / (60 * 60)" + Chr(10) + "(Hours)"), _
-        DisplayName("Total Labor Time Hours"), _
+        DisplayName("Adjusted Total Labor Time Hours"), _
         CategoryAttribute("Time")> _
-        Public ReadOnly Property TotalLaborTimeHours() As Decimal
+        Public ReadOnly Property AdjustedTotalLaborTimeHours() As Decimal
             Get
-                Return Math.Round(CDec(TotalLaborTime) / (60 * 60), 4)
+                Return Math.Round(CDec(Me.AdjustedTotalLaborTime) / (60 * 60), 4)
             End Get
         End Property
 
