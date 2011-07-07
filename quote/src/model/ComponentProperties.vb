@@ -3,7 +3,7 @@ Imports DCS.Quote.Model
 Imports System.Reflection
 
 Namespace Model
-    Public Class QuoteDetailProperties
+    Public Class ComponentProperties
         Implements INotifyPropertyChanged
 
         Private _QuoteDetail As QuoteDetail
@@ -21,11 +21,6 @@ Namespace Model
             End If
         End Sub
 
-        Public ReadOnly Property Gage As String
-            Get
-                Return "" '_QuoteDetail.Product.Gage.Trim
-            End Get
-        End Property
 
         <DisplayName("Total Component Time")>
         Public ReadOnly Property TotalComponentTime() As Integer
@@ -37,19 +32,12 @@ Namespace Model
         <DisplayName("Component Time")>
         Public Property ComponentTime() As Integer
             Get
-                'If Me._QuoteDetail.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                'Return Nothing
-                'End If
                 Return Me._ComponentTime
             End Get
             Set(ByVal value As Integer)
-                If Me._QuoteDetail.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    MsgBox("ComponentTime can only be set for Component")
-                Else
-                    If Not (value = _ComponentTime) Then
-                        Me._ComponentTime = value
-                        SendEvents()
-                    End If
+                If Not (value = _ComponentTime) Then
+                    Me._ComponentTime = value
+                    SendEvents()
                 End If
             End Set
         End Property
@@ -64,4 +52,3 @@ Namespace Model
 
     End Class
 End Namespace
-
