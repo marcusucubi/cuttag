@@ -90,8 +90,4 @@ Public Class frmQuoteA
         ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = detail
     End Sub
 
-    Private Sub gridDetail_RowLeave(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowLeave
-        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = Nothing
-    End Sub
-
 End Class

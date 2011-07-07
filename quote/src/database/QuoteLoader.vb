@@ -113,9 +113,8 @@ Public Class QuoteLoader
 
             LoadProperties(id, q.ComputationProperties)
             LoadProperties(id, q.NonComputationProperties)
+            Me.LoadComponents(q)
         End If
-
-        Me.LoadComponents(q)
 
         Return q
     End Function
