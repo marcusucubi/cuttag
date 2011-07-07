@@ -10,6 +10,7 @@ Public Class frmMain
     Private _OtherProperties As New frmOtherProperties
     Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
+    Private _DetailProperties As New frmDetailProperties
     Private WithEvents _ActiveQuote As ActiveQuote
     Private WithEvents menuLastTemplate As New ToolStripMenuItem
 
@@ -87,6 +88,7 @@ Public Class frmMain
     End Sub
 
     Private Sub DisplayViews()
+        ShowDetailProperties()
         ShowPrimaryProperties()
         ShowOtherProperties()
         ShowComputationProperties()
@@ -136,9 +138,26 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub ShowDetailProperties()
+        If (_DetailProperties Is Nothing) Then
+            _DetailProperties = New frmDetailProperties
+            InitChild(_DetailProperties, DockState.DockBottom)
+        End If
+        If (_DetailProperties.IsHidden Or _DetailProperties.IsDisposed) Then
+            _DetailProperties = New frmDetailProperties
+            InitChild(_DetailProperties, DockState.DockBottom)
+        End If
+    End Sub
+
     Private Sub InitChild(ByVal frm As DockContent)
         DockPanel1.SuspendLayout(True)
         frm.Show(DockPanel1, DockState.DockRight)
+        DockPanel1.ResumeLayout(True, True)
+    End Sub
+
+    Private Sub InitChild(ByVal frm As DockContent, ByVal state As DockState)
+        DockPanel1.SuspendLayout(True)
+        frm.Show(DockPanel1, state)
         DockPanel1.ResumeLayout(True, True)
     End Sub
 

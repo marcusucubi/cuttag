@@ -36,7 +36,9 @@
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, CustomerName, RequestForQuoteNumber, PartNumber FROM [_Quote]</CommandText>
+                    <CommandText>SELECT        ID, CustomerName, RequestForQuoteNumber, PartNumber
+FROM            [_Quote]
+ORDER BY ID DESC</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
