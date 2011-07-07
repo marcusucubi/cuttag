@@ -48,6 +48,7 @@ Namespace Model
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
+            Me._QuoteDetail.QuoteHeader.ComputationProperties.SendEvents()
         End Sub
 
     End Class
