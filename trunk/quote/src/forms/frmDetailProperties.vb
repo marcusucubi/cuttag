@@ -10,13 +10,19 @@ Public Class frmDetailProperties
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
 
-        Dim o = ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail.QuoteDetailProperties
-        If TypeOf o Is WireProperties Then
-            _WireProperties = ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail.QuoteDetailProperties
+        Dim detail As QuoteDetail = ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail
+        If detail IsNot Nothing Then
+            Dim o = detail.QuoteDetailProperties
+            If TypeOf o Is WireProperties Then
+                _WireProperties = detail.QuoteDetailProperties
+                _ComponentProperties = Nothing
+            End If
+            If TypeOf o Is ComponentProperties Then
+                _ComponentProperties = detail.QuoteDetailProperties
+                _WireProperties = Nothing
+            End If
+        Else
             _ComponentProperties = Nothing
-        End If
-        If TypeOf o Is ComponentProperties Then
-            _ComponentProperties = ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail.QuoteDetailProperties
             _WireProperties = Nothing
         End If
         UpdateProperties()

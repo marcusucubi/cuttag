@@ -67,6 +67,7 @@ Public Class frmQuoteA
 
     Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
         ActiveQuote.ActiveQuote.QuoteHeader = Nothing
+        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = Nothing
     End Sub
 
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
@@ -87,6 +88,10 @@ Public Class frmQuoteA
         Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
         Dim detail As QuoteDetail = view.DataBoundItem
         ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = detail
+    End Sub
+
+    Private Sub gridDetail_RowLeave(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowLeave
+        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = Nothing
     End Sub
 
 End Class
