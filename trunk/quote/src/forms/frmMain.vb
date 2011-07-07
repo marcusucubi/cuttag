@@ -173,10 +173,13 @@ Public Class frmMain
     End Sub
 
     Public Sub UpdateLastFilesMenu()
-        If My.Settings.LastTamplate1.Length > 0 Then
+        Dim id As String = My.Settings.LastTamplate1
+        If id.Length > 0 Then
             Me.LoadLastToolStripMenuItem.Enabled = True
+            Me.LoadLastToolStripMenuItem.Text = "Load Last (" + id + ")"
         Else
             Me.LoadLastToolStripMenuItem.Enabled = False
+            Me.LoadLastToolStripMenuItem.Text = "Load Last"
         End If
     End Sub
 
