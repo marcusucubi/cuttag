@@ -25,10 +25,6 @@ Public Class frmMain
         UpdateLastFilesMenu()
     End Sub
 
-    Protected Overrides Sub OnClosing(ByVal e As  _
-        System.ComponentModel.CancelEventArgs)
-    End Sub
-
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
         If Me._ActiveQuote.QuoteHeader Is Nothing Then
             SaveToolStripMenuItem.Enabled = False
@@ -162,6 +158,11 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadTemplate(ByVal id As Integer)
+
+        If IsLoaded(id) Then
+            Return
+        End If
+
         Dim loader As New QuoteLoader
         Dim q As Model.QuoteHeader
 
@@ -172,7 +173,7 @@ Public Class frmMain
         Me.DisplayViews()
     End Sub
 
-    Public Sub UpdateLastFilesMenu()
+    Private Sub UpdateLastFilesMenu()
         Dim id As String = My.Settings.LastTamplate1
         If id.Length > 0 Then
             Me.LoadLastToolStripMenuItem.Enabled = True
@@ -182,6 +183,18 @@ Public Class frmMain
             Me.LoadLastToolStripMenuItem.Text = "Load Last"
         End If
     End Sub
+
+    Private Function IsLoaded(ByVal id As String) As Boolean
+        Dim result As Boolean
+        For Each w As frmQuoteA In Me.MdiChildren
+            Dim test = w.QuoteHeader.PrimaryProperties.QuoteNumnber
+            If id = test Then
+                w.Activate()
+                result = True
+            End If
+        Next
+        Return result
+    End Function
 
 End Class
 
