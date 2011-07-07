@@ -83,4 +83,10 @@ Public Class frmQuoteA
         End If
     End Sub
 
+    Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowEnter
+        Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
+        Dim detail As QuoteDetail = view.DataBoundItem
+        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = detail
+    End Sub
+
 End Class

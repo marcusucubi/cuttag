@@ -16,56 +16,66 @@ Namespace Model
 
 #Region "Properties"
 
+        <BrowsableAttribute(False)>
         Property QuoteHeader As QuoteHeader
 
+        <BrowsableAttribute(False)>
         ReadOnly Property TotalCost As Decimal
             Get
                 Return Me.UnitCost * Me.Qty
             End Get
         End Property
 
+        <BrowsableAttribute(False)>
         ReadOnly Property Product As Product
             Get
                 Return _Product
             End Get
         End Property
 
+        <BrowsableAttribute(False)>
         ReadOnly Property ProductCode As String
             Get
                 Return Product.Code.Trim
             End Get
         End Property
 
+        <BrowsableAttribute(True)>
         ReadOnly Property Gage As String
             Get
                 Return Product.Gage.Trim
             End Get
         End Property
 
+        <BrowsableAttribute(False)>
         ReadOnly Property UnitCost As Decimal
             Get
                 Return Product.UnitCost
             End Get
         End Property
 
+        <BrowsableAttribute(True), DisplayName("Type")>
         ReadOnly Property DisplayableProductClass As String
             Get
                 Return IIf(Product.UnitOfMeasure = UnitOfMeasure.BY_EACH, "Wire", "Component")
             End Get
         End Property
 
+        <BrowsableAttribute(False)>
         ReadOnly Property DisplayableUnitOfMeasure As String
             Get
                 Return Product.UnitOfMeasure.ToString
             End Get
         End Property
 
+        <BrowsableAttribute(True), DisplayName("Total Component Time")>
         Public ReadOnly Property TotalComponentTime() As Integer
             Get
                 Return (Me._ComponentTime * Me._Quantity)
             End Get
         End Property
 
+        <BrowsableAttribute(False)>
         Public Property Qty() As Decimal
             Get
                 Return Me._Quantity
@@ -79,6 +89,7 @@ Namespace Model
             End Set
         End Property
 
+        <BrowsableAttribute(True), DisplayName("Component Time")>
         Public Property ComponentTime() As Integer
             Get
                 If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
