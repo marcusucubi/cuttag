@@ -12,7 +12,8 @@ Namespace Model
 
         Private _Quantity As Decimal
         Private _Product As Product
-        Private _QuoteDetailProperties As New QuoteDetailProperties(Me)
+        Private _WireProperties As New WireProperties(Me)
+        Private _ComponentProperties As New ComponentProperties(Me)
 
 #Region "Properties"
 
@@ -33,9 +34,12 @@ Namespace Model
         End Property
 
         <BrowsableAttribute(False)>
-        Public ReadOnly Property QuoteDetailProperties As QuoteDetailProperties
+        Public ReadOnly Property QuoteDetailProperties As Object
             Get
-                Return _QuoteDetailProperties
+                If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
+                    Return _WireProperties
+                End If
+                Return _ComponentProperties
             End Get
         End Property
 
