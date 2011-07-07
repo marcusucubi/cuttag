@@ -40,7 +40,7 @@ Partial Class frmQuoteA
         Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UnitOfMeasure = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DisplayableProductClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ProductCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -128,7 +128,7 @@ Partial Class frmQuoteA
         Me.gridDetail.AllowUserToOrderColumns = True
         Me.gridDetail.AutoGenerateColumns = False
         Me.gridDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridDetail.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Fill3, Me.UnitOfMeasure, Me.ProductCode, Me.UnitCost, Me.DataGridViewTextBoxColumn12, Me.TotalCost})
+        Me.gridDetail.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Fill3, Me.DisplayableProductClass, Me.ProductCode, Me.UnitCost, Me.DataGridViewTextBoxColumn12, Me.TotalCost})
         Me.gridDetail.DataSource = Me.DetailSource
         Me.gridDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gridDetail.Location = New System.Drawing.Point(106, 0)
@@ -152,13 +152,12 @@ Partial Class frmQuoteA
         Me.Fill3.Name = "Fill3"
         Me.Fill3.ReadOnly = True
         '
-        'UnitOfMeasure
+        'DisplayableProductClass
         '
-        Me.UnitOfMeasure.DataPropertyName = "DisplayableUnitOfMeasure"
-        Me.UnitOfMeasure.HeaderText = "Unit Of Measure"
-        Me.UnitOfMeasure.MinimumWidth = 20
-        Me.UnitOfMeasure.Name = "UnitOfMeasure"
-        Me.UnitOfMeasure.ReadOnly = True
+        Me.DisplayableProductClass.DataPropertyName = "DisplayableProductClass"
+        Me.DisplayableProductClass.HeaderText = "Type"
+        Me.DisplayableProductClass.Name = "DisplayableProductClass"
+        Me.DisplayableProductClass.ReadOnly = True
         '
         'ProductCode
         '
@@ -251,7 +250,7 @@ Partial Class frmQuoteA
     Friend WithEvents CostDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents gridDetail As System.Windows.Forms.DataGridView
     Friend WithEvents Fill3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents UnitOfMeasure As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DisplayableProductClass As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ProductCode As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UnitCost As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn

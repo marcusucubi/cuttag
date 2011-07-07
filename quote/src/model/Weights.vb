@@ -237,9 +237,9 @@ Namespace Model
             Dim qty As Integer
             For Each q As QuoteDetail In _QuoteHeader.QuoteDetails
                 If q.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    If q.Gage = gage Then
+                    If q.QuoteDetailProperties.Gage = gage Then
                         qty += q.Qty
-                    ElseIf q.Gage.Contains("-" & gage) Then
+                    ElseIf q.QuoteDetailProperties.Gage.Contains("-" & gage) Then
                         qty += q.Qty
                     ElseIf gage Is Nothing Then
                         qty += q.Qty
