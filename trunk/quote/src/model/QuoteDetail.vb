@@ -58,7 +58,7 @@ Namespace Model
         <BrowsableAttribute(True), DisplayName("Type")>
         Public ReadOnly Property DisplayableProductClass As String
             Get
-                Return IIf(Product.UnitOfMeasure = UnitOfMeasure.BY_EACH, "Wire", "Component")
+                Return IIf(Product.UnitOfMeasure = UnitOfMeasure.BY_EACH, "Component", "Wire")
             End Get
         End Property
 
