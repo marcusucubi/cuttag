@@ -48,11 +48,9 @@ Public Class QuoteLoader
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim id As Integer = q.PrimaryProperties.QuoteNumnber
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
-        For Each row As _QuoteDetailRow In table.Rows
-            adaptor.Delete(row.ID)
-        Next
         For Each detail As QuoteDetail In q.QuoteDetails
-            adaptor.Insert(id, detail.Qty, detail.QuoteDetailProperties.ComponentTime, detail.ProductCode)
+            Me.SaveProperties(id, detail.QuoteDetailProperties, Nothing)
+            adaptor.Insert(q.PrimaryProperties.QuoteNumnber, detail.Qty, detail.ProductCode)
         Next
     End Sub
 
@@ -92,6 +90,8 @@ Public Class QuoteLoader
             End If
 
             If (detail IsNot Nothing) Then
+                detail.Qty = row.Qty
+                Me.LoadProperties(row.ID, detail)
                 q.QuoteDetails.Add(detail)
             End If
         Next
