@@ -79,6 +79,10 @@ Public Class frmMain
         LoadTemplate()
     End Sub
 
+    Private Sub LoadLastToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadLastToolStripMenuItem.Click
+        LoadTemplate(My.Settings.LastTamplate1)
+    End Sub
+
     Private Sub CreateNewQuote()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
@@ -89,7 +93,6 @@ Public Class frmMain
     Private Sub DisplayViews()
         ShowPrimaryProperties()
         ShowOtherProperties()
-        ShowWeights()
         ShowComputationProperties()
     End Sub
 
@@ -162,7 +165,7 @@ Public Class frmMain
         Dim loader As New QuoteLoader
         Dim q As Model.QuoteHeader
 
-        q = loader.Load(frmQuoteLookup.QuoteID)
+        q = loader.Load(id)
         Dim ChildForm As New frmQuoteA(q)
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
@@ -171,16 +174,10 @@ Public Class frmMain
 
     Public Sub UpdateLastFilesMenu()
         If My.Settings.LastTamplate1.Length > 0 Then
-            Me.menuTemplate.DropDownItems.AddRange( _
-                New ToolStripItem() {Me.menuLastTemplate})
-            Me.menuLastTemplate.Name = "menuLastTemplate"
-            Me.menuLastTemplate.Size = New System.Drawing.Size(152, 22)
-            Me.menuLastTemplate.Text = "Load " + My.Settings.LastTamplate1
+            Me.LoadLastToolStripMenuItem.Enabled = True
+        Else
+            Me.LoadLastToolStripMenuItem.Enabled = False
         End If
-    End Sub
-
-    Private Sub menuLastTemplate_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles menuLastTemplate.Click
-        LoadTemplate(My.Settings.LastTamplate1)
     End Sub
 
 End Class
