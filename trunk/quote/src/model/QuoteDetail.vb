@@ -11,71 +11,53 @@ Namespace Model
             Implements INotifyPropertyChanged.PropertyChanged
 
         Private _Quantity As Decimal
-        Private _ComponentTime As Integer
         Private _Product As Product
+        Private _QuoteDetailProperties As New QuoteDetailProperties(Me)
 
 #Region "Properties"
 
         <BrowsableAttribute(False)>
         Property QuoteHeader As QuoteHeader
 
-        <BrowsableAttribute(False)>
-        ReadOnly Property TotalCost As Decimal
+        Public ReadOnly Property TotalCost As Decimal
             Get
                 Return Me.UnitCost * Me.Qty
             End Get
         End Property
 
         <BrowsableAttribute(False)>
-        ReadOnly Property Product As Product
+        Public ReadOnly Property Product As Product
             Get
                 Return _Product
             End Get
         End Property
 
         <BrowsableAttribute(False)>
-        ReadOnly Property ProductCode As String
+        Public ReadOnly Property QuoteDetailProperties As QuoteDetailProperties
+            Get
+                Return _QuoteDetailProperties
+            End Get
+        End Property
+
+        Public ReadOnly Property ProductCode As String
             Get
                 Return Product.Code.Trim
             End Get
         End Property
 
-        <BrowsableAttribute(True)>
-        ReadOnly Property Gage As String
-            Get
-                Return Product.Gage.Trim
-            End Get
-        End Property
-
-        <BrowsableAttribute(False)>
-        ReadOnly Property UnitCost As Decimal
+        Public ReadOnly Property UnitCost As Decimal
             Get
                 Return Product.UnitCost
             End Get
         End Property
 
         <BrowsableAttribute(True), DisplayName("Type")>
-        ReadOnly Property DisplayableProductClass As String
+        Public ReadOnly Property DisplayableProductClass As String
             Get
                 Return IIf(Product.UnitOfMeasure = UnitOfMeasure.BY_EACH, "Wire", "Component")
             End Get
         End Property
 
-        <BrowsableAttribute(False)>
-        ReadOnly Property DisplayableUnitOfMeasure As String
-            Get
-                Return Product.UnitOfMeasure.ToString
-            End Get
-        End Property
-
-        <BrowsableAttribute(True), DisplayName("Total Component Time")>
-        Public ReadOnly Property TotalComponentTime() As Integer
-            Get
-                Return (Me._ComponentTime * Me._Quantity)
-            End Get
-        End Property
-
-        <BrowsableAttribute(False)>
         Public Property Qty() As Decimal
             Get
                 Return Me._Quantity
@@ -89,26 +71,6 @@ Namespace Model
             End Set
         End Property
 
-        <BrowsableAttribute(True), DisplayName("Component Time")>
-        Public Property ComponentTime() As Integer
-            Get
-                If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    Return Nothing
-                End If
-                Return Me._ComponentTime
-            End Get
-            Set(ByVal value As Integer)
-                If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    MsgBox("ComponentTime can only be set for Component")
-                Else
-                    If Not (value = _ComponentTime) Then
-                        Me._ComponentTime = value
-                        SendEvents()
-                    End If
-                End If
-            End Set
-        End Property
-
 #End Region
 
 #Region "Methods"
@@ -117,9 +79,6 @@ Namespace Model
             Me.QuoteHeader = header
             Me._Product = product
             Me._Quantity = 1
-            If (product.UnitOfMeasure = UnitOfMeasure.BY_EACH) Then
-                Me.ComponentTime = 10
-            End If
         End Sub
 
         Private Sub NotifyPropertyChanged(ByVal name As String)

@@ -402,7 +402,7 @@ Namespace Model
             Dim result As Integer
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
-                    result += detail.TotalComponentTime
+                    result += detail.QuoteDetailProperties.TotalComponentTime
                 End If
             Next
             Return result
