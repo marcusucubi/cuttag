@@ -36,8 +36,9 @@ Public Class QuoteLoader
 
         adaptor.Connection.Open()
         Me.DeleteProperties(id)
-        Me.SaveProperties(id, q.NonComputationProperties, Nothing)
-        Me.SaveProperties(id, q.ComputationProperties, Nothing)
+        Me.SaveProperties(id, 0, q.NonComputationProperties, Nothing)
+        Me.SaveProperties(id, 0, q.ComputationProperties, Nothing)
+        Me.DeleteComponents(id)
         Me.SaveComponents(q)
         adaptor.Connection.Close()
 
@@ -46,12 +47,21 @@ Public Class QuoteLoader
     Private Sub SaveComponents(ByVal q As QuoteHeader)
 
         Dim adaptor As New _QuoteDetailTableAdapter
-        Dim id As Integer = q.PrimaryProperties.QuoteNumnber
-        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
+        Dim quoteId As Integer = q.PrimaryProperties.QuoteNumnber
+        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(quoteId)
         For Each detail As QuoteDetail In q.QuoteDetails
-            Me.SaveProperties(id, detail.QuoteDetailProperties, Nothing)
+            adaptor.Connection.Open()
+            adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(q.PrimaryProperties.QuoteNumnber, detail.Qty, detail.ProductCode)
+            Dim cmd As OleDbCommand = New OleDbCommand("SELECT @@IDENTITY", adaptor.Connection)
+            cmd.Transaction = adaptor.Transaction
+            Dim id As Integer = CInt(cmd.ExecuteScalar())
+            adaptor.Transaction.Commit()
+            adaptor.Connection.Close()
+
+            Me.SaveProperties(quoteId, id, detail.QuoteDetailProperties, Nothing)
         Next
+
     End Sub
 
     Private Sub LoadComponents(ByVal q As QuoteHeader)
@@ -91,10 +101,15 @@ Public Class QuoteLoader
 
             If (detail IsNot Nothing) Then
                 detail.Qty = row.Qty
-                Me.LoadProperties(row.ID, detail)
+                Me.LoadProperties(id, row.ID, detail.QuoteDetailProperties)
                 q.QuoteDetails.Add(detail)
             End If
         Next
+    End Sub
+
+    Private Sub DeleteComponents(ByVal id As Integer)
+        Dim adaptor As New _QuoteDetailTableAdapter
+        adaptor.Delete(id)
     End Sub
 
     Public Function Load(ByVal id As Long) As Model.QuoteHeader
@@ -111,15 +126,18 @@ Public Class QuoteLoader
             q.PrimaryProperties.PartNumber = row.PartNumber
             q.PrimaryProperties.RequestForQuoteNumber = row.RequestForQuoteNumber
 
-            LoadProperties(id, q.ComputationProperties)
-            LoadProperties(id, q.NonComputationProperties)
+            LoadProperties(id, -1, q.ComputationProperties)
+            LoadProperties(id, -1, q.NonComputationProperties)
             Me.LoadComponents(q)
         End If
 
         Return q
     End Function
 
-    Private Sub SaveProperties(ByVal id As Integer, ByVal obj As Object, ByRef Transaction As OleDbTransaction)
+    Private Sub SaveProperties(ByVal id As Integer, _
+                               ByVal childId As Integer, _
+                               ByVal obj As Object, _
+                               ByRef Transaction As OleDbTransaction)
 
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
@@ -145,11 +163,13 @@ Public Class QuoteLoader
                 d = CDec(o)
             End If
 
-            adaptor.Insert(id, p.Name, s, d, i)
+            adaptor.Insert(id, childId, p.Name, s, d, i)
         Next
     End Sub
 
-    Private Sub LoadProperties(ByVal id As Integer, ByVal obj As Object)
+    Private Sub LoadProperties(ByVal id As Integer, _
+                               ByVal childId As Integer, _
+                               ByVal obj As Object)
 
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
@@ -160,7 +180,8 @@ Public Class QuoteLoader
                 Continue For
             End If
 
-            Dim table As _QuotePropertiesDataTable = adaptor.GetDataByIDAndName(id, p.Name)
+            Dim table As _QuotePropertiesDataTable = _
+                adaptor.GetDataByQuoteAndName(id, childId, p.Name)
 
             If table.Rows.Count > 0 Then
                 Dim row As _QuotePropertiesRow = table.Rows(0)
