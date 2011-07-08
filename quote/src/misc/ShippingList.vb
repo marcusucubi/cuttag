@@ -1,6 +1,4 @@
-﻿Imports DCS.Quote.devDataSetTableAdapters
-Imports DCS.Quote.devDataSet
-
+﻿
 Public Class ShippingList : Inherits System.ComponentModel.StringConverter
 
     Public Overloads Overrides Function _

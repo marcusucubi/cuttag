@@ -27,9 +27,9 @@ Partial Class frmQuoteLookup
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.DevDataSet1 = New DCS.Quote.devDataSet1()
+        Me.DevDataSet1 = New DCS.Quote.QuoteDataBase()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me._QuoteTableAdapter = New DCS.Quote.devDataSet1TableAdapters._QuoteTableAdapter()
+        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DevDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,8 +120,8 @@ Partial Class frmQuoteLookup
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents DevDataSet1 As DCS.Quote.devDataSet1
+    Friend WithEvents DevDataSet1 As DCS.Quote.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _QuoteTableAdapter As DCS.Quote.devDataSet1TableAdapters._QuoteTableAdapter
+    Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
 
 End Class

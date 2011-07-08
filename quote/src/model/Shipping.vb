@@ -1,6 +1,4 @@
-﻿Imports DCS.Quote.devDataSet
-Imports DCS.Quote.devDataSetTableAdapters
-
+﻿
 Public Class Shipping
 
     Private _Dictionary As New SortedDictionary(Of String, Decimal)
@@ -20,14 +18,14 @@ Public Class Shipping
     End Sub
 
     Private Sub FetchShippingRows()
-        Dim ds As devDataSet = New DCS.Quote.devDataSet()
-        Dim table As _ShippingDataTable = New _ShippingDataTable()
-        Dim adapter As _ShippingTableAdapter = New _ShippingTableAdapter()
+        Dim ds As QuoteDataBase = New DCS.Quote.QuoteDataBase()
+        Dim table As QuoteDataBase._ShippingDataTable = New QuoteDataBase._ShippingDataTable()
+        Dim adapter As QuoteDataBaseTableAdapters._ShippingTableAdapter = New QuoteDataBaseTableAdapters._ShippingTableAdapter()
         adapter.Fill(table)
 
         Dim a(table.Count) As String
         Dim i As Integer
-        For Each s As devDataSet._ShippingRow In table.Rows
+        For Each s As QuoteDataBase._ShippingRow In table.Rows
             a(i) = s.Index
             _Dictionary.Add(s.Index, s.Cost)
             i += 1

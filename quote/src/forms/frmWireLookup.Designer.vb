@@ -27,9 +27,9 @@ Partial Class frmWireLookup
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.DevDataSet1 = New DCS.Quote.devDataSet()
+        Me.DevDataSet1 = New DCS.Quote.QuoteDataBase()
         Me.WiresBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me._WiresTableAdapter = New DCS.Quote.devDataSetTableAdapters._WiresTableAdapter()
+        Me._WiresTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._WiresTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DevDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WiresBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,8 +118,8 @@ Partial Class frmWireLookup
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents DevDataSet1 As DCS.Quote.devDataSet
+    Friend WithEvents DevDataSet1 As DCS.Quote.QuoteDataBase
     Friend WithEvents WiresBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _WiresTableAdapter As DCS.Quote.devDataSetTableAdapters._WiresTableAdapter
+    Friend WithEvents _WiresTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._WiresTableAdapter
 
 End Class
