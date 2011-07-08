@@ -28,8 +28,8 @@ Partial Class frmComponentLookup
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.PartsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DevDataSet = New DCS.Quote.devDataSet()
-        Me._PartsTableAdapter = New DCS.Quote.devDataSetTableAdapters._PartsTableAdapter()
+        Me.DevDataSet = New DCS.Quote.QuoteDataBase()
+        Me._PartsTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._PartsTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,8 +120,8 @@ Partial Class frmComponentLookup
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents DevDataSet As DCS.Quote.devDataSet
+    Friend WithEvents DevDataSet As DCS.Quote.QuoteDataBase
     Friend WithEvents PartsBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _PartsTableAdapter As DCS.Quote.devDataSetTableAdapters._PartsTableAdapter
+    Friend WithEvents _PartsTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._PartsTableAdapter
 
 End Class
