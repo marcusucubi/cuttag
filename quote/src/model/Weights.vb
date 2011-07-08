@@ -15,7 +15,7 @@ Namespace Model
             Property Value As Decimal
         End Class
 
-        Private WeightArray() = New WireWeight() { _
+        Private Shared WeightArray() = New WireWeight() { _
             New WireWeight("18", 0.00159),
             New WireWeight("16", 0.00242),
             New WireWeight("14", 0.00387),
@@ -251,15 +251,15 @@ Namespace Model
 
         Private Function CalcWeight() As Decimal
             Dim r As Decimal
-            For Each w As WireWeight In Me.WeightArray
+            For Each w As WireWeight In WeightArray
                 r += FindWeight(w.Gage) * CalcQty(w.Gage)
             Next
             Return r
         End Function
 
-        Private Function FindWeight(ByVal gage As String) As Decimal
+        Public Shared Function FindWeight(ByVal gage As String) As Decimal
             Dim r As Decimal
-            For Each w As WireWeight In Me.WeightArray
+            For Each w As WireWeight In WeightArray
                 If w.Gage = gage Then
                     r = w.Value
                 ElseIf w.Gage.Contains("-" & gage) Then
