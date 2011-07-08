@@ -258,6 +258,24 @@ Namespace Model
             End Get
         End Property
 
+        <DescriptionAttribute("Number of Wires" + Chr(10) + "(Count)"), _
+        DisplayName("Number of Wires"), _
+        CategoryAttribute("Material Cost")> _
+        Public ReadOnly Property NumberOfWires() As Decimal
+            Get
+                Return Count(UnitOfMeasure.BY_LENGTH)
+            End Get
+        End Property
+
+        <DescriptionAttribute("Number of Components" + Chr(10) + "(Count)"), _
+        DisplayName("Number of Components"), _
+        CategoryAttribute("Components")> _
+        Public ReadOnly Property NumberOfComponents() As Decimal
+            Get
+                Return Count(UnitOfMeasure.BY_EACH)
+            End Get
+        End Property
+
         <DescriptionAttribute("WireLength / 3.048" + Chr(10) + "(Feet)"), _
         DisplayName("Wire Length Feet"), _
         CategoryAttribute("Wires")> _
@@ -413,6 +431,16 @@ Namespace Model
             For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.Qty
+                End If
+            Next
+            Return result
+        End Function
+
+        Private Function Count(ByVal measure As UnitOfMeasure) As Decimal
+            Dim result As Integer
+            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
+                If detail.Product.UnitOfMeasure = measure Then
+                    result += 1
                 End If
             Next
             Return result
