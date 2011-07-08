@@ -42,6 +42,15 @@ Namespace Model
             End Set
         End Property
 
+        Public Property Quantity() As Integer
+            Get
+                Return Me._QuoteDetail.Qty
+            End Get
+            Set(ByVal value As Integer)
+                Me._QuoteDetail.Qty = value
+            End Set
+        End Property
+
         Private Sub SendEvents()
             Dim info() As PropertyInfo
             info = GetType(QuoteDetail).GetProperties()
