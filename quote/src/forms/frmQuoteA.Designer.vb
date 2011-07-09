@@ -37,14 +37,14 @@ Partial Class frmQuoteA
         Me.bntAddWire = New System.Windows.Forms.Button()
         Me.btnAddComponent = New System.Windows.Forms.Button()
         Me.gridDetail = New System.Windows.Forms.DataGridView()
-        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Fill3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DisplayableProductClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ProductCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DetailSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.HeaderSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.panelButtons.SuspendLayout()
@@ -137,14 +137,6 @@ Partial Class frmQuoteA
         Me.gridDetail.Size = New System.Drawing.Size(535, 218)
         Me.gridDetail.TabIndex = 8
         '
-        'DetailSource
-        '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.QuoteDetail)
-        '
-        'HeaderSource
-        '
-        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.QuoteHeader)
-        '
         'Fill3
         '
         Me.Fill3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
@@ -203,6 +195,14 @@ Partial Class frmQuoteA
         Me.TotalCost.Name = "TotalCost"
         Me.TotalCost.ReadOnly = True
         '
+        'DetailSource
+        '
+        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.QuoteDetail)
+        '
+        'HeaderSource
+        '
+        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.QuoteHeader)
+        '
         'frmQuoteA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -214,7 +214,7 @@ Partial Class frmQuoteA
         Me.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmQuoteA"
-        Me.Text = "New Quote"
+        Me.Text = "New Template"
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
         Me.panelButtons.ResumeLayout(False)

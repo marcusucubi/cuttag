@@ -80,7 +80,7 @@ Public Class frmQuoteA
 
     Public Sub UpdateText()
         If Me._PrimaryProperties.QuoteNumnber > 0 Then
-            Me.Text = "Quote " & Me._PrimaryProperties.QuoteNumnber
+            Me.Text = "Template " & Me._PrimaryProperties.QuoteNumnber
         End If
     End Sub
 
