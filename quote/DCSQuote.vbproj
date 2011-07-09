@@ -88,6 +88,7 @@
       <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </Compile>
     <Compile Include="src\database\QuoteLoader.vb" />
+    <Compile Include="src\database\QuoteSaver.vb" />
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </Compile>

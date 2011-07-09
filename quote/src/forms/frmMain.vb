@@ -167,8 +167,8 @@ Public Class frmMain
     End Sub
 
     Private Sub SaveTemplate()
-        Dim loader As New QuoteLoader
-        loader.Save(Me._ActiveQuote.QuoteHeader)
+        Dim saver As New QuoteSaver
+        saver.Save(Me._ActiveQuote.QuoteHeader)
         UpdateLastFilesMenu()
     End Sub
 

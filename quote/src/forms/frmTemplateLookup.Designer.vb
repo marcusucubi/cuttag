@@ -72,6 +72,7 @@ Partial Class frmTemplateLookup
         'ListBox1
         '
         Me.ListBox1.DataSource = Me.QuoteBindingSource
+        Me.ListBox1.DisplayMember = "ID"
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(12, 12)
         Me.ListBox1.Name = "ListBox1"
@@ -85,7 +86,10 @@ Partial Class frmTemplateLookup
         '
         'QuoteBindingSource
         '
-        Me.QuoteBindingSource.Filter = "IsQuote=false"
+        Me.QuoteBindingSource.DataMember = "_Quote"
+        Me.QuoteBindingSource.DataSource = Me.QuoteDataBase
+        Me.QuoteBindingSource.Filter = "IsQuote=False"
+        Me.QuoteBindingSource.Sort = "ID DESC"
         '
         '_QuoteTableAdapter
         '
@@ -106,7 +110,7 @@ Partial Class frmTemplateLookup
         Me.Name = "frmTemplateLookup"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Template Lookup"
+        Me.Text = "Open Template "
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
