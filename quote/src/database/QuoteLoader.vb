@@ -8,6 +8,28 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class QuoteLoader
 
+    Public Function Load(ByVal id As Long) As Model.QuoteHeader
+
+        Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
+        Dim table As New QuoteDataBase._QuoteDataTable
+        Dim q As New Model.QuoteHeader()
+
+        adaptor.FillByQuoteID(table, id)
+        If table.Rows.Count > 0 Then
+            Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
+            q = New Model.QuoteHeader(row.ID, row.IsQuote)
+            q.PrimaryProperties.CustomerName = row.CustomerName
+            q.PrimaryProperties.PartNumber = row.PartNumber
+            q.PrimaryProperties.RequestForQuoteNumber = row.RequestForQuoteNumber
+
+            LoadProperties(id, -1, q.ComputationProperties)
+            LoadProperties(id, -1, q.NonComputationProperties)
+            Me.LoadComponents(q)
+        End If
+
+        Return q
+    End Function
+
     Private Sub LoadComponents(ByVal q As QuoteHeader)
 
         Dim adaptor As New _QuoteDetailTableAdapter
@@ -50,28 +72,6 @@ Public Class QuoteLoader
             End If
         Next
     End Sub
-
-    Public Function Load(ByVal id As Long) As Model.QuoteHeader
-
-        Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
-        Dim table As New QuoteDataBase._QuoteDataTable
-        Dim q As New Model.QuoteHeader()
-
-        adaptor.FillByQuoteID(table, id)
-        If table.Rows.Count > 0 Then
-            Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-            q = New Model.QuoteHeader(row.ID)
-            q.PrimaryProperties.CustomerName = row.CustomerName
-            q.PrimaryProperties.PartNumber = row.PartNumber
-            q.PrimaryProperties.RequestForQuoteNumber = row.RequestForQuoteNumber
-
-            LoadProperties(id, -1, q.ComputationProperties)
-            LoadProperties(id, -1, q.NonComputationProperties)
-            Me.LoadComponents(q)
-        End If
-
-        Return q
-    End Function
 
     Private Sub LoadProperties(ByVal id As Integer, _
                                ByVal childId As Integer, _

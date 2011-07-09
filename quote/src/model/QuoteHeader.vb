@@ -12,14 +12,17 @@ Namespace Model
         Implements INotifyPropertyChanged
         Implements IEditableObject
 
+        Private _IsQuote As Boolean
+
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Public Sub New()
-            Me.New(0)
+            Me.New(0, False)
         End Sub
 
-        Public Sub New(ByVal id As Long)
+        Public Sub New(ByVal id As Long, ByVal IsQuote As Boolean)
             Me.PrimaryProperties = New PrimaryPropeties(Me, id)
+            Me._IsQuote = IsQuote
         End Sub
 
 #Region "Variables"
@@ -36,6 +39,12 @@ Namespace Model
         Public ReadOnly Property QuoteDetails As QuoteDetailCollection
             Get
                 Return _QuoteDetails
+            End Get
+        End Property
+
+        Public ReadOnly Property IsQuote As Boolean
+            Get
+                Return _IsQuote
             End Get
         End Property
 
