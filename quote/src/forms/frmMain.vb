@@ -85,6 +85,15 @@ Public Class frmMain
         LoadTemplate(My.Settings.LastTamplate1)
     End Sub
 
+    Private Sub NewQuoteMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteMenuItem.Click
+        Dim frm As New frmNewQuote
+        Dim result As DialogResult = frm.ShowDialog()
+        If result = DialogResult.OK Then
+            Dim saver As New QuoteSaver
+            'saver.Save()
+        End If
+    End Sub
+
     Private Sub CreateNewQuote()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
