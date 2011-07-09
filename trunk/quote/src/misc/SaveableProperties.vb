@@ -8,6 +8,7 @@ Public Class SaveableProperties
 
     Public Event SavableChange As SavableChangeHandler
 
+    <Browsable(False)>
     Public ReadOnly Property Dirty As Boolean
         Get
             Return _IsDirty
