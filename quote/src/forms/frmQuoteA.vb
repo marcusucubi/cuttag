@@ -76,6 +76,18 @@ Public Class frmQuoteA
         ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail = Nothing
     End Sub
 
+    Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        If Me.QuoteHeader.Dirty Then
+            Dim r As MsgBoxResult = MsgBox("Save", MsgBoxStyle.YesNoCancel)
+            If r = MsgBoxResult.Cancel Then
+                e.Cancel = True
+            ElseIf r = MsgBoxResult.Yes Then
+                Dim saver As New QuoteSaver
+                saver.Save(QuoteHeader)
+            End If
+        End If
+    End Sub
+
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
         ActiveTemplate.ActiveTemplate.QuoteHeader = Me._QuoteHeader
     End Sub
