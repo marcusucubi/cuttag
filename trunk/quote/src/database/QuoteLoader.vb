@@ -20,12 +20,12 @@ Public Class QuoteLoader
         If q.PrimaryProperties.QuoteNumnber > 0 Then
             adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, o.QuoteNumnber)
+                o.PartNumber, o.QuoteNumnber, True)
             id = o.QuoteNumnber
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(o.CustomerName, o.PartNumber, o.RequestForQuoteNumber)
+            adaptor.Insert(o.CustomerName, o.PartNumber, o.RequestForQuoteNumber, True)
             Dim cmd As OleDbCommand = New OleDbCommand("SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
             id = CInt(cmd.ExecuteScalar())
