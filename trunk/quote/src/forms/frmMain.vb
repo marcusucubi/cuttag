@@ -26,20 +26,7 @@ Public Class frmMain
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        If Me._ActiveQuote.QuoteHeader Is Nothing Then
-            SaveToolStripMenuItem.Enabled = False
-            SaveToolButton.Enabled = False
-        Else
-            SaveToolStripMenuItem.Enabled = True
-            SaveToolButton.Enabled = True
-        End If
-        If CanCreateQuote() Then
-            NewQuoteMenuItem.Enabled = True
-            NewQuoteButton.Enabled = True
-        Else
-            NewQuoteMenuItem.Enabled = False
-            NewQuoteButton.Enabled = False
-        End If
+        EnableButtons()
     End Sub
 
     Private Function CanCreateQuote() As Boolean
@@ -142,6 +129,23 @@ Public Class frmMain
         ShowComputationProperties()
     End Sub
 
+    Private Sub EnableButtons()
+        If Me._ActiveQuote.QuoteHeader Is Nothing Then
+            SaveToolStripMenuItem.Enabled = False
+            SaveToolButton.Enabled = False
+        Else
+            SaveToolStripMenuItem.Enabled = True
+            SaveToolButton.Enabled = True
+        End If
+        If CanCreateQuote() Then
+            NewQuoteMenuItem.Enabled = True
+            NewQuoteButton.Enabled = True
+        Else
+            NewQuoteMenuItem.Enabled = False
+            NewQuoteButton.Enabled = False
+        End If
+    End Sub
+
     Private Sub ShowComputationProperties()
         If (_Properties Is Nothing) Then
             _Properties = New frmComputationProperties
@@ -213,6 +217,7 @@ Public Class frmMain
         Dim saver As New QuoteSaver
         saver.Save(Me._ActiveQuote.QuoteHeader)
         UpdateLastFilesMenu()
+        EnableButtons()
     End Sub
 
     Private Sub LoadTemplate()
