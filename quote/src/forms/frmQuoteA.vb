@@ -9,7 +9,7 @@ Imports System.ComponentModel
 Public Class frmQuoteA
     Inherits DockContent
 
-    Private _QuoteHeader As New QuoteHeader
+    Private WithEvents _QuoteHeader As New QuoteHeader
     Private WithEvents _PrimaryProperties As PrimaryPropeties
 
     Public Sub New()
@@ -80,6 +80,10 @@ Public Class frmQuoteA
         ActiveTemplate.ActiveTemplate.QuoteHeader = Me._QuoteHeader
     End Sub
 
+    Private Sub _QuoteHeader_SavableChange(ByVal subject As SaveableProperties) Handles _QuoteHeader.SavableChange
+        UpdateText()
+    End Sub
+
     Private Sub _PrimaryProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _PrimaryProperties.PropertyChanged
         UpdateText()
     End Sub
@@ -91,6 +95,11 @@ Public Class frmQuoteA
             Else
                 Me.Text = "Template " & Me._PrimaryProperties.QuoteNumnber
             End If
+        Else
+            Me.Text = "New Template"
+        End If
+        If Me._QuoteHeader.Dirty Then
+            Me.Text = Me.Text + " *"
         End If
     End Sub
 

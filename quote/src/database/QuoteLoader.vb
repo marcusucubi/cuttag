@@ -27,6 +27,12 @@ Public Class QuoteLoader
             Me.LoadComponents(q)
         End If
 
+        q.ComputationProperties.ClearDirty()
+        q.NonComputationProperties.ClearDirty()
+        q.PrimaryProperties.ClearDirty()
+        q.ClearDirty()
+
+
         Return q
     End Function
 

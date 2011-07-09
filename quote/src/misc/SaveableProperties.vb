@@ -14,18 +14,22 @@ Public Class SaveableProperties
         End Get
     End Property
 
-    Protected Overridable Sub MakeDirty()
+    Public Overridable Sub MakeDirty()
         Me._IsDirty = True
         RaiseEvent SavableChange(Me)
     End Sub
 
-    Protected Overridable Sub ClearDirty()
+    Public Overridable Sub ClearDirty()
         Me._IsDirty = False
         RaiseEvent SavableChange(Me)
     End Sub
 
     Protected Sub AddDependent(ByVal subject As SaveableProperties)
         AddHandler subject.SavableChange, AddressOf OnSavableChanged
+    End Sub
+
+    Protected Sub RemoveDependent(ByVal subject As SaveableProperties)
+        RemoveHandler subject.SavableChange, AddressOf OnSavableChanged
     End Sub
 
     Protected Sub OnSavableChanged(ByVal subject As SaveableProperties) _

@@ -63,6 +63,7 @@ Namespace Model
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
+            MyBase.AddDependent(oo)
             SendEvents()
 
             Return oo
@@ -73,6 +74,7 @@ Namespace Model
                 Me.QuoteDetails.Remove(detail)
 
                 RemoveHandler detail.PropertyChanged, AddressOf ForwardEvent
+                MyBase.RemoveDependent(detail)
                 SendEvents()
             End If
         End Sub

@@ -4,6 +4,7 @@ Imports System.Reflection
 Namespace Model
 
     Public Class QuoteDetail
+        Inherits SaveableProperties
         Implements INotifyPropertyChanged
         Implements IEditableObject
 
@@ -95,6 +96,7 @@ Namespace Model
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
+            MyBase.MakeDirty()
         End Sub
 
         Public Sub BeginEdit() Implements System.ComponentModel.IEditableObject.BeginEdit
