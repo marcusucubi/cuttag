@@ -84,7 +84,7 @@ Partial Class frmQuoteLookup
         '
         Me.QuoteBindingSource.DataMember = "_Quote"
         Me.QuoteBindingSource.DataSource = Me.QuoteDataSet
-        Me.QuoteBindingSource.Filter = "IsQuote=true"
+        Me.QuoteBindingSource.Filter = "IsQuote=1"
         '
         'QuoteDataSet
         '

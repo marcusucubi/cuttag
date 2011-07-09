@@ -5,6 +5,8 @@ Public Class frmTemplateLookup
     Public Shared Property QuoteID As Long
 
     Private Sub frmQuoteOpen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'QuoteDataBase._Quote' table. You can move, or remove it, as needed.
+        Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
         Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
         Dim view As DataRowView = Me.ListBox1.SelectedItem
         If view IsNot Nothing Then
