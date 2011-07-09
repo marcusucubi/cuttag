@@ -35,6 +35,12 @@ Public Class frmQuoteA
         End Get
     End Property
 
+    Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowEnter
+        Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
+        Dim detail As QuoteDetail = view.DataBoundItem
+        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = detail
+    End Sub
+
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
         Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
         Dim name As String = c.DataPropertyName
@@ -82,12 +88,6 @@ Public Class frmQuoteA
         If Me._PrimaryProperties.QuoteNumnber > 0 Then
             Me.Text = "Template " & Me._PrimaryProperties.QuoteNumnber
         End If
-    End Sub
-
-    Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowEnter
-        Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
-        Dim detail As QuoteDetail = view.DataBoundItem
-        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = detail
     End Sub
 
 End Class

@@ -1,11 +1,11 @@
 ﻿Imports System.Windows.Forms
 
-Public Class frmQuoteLookup
+Public Class frmTemplateLookup
 
     Public Shared Property QuoteID As Long
 
     Private Sub frmQuoteOpen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me._QuoteTableAdapter.Fill(Me.QuoteDataSet._Quote)
+        Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
         Dim view As DataRowView = Me.ListBox1.SelectedItem
         If view IsNot Nothing Then
             QuoteID = view.Row(0)

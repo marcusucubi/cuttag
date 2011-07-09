@@ -9,6 +9,10 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 Public Class QuoteLoader
 
     Public Sub Save(ByVal q As Model.QuoteHeader)
+        Save(q, True)
+    End Sub
+
+    Public Sub Save(ByVal q As Model.QuoteHeader, ByVal IsQuote As Boolean)
 
         ' Ensure the properies are updated
         frmMain.frmMain.Focus()
@@ -25,7 +29,7 @@ Public Class QuoteLoader
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(o.CustomerName, o.PartNumber, o.RequestForQuoteNumber, True)
+            adaptor.Insert(o.CustomerName, o.PartNumber, o.RequestForQuoteNumber, IsQuote)
             Dim cmd As OleDbCommand = New OleDbCommand("SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
             id = CInt(cmd.ExecuteScalar())
@@ -42,6 +46,8 @@ Public Class QuoteLoader
         Me.SaveComponents(q)
         adaptor.Connection.Close()
 
+        My.Settings.LastTamplate1 = _
+            ActiveQuote.ActiveQuote.QuoteHeader.PrimaryProperties.QuoteNumnber
     End Sub
 
     Private Sub SaveComponents(ByVal q As QuoteHeader)
