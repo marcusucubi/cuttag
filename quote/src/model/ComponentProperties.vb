@@ -4,6 +4,7 @@ Imports System.Reflection
 
 Namespace Model
     Public Class ComponentProperties
+        Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
         Private _QuoteDetail As QuoteDetail
@@ -20,7 +21,6 @@ Namespace Model
                 End If
             End If
         End Sub
-
 
         <DisplayName("Total Component Time")>
         Public ReadOnly Property TotalComponentTime() As Integer
@@ -58,6 +58,7 @@ Namespace Model
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
             Me._QuoteDetail.QuoteHeader.ComputationProperties.SendEvents()
+            MyBase.MakeDirty()
         End Sub
 
     End Class

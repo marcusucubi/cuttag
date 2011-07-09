@@ -5,6 +5,7 @@ Imports System.Reflection
 Namespace Model
 
     Public Class PrimaryPropeties
+        Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
         Private _QuoteHeader As QuoteHeader
@@ -49,6 +50,7 @@ Namespace Model
 
         Friend Sub SendEvents()
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
+            MyBase.MakeDirty()
         End Sub
 
     End Class

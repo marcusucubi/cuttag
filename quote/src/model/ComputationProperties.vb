@@ -5,6 +5,7 @@ Imports System.Reflection
 Namespace Model
 
     Public Class ComputationProperties
+        Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
         Public Sub New(ByVal QuoteHeader As QuoteHeader)
@@ -435,6 +436,7 @@ Namespace Model
             info = GetType(QuoteHeader).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
+                MyBase.MakeDirty()
             Next
         End Sub
 

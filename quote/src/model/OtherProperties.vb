@@ -5,6 +5,7 @@ Imports System.Reflection
 Namespace Model
 
     Public Class OtherProperties
+        Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
         Private _QuoteHeader As QuoteHeader
@@ -56,6 +57,7 @@ Namespace Model
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
+            MyBase.MakeDirty()
         End Sub
 
     End Class
