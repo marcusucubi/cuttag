@@ -4,7 +4,7 @@ Imports DCS.Quote.Model
 Public Class frmComputationProperties
     Inherits DockContent
 
-    Private WithEvents _ActiveQuote As ActiveQuote
+    Private WithEvents _ActiveQuote As ActiveTemplate
     Private WithEvents _QuoteProperties As ComputationProperties
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _QuoteProperties.PropertyChanged
@@ -18,14 +18,14 @@ Public Class frmComputationProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveQuote.ActiveQuote
+        _ActiveQuote = ActiveTemplate.ActiveTemplate
         UpdateProperties()
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveQuote.ActiveQuote.QuoteHeader IsNot Nothing Then
-            Me.PropertyGrid1.SelectedObject = ActiveQuote.ActiveQuote.QuoteHeader.ComputationProperties
-            _QuoteProperties = ActiveQuote.ActiveQuote.QuoteHeader.ComputationProperties
+        If ActiveTemplate.ActiveTemplate.QuoteHeader IsNot Nothing Then
+            Me.PropertyGrid1.SelectedObject = ActiveTemplate.ActiveTemplate.QuoteHeader.ComputationProperties
+            _QuoteProperties = ActiveTemplate.ActiveTemplate.QuoteHeader.ComputationProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
             _QuoteProperties = Nothing
@@ -33,7 +33,7 @@ Public Class frmComputationProperties
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveQuote.ActiveQuote
+        _ActiveQuote = ActiveTemplate.ActiveTemplate
         UpdateProperties()
     End Sub
 
