@@ -38,7 +38,7 @@ Public Class frmQuoteA
     Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowEnter
         Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
         Dim detail As QuoteDetail = view.DataBoundItem
-        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = detail
+        ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail = detail
     End Sub
 
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
@@ -68,16 +68,16 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub frmQuoteA_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
-        ActiveQuote.ActiveQuote.QuoteHeader = Me._QuoteHeader
+        ActiveTemplate.ActiveTemplate.QuoteHeader = Me._QuoteHeader
     End Sub
 
     Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
-        ActiveQuote.ActiveQuote.QuoteHeader = Nothing
-        ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail = Nothing
+        ActiveTemplate.ActiveTemplate.QuoteHeader = Nothing
+        ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail = Nothing
     End Sub
 
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
-        ActiveQuote.ActiveQuote.QuoteHeader = Me._QuoteHeader
+        ActiveTemplate.ActiveTemplate.QuoteHeader = Me._QuoteHeader
     End Sub
 
     Private Sub _PrimaryProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _PrimaryProperties.PropertyChanged

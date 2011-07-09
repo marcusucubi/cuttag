@@ -47,7 +47,7 @@ Public Class QuoteLoader
         adaptor.Connection.Close()
 
         My.Settings.LastTamplate1 = _
-            ActiveQuote.ActiveQuote.QuoteHeader.PrimaryProperties.QuoteNumnber
+            ActiveTemplate.ActiveTemplate.QuoteHeader.PrimaryProperties.QuoteNumnber
     End Sub
 
     Private Sub SaveComponents(ByVal q As QuoteHeader)

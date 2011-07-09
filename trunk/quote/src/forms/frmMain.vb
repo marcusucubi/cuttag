@@ -11,15 +11,14 @@ Public Class frmMain
     Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
-    Private WithEvents _ActiveQuote As ActiveQuote
-    Private WithEvents menuLastTemplate As New ToolStripMenuItem
+    Private WithEvents _ActiveQuote As ActiveTemplate
 
     Public Shared Property frmMain As frmMain
 
     Public Sub New()
         InitializeComponent()
         frmMain = Me
-        Me._ActiveQuote = ActiveQuote.ActiveQuote
+        Me._ActiveQuote = ActiveTemplate.ActiveTemplate
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -30,9 +29,11 @@ Public Class frmMain
         If Me._ActiveQuote.QuoteHeader Is Nothing Then
             SaveToolStripMenuItem.Enabled = False
             SaveToolButton.Enabled = False
+            NewQuoteMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             SaveToolButton.Enabled = True
+            NewQuoteMenuItem.Enabled = True
         End If
     End Sub
 

@@ -6,11 +6,11 @@ Public Class frmDetailProperties
 
     Private WithEvents _WireProperties As WireProperties
     Private WithEvents _ComponentProperties As ComponentProperties
-    Private WithEvents _Active As ActiveQuoteDetail
+    Private WithEvents _Active As ActiveTemplateDetail
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
 
-        Dim detail As QuoteDetail = ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail
+        Dim detail As QuoteDetail = ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail
         If detail IsNot Nothing Then
             Dim o = detail.QuoteDetailProperties
             If TypeOf o Is WireProperties Then
@@ -36,7 +36,7 @@ Public Class frmDetailProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _Active = ActiveQuoteDetail.ActiveQuoteDetail
+        _Active = ActiveTemplateDetail.ActiveTemplateDetail
         UpdateProperties()
     End Sub
 
@@ -45,9 +45,9 @@ Public Class frmDetailProperties
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail IsNot Nothing Then
+        If ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail IsNot Nothing Then
 
-            Dim o = ActiveQuoteDetail.ActiveQuoteDetail.QuoteDetail.QuoteDetailProperties
+            Dim o = ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail.QuoteDetailProperties
             If TypeOf o Is WireProperties Then
                 _WireProperties = o
                 _ComponentProperties = Nothing

@@ -1,12 +1,12 @@
 ﻿Imports System.ComponentModel
 Imports DCS.Quote.Model
 
-Public Class ActiveQuoteDetail
+Public Class ActiveTemplateDetail
     Implements INotifyPropertyChanged
 
     Private _QuoteDetail As QuoteDetail
 
-    Public Shared ReadOnly ActiveQuoteDetail As ActiveQuoteDetail = New ActiveQuoteDetail
+    Public Shared ReadOnly ActiveTemplateDetail As ActiveTemplateDetail = New ActiveTemplateDetail
 
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged
