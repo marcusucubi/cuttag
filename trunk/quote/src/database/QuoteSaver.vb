@@ -44,6 +44,9 @@ Public Class QuoteSaver
             newId = CInt(cmd.ExecuteScalar())
             adaptor.Transaction.Commit()
             adaptor.Connection.Close()
+            If id = 0 Then
+                q.PrimaryProperties.SetID(newId)
+            End If
         End If
 
         adaptor.Connection.Open()
@@ -57,6 +60,12 @@ Public Class QuoteSaver
 
         My.Settings.LastTamplate1 = _
             ActiveTemplate.ActiveTemplate.QuoteHeader.PrimaryProperties.QuoteNumnber
+
+        q.ComputationProperties.ClearDirty()
+        q.NonComputationProperties.ClearDirty()
+        q.PrimaryProperties.ClearDirty()
+        q.ClearDirty()
+
         Return newId
     End Function
 
@@ -77,6 +86,7 @@ Public Class QuoteSaver
             adaptor.Connection.Close()
 
             Me.SaveProperties(quoteId, id, detail.QuoteDetailProperties, Nothing)
+            detail.ClearDirty()
         Next
 
     End Sub
