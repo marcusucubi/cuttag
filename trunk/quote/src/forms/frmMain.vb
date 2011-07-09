@@ -76,6 +76,10 @@ Public Class frmMain
         LoadTemplate()
     End Sub
 
+    Private Sub LoadQuoe_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteItem1.Click
+        LoadQuote()
+    End Sub
+
     Private Sub LoadLastToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadLastToolStripMenuItem.Click
         LoadTemplate(My.Settings.LastTamplate1)
     End Sub
@@ -164,19 +168,40 @@ Public Class frmMain
     Private Sub SaveTemplate()
         Dim loader As New QuoteLoader
         loader.Save(Me._ActiveQuote.QuoteHeader)
-
-        My.Settings.LastTamplate1 = Me._ActiveQuote.QuoteHeader.PrimaryProperties.QuoteNumnber
         UpdateLastFilesMenu()
     End Sub
 
     Private Sub LoadTemplate()
-        Dim r As DialogResult = frmQuoteLookup.ShowDialog
+        Dim r As DialogResult = frmTemplateLookup.ShowDialog
         If r = DialogResult.OK Then
-            LoadTemplate(frmQuoteLookup.QuoteID)
+            LoadTemplate(frmTemplateLookup.QuoteID)
         End If
     End Sub
 
     Private Sub LoadTemplate(ByVal id As Integer)
+
+        If IsLoaded(id) Then
+            Return
+        End If
+
+        Dim loader As New QuoteLoader
+        Dim q As Model.QuoteHeader
+
+        q = loader.Load(id)
+        Dim ChildForm As New frmQuoteA(q)
+        ChildForm.MdiParent = Me
+        ChildForm.Show(Me.DockPanel1)
+        Me.DisplayViews()
+    End Sub
+
+    Private Sub LoadQuote()
+        Dim r As DialogResult = frmQuoteLookup.ShowDialog
+        If r = DialogResult.OK Then
+            LoadQuote(frmQuoteLookup.QuoteID)
+        End If
+    End Sub
+
+    Private Sub LoadQuote(ByVal id As Integer)
 
         If IsLoaded(id) Then
             Return
