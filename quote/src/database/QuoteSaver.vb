@@ -8,58 +8,69 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class QuoteSaver
 
-    Public Sub Save(ByVal q As Model.QuoteHeader)
-        Save(q, True)
-    End Sub
+    Public Function Save(ByVal q As Model.QuoteHeader) As Integer
+        Return Save(q, False)
+    End Function
 
-    Public Sub Save(ByVal q As Model.QuoteHeader, ByVal IsQuote As Boolean)
+    Public Function Save(ByVal q As Model.QuoteHeader, _
+                         ByVal IsQuote As Boolean) _
+                        As Integer
 
         ' Ensure the properies are updated
         frmMain.frmMain.Focus()
 
-        Dim id As Integer
+        Dim o As PrimaryPropeties = q.PrimaryProperties
+
+        Dim newId As Integer
+        Dim id As Integer = o.QuoteNumnber
+        If IsQuote Then
+            id = 0
+        End If
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
-        Dim o As PrimaryPropeties = q.PrimaryProperties
-        If q.PrimaryProperties.QuoteNumnber > 0 Then
+        If id > 0 Then
             adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, o.QuoteNumnber, True)
-            id = o.QuoteNumnber
+                o.PartNumber, o.QuoteNumnber, False)
+            newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(o.CustomerName, o.PartNumber, o.RequestForQuoteNumber, IsQuote)
-            Dim cmd As OleDbCommand = New OleDbCommand("SELECT @@IDENTITY", adaptor.Connection)
+            adaptor.Insert(o.CustomerName, _
+                o.PartNumber, o.RequestForQuoteNumber, IsQuote)
+            Dim cmd As OleDbCommand = New OleDbCommand( _
+                "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
-            id = CInt(cmd.ExecuteScalar())
+            newId = CInt(cmd.ExecuteScalar())
             adaptor.Transaction.Commit()
             adaptor.Connection.Close()
-            o.SetID(id)
         End If
 
         adaptor.Connection.Open()
-        Me.DeleteProperties(id)
-        Me.SaveProperties(id, 0, q.NonComputationProperties, Nothing)
-        Me.SaveProperties(id, 0, q.ComputationProperties, Nothing)
-        Me.DeleteComponents(id)
-        Me.SaveComponents(q)
+        Me.DeleteProperties(newId)
+        Dim SaveAll As Boolean = IsQuote
+        Me.SaveProperties(newId, 0, q.NonComputationProperties, SaveAll)
+        Me.SaveProperties(newId, 0, q.ComputationProperties, SaveAll)
+        Me.DeleteComponents(newId)
+        Me.SaveComponents(q, newId)
         adaptor.Connection.Close()
 
         My.Settings.LastTamplate1 = _
             ActiveTemplate.ActiveTemplate.QuoteHeader.PrimaryProperties.QuoteNumnber
-    End Sub
+        Return newId
+    End Function
 
-    Private Sub SaveComponents(ByVal q As QuoteHeader)
+    Private Sub SaveComponents(ByVal q As QuoteHeader, ByVal quoteId As Integer)
 
         Dim adaptor As New _QuoteDetailTableAdapter
-        Dim quoteId As Integer = q.PrimaryProperties.QuoteNumnber
-        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(quoteId)
+        Dim oldId As Integer = q.PrimaryProperties.QuoteNumnber
+        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(oldId)
         For Each detail As QuoteDetail In q.QuoteDetails
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(q.PrimaryProperties.QuoteNumnber, detail.Qty, detail.ProductCode)
-            Dim cmd As OleDbCommand = New OleDbCommand("SELECT @@IDENTITY", adaptor.Connection)
+            adaptor.Insert(quoteId, detail.Qty, detail.ProductCode)
+            Dim cmd As OleDbCommand = New OleDbCommand( _
+                "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
             Dim id As Integer = CInt(cmd.ExecuteScalar())
             adaptor.Transaction.Commit()
@@ -73,15 +84,17 @@ Public Class QuoteSaver
     Private Sub SaveProperties(ByVal id As Integer, _
                                ByVal childId As Integer, _
                                ByVal obj As Object, _
-                               ByRef Transaction As OleDbTransaction)
+                               ByVal SaveAll As Boolean)
 
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
         For Each p As PropertyInfo In props
 
-            If Not p.CanWrite Then
-                Continue For
+            If SaveAll = False Then
+                If Not p.CanWrite Then
+                    Continue For
+                End If
             End If
 
             Dim s As String = Nothing

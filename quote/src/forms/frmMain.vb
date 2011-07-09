@@ -30,18 +30,28 @@ Public Class frmMain
             SaveToolStripMenuItem.Enabled = False
             SaveToolButton.Enabled = False
             NewQuoteMenuItem.Enabled = False
+            NewQuoteButton.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             SaveToolButton.Enabled = True
             NewQuoteMenuItem.Enabled = True
+            NewQuoteButton.Enabled = True
         End If
     End Sub
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
-        CreateNewQuote()
+        CreateNewTemplate()
     End Sub
 
     Private Sub menuNewQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles menuNewQuote.Click
+        CreateNewTemplate()
+    End Sub
+
+    Private Sub NewQuoteMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteMenuItem.Click
+        CreateNewQuote()
+    End Sub
+
+    Private Sub NewQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteButton.Click
         CreateNewQuote()
     End Sub
 
@@ -77,7 +87,11 @@ Public Class frmMain
         LoadTemplate()
     End Sub
 
-    Private Sub LoadQuoe_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteItem1.Click
+    Private Sub LoadQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteItem1.Click
+        LoadQuote()
+    End Sub
+
+    Private Sub LoadQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteButton.Click
         LoadQuote()
     End Sub
 
@@ -85,16 +99,19 @@ Public Class frmMain
         LoadTemplate(My.Settings.LastTamplate1)
     End Sub
 
-    Private Sub NewQuoteMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteMenuItem.Click
+    Private Sub CreateNewQuote()
         Dim frm As New frmNewQuote
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
             Dim saver As New QuoteSaver
-            'saver.Save()
+            Dim id As Integer = saver.Save(frm.QuoteHeader, True)
+            If (id > 0) Then
+                LoadQuote(id)
+            End If
         End If
     End Sub
 
-    Private Sub CreateNewQuote()
+    Private Sub CreateNewTemplate()
         Dim ChildForm As New frmQuoteA
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
