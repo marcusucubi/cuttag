@@ -9,6 +9,7 @@ Namespace Model
     ''' <remarks>
     ''' </remarks>
     Public Class QuoteHeader
+        Inherits SaveableProperties
         Implements INotifyPropertyChanged
         Implements IEditableObject
 
@@ -23,6 +24,10 @@ Namespace Model
         Public Sub New(ByVal id As Long, ByVal IsQuote As Boolean)
             Me.PrimaryProperties = New PrimaryPropeties(Me, id)
             Me._IsQuote = IsQuote
+
+            MyBase.AddDependent(ComputationProperties)
+            MyBase.AddDependent(NonComputationProperties)
+            MyBase.AddDependent(PrimaryProperties)
         End Sub
 
 #Region "Variables"
@@ -31,7 +36,7 @@ Namespace Model
 
 #Region "Properties"
 
-        Public Property ComputationProperties As New ComputationProperties(Me)
+        Public Property ComputationProperties As new ComputationProperties(Me)
         Public Property NonComputationProperties As New OtherProperties(Me)
         Public Property WeightProperties As New Weights(Me)
         Public Property PrimaryProperties As PrimaryPropeties
@@ -72,15 +77,6 @@ Namespace Model
             End If
         End Sub
 
-        Private Sub SendEvents()
-            Dim info() As PropertyInfo
-            info = GetType(QuoteHeader).GetProperties()
-            For Each i As PropertyInfo In info
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
-            Next
-            Me.ComputationProperties.SendEvents()
-        End Sub
-
         Private Sub ForwardEvent(ByVal sender, ByVal e)
             RaiseEvent PropertyChanged(sender, e)
         End Sub
@@ -98,7 +94,18 @@ Namespace Model
         Public Sub EndEdit() Implements System.ComponentModel.IEditableObject.EndEdit
         End Sub
 
+        Private Sub SendEvents()
+            Dim info() As PropertyInfo
+            info = GetType(QuoteHeader).GetProperties()
+            For Each i As PropertyInfo In info
+                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
+            Next
+            Me.ComputationProperties.SendEvents()
+            MyBase.MakeDirty()
+        End Sub
+
 #End Region
+
 
     End Class
 End Namespace

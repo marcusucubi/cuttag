@@ -161,6 +161,7 @@
     <Compile Include="src\model\ComponentProperties.vb" />
     <Compile Include="src\model\OtherProperties.vb" />
     <Compile Include="src\model\PrimaryPropeties.vb" />
+    <Compile Include="src\misc\SaveableProperties.vb" />
     <Compile Include="src\model\WireProperties.vb" />
     <Compile Include="src\model\Shipping.vb" />
     <Compile Include="src\model\ComputationProperties.vb" />
