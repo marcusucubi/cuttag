@@ -29,15 +29,32 @@ Public Class frmMain
         If Me._ActiveQuote.QuoteHeader Is Nothing Then
             SaveToolStripMenuItem.Enabled = False
             SaveToolButton.Enabled = False
-            NewQuoteMenuItem.Enabled = False
-            NewQuoteButton.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             SaveToolButton.Enabled = True
+        End If
+        If CanCreateQuote() Then
             NewQuoteMenuItem.Enabled = True
             NewQuoteButton.Enabled = True
+        Else
+            NewQuoteMenuItem.Enabled = False
+            NewQuoteButton.Enabled = False
         End If
     End Sub
+
+    Private Function CanCreateQuote() As Boolean
+        Dim result As Boolean
+        If Me._ActiveQuote.QuoteHeader IsNot Nothing Then
+            Dim id As Integer
+            id = Me._ActiveQuote.QuoteHeader.PrimaryProperties.QuoteNumnber
+            Dim IsQuote As Boolean
+            IsQuote = Me._ActiveQuote.QuoteHeader.IsQuote
+            If id > 0 And Not IsQuote Then
+                result = True
+            End If
+        End If
+        Return result
+    End Function
 
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         CreateNewTemplate()
