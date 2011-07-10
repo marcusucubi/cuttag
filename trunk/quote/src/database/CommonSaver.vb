@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Common
 Imports DCS.Quote.Model
 Imports DCS.Quote.QuoteDataBase
 Imports System.Reflection
@@ -64,7 +64,7 @@ Public Class CommonSaver
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim oldId As Integer = q.PrimaryProperties.CommonID
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(oldId)
-        For Each detail As Detail In q.Details
+        For Each detail As Common.Detail In q.Details
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(quoteId, detail.Qty, detail.ProductCode)
