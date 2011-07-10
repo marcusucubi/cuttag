@@ -89,6 +89,8 @@
     </Compile>
     <Compile Include="src\database\QuoteLoader.vb" />
     <Compile Include="src\database\QuoteSaver.vb" />
+    <Compile Include="src\database\TemplateLoader.vb" />
+    <Compile Include="src\database\TemplateSaver.vb" />
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </Compile>
@@ -155,9 +157,18 @@
     <Compile Include="src\forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\misc\ActiveTemplateDetail.vb" />
+    <Compile Include="src\misc\ActiveDetail.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
-    <Compile Include="src\misc\ActiveTemplate.vb" />
+    <Compile Include="src\misc\ActiveHeader.vb" />
+    <Compile Include="src\model\common\ComponentProperties.vb" />
+    <Compile Include="src\model\common\ComputationProperties.vb" />
+    <Compile Include="src\model\common\Detail.vb" />
+    <Compile Include="src\model\common\DetailCollection.vb" />
+    <Compile Include="src\model\common\Header.vb" />
+    <Compile Include="src\model\common\OtherProperties.vb" />
+    <Compile Include="src\model\common\PrimaryPropeties.vb" />
+    <Compile Include="src\model\common\Weights.vb" />
+    <Compile Include="src\model\common\WireProperties.vb" />
     <Compile Include="src\model\quote\ComponentProperties.vb" />
     <Compile Include="src\model\quote\OtherProperties.vb" />
     <Compile Include="src\model\quote\PrimaryPropeties.vb" />
@@ -207,7 +218,6 @@
     </Compile>
     <Compile Include="src\misc\Quote.vb" />
     <Compile Include="src\model\Product.vb" />
-    <Compile Include="src\model\quote\Weights.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
@@ -263,6 +273,8 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\DCS.Quote.Common.Detail.datasource" />
+    <None Include="My Project\DataSources\DCS.Quote.Common.Header.datasource" />
     <None Include="My Project\DataSources\DCS.Quote.Model.EditableQuoteHeader.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

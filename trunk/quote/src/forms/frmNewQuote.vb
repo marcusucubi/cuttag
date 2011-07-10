@@ -1,15 +1,15 @@
 ﻿Imports System.Windows.Forms
 Imports DCS.Quote.Model
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Model.Template
 
 Public Class frmNewQuote
 
-    Public Property QuoteHeader As Header
+    Public Property Header As Header
 
     Private Sub frmNewQuote_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim q As Header = ActiveTemplate.ActiveTemplate.QuoteHeader
-        Me.txtTemplateNumber.Text = q.PrimaryProperties.QuoteNumnber
-        QuoteHeader = q
+        Dim q As Header = ActiveHeader.ActiveHeader.Header
+        Me.txtTemplateNumber.Text = q.PrimaryProperties.CommonQuoteNumber
+        Header = q
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click

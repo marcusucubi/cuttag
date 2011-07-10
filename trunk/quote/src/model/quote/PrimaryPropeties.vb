@@ -5,8 +5,7 @@ Imports System.Reflection
 Namespace Model.Quote
 
     Public Class PrimaryPropeties
-        Inherits SaveableProperties
-        Implements INotifyPropertyChanged
+        Inherits Common.PrimaryPropeties
 
         Private _QuoteHeader As Header
         Private _QuoteNumnber As Integer
@@ -17,42 +16,33 @@ Namespace Model.Quote
             CustomerName = "Caterpillar Inc."
         End Sub
 
-        Public Event PropertyChanged(ByVal sender As Object, _
-                                     ByVal e As PropertyChangedEventArgs) _
-        Implements INotifyPropertyChanged.PropertyChanged
-
         <CategoryAttribute("Quote"), _
         DisplayName("Customer"), _
         DescriptionAttribute("The customer name")> _
-        Public Property CustomerName As String = ""
+        Public Overloads Property CustomerName As String = ""
 
         <CategoryAttribute("Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _
-        Public Property RequestForQuoteNumber As String = ""
+        Public Overloads Property RequestForQuoteNumber As String = ""
 
         <CategoryAttribute("Quote"), _
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _
-        Public Property PartNumber As String = ""
+        Public Overloads Property PartNumber As String = ""
 
         <CategoryAttribute("Quote"), _
         DisplayName("QuoteNumnber"), _
         DescriptionAttribute("Quote Numnber")> _
-        Public ReadOnly Property QuoteNumnber As Integer
+        Public Overloads ReadOnly Property QuoteNumnber As Integer
             Get
                 Return Me._QuoteNumnber
             End Get
         End Property
 
-        Public Sub SetID(ByVal id As Integer)
+        Public Overrides Sub SetID(ByVal id As Integer)
             Me._QuoteNumnber = id
             SendEvents()
-        End Sub
-
-        Friend Sub SendEvents()
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
-            MyBase.MakeDirty()
         End Sub
 
     End Class

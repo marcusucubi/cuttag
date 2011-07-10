@@ -5,8 +5,8 @@ Imports DCS.Quote.Model.Quote
 Public Class frmWeights
     Inherits DockContent
 
-    Private WithEvents _ActiveQuote As ActiveTemplate
-    Private WithEvents _GageProperties As Weights
+    Private WithEvents _ActiveQuote As ActiveHeader
+    Private WithEvents _GageProperties As Common.Weights
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _GageProperties.PropertyChanged
         Me.PropertyGrid1.Refresh()
@@ -19,14 +19,14 @@ Public Class frmWeights
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveTemplate.ActiveTemplate
+        _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveTemplate.ActiveTemplate.QuoteHeader IsNot Nothing Then
-            Me.PropertyGrid1.SelectedObject = ActiveTemplate.ActiveTemplate.QuoteHeader.WeightProperties
-            _GageProperties = ActiveTemplate.ActiveTemplate.QuoteHeader.WeightProperties
+        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
+            Me.PropertyGrid1.SelectedObject = ActiveHeader.ActiveHeader.Header.WeightProperties
+            _GageProperties = ActiveHeader.ActiveHeader.Header.WeightProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
             _GageProperties = Nothing
@@ -34,7 +34,7 @@ Public Class frmWeights
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveTemplate.ActiveTemplate
+        _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
     End Sub
 

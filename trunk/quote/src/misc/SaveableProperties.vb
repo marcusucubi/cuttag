@@ -1,6 +1,11 @@
 ﻿Imports System.ComponentModel
+Imports System.Reflection
 
 Public Class SaveableProperties
+    Implements INotifyPropertyChanged
+
+    Public Event PropertyChanged As PropertyChangedEventHandler _
+        Implements INotifyPropertyChanged.PropertyChanged
 
     Private _IsDirty As Boolean
 
@@ -39,6 +44,15 @@ Public Class SaveableProperties
             Me._IsDirty = True
             RaiseEvent SavableChange(Me)
         End If
+    End Sub
+
+    Friend Sub SendEvents()
+        Dim info() As PropertyInfo
+        info = Me.GetType().GetProperties()
+        For Each i As PropertyInfo In info
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
+        Next
+        MakeDirty()
     End Sub
 
 End Class
