@@ -10,7 +10,9 @@ Namespace Model.Quote
 
         Private _IsQuote As Boolean
 
-        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        Public Event PropertyChanged(ByVal sender As Object, _
+                                     ByVal e As PropertyChangedEventArgs) _
+                                 Implements INotifyPropertyChanged.PropertyChanged
 
         Public Sub New()
             Me.New(0, False)

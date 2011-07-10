@@ -17,7 +17,9 @@ Namespace Model.Quote
             CustomerName = "Caterpillar Inc."
         End Sub
 
-        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        Public Event PropertyChanged(ByVal sender As Object, _
+                                     ByVal e As PropertyChangedEventArgs) _
+            Implements INotifyPropertyChanged.PropertyChanged
 
         <CategoryAttribute("Quote"), _
         DisplayName("Customer"), _
