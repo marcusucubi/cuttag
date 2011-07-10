@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports DCS.Quote.Model.Quote
 Imports DCS.Quote.Model
 Imports DCS.Quote.QuoteDataBase
 Imports System.Reflection
@@ -8,18 +9,18 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class QuoteSaver
 
-    Public Function Save(ByVal q As Model.QuoteHeader) As Integer
+    Public Function Save(ByVal q As Model.Quote.QuoteHeader) As Integer
         Return Save(q, False)
     End Function
 
-    Public Function Save(ByVal q As Model.QuoteHeader, _
+    Public Function Save(ByVal q As Model.Quote.QuoteHeader, _
                          ByVal IsQuote As Boolean) _
                         As Integer
 
         ' Ensure the properies are updated
         frmMain.frmMain.Focus()
 
-        Dim o As PrimaryPropeties = q.PrimaryProperties
+        Dim o As Model.Quote.PrimaryPropeties = q.PrimaryProperties
 
         Dim newId As Integer
         Dim id As Integer = o.QuoteNumnber

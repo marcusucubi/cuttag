@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports DCS.Quote.Model
 Imports System.Reflection
+Imports DCS.Quote.Model.Quote
 
 Namespace Model
     Public Class Weights
@@ -39,7 +40,7 @@ Namespace Model
         Private Const CATAGORY_2 As String = "Wire Length (2)"
         Private Const CATAGORY_3 As String = "Wire Length (3)"
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader)
+        Public Sub New(ByVal QuoteHeader As Quote.QuoteHeader)
             _QuoteHeader = QuoteHeader
         End Sub
 

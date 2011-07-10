@@ -1,5 +1,6 @@
 ﻿Imports DCS.Quote.Model
 Imports WeifenLuo.WinFormsUI.Docking
+Imports DCS.Quote.Model.Quote
 
 Public Class frmDetailProperties
     Inherits DockContent

@@ -5,6 +5,7 @@ Imports System.Data.Common
 Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 Imports System.ComponentModel
+Imports DCS.Quote.Model.Quote
 
 Public Class frmQuoteA
     Inherits DockContent
@@ -16,7 +17,7 @@ Public Class frmQuoteA
         Me.New(Nothing)
     End Sub
 
-    Public Sub New(ByVal q As Model.QuoteHeader)
+    Public Sub New(ByVal q As Model.Quote.QuoteHeader)
         InitializeComponent()
         If q IsNot Nothing Then
             Me._QuoteHeader = q

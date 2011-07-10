@@ -2,7 +2,7 @@
 Imports DCS.Quote.Model
 Imports System.Reflection
 
-Namespace Model
+Namespace Model.Quote
     Public Class ComponentProperties
         Inherits SaveableProperties
         Implements INotifyPropertyChanged

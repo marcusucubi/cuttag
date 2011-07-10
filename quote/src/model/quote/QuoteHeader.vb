@@ -1,13 +1,8 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Namespace Model
+Namespace Model.Quote
 
-    ''' <summary>
-    ''' Represents the quote header
-    ''' </summary>
-    ''' <remarks>
-    ''' </remarks>
     Public Class QuoteHeader
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
@@ -36,7 +31,7 @@ Namespace Model
 
 #Region "Properties"
 
-        Public Property ComputationProperties As new ComputationProperties(Me)
+        Public Property ComputationProperties As New ComputationProperties(Me)
         Public Property NonComputationProperties As New OtherProperties(Me)
         Public Property WeightProperties As New Weights(Me)
         Public Property PrimaryProperties As PrimaryPropeties

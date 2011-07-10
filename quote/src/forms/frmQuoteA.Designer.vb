@@ -1,4 +1,5 @@
 ﻿Imports DCS.Quote.Model
+Imports DCS.Quote.Model.Quote
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmQuoteA
@@ -197,11 +198,11 @@ Partial Class frmQuoteA
         '
         'DetailSource
         '
-        Me.DetailSource.DataSource = GetType(DCS.Quote.Model.QuoteDetail)
+        Me.DetailSource.DataSource = GetType(QuoteDetail)
         '
         'HeaderSource
         '
-        Me.HeaderSource.DataSource = GetType(DCS.Quote.Model.QuoteHeader)
+        Me.HeaderSource.DataSource = GetType(Model.Quote.QuoteHeader)
         '
         'frmQuoteA
         '

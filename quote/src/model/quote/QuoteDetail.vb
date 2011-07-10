@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Namespace Model
+Namespace Model.Quote
 
     Public Class QuoteDetail
         Inherits SaveableProperties

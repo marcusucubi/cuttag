@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
 Imports DCS.Quote.Model
+Imports DCS.Quote.Model.Quote
 
 Public Class frmNewQuote
 
