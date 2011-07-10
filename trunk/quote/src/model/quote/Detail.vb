@@ -6,26 +6,12 @@ Namespace Model.Quote
     Public Class Detail
         Inherits Common.Detail
 
-        Private _Quantity As Decimal
-        Private _Product As Product
+        Protected _Quantity As Decimal
         Private _WireProperties As New WireProperties(Me)
         Private _ComponentProperties As New ComponentProperties
 
         <BrowsableAttribute(False)>
         Property QuoteHeader As Header
-
-        Public Overloads ReadOnly Property TotalCost As Decimal
-            Get
-                Return Me.UnitCost * Me.Qty
-            End Get
-        End Property
-
-        <BrowsableAttribute(False)>
-        Public Overloads ReadOnly Property Product As Product
-            Get
-                Return _Product
-            End Get
-        End Property
 
         <BrowsableAttribute(False)>
         Public Overrides ReadOnly Property QuoteDetailProperties As Object
@@ -34,25 +20,6 @@ Namespace Model.Quote
                     Return _WireProperties
                 End If
                 Return _ComponentProperties
-            End Get
-        End Property
-
-        Public Overloads ReadOnly Property ProductCode As String
-            Get
-                Return Product.Code.Trim
-            End Get
-        End Property
-
-        Public Overloads ReadOnly Property UnitCost As Decimal
-            Get
-                Return Product.UnitCost
-            End Get
-        End Property
-
-        <BrowsableAttribute(True), DisplayName("Type")>
-        Public Overloads ReadOnly Property DisplayableProductClass As String
-            Get
-                Return IIf(Product.UnitOfMeasure = UnitOfMeasure.BY_EACH, "Component", "Wire")
             End Get
         End Property
 
