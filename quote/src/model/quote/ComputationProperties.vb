@@ -12,7 +12,9 @@ Namespace Model.Quote
             _QuoteHeader = QuoteHeader
         End Sub
 
-        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        Public Event PropertyChanged(ByVal sender As Object, _
+                                     ByVal e As PropertyChangedEventArgs) _
+                                 Implements INotifyPropertyChanged.PropertyChanged
 
         Private _QuoteHeader As Header
         Private _ShippingContainerCost As Decimal
