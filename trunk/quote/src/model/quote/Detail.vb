@@ -6,7 +6,6 @@ Namespace Model.Quote
     Public Class Detail
         Inherits Common.Detail
 
-        Protected _Quantity As Decimal
         Private _WireProperties As New WireProperties(Me)
         Private _ComponentProperties As New ComponentProperties
 
