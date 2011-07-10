@@ -59,8 +59,7 @@ Public Class TemplateSaver
         Me.SaveComponents(q, newId)
         adaptor.Connection.Close()
 
-        My.Settings.LastTamplate1 = _
-            ActiveHeader.ActiveHeader.Header.ID
+        My.Settings.LastTamplate1 = newId
 
         q.ComputationProperties.ClearDirty()
         q.OtherProperties.ClearDirty()

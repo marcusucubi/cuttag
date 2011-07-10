@@ -17,7 +17,7 @@ Public Class frmQuoteA
         Me.New(Nothing)
     End Sub
 
-    Public Sub New(ByVal q As Model.Quote.Header)
+    Public Sub New(ByVal q As Common.Header)
         InitializeComponent()
         If q IsNot Nothing Then
             Me._Header = q
