@@ -9,12 +9,7 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class TemplateSaver
 
-    Public Function Save(ByVal q As Header) As Integer
-        Return Save(q, False)
-    End Function
-
-    Public Function Save(ByVal q As Header, _
-                         ByVal IsQuote As Boolean) _
+    Public Function Save(ByVal q As Header) _
                         As Integer
 
         ' Ensure the properies are updated
@@ -24,9 +19,6 @@ Public Class TemplateSaver
 
         Dim newId As Integer
         Dim id As Integer = o.CommonID
-        If IsQuote Then
-            id = 0
-        End If
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
@@ -38,14 +30,14 @@ Public Class TemplateSaver
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                o.PartNumber, o.RequestForQuoteNumber, IsQuote)
+                o.PartNumber, o.RequestForQuoteNumber, False)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
             newId = CInt(cmd.ExecuteScalar())
             adaptor.Transaction.Commit()
             adaptor.Connection.Close()
-            If id = 0 And Not IsQuote Then
+            If id = 0 Then
                 q.PrimaryProperties.SetID(newId)
             End If
         End If
