@@ -5,12 +5,12 @@ Imports System.Data.Common
 Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 Imports System.ComponentModel
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Common
 
 Public Class frmQuoteA
     Inherits DockContent
 
-    Private WithEvents _QuoteHeader As New Header
+    Private WithEvents _Header As Header
     Private WithEvents _PrimaryProperties As PrimaryPropeties
 
     Public Sub New()
@@ -20,39 +20,40 @@ Public Class frmQuoteA
     Public Sub New(ByVal q As Model.Quote.Header)
         InitializeComponent()
         If q IsNot Nothing Then
-            Me._QuoteHeader = q
+            Me._Header = q
             Me._PrimaryProperties = q.PrimaryProperties
         Else
-            Me._PrimaryProperties = _QuoteHeader.PrimaryProperties
+            Me._Header = New Model.Template.Header
+            Me._PrimaryProperties = _Header.PrimaryProperties
         End If
-        Me.HeaderSource.Add(_QuoteHeader)
-        Me.gridDetail.DataSource = _QuoteHeader.QuoteDetails
+        Me.HeaderSource.Add(_Header)
+        Me.gridDetail.DataSource = _Header.Details
         UpdateText()
     End Sub
 
     Public ReadOnly Property QuoteHeader As Header
         Get
-            Return _QuoteHeader
+            Return _Header
         End Get
     End Property
 
     Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowEnter
         Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
         Dim detail As Detail = view.DataBoundItem
-        ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail = detail
+        ActiveDetail.ActiveDetail.Detail = detail
     End Sub
 
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
         Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
         Dim name As String = c.DataPropertyName
-        Me._QuoteHeader.QuoteDetails.Sort = name
+        Me._Header.Details.Sort = name
     End Sub
 
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
         Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
             Dim detail As Detail
-            detail = _QuoteHeader.NewQuoteDetail(frmComponentLookup.Product)
+            detail = _Header.NewDetail(frmComponentLookup.Product)
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
         End If
@@ -62,19 +63,19 @@ Public Class frmQuoteA
         Dim result As DialogResult = frmWireLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
             Dim detail As Detail
-            detail = _QuoteHeader.NewQuoteDetail(frmWireLookup.Product)
+            detail = _Header.NewDetail(frmWireLookup.Product)
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
         End If
     End Sub
 
     Private Sub frmQuoteA_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
-        ActiveTemplate.ActiveTemplate.QuoteHeader = Me._QuoteHeader
+        ActiveHeader.ActiveHeader.Header = Me._Header
     End Sub
 
     Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
-        ActiveTemplate.ActiveTemplate.QuoteHeader = Nothing
-        ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail = Nothing
+        ActiveHeader.ActiveHeader.Header = Nothing
+        ActiveDetail.ActiveDetail.Detail = Nothing
     End Sub
 
     Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -90,10 +91,10 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
-        ActiveTemplate.ActiveTemplate.QuoteHeader = Me._QuoteHeader
+        ActiveHeader.ActiveHeader.Header = Me._Header
     End Sub
 
-    Private Sub _QuoteHeader_SavableChange(ByVal subject As SaveableProperties) Handles _QuoteHeader.SavableChange
+    Private Sub _QuoteHeader_SavableChange(ByVal subject As SaveableProperties) Handles _Header.SavableChange
         UpdateText()
     End Sub
 
@@ -102,16 +103,16 @@ Public Class frmQuoteA
     End Sub
 
     Public Sub UpdateText()
-        If Me._PrimaryProperties.QuoteNumnber > 0 Then
-            If _QuoteHeader.IsQuote Then
-                Me.Text = "Quote " & Me._PrimaryProperties.QuoteNumnber
+        If Me._PrimaryProperties.CommonQuoteNumber > 0 Then
+            If _Header.IsQuote Then
+                Me.Text = "Quote " & Me._PrimaryProperties.CommonQuoteNumber
             Else
-                Me.Text = "Template " & Me._PrimaryProperties.QuoteNumnber
+                Me.Text = "Template " & Me._PrimaryProperties.CommonQuoteNumber
             End If
         Else
             Me.Text = "New Template"
         End If
-        If Me._QuoteHeader.Dirty Then
+        If Me._Header.Dirty Then
             Me.Text = Me.Text + " *"
         End If
     End Sub

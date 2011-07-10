@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Model.Template
 Imports DCS.Quote.Model
 Imports DCS.Quote.QuoteDataBase
 Imports System.Reflection
@@ -7,20 +7,20 @@ Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
 
-Public Class QuoteSaver
+Public Class TemplateSaver
 
-    Public Function Save(ByVal q As Model.Quote.Header) As Integer
+    Public Function Save(ByVal q As Header) As Integer
         Return Save(q, False)
     End Function
 
-    Public Function Save(ByVal q As Model.Quote.Header, _
+    Public Function Save(ByVal q As Header, _
                          ByVal IsQuote As Boolean) _
                         As Integer
 
         ' Ensure the properies are updated
         frmMain.frmMain.Focus()
 
-        Dim o As Model.Quote.PrimaryPropeties = q.PrimaryProperties
+        Dim o As PrimaryPropeties = q.PrimaryProperties
 
         Dim newId As Integer
         Dim id As Integer = o.QuoteNumnber
@@ -61,6 +61,11 @@ Public Class QuoteSaver
 
         My.Settings.LastTamplate1 = _
             ActiveHeader.ActiveHeader.Header.ID
+
+        q.ComputationProperties.ClearDirty()
+        q.OtherProperties.ClearDirty()
+        q.PrimaryProperties.ClearDirty()
+        q.ClearDirty()
 
         Return newId
     End Function

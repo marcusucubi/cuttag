@@ -4,8 +4,7 @@ Imports System.Reflection
 Namespace Model.Template
 
     Public Class OtherProperties
-        Inherits SaveableProperties
-        Implements INotifyPropertyChanged
+        Inherits Common.OtherProperties
 
         Private _QuoteHeader As Header
 
@@ -13,53 +12,41 @@ Namespace Model.Template
             _QuoteHeader = QuoteHeader
         End Sub
 
-        Public Event PropertyChanged(ByVal sender As Object, _
-                                     ByVal e As PropertyChangedEventArgs) _
-        Implements INotifyPropertyChanged.PropertyChanged
-
         <CategoryAttribute("Supply Chain"), _
         DisplayName("Initial Lead Time"), _
         DescriptionAttribute("Minimum number of days between the first purchase order and delivery")> _
-        Public Property LeadTimeInitial As Integer
+        Public Overloads Property LeadTimeInitial As Integer
 
         <CategoryAttribute("Supply Chain"), _
         DisplayName("Standard Lead Time"), _
         DescriptionAttribute("Minimum number of days between the purchase order and delivery")> _
-        Public Property LeadTimeStandard As Integer
+        Public Overloads Property LeadTimeStandard As Integer
 
         <CategoryAttribute("Supply Chain"), _
         DisplayName("Estimated Annual Units"), _
         DescriptionAttribute("Estimated Annual Units")> _
-        Public Property EstimatedAnnualUnits As Integer
+        Public Overloads Property EstimatedAnnualUnits As Integer
 
         <CategoryAttribute("Date"), _
         DisplayName("Start Date"), _
         DescriptionAttribute("Date the quote is started")> _
-        Public Property StartDate As DateTime
+        Public Overloads Property StartDate As DateTime
 
         <CategoryAttribute("Date"), _
         DisplayName("Completed Date"), _
         DescriptionAttribute("Date the quote is completed")> _
-        Public Property CompletedDate As DateTime
+        Public Overloads Property CompletedDate As DateTime
 
         <CategoryAttribute("Date"), _
         DisplayName("Verified Date"), _
         DescriptionAttribute("Date the quote is verified")> _
-        Public Property VerifiedDate As DateTime
+        Public Overloads Property VerifiedDate As DateTime
 
         <CategoryAttribute("Date"), _
         DisplayName("Due Date"), _
         DescriptionAttribute("Date the quote is to be given to the customer")> _
-        Public Property DueDate As DateTime
-
-        Friend Sub SendEvents()
-            Dim info() As PropertyInfo
-            info = GetType(Header).GetProperties()
-            For Each i As PropertyInfo In info
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
-            Next
-            MyBase.MakeDirty()
-        End Sub
+        Public Overloads Property DueDate As DateTime
 
     End Class
+
 End Namespace

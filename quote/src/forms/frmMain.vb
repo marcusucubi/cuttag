@@ -12,31 +12,31 @@ Public Class frmMain
     Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
-    Private WithEvents _ActiveQuote As ActiveTemplate
+    Private WithEvents _ActiveTemplate As ActiveHeader
 
     Public Shared Property frmMain As frmMain
 
     Public Sub New()
         InitializeComponent()
         frmMain = Me
-        Me._ActiveQuote = ActiveTemplate.ActiveTemplate
+        Me._ActiveTemplate = ActiveHeader.ActiveHeader
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         UpdateLastFilesMenu()
     End Sub
 
-    Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
+    Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveTemplate.PropertyChanged
         EnableButtons()
     End Sub
 
     Private Function CanCreateQuote() As Boolean
         Dim result As Boolean
-        If Me._ActiveQuote.QuoteHeader IsNot Nothing Then
+        If Me._ActiveTemplate.Header IsNot Nothing Then
             Dim id As Integer
-            id = Me._ActiveQuote.QuoteHeader.PrimaryProperties.QuoteNumnber
+            id = Me._ActiveTemplate.Header.PrimaryProperties.CommonQuoteNumber
             Dim IsQuote As Boolean
-            IsQuote = Me._ActiveQuote.QuoteHeader.IsQuote
+            IsQuote = Me._ActiveTemplate.Header.IsQuote
             If id > 0 And Not IsQuote Then
                 result = True
             End If
@@ -108,8 +108,8 @@ Public Class frmMain
         Dim frm As New frmNewQuote
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            Dim saver As New QuoteSaver
-            Dim id As Integer = saver.Save(frm.QuoteHeader, True)
+            Dim saver As New TemplateSaver
+            Dim id As Integer = saver.Save(frm.Header, True)
             If (id > 0) Then
                 LoadQuote(id)
             End If
@@ -131,7 +131,7 @@ Public Class frmMain
     End Sub
 
     Private Sub EnableButtons()
-        If Me._ActiveQuote.QuoteHeader Is Nothing Then
+        If Me._ActiveTemplate.Header Is Nothing Then
             SaveToolStripMenuItem.Enabled = False
             SaveToolButton.Enabled = False
         Else
@@ -215,8 +215,8 @@ Public Class frmMain
     End Sub
 
     Private Sub SaveTemplate()
-        Dim saver As New QuoteSaver
-        saver.Save(Me._ActiveQuote.QuoteHeader)
+        Dim saver As New TemplateSaver
+        saver.Save(Me._ActiveTemplate.Header)
         UpdateLastFilesMenu()
         EnableButtons()
     End Sub
@@ -281,7 +281,7 @@ Public Class frmMain
     Private Function IsLoaded(ByVal id As String) As Boolean
         Dim result As Boolean
         For Each w As frmQuoteA In Me.MdiChildren
-            Dim test = w.QuoteHeader.PrimaryProperties.QuoteNumnber
+            Dim test = w.QuoteHeader.PrimaryProperties.CommonQuoteNumber
             If id = test Then
                 w.Activate()
                 result = True

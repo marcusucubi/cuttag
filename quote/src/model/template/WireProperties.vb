@@ -5,12 +5,9 @@ Imports DCS.Quote.Model.Quote
 Namespace Model.Template
 
     Public Class WireProperties
-        Implements INotifyPropertyChanged
+        Inherits Common.WireProperties
 
         Private WithEvents _QuoteDetail As Detail
-
-        Public Event PropertyChanged As PropertyChangedEventHandler _
-            Implements INotifyPropertyChanged.PropertyChanged
 
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
@@ -67,13 +64,8 @@ Namespace Model.Template
             End Set
         End Property
 
-        Private Sub SendEvents()
-            Dim info() As PropertyInfo
-            info = GetType(WireProperties).GetProperties()
-            For Each i As PropertyInfo In info
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
-            Next
-            Me._QuoteDetail.QuoteHeader.ComputationProperties.SendEvents()
+        Private Overloads Sub SendEvents()
+            Me._QuoteDetail.Header.ComputationProperties.SendEvents()
         End Sub
 
     End Class

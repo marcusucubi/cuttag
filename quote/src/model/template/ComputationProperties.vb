@@ -4,18 +4,13 @@ Imports System.Reflection
 Namespace Model.Template
 
     Public Class ComputationProperties
-        Inherits SaveableProperties
-        Implements INotifyPropertyChanged
+        Inherits Common.ComputationProperties
 
-        Public Sub New(ByVal QuoteHeader As Header)
-            _QuoteHeader = QuoteHeader
+        Public Sub New(ByVal Header As Header)
+            _Header = Header
         End Sub
 
-        Public Event PropertyChanged(ByVal sender As Object, _
-                                     ByVal e As PropertyChangedEventArgs) _
-                                 Implements INotifyPropertyChanged.PropertyChanged
-
-        Private _QuoteHeader As Header
+        Private _Header As Header
         Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
@@ -394,7 +389,7 @@ Namespace Model.Template
 
         Private Function SumCost(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
-            For Each detail As Detail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _Header.Details
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.TotalCost
                 End If
@@ -404,7 +399,7 @@ Namespace Model.Template
 
         Private Function SumTime() As Integer
             Dim result As Integer
-            For Each detail As Detail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _Header.Details
                 If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
                     result += detail.QuoteDetailProperties.TotalComponentTime
                 End If
@@ -414,7 +409,7 @@ Namespace Model.Template
 
         Private Function SumQty(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
-            For Each detail As Detail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _Header.Details
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.Qty
                 End If
@@ -424,22 +419,13 @@ Namespace Model.Template
 
         Private Function Count(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Integer
-            For Each detail As Detail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _Header.Details
                 If detail.Product.UnitOfMeasure = measure Then
                     result += 1
                 End If
             Next
             Return result
         End Function
-
-        Friend Sub SendEvents()
-            Dim info() As PropertyInfo
-            info = GetType(Header).GetProperties()
-            For Each i As PropertyInfo In info
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
-                MyBase.MakeDirty()
-            Next
-        End Sub
 
     End Class
 End Namespace

@@ -1,43 +1,45 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Model.Template
 Imports System.ComponentModel
 
 Public Class frmComputationProperties
     Inherits DockContent
 
-    Private WithEvents _ActiveQuote As ActiveTemplate
-    Private WithEvents _QuoteProperties As ComputationProperties
+    Private WithEvents _ActiveQuote As ActiveHeader
+    Private WithEvents _Properties As Common.ComputationProperties
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, _
                                                  ByVal e As PropertyChangedEventArgs) _
-                                             Handles _QuoteProperties.PropertyChanged
+                                             Handles _Properties.PropertyChanged
         Me.PropertyGrid1.Refresh()
     End Sub
 
     Private Sub frmProperties_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
         Me._ActiveQuote = Nothing
         Me.PropertyGrid1.SelectedObject = Nothing
-        _QuoteProperties = Nothing
+        _Properties = Nothing
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveTemplate.ActiveTemplate
+        _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveTemplate.ActiveTemplate.QuoteHeader IsNot Nothing Then
-            Me.PropertyGrid1.SelectedObject = ActiveTemplate.ActiveTemplate.QuoteHeader.ComputationProperties
-            _QuoteProperties = ActiveTemplate.ActiveTemplate.QuoteHeader.ComputationProperties
+        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
+            Me.PropertyGrid1.SelectedObject = _
+                ActiveHeader.ActiveHeader.Header.ComputationProperties
+            _Properties = _
+                ActiveHeader.ActiveHeader.Header.ComputationProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
-            _QuoteProperties = Nothing
+            _Properties = Nothing
         End If
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveTemplate.ActiveTemplate
+        _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
     End Sub
 

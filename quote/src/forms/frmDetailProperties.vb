@@ -1,17 +1,17 @@
 ﻿Imports DCS.Quote.Model
 Imports WeifenLuo.WinFormsUI.Docking
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Common
 
 Public Class frmDetailProperties
     Inherits DockContent
 
-    Private WithEvents _WireProperties As WireProperties
-    Private WithEvents _ComponentProperties As ComponentProperties
-    Private WithEvents _Active As ActiveTemplateDetail
+    Private WithEvents _WireProperties As SaveableProperties
+    Private WithEvents _ComponentProperties As SaveableProperties
+    Private WithEvents _Active As ActiveDetail
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
 
-        Dim detail As Detail = ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail
+        Dim detail As Detail = ActiveDetail.ActiveDetail.Detail
         If detail IsNot Nothing Then
             Dim o = detail.QuoteDetailProperties
             If TypeOf o Is WireProperties Then
@@ -37,7 +37,7 @@ Public Class frmDetailProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _Active = ActiveTemplateDetail.ActiveTemplateDetail
+        _Active = ActiveDetail.ActiveDetail
         UpdateProperties()
     End Sub
 
@@ -46,9 +46,9 @@ Public Class frmDetailProperties
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail IsNot Nothing Then
+        If ActiveDetail.ActiveDetail.Detail IsNot Nothing Then
 
-            Dim o = ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail.QuoteDetailProperties
+            Dim o = ActiveDetail.ActiveDetail.Detail.QuoteDetailProperties
             If TypeOf o Is WireProperties Then
                 _WireProperties = o
                 _ComponentProperties = Nothing

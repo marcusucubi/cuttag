@@ -1,23 +1,25 @@
 ﻿Imports System.Data.SqlClient
-Imports DCS.Quote.Model
-Imports DCS.Quote.QuoteDataBase
+Imports DCS.Quote
+Imports DCS.Quote.Model.Template
 Imports System.Reflection
 Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
+Imports DCS.Quote.QuoteDataBase
+Imports DCS.Quote.Model
 
-Public Class QuoteLoader
+Public Class TemplateLoader
 
-    Public Function Load(ByVal id As Long) As Model.Quote.Header
+    Public Function Load(ByVal id As Long) As Header
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim table As New QuoteDataBase._QuoteDataTable
-        Dim q As New Model.Quote.Header()
+        Dim q As New Header()
 
         adaptor.FillByQuoteID(table, id)
         If table.Rows.Count > 0 Then
             Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-            q = New Model.Quote.Header(row.ID)
+            q = New Header(row.ID)
             q.PrimaryProperties.CommonCustomerName = row.CustomerName
             q.PrimaryProperties.CommonPartNumber = row.PartNumber
             q.PrimaryProperties.CommonRequestForQuoteNumber = row.RequestForQuoteNumber
@@ -27,10 +29,16 @@ Public Class QuoteLoader
             Me.LoadComponents(q)
         End If
 
+        q.ComputationProperties.ClearDirty()
+        q.OtherProperties.ClearDirty()
+        q.PrimaryProperties.ClearDirty()
+        q.ClearDirty()
+
+
         Return q
     End Function
 
-    Private Sub LoadComponents(ByVal q As Model.Quote.Header)
+    Private Sub LoadComponents(ByVal q As Header)
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim partAdaptor As New _PartsTableAdapter
@@ -39,7 +47,7 @@ Public Class QuoteLoader
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 
-            Dim detail As Model.Quote.Detail = Nothing
+            Dim detail As Detail = Nothing
 
             Dim parts As _PartsDataTable
             parts = partAdaptor.GetDataByProductCode(row.ProductCode)
@@ -50,7 +58,7 @@ Public Class QuoteLoader
                     part.PartNumber, part.UnitCost, _
                     0, UnitOfMeasure.BY_EACH)
 
-                detail = New Model.Quote.Detail(q, partObj)
+                detail = New Detail(q, partObj)
             End If
 
             Dim wires As _WiresDataTable
@@ -62,7 +70,7 @@ Public Class QuoteLoader
                     wire.PartNumber, wire.Price, _
                     wire.Gage, UnitOfMeasure.BY_LENGTH)
 
-                detail = New Model.Quote.Detail(q, wireObj)
+                detail = New Detail(q, wireObj)
             End If
 
             If (detail IsNot Nothing) Then

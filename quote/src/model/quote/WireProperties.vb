@@ -5,12 +5,9 @@ Imports System.Reflection
 Namespace Model.Quote
 
     Public Class WireProperties
-        Implements INotifyPropertyChanged
+        Inherits Common.WireProperties
 
         Private WithEvents _QuoteDetail As Detail
-
-        Public Event PropertyChanged As PropertyChangedEventHandler _
-            Implements INotifyPropertyChanged.PropertyChanged
 
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
@@ -43,7 +40,7 @@ Namespace Model.Quote
         <DescriptionAttribute("Pounds per foot")> _
         Public ReadOnly Property WeightPerDecameter As Decimal
             Get
-                Return Weights.FindWeight(Me.Gage)
+                Return Common.Weights.FindWeight(Me.Gage)
             End Get
         End Property
 
@@ -66,15 +63,6 @@ Namespace Model.Quote
                 Me._QuoteDetail.Qty = value
             End Set
         End Property
-
-        Private Sub SendEvents()
-            Dim info() As PropertyInfo
-            info = GetType(WireProperties).GetProperties()
-            For Each i As PropertyInfo In info
-                RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
-            Next
-            Me._QuoteDetail.QuoteHeader.ComputationProperties.SendEvents()
-        End Sub
 
     End Class
 End Namespace

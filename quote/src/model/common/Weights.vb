@@ -3,7 +3,7 @@ Imports DCS.Quote.Model
 Imports System.Reflection
 Imports DCS.Quote.Model.Quote
 
-Namespace Model.Quote
+Namespace Common
     Public Class Weights
         Implements INotifyPropertyChanged
 
@@ -40,13 +40,13 @@ Namespace Model.Quote
         Private Const CATAGORY_2 As String = "Wire Length (2)"
         Private Const CATAGORY_3 As String = "Wire Length (3)"
 
-        Public Sub New(ByVal QuoteHeader As Quote.Header)
-            _QuoteHeader = QuoteHeader
+        Public Sub New(ByVal Header As Common.Header)
+            _Header = Header
         End Sub
 
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
-        Private WithEvents _QuoteHeader As Header
+        Private WithEvents _Header As Header
 
         <CategoryAttribute(CATAGORY_1), _
         DisplayName("18"), _
@@ -236,7 +236,7 @@ Namespace Model.Quote
 
         Private Function CalcQty(ByVal gage As String) As Integer
             Dim qty As Integer
-            For Each q As Detail In _QuoteHeader.QuoteDetails
+            For Each q As Detail In _Header.Details
                 If q.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
                     If q.QuoteDetailProperties.Gage = gage Then
                         qty += q.Qty
@@ -272,7 +272,10 @@ Namespace Model.Quote
             Return r
         End Function
 
-        Private Sub _QuoteHeader_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _QuoteHeader.PropertyChanged
+        Private Sub _QuoteHeader_PropertyChanged(ByVal sender As Object, _
+                                                 ByVal e As System.ComponentModel.PropertyChangedEventArgs) _
+                Handles _Header.PropertyChanged
+
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
         End Sub
 

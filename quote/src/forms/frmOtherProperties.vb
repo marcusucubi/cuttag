@@ -1,11 +1,11 @@
 ﻿Imports DCS.Quote.Model
 Imports WeifenLuo.WinFormsUI.Docking
-Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.Model.Template
 
 Public Class frmOtherProperties
     Inherits DockContent
 
-    Private WithEvents _ActiveQuote As ActiveTemplate
+    Private WithEvents _ActiveQuote As ActiveHeader
     Private WithEvents _NonQuoteProperties As OtherProperties
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _NonQuoteProperties.PropertyChanged
@@ -19,14 +19,16 @@ Public Class frmOtherProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveTemplate.ActiveTemplate
+        _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveTemplate.ActiveTemplate.QuoteHeader IsNot Nothing Then
-            Me.PropertyGrid1.SelectedObject = ActiveTemplate.ActiveTemplate.QuoteHeader.NonComputationProperties
-            _NonQuoteProperties = ActiveTemplate.ActiveTemplate.QuoteHeader.NonComputationProperties
+        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
+            Me.PropertyGrid1.SelectedObject = _
+                ActiveHeader.ActiveHeader.Header.OtherProperties
+            _NonQuoteProperties = _
+                ActiveHeader.ActiveHeader.Header.OtherProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
             _NonQuoteProperties = Nothing
@@ -34,7 +36,7 @@ Public Class frmOtherProperties
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveTemplate.ActiveTemplate
+        _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
     End Sub
 
