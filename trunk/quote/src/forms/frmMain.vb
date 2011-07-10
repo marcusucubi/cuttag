@@ -34,7 +34,7 @@ Public Class frmMain
         Dim result As Boolean
         If Me._ActiveTemplate.Header IsNot Nothing Then
             Dim id As Integer
-            id = Me._ActiveTemplate.Header.PrimaryProperties.CommonQuoteNumber
+            id = Me._ActiveTemplate.Header.PrimaryProperties.CommonID
             Dim IsQuote As Boolean
             IsQuote = Me._ActiveTemplate.Header.IsQuote
             If id > 0 And Not IsQuote Then
@@ -281,7 +281,7 @@ Public Class frmMain
     Private Function IsLoaded(ByVal id As String) As Boolean
         Dim result As Boolean
         For Each w As frmQuoteA In Me.MdiChildren
-            Dim test = w.QuoteHeader.PrimaryProperties.CommonQuoteNumber
+            Dim test = w.QuoteHeader.PrimaryProperties.CommonID
             If id = test Then
                 w.Activate()
                 result = True

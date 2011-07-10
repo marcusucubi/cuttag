@@ -7,6 +7,8 @@ Namespace Common
     Public MustInherit Class PrimaryPropeties
         Inherits SaveableProperties
 
+        Private _ID As Integer
+
         <Browsable(False)> _
         Public Property CommonCustomerName As String = ""
 
@@ -17,10 +19,15 @@ Namespace Common
         Public Property CommonPartNumber As String = ""
 
         <Browsable(False)> _
-        Public Property CommonQuoteNumber As Integer
+        Public ReadOnly Property CommonID As Integer
+            Get
+                Return _ID
+            End Get
+        End Property
 
-        Public Overridable Sub SetID(ByVal id As Integer)
-
+        Public Sub SetID(ByVal id As Integer)
+            Me._ID = id
+            SendEvents()
         End Sub
 
     End Class

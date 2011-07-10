@@ -94,7 +94,7 @@ Public Class frmQuoteA
         ActiveHeader.ActiveHeader.Header = Me._Header
     End Sub
 
-    Private Sub _QuoteHeader_SavableChange(ByVal subject As SaveableProperties) Handles _Header.SavableChange
+    Private Sub _Header_SavableChange(ByVal subject As SaveableProperties) Handles _Header.SavableChange
         UpdateText()
     End Sub
 
@@ -103,11 +103,11 @@ Public Class frmQuoteA
     End Sub
 
     Public Sub UpdateText()
-        If Me._PrimaryProperties.CommonQuoteNumber > 0 Then
+        If Me._PrimaryProperties.CommonID > 0 Then
             If _Header.IsQuote Then
-                Me.Text = "Quote " & Me._PrimaryProperties.CommonQuoteNumber
+                Me.Text = "Quote " & Me._PrimaryProperties.CommonID
             Else
-                Me.Text = "Template " & Me._PrimaryProperties.CommonQuoteNumber
+                Me.Text = "Template " & Me._PrimaryProperties.CommonID
             End If
         Else
             Me.Text = "New Template"

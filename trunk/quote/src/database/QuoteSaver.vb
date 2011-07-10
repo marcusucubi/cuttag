@@ -23,7 +23,7 @@ Public Class QuoteSaver
         Dim o As Model.Quote.PrimaryPropeties = q.PrimaryProperties
 
         Dim newId As Integer
-        Dim id As Integer = o.QuoteNumnber
+        Dim id As Integer = o.CommonID
         If IsQuote Then
             id = 0
         End If
@@ -32,7 +32,7 @@ Public Class QuoteSaver
         If id > 0 Then
             adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, o.QuoteNumnber, False)
+                o.PartNumber, o.CommonID, False)
             newId = id
         Else
             adaptor.Connection.Open()
@@ -68,7 +68,7 @@ Public Class QuoteSaver
     Private Sub SaveComponents(ByVal q As Header, ByVal quoteId As Integer)
 
         Dim adaptor As New _QuoteDetailTableAdapter
-        Dim oldId As Integer = q.PrimaryProperties.CommonQuoteNumber
+        Dim oldId As Integer = q.PrimaryProperties.CommonID
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(oldId)
         For Each detail As Detail In q.Details
             adaptor.Connection.Open()

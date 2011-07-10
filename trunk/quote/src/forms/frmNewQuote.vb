@@ -8,7 +8,7 @@ Public Class frmNewQuote
 
     Private Sub frmNewQuote_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim q As Header = ActiveHeader.ActiveHeader.Header
-        Me.txtTemplateNumber.Text = q.PrimaryProperties.CommonQuoteNumber
+        Me.txtTemplateNumber.Text = q.PrimaryProperties.CommonID
         Header = q
     End Sub
 

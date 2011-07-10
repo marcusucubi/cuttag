@@ -34,16 +34,11 @@ Namespace Model.Quote
         <CategoryAttribute("Quote"), _
         DisplayName("QuoteNumnber"), _
         DescriptionAttribute("Quote Numnber")> _
-        Public Overloads ReadOnly Property QuoteNumnber As Integer
+        Public Overloads ReadOnly Property QuoteNumber As Integer
             Get
-                Return Me._QuoteNumnber
+                Return MyBase.CommonID
             End Get
         End Property
-
-        Public Overrides Sub SetID(ByVal id As Integer)
-            Me._QuoteNumnber = id
-            SendEvents()
-        End Sub
 
     End Class
 End Namespace

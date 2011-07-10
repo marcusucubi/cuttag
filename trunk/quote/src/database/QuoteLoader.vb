@@ -35,7 +35,7 @@ Public Class QuoteLoader
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim partAdaptor As New _PartsTableAdapter
         Dim wireAdaptor As New _WiresTableAdapter
-        Dim id As Integer = q.PrimaryProperties.CommonQuoteNumber
+        Dim id As Integer = q.PrimaryProperties.CommonID
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 

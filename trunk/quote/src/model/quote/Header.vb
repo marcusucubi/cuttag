@@ -24,7 +24,7 @@ Namespace Model.Quote
 
         Public Shadows ReadOnly Property ID As Integer
             Get
-                Return PrimaryProperties.CommonQuoteNumber
+                Return PrimaryProperties.CommonID
             End Get
         End Property
 
