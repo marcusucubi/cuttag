@@ -67,7 +67,7 @@ Public Class CommonSaver
         For Each detail As Common.Detail In q.Details
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(quoteId, detail.Qty, detail.ProductCode)
+            adaptor.Insert(quoteId, detail.Qty, detail.Product.Code)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
