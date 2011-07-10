@@ -12,31 +12,31 @@ Public Class frmMain
     Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
-    Private WithEvents _ActiveTemplate As ActiveHeader
+    Private WithEvents _ActiveHeader As ActiveHeader
 
     Public Shared Property frmMain As frmMain
 
     Public Sub New()
         InitializeComponent()
         frmMain = Me
-        Me._ActiveTemplate = ActiveHeader.ActiveHeader
+        Me._ActiveHeader = ActiveHeader.ActiveHeader
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         UpdateLastFilesMenu()
     End Sub
 
-    Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveTemplate.PropertyChanged
+    Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
     End Sub
 
     Private Function CanCreateQuote() As Boolean
         Dim result As Boolean
-        If Me._ActiveTemplate.Header IsNot Nothing Then
+        If Me._ActiveHeader.Header IsNot Nothing Then
             Dim id As Integer
-            id = Me._ActiveTemplate.Header.PrimaryProperties.CommonID
+            id = Me._ActiveHeader.Header.PrimaryProperties.CommonID
             Dim IsQuote As Boolean
-            IsQuote = Me._ActiveTemplate.Header.IsQuote
+            IsQuote = Me._ActiveHeader.Header.IsQuote
             If id > 0 And Not IsQuote Then
                 result = True
             End If
@@ -131,7 +131,7 @@ Public Class frmMain
     End Sub
 
     Private Sub EnableButtons()
-        If Me._ActiveTemplate.Header Is Nothing Then
+        If Me._ActiveHeader.Header Is Nothing Then
             SaveToolStripMenuItem.Enabled = False
             SaveToolButton.Enabled = False
         Else
@@ -216,7 +216,7 @@ Public Class frmMain
 
     Private Sub SaveTemplate()
         Dim saver As New TemplateSaver
-        saver.Save(Me._ActiveTemplate.Header)
+        saver.Save(Me._ActiveHeader.Header)
         UpdateLastFilesMenu()
         EnableButtons()
     End Sub
@@ -234,8 +234,8 @@ Public Class frmMain
             Return
         End If
 
-        Dim loader As New QuoteLoader
-        Dim q As Header
+        Dim loader As New TemplateLoader
+        Dim q As Common.Header
 
         q = loader.Load(id)
         Dim ChildForm As New frmQuoteA(q)
