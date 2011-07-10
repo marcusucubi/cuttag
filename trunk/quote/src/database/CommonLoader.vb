@@ -17,7 +17,7 @@ Public Class CommonLoader
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 
-            Dim detail As Model.Quote.Detail = Nothing
+            Dim detail As Common.Detail = Nothing
 
             Dim parts As _PartsDataTable
             parts = partAdaptor.GetDataByProductCode(row.ProductCode)
@@ -28,7 +28,7 @@ Public Class CommonLoader
                     part.PartNumber, part.UnitCost, _
                     0, UnitOfMeasure.BY_EACH)
 
-                detail = New Model.Quote.Detail(q, partObj)
+                detail = q.NewDetail(partObj)
             End If
 
             Dim wires As _WiresDataTable
@@ -40,7 +40,7 @@ Public Class CommonLoader
                     wire.PartNumber, wire.Price, _
                     wire.Gage, UnitOfMeasure.BY_LENGTH)
 
-                detail = New Model.Quote.Detail(q, wireObj)
+                detail = q.NewDetail(wireObj)
             End If
 
             If (detail IsNot Nothing) Then
