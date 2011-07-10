@@ -9,6 +9,12 @@ Namespace Model.Quote
         Private _WireProperties As New WireProperties(Me)
         Private _ComponentProperties As New ComponentProperties
 
+        Friend Sub New(ByVal header As Common.Header, ByVal product As Product)
+            Me.QuoteHeader = header
+            Me._Product = product
+            Me._Quantity = 1
+        End Sub
+
         <BrowsableAttribute(False)>
         Property QuoteHeader As Header
 
@@ -34,12 +40,6 @@ Namespace Model.Quote
                 End If
             End Set
         End Property
-
-        Friend Sub New(ByVal header As Header, ByVal product As Product)
-            Me.QuoteHeader = header
-            Me._Product = product
-            Me._Quantity = 1
-        End Sub
 
     End Class
 End Namespace
