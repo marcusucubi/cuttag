@@ -44,7 +44,7 @@ Public Class QuoteSaver
             newId = CInt(cmd.ExecuteScalar())
             adaptor.Transaction.Commit()
             adaptor.Connection.Close()
-            If id = 0 Then
+            If id = 0 And Not IsQuote Then
                 q.PrimaryProperties.SetID(newId)
             End If
         End If
