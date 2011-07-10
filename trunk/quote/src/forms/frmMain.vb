@@ -3,6 +3,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 Imports System.ComponentModel
 Imports System.Collections.Specialized
+Imports DCS.Quote.Model.Quote
 
 Public Class frmMain
 
@@ -234,7 +235,7 @@ Public Class frmMain
         End If
 
         Dim loader As New QuoteLoader
-        Dim q As Model.QuoteHeader
+        Dim q As QuoteHeader
 
         q = loader.Load(id)
         Dim ChildForm As New frmQuoteA(q)
@@ -257,7 +258,7 @@ Public Class frmMain
         End If
 
         Dim loader As New QuoteLoader
-        Dim q As Model.QuoteHeader
+        Dim q As QuoteHeader
 
         q = loader.Load(id)
         Dim ChildForm As New frmQuoteA(q)

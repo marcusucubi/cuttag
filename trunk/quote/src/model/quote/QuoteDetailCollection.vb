@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 
-Namespace Model
+Namespace Model.Quote
 
     Public Class QuoteDetailCollection
         Inherits System.ComponentModel.BindingList(Of QuoteDetail)

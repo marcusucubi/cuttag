@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports DCS.Quote.Model
+Imports DCS.Quote.Model.Quote
 
 Public Class ActiveTemplateDetail
     Implements INotifyPropertyChanged

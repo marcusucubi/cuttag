@@ -158,17 +158,18 @@
     <Compile Include="src\misc\ActiveTemplateDetail.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveTemplate.vb" />
-    <Compile Include="src\model\ComponentProperties.vb" />
-    <Compile Include="src\model\OtherProperties.vb" />
-    <Compile Include="src\model\PrimaryPropeties.vb" />
+    <Compile Include="src\model\properties\ComponentProperties.vb" />
+    <Compile Include="src\model\properties\OtherProperties.vb" />
+    <Compile Include="src\model\properties\PrimaryPropeties.vb" />
     <Compile Include="src\misc\SaveableProperties.vb" />
-    <Compile Include="src\model\WireProperties.vb" />
+    <Compile Include="src\model\properties\WireProperties.vb" />
     <Compile Include="src\model\Shipping.vb" />
-    <Compile Include="src\model\ComputationProperties.vb" />
-    <Compile Include="src\model\QuoteDetailCollection.vb" />
+    <Compile Include="src\model\properties\ComputationProperties.vb" />
+    <Compile Include="src\model\quote\QuoteDetailCollection.vb" />
+    <Compile Include="src\model\template\TemplateHeader.vb" />
     <Compile Include="src\model\UnitOfMeasure.vb" />
-    <Compile Include="src\model\QuoteHeader.vb" />
-    <Compile Include="src\model\QuoteDetail.vb" />
+    <Compile Include="src\model\quote\QuoteHeader.vb" />
+    <Compile Include="src\model\quote\QuoteDetail.vb" />
     <Compile Include="src\forms\frmQuoteA.Designer.vb">
       <DependentUpon>frmQuoteA.vb</DependentUpon>
     </Compile>
