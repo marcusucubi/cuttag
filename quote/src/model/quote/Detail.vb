@@ -3,7 +3,7 @@ Imports System.Reflection
 
 Namespace Model.Quote
 
-    Public Class QuoteDetail
+    Public Class Detail
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
         Implements IEditableObject
@@ -19,7 +19,7 @@ Namespace Model.Quote
 #Region "Properties"
 
         <BrowsableAttribute(False)>
-        Property QuoteHeader As QuoteHeader
+        Property QuoteHeader As Header
 
         Public ReadOnly Property TotalCost As Decimal
             Get
@@ -80,7 +80,7 @@ Namespace Model.Quote
 
 #Region "Methods"
 
-        Friend Sub New(ByVal header As QuoteHeader, ByVal product As Product)
+        Friend Sub New(ByVal header As Header, ByVal product As Product)
             Me.QuoteHeader = header
             Me._Product = product
             Me._Quantity = 1
@@ -92,7 +92,7 @@ Namespace Model.Quote
 
         Private Sub SendEvents()
             Dim info() As PropertyInfo
-            info = GetType(QuoteDetail).GetProperties()
+            info = GetType(Detail).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next

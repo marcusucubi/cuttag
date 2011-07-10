@@ -8,10 +8,10 @@ Namespace Model.Quote
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
-        Private _QuoteHeader As QuoteHeader
+        Private _QuoteHeader As Header
         Private _QuoteNumnber As Integer
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader, ByVal id As Long)
+        Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
             _QuoteHeader = QuoteHeader
             Me._QuoteNumnber = id
             CustomerName = "Caterpillar Inc."

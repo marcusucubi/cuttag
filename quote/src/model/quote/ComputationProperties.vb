@@ -8,13 +8,13 @@ Namespace Model.Quote
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader)
+        Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
         End Sub
 
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
-        Private _QuoteHeader As QuoteHeader
+        Private _QuoteHeader As Header
         Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
@@ -393,7 +393,7 @@ Namespace Model.Quote
 
         Private Function SumCost(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
-            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.TotalCost
                 End If
@@ -403,7 +403,7 @@ Namespace Model.Quote
 
         Private Function SumTime() As Integer
             Dim result As Integer
-            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
                     result += detail.QuoteDetailProperties.TotalComponentTime
                 End If
@@ -413,7 +413,7 @@ Namespace Model.Quote
 
         Private Function SumQty(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
-            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = measure Then
                     result += detail.Qty
                 End If
@@ -423,7 +423,7 @@ Namespace Model.Quote
 
         Private Function Count(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Integer
-            For Each detail As QuoteDetail In _QuoteHeader.QuoteDetails
+            For Each detail As Detail In _QuoteHeader.QuoteDetails
                 If detail.Product.UnitOfMeasure = measure Then
                     result += 1
                 End If
@@ -433,7 +433,7 @@ Namespace Model.Quote
 
         Friend Sub SendEvents()
             Dim info() As PropertyInfo
-            info = GetType(QuoteHeader).GetProperties()
+            info = GetType(Header).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
                 MyBase.MakeDirty()

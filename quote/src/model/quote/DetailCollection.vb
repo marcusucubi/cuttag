@@ -2,19 +2,19 @@
 
 Namespace Model.Quote
 
-    Public Class QuoteDetailCollection
-        Inherits System.ComponentModel.BindingList(Of QuoteDetail)
+    Public Class DetailCollection
+        Inherits System.ComponentModel.BindingList(Of Detail)
 
 #Region " Types "
 
         Private Class QuoteHeaderComparer
-            Implements System.Collections.Generic.IComparer(Of QuoteDetail)
+            Implements System.Collections.Generic.IComparer(Of Detail)
 
             Private prop As PropertyDescriptor
             Private direction As ListSortDirection
 
-            Public Function Compare(ByVal x As QuoteDetail, _
-            ByVal y As QuoteDetail) As Integer Implements IComparer(Of QuoteDetail).Compare
+            Public Function Compare(ByVal x As Detail, _
+            ByVal y As Detail) As Integer Implements IComparer(Of Detail).Compare
 
                 Dim result As Integer = DirectCast(Me.prop.GetValue(x), IComparable).CompareTo(Me.prop.GetValue(y))
 
@@ -90,7 +90,7 @@ Namespace Model.Quote
             Me._sortDirection = direction
 
             Dim upperBound As Integer = Me.Items.Count - 1
-            Dim items(upperBound) As QuoteDetail
+            Dim items(upperBound) As Detail
 
             Me.Items.CopyTo(items, 0)
 
@@ -125,7 +125,7 @@ Namespace Model.Quote
                     parts(index) = parts(index).Trim()
                 Next
 
-                prop = TypeDescriptor.GetProperties(GetType(QuoteDetail))(parts(0))
+                prop = TypeDescriptor.GetProperties(GetType(Detail))(parts(0))
 
                 If prop Is Nothing Then
                     Throw New ArgumentException("Invalid property name")

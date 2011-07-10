@@ -235,7 +235,7 @@ Public Class frmMain
         End If
 
         Dim loader As New QuoteLoader
-        Dim q As QuoteHeader
+        Dim q As Header
 
         q = loader.Load(id)
         Dim ChildForm As New frmQuoteA(q)
@@ -258,7 +258,7 @@ Public Class frmMain
         End If
 
         Dim loader As New QuoteLoader
-        Dim q As QuoteHeader
+        Dim q As Header
 
         q = loader.Load(id)
         Dim ChildForm As New frmQuoteA(q)

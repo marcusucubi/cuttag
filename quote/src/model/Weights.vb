@@ -40,13 +40,13 @@ Namespace Model
         Private Const CATAGORY_2 As String = "Wire Length (2)"
         Private Const CATAGORY_3 As String = "Wire Length (3)"
 
-        Public Sub New(ByVal QuoteHeader As Quote.QuoteHeader)
+        Public Sub New(ByVal QuoteHeader As Quote.Header)
             _QuoteHeader = QuoteHeader
         End Sub
 
         Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
-        Private WithEvents _QuoteHeader As QuoteHeader
+        Private WithEvents _QuoteHeader As Header
 
         <CategoryAttribute(CATAGORY_1), _
         DisplayName("18"), _
@@ -236,7 +236,7 @@ Namespace Model
 
         Private Function CalcQty(ByVal gage As String) As Integer
             Dim qty As Integer
-            For Each q As QuoteDetail In _QuoteHeader.QuoteDetails
+            For Each q As Detail In _QuoteHeader.QuoteDetails
                 If q.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
                     If q.QuoteDetailProperties.Gage = gage Then
                         qty += q.Qty

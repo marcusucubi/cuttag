@@ -7,12 +7,12 @@ Namespace Model.Quote
     Public Class WireProperties
         Implements INotifyPropertyChanged
 
-        Private WithEvents _QuoteDetail As QuoteDetail
+        Private WithEvents _QuoteDetail As Detail
 
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
-        Public Sub New(ByVal QuoteDetail As QuoteDetail)
+        Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
         End Sub
 

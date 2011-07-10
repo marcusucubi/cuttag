@@ -8,9 +8,9 @@ Namespace Model.Quote
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
-        Private _QuoteHeader As QuoteHeader
+        Private _QuoteHeader As Header
 
-        Public Sub New(ByVal QuoteHeader As QuoteHeader)
+        Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
         End Sub
 
@@ -53,7 +53,7 @@ Namespace Model.Quote
 
         Friend Sub SendEvents()
             Dim info() As PropertyInfo
-            info = GetType(QuoteHeader).GetProperties()
+            info = GetType(Header).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next

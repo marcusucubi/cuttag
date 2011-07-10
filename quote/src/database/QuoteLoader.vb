@@ -8,16 +8,16 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class QuoteLoader
 
-    Public Function Load(ByVal id As Long) As Model.Quote.QuoteHeader
+    Public Function Load(ByVal id As Long) As Model.Quote.Header
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim table As New QuoteDataBase._QuoteDataTable
-        Dim q As New Model.Quote.QuoteHeader()
+        Dim q As New Model.Quote.Header()
 
         adaptor.FillByQuoteID(table, id)
         If table.Rows.Count > 0 Then
             Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-            q = New Model.Quote.QuoteHeader(row.ID, row.IsQuote)
+            q = New Model.Quote.Header(row.ID, row.IsQuote)
             q.PrimaryProperties.CustomerName = row.CustomerName
             q.PrimaryProperties.PartNumber = row.PartNumber
             q.PrimaryProperties.RequestForQuoteNumber = row.RequestForQuoteNumber
@@ -36,7 +36,7 @@ Public Class QuoteLoader
         Return q
     End Function
 
-    Private Sub LoadComponents(ByVal q As Model.Quote.QuoteHeader)
+    Private Sub LoadComponents(ByVal q As Model.Quote.Header)
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim partAdaptor As New _PartsTableAdapter
@@ -45,7 +45,7 @@ Public Class QuoteLoader
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 
-            Dim detail As Model.Quote.QuoteDetail = Nothing
+            Dim detail As Model.Quote.Detail = Nothing
 
             Dim parts As _PartsDataTable
             parts = partAdaptor.GetDataByProductCode(row.ProductCode)
@@ -56,7 +56,7 @@ Public Class QuoteLoader
                     part.PartNumber, part.UnitCost, _
                     0, UnitOfMeasure.BY_EACH)
 
-                detail = New Model.Quote.QuoteDetail(q, partObj)
+                detail = New Model.Quote.Detail(q, partObj)
             End If
 
             Dim wires As _WiresDataTable
@@ -68,7 +68,7 @@ Public Class QuoteLoader
                     wire.PartNumber, wire.Price, _
                     wire.Gage, UnitOfMeasure.BY_LENGTH)
 
-                detail = New Model.Quote.QuoteDetail(q, wireObj)
+                detail = New Model.Quote.Detail(q, wireObj)
             End If
 
             If (detail IsNot Nothing) Then
