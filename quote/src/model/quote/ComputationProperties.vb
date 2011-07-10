@@ -14,7 +14,7 @@ Namespace Model.Quote
 
         Public Event PropertyChanged(ByVal sender As Object, _
                                      ByVal e As PropertyChangedEventArgs) _
-                                 Implements INotifyPropertyChanged.PropertyChanged
+                        Implements INotifyPropertyChanged.PropertyChanged
 
         Private _QuoteHeader As Header
         Private _ShippingContainerCost As Decimal

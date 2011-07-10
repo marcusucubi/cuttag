@@ -165,11 +165,18 @@
     <Compile Include="src\model\quote\WireProperties.vb" />
     <Compile Include="src\model\Shipping.vb" />
     <Compile Include="src\model\quote\ComputationProperties.vb" />
-    <Compile Include="src\model\quote\QuoteDetailCollection.vb" />
-    <Compile Include="src\model\template\TemplateHeader.vb" />
+    <Compile Include="src\model\quote\DetailCollection.vb" />
+    <Compile Include="src\model\template\ComponentProperties.vb" />
+    <Compile Include="src\model\template\ComputationProperties.vb" />
+    <Compile Include="src\model\template\Detail.vb" />
+    <Compile Include="src\model\template\DetailCollection.vb" />
+    <Compile Include="src\model\template\Header.vb" />
+    <Compile Include="src\model\template\OtherProperties.vb" />
+    <Compile Include="src\model\template\PrimaryPropeties.vb" />
+    <Compile Include="src\model\template\WireProperties.vb" />
     <Compile Include="src\model\UnitOfMeasure.vb" />
-    <Compile Include="src\model\quote\QuoteHeader.vb" />
-    <Compile Include="src\model\quote\QuoteDetail.vb" />
+    <Compile Include="src\model\quote\Header.vb" />
+    <Compile Include="src\model\quote\Detail.vb" />
     <Compile Include="src\forms\frmQuoteA.Designer.vb">
       <DependentUpon>frmQuoteA.vb</DependentUpon>
     </Compile>
@@ -200,7 +207,7 @@
     </Compile>
     <Compile Include="src\misc\Quote.vb" />
     <Compile Include="src\model\Product.vb" />
-    <Compile Include="src\model\Weights.vb" />
+    <Compile Include="src\model\quote\Weights.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
@@ -317,9 +324,7 @@
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\model\properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

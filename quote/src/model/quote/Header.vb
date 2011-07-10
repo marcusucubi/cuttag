@@ -12,7 +12,7 @@ Namespace Model.Quote
 
         Public Event PropertyChanged(ByVal sender As Object, _
                                      ByVal e As PropertyChangedEventArgs) _
-                                 Implements INotifyPropertyChanged.PropertyChanged
+        Implements INotifyPropertyChanged.PropertyChanged
 
         Public Sub New()
             Me.New(0, False)

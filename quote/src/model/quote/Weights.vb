@@ -3,7 +3,7 @@ Imports DCS.Quote.Model
 Imports System.Reflection
 Imports DCS.Quote.Model.Quote
 
-Namespace Model
+Namespace Model.Quote
     Public Class Weights
         Implements INotifyPropertyChanged
 
