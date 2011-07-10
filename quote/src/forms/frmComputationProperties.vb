@@ -1,6 +1,7 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
 Imports DCS.Quote.Model.Quote
+Imports System.ComponentModel
 
 Public Class frmComputationProperties
     Inherits DockContent
@@ -8,7 +9,9 @@ Public Class frmComputationProperties
     Private WithEvents _ActiveQuote As ActiveTemplate
     Private WithEvents _QuoteProperties As ComputationProperties
 
-    Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _QuoteProperties.PropertyChanged
+    Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, _
+                                                 ByVal e As PropertyChangedEventArgs) _
+                                             Handles _QuoteProperties.PropertyChanged
         Me.PropertyGrid1.Refresh()
     End Sub
 
