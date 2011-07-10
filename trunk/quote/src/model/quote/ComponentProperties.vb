@@ -7,13 +7,13 @@ Namespace Model.Quote
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
 
-        Private _QuoteDetail As QuoteDetail
+        Private _QuoteDetail As Detail
         Private _ComponentTime As Integer
 
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
-        Public Sub New(ByVal QuoteDetail As QuoteDetail)
+        Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
                 If (_QuoteDetail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH) Then
@@ -53,7 +53,7 @@ Namespace Model.Quote
 
         Private Sub SendEvents()
             Dim info() As PropertyInfo
-            info = GetType(QuoteDetail).GetProperties()
+            info = GetType(Detail).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next

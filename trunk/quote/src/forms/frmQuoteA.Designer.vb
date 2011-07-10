@@ -198,11 +198,11 @@ Partial Class frmQuoteA
         '
         'DetailSource
         '
-        Me.DetailSource.DataSource = GetType(QuoteDetail)
+        Me.DetailSource.DataSource = GetType(Detail)
         '
         'HeaderSource
         '
-        Me.HeaderSource.DataSource = GetType(Model.Quote.QuoteHeader)
+        Me.HeaderSource.DataSource = GetType(Model.Quote.Header)
         '
         'frmQuoteA
         '

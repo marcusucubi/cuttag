@@ -5,18 +5,18 @@ Imports DCS.Quote.Model.Quote
 Public Class ActiveTemplateDetail
     Implements INotifyPropertyChanged
 
-    Private _QuoteDetail As QuoteDetail
+    Private _QuoteDetail As Detail
 
     Public Shared ReadOnly ActiveTemplateDetail As ActiveTemplateDetail = New ActiveTemplateDetail
 
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged
 
-    Public Property QuoteDetail As QuoteDetail
+    Public Property QuoteDetail As Detail
         Get
             Return _QuoteDetail
         End Get
-        Friend Set(ByVal value As QuoteDetail)
+        Friend Set(ByVal value As Detail)
             If (_QuoteDetail IsNot value) Then
                 _QuoteDetail = value
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("QuoteDetail"))

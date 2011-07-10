@@ -9,11 +9,11 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class QuoteSaver
 
-    Public Function Save(ByVal q As Model.Quote.QuoteHeader) As Integer
+    Public Function Save(ByVal q As Model.Quote.Header) As Integer
         Return Save(q, False)
     End Function
 
-    Public Function Save(ByVal q As Model.Quote.QuoteHeader, _
+    Public Function Save(ByVal q As Model.Quote.Header, _
                          ByVal IsQuote As Boolean) _
                         As Integer
 
@@ -70,12 +70,12 @@ Public Class QuoteSaver
         Return newId
     End Function
 
-    Private Sub SaveComponents(ByVal q As QuoteHeader, ByVal quoteId As Integer)
+    Private Sub SaveComponents(ByVal q As Header, ByVal quoteId As Integer)
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim oldId As Integer = q.PrimaryProperties.QuoteNumnber
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(oldId)
-        For Each detail As QuoteDetail In q.QuoteDetails
+        For Each detail As Detail In q.QuoteDetails
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(quoteId, detail.Qty, detail.ProductCode)

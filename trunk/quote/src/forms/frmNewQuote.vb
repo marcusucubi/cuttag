@@ -4,10 +4,10 @@ Imports DCS.Quote.Model.Quote
 
 Public Class frmNewQuote
 
-    Public Property QuoteHeader As QuoteHeader
+    Public Property QuoteHeader As Header
 
     Private Sub frmNewQuote_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim q As QuoteHeader = ActiveTemplate.ActiveTemplate.QuoteHeader
+        Dim q As Header = ActiveTemplate.ActiveTemplate.QuoteHeader
         Me.txtTemplateNumber.Text = q.PrimaryProperties.QuoteNumnber
         QuoteHeader = q
     End Sub

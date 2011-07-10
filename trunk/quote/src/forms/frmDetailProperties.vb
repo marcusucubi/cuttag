@@ -11,7 +11,7 @@ Public Class frmDetailProperties
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
 
-        Dim detail As QuoteDetail = ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail
+        Dim detail As Detail = ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail
         If detail IsNot Nothing Then
             Dim o = detail.QuoteDetailProperties
             If TypeOf o Is WireProperties Then

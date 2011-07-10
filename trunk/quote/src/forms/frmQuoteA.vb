@@ -10,14 +10,14 @@ Imports DCS.Quote.Model.Quote
 Public Class frmQuoteA
     Inherits DockContent
 
-    Private WithEvents _QuoteHeader As New QuoteHeader
+    Private WithEvents _QuoteHeader As New Header
     Private WithEvents _PrimaryProperties As PrimaryPropeties
 
     Public Sub New()
         Me.New(Nothing)
     End Sub
 
-    Public Sub New(ByVal q As Model.Quote.QuoteHeader)
+    Public Sub New(ByVal q As Model.Quote.Header)
         InitializeComponent()
         If q IsNot Nothing Then
             Me._QuoteHeader = q
@@ -30,7 +30,7 @@ Public Class frmQuoteA
         UpdateText()
     End Sub
 
-    Public ReadOnly Property QuoteHeader As QuoteHeader
+    Public ReadOnly Property QuoteHeader As Header
         Get
             Return _QuoteHeader
         End Get
@@ -38,7 +38,7 @@ Public Class frmQuoteA
 
     Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridDetail.RowEnter
         Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
-        Dim detail As QuoteDetail = view.DataBoundItem
+        Dim detail As Detail = view.DataBoundItem
         ActiveTemplateDetail.ActiveTemplateDetail.QuoteDetail = detail
     End Sub
 
@@ -51,7 +51,7 @@ Public Class frmQuoteA
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
         Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
-            Dim detail As QuoteDetail
+            Dim detail As Detail
             detail = _QuoteHeader.NewQuoteDetail(frmComponentLookup.Product)
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()
@@ -61,7 +61,7 @@ Public Class frmQuoteA
     Private Sub bntAddWire_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bntAddWire.Click
         Dim result As DialogResult = frmWireLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
-            Dim detail As QuoteDetail
+            Dim detail As Detail
             detail = _QuoteHeader.NewQuoteDetail(frmWireLookup.Product)
             Me.DetailSource.Add(detail)
             Me.DetailSource.MoveNext()

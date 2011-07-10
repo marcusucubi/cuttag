@@ -3,7 +3,7 @@ Imports System.Reflection
 
 Namespace Model.Quote
 
-    Public Class QuoteHeader
+    Public Class Header
         Inherits SaveableProperties
         Implements INotifyPropertyChanged
         Implements IEditableObject
@@ -26,7 +26,7 @@ Namespace Model.Quote
         End Sub
 
 #Region "Variables"
-        Private WithEvents _QuoteDetails As New QuoteDetailCollection
+        Private WithEvents _QuoteDetails As New DetailCollection
 #End Region
 
 #Region "Properties"
@@ -36,7 +36,7 @@ Namespace Model.Quote
         Public Property WeightProperties As New Weights(Me)
         Public Property PrimaryProperties As PrimaryPropeties
 
-        Public ReadOnly Property QuoteDetails As QuoteDetailCollection
+        Public ReadOnly Property QuoteDetails As DetailCollection
             Get
                 Return _QuoteDetails
             End Get
@@ -52,9 +52,9 @@ Namespace Model.Quote
 
 #Region "Methods"
 
-        Public Function NewQuoteDetail(ByVal product As Product) As QuoteDetail
+        Public Function NewQuoteDetail(ByVal product As Product) As Detail
 
-            Dim oo As QuoteDetail = New QuoteDetail(Me, product)
+            Dim oo As Detail = New Detail(Me, product)
 
             AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             Me.QuoteDetails.Add(oo)
@@ -64,7 +64,7 @@ Namespace Model.Quote
             Return oo
         End Function
 
-        Public Sub Remove(ByVal detail As QuoteDetail)
+        Public Sub Remove(ByVal detail As Detail)
             If detail IsNot Nothing Then
                 Me.QuoteDetails.Remove(detail)
 
@@ -93,7 +93,7 @@ Namespace Model.Quote
 
         Private Sub SendEvents()
             Dim info() As PropertyInfo
-            info = GetType(QuoteHeader).GetProperties()
+            info = GetType(Header).GetProperties()
             For Each i As PropertyInfo In info
                 RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
             Next
