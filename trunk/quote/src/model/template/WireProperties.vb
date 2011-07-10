@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
+Imports DCS.Quote.Model.Quote
 
 Namespace Model.Template
 
@@ -42,7 +43,7 @@ Namespace Model.Template
         <DescriptionAttribute("Pounds per foot")> _
         Public ReadOnly Property WeightPerDecameter As Decimal
             Get
-                Return Weights.FindWeight(Me.Gage)
+                Return 0
             End Get
         End Property
 
