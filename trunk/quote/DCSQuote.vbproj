@@ -158,13 +158,13 @@
     <Compile Include="src\misc\ActiveTemplateDetail.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveTemplate.vb" />
-    <Compile Include="src\model\properties\ComponentProperties.vb" />
-    <Compile Include="src\model\properties\OtherProperties.vb" />
-    <Compile Include="src\model\properties\PrimaryPropeties.vb" />
+    <Compile Include="src\model\quote\ComponentProperties.vb" />
+    <Compile Include="src\model\quote\OtherProperties.vb" />
+    <Compile Include="src\model\quote\PrimaryPropeties.vb" />
     <Compile Include="src\misc\SaveableProperties.vb" />
-    <Compile Include="src\model\properties\WireProperties.vb" />
+    <Compile Include="src\model\quote\WireProperties.vb" />
     <Compile Include="src\model\Shipping.vb" />
-    <Compile Include="src\model\properties\ComputationProperties.vb" />
+    <Compile Include="src\model\quote\ComputationProperties.vb" />
     <Compile Include="src\model\quote\QuoteDetailCollection.vb" />
     <Compile Include="src\model\template\TemplateHeader.vb" />
     <Compile Include="src\model\UnitOfMeasure.vb" />
@@ -317,7 +317,9 @@
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\model\properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
