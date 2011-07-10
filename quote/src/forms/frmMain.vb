@@ -105,10 +105,12 @@ Public Class frmMain
     End Sub
 
     Private Sub CreateNewQuote()
+
         Dim frm As New frmNewQuote
+
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            Dim saver As New TemplateSaver
+            Dim saver As New QuoteSaver
             Dim id As Integer = saver.Save(frm.Header, True)
             If (id > 0) Then
                 LoadQuote(id)

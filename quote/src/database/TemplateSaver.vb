@@ -51,12 +51,11 @@ Public Class TemplateSaver
         End If
 
         adaptor.Connection.Open()
-        Me.DeleteProperties(newId)
-        Dim SaveAll As Boolean = IsQuote
-        Me.SaveProperties(newId, 0, q.OtherProperties, SaveAll)
-        Me.SaveProperties(newId, 0, q.ComputationProperties, SaveAll)
-        Me.DeleteComponents(newId)
-        Me.SaveComponents(q, newId)
+        CommonSaver.DeleteProperties(newId)
+        CommonSaver.SaveProperties(newId, 0, q.OtherProperties, False)
+        CommonSaver.SaveProperties(newId, 0, q.ComputationProperties, False)
+        CommonSaver.DeleteComponents(newId)
+        CommonSaver.SaveComponents(q, newId)
         adaptor.Connection.Close()
 
         My.Settings.LastTamplate1 = newId
@@ -68,77 +67,5 @@ Public Class TemplateSaver
 
         Return newId
     End Function
-
-    Private Sub SaveComponents(ByVal q As Header, ByVal quoteId As Integer)
-
-        Dim adaptor As New _QuoteDetailTableAdapter
-        Dim oldId As Integer = q.PrimaryProperties.CommonID
-        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(oldId)
-        For Each detail As Detail In q.Details
-            adaptor.Connection.Open()
-            adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(quoteId, detail.Qty, detail.ProductCode)
-            Dim cmd As OleDbCommand = New OleDbCommand( _
-                "SELECT @@IDENTITY", adaptor.Connection)
-            cmd.Transaction = adaptor.Transaction
-            Dim id As Integer = CInt(cmd.ExecuteScalar())
-            adaptor.Transaction.Commit()
-            adaptor.Connection.Close()
-
-            Me.SaveProperties(quoteId, id, detail.QuoteDetailProperties, Nothing)
-            detail.ClearDirty()
-        Next
-
-    End Sub
-
-    Private Sub SaveProperties(ByVal id As Integer, _
-                               ByVal childId As Integer, _
-                               ByVal obj As Object, _
-                               ByVal SaveAll As Boolean)
-
-        Dim props As PropertyInfo() = obj.GetType.GetProperties
-        Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-
-        For Each p As PropertyInfo In props
-
-            If SaveAll = False Then
-                If Not p.CanWrite Then
-                    Continue For
-                End If
-            End If
-
-            Dim s As String = Nothing
-            Dim i As Integer = Nothing
-            Dim d As Decimal = Nothing
-            Dim o As Object = p.GetValue(obj, Nothing)
-
-            If TypeOf o Is Integer Then
-                i = CInt(o)
-            End If
-            If TypeOf o Is String Then
-                s = CStr(o)
-            End If
-            If TypeOf o Is Decimal Then
-                d = CDec(o)
-            End If
-
-            adaptor.Insert(id, childId, p.Name, s, d, i)
-        Next
-    End Sub
-
-    Private Sub DeleteComponents(ByVal id As Integer)
-        Dim adaptor As New _QuoteDetailTableAdapter
-        adaptor.Delete(id)
-    End Sub
-
-    Private Sub DeleteProperties(ByVal QuoteID As Integer)
-
-        Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-        Dim table As _QuotePropertiesDataTable = adaptor.GetDataByQuoteID(QuoteID)
-        For Each row As _QuotePropertiesRow In table.Rows
-            adaptor.Delete(row.ID)
-        Next
-    End Sub
-
 
 End Class
