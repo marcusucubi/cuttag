@@ -4,6 +4,7 @@ Imports DCS.Quote.Model
 Imports System.ComponentModel
 Imports System.Collections.Specialized
 Imports DCS.Quote.Model.Quote
+Imports System.Reflection
 
 Public Class frmMain
 

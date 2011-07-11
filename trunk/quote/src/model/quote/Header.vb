@@ -18,6 +18,10 @@ Namespace Model.Quote
             MyBase.IsQuote = True
         End Sub
 
+        Public Sub SetComputationProperties(ByVal o As Object)
+            Me._ComputationProperties = o
+        End Sub
+
         Public Shadows ReadOnly Property ID As Integer
             Get
                 Return PrimaryProperties.CommonID
