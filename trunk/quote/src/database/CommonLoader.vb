@@ -46,7 +46,7 @@ Public Class CommonLoader
             If (detail IsNot Nothing) Then
                 detail.Qty = row.Qty
                 LoadProperties(id, row.ID, detail.QuoteDetailProperties)
-                q.Details.Add(detail)
+                'q.Details.Add(detail)
             End If
         Next
     End Sub

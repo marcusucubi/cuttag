@@ -14,6 +14,7 @@ Namespace Model.Quote
             Me._PrimaryProperties = New PrimaryPropeties(Me, id)
             Me._ComputationProperties = New ComputationProperties(Me)
             Me._OtherProperties = New OtherProperties(Me)
+            MyBase.ID = id
         End Sub
 
         Public Shadows ReadOnly Property IsQuote As Boolean

@@ -8,12 +8,11 @@ Namespace Model.Quote
         Inherits Common.PrimaryPropeties
 
         Private _QuoteHeader As Header
-        Private _QuoteNumnber As Integer
 
         Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
             _QuoteHeader = QuoteHeader
-            Me._QuoteNumnber = id
             CustomerName = "Caterpillar Inc."
+            MyBase.SetID(id)
         End Sub
 
         <CategoryAttribute("Quote"), _
