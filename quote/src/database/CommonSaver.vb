@@ -6,6 +6,7 @@ Imports System.Reflection
 Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
+Imports System.ComponentModel
 
 Public Class CommonSaver
 
@@ -29,7 +30,12 @@ Public Class CommonSaver
             Dim i As Integer = Nothing
             Dim d As Decimal = Nothing
             Dim o As Object = p.GetValue(obj, Nothing)
-
+            Dim cat As String = "Misc"
+            Dim oa As CategoryAttribute() = p.GetCustomAttributes(GetType(CategoryAttribute), False)
+            If oa.Length > 0 Then
+                cat = oa(0).Category
+            End If
+ 
             If TypeOf o Is Integer Then
                 i = CInt(o)
             End If
@@ -40,7 +46,7 @@ Public Class CommonSaver
                 d = CDec(o)
             End If
 
-            adaptor.Insert(id, childId, p.Name, s, d, i)
+            adaptor.Insert(id, childId, p.Name, s, d, i, cat)
         Next
     End Sub
 
