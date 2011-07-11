@@ -22,12 +22,13 @@ Public Class QuoteLoader
             q.PrimaryProperties.CommonPartNumber = row.PartNumber
             q.PrimaryProperties.CommonRequestForQuoteNumber = row.RequestForQuoteNumber
 
-            Dim o = LoadProperties(id, -1, q.ComputationProperties)
+            'CommonLoader.LoadProperties(id, 0, q.ComputationProperties)
+            'CommonLoader.LoadProperties(id, 0, q.OtherProperties)
+            CommonLoader.LoadComponents(q)
+
+            Dim o = LoadProperties(id, 0, q.ComputationProperties)
             q.SetComputationProperties(o)
 
-            CommonLoader.LoadProperties(id, -1, q.ComputationProperties)
-            CommonLoader.LoadProperties(id, -1, q.OtherProperties)
-            CommonLoader.LoadComponents(q)
         End If
 
         Return q
@@ -54,8 +55,10 @@ Public Class QuoteLoader
                     If p.PropertyType.Name = "String" Then
                         p.SetValue(obj, row.PropertyStringValue, Nothing)
                         Dim node As New PropertyLoader.Node
-                        node.Name = row.PropertyStringValue
+                        node.Name = row.PropertyName
                         node.TypeName = "System.String"
+                        node.Value = row.PropertyStringValue
+                        node.Category = row.PropertyCatagory
                         loader.PropertyNames.Add(node)
                     End If
                 End If
@@ -63,8 +66,10 @@ Public Class QuoteLoader
                     If p.PropertyType.Name = "Decimal" Then
                         p.SetValue(obj, row.PropertyDecimalValue, Nothing)
                         Dim node As New PropertyLoader.Node
-                        node.Name = row.PropertyStringValue
+                        node.Name = row.PropertyName
                         node.TypeName = "System.Decimal"
+                        node.Value = row.PropertyDecimalValue
+                        node.Category = row.PropertyCatagory
                         loader.PropertyNames.Add(node)
                     End If
                 End If
@@ -72,8 +77,10 @@ Public Class QuoteLoader
                     If p.PropertyType.Name = "Int32" Then
                         p.SetValue(obj, row.PropertyIntegerValue, Nothing)
                         Dim node As New PropertyLoader.Node
-                        node.Name = row.PropertyStringValue
-                        node.TypeName = "System.Integer"
+                        node.Name = row.PropertyName
+                        node.TypeName = "System.Int32"
+                        node.Value = row.PropertyIntegerValue
+                        node.Category = row.PropertyCatagory
                         loader.PropertyNames.Add(node)
                     End If
                 End If

@@ -10,6 +10,8 @@ Public Class PropertyLoader
     Public Class Node
         Public Property Name As String
         Public Property TypeName As String
+        Public Property Value As Object
+        Public Property Category As String
     End Class
 
     Public Property ClassName As String = "Class1"
@@ -24,6 +26,7 @@ Public Class PropertyLoader
 
         samples.Imports.Add(New CodeNamespaceImport("System"))
         samples.Imports.Add(New CodeNamespaceImport("DCS.Quote.Common"))
+        samples.Imports.Add(New CodeNamespaceImport("System.ComponentModel"))
         compileUnit.Namespaces.Add(samples)
         Dim class1 As New CodeTypeDeclaration(ClassName)
         samples.Types.Add(class1)
@@ -31,15 +34,9 @@ Public Class PropertyLoader
             class1.BaseTypes.Add(Me.BaseTypeName)
         End If
 
-        'Dim Start As New CodeEntryPointMethod()
-        'Dim cs1 As New CodeMethodInvokeExpression( _
-        '    New CodeTypeReferenceExpression("System.Console"), "WriteLine", _
-        '    New CodePrimitiveExpression("Starting"))
-        'Start.Statements.Add(New CodeExpressionStatement(cs1))
-        'class1.Members.Add(Start)
-
         For Each node As Node In Me.PropertyNames
-            Me.AddProperty(class1, node.Name, "System.String")
+            Me.AddProperty(class1, node.Name, _
+               node.TypeName, node.Value, node.Category)
         Next
 
         Dim code As String = GenerateCode(compileUnit)
@@ -111,9 +108,7 @@ Public Class PropertyLoader
             If t.Name = ClassName Then
                 result = t.MakeByRefType()
                 result = Activator.CreateInstance(t)
-                Console.WriteLine(result)
             End If
-            Console.WriteLine(t.Name)
         Next
 
         If cr.Errors.Count > 0 Then
@@ -124,26 +119,37 @@ Public Class PropertyLoader
     End Function
 
     Private Sub AddProperty(ByVal class1 As CodeTypeDeclaration, _
-                           ByVal name As String, _
-                           ByVal typeName As String)
-
-        Dim fieldName As String = name + "Field"
-        Dim field1 As New CodeMemberField("System.String", fieldName)
-        class1.Members.Add(field1)
+                            ByVal name As String, _
+                            ByVal typeName As String, _
+                            ByVal value As Object, _
+                            ByVal category As String)
 
         Dim property1 As New CodeMemberProperty()
         property1.Name = name
-        property1.Type = New CodeTypeReference("System.String")
+        property1.Type = New CodeTypeReference(typeName)
         property1.Attributes = MemberAttributes.Public
+        property1.HasSet = False
+        If value Is Nothing Then
+            If typeName = "System.Decimal" Then
+                value = 0
+            End If
+            If typeName = "System.Int32" Then
+                value = 0
+            End If
+            If typeName = "System.String" Then
+                value = ""
+            End If
+        End If
+
         property1.GetStatements.Add( _
             New CodeMethodReturnStatement( _
-                New CodeFieldReferenceExpression( _
-                    New CodeThisReferenceExpression(), fieldName)))
-        property1.SetStatements.Add( _
-            New CodeAssignStatement( _
-                New CodeFieldReferenceExpression( _
-                    New CodeThisReferenceExpression(), fieldName), _
-                New CodePropertySetValueReferenceExpression()))
+                New CodePrimitiveExpression(value)))
+
+        Dim arg = New CodeAttributeArgument( _
+            New CodePrimitiveExpression(category))
+        property1.CustomAttributes.Add( _
+            New CodeAttributeDeclaration( _
+                   "CategoryAttribute", arg))
         class1.Members.Add(property1)
 
     End Sub
