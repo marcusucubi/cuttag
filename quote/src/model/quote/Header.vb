@@ -11,7 +11,7 @@ Namespace Model.Quote
         End Sub
 
         Public Sub New(ByVal id As Long)
-            Me._PrimaryProperties = New Common.PrimaryPropeties
+            Me._PrimaryProperties = New Quote.PrimaryPropeties(Me, id)
             Me._ComputationProperties = New Common.ComputationProperties
             Me._OtherProperties = New Common.OtherProperties
             MyBase.ID = id
