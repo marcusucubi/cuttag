@@ -35,7 +35,7 @@ Public Class CommonSaver
             If oa.Length > 0 Then
                 cat = oa(0).Category
             End If
- 
+
             If TypeOf o Is Integer Then
                 i = CInt(o)
             End If
