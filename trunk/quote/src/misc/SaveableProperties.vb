@@ -47,11 +47,7 @@ Public Class SaveableProperties
     End Sub
 
     Friend Sub SendEvents()
-        Dim info() As PropertyInfo
-        info = Me.GetType().GetProperties()
-        For Each i As PropertyInfo In info
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(i.Name))
-        Next
+        RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
         MakeDirty()
     End Sub
 

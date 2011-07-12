@@ -41,7 +41,7 @@ Namespace Model.Template
         DescriptionAttribute("Weight of Copper Scrap. " + Chr(10) + "(Pounds)")> _
         Public ReadOnly Property CopperWeight As Decimal
             Get
-                Return 0
+                Return Me._Header.WeightProperties.Weight
             End Get
         End Property
 
