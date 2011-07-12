@@ -40,7 +40,7 @@ Namespace Model.Template
         <DescriptionAttribute("Pounds per foot")> _
         Public ReadOnly Property WeightPerDecameter As Decimal
             Get
-                Return 0
+                Return Common.Weights.FindWeight(Me.Gage)
             End Get
         End Property
 
@@ -61,10 +61,12 @@ Namespace Model.Template
             End Get
             Set(ByVal value As Integer)
                 Me._QuoteDetail.Qty = value
+                Me.SendEvents()
             End Set
         End Property
 
         Private Overloads Sub SendEvents()
+            MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
         End Sub
 
