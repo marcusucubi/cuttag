@@ -39,56 +39,49 @@ Public Class QuoteLoader
                                      ByVal obj As Object) _
                                  As Object
 
-        Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
         Dim loader As New PropertyLoader
 
-        For Each p As PropertyInfo In props
+        Dim table As _QuotePropertiesDataTable = _
+                adaptor.GetDataByQuoteID(id)
 
-            Dim table As _QuotePropertiesDataTable = _
-                adaptor.GetDataByQuoteAndName(id, childId, p.Name)
-
-            If table.Rows.Count > 0 Then
-                Dim row As _QuotePropertiesRow = table.Rows(0)
-                If row("PropertyStringValue") IsNot DBNull.Value Then
-                    If p.PropertyType.Name = "String" Then
-                        p.SetValue(obj, row.PropertyStringValue, Nothing)
-                        Dim node As New PropertyLoader.Node
-                        node.Name = row.PropertyName
-                        node.TypeName = "System.String"
-                        node.Value = row.PropertyStringValue
-                        node.Category = row.PropertyCatagory
-                        loader.PropertyNames.Add(node)
-                    End If
+        For Each row As _QuotePropertiesRow In table.Rows
+            If row("PropertyStringValue") IsNot DBNull.Value Then
+                Dim node As New PropertyLoader.Node
+                node.Name = row.PropertyName
+                node.TypeName = "System.String"
+                node.Value = row.PropertyStringValue
+                node.Category = row.PropertyCatagory
+                If Not loader.PropertyNames2.Contains(node.Name) Then
+                    loader.PropertyNames.Add(node)
+                    loader.PropertyNames2.Add(node.Name)
                 End If
-                If row("PropertyDecimalValue") IsNot DBNull.Value Then
-                    If p.PropertyType.Name = "Decimal" Then
-                        p.SetValue(obj, row.PropertyDecimalValue, Nothing)
-                        Dim node As New PropertyLoader.Node
-                        node.Name = row.PropertyName
-                        node.TypeName = "System.Decimal"
-                        node.Value = row.PropertyDecimalValue
-                        node.Category = row.PropertyCatagory
-                        loader.PropertyNames.Add(node)
-                    End If
+            ElseIf row("PropertyDecimalValue") IsNot DBNull.Value Then
+                Dim node As New PropertyLoader.Node
+                node.Name = row.PropertyName
+                node.TypeName = "System.Decimal"
+                node.Value = row.PropertyDecimalValue
+                node.Category = row.PropertyCatagory
+                If Not loader.PropertyNames2.Contains(node.Name) Then
+                    loader.PropertyNames.Add(node)
+                    loader.PropertyNames2.Add(node.Name)
                 End If
-                If row("PropertyIntegerValue") IsNot DBNull.Value Then
-                    If p.PropertyType.Name = "Int32" Then
-                        p.SetValue(obj, row.PropertyIntegerValue, Nothing)
-                        Dim node As New PropertyLoader.Node
-                        node.Name = row.PropertyName
-                        node.TypeName = "System.Int32"
-                        node.Value = row.PropertyIntegerValue
-                        node.Category = row.PropertyCatagory
-                        loader.PropertyNames.Add(node)
-                    End If
+            ElseIf row("PropertyIntegerValue") IsNot DBNull.Value Then
+                Dim node As New PropertyLoader.Node
+                node.Name = row.PropertyName
+                node.TypeName = "System.Int32"
+                node.Value = row.PropertyIntegerValue
+                node.Category = row.PropertyCatagory
+                If Not loader.PropertyNames2.Contains(node.Name) Then
+                    loader.PropertyNames.Add(node)
+                    loader.PropertyNames2.Add(node.Name)
                 End If
             End If
         Next
 
         Dim o As New Object
-        loader.BaseTypeName = "DCS.Quote.Common.ComputationProperties"
+        loader.BaseTypeName = obj.GetType.FullName  ' "DCS.Quote.Common.ComputationProperties"
         o = loader.Generate()
         Return o
     End Function

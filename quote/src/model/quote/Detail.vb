@@ -6,8 +6,8 @@ Namespace Model.Quote
     Public Class Detail
         Inherits Common.Detail
 
-        Private _WireProperties As New WireProperties(Me)
-        Private _ComponentProperties As New ComponentProperties
+        Private _WireProperties As New SaveableProperties
+        Private _ComponentProperties As New SaveableProperties
 
         Friend Sub New(ByVal header As Common.Header, ByVal product As Product)
             Me.QuoteHeader = header

@@ -4,7 +4,7 @@ Imports System.Reflection
 
 Namespace Common
 
-    Public MustInherit Class PrimaryPropeties
+    Public Class PrimaryPropeties
         Inherits SaveableProperties
 
         Private _ID As Integer

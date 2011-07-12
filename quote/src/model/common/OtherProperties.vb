@@ -4,7 +4,7 @@ Imports System.Reflection
 
 Namespace Common
 
-    Public MustInherit Class OtherProperties
+    Public Class OtherProperties
         Inherits SaveableProperties
 
     End Class

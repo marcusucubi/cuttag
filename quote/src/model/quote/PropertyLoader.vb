@@ -16,6 +16,7 @@ Public Class PropertyLoader
 
     Public Property ClassName As String = "Class1"
     Public Property PropertyNames As New List(Of Node)
+    Public Property PropertyNames2 As New List(Of String)
     Public Property BaseTypeName As String
 
 

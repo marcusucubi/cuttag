@@ -4,7 +4,7 @@ Imports DCS.Quote.Common
 
 Namespace Common
 
-    Public MustInherit Class ComputationProperties
+    Public Class ComputationProperties
         Inherits SaveableProperties
 
 
