@@ -30,10 +30,24 @@ Public Class CommonSaver
             Dim i As Integer = Nothing
             Dim d As Decimal = Nothing
             Dim o As Object = p.GetValue(obj, Nothing)
+
             Dim cat As String = "Misc"
-            Dim oa As CategoryAttribute() = p.GetCustomAttributes(GetType(CategoryAttribute), False)
-            If oa.Length > 0 Then
-                cat = oa(0).Category
+            With cat
+                Dim oa As CategoryAttribute() = p.GetCustomAttributes(GetType(CategoryAttribute), False)
+                If oa.Length > 0 Then
+                    cat = oa(0).Category
+                End If
+            End With
+
+            Dim browsable As Boolean = True
+            With browsable
+                Dim oa As BrowsableAttribute() = p.GetCustomAttributes(GetType(BrowsableAttribute), False)
+                If oa.Length > 0 Then
+                    browsable = oa(0).Browsable
+                End If
+            End With
+            If Not browsable Then
+                Continue For
             End If
 
             If TypeOf o Is Integer Then
