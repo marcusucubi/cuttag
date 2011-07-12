@@ -90,6 +90,13 @@ Public Class frmQuoteA
         End If
     End Sub
 
+    Private Sub frmQuoteA_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Me._Header.IsQuote Then
+            Me.panelButtons.Visible = False
+            Me.gridDetail.ReadOnly = True
+        End If
+    End Sub
+
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
         ActiveHeader.ActiveHeader.Header = Me._Header
     End Sub
