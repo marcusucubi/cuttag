@@ -5,6 +5,7 @@ Imports System.Reflection
 Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
+Imports DCS.Quote.Model.Quote
 
 Public Class QuoteLoader
 
@@ -20,7 +21,7 @@ Public Class QuoteLoader
             q = New Model.Quote.Header(row.ID, row.CustomerName, _
                 row.RequestForQuoteNumber, row.PartNumber)
 
-            CommonLoader.LoadComponents(q)
+            LoadComponents(q)
 
             Dim o1 = LoadProperties(id, -1, q.ComputationProperties)
             q.SetComputationProperties(o1)
@@ -33,9 +34,9 @@ Public Class QuoteLoader
     End Function
 
     Public Shared Function LoadProperties(ByVal id As Integer, _
-                                     ByVal childId As Integer, _
-                                     ByVal obj As Object) _
-                                 As Object
+                                          ByVal childId As Integer, _
+                                          ByVal obj As Object) _
+                                          As Object
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
@@ -83,5 +84,48 @@ Public Class QuoteLoader
         o = loader.Generate()
         Return o
     End Function
+
+    Public Shared Sub LoadComponents(ByVal q As Header)
+
+        Dim adaptor As New _QuoteDetailTableAdapter
+        Dim partAdaptor As New _PartsTableAdapter
+        Dim wireAdaptor As New _WiresTableAdapter
+        Dim id As Integer = q.PrimaryProperties.CommonID
+        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
+        For Each row As _QuoteDetailRow In table.Rows
+
+            Dim detail As Detail = Nothing
+
+            Dim parts As _PartsDataTable
+            parts = partAdaptor.GetDataByProductCode(row.ProductCode)
+            If (parts.Count > 0) Then
+                Dim part As _PartsRow
+                part = parts(0)
+                Dim partObj As New Product( _
+                    part.PartNumber, part.UnitCost, _
+                    0, UnitOfMeasure.BY_EACH)
+
+                detail = q.NewDetail(partObj)
+            End If
+
+            Dim wires As _WiresDataTable
+            wires = wireAdaptor.GetDataByProductCode(row.ProductCode)
+            If (wires.Count > 0) Then
+                Dim wire As _WiresRow
+                wire = wires(0)
+                Dim wireObj As New Product( _
+                    wire.PartNumber, wire.Price, _
+                    wire.Gage, UnitOfMeasure.BY_LENGTH)
+
+                detail = q.NewDetail(wireObj)
+            End If
+
+            If (detail IsNot Nothing) Then
+                detail.Qty = row.Qty
+                Dim o1 = LoadProperties(id, row.ID, detail.QuoteDetailProperties)
+                detail.SetProperties(o1)
+            End If
+        Next
+    End Sub
 
 End Class

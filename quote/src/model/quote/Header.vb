@@ -37,12 +37,8 @@ Namespace Model.Quote
         End Property
 
         Public Overrides Function NewDetail(ByVal product As Product) As Common.Detail
-
-            Dim oo As Detail = New Detail(Me, product)
-
-            'AddHandler oo.PropertyChanged, AddressOf ForwardEvent
+            Dim oo As Detail = New Detail(Me, Product)
             MyBase.Details.Add(oo)
-
             Return oo
         End Function
 
