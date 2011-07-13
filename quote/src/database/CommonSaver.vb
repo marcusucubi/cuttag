@@ -62,8 +62,12 @@ Public Class CommonSaver
                 d = CDec(o)
                 adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat)
             End If
+            If TypeOf o Is DateTime Then
+                Dim dt As DateTime = CDate(o)
+                adaptor.Insert(id, childId, p.Name, dt.ToShortDateString, Nothing, Nothing, cat)
+            End If
 
-            adaptor.Insert(id, childId, p.Name, s, d, i, cat)
+            'adaptor.Insert(id, childId, p.Name, s, d, i, cat)
         Next
     End Sub
 

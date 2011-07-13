@@ -18,8 +18,18 @@ Public Class QuoteLoader
         adaptor.FillByQuoteID(table, id)
         If table.Rows.Count > 0 Then
             Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-            q = New Model.Quote.Header(row.ID, row.CustomerName, _
-                row.RequestForQuoteNumber, row.PartNumber)
+
+            Dim customer As String = row.CustomerName
+            Dim rfq As String = ""
+            If Not row.IsRequestForQuoteNumberNull Then
+                rfq = row.RequestForQuoteNumber
+            End If
+            Dim part As String = ""
+            If Not row.IsPartNumberNull Then
+                part = row.PartNumber
+            End If
+
+            q = New Model.Quote.Header(row.ID, customer, rfq, part)
 
             LoadComponents(q)
 
