@@ -79,7 +79,8 @@ Public Class CommonSaver
     End Sub
 
     Public Shared Sub SaveComponents(ByVal q As Model.Template.Header, _
-                                     ByVal quoteId As Integer)
+                                     ByVal quoteId As Integer, _
+                                     ByVal SaveAll As Boolean)
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim oldId As Integer = q.PrimaryProperties.CommonID
@@ -95,7 +96,8 @@ Public Class CommonSaver
             adaptor.Transaction.Commit()
             adaptor.Connection.Close()
 
-            SaveProperties(quoteId, id, detail.QuoteDetailProperties, Nothing)
+            SaveProperties(quoteId, id, _
+               detail.QuoteDetailProperties, SaveAll)
             detail.ClearDirty()
         Next
 
