@@ -55,8 +55,6 @@ Partial Class frmMain
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.LoadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.LoadLastToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuoteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewQuoteMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
@@ -198,7 +196,7 @@ Partial Class frmMain
         '
         'menuTemplate
         '
-        Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ToolStripSeparator2, Me.LoadLastToolStripMenuItem})
+        Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SaveToolStripMenuItem})
         Me.menuTemplate.Name = "menuTemplate"
         Me.menuTemplate.Size = New System.Drawing.Size(69, 20)
         Me.menuTemplate.Text = "Template"
@@ -206,19 +204,19 @@ Partial Class frmMain
         'menuNewQuote
         '
         Me.menuNewQuote.Name = "menuNewQuote"
-        Me.menuNewQuote.Size = New System.Drawing.Size(124, 22)
+        Me.menuNewQuote.Size = New System.Drawing.Size(152, 22)
         Me.menuNewQuote.Text = "New"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(121, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
         '
         'LoadToolStripMenuItem
         '
         Me.LoadToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.load
         Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
-        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.LoadToolStripMenuItem.Text = "Load"
         '
         'SaveToolStripMenuItem
@@ -226,20 +224,8 @@ Partial Class frmMain
         Me.SaveToolStripMenuItem.Enabled = False
         Me.SaveToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.save
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(121, 6)
-        '
-        'LoadLastToolStripMenuItem
-        '
-        Me.LoadLastToolStripMenuItem.Enabled = False
-        Me.LoadLastToolStripMenuItem.Name = "LoadLastToolStripMenuItem"
-        Me.LoadLastToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
-        Me.LoadLastToolStripMenuItem.Text = "Load Last"
         '
         'QuoteToolStripMenuItem
         '
@@ -337,8 +323,6 @@ Partial Class frmMain
     Friend WithEvents SaveToolButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents LoadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents LoadLastToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents QuoteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LoadQuoteItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NewQuoteMenuItem As System.Windows.Forms.ToolStripMenuItem

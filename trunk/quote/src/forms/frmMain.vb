@@ -23,10 +23,6 @@ Public Class frmMain
         Me._ActiveHeader = ActiveHeader.ActiveHeader
     End Sub
 
-    Private Sub frmMain_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        UpdateLastFilesMenu()
-    End Sub
-
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
     End Sub
@@ -101,7 +97,7 @@ Public Class frmMain
         LoadQuote()
     End Sub
 
-    Private Sub LoadLastToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadLastToolStripMenuItem.Click
+    Private Sub LoadLastToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         LoadTemplate(My.Settings.LastTamplate1)
     End Sub
 
@@ -220,7 +216,6 @@ Public Class frmMain
     Private Sub SaveTemplate()
         Dim saver As New TemplateSaver
         saver.Save(Me._ActiveHeader.Header)
-        UpdateLastFilesMenu()
         EnableButtons()
     End Sub
 
@@ -268,17 +263,6 @@ Public Class frmMain
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
         Me.DisplayViews()
-    End Sub
-
-    Private Sub UpdateLastFilesMenu()
-        Dim id As String = My.Settings.LastTamplate1
-        If id.Length > 0 Then
-            Me.LoadLastToolStripMenuItem.Enabled = True
-            Me.LoadLastToolStripMenuItem.Text = "Load Last (" + id + ")"
-        Else
-            Me.LoadLastToolStripMenuItem.Enabled = False
-            Me.LoadLastToolStripMenuItem.Text = "Load Last"
-        End If
     End Sub
 
     Private Function IsLoaded(ByVal id As String) As Boolean
