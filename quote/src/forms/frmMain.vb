@@ -10,7 +10,6 @@ Public Class frmMain
 
     Private _Properties As New frmComputationProperties
     Private _OtherProperties As New frmOtherProperties
-    Private _WeightProperties As New frmWeights
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
     Private WithEvents _ActiveHeader As ActiveHeader
@@ -65,10 +64,6 @@ Public Class frmMain
 
     Private Sub ComputationalPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComputationalPropertiesToolStripMenuItem.Click
         ShowOtherProperties()
-    End Sub
-
-    Private Sub WeightToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GagePropertiesToolStripMenuItem.Click
-        ShowWeights()
     End Sub
 
     Private Sub PrimaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrimaryToolStripMenuItem.Click
@@ -182,17 +177,6 @@ Public Class frmMain
         If (_OtherProperties.IsHidden Or _OtherProperties.IsDisposed) Then
             _OtherProperties = New frmOtherProperties
             InitChild(_OtherProperties)
-        End If
-    End Sub
-
-    Private Sub ShowWeights()
-        If (_WeightProperties Is Nothing) Then
-            _WeightProperties = New frmWeights
-            InitChild(_WeightProperties)
-        End If
-        If (_WeightProperties.IsHidden Or _WeightProperties.IsDisposed) Then
-            _WeightProperties = New frmWeights
-            InitChild(_WeightProperties)
         End If
     End Sub
 
