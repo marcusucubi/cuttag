@@ -34,6 +34,14 @@ Public Class CommonSaver
                 End If
             End With
 
+            Dim desc As String = ""
+            With desc
+                Dim oa As DescriptionAttribute() = p.GetCustomAttributes(GetType(DescriptionAttribute), False)
+                If oa.Length > 0 Then
+                    desc = oa(0).Description
+                End If
+            End With
+
             Dim browsable As Boolean = True
             With browsable
                 Dim oa As BrowsableAttribute() = p.GetCustomAttributes(GetType(BrowsableAttribute), False)
@@ -52,22 +60,20 @@ Public Class CommonSaver
 
             If TypeOf o Is Integer Then
                 i = CInt(o)
-                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat)
+                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc)
             End If
             If TypeOf o Is String Then
                 s = CStr(o)
-                adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat)
+                adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc)
             End If
             If TypeOf o Is Decimal Then
                 d = CDec(o)
-                adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat)
+                adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat, desc)
             End If
             If TypeOf o Is DateTime Then
                 Dim dt As DateTime = CDate(o)
-                adaptor.Insert(id, childId, p.Name, dt.ToShortDateString, Nothing, Nothing, cat)
+                adaptor.Insert(id, childId, p.Name, dt.ToShortDateString, Nothing, Nothing, cat, desc)
             End If
-
-            'adaptor.Insert(id, childId, p.Name, s, d, i, cat)
         Next
     End Sub
 
