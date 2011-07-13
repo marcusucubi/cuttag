@@ -26,11 +26,6 @@ Public Class CommonSaver
                 End If
             End If
 
-            Dim s As String = Nothing
-            Dim i As Integer = Nothing
-            Dim d As Decimal = Nothing
-            Dim o As Object = p.GetValue(obj, Nothing)
-
             Dim cat As String = "Misc"
             With cat
                 Dim oa As CategoryAttribute() = p.GetCustomAttributes(GetType(CategoryAttribute), False)
@@ -50,14 +45,22 @@ Public Class CommonSaver
                 Continue For
             End If
 
+            Dim s As String = Nothing
+            Dim i As Integer = Nothing
+            Dim d As Decimal = Nothing
+            Dim o As Object = p.GetValue(obj, Nothing)
+
             If TypeOf o Is Integer Then
                 i = CInt(o)
+                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat)
             End If
             If TypeOf o Is String Then
                 s = CStr(o)
+                adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat)
             End If
             If TypeOf o Is Decimal Then
                 d = CDec(o)
+                adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat)
             End If
 
             adaptor.Insert(id, childId, p.Name, s, d, i, cat)
