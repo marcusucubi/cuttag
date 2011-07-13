@@ -63,6 +63,7 @@ Partial Class frmMain
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComputationalPropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrimaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -237,24 +238,24 @@ Partial Class frmMain
         '
         Me.NewQuoteMenuItem.Enabled = False
         Me.NewQuoteMenuItem.Name = "NewQuoteMenuItem"
-        Me.NewQuoteMenuItem.Size = New System.Drawing.Size(100, 22)
+        Me.NewQuoteMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.NewQuoteMenuItem.Text = "New"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(97, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(149, 6)
         '
         'LoadQuoteItem1
         '
         Me.LoadQuoteItem1.Image = Global.DCS.Quote.My.Resources.Resources.load
         Me.LoadQuoteItem1.Name = "LoadQuoteItem1"
-        Me.LoadQuoteItem1.Size = New System.Drawing.Size(100, 22)
+        Me.LoadQuoteItem1.Size = New System.Drawing.Size(152, 22)
         Me.LoadQuoteItem1.Text = "Load"
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.PrimaryToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.PrimaryToolStripMenuItem, Me.DetailToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -262,6 +263,7 @@ Partial Class frmMain
         'PropertiesToolStripMenuItem
         '
         Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
+        Me.PropertiesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
         Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PropertiesToolStripMenuItem.Text = "Costs"
         '
@@ -276,6 +278,12 @@ Partial Class frmMain
         Me.PrimaryToolStripMenuItem.Name = "PrimaryToolStripMenuItem"
         Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PrimaryToolStripMenuItem.Text = "Primary"
+        '
+        'DetailToolStripMenuItem
+        '
+        Me.DetailToolStripMenuItem.Name = "DetailToolStripMenuItem"
+        Me.DetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DetailToolStripMenuItem.Text = "Properties"
         '
         'frmMain
         '
@@ -322,5 +330,6 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents NewQuoteButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents LoadQuoteButton As System.Windows.Forms.ToolStripButton
+    Friend WithEvents DetailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
