@@ -34,7 +34,7 @@ Public Class TemplateLoader
             q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
 
             CommonLoader.LoadProperties(id, -1, q.ComputationProperties)
-            CommonLoader.LoadProperties(id, -1, q.OtherProperties)
+            CommonLoader.LoadProperties(id, -2, q.OtherProperties)
             CommonLoader.LoadComponents(q)
         End If
 
