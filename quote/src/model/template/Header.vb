@@ -8,6 +8,7 @@ Namespace Model.Template
 
         Public Sub New()
             Me.New(0)
+            Me.SendEvents()
         End Sub
 
         Public Sub New(ByVal id As Long)
