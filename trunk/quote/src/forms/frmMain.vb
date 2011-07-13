@@ -94,12 +94,12 @@ Public Class frmMain
         LoadQuote()
     End Sub
 
-    Private Sub LoadLastToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        LoadTemplate(My.Settings.LastTamplate1)
-    End Sub
-
     Private Sub _SaveableProperties_SavableChange(ByVal subject As SaveableProperties) Handles _SaveableProperties.SavableChange
         EnableButtons()
+    End Sub
+
+    Private Sub DetailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DetailToolStripMenuItem.Click
+        ShowDetailProperties()
     End Sub
 
     Private Sub CreateNewQuote()
