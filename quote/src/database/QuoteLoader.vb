@@ -17,17 +17,15 @@ Public Class QuoteLoader
         adaptor.FillByQuoteID(table, id)
         If table.Rows.Count > 0 Then
             Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-            q = New Model.Quote.Header(row.ID)
-            q.PrimaryProperties.CommonCustomerName = row.CustomerName
-            q.PrimaryProperties.CommonPartNumber = row.PartNumber
-            q.PrimaryProperties.CommonRequestForQuoteNumber = row.RequestForQuoteNumber
+            q = New Model.Quote.Header(row.ID, row.CustomerName, _
+                row.RequestForQuoteNumber, row.PartNumber)
 
-            'CommonLoader.LoadProperties(id, 0, q.ComputationProperties)
-            'CommonLoader.LoadProperties(id, 0, q.OtherProperties)
             CommonLoader.LoadComponents(q)
 
-            Dim o = LoadProperties(id, 0, q.ComputationProperties)
-            q.SetComputationProperties(o)
+            Dim o1 = LoadProperties(id, -1, q.ComputationProperties)
+            q.SetComputationProperties(o1)
+            Dim o2 = LoadProperties(id, -2, q.OtherProperties)
+            q.SetOtherProperties(o2)
 
         End If
 
@@ -44,7 +42,7 @@ Public Class QuoteLoader
         Dim loader As New PropertyLoader
 
         Dim table As _QuotePropertiesDataTable = _
-                adaptor.GetDataByQuoteID(id)
+                adaptor.GetDataByQuoteIDAndPropertyID(id, childId)
 
         For Each row As _QuotePropertiesRow In table.Rows
             If row("PropertyStringValue") IsNot DBNull.Value Then

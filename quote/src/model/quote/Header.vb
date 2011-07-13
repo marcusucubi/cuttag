@@ -7,11 +7,15 @@ Namespace Model.Quote
         Inherits Common.Header
 
         Public Sub New()
-            Me.New(0)
+            Me.New(0, "", "", "")
         End Sub
 
-        Public Sub New(ByVal id As Long)
-            Me._PrimaryProperties = New Quote.PrimaryPropeties(Me, id)
+        Public Sub New(ByVal id As Long, _
+                       ByVal CustomerName As String, _
+                       ByVal RequestForQuoteNumber As String, _
+                       ByVal PartNumber As String)
+            Me._PrimaryProperties = New Quote.PrimaryPropeties(Me, id, _
+                CustomerName, RequestForQuoteNumber, PartNumber)
             Me._ComputationProperties = New Common.ComputationProperties
             Me._OtherProperties = New Common.OtherProperties
             MyBase.ID = id
@@ -20,6 +24,10 @@ Namespace Model.Quote
 
         Public Sub SetComputationProperties(ByVal o As Object)
             Me._ComputationProperties = o
+        End Sub
+
+        Public Sub SetOtherProperties(ByVal o As Object)
+            Me._OtherProperties = o
         End Sub
 
         Public Shadows ReadOnly Property ID As Integer

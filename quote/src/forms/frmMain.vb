@@ -135,7 +135,13 @@ Public Class frmMain
             SaveToolButton.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
-            SaveToolButton.Enabled = True
+            If Me._ActiveHeader.Header.IsQuote Then
+                SaveToolButton.Enabled = False
+                SaveToolStripMenuItem.Enabled = False
+            Else
+                SaveToolButton.Enabled = True
+                SaveToolStripMenuItem.Enabled = True
+            End If
         End If
         If CanCreateQuote() Then
             NewQuoteMenuItem.Enabled = True
@@ -214,8 +220,10 @@ Public Class frmMain
     End Sub
 
     Private Sub SaveTemplate()
-        Dim saver As New TemplateSaver
-        saver.Save(Me._ActiveHeader.Header)
+        If Not Me._ActiveHeader.Header.IsQuote Then
+            Dim saver As New TemplateSaver
+            saver.Save(Me._ActiveHeader.Header)
+        End If
         EnableButtons()
     End Sub
 
