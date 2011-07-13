@@ -14,6 +14,7 @@ Public Class frmMain
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
     Private WithEvents _ActiveHeader As ActiveHeader
+    Private WithEvents _SaveableProperties As SaveableProperties
 
     Public Shared Property frmMain As frmMain
 
@@ -25,6 +26,7 @@ Public Class frmMain
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
+        Me._SaveableProperties = ActiveHeader.ActiveHeader.Header
     End Sub
 
     Private Function CanCreateQuote() As Boolean
@@ -101,6 +103,10 @@ Public Class frmMain
         LoadTemplate(My.Settings.LastTamplate1)
     End Sub
 
+    Private Sub _SaveableProperties_SavableChange(ByVal subject As SaveableProperties) Handles _SaveableProperties.SavableChange
+        EnableButtons()
+    End Sub
+
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote
@@ -131,16 +137,21 @@ Public Class frmMain
 
     Private Sub EnableButtons()
         If Me._ActiveHeader.Header Is Nothing Then
-            SaveToolStripMenuItem.Enabled = False
             SaveToolButton.Enabled = False
+            SaveToolStripMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             If Me._ActiveHeader.Header.IsQuote Then
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
             Else
-                SaveToolButton.Enabled = True
-                SaveToolStripMenuItem.Enabled = True
+                If Me._ActiveHeader.Header.Dirty Then
+                    SaveToolButton.Enabled = True
+                    SaveToolStripMenuItem.Enabled = True
+                Else
+                    SaveToolButton.Enabled = False
+                    SaveToolStripMenuItem.Enabled = False
+                End If
             End If
         End If
         If CanCreateQuote() Then
@@ -232,6 +243,7 @@ Public Class frmMain
         If r = DialogResult.OK Then
             LoadTemplate(frmTemplateLookup.QuoteID)
         End If
+        EnableButtons()
     End Sub
 
     Private Sub LoadTemplate(ByVal id As Integer)
@@ -248,6 +260,7 @@ Public Class frmMain
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
         Me.DisplayViews()
+        EnableButtons()
     End Sub
 
     Private Sub LoadQuote()
@@ -271,6 +284,7 @@ Public Class frmMain
         ChildForm.MdiParent = Me
         ChildForm.Show(Me.DockPanel1)
         Me.DisplayViews()
+        EnableButtons()
     End Sub
 
     Private Function IsLoaded(ByVal id As String) As Boolean

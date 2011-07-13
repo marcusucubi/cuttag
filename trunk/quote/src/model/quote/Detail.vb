@@ -6,10 +6,10 @@ Namespace Model.Quote
     Public Class Detail
         Inherits Common.Detail
 
-        Private _WireProperties As New SaveableProperties
-        Private _ComponentProperties As New SaveableProperties
+        Private _Properties As New SaveableProperties
 
-        Friend Sub New(ByVal header As Common.Header, ByVal product As Product)
+        Friend Sub New(ByVal header As Common.Header, _
+                       ByVal product As Product)
             Me.QuoteHeader = header
             Me._Product = product
             Me._Quantity = 1
@@ -21,12 +21,13 @@ Namespace Model.Quote
         <BrowsableAttribute(False)>
         Public Overrides ReadOnly Property QuoteDetailProperties As Object
             Get
-                If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-                    Return _WireProperties
-                End If
-                Return _ComponentProperties
+                Return _Properties
             End Get
         End Property
+
+        Public Sub SetProperties(ByVal props As SaveableProperties)
+            Me._Properties = props
+        End Sub
 
         Public Overloads Property Qty() As Decimal
             Get
@@ -42,4 +43,5 @@ Namespace Model.Quote
         End Property
 
     End Class
+
 End Namespace
