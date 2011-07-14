@@ -10,10 +10,25 @@ Imports System.ComponentModel
 
 Public Class CommonSaver
 
-    Public Shared Sub SaveProperties(ByVal id As Integer, _
-                                     ByVal childId As Integer, _
+    Public Shared ReadOnly COMPUTATION_PROPERTIES_ID = -1
+    Public Shared ReadOnly OTHER_PROPERTIES_ID = -2
+
+    Public Shared Sub SaveOtherProperties(ByVal id As Integer, _
+                                          ByVal obj As Object, _
+                                          ByVal SaveAll As Boolean)
+        SaveProperties(id, OTHER_PROPERTIES_ID, obj, SaveAll)
+    End Sub
+
+    Public Shared Sub SaveComputationProperties(ByVal id As Integer, _
                                      ByVal obj As Object, _
                                      ByVal SaveAll As Boolean)
+        SaveProperties(id, COMPUTATION_PROPERTIES_ID, obj, SaveAll)
+    End Sub
+
+    Private Shared Sub SaveProperties(ByVal id As Integer, _
+                                      ByVal childId As Integer, _
+                                      ByVal obj As Object, _
+                                      ByVal SaveAll As Boolean)
 
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
