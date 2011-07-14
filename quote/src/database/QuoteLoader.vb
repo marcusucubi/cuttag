@@ -62,6 +62,7 @@ Public Class QuoteLoader
                 node.TypeName = "System.String"
                 node.Value = row.PropertyStringValue
                 node.Category = row.PropertyCatagory
+                node.Description = row.PropertyDescription
                 If Not loader.PropertyNames2.Contains(node.Name) Then
                     loader.PropertyNames.Add(node)
                     loader.PropertyNames2.Add(node.Name)
@@ -72,6 +73,7 @@ Public Class QuoteLoader
                 node.TypeName = "System.Decimal"
                 node.Value = row.PropertyDecimalValue
                 node.Category = row.PropertyCatagory
+                node.Description = row.PropertyDescription
                 If Not loader.PropertyNames2.Contains(node.Name) Then
                     loader.PropertyNames.Add(node)
                     loader.PropertyNames2.Add(node.Name)
@@ -82,6 +84,7 @@ Public Class QuoteLoader
                 node.TypeName = "System.Int32"
                 node.Value = row.PropertyIntegerValue
                 node.Category = row.PropertyCatagory
+                node.Description = row.PropertyDescription
                 If Not loader.PropertyNames2.Contains(node.Name) Then
                     loader.PropertyNames.Add(node)
                     loader.PropertyNames2.Add(node.Name)
