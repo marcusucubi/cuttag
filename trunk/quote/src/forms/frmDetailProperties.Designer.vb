@@ -39,6 +39,10 @@ Partial Class frmDetailProperties
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 110)
         Me.Controls.Add(Me.PropertyGrid1)
+        Me.DockAreas = CType(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) _
+                    Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) _
+                    Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) _
+                    Or WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom), WeifenLuo.WinFormsUI.Docking.DockAreas)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmDetailProperties"
         Me.Text = "Properties"
