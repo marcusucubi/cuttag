@@ -60,19 +60,19 @@ Public Class CommonSaver
 
             If TypeOf o Is Integer Then
                 i = CInt(o)
-                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc)
+                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc, Nothing)
             End If
             If TypeOf o Is String Then
                 s = CStr(o)
-                adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc)
+                adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc, Nothing)
             End If
             If TypeOf o Is Decimal Then
                 d = CDec(o)
-                adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat, desc)
+                adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat, desc, Nothing)
             End If
             If TypeOf o Is DateTime Then
                 Dim dt As DateTime = CDate(o)
-                adaptor.Insert(id, childId, p.Name, dt.ToShortDateString, Nothing, Nothing, cat, desc)
+                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, Nothing, cat, desc, dt)
             End If
         Next
     End Sub
