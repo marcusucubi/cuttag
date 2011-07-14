@@ -89,6 +89,22 @@ Public Class QuoteLoader
                     loader.PropertyNames.Add(node)
                     loader.PropertyNames2.Add(node.Name)
                 End If
+            ElseIf Not row.IsPropertyDateValueNull Then
+                Dim node As New PropertyLoader.Node
+                node.Name = row.PropertyName
+                node.TypeName = "System.String"
+                Dim dt As DateTime = row.PropertyDateValue
+                If dt.Year > 1900 Then
+                    node.Value = row.PropertyDateValue.ToShortDateString
+                Else
+                    node.Value = ""
+                End If
+                node.Category = row.PropertyCatagory
+                node.Description = row.PropertyDescription
+                If Not loader.PropertyNames2.Contains(node.Name) Then
+                    loader.PropertyNames.Add(node)
+                    loader.PropertyNames2.Add(node.Name)
+                End If
             End If
         Next
 
