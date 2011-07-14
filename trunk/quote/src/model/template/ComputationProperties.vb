@@ -10,6 +10,8 @@ Namespace Model.Template
             _Header = Header
         End Sub
 
+#Region " Variables "
+
         Private _Header As Header
         Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
@@ -25,6 +27,12 @@ Namespace Model.Template
         Private _MaterialMarkup As Decimal = 1
         Private _ComponentSetupTime As Decimal
         Private _WireSetupTime As Decimal
+        Private _NumberOfCuts As Decimal = 0
+        Private _WireUnitCutTime As Integer = 120
+
+#End Region
+
+#Region " Copper "
 
         <CategoryAttribute("Copper"), _
         DisplayName("Copper Scrap Weight"), _
@@ -81,6 +89,9 @@ Namespace Model.Template
             End Get
         End Property
 
+#End Region
+#Region " Labor "
+
         <CategoryAttribute("Labor"), _
         DisplayName("Labor Rate"), _
         DescriptionAttribute("Used to Computer Labor Costs. " + Chr(10) + "(Dollars Per Hour)")> _
@@ -102,6 +113,9 @@ Namespace Model.Template
                 Return Math.Round(AdjustedTotalLaborTimeHours * LaborRate, 2)
             End Get
         End Property
+
+#End Region
+#Region " Shipping "
 
         <CategoryAttribute("Shipping"), _
         DisplayName("Minimum Order Quantity")> _
@@ -166,6 +180,72 @@ Namespace Model.Template
             End Set
         End Property
 
+#End Region
+#Region " Time "
+
+        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + (NumberOfCuts * WireUnitCutTime)"), _
+        DisplayName("Wire Time"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property WireTime As Integer
+            Get
+                Dim x As Decimal
+                Dim prop As ComputationProperties = Me._Header.ComputationProperties
+                Dim time1 As Decimal = (WireLengthFeet * WireUnitTime)
+                Dim time2 As Decimal = (Me.NumberOfCuts * WireUnitCutTime)
+                x += (time1 + time2)
+                x = Math.Round(x)
+                Return x
+            End Get
+        End Property
+
+        <DescriptionAttribute("Time to preform one cut. " + Chr(10) + "(Seconds Per Cut)"), _
+        DisplayName("Wire Unit Cut Time"), _
+        CategoryAttribute("Time")> _
+        Public Property WireUnitCutTime As Integer
+            Get
+                Return _WireUnitCutTime
+            End Get
+            Set(ByVal value As Integer)
+                _WireUnitCutTime = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("Number of Cuts"), _
+        DisplayName("Number Of Cuts"), _
+        CategoryAttribute("Time")> _
+        Public Property NumberOfCuts As Decimal
+            Get
+                Return _NumberOfCuts
+            End Get
+            Set(ByVal value As Decimal)
+                _NumberOfCuts = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("Time to Process One Foot. " + Chr(10) + "(Seconds Per Foot)"), _
+        DisplayName("Wire Unit Time"), _
+        CategoryAttribute("Time")> _
+        Public Property WireUnitTime As Decimal
+            Get
+                Return _WireUnitTime
+            End Get
+            Set(ByVal value As Decimal)
+                _WireUnitTime = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("Sum(ComponentTime) " + Chr(10) + "(Seconds)"), _
+        DisplayName("Component Time"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property ComponentTime As Decimal
+            Get
+                Return Me.SumTime
+            End Get
+        End Property
+
         <DescriptionAttribute("Setup time to cut a particular length of wire." + Chr(10) + "(Seconds Per Cut)"), _
         DisplayName("Cut Setup Time"), _
         CategoryAttribute("Time")> _
@@ -201,15 +281,6 @@ Namespace Model.Template
         Public ReadOnly Property AdjustedTotalLaborTimeHours() As Decimal
             Get
                 Return Math.Round(CDec(Me.AdjustedTotalLaborTime) / (60 * 60), 4)
-            End Get
-        End Property
-
-        <DescriptionAttribute("Wire Length" + Chr(10) + "(Decameter)"), _
-        DisplayName("Wire Length"), _
-        CategoryAttribute("Wires")> _
-        Public ReadOnly Property WireLength() As Decimal
-            Get
-                Return SumQty(UnitOfMeasure.BY_LENGTH)
             End Get
         End Property
 
@@ -257,6 +328,40 @@ Namespace Model.Template
             End Set
         End Property
 
+        <CategoryAttribute("Time"), _
+        DisplayName("Time Multiplier"), _
+        DescriptionAttribute("Time Multiplier")> _
+        Public Property TimeMultiplier As Decimal
+            Get
+                Return _TimeMultiplier
+            End Get
+            Set(ByVal value As Decimal)
+                Me._TimeMultiplier = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("TimeMultiplier * TotalLaborTime" + Chr(10) + "(Seconds)"), _
+        DisplayName("Adjusted Total Labor Time"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
+            Get
+                Return Math.Round(Me._TimeMultiplier * Me.TotalLaborTime)
+            End Get
+        End Property
+
+#End Region
+#Region " Wires "
+
+        <DescriptionAttribute("Wire Length" + Chr(10) + "(Decameter)"), _
+        DisplayName("Wire Length"), _
+        CategoryAttribute("Wires")> _
+        Public ReadOnly Property WireLength() As Decimal
+            Get
+                Return SumQty(UnitOfMeasure.BY_LENGTH)
+            End Get
+        End Property
+
         <DescriptionAttribute("WireLength / 3.048" + Chr(10) + "(Feet)"), _
         DisplayName("Wire Length Feet"), _
         CategoryAttribute("Wires")> _
@@ -265,6 +370,9 @@ Namespace Model.Template
                 Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 4)
             End Get
         End Property
+
+#End Region
+#Region " Material Cost "
 
         <DescriptionAttribute("ComponentMaterialCost + WireMaterialCost + ShippingContainerCostPerOrder" + Chr(10) + "(Dollar)"), _
         DisplayName("Total Material Cost"), _
@@ -285,32 +393,6 @@ Namespace Model.Template
             Get
                 Return Math.Round(TotalMaterialCost * Me._MaterialMarkup, 2)
             End Get
-        End Property
-
-        <CategoryAttribute("Total"), _
-        DisplayName("Manufacturing Markup"), _
-        DescriptionAttribute("Manufacturing Markup")> _
-        Public Property ManufacturingMarkup As Decimal
-            Get
-                Return _ManufacturingMarkup
-            End Get
-            Set(ByVal value As Decimal)
-                Me._ManufacturingMarkup = value
-                Me.SendEvents()
-            End Set
-        End Property
-
-        <CategoryAttribute("Time"), _
-        DisplayName("Time Multiplier"), _
-        DescriptionAttribute("Time Multiplier")> _
-        Public Property TimeMultiplier As Decimal
-            Get
-                Return _TimeMultiplier
-            End Get
-            Set(ByVal value As Decimal)
-                Me._TimeMultiplier = value
-                Me.SendEvents()
-            End Set
         End Property
 
         <CategoryAttribute("Material Cost"), _
@@ -357,6 +439,22 @@ Namespace Model.Template
             End Get
         End Property
 
+#End Region
+#Region " Total "
+
+        <CategoryAttribute("Total"), _
+        DisplayName("Manufacturing Markup"), _
+        DescriptionAttribute("Manufacturing Markup")> _
+        Public Property ManufacturingMarkup As Decimal
+            Get
+                Return _ManufacturingMarkup
+            End Get
+            Set(ByVal value As Decimal)
+                Me._ManufacturingMarkup = value
+                Me.SendEvents()
+            End Set
+        End Property
+
         <DescriptionAttribute("TotalVariableMaterialCost + TotalLaborTime" _
             + Chr(10) + "(Dollars)"), _
         DisplayName("Total Unit Cost"), _
@@ -378,14 +476,9 @@ Namespace Model.Template
             End Get
         End Property
 
-        <DescriptionAttribute("TimeMultiplier * TotalLaborTime" + Chr(10) + "(Seconds)"), _
-        DisplayName("Adjusted Total Labor Time"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
-            Get
-                Return Math.Round(Me._TimeMultiplier * Me.TotalLaborTime)
-            End Get
-        End Property
+#End Region
+
+#Region " Methods "
 
         Private Function SumCost(ByVal measure As UnitOfMeasure) As Decimal
             Dim result As Decimal
@@ -426,6 +519,7 @@ Namespace Model.Template
             Next
             Return result
         End Function
+#End Region
 
     End Class
 End Namespace
