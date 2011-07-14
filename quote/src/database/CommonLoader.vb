@@ -65,19 +65,19 @@ Public Class CommonLoader
 
             If table.Rows.Count > 0 Then
                 Dim row As _QuotePropertiesRow = table.Rows(0)
-                If row("PropertyStringValue") IsNot DBNull.Value Then
-                    If p.PropertyType.Name = "String" Then
+                If Not row.IsPropertyStringValueNull Then
+                    If p.PropertyType.Name = "String" And p.CanWrite Then
                         p.SetValue(obj, row.PropertyStringValue, Nothing)
                     End If
                 End If
-                If row("PropertyDecimalValue") IsNot DBNull.Value Then
-                    If p.PropertyType.Name = "Decimal" Then
-                        p.SetValue(obj, row.PropertyDecimalValue, Nothing)
+                If Not row.IsPropertyIntegerValueNull Then
+                    If p.PropertyType.Name = "Int32" And p.CanWrite Then
+                        p.SetValue(obj, row.PropertyIntegerValue, Nothing)
                     End If
                 End If
-                If row("PropertyIntegerValue") IsNot DBNull.Value Then
-                    If p.PropertyType.Name = "Int32" Then
-                        p.SetValue(obj, row.PropertyIntegerValue, Nothing)
+                If Not row.IsPropertyDecimalValueNull Then
+                    If p.PropertyType.Name = "Decimal" And p.CanWrite Then
+                        p.SetValue(obj, row.PropertyDecimalValue, Nothing)
                     End If
                 End If
             End If

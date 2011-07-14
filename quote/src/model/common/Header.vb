@@ -38,6 +38,21 @@ Namespace Common
             End Get
         End Property
 
+        Public ReadOnly Property DisplayName As String
+            Get
+                Dim s As String
+                If IsQuote Then
+                    s = "Quote"
+                Else
+                    s = "Template"
+                End If
+                If Me.PrimaryProperties.CommonID = 0 Then
+                    Return "New " + s
+                End If
+                Return s & " " & Me.PrimaryProperties.CommonID
+            End Get
+        End Property
+
         Public MustOverride Function NewDetail(ByVal product As Model.Product) As Detail
 
     End Class

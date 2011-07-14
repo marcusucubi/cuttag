@@ -79,8 +79,11 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+
         If Me.QuoteHeader.Dirty Then
-            Dim r As MsgBoxResult = MsgBox("Save", MsgBoxStyle.YesNoCancel)
+            Dim msg As String
+            msg = "Save changes from " + Me.QuoteHeader.DisplayName + "?"
+            Dim r As MsgBoxResult = MsgBox(msg, MsgBoxStyle.YesNoCancel)
             If r = MsgBoxResult.Cancel Then
                 e.Cancel = True
             ElseIf r = MsgBoxResult.Yes Then
