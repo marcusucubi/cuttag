@@ -1758,6 +1758,8 @@ Partial Public Class QuoteDataBase
         
         Private columnPropertyDescription As Global.System.Data.DataColumn
         
+        Private columnPropertyDateValue As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1866,6 +1868,14 @@ Partial Public Class QuoteDataBase
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PropertyDateValueColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPropertyDateValue
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1902,14 +1912,14 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Add_QuotePropertiesRow(ByVal QuoteID As Integer, ByVal PropertyID As Integer, ByVal PropertyName As String, ByVal PropertyStringValue As String, ByVal PropertyDecimalValue As Decimal, ByVal PropertyIntegerValue As Integer, ByVal PropertyCatagory As String, ByVal PropertyDescription As String) As _QuotePropertiesRow
+        Public Overloads Function Add_QuotePropertiesRow(ByVal QuoteID As Integer, ByVal PropertyID As Integer, ByVal PropertyName As String, ByVal PropertyStringValue As String, ByVal PropertyDecimalValue As Decimal, ByVal PropertyIntegerValue As Integer, ByVal PropertyCatagory As String, ByVal PropertyDescription As String, ByVal PropertyDateValue As Date) As _QuotePropertiesRow
             Dim row_QuotePropertiesRow As _QuotePropertiesRow = CType(Me.NewRow,_QuotePropertiesRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, QuoteID, PropertyID, PropertyName, PropertyStringValue, PropertyDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription}
+            Dim columnValuesArray() As Object = New Object() {Nothing, QuoteID, PropertyID, PropertyName, PropertyStringValue, PropertyDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription, PropertyDateValue}
             row_QuotePropertiesRow.ItemArray = columnValuesArray
             Me.Rows.Add(row_QuotePropertiesRow)
             Return row_QuotePropertiesRow
         End Function
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function FindByID(ByVal ID As Integer) As _QuotePropertiesRow
@@ -1948,6 +1958,7 @@ Partial Public Class QuoteDataBase
             Me.columnPropertyIntegerValue = MyBase.Columns("PropertyIntegerValue")
             Me.columnPropertyCatagory = MyBase.Columns("PropertyCatagory")
             Me.columnPropertyDescription = MyBase.Columns("PropertyDescription")
+            Me.columnPropertyDateValue = MyBase.Columns("PropertyDateValue")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1971,6 +1982,8 @@ Partial Public Class QuoteDataBase
             MyBase.Columns.Add(Me.columnPropertyCatagory)
             Me.columnPropertyDescription = New Global.System.Data.DataColumn("PropertyDescription", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPropertyDescription)
+            Me.columnPropertyDateValue = New Global.System.Data.DataColumn("PropertyDateValue", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPropertyDateValue)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -3081,6 +3094,21 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PropertyDateValue() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.table_QuoteProperties.PropertyDateValueColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PropertyDateValue' in table '_QuoteProperties' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.table_QuoteProperties.PropertyDateValueColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsQuoteIDNull() As Boolean
             Return Me.IsNull(Me.table_QuoteProperties.QuoteIDColumn)
         End Function
@@ -3173,6 +3201,18 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetPropertyDescriptionNull()
             Me(Me.table_QuoteProperties.PropertyDescriptionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPropertyDateValueNull() As Boolean
+            Return Me.IsNull(Me.table_QuoteProperties.PropertyDateValueColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPropertyDateValueNull()
+            Me(Me.table_QuoteProperties.PropertyDateValueColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -5309,6 +5349,7 @@ Namespace QuoteDataBaseTableAdapters
             tableMapping.ColumnMappings.Add("PropertyIntegerValue", "PropertyIntegerValue")
             tableMapping.ColumnMappings.Add("PropertyCatagory", "PropertyCatagory")
             tableMapping.ColumnMappings.Add("PropertyDescription", "PropertyDescription")
+            tableMapping.ColumnMappings.Add("PropertyDateValue", "PropertyDateValue")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -5317,31 +5358,34 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.InsertCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [_QuoteProperties]"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (QuoteID, PropertyID, Pr"& _ 
-                "opertyName, PropertyStringValue, PropertyDecimalValue, PropertyIntegerValue, Pro"& _ 
-                "pertyCatagory, PropertyDescription)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (?, ?, ?, ?, ?, ?, ?, ?)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO `_QuoteProperties` (`QuoteID`, `PropertyID`, `PropertyName`, `Propert"& _ 
+                "yStringValue`, `PropertyDecimalValue`, `PropertyIntegerValue`, `PropertyCatagory"& _ 
+                "`, `PropertyDescription`, `PropertyDateValue`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?"& _ 
+                ")"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyName", Global.System.Data.OleDb.OleDbType.WChar, 255, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyStringValue", Global.System.Data.OleDb.OleDbType.WChar, 255, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyStringValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyName", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyStringValue", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyStringValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyDecimalValue", Global.System.Data.OleDb.OleDbType.Numeric, 0, Global.System.Data.ParameterDirection.Input, CType(18,Byte), CType(4,Byte), "PropertyDecimalValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyIntegerValue", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyIntegerValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyCatagory", Global.System.Data.OleDb.OleDbType.WChar, 30, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyCatagory", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyDescription", Global.System.Data.OleDb.OleDbType.WChar, 255, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDescription", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyCatagory", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyCatagory", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyDescription", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDescription", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyDateValue", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDateValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE `_QuoteProperties` SET `QuoteID` = ?, `PropertyID` = ?, `PropertyName` = ?"& _ 
                 ", `PropertyStringValue` = ?, `PropertyDecimalValue` = ?, `PropertyIntegerValue` "& _ 
-                "= ?, `PropertyCatagory` = ?, `PropertyDescription` = ? WHERE ((`ID` = ?) AND ((?"& _ 
-                " = 1 AND `QuoteID` IS NULL) OR (`QuoteID` = ?)) AND ((? = 1 AND `PropertyID` IS "& _ 
-                "NULL) OR (`PropertyID` = ?)) AND ((? = 1 AND `PropertyName` IS NULL) OR (`Proper"& _ 
-                "tyName` = ?)) AND ((? = 1 AND `PropertyStringValue` IS NULL) OR (`PropertyString"& _ 
-                "Value` = ?)) AND ((? = 1 AND `PropertyDecimalValue` IS NULL) OR (`PropertyDecima"& _ 
-                "lValue` = ?)) AND ((? = 1 AND `PropertyIntegerValue` IS NULL) OR (`PropertyInteg"& _ 
-                "erValue` = ?)) AND ((? = 1 AND `PropertyCatagory` IS NULL) OR (`PropertyCatagory"& _ 
-                "` = ?)) AND ((? = 1 AND `PropertyDescription` IS NULL) OR (`PropertyDescription`"& _ 
-                " = ?)))"
+                "= ?, `PropertyCatagory` = ?, `PropertyDescription` = ?, `PropertyDateValue` = ? "& _ 
+                "WHERE ((`ID` = ?) AND ((? = 1 AND `QuoteID` IS NULL) OR (`QuoteID` = ?)) AND ((?"& _ 
+                " = 1 AND `PropertyID` IS NULL) OR (`PropertyID` = ?)) AND ((? = 1 AND `PropertyN"& _ 
+                "ame` IS NULL) OR (`PropertyName` = ?)) AND ((? = 1 AND `PropertyStringValue` IS "& _ 
+                "NULL) OR (`PropertyStringValue` = ?)) AND ((? = 1 AND `PropertyDecimalValue` IS "& _ 
+                "NULL) OR (`PropertyDecimalValue` = ?)) AND ((? = 1 AND `PropertyIntegerValue` IS"& _ 
+                " NULL) OR (`PropertyIntegerValue` = ?)) AND ((? = 1 AND `PropertyCatagory` IS NU"& _ 
+                "LL) OR (`PropertyCatagory` = ?)) AND ((? = 1 AND `PropertyDescription` IS NULL) "& _ 
+                "OR (`PropertyDescription` = ?)) AND ((? = 1 AND `PropertyDateValue` IS NULL) OR "& _ 
+                "(`PropertyDateValue` = ?)))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing))
@@ -5351,6 +5395,7 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyIntegerValue", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyIntegerValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyCatagory", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyCatagory", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyDescription", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDescription", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyDateValue", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDateValue", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_ID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "ID", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing))
@@ -5368,6 +5413,8 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_PropertyCatagory", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyCatagory", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_PropertyDescription", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDescription", Global.System.Data.DataRowVersion.Original, true, Nothing))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_PropertyDescription", Global.System.Data.OleDb.OleDbType.VarWChar, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDescription", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("IsNull_PropertyDateValue", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDateValue", Global.System.Data.DataRowVersion.Original, true, Nothing))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_PropertyDateValue", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyDateValue", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5384,31 +5431,32 @@ Namespace QuoteDataBaseTableAdapters
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        ID, QuoteID, PropertyID, PropertyName, PropertyStringValue, Propert"& _ 
-                "yDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM"& _ 
-                "            [_QuoteProperties]"
+                "yDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
+                "                       PropertyDateValue"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            [_QuoteProperties]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, PropertyCatagory, PropertyDecimalValue, PropertyDescription, PropertyI"& _ 
-                "D, PropertyIntegerValue, PropertyName, PropertyStringValue, QuoteID FROM [_Quote"& _ 
-                "Properties] WHERE (QuoteID = ?) AND (PropertyID = ?)"
+            Me._commandCollection(1).CommandText = "SELECT ID, PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDes"& _ 
+                "cription, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, Q"& _ 
+                "uoteID FROM [_QuoteProperties] WHERE (QuoteID = ?) AND (PropertyID = ?)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT ID, PropertyCatagory, PropertyDecimalValue, PropertyDescription, PropertyI"& _ 
-                "D, PropertyIntegerValue, PropertyName, PropertyStringValue, QuoteID FROM [_Quote"& _ 
-                "Properties] WHERE (QuoteID = ?) AND (PropertyID = ?) AND (PropertyName = ?)"
+            Me._commandCollection(2).CommandText = "SELECT ID, PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDes"& _ 
+                "cription, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, Q"& _ 
+                "uoteID FROM [_QuoteProperties] WHERE (QuoteID = ?) AND (PropertyID = ?) AND (Pro"& _ 
+                "pertyName = ?)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("PropertyName", Global.System.Data.OleDb.OleDbType.WChar, 255, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(3) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT ID, PropertyCatagory, PropertyDecimalValue, PropertyDescription, PropertyI"& _ 
-                "D, PropertyIntegerValue, PropertyName, PropertyStringValue, QuoteID FROM [_Quote"& _ 
-                "Properties] WHERE (QuoteID = ?)"
+            Me._commandCollection(3).CommandText = "SELECT ID, PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDes"& _ 
+                "cription, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, Q"& _ 
+                "uoteID FROM [_QuoteProperties] WHERE (QuoteID = ?)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("QuoteID", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing))
         End Sub
@@ -5622,7 +5670,7 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal PropertyID As Global.System.Nullable(Of Integer), ByVal PropertyName As String, ByVal PropertyStringValue As String, ByVal PropertyDecimalValue As Global.System.Nullable(Of Decimal), ByVal PropertyIntegerValue As Global.System.Nullable(Of Integer), ByVal PropertyCatagory As String, ByVal PropertyDescription As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal PropertyID As Global.System.Nullable(Of Integer), ByVal PropertyName As String, ByVal PropertyStringValue As String, ByVal PropertyDecimalValue As Global.System.Nullable(Of Decimal), ByVal PropertyIntegerValue As Global.System.Nullable(Of Integer), ByVal PropertyCatagory As String, ByVal PropertyDescription As String, ByVal PropertyDateValue As Global.System.Nullable(Of Date)) As Integer
             If (QuoteID.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(QuoteID.Value,Integer)
             Else
@@ -5663,6 +5711,11 @@ Namespace QuoteDataBaseTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = CType(PropertyDescription,String)
             End If
+            If (PropertyDateValue.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(PropertyDateValue.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -5691,6 +5744,7 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal PropertyIntegerValue As Global.System.Nullable(Of Integer),  _
                     ByVal PropertyCatagory As String,  _
                     ByVal PropertyDescription As String,  _
+                    ByVal PropertyDateValue As Global.System.Nullable(Of Date),  _
                     ByVal Original_ID As Integer,  _
                     ByVal Original_QuoteID As Global.System.Nullable(Of Integer),  _
                     ByVal Original_PropertyID As Global.System.Nullable(Of Integer),  _
@@ -5699,7 +5753,8 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Original_PropertyDecimalValue As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_PropertyIntegerValue As Global.System.Nullable(Of Integer),  _
                     ByVal Original_PropertyCatagory As String,  _
-                    ByVal Original_PropertyDescription As String) As Integer
+                    ByVal Original_PropertyDescription As String,  _
+                    ByVal Original_PropertyDateValue As Global.System.Nullable(Of Date)) As Integer
             If (QuoteID.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(QuoteID.Value,Integer)
             Else
@@ -5740,62 +5795,74 @@ Namespace QuoteDataBaseTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PropertyDescription,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_ID,Integer)
-            If (Original_QuoteID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_QuoteID.Value,Integer)
+            If (PropertyDateValue.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PropertyDateValue.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_ID,Integer)
+            If (Original_QuoteID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_QuoteID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (Original_PropertyID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_PropertyID.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_PropertyID.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
             If (Original_PropertyName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_PropertyName,String)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_PropertyName,String)
             End If
             If (Original_PropertyStringValue Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_PropertyStringValue,String)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_PropertyStringValue,String)
             End If
             If (Original_PropertyDecimalValue.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_PropertyDecimalValue.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PropertyDecimalValue.Value,Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
             If (Original_PropertyIntegerValue.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_PropertyIntegerValue.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_PropertyIntegerValue.Value,Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             End If
             If (Original_PropertyCatagory Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_PropertyCatagory,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_PropertyCatagory,String)
             End If
             If (Original_PropertyDescription Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_PropertyDescription,String)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_PropertyDescription,String)
+            End If
+            If (Original_PropertyDateValue.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_PropertyDateValue.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
