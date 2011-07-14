@@ -12,6 +12,7 @@ Public Class PropertyLoader
         Public Property TypeName As String
         Public Property Value As Object
         Public Property Category As String
+        Public Property Description As String
     End Class
 
     Public Property ClassName As String = "Class1"
@@ -37,7 +38,7 @@ Public Class PropertyLoader
 
         For Each node As Node In Me.PropertyNames
             Me.AddProperty(class1, node.Name, _
-               node.TypeName, node.Value, node.Category)
+               node.TypeName, node.Value, node.Category, node.Description)
         Next
 
         Dim code As String = GenerateCode(compileUnit)
@@ -49,26 +50,24 @@ Public Class PropertyLoader
 
         Dim provider As New VBCodeProvider()
         Dim sourceFile As String
-        If provider.FileExtension(0) = "." Then
-            sourceFile = "HelloWorld" + provider.FileExtension
-        Else
-            sourceFile = "HelloWorld." + provider.FileExtension
-        End If
+        '        If provider.FileExtension(0) = "." Then
+        'sourceFile = "HelloWorld" + provider.FileExtension
+        'Else
+        'sourceFile = "HelloWorld." + provider.FileExtension
+        'End If
 
-        Using sw As New StreamWriter(sourceFile, False)
-            Dim tw As New IndentedTextWriter(sw, "    ")
-            provider.GenerateCodeFromCompileUnit(compileunit, tw, _
-                New CodeGeneratorOptions())
-            tw.Close()
-        End Using
+        'Using sw As New StreamWriter(sourceFile, False)
+        'Dim tw As New IndentedTextWriter(sw, "    ")
+        'provider.GenerateCodeFromCompileUnit(compileunit, tw, _
+        '    New CodeGeneratorOptions())
+        'tw.Close()
+        'End Using
 
-        Dim result As String
         Using sw As New StringWriter()
             Dim tw As New IndentedTextWriter(sw, "    ")
             provider.GenerateCodeFromCompileUnit(compileunit, tw, _
                 New CodeGeneratorOptions())
             tw.Close()
-            result = sw.ToString
             Console.WriteLine(sw.ToString)
             sourceFile = sw.ToString
         End Using
@@ -123,7 +122,8 @@ Public Class PropertyLoader
                             ByVal name As String, _
                             ByVal typeName As String, _
                             ByVal value As Object, _
-                            ByVal category As String)
+                            ByVal category As String, _
+                            ByVal desc As String)
 
         Dim property1 As New CodeMemberProperty()
         property1.Name = name
@@ -151,6 +151,11 @@ Public Class PropertyLoader
         property1.CustomAttributes.Add( _
             New CodeAttributeDeclaration( _
                    "CategoryAttribute", arg))
+        Dim arg2 = New CodeAttributeArgument( _
+            New CodePrimitiveExpression(desc))
+        property1.CustomAttributes.Add( _
+            New CodeAttributeDeclaration( _
+                   "DescriptionAttribute", arg2))
         class1.Members.Add(property1)
 
     End Sub
