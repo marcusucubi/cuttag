@@ -50,18 +50,6 @@ Public Class PropertyLoader
 
         Dim provider As New VBCodeProvider()
         Dim sourceFile As String
-        '        If provider.FileExtension(0) = "." Then
-        'sourceFile = "HelloWorld" + provider.FileExtension
-        'Else
-        'sourceFile = "HelloWorld." + provider.FileExtension
-        'End If
-
-        'Using sw As New StreamWriter(sourceFile, False)
-        'Dim tw As New IndentedTextWriter(sw, "    ")
-        'provider.GenerateCodeFromCompileUnit(compileunit, tw, _
-        '    New CodeGeneratorOptions())
-        'tw.Close()
-        'End Using
 
         Using sw As New StringWriter()
             Dim tw As New IndentedTextWriter(sw, "    ")
