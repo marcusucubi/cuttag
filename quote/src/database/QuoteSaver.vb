@@ -52,8 +52,8 @@ Public Class QuoteSaver
 
         adaptor.Connection.Open()
         CommonSaver.DeleteProperties(newId)
-        CommonSaver.SaveProperties(newId, -2, q.OtherProperties, True)
-        CommonSaver.SaveProperties(newId, -1, q.ComputationProperties, True)
+        CommonSaver.SaveOtherProperties(newId, q.OtherProperties, True)
+        CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, True)
         CommonSaver.DeleteComponents(newId)
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()

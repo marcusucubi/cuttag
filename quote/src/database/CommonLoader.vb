@@ -46,14 +46,23 @@ Public Class CommonLoader
             If (detail IsNot Nothing) Then
                 detail.Qty = row.Qty
                 LoadProperties(id, row.ID, detail.QuoteDetailProperties)
-                'q.Details.Add(detail)
             End If
         Next
     End Sub
 
-    Public Shared Sub LoadProperties(ByVal id As Integer, _
-                               ByVal childId As Integer, _
-                               ByVal obj As Object)
+    Public Shared Sub LoadOtherProperties(ByVal id As Integer, _
+                                          ByVal obj As Object)
+        LoadProperties(id, CommonSaver.OTHER_PROPERTIES_ID, obj)
+    End Sub
+
+    Public Shared Sub LoadComputationProperties(ByVal id As Integer, _
+                                                ByVal obj As Object)
+        LoadProperties(id, CommonSaver.COMPUTATION_PROPERTIES_ID, obj)
+    End Sub
+
+    Private Shared Sub LoadProperties(ByVal id As Integer, _
+                                     ByVal childId As Integer, _
+                                     ByVal obj As Object)
 
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
@@ -78,6 +87,14 @@ Public Class CommonLoader
                 If Not row.IsPropertyDecimalValueNull Then
                     If p.PropertyType.Name = "Decimal" And p.CanWrite Then
                         p.SetValue(obj, row.PropertyDecimalValue, Nothing)
+                    End If
+                End If
+                If Not row.IsPropertyDateValueNull Then
+                    If p.PropertyType.Name = "DateTime" And p.CanWrite Then
+                        Dim dt As DateTime = row.PropertyDateValue
+                        If dt.Year > 1900 Then
+                            p.SetValue(obj, row.PropertyDateValue, Nothing)
+                        End If
                     End If
                 End If
             End If

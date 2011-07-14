@@ -44,8 +44,8 @@ Public Class TemplateSaver
 
         adaptor.Connection.Open()
         CommonSaver.DeleteProperties(newId)
-        CommonSaver.SaveProperties(newId, 0, q.OtherProperties, False)
-        CommonSaver.SaveProperties(newId, 0, q.ComputationProperties, False)
+        CommonSaver.SaveOtherProperties(newId, q.OtherProperties, False)
+        CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, False)
         CommonSaver.DeleteComponents(newId)
         CommonSaver.SaveComponents(q, newId, False)
         adaptor.Connection.Close()

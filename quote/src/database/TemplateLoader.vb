@@ -33,8 +33,8 @@ Public Class TemplateLoader
             q.PrimaryProperties.CommonPartNumber = part
             q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
 
-            CommonLoader.LoadProperties(id, -1, q.ComputationProperties)
-            CommonLoader.LoadProperties(id, -2, q.OtherProperties)
+            CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
+            CommonLoader.LoadOtherProperties(id, q.OtherProperties)
             CommonLoader.LoadComponents(q)
         End If
 
