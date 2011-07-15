@@ -99,6 +99,12 @@
     <Compile Include="src\forms\frmNewQuote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\forms\frmQuoteSearch.Designer.vb">
+      <DependentUpon>frmQuoteSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmQuoteSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmTemplateLookup.Designer.vb">
       <DependentUpon>frmTemplateLookup.vb</DependentUpon>
     </Compile>
@@ -217,6 +223,9 @@
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
+      <DependentUpon>frmQuoteSearch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmTemplateLookup.resx">
       <DependentUpon>frmTemplateLookup.vb</DependentUpon>
     </EmbeddedResource>
@@ -322,6 +331,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\search_icon.png" />
     <None Include="Resources\quotes.jpg" />
     <None Include="Resources\load.png" />
     <None Include="Resources\weight.png" />

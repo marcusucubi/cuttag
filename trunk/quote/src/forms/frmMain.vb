@@ -102,6 +102,10 @@ Public Class frmMain
         ShowDetailProperties()
     End Sub
 
+    Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click
+        frmQuoteSearch.ShowDialog()
+    End Sub
+
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote

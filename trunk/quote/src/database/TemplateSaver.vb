@@ -50,10 +50,6 @@ Public Class TemplateSaver
         CommonSaver.SaveComponents(q, newId, False)
         adaptor.Connection.Close()
 
-        If newId > 0 Then
-            My.Settings.LastTamplate1 = newId
-        End If
-
         q.ComputationProperties.ClearDirty()
         q.OtherProperties.ClearDirty()
         q.PrimaryProperties.ClearDirty()

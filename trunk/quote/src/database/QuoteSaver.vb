@@ -58,9 +58,6 @@ Public Class QuoteSaver
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()
 
-        My.Settings.LastTamplate1 = _
-            ActiveHeader.ActiveHeader.Header.ID
-
         Return newId
     End Function
 
