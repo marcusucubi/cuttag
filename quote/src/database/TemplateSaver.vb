@@ -22,9 +22,11 @@ Public Class TemplateSaver
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
-            adaptor.Update( _
+            adaptor.Connection.Open()
+            Dim test As Integer = adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, o.CommonID, False)
+                o.PartNumber, False, o.CommonID)
+            adaptor.Connection.Close()
             newId = id
         Else
             adaptor.Connection.Open()
