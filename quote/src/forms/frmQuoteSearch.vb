@@ -20,8 +20,8 @@ Public Class frmQuoteSearch
         Me.Close()
     End Sub
 
-    Private Sub btnPartNumber_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPartNumber.CheckedChanged
-
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        FillGrid()
     End Sub
 
     Private Sub FillGrid()
@@ -43,7 +43,7 @@ Public Class frmQuoteSearch
         End If
         Me.QuoteBindingSource.Filter = s
         Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
-        'Me.DataGridView1.DataSource = Me._QuoteTableAdapter
+        Me.DataGridView1.DataSource = Me._QuoteTableAdapter
     End Sub
 
     Private Sub SetupColoumns()
@@ -59,17 +59,17 @@ Public Class frmQuoteSearch
         IDColumn.ReadOnly = True
 
         CustomerNameColumn.DataPropertyName = "CustomerName"
-        CustomerNameColumn.HeaderText = "CustomerName"
+        CustomerNameColumn.HeaderText = "Customer Name"
         CustomerNameColumn.Name = "CustomerNameDataGridViewTextBoxColumn"
         CustomerNameColumn.ReadOnly = True
 
         RFQColumn.DataPropertyName = "RequestForQuoteNumber"
-        RFQColumn.HeaderText = "RequestForQuoteNumber"
+        RFQColumn.HeaderText = "RFQ"
         RFQColumn.Name = "RequestForQuoteNumberDataGridViewTextBoxColumn"
         RFQColumn.ReadOnly = True
 
         PartNumberColumn.DataPropertyName = "PartNumber"
-        PartNumberColumn.HeaderText = "PartNumber"
+        PartNumberColumn.HeaderText = "Part Number"
         PartNumberColumn.Name = "PartNumberDataGridViewTextBoxColumn"
         PartNumberColumn.ReadOnly = True
 
@@ -80,10 +80,6 @@ Public Class frmQuoteSearch
                 RFQColumn, _
                 PartNumberColumn
             })
-    End Sub
-
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        FillGrid()
     End Sub
 
 End Class
