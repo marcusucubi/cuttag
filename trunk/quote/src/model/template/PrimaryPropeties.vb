@@ -7,9 +7,6 @@ Namespace Model.Template
         Inherits Common.PrimaryPropeties
 
         Private _QuoteHeader As Header
-        Private _CustomerName As String
-        Private _RequestForQuoteNumber As String
-        Private _PartNumber As String
 
         Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
             _QuoteHeader = QuoteHeader
@@ -22,10 +19,10 @@ Namespace Model.Template
         DescriptionAttribute("The customer name")> _
         Public Property CustomerName As String
             Get
-                Return _CustomerName
+                Return Me.CommonCustomerName
             End Get
             Set(ByVal value As String)
-                _CustomerName = value
+                Me.CommonCustomerName = value
                 Me.SendEvents()
             End Set
         End Property
@@ -35,10 +32,10 @@ Namespace Model.Template
         DescriptionAttribute("Request For Quote")> _
         Public Property RequestForQuoteNumber As String
             Get
-                Return _RequestForQuoteNumber
+                Return Me.CommonRequestForQuoteNumber
             End Get
             Set(ByVal value As String)
-                _RequestForQuoteNumber = value
+                Me.CommonRequestForQuoteNumber = value
                 Me.SendEvents()
             End Set
         End Property
@@ -48,10 +45,10 @@ Namespace Model.Template
         DescriptionAttribute("Part Number")> _
         Public Property PartNumber As String
             Get
-                Return _PartNumber
+                Return Me.CommonPartNumber
             End Get
             Set(ByVal value As String)
-                _PartNumber = value
+                Me.CommonPartNumber = value
                 Me.SendEvents()
             End Set
         End Property

@@ -13,7 +13,9 @@ Public Class frmQuoteSearch
     End Sub
 
     Private Sub frmQuoteSearch_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        SetupColoumns()
+        'TODO: This line of code loads data into the 'QuoteDataBase._Quote' table. You can move, or remove it, as needed.
+        Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
+        'SetupColoumns()
     End Sub
 
     Private Sub DataGridView1_CellMouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDoubleClick
@@ -28,22 +30,25 @@ Public Class frmQuoteSearch
         Dim s As String = ""
         If Me.btnPartNumber.Checked Then
             If Me.txtPartNumber.Text.Length > 0 Then
-                s = "PartNumber like " & Me.txtPartNumber.Text & "%"
+                s = "PartNumber like '" & Me.txtPartNumber.Text & "'"
+                Me.QuoteBindingSource.Filter = s
+                Me._QuoteTableAdapter.FillOrderByPartNumber(Me.QuoteDataBase._Quote, True)
             End If
         End If
         If Me.btnRFQ.Checked Then
             If Me.txtRFQ.Text.Length > 0 Then
-                s = "RequestForQuote like " & Me.txtPartNumber.Text & "%"
+                s = "RequestForQuote like '" & Me.txtRFQ.Text & "'"
+                Me.QuoteBindingSource.Filter = s
+                Me._QuoteTableAdapter.FillOrderByRFQ(Me.QuoteDataBase._Quote, True)
             End If
         End If
         If Me.btnID.Checked Then
             If Me.txtID.Text.Length > 0 Then
-                s = "ID like " & Me.txtPartNumber.Text & "%"
+                s = "ID like '" & Me.txtID.Text & "'"
+                Me.QuoteBindingSource.Filter = s
+                Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
             End If
         End If
-        Me.QuoteBindingSource.Filter = s
-        Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
-        Me.DataGridView1.DataSource = Me._QuoteTableAdapter
     End Sub
 
     Private Sub SetupColoumns()
