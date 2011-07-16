@@ -110,6 +110,14 @@ Public Class frmMain
         frmTemplateSearch.ShowDialog()
     End Sub
 
+    Private Sub ToolSearchTemplates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchTemplates.Click
+        frmTemplateSearch.ShowDialog()
+    End Sub
+
+    Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
+        frmQuoteSearch.ShowDialog()
+    End Sub
+
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote
