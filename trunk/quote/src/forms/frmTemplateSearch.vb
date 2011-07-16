@@ -48,9 +48,9 @@
         End If
         If Me.btnRFQ.Checked Then
             If Me.txtRFQ.Text.Length > 0 Then
-                s = "RequestForQuote like '" & Me.txtRFQ.Text & "%'"
+                s = "RequestForQuoteNumber like '" & Me.txtRFQ.Text & "%'"
                 Me.QuoteBindingSource.Filter = s
-                Me.QuoteBindingSource.Sort = "RequestForQuote"
+                Me.QuoteBindingSource.Sort = "RequestForQuoteNumber"
             End If
         End If
     End Sub
