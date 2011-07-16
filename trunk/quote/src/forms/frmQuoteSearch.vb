@@ -17,10 +17,6 @@ Public Class frmQuoteSearch
         SetupColoumns()
     End Sub
 
-    Private Sub DataGridView1_CellMouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDoubleClick
-        Me.Close()
-    End Sub
-
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         FillGrid()
     End Sub
@@ -34,7 +30,10 @@ Public Class frmQuoteSearch
 
         Dim id As Int32 = CInt(DataGridView1(1, e.RowIndex).Value)
 
+        Me.Cursor = Cursors.WaitCursor
+        My.Application.DoEvents()
         frmMain.frmMain.LoadQuote(id)
+        Me.Cursor = Cursors.Default
 
     End Sub
 
