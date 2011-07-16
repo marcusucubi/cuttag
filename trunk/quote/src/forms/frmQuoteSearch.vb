@@ -13,9 +13,8 @@ Public Class frmQuoteSearch
     End Sub
 
     Private Sub frmQuoteSearch_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'QuoteDataBase._Quote' table. You can move, or remove it, as needed.
-        Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
-        'SetupColoumns()
+        Me._QuoteTableAdapter.FillWithQuotes(Me.QuoteDataBase._Quote)
+        SetupColoumns()
     End Sub
 
     Private Sub DataGridView1_CellMouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDoubleClick
@@ -26,27 +25,34 @@ Public Class frmQuoteSearch
         FillGrid()
     End Sub
 
+    Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+
+        If e.RowIndex < 0 OrElse Not e.ColumnIndex = _
+                    DataGridView1.Columns("OpenColumn").Index Then
+            Return
+        End If
+
+        Dim id As Int32 = CInt(DataGridView1(1, e.RowIndex).Value)
+
+        frmMain.frmMain.LoadQuote(id)
+
+    End Sub
+
     Private Sub FillGrid()
         Dim s As String = ""
+        Me.QuoteBindingSource.Filter = ""
         If Me.btnPartNumber.Checked Then
             If Me.txtPartNumber.Text.Length > 0 Then
-                s = "PartNumber like '" & Me.txtPartNumber.Text & "'"
+                s = "PartNumber like '" & Me.txtPartNumber.Text & "%'"
                 Me.QuoteBindingSource.Filter = s
-                Me._QuoteTableAdapter.FillOrderByPartNumber(Me.QuoteDataBase._Quote, True)
+                Me.QuoteBindingSource.Sort = "PartNumber"
             End If
         End If
         If Me.btnRFQ.Checked Then
             If Me.txtRFQ.Text.Length > 0 Then
-                s = "RequestForQuote like '" & Me.txtRFQ.Text & "'"
+                s = "RequestForQuote like '" & Me.txtRFQ.Text & "%'"
                 Me.QuoteBindingSource.Filter = s
-                Me._QuoteTableAdapter.FillOrderByRFQ(Me.QuoteDataBase._Quote, True)
-            End If
-        End If
-        If Me.btnID.Checked Then
-            If Me.txtID.Text.Length > 0 Then
-                s = "ID like '" & Me.txtID.Text & "'"
-                Me.QuoteBindingSource.Filter = s
-                Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
+                Me.QuoteBindingSource.Sort = "RequestForQuote"
             End If
         End If
     End Sub
@@ -57,11 +63,13 @@ Public Class frmQuoteSearch
         Dim CustomerNameColumn As New DataGridViewTextBoxColumn
         Dim RFQColumn As New DataGridViewTextBoxColumn
         Dim PartNumberColumn As New DataGridViewTextBoxColumn
+        Dim OpenColumn As New DataGridViewButtonColumn()
 
         IDColumn.DataPropertyName = "ID"
         IDColumn.HeaderText = "ID"
         IDColumn.Name = "IDDataGridViewTextBoxColumn"
         IDColumn.ReadOnly = True
+        IDColumn.Width = 60
 
         CustomerNameColumn.DataPropertyName = "CustomerName"
         CustomerNameColumn.HeaderText = "Customer Name"
@@ -78,9 +86,15 @@ Public Class frmQuoteSearch
         PartNumberColumn.Name = "PartNumberDataGridViewTextBoxColumn"
         PartNumberColumn.ReadOnly = True
 
+        OpenColumn.HeaderText = "Open"
+        OpenColumn.Name = "OpenColumn"
+        OpenColumn.UseColumnTextForButtonValue = True
+        OpenColumn.Width = 40
+
+        Me.DataGridView1.Columns.Clear()
         Me.DataGridView1.Columns.AddRange( _
             New System.Windows.Forms.DataGridViewColumn() { _
-                IDColumn, _
+                OpenColumn, IDColumn, _
                 CustomerNameColumn, _
                 RFQColumn, _
                 PartNumberColumn

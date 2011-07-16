@@ -258,7 +258,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub LoadQuote(ByVal id As Integer)
+    Public Sub LoadQuote(ByVal id As Integer)
 
         If IsLoaded(id) Then
             Return
