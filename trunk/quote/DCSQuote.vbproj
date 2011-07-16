@@ -141,6 +141,12 @@
     <Compile Include="src\forms\frmComputationProperties.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\forms\frmTemplateSearch.Designer.vb">
+      <DependentUpon>frmTemplateSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmTemplateSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmWireLookup.Designer.vb">
       <DependentUpon>frmWireLookup.vb</DependentUpon>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmComputationProperties.resx">
       <DependentUpon>frmComputationProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmTemplateSearch.resx">
+      <DependentUpon>frmTemplateSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmWireLookup.resx">
       <DependentUpon>frmWireLookup.vb</DependentUpon>
