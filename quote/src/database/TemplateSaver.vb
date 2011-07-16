@@ -12,6 +12,9 @@ Public Class TemplateSaver
     Public Function Save(ByVal q As Header) _
                         As Integer
 
+        frmMain.frmMain.UseWaitCursor = True
+        My.Application.DoEvents()
+
         ' Ensure the properies are updated
         frmMain.frmMain.Focus()
 
@@ -56,6 +59,8 @@ Public Class TemplateSaver
         q.OtherProperties.ClearDirty()
         q.PrimaryProperties.ClearDirty()
         q.ClearDirty()
+
+        frmMain.frmMain.UseWaitCursor = False
 
         Return newId
     End Function

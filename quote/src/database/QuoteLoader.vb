@@ -11,6 +11,9 @@ Public Class QuoteLoader
 
     Public Function Load(ByVal id As Long) As Model.Quote.Header
 
+        frmMain.frmMain.UseWaitCursor = True
+        My.Application.DoEvents()
+
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim table As New QuoteDataBase._QuoteDataTable
         Dim q As New Model.Quote.Header()
@@ -39,6 +42,8 @@ Public Class QuoteLoader
             q.SetOtherProperties(o2)
 
         End If
+
+        frmMain.frmMain.UseWaitCursor = False
 
         Return q
     End Function
