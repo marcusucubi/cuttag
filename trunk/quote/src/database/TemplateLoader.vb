@@ -12,6 +12,9 @@ Public Class TemplateLoader
 
     Public Function Load(ByVal id As Long) As Header
 
+        frmMain.frmMain.UseWaitCursor = True
+        My.Application.DoEvents()
+
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim table As New QuoteDataBase._QuoteDataTable
         Dim q As New Header()
@@ -42,6 +45,8 @@ Public Class TemplateLoader
         q.OtherProperties.ClearDirty()
         q.PrimaryProperties.ClearDirty()
         q.ClearDirty()
+
+        frmMain.frmMain.UseWaitCursor = False
 
         Return q
     End Function

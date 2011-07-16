@@ -17,6 +17,9 @@ Public Class QuoteSaver
                          ByVal IsQuote As Boolean) _
                         As Integer
 
+        frmMain.frmMain.UseWaitCursor = True
+        My.Application.DoEvents()
+
         ' Ensure the properies are updated
         frmMain.frmMain.Focus()
 
@@ -57,6 +60,8 @@ Public Class QuoteSaver
         CommonSaver.DeleteComponents(newId)
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()
+
+        frmMain.frmMain.UseWaitCursor = False
 
         Return newId
     End Function
