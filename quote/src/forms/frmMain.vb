@@ -106,6 +106,10 @@ Public Class frmMain
         frmQuoteSearch.ShowDialog()
     End Sub
 
+    Private Sub SearchTemplateMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchTemplateMenuItem1.Click
+        frmTemplateSearch.ShowDialog()
+    End Sub
+
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote
@@ -234,7 +238,7 @@ Public Class frmMain
         EnableButtons()
     End Sub
 
-    Private Sub LoadTemplate(ByVal id As Integer)
+    Public Sub LoadTemplate(ByVal id As Integer)
 
         If IsLoaded(id) Then
             Return
