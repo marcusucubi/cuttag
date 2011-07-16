@@ -24,29 +24,27 @@ Partial Class frmQuoteSearch
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.txtID = New System.Windows.Forms.TextBox()
-        Me.btnID = New System.Windows.Forms.RadioButton()
         Me.txtRFQ = New System.Windows.Forms.TextBox()
         Me.btnRFQ = New System.Windows.Forms.RadioButton()
         Me.btnPartNumber = New System.Windows.Forms.RadioButton()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
-        Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RequestForQuoteNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreatedByDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IsQuoteDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
+        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -58,8 +56,6 @@ Partial Class frmQuoteSearch
         '
         'SplitContainer1.Panel1
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.txtID)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.btnID)
         Me.SplitContainer1.Panel1.Controls.Add(Me.txtRFQ)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnRFQ)
         Me.SplitContainer1.Panel1.Controls.Add(Me.btnPartNumber)
@@ -70,26 +66,8 @@ Partial Class frmQuoteSearch
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView1)
         Me.SplitContainer1.Size = New System.Drawing.Size(435, 315)
-        Me.SplitContainer1.SplitterDistance = 103
+        Me.SplitContainer1.SplitterDistance = 73
         Me.SplitContainer1.TabIndex = 1
-        '
-        'txtID
-        '
-        Me.txtID.Location = New System.Drawing.Point(102, 67)
-        Me.txtID.Name = "txtID"
-        Me.txtID.Size = New System.Drawing.Size(100, 20)
-        Me.txtID.TabIndex = 7
-        '
-        'btnID
-        '
-        Me.btnID.AutoSize = True
-        Me.btnID.Location = New System.Drawing.Point(12, 68)
-        Me.btnID.Name = "btnID"
-        Me.btnID.Size = New System.Drawing.Size(36, 17)
-        Me.btnID.TabIndex = 6
-        Me.btnID.TabStop = True
-        Me.btnID.Text = "ID"
-        Me.btnID.UseVisualStyleBackColor = True
         '
         'txtRFQ
         '
@@ -140,7 +118,6 @@ Partial Class frmQuoteSearch
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToResizeColumns = False
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.CustomerNameDataGridViewTextBoxColumn, Me.RequestForQuoteNumberDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.CreatedByDataGridViewTextBoxColumn, Me.IsQuoteDataGridViewCheckBoxColumn})
@@ -151,23 +128,8 @@ Partial Class frmQuoteSearch
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(435, 208)
+        Me.DataGridView1.Size = New System.Drawing.Size(435, 238)
         Me.DataGridView1.TabIndex = 0
-        '
-        'QuoteDataBase
-        '
-        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
-        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'QuoteBindingSource
-        '
-        Me.QuoteBindingSource.DataMember = "_Quote"
-        Me.QuoteBindingSource.DataSource = Me.QuoteDataBase
-        Me.QuoteBindingSource.Filter = ""
-        '
-        '_QuoteTableAdapter
-        '
-        Me._QuoteTableAdapter.ClearBeforeFill = True
         '
         'IDDataGridViewTextBoxColumn
         '
@@ -211,6 +173,21 @@ Partial Class frmQuoteSearch
         Me.IsQuoteDataGridViewCheckBoxColumn.Name = "IsQuoteDataGridViewCheckBoxColumn"
         Me.IsQuoteDataGridViewCheckBoxColumn.ReadOnly = True
         '
+        'QuoteBindingSource
+        '
+        Me.QuoteBindingSource.DataMember = "_Quote"
+        Me.QuoteBindingSource.DataSource = Me.QuoteDataBase
+        Me.QuoteBindingSource.Filter = ""
+        '
+        'QuoteDataBase
+        '
+        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
+        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        '_QuoteTableAdapter
+        '
+        Me._QuoteTableAdapter.ClearBeforeFill = True
+        '
         'frmQuoteSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -228,8 +205,8 @@ Partial Class frmQuoteSearch
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -240,8 +217,6 @@ Partial Class frmQuoteSearch
     Friend WithEvents txtRFQ As System.Windows.Forms.TextBox
     Friend WithEvents btnRFQ As System.Windows.Forms.RadioButton
     Friend WithEvents btnPartNumber As System.Windows.Forms.RadioButton
-    Friend WithEvents txtID As System.Windows.Forms.TextBox
-    Friend WithEvents btnID As System.Windows.Forms.RadioButton
     Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
