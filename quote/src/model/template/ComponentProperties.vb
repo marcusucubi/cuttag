@@ -6,32 +6,32 @@ Namespace Model.Template
         Inherits Common.ComponentProperties
 
         Private _QuoteDetail As Detail
-        Private _ComponentTime As Integer
+        Private _MachineTime As Integer
 
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
                 If (_QuoteDetail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH) Then
-                    Me.ComponentTime = 10
+                    Me.MachineTime = 10
                 End If
             End If
         End Sub
 
-        <DisplayName("Total Component Time")>
-        Public Overloads ReadOnly Property TotalComponentTime() As Integer
+        <DisplayName("Total Machine Time")>
+        Public Overloads ReadOnly Property TotalMachineTime() As Integer
             Get
-                Return (_ComponentTime * _QuoteDetail.Qty)
+                Return (_MachineTime * _QuoteDetail.Qty)
             End Get
         End Property
 
-        <DisplayName("Component Time")>
-        Public Overloads Property ComponentTime() As Integer
+        <DisplayName("Machine Time")>
+        Public Overloads Property MachineTime() As Integer
             Get
-                Return Me._ComponentTime
+                Return Me._MachineTime
             End Get
             Set(ByVal value As Integer)
-                If Not (value = _ComponentTime) Then
-                    Me._ComponentTime = value
+                If Not (value = _MachineTime) Then
+                    Me._MachineTime = value
                     SendEvents()
                 End If
             End Set

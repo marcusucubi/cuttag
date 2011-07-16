@@ -37,17 +37,19 @@ Namespace Model.Template
             End Get
         End Property
 
-        <DescriptionAttribute("Pounds per foot")> _
+        <DescriptionAttribute("Pounds per foot"), _
+        CategoryAttribute("Weight")> _
         Public ReadOnly Property WeightPerDecameter As Decimal
             Get
                 Return Common.Weights.FindWeight(Me.Gage)
             End Get
         End Property
 
-        <DescriptionAttribute("WeightPerFoot * LengthFeet" + Chr(10) + "(Pounds)")> _
+        <DescriptionAttribute("WeightPerFoot * Length" + Chr(10) + "(Pounds)"), _
+        CategoryAttribute("Weight")> _
         Public ReadOnly Property TotalWeight As Decimal
             Get
-                Return Math.Round(WeightPerDecameter * Length, 4)
+                Return Math.Round(WeightPerDecameter * Me.Length, 4)
             End Get
         End Property
 
