@@ -19,15 +19,14 @@ Namespace Model.Template
         Private _TimeMultiplier As Decimal = 1
         Private _ManufacturingMarkup As Decimal = 1
         Private _LaborRate As Decimal = 10
-        Private _CutSetupTime As Integer = 120
-        Private _WireUnitTime As Decimal = 30
+        Private _WireSetupTime As Integer = 120
+        Private _WireMachineTime As Decimal = 30
+        Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 10
         Private _PercentCopperScrap As Decimal = 0
         Private _CopperPrice As Decimal = 1
         Private _MaterialMarkup As Decimal = 1
         Private _ComponentSetupTime As Decimal
-        Private _NumberOfCuts As Decimal = 0
-        Private _WireUnitCutTime As Integer = 120
 
 #End Region
 
@@ -180,95 +179,115 @@ Namespace Model.Template
         End Property
 
 #End Region
-#Region " Time "
+#Region " Machine Time "
 
-        <DescriptionAttribute("(WireLengthFeet * WireUnitTime) + " + _
-            "(NumberOfCuts * WireUnitCutTime)" + Chr(10) + "(Seconds)"), _
-        DisplayName("Total Machine Time"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property TotalMachineTime As Decimal
-            Get
-                Dim x As Decimal
-                Dim prop As ComputationProperties = Me._Header.ComputationProperties
-                Dim time1 As Decimal = (WireLengthFeet * WireMachineTime)
-                Dim time2 As Decimal = (NumberOfCuts * WireUnitCutTime)
-                x += (time1 + time2)
-                x = Math.Round(x, 4)
-                Return x
-            End Get
-        End Property
-
-        <DescriptionAttribute("Time to preform one cut. " + Chr(10) + "(Seconds Per Cut)"), _
-        DisplayName("Wire Unit Cut Time"), _
-        CategoryAttribute("Time")> _
-        Public Property WireUnitCutTime As Integer
-            Get
-                Return _WireUnitCutTime
-            End Get
-            Set(ByVal value As Integer)
-                _WireUnitCutTime = value
-                Me.SendEvents()
-            End Set
-        End Property
-
-        <DescriptionAttribute("Time to Process One Foot. " + Chr(10) + "(Seconds Per Foot)"), _
-        DisplayName("Wire Unit Time"), _
-        CategoryAttribute("Time")> _
+        <DescriptionAttribute("Used with TotalWireMachineTime " + Chr(10) + "(Seconds)"), _
+        DisplayName("Wire Machine Time"), _
+        CategoryAttribute("Machine Time")> _
         Public Property WireMachineTime As Decimal
             Get
-                Return _WireUnitTime
+                Return Me._WireMachineTime
             End Get
             Set(ByVal value As Decimal)
-                _WireUnitTime = value
+                Me._WireMachineTime = value
                 Me.SendEvents()
             End Set
         End Property
 
-        <DescriptionAttribute("Sum(ComponentTime) " + Chr(10) + "(Seconds)"), _
-        DisplayName("Component Time"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property ComponentTime As Decimal
+        <DescriptionAttribute("TotalWireMachineTime + " + _
+            "TotalComponentMachineTime" + Chr(10) + "(Seconds)"), _
+        DisplayName("Total Machine Time"), _
+        CategoryAttribute("Machine Time")> _
+        Public ReadOnly Property TotalMachineTime As Decimal
             Get
-                Return Me.SumTime
+                Return Math.Round(Me.TotalComponentMachineTime + _
+                    Me.TotalWireMachineTime, 4)
             End Get
         End Property
 
-        <DescriptionAttribute("Setup time to cut a particular length of wire." + Chr(10) + "(Seconds Per Cut)"), _
-        DisplayName("Cut Setup Time"), _
-        CategoryAttribute("Time")> _
-        Public Property CutSetupTime As Integer
+        <DescriptionAttribute("Sum(ComponentMachineTime) " + Chr(10) + "(Seconds)"), _
+        DisplayName("Total Component Machine Time"), _
+        CategoryAttribute("Machine Time")> _
+        Public ReadOnly Property TotalComponentMachineTime As Decimal
             Get
-                Return _CutSetupTime
+                Return Me.SumTime(UnitOfMeasure.BY_EACH)
+            End Get
+        End Property
+
+        <DescriptionAttribute("WireLengthFeet * WireTime " + Chr(10) + "(Seconds)"), _
+        DisplayName("Total Wire Machine Time"), _
+        CategoryAttribute("Machine Time")> _
+        Public ReadOnly Property TotalWireMachineTime As Decimal
+            Get
+                Return Math.Round(Me.WireLengthFeet * Me.WireMachineTime, 4)
+            End Get
+        End Property
+
+#End Region
+#Region " Setup Time "
+
+        <DescriptionAttribute("Setup time to cut a particular length of wire. (Cut time)" + Chr(10) + "(Seconds Per Cut)"), _
+        DisplayName("Wire Setup Time"), _
+        CategoryAttribute("Setup Time")> _
+        Public Property WireSetupTime As Integer
+            Get
+                Return _WireSetupTime
             End Get
             Set(ByVal value As Integer)
-                _CutSetupTime = value
+                _WireSetupTime = value
                 Me.SendEvents()
             End Set
         End Property
 
-        <DescriptionAttribute("(TotalSetupTime + )" + _
-            Chr(10) + "(Seconds)"), _
-        DisplayName("Total Labor Time"), _
-        CategoryAttribute("Time")> _
-        Public ReadOnly Property TotalLaborTime() As Integer
+
+        <DescriptionAttribute("NumberOfCuts * WireSetupTime" + Chr(10) + "(Seconds)"), _
+        DisplayName("Total Wire Setup Time"), _
+        CategoryAttribute("Setup Time")> _
+        Public ReadOnly Property TotalWireSetupTime As Decimal
             Get
-                Return (TotalSetupTime)
+                Return Math.Round(Me.NumberOfCuts * Me.WireSetupTime, 4)
             End Get
         End Property
 
-        <DescriptionAttribute("((ComponentSetupTime * NumberOfComponents)" + _
-            " + (CutSetupTime * NumberOfCuts)) / MinimumOrderQuantity" + _
+        <DescriptionAttribute("(TotalWireSetupTime + ComponentSetupTime) " + _
+            "/ MinimumOrderQuantity" + _
             Chr(10) + "(Seconds)"), _
         DisplayName("Total Setup Time"), _
-        CategoryAttribute("Time")> _
+        CategoryAttribute("Setup Time")> _
         Public ReadOnly Property TotalSetupTime() As Decimal
             Get
                 If Me.MinimumOrderQuantity = 0 Then
                     Return 0
                 End If
-                Dim t1 As Decimal = (ComponentSetupTime * NumberOfComponents)
-                Dim t2 As Decimal = (CutSetupTime * NumberOfCuts)
-                Return Math.Round((t1 + t2) / Me.MinimumOrderQuantity, 4)
+                Return Math.Round( _
+                    (Me.TotalWireSetupTime + Me.ComponentSetupTime) _
+                    / Me.MinimumOrderQuantity, 4)
+            End Get
+        End Property
+
+        <DescriptionAttribute("Component Setup Time" + Chr(10) + "(Seconds)"), _
+        DisplayName("Component Setup Time"), _
+        CategoryAttribute("Setup Time")> _
+        Public Property ComponentSetupTime() As Decimal
+            Get
+                Return _ComponentSetupTime
+            End Get
+            Set(ByVal value As Decimal)
+                _ComponentSetupTime = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+#End Region
+#Region " Time "
+
+        <DescriptionAttribute("(TotalSetupTime + TotalMachineTime)" + _
+            Chr(10) + "(Seconds)"), _
+        DisplayName("Total Labor Time"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property TotalLaborTime() As Integer
+            Get
+                Return (Me.TotalSetupTime + Me.TotalMachineTime)
             End Get
         End Property
 
@@ -281,10 +300,24 @@ Namespace Model.Template
             End Get
         End Property
 
-        <DescriptionAttribute("Number of Cuts" + Chr(10) + "(Count)"), _
+        <DescriptionAttribute("Number of lines in 'CIRCUIT DATA TABLE'" + _
+            " in Engineering Print." + Chr(10) + "(Count)"), _
         DisplayName("Number of Cuts"), _
         CategoryAttribute("Time")> _
-        Public ReadOnly Property NumberOfCuts() As Decimal
+        Public Property NumberOfCuts() As Integer
+            Get
+                Return _NumberOfCuts
+            End Get
+            Set(ByVal value As Integer)
+                _NumberOfCuts = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("Number of Wires" + Chr(10) + "(Count)"), _
+        DisplayName("Number of Wires"), _
+        CategoryAttribute("Time")> _
+        Public ReadOnly Property NumberOfWires() As Decimal
             Get
                 Return Count(UnitOfMeasure.BY_LENGTH)
             End Get
@@ -297,19 +330,6 @@ Namespace Model.Template
             Get
                 Return Count(UnitOfMeasure.BY_EACH)
             End Get
-        End Property
-
-        <DescriptionAttribute("Component Setup Time" + Chr(10) + "(Seconds)"), _
-        DisplayName("Component Setup Time"), _
-        CategoryAttribute("Time")> _
-        Public Property ComponentSetupTime() As Decimal
-            Get
-                Return _ComponentSetupTime
-            End Get
-            Set(ByVal value As Decimal)
-                _ComponentSetupTime = value
-                Me.SendEvents()
-            End Set
         End Property
 
         <CategoryAttribute("Time"), _
@@ -474,11 +494,11 @@ Namespace Model.Template
             Return result
         End Function
 
-        Private Function SumTime() As Integer
+        Private Function SumTime(ByVal uom As UnitOfMeasure) As Integer
             Dim result As Integer
             For Each detail As Detail In _Header.Details
-                If detail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
-                    result += detail.QuoteDetailProperties.TotalComponentTime
+                If detail.Product.UnitOfMeasure = uom Then
+                    result += detail.QuoteDetailProperties.TotalMachineTime
                 End If
             Next
             Return result
