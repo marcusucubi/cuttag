@@ -19,6 +19,14 @@
         FillGrid()
     End Sub
 
+    Private Sub txtPartNumber_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPartNumber.GotFocus
+        Me.btnPartNumber.Checked = True
+    End Sub
+
+    Private Sub txtRFQ_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtRFQ.GotFocus
+        Me.btnRFQ.Checked = True
+    End Sub
+
     Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
 
         If e.RowIndex < 0 OrElse Not e.ColumnIndex = _
