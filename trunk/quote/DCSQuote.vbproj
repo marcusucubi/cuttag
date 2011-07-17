@@ -52,8 +52,13 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -93,6 +98,7 @@
     <Compile Include="src\database\QuoteSaver.vb" />
     <Compile Include="src\database\TemplateLoader.vb" />
     <Compile Include="src\database\TemplateSaver.vb" />
+    <Compile Include="src\export\ExcellWriter.vb" />
     <Compile Include="src\export\PropertyPrinter.vb" />
     <Compile Include="src\export\Export.vb" />
     <Compile Include="src\export\PropertyProcessor.vb" />
@@ -340,7 +346,10 @@
     <Content Include="dev.accdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="lib\Ionic.Zip.dll" />
+    <Content Include="lib\NPOI.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\truck.jpg" />
     <None Include="Resources\source.jpg" />
     <None Include="Resources\search_icon.png" />
     <None Include="Resources\quotes.jpg" />
@@ -348,7 +357,6 @@
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

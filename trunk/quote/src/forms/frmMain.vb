@@ -123,6 +123,11 @@ Public Class frmMain
         export.Export(_ActiveHeader.Header)
     End Sub
 
+    Private Sub ExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportButton.Click
+        Dim export As New Export
+        export.Export(_ActiveHeader.Header)
+    End Sub
+
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
@@ -163,6 +168,8 @@ Public Class frmMain
 
     Private Sub EnableButtons()
         ToolStripTemplate.Enabled = False
+        ExportToolStripMenuItem.Enabled = False
+        ExportButton.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
@@ -172,6 +179,8 @@ Public Class frmMain
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
                 ToolStripTemplate.Enabled = True
+                ExportToolStripMenuItem.Enabled = True
+                ExportButton.Enabled = True
             Else
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
