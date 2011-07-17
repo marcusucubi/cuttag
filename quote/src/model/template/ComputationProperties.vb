@@ -34,7 +34,7 @@ Namespace Model.Template
 
         <CategoryAttribute("Copper"), _
         DisplayName("Copper Scrap Weight"), _
-        DescriptionAttribute("CopperWeight * PercentCopperScrap" + Chr(10) + "(Pounds)")> _
+        DescriptionAttribute("CopperWeight * (PercentCopperScrap / 100)" + Chr(10) + "(Pounds)")> _
         Public ReadOnly Property CopperScrapWeight As Decimal
             Get
                 Dim percent As Decimal = (Me._PercentCopperScrap / 100)
@@ -54,11 +54,11 @@ Namespace Model.Template
         <CategoryAttribute("Copper"), _
         DisplayName("Percent Copper Scrap"), _
         DescriptionAttribute("Percent of Scrap Copper. " + Chr(10) + "(Percent)")> _
-        Public Property PercentCopperScrap As Decimal
+        Public Property PercentCopperScrap As Integer
             Get
                 Return Me._PercentCopperScrap
             End Get
-            Set(ByVal value As Decimal)
+            Set(ByVal value As Integer)
                 Me._PercentCopperScrap = value
                 Me.SendEvents()
             End Set
@@ -72,7 +72,7 @@ Namespace Model.Template
                 Return Me._CopperPrice
             End Get
             Set(ByVal value As Decimal)
-                Me._CopperPrice = value
+                Me._CopperPrice = Math.Round(value, 2)
                 Me.SendEvents()
             End Set
         End Property
@@ -98,7 +98,7 @@ Namespace Model.Template
                 Return _LaborRate
             End Get
             Set(ByVal Value As Decimal)
-                _LaborRate = Value
+                _LaborRate = Math.Round(Value, 2)
                 Me.SendEvents()
             End Set
         End Property
@@ -184,11 +184,11 @@ Namespace Model.Template
         <DescriptionAttribute("Used with TotalWireMachineTime " + Chr(10) + "(Seconds)"), _
         DisplayName("Wire Machine Time"), _
         CategoryAttribute("Machine Time")> _
-        Public Property WireMachineTime As Decimal
+        Public Property WireMachineTime As Integer
             Get
                 Return Me._WireMachineTime
             End Get
-            Set(ByVal value As Decimal)
+            Set(ByVal value As Integer)
                 Me._WireMachineTime = value
                 Me.SendEvents()
             End Set
@@ -268,11 +268,11 @@ Namespace Model.Template
         <DescriptionAttribute("Component Setup Time" + Chr(10) + "(Seconds)"), _
         DisplayName("Component Setup Time"), _
         CategoryAttribute("Setup Time")> _
-        Public Property ComponentSetupTime() As Decimal
+        Public Property ComponentSetupTime() As Integer
             Get
                 Return _ComponentSetupTime
             End Get
-            Set(ByVal value As Decimal)
+            Set(ByVal value As Integer)
                 _ComponentSetupTime = value
                 Me.SendEvents()
             End Set
