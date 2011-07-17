@@ -26,10 +26,11 @@ Partial Class frmQuoteLookup
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.QuoteDataSet = New DCS.Quote.QuoteDataBase()
         Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,7 +44,7 @@ Partial Class frmQuoteLookup
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(73, 178)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(37, 51)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -69,17 +70,6 @@ Partial Class frmQuoteLookup
         Me.Cancel_Button.TabIndex = 1
         Me.Cancel_Button.Text = "Cancel"
         '
-        'ListBox1
-        '
-        Me.ListBox1.DataSource = Me.QuoteBindingSource
-        Me.ListBox1.DisplayMember = "ID"
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(12, 12)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(204, 160)
-        Me.ListBox1.TabIndex = 1
-        Me.ListBox1.ValueMember = "ID"
-        '
         'QuoteBindingSource
         '
         Me.QuoteBindingSource.DataMember = "_Quote"
@@ -95,14 +85,34 @@ Partial Class frmQuoteLookup
         '
         Me._QuoteTableAdapter.ClearBeforeFill = True
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(79, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Quote Number:"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DataSource = Me.QuoteBindingSource
+        Me.ComboBox1.DisplayMember = "ID"
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(98, 16)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(82, 21)
+        Me.ComboBox1.TabIndex = 2
+        '
         'frmQuoteLookup
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(231, 219)
-        Me.Controls.Add(Me.ListBox1)
+        Me.ClientSize = New System.Drawing.Size(195, 92)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -115,14 +125,16 @@ Partial Class frmQuoteLookup
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents QuoteDataSet As DCS.Quote.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
 
 End Class

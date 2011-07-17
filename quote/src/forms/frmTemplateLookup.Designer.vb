@@ -26,13 +26,14 @@ Partial Class frmTemplateLookup
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
         Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -43,7 +44,7 @@ Partial Class frmTemplateLookup
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(41, 150)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(41, 51)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -69,21 +70,6 @@ Partial Class frmTemplateLookup
         Me.Cancel_Button.TabIndex = 1
         Me.Cancel_Button.Text = "Cancel"
         '
-        'ListBox1
-        '
-        Me.ListBox1.DataSource = Me.QuoteBindingSource
-        Me.ListBox1.DisplayMember = "ID"
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(12, 12)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(175, 121)
-        Me.ListBox1.TabIndex = 1
-        '
-        'QuoteDataBase
-        '
-        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
-        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'QuoteBindingSource
         '
         Me.QuoteBindingSource.DataMember = "_Quote"
@@ -91,9 +77,33 @@ Partial Class frmTemplateLookup
         Me.QuoteBindingSource.Filter = "IsQuote=False"
         Me.QuoteBindingSource.Sort = "ID DESC"
         '
+        'QuoteDataBase
+        '
+        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
+        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         '_QuoteTableAdapter
         '
         Me._QuoteTableAdapter.ClearBeforeFill = True
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DataSource = Me.QuoteBindingSource
+        Me.ComboBox1.DisplayMember = "ID"
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(117, 17)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(67, 21)
+        Me.ComboBox1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 20)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(94, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Template Number:"
         '
         'frmTemplateLookup
         '
@@ -101,8 +111,9 @@ Partial Class frmTemplateLookup
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(199, 191)
-        Me.Controls.Add(Me.ListBox1)
+        Me.ClientSize = New System.Drawing.Size(199, 92)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -112,17 +123,19 @@ Partial Class frmTemplateLookup
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Open Template "
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
