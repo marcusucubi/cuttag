@@ -8,7 +8,7 @@ Namespace Common
         Protected _PrimaryProperties As Common.PrimaryPropeties
         Protected _OtherProperties As Common.OtherProperties
         Protected _ComputationProperties As Common.ComputationProperties
-        Protected WithEvents _Details As New DetailCollection
+        Protected WithEvents _Details As New DetailCollection(Of Common.Detail)
 
         Public Property ID As Integer
         Public Property WeightProperties As New Common.Weights(Me)
@@ -32,7 +32,7 @@ Namespace Common
             End Get
         End Property
 
-        Public ReadOnly Property Details As DetailCollection
+        Public ReadOnly Property Details As DetailCollection(Of Common.Detail)
             Get
                 Return _Details
             End Get
