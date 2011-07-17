@@ -23,7 +23,12 @@ Public Class PropertyProcessor
         Dim printer As New PropertyPrinter
 
         Dim index As Integer
-        Do While GetNextProperty(index)
+        Do
+            If index >= _Info.Length Then
+                Exit Do
+            End If
+
+            GetNextProperty(index)
             index += 1
         Loop
 
