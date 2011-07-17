@@ -78,7 +78,7 @@ Public Class QuoteLoader
 
     Private Sub AddNode(ByVal row As _QuotePropertiesRow)
 
-        Dim node As New PropertyLoader.Node
+        Dim node As New PropertyLoader.PropertyInfo
         node.Name = row.PropertyName
         If row("PropertyStringValue") IsNot DBNull.Value Then
             node.TypeName = "System.String"
