@@ -5,6 +5,10 @@ Imports Microsoft.CSharp
 Imports System.Reflection
 Imports System.Collections.Specialized
 
+''' <summary>
+''' Creates an object with properties in the PropertyInfo list.
+''' </summary>
+''' <remarks></remarks>
 Public Class PropertyLoader
 
     Public Class PropertyInfo
