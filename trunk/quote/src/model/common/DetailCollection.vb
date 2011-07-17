@@ -2,19 +2,24 @@
 
 Namespace Common
 
-    Public Class DetailCollection
-        Inherits System.ComponentModel.BindingList(Of Detail)
+    ''' <summary>
+    ''' A collection that supports sorting
+    ''' </summary>
+    ''' <typeparam name="T"></typeparam>
+    ''' <remarks></remarks>
+    Public Class DetailCollection(Of T)
+        Inherits System.ComponentModel.BindingList(Of T)
 
 #Region " Types "
 
         Private Class QuoteHeaderComparer
-            Implements System.Collections.Generic.IComparer(Of Detail)
+            Implements System.Collections.Generic.IComparer(Of T)
 
             Private prop As PropertyDescriptor
             Private direction As ListSortDirection
 
-            Public Function Compare(ByVal x As Detail, _
-            ByVal y As Detail) As Integer Implements IComparer(Of Detail).Compare
+            Public Function Compare(ByVal x As T, ByVal y As T) _
+                As Integer Implements IComparer(Of T).Compare
 
                 Dim result As Integer = DirectCast(Me.prop.GetValue(x), IComparable).CompareTo(Me.prop.GetValue(y))
 
@@ -85,18 +90,17 @@ Namespace Common
 
 #Region " Methods "
 
-        Protected Overrides Sub ApplySortCore(ByVal prop As PropertyDescriptor, ByVal direction As ListSortDirection)
+        Protected Overrides Sub ApplySortCore(ByVal prop As PropertyDescriptor, _
+                                              ByVal direction As ListSortDirection)
             Me._sortProperty = prop
             Me._sortDirection = direction
 
             Dim upperBound As Integer = Me.Items.Count - 1
-            Dim items(upperBound) As Detail
+            Dim items(upperBound) As T
 
             Me.Items.CopyTo(items, 0)
 
-            Array.Sort(items, _
-            New QuoteHeaderComparer(prop, _
-            direction))
+            Array.Sort(items, New QuoteHeaderComparer(prop, direction))
 
             For index As Integer = 0 To upperBound
                 Me.Items(index) = items(index)
