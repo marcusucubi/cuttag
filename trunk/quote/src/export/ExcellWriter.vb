@@ -30,9 +30,14 @@ Public Class ExcellWriter
     End Sub
 
     Private Sub _Processor_NextPropertyEvent(ByRef Prop As PropertyProxy) Handles _Processor.NextPropertyEvent
+
+        If Not Prop.Browsable Then
+            Return
+        End If
+
         Dim row As Row = _Sheet.CreateRow(_Index)
         Dim cell As Cell = row.CreateCell(0)
-        cell.SetCellValue(Prop.Name)
+        cell.SetCellValue(Prop.DisplayName)
         Dim cell2 As Cell = row.CreateCell(1)
         cell2.SetCellValue(Prop.Value.ToString)
         _Index = _Index + 1
