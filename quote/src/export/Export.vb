@@ -1,6 +1,5 @@
 ﻿Public Class Export
 
-    Dim _Processor As New PropertyProcessor()
 
     Public Sub Export(ByVal header As Common.Header)
 
@@ -10,16 +9,18 @@
 
     End Sub
 
-
     Public Sub ExportObject(ByVal Target As Object)
 
         Dim o As Object = Target
-        _Processor.Target = o
+        Dim processor As New PropertyProcessor()
+        processor.Target = o
 
         Dim printer As New PropertyPrinter
-        printer.Processor = _Processor
+        printer.Processor = processor
+        Dim excel As New ExcellWriter
+        excel.Processor = processor
 
-        _Processor.Process()
+        processor.Process()
 
     End Sub
 
