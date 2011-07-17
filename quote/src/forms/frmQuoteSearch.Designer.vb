@@ -93,7 +93,7 @@ Partial Class frmQuoteSearch
         Me.btnPartNumber.Location = New System.Drawing.Point(12, 16)
         Me.btnPartNumber.Name = "btnPartNumber"
         Me.btnPartNumber.Size = New System.Drawing.Size(84, 17)
-        Me.btnPartNumber.TabIndex = 3
+        Me.btnPartNumber.TabIndex = 0
         Me.btnPartNumber.TabStop = True
         Me.btnPartNumber.Text = "Part Number"
         Me.btnPartNumber.UseVisualStyleBackColor = True
