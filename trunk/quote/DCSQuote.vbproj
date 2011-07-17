@@ -301,7 +301,6 @@
     <None Include="src\database\QuoteDataBase.xss">
       <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </None>
-    <None Include="src\model\ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
