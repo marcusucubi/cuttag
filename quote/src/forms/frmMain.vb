@@ -118,6 +118,14 @@ Public Class frmMain
         frmQuoteSearch.ShowDialog()
     End Sub
 
+    Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
+        If Me._ActiveHeader.Header.IsQuote Then
+            Dim h As Model.Quote.PrimaryPropeties = Me._ActiveHeader.Header.PrimaryProperties
+            LoadTemplate(h.TemplateNumber)
+        End If
+        Me.UseWaitCursor = False
+    End Sub
+
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote
@@ -147,6 +155,7 @@ Public Class frmMain
     End Sub
 
     Private Sub EnableButtons()
+        ToolStripTemplate.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
@@ -155,6 +164,7 @@ Public Class frmMain
             If Me._ActiveHeader.Header.IsQuote Then
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
+                ToolStripTemplate.Enabled = True
             Else
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
