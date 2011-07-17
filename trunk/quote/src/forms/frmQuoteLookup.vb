@@ -5,14 +5,13 @@ Public Class frmQuoteLookup
     Public Shared Property QuoteID As Long
 
     Private Sub frmQuoteOpen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'QuoteDataBase._Quote' table. You can move, or remove it, as needed.
         Me._QuoteTableAdapter.Fill(Me.QuoteDataSet._Quote)
-        Dim view As DataRowView = Me.ListBox1.SelectedItem
-        If view IsNot Nothing Then
-            QuoteID = view.Row(0)
-        End If
+        GetQuoteID()
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+        GetQuoteID()
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
@@ -22,26 +21,24 @@ Public Class frmQuoteLookup
         Me.Close()
     End Sub
 
-    Private Sub ListBox1_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.DoubleClick
-        Dim view As DataRowView = Me.ListBox1.SelectedItem
-        If view IsNot Nothing Then
-            QuoteID = view.Row(0)
-        End If
-        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.Close()
+    Private Sub ComboBox1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox1.TextChanged
+        GetQuoteID()
     End Sub
 
-    Private Sub ListBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.Click
-        Dim view As DataRowView = Me.ListBox1.SelectedItem
-        If view IsNot Nothing Then
-            QuoteID = view.Row(0)
-        End If
+    Private Sub frmTemplateLookup_VisibleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.VisibleChanged
+        GetQuoteID()
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
-        Dim view As DataRowView = Me.ListBox1.SelectedItem
-        If view IsNot Nothing Then
-            QuoteID = view.Row(0)
+    Private Sub GetQuoteID()
+        Try
+            QuoteID = CLng(Me.ComboBox1.Text)
+        Catch ex As Exception
+            QuoteID = 0
+        End Try
+        If QuoteID = 0 Then
+            Me.OK_Button.Enabled = False
+        Else
+            Me.OK_Button.Enabled = True
         End If
     End Sub
 
