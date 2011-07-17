@@ -15,11 +15,18 @@ Public Class PropertyLoader
         Public Property Description As String
     End Class
 
+    Private _PropertyNames As New List(Of Node)
+    Private _UniqueList As New List(Of String)
+
     Public Property ClassName As String = "Class1"
-    Public Property PropertyNames As New List(Of Node)
-    Public Property PropertyNames2 As New List(Of String)
     Public Property BaseTypeName As String
 
+    Public Sub Add(ByVal node As Node)
+        If Not _UniqueList.Contains(node.Name) Then
+            _PropertyNames.Add(node)
+            _UniqueList.Add(node.Name)
+        End If
+    End Sub
 
     Public Function Generate() As Object
 
@@ -36,7 +43,7 @@ Public Class PropertyLoader
             class1.BaseTypes.Add(Me.BaseTypeName)
         End If
 
-        For Each node As Node In Me.PropertyNames
+        For Each node As Node In Me._PropertyNames
             Me.AddProperty(class1, node.Name, _
                node.TypeName, node.Value, node.Category, node.Description)
         Next
@@ -80,12 +87,14 @@ Public Class PropertyLoader
         Dim cr As CompilerResults = provider.CompileAssemblyFromSource(cp, sourceFile)
 
         If cr.Errors.Count > 0 Then
-            Console.WriteLine("Errors building {0} into {1}", _
-                sourceFile, cr.PathToAssembly)
+            Dim writer As New StringWriter
+            'writer.WriteLine("Errors building {0} into {1}", _
+            '    sourceFile, cr.PathToAssembly)
             For Each ce As CompilerError In cr.Errors
-                Console.WriteLine("  {0}", ce.ToString())
-                Console.WriteLine()
+                writer.WriteLine("  {0}", ce.ToString())
+                writer.WriteLine()
             Next ce
+            MsgBox(writer.ToString)
         Else
             Console.WriteLine("Source built successfully.")
         End If
@@ -100,7 +109,7 @@ Public Class PropertyLoader
         Next
 
         If cr.Errors.Count > 0 Then
-            Throw New PropertyException()
+            Throw New DatabaseException()
         End If
 
         Return result

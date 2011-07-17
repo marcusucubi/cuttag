@@ -9,6 +9,8 @@ Imports DCS.Quote.Model.Quote
 
 Public Class QuoteLoader
 
+    Dim _PropertyLoader As New PropertyLoader
+
     Public Function Load(ByVal id As Long) As Model.Quote.Header
 
         frmMain.frmMain.UseWaitCursor = True
@@ -52,78 +54,56 @@ Public Class QuoteLoader
         Return q
     End Function
 
-    Public Shared Function LoadProperties(ByVal id As Integer, _
-                                          ByVal childId As Integer, _
-                                          ByVal obj As Object) _
-                                          As Object
+    Private Function LoadProperties(ByVal id As Integer, _
+                                    ByVal childId As Integer, _
+                                    ByVal obj As Object) _
+                                    As Object
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
-        Dim loader As New PropertyLoader
+        _PropertyLoader = New PropertyLoader
 
         Dim table As _QuotePropertiesDataTable = _
                 adaptor.GetDataByQuoteIDAndPropertyID(id, childId)
 
         For Each row As _QuotePropertiesRow In table.Rows
-            If row("PropertyStringValue") IsNot DBNull.Value Then
-                Dim node As New PropertyLoader.Node
-                node.Name = row.PropertyName
-                node.TypeName = "System.String"
-                node.Value = row.PropertyStringValue
-                node.Category = row.PropertyCatagory
-                node.Description = row.PropertyDescription
-                If Not loader.PropertyNames2.Contains(node.Name) Then
-                    loader.PropertyNames.Add(node)
-                    loader.PropertyNames2.Add(node.Name)
-                End If
-            ElseIf row("PropertyDecimalValue") IsNot DBNull.Value Then
-                Dim node As New PropertyLoader.Node
-                node.Name = row.PropertyName
-                node.TypeName = "System.Decimal"
-                node.Value = row.PropertyDecimalValue
-                node.Category = row.PropertyCatagory
-                node.Description = row.PropertyDescription
-                If Not loader.PropertyNames2.Contains(node.Name) Then
-                    loader.PropertyNames.Add(node)
-                    loader.PropertyNames2.Add(node.Name)
-                End If
-            ElseIf row("PropertyIntegerValue") IsNot DBNull.Value Then
-                Dim node As New PropertyLoader.Node
-                node.Name = row.PropertyName
-                node.TypeName = "System.Int32"
-                node.Value = row.PropertyIntegerValue
-                node.Category = row.PropertyCatagory
-                node.Description = row.PropertyDescription
-                If Not loader.PropertyNames2.Contains(node.Name) Then
-                    loader.PropertyNames.Add(node)
-                    loader.PropertyNames2.Add(node.Name)
-                End If
-            ElseIf Not row.IsPropertyDateValueNull Then
-                Dim node As New PropertyLoader.Node
-                node.Name = row.PropertyName
-                node.TypeName = "System.String"
-                Dim dt As DateTime = row.PropertyDateValue
-                If dt.Year > 1900 Then
-                    node.Value = row.PropertyDateValue.ToShortDateString
-                Else
-                    node.Value = ""
-                End If
-                node.Category = row.PropertyCatagory
-                node.Description = row.PropertyDescription
-                If Not loader.PropertyNames2.Contains(node.Name) Then
-                    loader.PropertyNames.Add(node)
-                    loader.PropertyNames2.Add(node.Name)
-                End If
-            End If
+            AddNode(row)
         Next
 
         Dim o As New Object
-        loader.BaseTypeName = obj.GetType.FullName  ' "DCS.Quote.Common.ComputationProperties"
-        o = loader.Generate()
+        _PropertyLoader.BaseTypeName = obj.GetType.FullName
+        o = _PropertyLoader.Generate()
         Return o
     End Function
 
-    Public Shared Sub LoadComponents(ByVal q As Header)
+    Private Sub AddNode(ByVal row As _QuotePropertiesRow)
+
+        Dim node As New PropertyLoader.Node
+        node.Name = row.PropertyName
+        If row("PropertyStringValue") IsNot DBNull.Value Then
+            node.TypeName = "System.String"
+            node.Value = row.PropertyStringValue
+        ElseIf row("PropertyDecimalValue") IsNot DBNull.Value Then
+            node.TypeName = "System.Decimal"
+            node.Value = row.PropertyDecimalValue
+        ElseIf row("PropertyIntegerValue") IsNot DBNull.Value Then
+            node.TypeName = "System.Int32"
+            node.Value = row.PropertyIntegerValue
+        ElseIf Not row.IsPropertyDateValueNull Then
+            node.TypeName = "System.String"
+            Dim dt As DateTime = row.PropertyDateValue
+            If dt.Year > 1900 Then
+                node.Value = row.PropertyDateValue.ToShortDateString
+            Else
+                node.Value = ""
+            End If
+        End If
+        node.Category = row.PropertyCatagory
+        node.Description = row.PropertyDescription
+        _PropertyLoader.Add(node)
+    End Sub
+
+    Public Sub LoadComponents(ByVal q As Header)
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim partAdaptor As New _PartsTableAdapter
