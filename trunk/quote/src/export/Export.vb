@@ -1,11 +1,16 @@
 ﻿Public Class Export
 
+    Private _Excel As New ExcellWriter
 
     Public Sub Export(ByVal header As Common.Header)
+
+        _Excel.Init()
 
         ExportObject(header.OtherProperties)
         ExportObject(header.PrimaryProperties)
         ExportObject(header.ComputationProperties)
+
+        _Excel.Term()
 
     End Sub
 
@@ -17,8 +22,7 @@
 
         Dim printer As New PropertyPrinter
         printer.Processor = processor
-        Dim excel As New ExcellWriter
-        excel.Processor = processor
+        _Excel.Processor = processor
 
         processor.Process()
 
