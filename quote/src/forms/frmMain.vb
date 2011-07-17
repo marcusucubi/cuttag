@@ -135,7 +135,7 @@ Public Class frmMain
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
             Dim saver As New QuoteSaver
-            Dim id As Integer = saver.Save(frm.Header, True)
+            Dim id As Integer = saver.Save(frm.Header, frm.QuoteInfo, True)
             If (id > 0) Then
                 LoadQuote(id)
             End If

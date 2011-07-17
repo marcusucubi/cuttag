@@ -87,7 +87,7 @@ Public Class frmQuoteA
             If r = MsgBoxResult.Cancel Then
                 e.Cancel = True
             ElseIf r = MsgBoxResult.Yes Then
-                Dim saver As New QuoteSaver
+                Dim saver As New TemplateSaver
                 saver.Save(QuoteHeader)
             End If
         End If

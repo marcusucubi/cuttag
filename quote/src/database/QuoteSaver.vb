@@ -9,11 +9,18 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class QuoteSaver
 
-    Public Function Save(ByVal q As Model.Template.Header) As Integer
-        Return Save(q, False)
+    Public Class QuoteInfoClass
+        Public Property PartNumber As String
+        Public Property RFQ As String
+    End Class
+
+    Public Function Save(ByVal q As Model.Template.Header, _
+                         ByVal info As QuoteInfoClass) As Integer
+        Return Save(q, info, False)
     End Function
 
     Public Function Save(ByVal q As Model.Template.Header, _
+                         ByVal info As QuoteInfoClass, _
                          ByVal IsQuote As Boolean) _
                         As Integer
 
@@ -34,15 +41,14 @@ Public Class QuoteSaver
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
             adaptor.Update( _
-                o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, o.CommonID, _
+                o.CustomerName, info.RFQ, info.PartNumber, o.CommonID, _
                 False, q.ID)
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                o.PartNumber, o.RequestForQuoteNumber, IsQuote, q.ID)
+                info.PartNumber, info.RFQ, IsQuote, q.ID)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
