@@ -93,6 +93,10 @@
     <Compile Include="src\database\QuoteSaver.vb" />
     <Compile Include="src\database\TemplateLoader.vb" />
     <Compile Include="src\database\TemplateSaver.vb" />
+    <Compile Include="src\export\PropertyPrinter.vb" />
+    <Compile Include="src\export\Export.vb" />
+    <Compile Include="src\export\PropertyProcessor.vb" />
+    <Compile Include="src\export\PropertyProxy.vb" />
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </Compile>

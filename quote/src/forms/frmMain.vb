@@ -118,6 +118,11 @@ Public Class frmMain
         frmQuoteSearch.ShowDialog(Me)
     End Sub
 
+    Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
+        Dim export As New Export
+        export.Export(_ActiveHeader.Header)
+    End Sub
+
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
