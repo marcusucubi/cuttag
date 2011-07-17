@@ -119,6 +119,8 @@ Public Class frmMain
     End Sub
 
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
+        Me.UseWaitCursor = True
+        My.Application.DoEvents()
         If Me._ActiveHeader.Header.IsQuote Then
             Dim h As Model.Quote.PrimaryPropeties = Me._ActiveHeader.Header.PrimaryProperties
             LoadTemplate(h.TemplateNumber)

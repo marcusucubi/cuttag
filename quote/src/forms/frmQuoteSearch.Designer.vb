@@ -194,12 +194,12 @@ Partial Class frmQuoteSearch
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(435, 315)
         Me.Controls.Add(Me.SplitContainer1)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmQuoteSearch"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Quote Search"
+        Me.TopMost = True
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)

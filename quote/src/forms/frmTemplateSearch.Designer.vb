@@ -193,8 +193,11 @@ Partial Class frmTemplateSearch
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(335, 262)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.MinimizeBox = False
         Me.Name = "frmTemplateSearch"
+        Me.ShowInTaskbar = False
         Me.Text = "Search Templates"
+        Me.TopMost = True
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
