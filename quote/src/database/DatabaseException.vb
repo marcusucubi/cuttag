@@ -1,4 +1,4 @@
-﻿Public Class PropertyException
+﻿Public Class DatabaseException
     Inherits Exception
 
 End Class
