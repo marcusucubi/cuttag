@@ -7,7 +7,7 @@ Imports System.Collections.Specialized
 
 Public Class PropertyLoader
 
-    Public Class Node
+    Public Class PropertyInfo
         Public Property Name As String
         Public Property TypeName As String
         Public Property Value As Object
@@ -15,16 +15,16 @@ Public Class PropertyLoader
         Public Property Description As String
     End Class
 
-    Private _PropertyNames As New List(Of Node)
-    Private _UniqueList As New List(Of String)
+    Private _InfoList As New List(Of PropertyInfo)
+    Private _NameList As New List(Of String)
 
-    Public Property ClassName As String = "Class1"
+    Public Property ClassName As String = "GeneratedProperties"
     Public Property BaseTypeName As String
 
-    Public Sub Add(ByVal node As Node)
-        If Not _UniqueList.Contains(node.Name) Then
-            _PropertyNames.Add(node)
-            _UniqueList.Add(node.Name)
+    Public Sub Add(ByVal node As PropertyInfo)
+        If Not _NameList.Contains(node.Name) Then
+            _InfoList.Add(node)
+            _NameList.Add(node.Name)
         End If
     End Sub
 
@@ -43,7 +43,7 @@ Public Class PropertyLoader
             class1.BaseTypes.Add(Me.BaseTypeName)
         End If
 
-        For Each node As Node In Me._PropertyNames
+        For Each node As PropertyInfo In Me._InfoList
             Me.AddProperty(class1, node.Name, _
                node.TypeName, node.Value, node.Category, node.Description)
         Next
