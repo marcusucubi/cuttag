@@ -103,19 +103,19 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click
-        frmQuoteSearch.ShowDialog()
+        frmQuoteSearch.ShowDialog(Me)
     End Sub
 
     Private Sub SearchTemplateMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchTemplateMenuItem1.Click
-        frmTemplateSearch.ShowDialog()
+        frmTemplateSearch.ShowDialog(Me)
     End Sub
 
     Private Sub ToolSearchTemplates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchTemplates.Click
-        frmTemplateSearch.ShowDialog()
+        frmTemplateSearch.ShowDialog(Me)
     End Sub
 
     Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
-        frmQuoteSearch.ShowDialog()
+        frmQuoteSearch.ShowDialog(Me)
     End Sub
 
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
