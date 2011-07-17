@@ -10,6 +10,7 @@ Namespace Model.Quote
         Private _CustomerName As String
         Private _RequestForQuoteNumber As String
         Private _PartNumber As String
+        Private _TemplateID As Long
 
         Public Sub New(ByVal QuoteHeader As Header, _
                        ByVal id As Long, _
@@ -58,6 +59,19 @@ Namespace Model.Quote
                 Return MyBase.CommonID
             End Get
         End Property
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("TemplateNumnber"), _
+        DescriptionAttribute("Created from template")> _
+        Public ReadOnly Property TemplateNumber As Integer
+            Get
+                Return Me._TemplateID
+            End Get
+        End Property
+
+        Public Sub SetTemplateID(ByVal id As Long)
+            Me._TemplateID = id
+        End Sub
 
     End Class
 End Namespace

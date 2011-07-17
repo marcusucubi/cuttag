@@ -35,13 +35,14 @@ Public Class QuoteSaver
         If id > 0 Then
             adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, o.CommonID, False)
+                o.PartNumber, o.CommonID, _
+                False, q.ID)
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                o.PartNumber, o.RequestForQuoteNumber, IsQuote)
+                o.PartNumber, o.RequestForQuoteNumber, IsQuote, q.ID)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
@@ -56,7 +57,8 @@ Public Class QuoteSaver
         adaptor.Connection.Open()
         CommonSaver.DeleteProperties(newId)
         CommonSaver.SaveOtherProperties(newId, q.OtherProperties, True)
-        CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, True)
+        CommonSaver.SaveComputationProperties(newId, _
+            q.ComputationProperties, True)
         CommonSaver.DeleteComponents(newId)
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()

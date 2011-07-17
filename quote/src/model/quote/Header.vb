@@ -7,15 +7,19 @@ Namespace Model.Quote
         Inherits Common.Header
 
         Public Sub New()
-            Me.New(0, "", "", "")
+            Me.New(0, "", "", "", 0)
         End Sub
 
         Public Sub New(ByVal id As Long, _
                        ByVal CustomerName As String, _
                        ByVal RequestForQuoteNumber As String, _
-                       ByVal PartNumber As String)
-            Me._PrimaryProperties = New Quote.PrimaryPropeties(Me, id, _
+                       ByVal PartNumber As String, _
+                       ByVal TemplateID As Long)
+
+            Dim p As Quote.PrimaryPropeties = New Quote.PrimaryPropeties(Me, id, _
                 CustomerName, RequestForQuoteNumber, PartNumber)
+            Me._PrimaryProperties = p
+            p.SetTemplateID(TemplateID)
             Me._ComputationProperties = New Common.ComputationProperties
             Me._OtherProperties = New Common.OtherProperties
             MyBase.ID = id
@@ -37,7 +41,7 @@ Namespace Model.Quote
         End Property
 
         Public Overrides Function NewDetail(ByVal product As Product) As Common.Detail
-            Dim oo As Detail = New Detail(Me, Product)
+            Dim oo As Detail = New Detail(Me, product)
             MyBase.Details.Add(oo)
             Return oo
         End Function

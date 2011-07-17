@@ -31,8 +31,12 @@ Public Class QuoteLoader
             If Not row.IsPartNumberNull Then
                 part = row.PartNumber
             End If
+            Dim templateID As Long
+            If Not row.IsTemplateIDNull Then
+                templateID = row.TemplateID
+            End If
 
-            q = New Model.Quote.Header(row.ID, customer, rfq, part)
+            q = New Model.Quote.Header(row.ID, customer, rfq, part, templateID)
 
             LoadComponents(q)
 
