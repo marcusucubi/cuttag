@@ -17,6 +17,7 @@ Namespace Model.Template
 
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
+            Me._StartDate = Today
         End Sub
 
         <CategoryAttribute("Supply Chain"), _
