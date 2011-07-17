@@ -44,7 +44,7 @@ Partial Class frmNewQuote
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(206, 112)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(126, 119)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -73,26 +73,29 @@ Partial Class frmNewQuote
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(3, 0)
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label1.Location = New System.Drawing.Point(5, 2)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(150, 13)
+        Me.Label1.Size = New System.Drawing.Size(75, 32)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Create Quote Using Template:"
+        Me.Label1.Text = "Template:"
         '
         'txtTemplateNumber
         '
         Me.txtTemplateNumber.AutoSize = True
-        Me.txtTemplateNumber.Location = New System.Drawing.Point(167, 0)
+        Me.txtTemplateNumber.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtTemplateNumber.Location = New System.Drawing.Point(86, 2)
         Me.txtTemplateNumber.Name = "txtTemplateNumber"
-        Me.txtTemplateNumber.Size = New System.Drawing.Size(19, 13)
+        Me.txtTemplateNumber.Size = New System.Drawing.Size(174, 32)
         Me.txtTemplateNumber.TabIndex = 2
         Me.txtTemplateNumber.Text = "__"
         '
         'TableLayoutPanel2
         '
+        Me.TableLayoutPanel2.AutoSize = True
         Me.TableLayoutPanel2.ColumnCount = 2
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.52941!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.47059!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.31673!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.68327!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.txtTemplateNumber, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label2, 0, 1)
@@ -101,43 +104,48 @@ Partial Class frmNewQuote
         Me.TableLayoutPanel2.Controls.Add(Me.txtRFQ, 1, 2)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(12, 12)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.Padding = New System.Windows.Forms.Padding(2)
         Me.TableLayoutPanel2.RowCount = 3
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.77612!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.22388!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(340, 92)
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(265, 100)
         Me.TableLayoutPanel2.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 24)
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Location = New System.Drawing.Point(5, 34)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 13)
+        Me.Label2.Size = New System.Drawing.Size(75, 32)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Part Number:"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(3, 53)
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label3.Location = New System.Drawing.Point(5, 66)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(32, 13)
+        Me.Label3.Size = New System.Drawing.Size(75, 32)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "RFQ:"
         '
         'txtPartNumber
         '
-        Me.txtPartNumber.Location = New System.Drawing.Point(167, 27)
+        Me.txtPartNumber.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtPartNumber.Location = New System.Drawing.Point(86, 37)
         Me.txtPartNumber.Name = "txtPartNumber"
-        Me.txtPartNumber.Size = New System.Drawing.Size(170, 20)
+        Me.txtPartNumber.Size = New System.Drawing.Size(174, 20)
         Me.txtPartNumber.TabIndex = 5
         '
         'txtRFQ
         '
-        Me.txtRFQ.Location = New System.Drawing.Point(167, 56)
+        Me.txtRFQ.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtRFQ.Location = New System.Drawing.Point(86, 69)
         Me.txtRFQ.Name = "txtRFQ"
-        Me.txtRFQ.Size = New System.Drawing.Size(170, 20)
+        Me.txtRFQ.Size = New System.Drawing.Size(174, 20)
         Me.txtRFQ.TabIndex = 6
         '
         'frmNewQuote
@@ -146,7 +154,7 @@ Partial Class frmNewQuote
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(364, 153)
+        Me.ClientSize = New System.Drawing.Size(284, 160)
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -160,6 +168,7 @@ Partial Class frmNewQuote
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
