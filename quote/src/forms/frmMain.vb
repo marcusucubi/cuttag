@@ -119,13 +119,16 @@ Public Class frmMain
     End Sub
 
     Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
-        Dim export As New Export
-        export.Export(_ActiveHeader.Header)
+        DoExport()
     End Sub
 
     Private Sub ExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportButton.Click
-        Dim export As New Export
-        export.Export(_ActiveHeader.Header)
+        DoExport()
+    End Sub
+
+    Private Sub DoExport()
+        Dim frm As New frmExport
+        frm.ShowDialog()
     End Sub
 
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
