@@ -64,6 +64,8 @@ Public Class TemplateSaver
         q.PrimaryProperties.ClearDirty()
         q.ClearDirty()
 
+        q.PrimaryProperties.SendEvents()
+
         frmMain.frmMain.UseWaitCursor = False
 
         Return newId
