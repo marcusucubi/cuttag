@@ -89,7 +89,7 @@ Namespace Model.Quote
 
         <CategoryAttribute("Quote"), _
         DisplayName("QuoteNumnber"), _
-        DescriptionAttribute("Quote Numnber")> _
+        DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
             Get
                 Return MyBase.CommonID
@@ -97,7 +97,7 @@ Namespace Model.Quote
         End Property
 
         <CategoryAttribute("Quote"), _
-        DisplayName("TemplateNumnber"), _
+        DisplayName("TemplateNumber"), _
         DescriptionAttribute("Created from template")> _
         Public ReadOnly Property TemplateNumber As Integer
             Get
