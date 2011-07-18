@@ -459,7 +459,7 @@ Namespace Model.Template
             End Set
         End Property
 
-        <DescriptionAttribute("TotalVariableMaterialCost + TotalLaborTime" _
+        <DescriptionAttribute("TotalVariableMaterialCost + LaborCost" _
             + Chr(10) + "(Dollars)"), _
         DisplayName("Total Unit Cost"), _
         CategoryAttribute("Total")> _
@@ -467,7 +467,7 @@ Namespace Model.Template
             Get
                 Return _
                     Me.TotalVariableMaterialCost + _
-                    Me.TotalLaborTime
+                    Me.LaborCost
             End Get
         End Property
 
