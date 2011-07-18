@@ -78,13 +78,11 @@ Public Class ExcellWriter
 
         Dim cell2 As Cell
 
-        Dim existingName As Name = _Workbook.GetName(Prop.DisplayName)
-        If existingName IsNot Nothing Then
-            _Workbook.RemoveName(Prop.DisplayName)
+        Dim name As Name = _Workbook.GetName(Prop.DisplayName)
+        If name Is Nothing Then
+            name = _Workbook.CreateName()
+            name.NameName = Prop.DisplayName
         End If
-
-        Dim name As Name = _Workbook.CreateName()
-        name.NameName = Prop.DisplayName
         name.RefersToFormula = SHEET_NAME & "!$B$" & (_Index + 1)
         Dim row As Row = _Sheet.CreateRow(_Index)
         Dim cell As Cell = row.CreateCell(0)
