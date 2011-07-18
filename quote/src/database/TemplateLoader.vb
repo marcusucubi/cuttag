@@ -32,6 +32,10 @@ Public Class TemplateLoader
             If Not row.IsPartNumberNull Then
                 part = row.PartNumber
             End If
+            Dim Initials As String = ""
+            If Not row.IsInitialsNull Then
+                Initials = row.Initials
+            End If
             Dim createdDate As DateTime
             If Not row.IsCreatedDateNull Then
                 createdDate = row.CreatedDate
@@ -45,6 +49,7 @@ Public Class TemplateLoader
             q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
             q.PrimaryProperties.CommonCreatedDate = createdDate
             q.PrimaryProperties.CommonLastModified = lastModDate
+            q.PrimaryProperties.CommonInitials = Initials
 
             CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
             CommonLoader.LoadOtherProperties(id, q.OtherProperties)
