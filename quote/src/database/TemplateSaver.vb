@@ -28,14 +28,17 @@ Public Class TemplateSaver
             adaptor.Connection.Open()
             Dim test As Integer = adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
-                o.PartNumber, False, o.CommonID, Nothing)
+                o.PartNumber, False, Nothing, _
+                o.CommonInitials, o.CommonCreatedDate, _
+                Date.Now, o.CommonID)
             adaptor.Connection.Close()
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                o.PartNumber, o.RequestForQuoteNumber, False, Nothing)
+                o.PartNumber, o.RequestForQuoteNumber, False, Nothing, _
+                o.CommonInitials, Date.Now, Date.Now)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction

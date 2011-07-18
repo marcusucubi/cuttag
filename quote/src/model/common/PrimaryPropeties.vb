@@ -19,6 +19,15 @@ Namespace Common
         Public Property CommonPartNumber As String = ""
 
         <Browsable(False)> _
+        Public Property CommonCreatedDate As DateTime
+
+        <Browsable(False)> _
+        Public Property CommonLastModified As DateTime
+
+        <Browsable(False)> _
+        Public Property CommonInitials As String
+
+        <Browsable(False)> _
         Public ReadOnly Property CommonID As Integer
             Get
                 Return _ID
