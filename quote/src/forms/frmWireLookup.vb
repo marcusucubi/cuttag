@@ -13,17 +13,18 @@ Public Class frmWireLookup
 
     Private Sub SelectProduct()
         Dim View As System.Data.DataRowView = Me.ListBox1.SelectedItem
+        Dim row As QuoteDataBase._WiresRow = View.Row
         Dim num As String = ""
-        If View.Row.ItemArray(1) IsNot Nothing Then
-            num = View.Row.ItemArray(1)
+        If Not row.IsPartNumberNull Then
+            num = row.PartNumber
         End If
         Dim cost As Decimal = 0
-        If View.Row.ItemArray(1) IsNot Nothing Then
-            cost = View.Row.ItemArray(2)
+        If Not row.IsPriceNull Then
+            cost = row.Price
         End If
         Dim gage As String = ""
-        If View.Row.ItemArray(1) IsNot Nothing Then
-            gage = View.Row.ItemArray(3)
+        If Not row.IsGageNull Then
+            gage = row.Gage
         End If
         Product = New Product(num, cost, gage, UnitOfMeasure.BY_LENGTH)
     End Sub
