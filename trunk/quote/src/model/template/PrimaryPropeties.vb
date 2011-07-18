@@ -17,40 +17,28 @@ Namespace Model.Template
         <CategoryAttribute("Quote"), _
         DisplayName("CreatedDate"), _
         DescriptionAttribute("Created Date")> _
-        Public Property CreatedDate As DateTime
+        Public ReadOnly Property CreatedDate As DateTime
             Get
                 Return Me.CommonCreatedDate
             End Get
-            Set(ByVal value As DateTime)
-                Me.CommonCreatedDate = value
-                Me.SendEvents()
-            End Set
         End Property
 
         <CategoryAttribute("Quote"), _
         DisplayName("LastModified"), _
         DescriptionAttribute("Last Modified Date")> _
-        Public Property LastModified As DateTime
+        Public ReadOnly Property LastModified As DateTime
             Get
                 Return Me.CommonLastModified
             End Get
-            Set(ByVal value As DateTime)
-                Me.CommonLastModified = value
-                Me.SendEvents()
-            End Set
         End Property
 
         <CategoryAttribute("Quote"), _
         DisplayName("Initials"), _
         DescriptionAttribute("Initials of creator")> _
-        Public Property Initials As String
+        Public ReadOnly Property Initials As String
             Get
                 Return Me.CommonInitials
             End Get
-            Set(ByVal value As String)
-                Me.CommonInitials = value
-                Me.SendEvents()
-            End Set
         End Property
 
         <CategoryAttribute("Quote"), _

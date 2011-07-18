@@ -17,6 +17,11 @@ Public Class frmQuoteA
         Me.New(Nothing)
     End Sub
 
+    Public Sub New(ByVal Initials As String, ByVal d As String)
+        Me.New(Nothing)
+        Me._PrimaryProperties.CommonInitials = Initials
+    End Sub
+
     Public Sub New(ByVal q As Common.Header)
         InitializeComponent()
         If q IsNot Nothing Then
