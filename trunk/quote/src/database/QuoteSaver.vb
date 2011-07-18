@@ -12,6 +12,7 @@ Public Class QuoteSaver
     Public Class QuoteInfoClass
         Public Property PartNumber As String
         Public Property RFQ As String
+        Public Property Initials As String
     End Class
 
     Public Function Save(ByVal q As Model.Template.Header, _
@@ -42,13 +43,15 @@ Public Class QuoteSaver
         If id > 0 Then
             adaptor.Update( _
                 o.CustomerName, info.RFQ, info.PartNumber, o.CommonID, _
-                False, q.ID)
+                False, q.ID, q.PrimaryProperties.CommonCreatedDate, _
+                Date.Now, info.Initials)
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                info.PartNumber, info.RFQ, IsQuote, q.ID)
+                info.PartNumber, info.RFQ, IsQuote, q.ID, _
+                Date.Now, Date.Now, info.Initials)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction

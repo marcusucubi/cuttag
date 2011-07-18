@@ -11,18 +11,54 @@ Namespace Model.Quote
         Private _RequestForQuoteNumber As String
         Private _PartNumber As String
         Private _TemplateID As Long
+        Private _Initials As String
+        Private _CreatedDate As DateTime
+        Private _LastModified As DateTime
 
         Public Sub New(ByVal QuoteHeader As Header, _
                        ByVal id As Long, _
                        ByVal CustomerName As String, _
                        ByVal RequestForQuoteNumber As String, _
-                       ByVal PartNumber As String)
+                       ByVal PartNumber As String, _
+                       ByVal Initials As String, _
+                       ByVal CreatedDate As DateTime, _
+                       ByVal LastModified As DateTime)
             _QuoteHeader = QuoteHeader
             Me.SetID(id)
             Me._CustomerName = CustomerName
             Me._RequestForQuoteNumber = RequestForQuoteNumber
             Me._PartNumber = PartNumber
+            Me._Initials = Initials
+            Me._CreatedDate = CreatedDate
+            Me._LastModified = LastModified
         End Sub
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("CreatedDate"), _
+        DescriptionAttribute("Created Date")> _
+        Public ReadOnly Property CreatedDate As DateTime
+            Get
+                Return _CreatedDate
+            End Get
+        End Property
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("LastModified"), _
+        DescriptionAttribute("Last Modified Date")> _
+        Public ReadOnly Property LastModified As DateTime
+            Get
+                Return _LastModified
+            End Get
+        End Property
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("Initials"), _
+        DescriptionAttribute("Initials of creator")> _
+        Public ReadOnly Property Initials As String
+            Get
+                Return _Initials
+            End Get
+        End Property
 
         <CategoryAttribute("Quote"), _
         DisplayName("Customer"), _

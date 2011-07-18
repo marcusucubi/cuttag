@@ -38,7 +38,8 @@ Public Class QuoteLoader
                 templateID = row.TemplateID
             End If
 
-            q = New Model.Quote.Header(row.ID, customer, rfq, part, templateID)
+            q = New Model.Quote.Header(row.ID, customer, rfq, part, templateID, _
+                row.Initials, row.CreatedDate, row.LastModifedDate)
 
             LoadComponents(q)
 
