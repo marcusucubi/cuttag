@@ -115,6 +115,12 @@
     <Compile Include="src\forms\frmNewQuote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\forms\frmNewTemplate.Designer.vb">
+      <DependentUpon>frmNewTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmNewTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmQuoteSearch.Designer.vb">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmNewTemplate.resx">
+      <DependentUpon>frmNewTemplate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>

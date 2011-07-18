@@ -26,11 +26,12 @@ Public Class TemplateSaver
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
             adaptor.Connection.Open()
+            o.CommonLastModified = Date.Now
             Dim test As Integer = adaptor.Update( _
                 o.CustomerName, o.RequestForQuoteNumber, _
                 o.PartNumber, False, Nothing, _
                 o.CommonInitials, o.CommonCreatedDate, _
-                Date.Now, o.CommonID)
+                o.LastModified, o.CommonID)
             adaptor.Connection.Close()
             newId = id
         Else

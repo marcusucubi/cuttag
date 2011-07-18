@@ -32,9 +32,19 @@ Public Class TemplateLoader
             If Not row.IsPartNumberNull Then
                 part = row.PartNumber
             End If
+            Dim createdDate As DateTime
+            If Not row.IsCreatedDateNull Then
+                createdDate = row.CreatedDate
+            End If
+            Dim lastModDate As DateTime
+            If Not row.IsLastModifedDateNull Then
+                lastModDate = row.LastModifedDate
+            End If
             q.PrimaryProperties.CommonCustomerName = customer
             q.PrimaryProperties.CommonPartNumber = part
             q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
+            q.PrimaryProperties.CommonCreatedDate = createdDate
+            q.PrimaryProperties.CommonLastModified = lastModDate
 
             CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
             CommonLoader.LoadOtherProperties(id, q.OtherProperties)

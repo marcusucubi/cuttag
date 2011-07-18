@@ -156,10 +156,15 @@ Public Class frmMain
     End Sub
 
     Private Sub CreateNewTemplate()
-        Dim ChildForm As New frmQuoteA
-        ChildForm.MdiParent = Me
-        ChildForm.Show(Me.DockPanel1)
-        DisplayViews()
+
+        Dim frm As New frmNewTemplate
+        Dim result As DialogResult = frm.ShowDialog()
+        If result = DialogResult.OK Then
+            Dim ChildForm As New frmQuoteA(frm.Initials, frm.Initials)
+            ChildForm.MdiParent = Me
+            ChildForm.Show(Me.DockPanel1)
+            DisplayViews()
+        End If
     End Sub
 
     Private Sub DisplayViews()

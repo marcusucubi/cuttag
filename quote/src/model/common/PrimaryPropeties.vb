@@ -19,10 +19,10 @@ Namespace Common
         Public Property CommonPartNumber As String = ""
 
         <Browsable(False)> _
-        Public Property CommonCreatedDate As DateTime
+        Public Property CommonCreatedDate As DateTime = Date.Now
 
         <Browsable(False)> _
-        Public Property CommonLastModified As DateTime
+        Public Property CommonLastModified As DateTime = Date.Now
 
         <Browsable(False)> _
         Public Property CommonInitials As String
