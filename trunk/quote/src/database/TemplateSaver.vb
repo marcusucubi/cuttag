@@ -59,12 +59,12 @@ Public Class TemplateSaver
         CommonSaver.SaveComponents(q, newId, False)
         adaptor.Connection.Close()
 
+        q.PrimaryProperties.SendEvents()
+
         q.ComputationProperties.ClearDirty()
         q.OtherProperties.ClearDirty()
         q.PrimaryProperties.ClearDirty()
         q.ClearDirty()
-
-        q.PrimaryProperties.SendEvents()
 
         frmMain.frmMain.UseWaitCursor = False
 
