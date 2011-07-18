@@ -2,19 +2,20 @@
 
     Private _Excel As New ExcellWriter
 
-    Public Sub Export(ByVal header As Common.Header)
+    Public Function Export(ByVal header As Common.Header, _
+                           ByVal templatePath As String) As String
 
-        _Excel.Init()
+        _Excel.Init(templatePath)
 
         ExportObject(header.OtherProperties)
         ExportObject(header.PrimaryProperties)
         ExportObject(header.ComputationProperties)
 
         _Excel.Term()
+        Return _Excel.Path
+    End Function
 
-    End Sub
-
-    Public Sub ExportObject(ByVal Target As Object)
+    Private Sub ExportObject(ByVal Target As Object)
 
         Dim o As Object = Target
         Dim processor As New PropertyProcessor()
