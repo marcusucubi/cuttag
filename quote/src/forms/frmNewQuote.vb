@@ -18,6 +18,7 @@ Public Class frmNewQuote
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         QuoteInfo.PartNumber = Me.txtPartNumber.Text
         QuoteInfo.RFQ = Me.txtRFQ.Text
+        QuoteInfo.Initials = Me.txtInitials.Text
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub

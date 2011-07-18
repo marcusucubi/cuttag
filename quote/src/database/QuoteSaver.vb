@@ -51,7 +51,7 @@ Public Class QuoteSaver
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
                 info.PartNumber, info.RFQ, IsQuote, q.ID, _
-                Date.Now, Date.Now, info.Initials)
+                info.Initials, Date.Now, Date.Now)
             Dim cmd As OleDbCommand = New OleDbCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
