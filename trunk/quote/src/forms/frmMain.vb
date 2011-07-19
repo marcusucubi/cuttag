@@ -290,10 +290,14 @@ Public Class frmMain
         Dim q As Common.Header
 
         q = loader.Load(id)
-        Dim ChildForm As New frmQuoteA(q)
-        ChildForm.MdiParent = Me
-        ChildForm.Show(Me.DockPanel1)
-        Me.DisplayViews()
+        If q.PrimaryProperties.CommonID = 0 Then
+            MsgBox("Not Found")
+        Else
+            Dim ChildForm As New frmQuoteA(q)
+            ChildForm.MdiParent = Me
+            ChildForm.Show(Me.DockPanel1)
+            Me.DisplayViews()
+        End If
         EnableButtons()
     End Sub
 
@@ -314,10 +318,14 @@ Public Class frmMain
         Dim q As Header
 
         q = loader.Load(id)
-        Dim ChildForm As New frmQuoteA(q)
-        ChildForm.MdiParent = Me
-        ChildForm.Show(Me.DockPanel1)
-        Me.DisplayViews()
+        If q.PrimaryProperties.CommonID = 0 Then
+            MsgBox("Not Found")
+        Else
+            Dim ChildForm As New frmQuoteA(q)
+            ChildForm.MdiParent = Me
+            ChildForm.Show(Me.DockPanel1)
+            Me.DisplayViews()
+        End If
         EnableButtons()
     End Sub
 
