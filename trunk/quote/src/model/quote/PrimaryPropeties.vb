@@ -88,7 +88,7 @@ Namespace Model.Quote
         End Property
 
         <CategoryAttribute("Quote"), _
-        DisplayName("QuoteNumnber"), _
+        DisplayName("QuoteNumber"), _
         DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
             Get
