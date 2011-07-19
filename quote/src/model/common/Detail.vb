@@ -35,6 +35,12 @@ Namespace Common
             End Get
         End Property
 
+        Public ReadOnly Property LengthFeet As Decimal
+            Get
+                Return Math.Round(Qty / 3.048, 4)
+            End Get
+        End Property
+
         <BrowsableAttribute(False)>
         Public ReadOnly Property Product As Model.Product
             Get
@@ -58,7 +64,7 @@ Namespace Common
 
         Public ReadOnly Property TotalCost As Decimal
             Get
-                Return Me.UnitCost * Me.Qty
+                Return Me.UnitCost * Me.LengthFeet
             End Get
         End Property
 
