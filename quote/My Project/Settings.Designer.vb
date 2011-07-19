@@ -86,6 +86,16 @@ Namespace My
                 Me("LastTamplate1") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\tkmae45\Desktop\db.mdb")>  _
+        Public ReadOnly Property dbConnectionString() As String
+            Get
+                Return CType(Me("dbConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

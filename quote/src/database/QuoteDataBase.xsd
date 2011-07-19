@@ -2,15 +2,16 @@
 <xs:schema id="QuoteDataBase" targetNamespace="http://tempuri.org/QuoteDataBase.xsd" xmlns:mstns="http://tempuri.org/QuoteDataBase.xsd" xmlns="http://tempuri.org/QuoteDataBase.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="devConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="devConnectionString (MySettings)" PropertyReference="ApplicationSettings.DCS.Quote.My.MySettings.GlobalReference.Default.devConnectionString" Provider="System.Data.OleDb" />
           <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="devConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="devConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.DCS.Quote.My.MySettings.GlobalReference.Default.devConnectionString1" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="dbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbConnectionString (MySettings)" PropertyReference="ApplicationSettings.DCS.Quote.My.MySettings.GlobalReference.Default.dbConnectionString" Provider="System.Data.OleDb" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="_QuoteDetailTableAdapter" GeneratorDataComponentClassName="_QuoteDetailTableAdapter" Name="_QuoteDetail" UserDataComponentName="_QuoteDetailTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_QuoteDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [_QuoteDetail]
@@ -62,7 +63,7 @@ WHERE        (QuoteID = ?)</CommandText>
               <Mapping SourceColumn="ProductCode" DataSetColumn="ProductCode" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_QuoteDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, ProductCode, Qty, QuoteID
@@ -78,7 +79,7 @@ WHERE        (QuoteID = ?)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="_QuoteTableAdapter" GeneratorDataComponentClassName="_QuoteTableAdapter" Name="_Quote" UserDataComponentName="_QuoteTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [_Quote]
@@ -144,7 +145,7 @@ WHERE        (ID = ?)</CommandText>
               <Mapping SourceColumn="LastModifedDate" DataSetColumn="LastModifedDate" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT CreatedDate, CustomerName, ID, Initials, IsQuote, LastModifedDate, PartNumber, RequestForQuoteNumber, TemplateID FROM [_Quote] WHERE (ID = ?)</CommandText>
@@ -154,7 +155,7 @@ WHERE        (ID = ?)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillWithQuotes" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataWithQuotes" GeneratorSourceName="FillWithQuotes" GetMethodModifier="Public" GetMethodName="GetDataWithQuotes" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataWithQuotes" UserSourceName="FillWithQuotes">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillWithQuotes" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataWithQuotes" GeneratorSourceName="FillWithQuotes" GetMethodModifier="Public" GetMethodName="GetDataWithQuotes" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataWithQuotes" UserSourceName="FillWithQuotes">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT CreatedDate, CustomerName, ID, Initials, IsQuote, LastModifedDate, PartNumber, RequestForQuoteNumber, TemplateID FROM [_Quote] WHERE (IsQuote = true) ORDER BY ID DESC</CommandText>
@@ -162,7 +163,7 @@ WHERE        (ID = ?)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillWithTemplates" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataWithTemplates" GeneratorSourceName="FillWithTemplates" GetMethodModifier="Public" GetMethodName="GetDataWithTemplates" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataWithTemplates" UserSourceName="FillWithTemplates">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillWithTemplates" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataWithTemplates" GeneratorSourceName="FillWithTemplates" GetMethodModifier="Public" GetMethodName="GetDataWithTemplates" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataWithTemplates" UserSourceName="FillWithTemplates">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT CreatedDate, CustomerName, ID, Initials, IsQuote, LastModifedDate, PartNumber, RequestForQuoteNumber, TemplateID FROM [_Quote] WHERE (IsQuote = false) ORDER BY ID DESC</CommandText>
@@ -174,7 +175,7 @@ WHERE        (ID = ?)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="_PartsTableAdapter" GeneratorDataComponentClassName="_PartsTableAdapter" Name="_Parts" UserDataComponentName="_PartsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Parts" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Parts" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `_Parts` WHERE ((`ID` = ?) AND ((? = 1 AND `PartNumber` IS NULL) OR (`PartNumber` = ?)) AND ((? = 1 AND `UnitCost` IS NULL) OR (`UnitCost` = ?)) AND ((? = 1 AND `UnitOfMeasure` IS NULL) OR (`UnitOfMeasure` = ?)))</CommandText>
@@ -231,7 +232,7 @@ WHERE        (ID = ?)</CommandText>
               <Mapping SourceColumn="UnitOfMeasure" DataSetColumn="UnitOfMeasure" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Parts" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByProductCode" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByProductCode" GeneratorSourceName="FillByProductCode" GetMethodModifier="Public" GetMethodName="GetDataByProductCode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByProductCode" UserSourceName="FillByProductCode">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Parts" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByProductCode" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByProductCode" GeneratorSourceName="FillByProductCode" GetMethodModifier="Public" GetMethodName="GetDataByProductCode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByProductCode" UserSourceName="FillByProductCode">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, PartNumber, UnitCost, UnitOfMeasure
@@ -247,7 +248,7 @@ WHERE        (PartNumber = ?)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="_WiresTableAdapter" GeneratorDataComponentClassName="_WiresTableAdapter" Name="_Wires" UserDataComponentName="_WiresTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Wires" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Wires" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `_Wires` WHERE ((`ID` = ?) AND ((? = 1 AND `PartNumber` IS NULL) OR (`PartNumber` = ?)) AND ((? = 1 AND `Price` IS NULL) OR (`Price` = ?)) AND ((? = 1 AND `Gage` IS NULL) OR (`Gage` = ?)))</CommandText>
@@ -304,7 +305,7 @@ WHERE        (PartNumber = ?)</CommandText>
               <Mapping SourceColumn="Gage" DataSetColumn="Gage" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Wires" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByProductCode" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByProductCode" GeneratorSourceName="FillByProductCode" GetMethodModifier="Public" GetMethodName="GetDataByProductCode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByProductCode" UserSourceName="FillByProductCode">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Wires" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByProductCode" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByProductCode" GeneratorSourceName="FillByProductCode" GetMethodModifier="Public" GetMethodName="GetDataByProductCode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByProductCode" UserSourceName="FillByProductCode">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, PartNumber, Price, Gage
@@ -320,7 +321,7 @@ WHERE        (PartNumber = ?)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="_QuotePropertiesTableAdapter" GeneratorDataComponentClassName="_QuotePropertiesTableAdapter" Name="_QuoteProperties" UserDataComponentName="_QuotePropertiesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [_QuoteProperties]
@@ -404,7 +405,7 @@ FROM            [_QuoteProperties]</CommandText>
               <Mapping SourceColumn="PropertyDateValue" DataSetColumn="PropertyDateValue" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByByQuoteIDAndPropertyID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteIDAndPropertyID" GeneratorSourceName="FillByByQuoteIDAndPropertyID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteIDAndPropertyID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteIDAndPropertyID" UserSourceName="FillByByQuoteIDAndPropertyID">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByByQuoteIDAndPropertyID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteIDAndPropertyID" GeneratorSourceName="FillByByQuoteIDAndPropertyID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteIDAndPropertyID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteIDAndPropertyID" UserSourceName="FillByByQuoteIDAndPropertyID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDescription, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, QuoteID FROM [_QuoteProperties] WHERE (QuoteID = ?) AND (PropertyID = ?)</CommandText>
@@ -415,7 +416,7 @@ FROM            [_QuoteProperties]</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteAndName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteAndName" GeneratorSourceName="FillByQuoteAndName" GetMethodModifier="Public" GetMethodName="GetDataByQuoteAndName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteAndName" UserSourceName="FillByQuoteAndName">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteAndName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteAndName" GeneratorSourceName="FillByQuoteAndName" GetMethodModifier="Public" GetMethodName="GetDataByQuoteAndName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteAndName" UserSourceName="FillByQuoteAndName">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDescription, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, QuoteID FROM [_QuoteProperties] WHERE (QuoteID = ?) AND (PropertyID = ?) AND (PropertyName = ?)</CommandText>
@@ -427,7 +428,7 @@ FROM            [_QuoteProperties]</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_QuoteProperties" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByQuoteID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDescription, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, QuoteID FROM [_QuoteProperties] WHERE (QuoteID = ?)</CommandText>
@@ -441,7 +442,7 @@ FROM            [_QuoteProperties]</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="_ShippingTableAdapter" GeneratorDataComponentClassName="_ShippingTableAdapter" Name="_Shipping" UserDataComponentName="_ShippingTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="devConnectionString (MySettings)" DbObjectName="_Shipping" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="dbConnectionString (MySettings)" DbObjectName="_Shipping" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `_Shipping` WHERE ((`ID` = ?) AND ((? = 1 AND `Index` IS NULL) OR (`Index` = ?)) AND ((? = 1 AND `Description` IS NULL) OR (`Description` = ?)) AND ((? = 1 AND `Cost` IS NULL) OR (`Cost` = ?)))</CommandText>
@@ -692,7 +693,7 @@ FROM            [_QuoteProperties]</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="_Quote__QuoteDetail" msdata:parent="_Quote" msdata:child="_QuoteDetail" msdata:parentkey="ID" msdata:childkey="QuoteID" msprop:Generator_UserChildTable="_QuoteDetail" msprop:Generator_ChildPropName="Get_QuoteDetailRows" msprop:Generator_ParentPropName="_QuoteRow" msprop:Generator_UserRelationName="_Quote__QuoteDetail" msprop:Generator_RelationVarName="relation_Quote__QuoteDetail" msprop:Generator_UserParentTable="_Quote" />
+      <msdata:Relationship name="_Quote__QuoteDetail" msdata:parent="_Quote" msdata:child="_QuoteDetail" msdata:parentkey="ID" msdata:childkey="QuoteID" msprop:Generator_UserChildTable="_QuoteDetail" msprop:Generator_ChildPropName="Get_QuoteDetailRows" msprop:Generator_UserParentTable="_Quote" msprop:Generator_UserRelationName="_Quote__QuoteDetail" msprop:Generator_RelationVarName="relation_Quote__QuoteDetail" msprop:Generator_ParentPropName="_QuoteRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
