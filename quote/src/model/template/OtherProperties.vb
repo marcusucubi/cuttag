@@ -10,14 +10,10 @@ Namespace Model.Template
         Private _LeadTimeInitial As Integer
         Private _LeadTimeStandard As Integer
         Private _EstimatedAnnualUnits As Integer
-        Private _StartDate As DateTime
-        Private _CompletedDate As DateTime
-        Private _VerifiedDate As DateTime
         Private _DueDate As DateTime
 
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
-            Me._StartDate = Today
         End Sub
 
         <CategoryAttribute("Supply Chain"), _
@@ -55,45 +51,6 @@ Namespace Model.Template
             End Get
             Set(ByVal value As Integer)
                 _EstimatedAnnualUnits = value
-                Me.SendEvents()
-            End Set
-        End Property
-
-        <CategoryAttribute("Date"), _
-        DisplayName("Start Date"), _
-        DescriptionAttribute("Date the quote is started")> _
-        Public Property StartDate As DateTime
-            Get
-                Return _StartDate
-            End Get
-            Set(ByVal value As DateTime)
-                _StartDate = value
-                Me.SendEvents()
-            End Set
-        End Property
-
-        <CategoryAttribute("Date"), _
-        DisplayName("Completed Date"), _
-        DescriptionAttribute("Date the quote is completed")> _
-        Public Property CompletedDate As DateTime
-            Get
-                Return _CompletedDate
-            End Get
-            Set(ByVal value As DateTime)
-                _CompletedDate = value
-                Me.SendEvents()
-            End Set
-        End Property
-
-        <CategoryAttribute("Date"), _
-        DisplayName("Verified Date"), _
-        DescriptionAttribute("Date the quote is verified")> _
-        Public Property VerifiedDate As DateTime
-            Get
-                Return _VerifiedDate
-            End Get
-            Set(ByVal value As DateTime)
-                _VerifiedDate = value
                 Me.SendEvents()
             End Set
         End Property
