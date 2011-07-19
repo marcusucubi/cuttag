@@ -68,10 +68,13 @@
         Dim CustomerNameColumn As New DataGridViewTextBoxColumn
         Dim RFQColumn As New DataGridViewTextBoxColumn
         Dim PartNumberColumn As New DataGridViewTextBoxColumn
+        Dim LastModifiedColumn As New DataGridViewTextBoxColumn
+        Dim InitialsColumn As New DataGridViewTextBoxColumn
+        Dim CreatedDateColumn As New DataGridViewTextBoxColumn
         Dim OpenColumn As New DataGridViewButtonColumn()
 
         IDColumn.DataPropertyName = "ID"
-        IDColumn.HeaderText = "ID"
+        IDColumn.HeaderText = "Template Number"
         IDColumn.Name = "IDDataGridViewTextBoxColumn"
         IDColumn.ReadOnly = True
         IDColumn.Width = 60
@@ -91,6 +94,21 @@
         PartNumberColumn.Name = "PartNumberDataGridViewTextBoxColumn"
         PartNumberColumn.ReadOnly = True
 
+        LastModifiedColumn.DataPropertyName = "LastModifedDate"
+        LastModifiedColumn.HeaderText = "Last Modified"
+        LastModifiedColumn.Name = "LastModifiedDataGridViewTextBoxColumn"
+        LastModifiedColumn.ReadOnly = True
+
+        InitialsColumn.DataPropertyName = "Initials"
+        InitialsColumn.HeaderText = "Initials"
+        InitialsColumn.Name = "InitialsDataGridViewTextBoxColumn"
+        InitialsColumn.ReadOnly = True
+
+        CreatedDateColumn.DataPropertyName = "CreatedDate"
+        CreatedDateColumn.HeaderText = "CreatedDate"
+        CreatedDateColumn.Name = "CreatedDateDataGridViewTextBoxColumn"
+        CreatedDateColumn.ReadOnly = True
+
         OpenColumn.HeaderText = "Open"
         OpenColumn.Name = "OpenColumn"
         OpenColumn.UseColumnTextForButtonValue = True
@@ -100,9 +118,12 @@
         Me.DataGridView1.Columns.AddRange( _
             New System.Windows.Forms.DataGridViewColumn() { _
                 OpenColumn, IDColumn, _
-                CustomerNameColumn, _
                 RFQColumn, _
-                PartNumberColumn
+                PartNumberColumn, _
+                LastModifiedColumn, _
+                CreatedDateColumn, _
+                InitialsColumn, _
+                CustomerNameColumn
             })
     End Sub
 

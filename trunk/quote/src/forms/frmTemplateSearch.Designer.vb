@@ -30,15 +30,19 @@ Partial Class frmTemplateSearch
         Me.Button1 = New System.Windows.Forms.Button()
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
+        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RequestForQuoteNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreatedByDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IsQuoteDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
-        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.TemplateIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InitialsDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreatedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastModifedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -65,7 +69,7 @@ Partial Class frmTemplateSearch
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(335, 262)
+        Me.SplitContainer1.Size = New System.Drawing.Size(603, 262)
         Me.SplitContainer1.SplitterDistance = 67
         Me.SplitContainer1.TabIndex = 0
         '
@@ -120,7 +124,7 @@ Partial Class frmTemplateSearch
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.CustomerNameDataGridViewTextBoxColumn, Me.RequestForQuoteNumberDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.CreatedByDataGridViewTextBoxColumn, Me.IsQuoteDataGridViewCheckBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.CustomerNameDataGridViewTextBoxColumn, Me.RequestForQuoteNumberDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.CreatedByDataGridViewTextBoxColumn, Me.IsQuoteDataGridViewCheckBoxColumn, Me.TemplateIDDataGridViewTextBoxColumn, Me.InitialsDataGridViewTextBoxColumn, Me.CreatedDateDataGridViewTextBoxColumn, Me.LastModifedDateDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.QuoteBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
@@ -128,8 +132,22 @@ Partial Class frmTemplateSearch
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(335, 191)
+        Me.DataGridView1.Size = New System.Drawing.Size(603, 191)
         Me.DataGridView1.TabIndex = 1
+        '
+        'QuoteBindingSource
+        '
+        Me.QuoteBindingSource.DataMember = "_Quote"
+        Me.QuoteBindingSource.DataSource = Me.QuoteDataBase
+        '
+        'QuoteDataBase
+        '
+        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
+        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        '_QuoteTableAdapter
+        '
+        Me._QuoteTableAdapter.ClearBeforeFill = True
         '
         'IDDataGridViewTextBoxColumn
         '
@@ -173,25 +191,39 @@ Partial Class frmTemplateSearch
         Me.IsQuoteDataGridViewCheckBoxColumn.Name = "IsQuoteDataGridViewCheckBoxColumn"
         Me.IsQuoteDataGridViewCheckBoxColumn.ReadOnly = True
         '
-        'QuoteBindingSource
+        'TemplateIDDataGridViewTextBoxColumn
         '
-        Me.QuoteBindingSource.DataMember = "_Quote"
-        Me.QuoteBindingSource.DataSource = Me.QuoteDataBase
+        Me.TemplateIDDataGridViewTextBoxColumn.DataPropertyName = "TemplateID"
+        Me.TemplateIDDataGridViewTextBoxColumn.HeaderText = "TemplateID"
+        Me.TemplateIDDataGridViewTextBoxColumn.Name = "TemplateIDDataGridViewTextBoxColumn"
+        Me.TemplateIDDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'QuoteDataBase
+        'InitialsDataGridViewTextBoxColumn
         '
-        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
-        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.InitialsDataGridViewTextBoxColumn.DataPropertyName = "Initials"
+        Me.InitialsDataGridViewTextBoxColumn.HeaderText = "Initials"
+        Me.InitialsDataGridViewTextBoxColumn.Name = "InitialsDataGridViewTextBoxColumn"
+        Me.InitialsDataGridViewTextBoxColumn.ReadOnly = True
         '
-        '_QuoteTableAdapter
+        'CreatedDateDataGridViewTextBoxColumn
         '
-        Me._QuoteTableAdapter.ClearBeforeFill = True
+        Me.CreatedDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate"
+        Me.CreatedDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate"
+        Me.CreatedDateDataGridViewTextBoxColumn.Name = "CreatedDateDataGridViewTextBoxColumn"
+        Me.CreatedDateDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'LastModifedDateDataGridViewTextBoxColumn
+        '
+        Me.LastModifedDateDataGridViewTextBoxColumn.DataPropertyName = "LastModifedDate"
+        Me.LastModifedDateDataGridViewTextBoxColumn.HeaderText = "LastModifedDate"
+        Me.LastModifedDateDataGridViewTextBoxColumn.Name = "LastModifedDateDataGridViewTextBoxColumn"
+        Me.LastModifedDateDataGridViewTextBoxColumn.ReadOnly = True
         '
         'frmTemplateSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(335, 262)
+        Me.ClientSize = New System.Drawing.Size(603, 262)
         Me.Controls.Add(Me.SplitContainer1)
         Me.MinimizeBox = False
         Me.Name = "frmTemplateSearch"
@@ -213,15 +245,19 @@ Partial Class frmTemplateSearch
     Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
+    Friend WithEvents txtRFQ As System.Windows.Forms.TextBox
+    Friend WithEvents btnRFQ As System.Windows.Forms.RadioButton
+    Friend WithEvents btnPartNumber As System.Windows.Forms.RadioButton
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents txtPartNumber As System.Windows.Forms.TextBox
     Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomerNameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RequestForQuoteNumberDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PartNumberDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CreatedByDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IsQuoteDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents txtRFQ As System.Windows.Forms.TextBox
-    Friend WithEvents btnRFQ As System.Windows.Forms.RadioButton
-    Friend WithEvents btnPartNumber As System.Windows.Forms.RadioButton
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents txtPartNumber As System.Windows.Forms.TextBox
+    Friend WithEvents TemplateIDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents InitialsDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CreatedDateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LastModifedDateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
