@@ -21,10 +21,9 @@ Public Class frmExport
         Dim myStream As Stream = Nothing
         Dim openFileDialog1 As New OpenFileDialog()
 
-        Me.OK_Button.Enabled = False
         openFileDialog1.InitialDirectory = "c:\"
         openFileDialog1.Filter = "xls files (*.xls)|*.xls|All files (*.*)|*.*"
-        openFileDialog1.FilterIndex = 2
+        openFileDialog1.FilterIndex = 1
         openFileDialog1.RestoreDirectory = True
 
         If openFileDialog1.ShowDialog() = DialogResult.OK Then
