@@ -60,6 +60,13 @@ Namespace My.Resources
             End Set
         End Property
         
+        Friend ReadOnly Property excel() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("excel", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property load() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("load", resourceCulture)

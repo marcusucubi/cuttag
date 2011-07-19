@@ -371,6 +371,7 @@
     <Content Include="lib\Ionic.Zip.dll" />
     <Content Include="lib\NPOI.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\excel.png" />
     <None Include="Resources\truck.jpg" />
     <None Include="Resources\source.jpg" />
     <None Include="Resources\search_icon.png" />

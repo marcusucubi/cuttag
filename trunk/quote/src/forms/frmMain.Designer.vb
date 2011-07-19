@@ -226,11 +226,11 @@ Partial Class frmMain
         '
         Me.ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.ExportButton.Enabled = False
-        Me.ExportButton.Image = Global.DCS.Quote.My.Resources.Resources.truck
+        Me.ExportButton.Image = Global.DCS.Quote.My.Resources.Resources.excel
         Me.ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ExportButton.Name = "ExportButton"
         Me.ExportButton.Size = New System.Drawing.Size(23, 22)
-        Me.ExportButton.Text = "Export"
+        Me.ExportButton.Text = "Export Quote to Excel"
         '
         'MenuStrip1
         '
