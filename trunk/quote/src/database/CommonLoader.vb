@@ -36,9 +36,13 @@ Public Class CommonLoader
             If (wires.Count > 0) Then
                 Dim wire As _WiresRow
                 wire = wires(0)
+                Dim gage As String = ""
+                If Not wire.IsGageNull Then
+                    gage = wire.Gage
+                End If
                 Dim wireObj As New Product( _
                     wire.PartNumber, wire.Price, _
-                    wire.Gage, UnitOfMeasure.BY_LENGTH)
+                    gage, UnitOfMeasure.BY_LENGTH)
 
                 detail = q.NewDetail(wireObj)
             End If
