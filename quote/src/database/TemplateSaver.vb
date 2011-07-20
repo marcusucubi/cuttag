@@ -38,9 +38,9 @@ Public Class TemplateSaver
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                o.PartNumber, o.RequestForQuoteNumber, False, Nothing, _
+                o.PartNumber, o.RequestForQuoteNumber, False, 0, _
                 o.CommonInitials, Date.Now, Date.Now)
-            Dim cmd As OleDbCommand = New OleDbCommand( _
+            Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
             newId = CInt(cmd.ExecuteScalar())

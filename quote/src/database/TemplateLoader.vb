@@ -19,7 +19,7 @@ Public Class TemplateLoader
         Dim table As New QuoteDataBase._QuoteDataTable
         Dim q As New Header()
 
-        adaptor.FillByQuoteID(table, id)
+        adaptor.FillByByQuoteID(table, id)
         If table.Rows.Count > 0 Then
             Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
             q = New Header(row.ID)

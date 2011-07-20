@@ -20,7 +20,7 @@ Public Class QuoteLoader
         Dim table As New QuoteDataBase._QuoteDataTable
         Dim q As New Model.Quote.Header()
 
-        adaptor.FillByQuoteID(table, id)
+        adaptor.FillByByQuoteID(table, CDbl(id))
         If table.Rows.Count > 0 Then
             Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
 
@@ -116,7 +116,7 @@ Public Class QuoteLoader
             Dim detail As Detail = Nothing
 
             Dim parts As _PartsDataTable
-            parts = partAdaptor.GetDataByProductCode(row.ProductCode)
+            parts = partAdaptor.GetDataByPartNumber(row.ProductCode)
             If (parts.Count > 0) Then
                 Dim part As _PartsRow
                 part = parts(0)
