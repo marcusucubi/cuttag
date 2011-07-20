@@ -3,7 +3,6 @@ Imports DCS.Quote.Common
 Imports DCS.Quote.Model
 Imports DCS.Quote.QuoteDataBase
 Imports System.Reflection
-Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
 Imports System.ComponentModel
@@ -87,7 +86,9 @@ Public Class CommonSaver
             End If
             If TypeOf o Is DateTime Then
                 Dim dt As DateTime = CDate(o)
-                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, Nothing, cat, desc, dt)
+                If dt.Year > 1 Then
+                    adaptor.Insert(id, childId, p.Name, Nothing, Nothing, Nothing, cat, desc, dt)
+                End If
             End If
         Next
     End Sub
@@ -117,7 +118,7 @@ Public Class CommonSaver
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(quoteId, detail.Qty, detail.Product.Code)
-            Dim cmd As OleDbCommand = New OleDbCommand( _
+            Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
             Dim id As Integer = CInt(cmd.ExecuteScalar())

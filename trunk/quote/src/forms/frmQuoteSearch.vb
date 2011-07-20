@@ -13,7 +13,7 @@ Public Class frmQuoteSearch
     End Sub
 
     Private Sub frmQuoteSearch_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me._QuoteTableAdapter.FillWithQuotes(Me.QuoteDataBase._Quote)
+        Me._QuoteTableAdapter.FillByWithQuotes(Me.QuoteDataBase._Quote)
         SetupColoumns()
     End Sub
 

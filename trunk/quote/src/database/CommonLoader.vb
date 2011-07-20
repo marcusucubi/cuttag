@@ -20,7 +20,7 @@ Public Class CommonLoader
             Dim detail As Common.Detail = Nothing
 
             Dim parts As _PartsDataTable
-            parts = partAdaptor.GetDataByProductCode(row.ProductCode)
+            parts = partAdaptor.GetDataByPartNumber(row.ProductCode)
             If (parts.Count > 0) Then
                 Dim part As _PartsRow
                 part = parts(0)

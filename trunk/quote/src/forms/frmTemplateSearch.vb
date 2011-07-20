@@ -11,7 +11,7 @@
     End Sub
 
     Private Sub frmQuoteSearch_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me._QuoteTableAdapter.FillWithTemplates(Me.QuoteDataBase._Quote)
+        Me._QuoteTableAdapter.FillByWithTemplates(Me.QuoteDataBase._Quote)
         SetupColoumns()
     End Sub
 
