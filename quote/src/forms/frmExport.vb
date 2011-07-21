@@ -5,6 +5,13 @@ Public Class frmExport
 
     Private _FilePath As String
 
+    Private Sub frmExport_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim path As String
+        path = System.IO.Path.GetFullPath("QuoteTemplate.xls")
+        Me.txtPath.Text = path
+        Me._FilePath = path
+    End Sub
+
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Export()
