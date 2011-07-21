@@ -320,6 +320,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="QuoteTemplate.xls" />
     <None Include="src\database\QuoteDataBase.xsc">
       <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </None>
