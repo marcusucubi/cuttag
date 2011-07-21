@@ -29,9 +29,9 @@ Partial Class frmNewQuote
         Me.txtTemplateNumber = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.txtRFQ = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtInitials = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -127,16 +127,6 @@ Partial Class frmNewQuote
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Part Number:"
         '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(5, 75)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(32, 13)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "RFQ:"
-        '
         'txtPartNumber
         '
         Me.txtPartNumber.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -152,6 +142,16 @@ Partial Class frmNewQuote
         Me.txtRFQ.Name = "txtRFQ"
         Me.txtRFQ.Size = New System.Drawing.Size(174, 20)
         Me.txtRFQ.TabIndex = 6
+        '
+        'Label3
+        '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(5, 75)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(32, 13)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "RFQ:"
         '
         'Label4
         '
