@@ -39,7 +39,7 @@ Partial Class frmExport
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(342, 62)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(532, 55)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -69,7 +69,7 @@ Partial Class frmExport
         '
         Me.txtPath.Location = New System.Drawing.Point(72, 21)
         Me.txtPath.Name = "txtPath"
-        Me.txtPath.Size = New System.Drawing.Size(372, 20)
+        Me.txtPath.Size = New System.Drawing.Size(575, 20)
         Me.txtPath.TabIndex = 1
         '
         'Label1
@@ -83,7 +83,7 @@ Partial Class frmExport
         '
         'btnBrowse
         '
-        Me.btnBrowse.Location = New System.Drawing.Point(450, 21)
+        Me.btnBrowse.Location = New System.Drawing.Point(653, 20)
         Me.btnBrowse.Name = "btnBrowse"
         Me.btnBrowse.Size = New System.Drawing.Size(25, 20)
         Me.btnBrowse.TabIndex = 3
@@ -95,8 +95,9 @@ Partial Class frmExport
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(500, 103)
+        Me.ClientSize = New System.Drawing.Size(690, 96)
         Me.Controls.Add(Me.btnBrowse)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtPath)
