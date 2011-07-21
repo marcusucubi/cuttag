@@ -30,21 +30,21 @@ Partial Class frmQuoteSearch
         Me.Button1 = New System.Windows.Forms.Button()
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.IDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomerNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RequestForQuoteNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CreatedByDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IsQuoteDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
         Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.Filter = New System.Windows.Forms.GroupBox()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Filter.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -56,22 +56,18 @@ Partial Class frmQuoteSearch
         '
         'SplitContainer1.Panel1
         '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.txtRFQ)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.btnRFQ)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.btnPartNumber)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Button1)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.txtPartNumber)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Filter)
         '
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView1)
         Me.SplitContainer1.Size = New System.Drawing.Size(435, 315)
-        Me.SplitContainer1.SplitterDistance = 73
+        Me.SplitContainer1.SplitterDistance = 98
         Me.SplitContainer1.TabIndex = 1
         '
         'txtRFQ
         '
-        Me.txtRFQ.Location = New System.Drawing.Point(102, 41)
+        Me.txtRFQ.Location = New System.Drawing.Point(105, 44)
         Me.txtRFQ.Name = "txtRFQ"
         Me.txtRFQ.Size = New System.Drawing.Size(100, 20)
         Me.txtRFQ.TabIndex = 5
@@ -79,7 +75,7 @@ Partial Class frmQuoteSearch
         'btnRFQ
         '
         Me.btnRFQ.AutoSize = True
-        Me.btnRFQ.Location = New System.Drawing.Point(12, 42)
+        Me.btnRFQ.Location = New System.Drawing.Point(15, 45)
         Me.btnRFQ.Name = "btnRFQ"
         Me.btnRFQ.Size = New System.Drawing.Size(47, 17)
         Me.btnRFQ.TabIndex = 4
@@ -90,7 +86,7 @@ Partial Class frmQuoteSearch
         '
         Me.btnPartNumber.AutoSize = True
         Me.btnPartNumber.Checked = True
-        Me.btnPartNumber.Location = New System.Drawing.Point(12, 16)
+        Me.btnPartNumber.Location = New System.Drawing.Point(15, 19)
         Me.btnPartNumber.Name = "btnPartNumber"
         Me.btnPartNumber.Size = New System.Drawing.Size(84, 17)
         Me.btnPartNumber.TabIndex = 0
@@ -100,16 +96,16 @@ Partial Class frmQuoteSearch
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(230, 16)
+        Me.Button1.Location = New System.Drawing.Point(233, 19)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Search"
+        Me.Button1.Text = "Apply"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'txtPartNumber
         '
-        Me.txtPartNumber.Location = New System.Drawing.Point(102, 15)
+        Me.txtPartNumber.Location = New System.Drawing.Point(105, 18)
         Me.txtPartNumber.Name = "txtPartNumber"
         Me.txtPartNumber.Size = New System.Drawing.Size(100, 20)
         Me.txtPartNumber.TabIndex = 1
@@ -120,7 +116,7 @@ Partial Class frmQuoteSearch
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDDataGridViewTextBoxColumn, Me.CustomerNameDataGridViewTextBoxColumn, Me.RequestForQuoteNumberDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.CreatedByDataGridViewTextBoxColumn, Me.IsQuoteDataGridViewCheckBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerNameDataGridViewTextBoxColumn, Me.RequestForQuoteNumberDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.IsQuoteDataGridViewCheckBoxColumn})
         Me.DataGridView1.DataSource = Me.QuoteBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
@@ -128,15 +124,8 @@ Partial Class frmQuoteSearch
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(435, 238)
+        Me.DataGridView1.Size = New System.Drawing.Size(435, 213)
         Me.DataGridView1.TabIndex = 0
-        '
-        'IDDataGridViewTextBoxColumn
-        '
-        Me.IDDataGridViewTextBoxColumn.DataPropertyName = "ID"
-        Me.IDDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.IDDataGridViewTextBoxColumn.Name = "IDDataGridViewTextBoxColumn"
-        Me.IDDataGridViewTextBoxColumn.ReadOnly = True
         '
         'CustomerNameDataGridViewTextBoxColumn
         '
@@ -158,13 +147,6 @@ Partial Class frmQuoteSearch
         Me.PartNumberDataGridViewTextBoxColumn.HeaderText = "PartNumber"
         Me.PartNumberDataGridViewTextBoxColumn.Name = "PartNumberDataGridViewTextBoxColumn"
         Me.PartNumberDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CreatedByDataGridViewTextBoxColumn
-        '
-        Me.CreatedByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy"
-        Me.CreatedByDataGridViewTextBoxColumn.HeaderText = "CreatedBy"
-        Me.CreatedByDataGridViewTextBoxColumn.Name = "CreatedByDataGridViewTextBoxColumn"
-        Me.CreatedByDataGridViewTextBoxColumn.ReadOnly = True
         '
         'IsQuoteDataGridViewCheckBoxColumn
         '
@@ -188,6 +170,20 @@ Partial Class frmQuoteSearch
         '
         Me._QuoteTableAdapter.ClearBeforeFill = True
         '
+        'Filter
+        '
+        Me.Filter.Controls.Add(Me.Button1)
+        Me.Filter.Controls.Add(Me.txtRFQ)
+        Me.Filter.Controls.Add(Me.txtPartNumber)
+        Me.Filter.Controls.Add(Me.btnRFQ)
+        Me.Filter.Controls.Add(Me.btnPartNumber)
+        Me.Filter.Location = New System.Drawing.Point(12, 12)
+        Me.Filter.Name = "Filter"
+        Me.Filter.Size = New System.Drawing.Size(328, 75)
+        Me.Filter.TabIndex = 6
+        Me.Filter.TabStop = False
+        Me.Filter.Text = "Filter"
+        '
         'frmQuoteSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -201,12 +197,13 @@ Partial Class frmQuoteSearch
         Me.Text = "Quote Search"
         Me.TopMost = True
         Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Filter.ResumeLayout(False)
+        Me.Filter.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -226,5 +223,6 @@ Partial Class frmQuoteSearch
     Friend WithEvents PartNumberDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CreatedByDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents IsQuoteDataGridViewCheckBoxColumn As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents Filter As System.Windows.Forms.GroupBox
 
 End Class

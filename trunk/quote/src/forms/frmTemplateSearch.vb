@@ -88,26 +88,31 @@
         RFQColumn.HeaderText = "RFQ"
         RFQColumn.Name = "RequestForQuoteNumberDataGridViewTextBoxColumn"
         RFQColumn.ReadOnly = True
+        RFQColumn.Width = 60
 
         PartNumberColumn.DataPropertyName = "PartNumber"
         PartNumberColumn.HeaderText = "Part Number"
         PartNumberColumn.Name = "PartNumberDataGridViewTextBoxColumn"
         PartNumberColumn.ReadOnly = True
+        PartNumberColumn.Width = 60
 
         LastModifiedColumn.DataPropertyName = "LastModifedDate"
         LastModifiedColumn.HeaderText = "Last Modified"
         LastModifiedColumn.Name = "LastModifiedDataGridViewTextBoxColumn"
         LastModifiedColumn.ReadOnly = True
+        LastModifiedColumn.Width = 120
 
         InitialsColumn.DataPropertyName = "Initials"
         InitialsColumn.HeaderText = "Initials"
         InitialsColumn.Name = "InitialsDataGridViewTextBoxColumn"
         InitialsColumn.ReadOnly = True
+        InitialsColumn.Width = 50
 
         CreatedDateColumn.DataPropertyName = "CreatedDate"
         CreatedDateColumn.HeaderText = "CreatedDate"
         CreatedDateColumn.Name = "CreatedDateDataGridViewTextBoxColumn"
         CreatedDateColumn.ReadOnly = True
+        CreatedDateColumn.Width = 120
 
         OpenColumn.HeaderText = "Open"
         OpenColumn.Name = "OpenColumn"
