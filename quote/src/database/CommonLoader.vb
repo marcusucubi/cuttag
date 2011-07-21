@@ -32,7 +32,7 @@ Public Class CommonLoader
             End If
 
             Dim wires As _WiresDataTable
-            wires = wireAdaptor.GetDataByProductCode(row.ProductCode)
+            wires = wireAdaptor.GetDataByPartNumber(row.ProductCode)
             If (wires.Count > 0) Then
                 Dim wire As _WiresRow
                 wire = wires(0)
