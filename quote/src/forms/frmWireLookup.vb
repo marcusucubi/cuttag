@@ -26,7 +26,9 @@ Public Class frmWireLookup
         If Not row.IsGageNull Then
             gage = row.Gage
         End If
-        Product = New Product(num, cost, gage, UnitOfMeasure.BY_LENGTH)
+        Product = New Product( _
+            num, cost, gage, UnitOfMeasure.BY_LENGTH, _
+            row, Nothing)
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click

@@ -46,6 +46,39 @@ Namespace Model.Template
             End Set
         End Property
 
+        <DisplayName("Description"), _
+        CategoryAttribute("Vendor")> _
+        Public Overloads ReadOnly Property Description() As String
+            Get
+                If _QuoteDetail.Product.PartRow.IsDescriptionNull Then
+                    Return ""
+                End If
+                Return _QuoteDetail.Product.PartRow.Description
+            End Get
+        End Property
+
+        <DisplayName("Lead Time"), _
+        CategoryAttribute("Vendor")> _
+        Public Overloads ReadOnly Property LeadTime() As Integer
+            Get
+                If _QuoteDetail.Product.PartRow.IsLeadTimeNull Then
+                    Return 0
+                End If
+                Return _QuoteDetail.Product.PartRow.LeadTime
+            End Get
+        End Property
+
+        <DisplayName("Vendor"), _
+        CategoryAttribute("Vendor")> _
+        Public Overloads ReadOnly Property Vendor() As String
+            Get
+                If _QuoteDetail.Product.PartRow.IsVendorNull Then
+                    Return ""
+                End If
+                Return _QuoteDetail.Product.PartRow.Vendor
+            End Get
+        End Property
+
         Private Overloads Sub SendEvents()
             MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
