@@ -39,7 +39,8 @@ Public Class ExcellWriter
             _Workbook.RemoveSheetAt(index)
         End If
         _Sheet = _Workbook.CreateSheet(SHEET_NAME)
-
+        Dim i As Integer = _Workbook.GetSheetIndex(_Sheet)
+        _Workbook.SetSheetHidden(i, True)
     End Sub
 
     Public Sub Term()
