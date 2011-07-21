@@ -45,6 +45,7 @@ Public Class ExcellWriter
 
     Public Sub Term()
         Dim s As New FileStream(Me.Path, FileMode.OpenOrCreate)
+        _Workbook.GetSheetAt(0).ForceFormulaRecalculation = True
         _Workbook.Write(s)
         s.Close()
 
