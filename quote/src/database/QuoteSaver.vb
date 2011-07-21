@@ -42,9 +42,9 @@ Public Class QuoteSaver
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
             adaptor.Update( _
-                o.CustomerName, info.RFQ, info.PartNumber, o.CommonID, _
-                False, q.ID, q.PrimaryProperties.CommonCreatedDate, _
-                Date.Now, info.Initials)
+                o.CustomerName, info.RFQ, info.PartNumber, _
+                False, q.ID, o.Initials, q.PrimaryProperties.CommonCreatedDate, _
+                Date.Now, o.CommonID)
             newId = id
         Else
             adaptor.Connection.Open()
