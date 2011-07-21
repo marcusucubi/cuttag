@@ -122,7 +122,7 @@ Public Class QuoteLoader
                 part = parts(0)
                 Dim partObj As New Product( _
                     part.PartNumber, part.UnitCost, _
-                    0, UnitOfMeasure.BY_EACH)
+                    0, UnitOfMeasure.BY_EACH, Nothing, part)
 
                 detail = q.NewDetail(partObj)
             End If
@@ -138,7 +138,7 @@ Public Class QuoteLoader
                 End If
                 Dim wireObj As New Product( _
                     wire.PartNumber, wire.Price, _
-                    gage, UnitOfMeasure.BY_LENGTH)
+                    gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
 
                 detail = q.NewDetail(wireObj)
             End If

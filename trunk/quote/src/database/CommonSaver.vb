@@ -95,13 +95,18 @@ Public Class CommonSaver
 
     Public Shared Sub DeleteComponents(ByVal id As Integer)
         Dim adaptor As New _QuoteDetailTableAdapter
-        adaptor.Delete(id)
+        Dim table As QuoteDataBase._QuoteDetailDataTable
+        table = adaptor.GetDataByQuoteID(id)
+        For Each row As _QuoteDetailRow In table.Rows
+            adaptor.Delete(row.id)
+        Next
     End Sub
 
     Public Shared Sub DeleteProperties(ByVal QuoteID As Integer)
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-        Dim table As _QuotePropertiesDataTable = adaptor.GetDataByQuoteID(QuoteID)
+        Dim table As _QuotePropertiesDataTable = _
+            adaptor.GetDataByQuoteID(QuoteID)
         For Each row As _QuotePropertiesRow In table.Rows
             adaptor.Delete(row.ID)
         Next
