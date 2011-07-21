@@ -11,7 +11,9 @@ Namespace Model.Template
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
-                If (_QuoteDetail.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH) Then
+                If (_QuoteDetail.Product.UnitOfMeasure = _
+                    Model.UnitOfMeasure.BY_EACH) Then
+
                     Me.MachineTime = 10
                 End If
             End If
@@ -76,6 +78,20 @@ Namespace Model.Template
                     Return ""
                 End If
                 Return _QuoteDetail.Product.PartRow.Vendor
+            End Get
+        End Property
+
+        <DisplayName("Unit Of Measure"), _
+        CategoryAttribute("Vendor")> _
+        Public Overloads ReadOnly Property UnitOfMeasure() As String
+            Get
+                If _QuoteDetail.Product.PartRow.IsUnitOfMeasureNull Then
+                    Return ""
+                End If
+                If _QuoteDetail.Product.PartRow.UnitOfMeasure = 0 Then
+                    Return "Each"
+                End If
+                Return "Feet"
             End Get
         End Property
 
