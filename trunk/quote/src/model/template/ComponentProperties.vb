@@ -45,6 +45,7 @@ Namespace Model.Template
             End Get
             Set(ByVal value As Integer)
                 Me._QuoteDetail.Qty = value
+                SendEvents()
             End Set
         End Property
 
