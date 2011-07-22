@@ -23,7 +23,7 @@ Namespace Model.Template
         Private _WireMachineTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 10
-        Private _PercentCopperScrap As Decimal = 0
+        Private _PercentCopperScrap As Decimal = 3
         Private _CopperPrice As Decimal = 1
         Private _MaterialMarkup As Decimal = 1
         Private _ComponentSetupTime As Decimal
@@ -214,7 +214,7 @@ Namespace Model.Template
             End Get
         End Property
 
-        <DescriptionAttribute("WireLengthFeet * WireTime " + Chr(10) + "(Seconds)"), _
+        <DescriptionAttribute("WireLengthFeet * WireMachineTime " + Chr(10) + "(Seconds)"), _
         DisplayName("Total Wire Machine Time"), _
         CategoryAttribute("Machine Time")> _
         Public ReadOnly Property TotalWireMachineTime As Decimal
