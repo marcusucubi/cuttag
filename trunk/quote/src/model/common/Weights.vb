@@ -17,23 +17,23 @@ Namespace Common
         End Class
 
         Private Shared WeightArray() = New WireWeight() { _
-            New WireWeight("18", 0.00159),
-            New WireWeight("16", 0.00242),
-            New WireWeight("14", 0.00387),
-            New WireWeight("12", 0.00602),
-            New WireWeight("10", 0.00959),
-            New WireWeight("8", 0.01541),
-            New WireWeight("6", 0.02657),
-            New WireWeight("4", 0.04206),
-            New WireWeight("2", 0.39),
-            New WireWeight("1", 0.198),
-            New WireWeight("1/0", 0.244),
-            New WireWeight("2/0", 0.311),
-            New WireWeight("3/0", 0.492),
-            New WireWeight("4/0", 0.673),
-            New WireWeight("373 MCM", 1.176),
-            New WireWeight("444 MCM", 1.413),
-            New WireWeight("777 MCM", 2.435)
+            New WireWeight("18", 0.00159 * 3.048), _
+            New WireWeight("16", 0.00242 * 3.048), _
+            New WireWeight("14", 0.00387 * 3.048), _
+            New WireWeight("12", 0.00602 * 3.048), _
+            New WireWeight("10", 0.00959 * 3.048), _
+            New WireWeight("8", 0.01541 * 3.048), _
+            New WireWeight("6", 0.02657 * 3.048), _
+            New WireWeight("4", 0.04206 * 3.048), _
+            New WireWeight("2", 0.39), _
+            New WireWeight("1", 0.198), _
+            New WireWeight("1/0", 0.244), _
+            New WireWeight("2/0", 0.311), _
+            New WireWeight("3/0", 0.492), _
+            New WireWeight("4/0", 0.673), _
+            New WireWeight("373 MCM", 1.176), _
+            New WireWeight("444 MCM", 1.413), _
+            New WireWeight("777 MCM", 2.435) _
         }
 
         Private Const CATAGORY_1 As String = "Wire Length (1)"
@@ -239,11 +239,11 @@ Namespace Common
             For Each q As Detail In _Header.Details
                 If q.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
                     If q.QuoteDetailProperties.Gage = gage Then
-                        qty += q.Qty
+                        qty += q.LengthFeet
                     ElseIf q.QuoteDetailProperties.Gage.Contains("-" & gage) Then
-                        qty += q.Qty
+                        qty += q.LengthFeet
                     ElseIf gage Is Nothing Then
-                        qty += q.Qty
+                        qty += q.LengthFeet
                     End If
                 End If
             Next
