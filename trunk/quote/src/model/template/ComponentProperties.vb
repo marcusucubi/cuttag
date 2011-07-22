@@ -19,13 +19,6 @@ Namespace Model.Template
             End If
         End Sub
 
-        <DisplayName("Total Machine Time")>
-        Public Overloads ReadOnly Property TotalMachineTime() As Integer
-            Get
-                Return (_MachineTime * _QuoteDetail.Qty)
-            End Get
-        End Property
-
         <DisplayName("Machine Time")>
         Public Overloads Property MachineTime() As Integer
             Get
