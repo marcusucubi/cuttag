@@ -78,12 +78,12 @@ Namespace Model.Template
         End Property
 
         <CategoryAttribute("Copper"), _
-        DisplayName("Copper Cost"), _
-        DescriptionAttribute("(CopperWeight + CopperScrapWeight) * CopperPrice. " _
+        DisplayName("Copper Scrap Cost"), _
+        DescriptionAttribute("CopperScrapWeight * CopperPrice. " _
             + Chr(10) + "(Dollars Per Pounds)")> _
-        Public ReadOnly Property CopperCost As Decimal
+        Public ReadOnly Property CopperScrapCost As Decimal
             Get
-                Return Math.Round((Me.CopperWeight + Me.CopperScrapWeight) * Me.CopperPrice, 2)
+                Return Math.Round(Me.CopperScrapWeight * Me.CopperPrice, 2)
             End Get
         End Property
 
@@ -420,8 +420,8 @@ Namespace Model.Template
             Get
                 Return Math.Round( _
                     (Me.TotalMaterialCost * Me._MaterialMarkup) + _
-                    Me.CopperCost + _
-                    Me.ShippingCost, 2)
+                     Me.CopperScrapCost + _
+                     Me.ShippingCost, 2)
             End Get
         End Property
 
