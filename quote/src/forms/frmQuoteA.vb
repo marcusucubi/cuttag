@@ -54,12 +54,6 @@ Public Class frmQuoteA
         Me.WireAndComponentView1.DetailCollection = _Header.Details
     End Sub
 
-    Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
-        'Dim c As DataGridViewColumn = Me.gridDetail.Columns(e.ColumnIndex)
-        'Dim name As String = c.DataPropertyName
-        'Me._Header.Details.Sort = name
-    End Sub
-
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
         Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
         If result = DialogResult.OK Then
