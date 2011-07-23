@@ -1,6 +1,7 @@
 ﻿Public Class WireAndComponentView
 
     Private WithEvents _DetailCollection As Common.DetailCollection(Of Common.Detail)
+    Private _Sorter As New ListViewColumnSorter
 
     Public Property DetailCollection As Common.DetailCollection(Of Common.Detail)
         Get
@@ -18,6 +19,26 @@
     End Sub
 
     Private Sub InitComponent()
+
+    End Sub
+
+    Private Sub ListView1_ColumnClick(ByVal sender As Object, _
+                                      ByVal e As System.Windows.Forms.ColumnClickEventArgs) _
+                                    Handles ListView1.ColumnClick
+        Dim c As ColumnHeader = Me.ListView1.Columns(e.Column)
+
+        If (e.Column = _Sorter.SortColumn) Then
+            If (_Sorter.Order = SortOrder.Ascending) Then
+                _Sorter.Order = SortOrder.Descending
+            Else
+                _Sorter.Order = SortOrder.Ascending
+            End If
+        Else
+            _Sorter.SortColumn = e.Column
+            _Sorter.Order = SortOrder.Ascending
+        End If
+        ListView1.ListViewItemSorter = _Sorter
+        ListView1.Sort()
 
     End Sub
 

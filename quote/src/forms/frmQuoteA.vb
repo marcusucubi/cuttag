@@ -43,7 +43,6 @@ Public Class frmQuoteA
             Me._PrimaryProperties = _Header.PrimaryProperties
         End If
         Me.HeaderSource.Add(_Header)
-        'Me.gridDetail.DataSource = _Header.Details
         _DetailCollection = _Header.Details
         UpdateText()
     End Sub
@@ -51,28 +50,8 @@ Public Class frmQuoteA
     Private Sub frmQuoteA_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Me._Header.IsQuote Then
             Me.panelButtons.Visible = False
-            'Me.gridDetail.ReadOnly = True
         End If
-        'Me.ListView1.Groups.Add(_ComponentsGroup)
-        'Me.ListView1.Groups.Add(_WiresGroup)
         Me.WireAndComponentView1.DetailCollection = _Header.Details
-        Sync()
-    End Sub
-
-    Private Sub ListView1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-        'If ListView1.SelectedItems.Count > 0 Then
-        'Dim i As Common.Detail
-        'i = ListView1.SelectedItems(0).Tag
-        'ActiveDetail.ActiveDetail.Detail = i
-        'Else
-        'ActiveDetail.ActiveDetail.Detail = Nothing
-        'End If
-    End Sub
-
-    Private Sub gridDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
-        'Dim view As DataGridViewRow = gridDetail.Rows(e.RowIndex)
-        'Dim detail As Detail = view.DataBoundItem
-        'ActiveDetail.ActiveDetail.Detail = detail
     End Sub
 
     Private Sub gridDetail_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
@@ -137,12 +116,6 @@ Public Class frmQuoteA
         UpdateText()
     End Sub
 
-    Private Sub _DetailCollection_ListChanged(ByVal sender As Object, _
-                                              ByVal e As System.ComponentModel.ListChangedEventArgs) _
-                                          Handles _DetailCollection.ListChanged
-        Sync()
-    End Sub
-
     Public Sub UpdateText()
         If Me._PrimaryProperties.CommonID > 0 Then
             If _Header.IsQuote Then
@@ -156,61 +129,6 @@ Public Class frmQuoteA
         If Me._Header.Dirty Then
             Me.Text = Me.Text + " *"
         End If
-    End Sub
-
-    Private Sub Sync()
-
-        Dim addList As New List(Of Common.Detail)
-
-        'For Each o As Common.Detail In Me._DetailCollection
-        'Dim test As Common.Detail = Nothing
-        'For Each item As ListViewItem In Me.ListView1.Items
-        'If item.Tag Is o Then
-        'test = item.Tag
-        'End If
-        'Next
-        'If test Is Nothing Then
-        'addList.Add(o)
-        'End If
-        'Next
-
-        'For Each o As Common.Detail In addList
-        'Dim i As New ListViewItem
-        'i.Name = o.ProductCode
-        'i.Text = o.ProductCode
-        'i.Tag = o
-
-        'Dim su As New ListViewItem.ListViewSubItem
-        'su.Text = o.DisplayableProductClass
-        'su.Name = "Type"
-        'i.SubItems.Add(su)
-
-        'su = New ListViewItem.ListViewSubItem
-        'su.Text = Math.Round(o.Qty)
-        'su.Name = "Quantity"
-        'i.SubItems.Add(su)
-
-        'su = New ListViewItem.ListViewSubItem
-        'su.Text = Math.Round(o.UnitCost, 2)
-        'su.Name = "UnitCost"
-        'i.SubItems.Add(su)
-
-        'su = New ListViewItem.ListViewSubItem
-        'su.Text = Math.Round(o.TotalCost, 2)
-        'su.Name = "TotalCost"
-        'i.SubItems.Add(su)
-
-        'If o.Product.UnitOfMeasure = UnitOfMeasure.BY_EACH Then
-        '    i.Group = _ComponentsGroup
-        'Else
-        '    i.Group = _WiresGroup
-        'End If
-        ''ListView1.BeginUpdate()
-        ''ListView1.Items.Add(i)
-        ''ListView1.EndUpdate()
-        ''ListView1.Refresh()
-        'Next
-
     End Sub
 
 End Class
