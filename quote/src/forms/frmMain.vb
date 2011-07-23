@@ -28,20 +28,6 @@ Public Class frmMain
         Me._SaveableProperties = ActiveHeader.ActiveHeader.Header
     End Sub
 
-    Private Function CanCreateQuote() As Boolean
-        Dim result As Boolean
-        If Me._ActiveHeader.Header IsNot Nothing Then
-            Dim id As Integer
-            id = Me._ActiveHeader.Header.PrimaryProperties.CommonID
-            Dim IsQuote As Boolean
-            IsQuote = Me._ActiveHeader.Header.IsQuote
-            If id > 0 And Not IsQuote Then
-                result = True
-            End If
-        End If
-        Return result
-    End Function
-
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         CreateNewTemplate()
     End Sub
@@ -140,6 +126,20 @@ Public Class frmMain
         End If
         Me.Cursor = Cursors.Default
     End Sub
+
+    Private Function CanCreateQuote() As Boolean
+        Dim result As Boolean
+        If Me._ActiveHeader.Header IsNot Nothing Then
+            Dim id As Integer
+            id = Me._ActiveHeader.Header.PrimaryProperties.CommonID
+            Dim IsQuote As Boolean
+            IsQuote = Me._ActiveHeader.Header.IsQuote
+            If id > 0 And Not IsQuote Then
+                result = True
+            End If
+        End If
+        Return result
+    End Function
 
     Private Sub CreateNewQuote()
 
@@ -244,7 +244,9 @@ Public Class frmMain
     Private Sub ShowDetailProperties()
         If (_DetailProperties Is Nothing) Then
             _DetailProperties = New frmDetailProperties
-            InitChild(_DetailProperties, DockState.DockBottom)
+            DockPanel1.SuspendLayout(True)
+            _DetailProperties.Show(DockPanel1, DockState.DockBottom)
+            DockPanel1.ResumeLayout(True, True)
         End If
         If (_DetailProperties.IsHidden Or _DetailProperties.IsDisposed) Then
             _DetailProperties = New frmDetailProperties

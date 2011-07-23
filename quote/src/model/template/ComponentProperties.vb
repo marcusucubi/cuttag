@@ -54,10 +54,7 @@ Namespace Model.Template
         CategoryAttribute("Vendor")> _
         Public Overloads ReadOnly Property Description() As String
             Get
-                If _QuoteDetail.Product.PartRow.IsDescriptionNull Then
-                    Return ""
-                End If
-                Return _QuoteDetail.Product.PartRow.Description
+                Return _QuoteDetail.Product.Description
             End Get
         End Property
 
@@ -65,10 +62,7 @@ Namespace Model.Template
         CategoryAttribute("Vendor")> _
         Public Overloads ReadOnly Property LeadTime() As Integer
             Get
-                If _QuoteDetail.Product.PartRow.IsLeadTimeNull Then
-                    Return 0
-                End If
-                Return _QuoteDetail.Product.PartRow.LeadTime
+                Return _QuoteDetail.Product.LeadTime
             End Get
         End Property
 
@@ -76,10 +70,7 @@ Namespace Model.Template
         CategoryAttribute("Vendor")> _
         Public Overloads ReadOnly Property Vendor() As String
             Get
-                If _QuoteDetail.Product.PartRow.IsVendorNull Then
-                    Return ""
-                End If
-                Return _QuoteDetail.Product.PartRow.Vendor
+                Return _QuoteDetail.Product.Vendor
             End Get
         End Property
 
@@ -87,14 +78,8 @@ Namespace Model.Template
         CategoryAttribute("Vendor")> _
         Public Overloads ReadOnly Property UnitOfMeasure() As String
             Get
-                If _QuoteDetail.Product.PartRow.IsUnitOfMeasureNull Then
-                    Return ""
-                End If
-                If _QuoteDetail.Product.PartRow.UnitOfMeasure = 0 Then
-                    Return "Each"
-                End If
-                Return "Feet"
-            End Get
+                Return _QuoteDetail.Product.UnitOfMeasure.value
+              End Get
         End Property
 
         Private Overloads Sub SendEvents()
