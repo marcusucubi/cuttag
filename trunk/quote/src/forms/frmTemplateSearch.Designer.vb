@@ -24,11 +24,12 @@ Partial Class frmTemplateSearch
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.txtRFQ = New System.Windows.Forms.TextBox()
+        Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.btnRFQ = New System.Windows.Forms.RadioButton()
         Me.btnPartNumber = New System.Windows.Forms.RadioButton()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CustomerNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RequestForQuoteNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -41,14 +42,13 @@ Partial Class frmTemplateSearch
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
         Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -69,12 +69,42 @@ Partial Class frmTemplateSearch
         Me.SplitContainer1.SplitterDistance = 93
         Me.SplitContainer1.TabIndex = 0
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.txtRFQ)
+        Me.GroupBox1.Controls.Add(Me.txtPartNumber)
+        Me.GroupBox1.Controls.Add(Me.btnRFQ)
+        Me.GroupBox1.Controls.Add(Me.btnPartNumber)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(319, 73)
+        Me.GroupBox1.TabIndex = 11
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Filter"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(227, 19)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 7
+        Me.Button1.Text = "Apply"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'txtRFQ
         '
         Me.txtRFQ.Location = New System.Drawing.Point(99, 44)
         Me.txtRFQ.Name = "txtRFQ"
         Me.txtRFQ.Size = New System.Drawing.Size(100, 20)
         Me.txtRFQ.TabIndex = 10
+        '
+        'txtPartNumber
+        '
+        Me.txtPartNumber.Location = New System.Drawing.Point(99, 18)
+        Me.txtPartNumber.Name = "txtPartNumber"
+        Me.txtPartNumber.Size = New System.Drawing.Size(100, 20)
+        Me.txtPartNumber.TabIndex = 6
         '
         'btnRFQ
         '
@@ -97,22 +127,6 @@ Partial Class frmTemplateSearch
         Me.btnPartNumber.TabStop = True
         Me.btnPartNumber.Text = "Part Number"
         Me.btnPartNumber.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(227, 19)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 7
-        Me.Button1.Text = "Apply"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'txtPartNumber
-        '
-        Me.txtPartNumber.Location = New System.Drawing.Point(99, 18)
-        Me.txtPartNumber.Name = "txtPartNumber"
-        Me.txtPartNumber.Size = New System.Drawing.Size(100, 20)
-        Me.txtPartNumber.TabIndex = 6
         '
         'DataGridView1
         '
@@ -201,20 +215,6 @@ Partial Class frmTemplateSearch
         '
         Me._QuoteTableAdapter.ClearBeforeFill = True
         '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.txtRFQ)
-        Me.GroupBox1.Controls.Add(Me.txtPartNumber)
-        Me.GroupBox1.Controls.Add(Me.btnRFQ)
-        Me.GroupBox1.Controls.Add(Me.btnPartNumber)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(319, 73)
-        Me.GroupBox1.TabIndex = 11
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Filter"
-        '
         'frmTemplateSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -225,15 +225,14 @@ Partial Class frmTemplateSearch
         Me.Name = "frmTemplateSearch"
         Me.ShowInTaskbar = False
         Me.Text = "Search Templates"
-        Me.TopMost = True
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
