@@ -14,6 +14,7 @@ Public Class frmQuoteA
     Private WithEvents _Header As Header
     Private WithEvents _PrimaryProperties As PrimaryPropeties
     Private WithEvents _DetailCollection As Common.DetailCollection(Of Common.Detail)
+    Private WithEvents _ActiveDetail As ActiveDetail
 
     Private _ComponentsGroup As Forms.ListViewGroup = New Forms.ListViewGroup("Components", HorizontalAlignment.Left)
     Private _WiresGroup As Forms.ListViewGroup = New Forms.ListViewGroup("Wires", HorizontalAlignment.Left)
@@ -42,8 +43,8 @@ Public Class frmQuoteA
             Me._Header = New Model.Template.Header
             Me._PrimaryProperties = _Header.PrimaryProperties
         End If
-        Me.HeaderSource.Add(_Header)
         _DetailCollection = _Header.Details
+        Me._ActiveDetail = ActiveDetail.ActiveDetail
         UpdateText()
     End Sub
 
@@ -59,8 +60,6 @@ Public Class frmQuoteA
         If result = DialogResult.OK Then
             Dim detail As Detail
             detail = _Header.NewDetail(frmComponentLookup.Product)
-            Me.DetailSource.Add(detail)
-            Me.DetailSource.MoveNext()
         End If
     End Sub
 
@@ -69,8 +68,6 @@ Public Class frmQuoteA
         If result = DialogResult.OK Then
             Dim detail As Detail
             detail = _Header.NewDetail(frmWireLookup.Product)
-            Me.DetailSource.Add(detail)
-            Me.DetailSource.MoveNext()
         End If
     End Sub
 
@@ -108,6 +105,19 @@ Public Class frmQuoteA
 
     Private Sub _PrimaryProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _PrimaryProperties.PropertyChanged
         UpdateText()
+    End Sub
+
+    Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
+        Dim details As DetailCollection(Of Common.Detail) = ActiveHeader.ActiveHeader.Header.Details
+        details.Remove(ActiveDetail.ActiveDetail.Detail)
+    End Sub
+
+    Private Sub _ActiveDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveDetail.PropertyChanged
+        If ActiveDetail.ActiveDetail.Detail Is Nothing Then
+            Me.btnDelete.Enabled = False
+        Else
+            Me.btnDelete.Enabled = True
+        End If
     End Sub
 
     Public Sub UpdateText()

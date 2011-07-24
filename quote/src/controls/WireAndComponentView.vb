@@ -52,6 +52,7 @@
         Else
             ActiveDetail.ActiveDetail.Detail = Nothing
         End If
+
     End Sub
 
     Private Sub _DetailCollection_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _DetailCollection.ListChanged
@@ -73,7 +74,12 @@
 
     Private Sub Sync()
 
+        If Me._DetailCollection Is Nothing Then
+            Return
+        End If
+
         Dim addList As New List(Of Common.Detail)
+        Dim removeList As New List(Of WireAndComponentItem)
 
         For Each o As Common.Detail In Me._DetailCollection
             Dim test As Common.Detail = Nothing
@@ -94,8 +100,26 @@
             ListView1.SelectedItems.Clear()
             ListView1.SelectedIndices.Add(ListView1.Items.IndexOf(i))
             ListView1.EndUpdate()
-            ListView1.Refresh()
         Next
+
+        For Each item As ListViewItem In Me.ListView1.Items
+            Dim test As Common.Detail = Nothing
+            For Each o As Common.Detail In Me._DetailCollection
+                If item.Tag Is o Then
+                    test = item.Tag
+                End If
+            Next
+            If test Is Nothing Then
+                removeList.Add(item)
+            End If
+        Next
+
+        For Each o As WireAndComponentItem In removeList
+            ListView1.BeginUpdate()
+            ListView1.Items.Remove(o)
+            ListView1.EndUpdate()
+        Next
+        ListView1.Refresh()
 
     End Sub
 
