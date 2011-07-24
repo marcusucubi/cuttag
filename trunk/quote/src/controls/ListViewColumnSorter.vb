@@ -47,12 +47,7 @@
     End Function
 
     Private Function IsInteger(ByVal s As String) As Boolean
-        Try
-            Dim i As Integer = CInt(s)
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
+        Return IsNumeric(s)
     End Function
 
 End Class
