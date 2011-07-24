@@ -53,6 +53,7 @@ Public Class frmQuoteA
             Me.panelButtons.Visible = False
         End If
         Me.WireAndComponentView1.DetailCollection = _Header.Details
+        EnableButtons()
     End Sub
 
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
@@ -73,11 +74,13 @@ Public Class frmQuoteA
 
     Private Sub frmQuoteA_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
         ActiveHeader.ActiveHeader.Header = Me._Header
+        EnableButtons()
     End Sub
 
     Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
         ActiveHeader.ActiveHeader.Header = Nothing
         ActiveDetail.ActiveDetail.Detail = Nothing
+        EnableButtons()
     End Sub
 
     Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -113,14 +116,10 @@ Public Class frmQuoteA
     End Sub
 
     Private Sub _ActiveDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveDetail.PropertyChanged
-        If ActiveDetail.ActiveDetail.Detail Is Nothing Then
-            Me.btnDelete.Enabled = False
-        Else
-            Me.btnDelete.Enabled = True
-        End If
+        EnableButtons()
     End Sub
 
-    Public Sub UpdateText()
+    Private Sub UpdateText()
         If Me._PrimaryProperties.CommonID > 0 Then
             If _Header.IsQuote Then
                 Me.Text = "Quote " & Me._PrimaryProperties.CommonID
@@ -132,6 +131,14 @@ Public Class frmQuoteA
         End If
         If Me._Header.Dirty Then
             Me.Text = Me.Text + " *"
+        End If
+    End Sub
+
+    Private Sub EnableButtons()
+        If ActiveDetail.ActiveDetail.Detail Is Nothing Then
+            Me.btnDelete.Enabled = False
+        Else
+            Me.btnDelete.Enabled = True
         End If
     End Sub
 
