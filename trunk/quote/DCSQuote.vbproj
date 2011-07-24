@@ -86,11 +86,13 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="src\controls\ListViewColumnSorter.vb" />
     <Compile Include="src\controls\WireAndComponentItem.vb" />
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
+    <Compile Include="src\database\CuttagDatabaseConnection.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
