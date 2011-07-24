@@ -42,7 +42,7 @@ Public Class frmQuoteSearch
         My.Application.DoEvents()
         frmMain.frmMain.LoadQuote(id)
         Me.Cursor = Cursors.Default
-
+        Me.Close()
     End Sub
 
     Private Sub FillGrid()
@@ -84,16 +84,19 @@ Public Class frmQuoteSearch
         CustomerNameColumn.HeaderText = "Customer Name"
         CustomerNameColumn.Name = "CustomerNameDataGridViewTextBoxColumn"
         CustomerNameColumn.ReadOnly = True
+        CustomerNameColumn.Width = 60
 
         RFQColumn.DataPropertyName = "RequestForQuoteNumber"
         RFQColumn.HeaderText = "RFQ"
         RFQColumn.Name = "RequestForQuoteNumberDataGridViewTextBoxColumn"
         RFQColumn.ReadOnly = True
+        RFQColumn.Width = 60
 
         PartNumberColumn.DataPropertyName = "PartNumber"
         PartNumberColumn.HeaderText = "Part Number"
         PartNumberColumn.Name = "PartNumberDataGridViewTextBoxColumn"
         PartNumberColumn.ReadOnly = True
+        PartNumberColumn.Width = 60
 
         OpenColumn.HeaderText = "Open"
         OpenColumn.Name = "OpenColumn"
@@ -104,11 +107,13 @@ Public Class frmQuoteSearch
         InitialsColumn.HeaderText = "Initials"
         InitialsColumn.Name = "InitialsDataGridViewTextBoxColumn"
         InitialsColumn.ReadOnly = True
+        InitialsColumn.Width = 60
 
         CreatedDateColumn.DataPropertyName = "CreatedDate"
         CreatedDateColumn.HeaderText = "CreatedDate"
         CreatedDateColumn.Name = "CreatedDateDataGridViewTextBoxColumn"
         CreatedDateColumn.ReadOnly = True
+        CreatedDateColumn.Width = 120
 
         Me.DataGridView1.Columns.Clear()
         Me.DataGridView1.Columns.AddRange( _
