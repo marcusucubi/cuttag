@@ -67,6 +67,13 @@ Namespace Model.Template
             End Set
         End Property
 
+        <DisplayName("Unit Cost")> _
+        Public Overloads ReadOnly Property UnitCost() As Decimal
+            Get
+                Return _QuoteDetail.UnitCost
+            End Get
+        End Property
+
         Private Overloads Sub SendEvents()
             MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
