@@ -20,17 +20,39 @@
         Dim s1 As String = listviewX.SubItems(SortColumn).Text
         Dim s2 As String = listviewY.SubItems(SortColumn).Text
 
-        Dim compareResult As Integer
-        compareResult = (s1.CompareTo(s2))
+        If IsInteger(s1) And IsInteger(s2) Then
+            Dim i1 As Integer = CInt(s1)
+            Dim i2 As Integer = CInt(s2)
+            Dim compareResult As Integer
+            compareResult = (i1.CompareTo(i2))
 
-        If Order = SortOrder.Ascending Then
-            Return compareResult
-        ElseIf (Order = SortOrder.Descending) Then
-            Return (-compareResult)
+            If Order = SortOrder.Ascending Then
+                Return compareResult
+            ElseIf (Order = SortOrder.Descending) Then
+                Return (-compareResult)
+            End If
         Else
-            Return 0
+            Dim compareResult As Integer
+            compareResult = (s1.CompareTo(s2))
+
+            If Order = SortOrder.Ascending Then
+                Return compareResult
+            ElseIf (Order = SortOrder.Descending) Then
+                Return (-compareResult)
+            End If
         End If
 
+        Return 0
+
+    End Function
+
+    Private Function IsInteger(ByVal s As String) As Boolean
+        Try
+            Dim i As Integer = CInt(s)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 
 End Class
