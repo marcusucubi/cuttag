@@ -64,7 +64,11 @@ Namespace Common
 
         Public ReadOnly Property TotalCost As Decimal
             Get
-                Return Me.UnitCost * Me.LengthFeet
+                If Product.UnitOfMeasure = Model.UnitOfMeasure.BY_EACH Then
+                    Return Math.Round(Me.UnitCost * Me.Qty, 2)
+                Else
+                    Return Math.Round(Me.UnitCost * Me.LengthFeet, 2)
+                End If
             End Get
         End Property
 
