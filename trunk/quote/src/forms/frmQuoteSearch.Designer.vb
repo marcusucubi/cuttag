@@ -61,7 +61,7 @@ Partial Class frmQuoteSearch
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(435, 315)
+        Me.SplitContainer1.Size = New System.Drawing.Size(609, 315)
         Me.SplitContainer1.SplitterDistance = 98
         Me.SplitContainer1.TabIndex = 1
         '
@@ -138,7 +138,7 @@ Partial Class frmQuoteSearch
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(435, 213)
+        Me.DataGridView1.Size = New System.Drawing.Size(609, 213)
         Me.DataGridView1.TabIndex = 0
         '
         'CustomerNameDataGridViewTextBoxColumn
@@ -188,7 +188,7 @@ Partial Class frmQuoteSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(435, 315)
+        Me.ClientSize = New System.Drawing.Size(609, 315)
         Me.Controls.Add(Me.SplitContainer1)
         Me.MinimizeBox = False
         Me.Name = "frmQuoteSearch"

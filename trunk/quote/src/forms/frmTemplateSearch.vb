@@ -40,7 +40,7 @@
         My.Application.DoEvents()
         frmMain.frmMain.LoadTemplate(id)
         Me.Cursor = Cursors.Default
-
+        Me.Close()
     End Sub
 
     Private Sub FillGrid()
