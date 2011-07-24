@@ -21,8 +21,8 @@
         Dim s2 As String = listviewY.SubItems(SortColumn).Text
 
         If IsInteger(s1) And IsInteger(s2) Then
-            Dim i1 As Integer = CInt(s1)
-            Dim i2 As Integer = CInt(s2)
+            Dim i1 As Decimal = CDbl(s1)
+            Dim i2 As Decimal = CDbl(s2)
             Dim compareResult As Integer
             compareResult = (i1.CompareTo(i2))
 
