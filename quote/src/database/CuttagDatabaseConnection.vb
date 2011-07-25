@@ -7,9 +7,6 @@ Public Class CuttagDatabaseConnection
     Public Shared Property ConnectionString As String
     Public Shared Property ShowErrors As Boolean
     Public Shared Property Connection As New SqlConnection
-    Public Shared Property DefaultConnectionString As String = _
-        "Data Source=TKMAE45-PC\SQLEXPRESS08;" + _
-        "Initial Catalog=cuttagSKE;Integrated Security=True"
 
     Shared Sub New()
         Init()
@@ -20,7 +17,7 @@ Public Class CuttagDatabaseConnection
         DataBase = GetSetting(Application.ProductName, "DataLocation", "DataBase")
 
         If DataSource.Length = 0 Then
-            ConnectionString = DefaultConnectionString 
+            ConnectionString = My.MySettings.Default.cuttagSKEConnectionString
         Else
             Dim sSecurity As String = "SSPI"
             ConnectionString = "data source= " + DataSource _
