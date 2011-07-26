@@ -234,8 +234,8 @@ Namespace Common
             End Get
         End Property
 
-        Private Function CalcQty(ByVal gage As String) As Integer
-            Dim qty As Integer
+        Private Function CalcQty(ByVal gage As String) As Decimal
+            Dim qty As Decimal
             For Each q As Detail In _Header.Details
                 If q.Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
                     If q.QuoteDetailProperties.Gage = gage Then
