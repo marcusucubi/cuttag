@@ -67,7 +67,6 @@ Public Class PropertyLoader
             provider.GenerateCodeFromCompileUnit(compileunit, tw, _
                 New CodeGeneratorOptions())
             tw.Close()
-            Console.WriteLine(sw.ToString)
             sourceFile = sw.ToString
         End Using
 
@@ -99,8 +98,6 @@ Public Class PropertyLoader
                 writer.WriteLine()
             Next ce
             MsgBox(writer.ToString)
-        Else
-            Console.WriteLine("Source built successfully.")
         End If
 
         Dim ca As Assembly = cr.CompiledAssembly
