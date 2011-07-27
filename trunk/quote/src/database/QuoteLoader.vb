@@ -9,7 +9,7 @@ Imports DCS.Quote.Model.Quote
 
 Public Class QuoteLoader
 
-    Dim _PropertyLoader As New PropertyLoader
+    Dim _PropertyLoader As New ObjectGenerator
 
     Public Function Load(ByVal id As Long) As Model.Quote.Header
 
@@ -62,7 +62,7 @@ Public Class QuoteLoader
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
-        _PropertyLoader = New PropertyLoader
+        _PropertyLoader = New ObjectGenerator
 
         Dim table As _QuotePropertiesDataTable = _
                 adaptor.GetDataByQuoteIDAndPropertyID(id, childId)
@@ -79,7 +79,7 @@ Public Class QuoteLoader
 
     Private Sub AddNode(ByVal row As _QuotePropertiesRow)
 
-        Dim node As New PropertyLoader.PropertyInfo
+        Dim node As New ObjectGenerator.PropertyInfo
         node.Name = row.PropertyName
         If row("PropertyStringValue") IsNot DBNull.Value Then
             node.TypeName = "System.String"
