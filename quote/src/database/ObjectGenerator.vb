@@ -9,7 +9,7 @@ Imports System.Collections.Specialized
 ''' Creates an object with properties in the PropertyInfo list.
 ''' </summary>
 ''' <remarks></remarks>
-Public Class PropertyLoader
+Public Class ObjectGenerator
 
     Public Class PropertyInfo
         Public Property Name As String
