@@ -9,6 +9,7 @@ Public Class frmCustom
     Inherits DockContent
 
     Private WithEvents _Header As Common.Header
+    Private WithEvents _ComputationProperties As Common.ComputationProperties
 
     Private Sub frmCustom_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim o As Object = ActiveHeader.ActiveHeader.Header.CustomPropertiesFactory
@@ -21,9 +22,11 @@ Public Class frmCustom
             Dim o As Object = ActiveHeader.ActiveHeader.Header.CustomProperties
             Me.PropertyGrid2.SelectedObject = o
             Me._Header = ActiveHeader.ActiveHeader.Header
+            Me._ComputationProperties = Me._Header.ComputationProperties
         Else
             Me._Header = Nothing
             Me.PropertyGrid2.SelectedObject = Nothing
+            Me._ComputationProperties = Nothing
         End If
     End Sub
 
@@ -33,6 +36,14 @@ Public Class frmCustom
 
     Private Sub _Header_SavableChange(ByVal subject As SaveableProperties) Handles _Header.SavableChange
         UpdateProperties()
+    End Sub
+
+    Private Sub _ComputationProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ComputationProperties.PropertyChanged
+        Me.PropertyGrid2.Refresh()
+    End Sub
+
+    Private Sub _ComputationProperties_SavableChange(ByVal subject As SaveableProperties) Handles _ComputationProperties.SavableChange
+        Me.PropertyGrid2.Refresh()
     End Sub
 
 End Class
