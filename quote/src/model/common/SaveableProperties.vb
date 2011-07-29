@@ -3,7 +3,7 @@ Imports System.Reflection
 
 Namespace Common
     Public Class SaveableProperties
-        Implements INotifyPropertyChanged
+        Implements INotifyPropertyChanged, ICloneable
 
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
@@ -51,6 +51,10 @@ Namespace Common
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
             MakeDirty()
         End Sub
+
+        Public Function Clone() As Object Implements System.ICloneable.Clone
+            Return Me.MemberwiseClone
+        End Function
 
     End Class
 

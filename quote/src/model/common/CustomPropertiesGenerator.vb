@@ -13,6 +13,8 @@ Namespace Common
         Private _Parent As Common.Header
 
         Public Class PropInfo
+            Implements ICloneable
+
             Private Shared _Count As Integer
             Private _Name As String = "Property"
 
@@ -33,6 +35,10 @@ Namespace Common
                 _Count = _Count + 1
                 _Name = _Name & _Count
             End Sub
+
+            Public Function Clone() As Object Implements System.ICloneable.Clone
+                Return MemberwiseClone()
+            End Function
 
         End Class
 
@@ -61,6 +67,8 @@ Namespace Common
     Public Class PropCollectionEditor
         Inherits CollectionEditor
 
+        Private Shared UseCopy As Boolean
+
         Public Sub New(ByVal newType As Type)
             MyBase.new(newType)
         End Sub
@@ -74,17 +82,49 @@ Namespace Common
             Return GetType(PropInfo)
         End Function
 
+        Protected Overrides Sub CancelChanges()
+            MyBase.CancelChanges()
+            UseCopy = True
+        End Sub
+
         Public Overrides Function EditValue(ByVal context As ITypeDescriptorContext, _
                                             ByVal provider As IServiceProvider, _
                                             ByVal value As Object) As Object
-            Dim o As Object
-            o = MyBase.EditValue(context, provider, value)
+            Dim _Copy As New List(Of PropInfo)
+            Dim _WorkingObject As List(Of PropInfo)
 
-            Dim h As Common.Header = ActiveHeader.ActiveHeader.Header
-            h.GenerateCustomProperties()
-            h.SendEvents()
-            Return (o)
+            _WorkingObject = DirectCast(value, List(Of PropInfo))
+            Copy(_Copy, _WorkingObject)
+
+            Do
+                UseCopy = False
+                _WorkingObject = MyBase.EditValue(context, provider, _WorkingObject)
+                If UseCopy Then
+                    Copy(_WorkingObject, _Copy)
+                End If
+
+                Dim h As Common.Header = ActiveHeader.ActiveHeader.Header
+                Try
+                    h.GenerateCustomProperties()
+                    h.SendEvents()
+                Catch ex As Exception
+                    MsgBox(ex.Message)
+                    Continue Do
+                End Try
+
+                Exit Do
+            Loop
+
+            Return (_WorkingObject)
         End Function
+
+        Private Sub Copy(ByVal destination As List(Of PropInfo), _
+                         ByVal source As List(Of PropInfo))
+            destination.Clear()
+            For Each o As PropInfo In source
+                destination.Add(o)
+            Next
+        End Sub
 
     End Class
 
