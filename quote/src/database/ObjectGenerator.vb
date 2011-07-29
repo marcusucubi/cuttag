@@ -49,16 +49,6 @@ Public Class ObjectGenerator
             class1.BaseTypes.Add(Me.BaseTypeName)
         End If
 
-        If Me.InitObject IsNot Nothing Then
-
-            Dim ctor As New CodeConstructor
-            ctor.Parameters.Add(New CodeParameterDeclarationExpression( _
-                                "System.Object", "Parent"))
-            ctor.BaseConstructorArgs.Add(New CodeVariableReferenceExpression("Parent"))
-            ctor.Attributes = MemberAttributes.Public
-            class1.Members.Add(ctor)
-        End If
-
         For Each node As PropertyInfo In Me._InfoList
             If node.Value Is Nothing And node.CodeSnippet Is Nothing Then
                 Me.AddProperty(class1, node.Name)
@@ -68,6 +58,22 @@ Public Class ObjectGenerator
                    node.Category, node.Description)
             End If
         Next
+
+        If Me.InitObject IsNot Nothing Then
+
+            Dim parent As New CodeMemberField("System.Object", "_Parent")
+            class1.Members.Add(parent)
+
+            Dim ctor As New CodeConstructor
+            ctor.Parameters.Add(New CodeParameterDeclarationExpression( _
+                                "System.Object", "Parent"))
+            Dim as1 As New CodeAssignStatement( _
+                New CodeVariableReferenceExpression("_Parent"), _
+                New CodeVariableReferenceExpression("Parent"))
+            ctor.Statements.Add(as1)
+            ctor.Attributes = MemberAttributes.Public
+            class1.Members.Add(ctor)
+        End If
 
         Dim code As String = GenerateCode(compileUnit)
         Return CompileCode(code)
@@ -167,6 +173,17 @@ Public Class ObjectGenerator
                 New CodeMethodReturnStatement( _
                     New CodePrimitiveExpression(value)))
         Else
+            If Me.InitObject IsNot Nothing Then
+                For Each node As System.Reflection.PropertyInfo In Me.InitObject.GetType.GetProperties
+                    Dim variableRef1 As New CodeVariableReferenceExpression("_Parent")
+                    Dim propertyRef As New CodePropertyReferenceExpression( _
+                        variableRef1, node.Name)
+                    Dim variableDeclaration As New CodeVariableDeclarationStatement( _
+                        node.PropertyType, node.Name, propertyRef)
+                    property1.GetStatements.Add(variableDeclaration)
+                Next
+            End If
+
             property1.GetStatements.Add( _
                 New CodeMethodReturnStatement( _
                     New CodeSnippetExpression(snippet)))
