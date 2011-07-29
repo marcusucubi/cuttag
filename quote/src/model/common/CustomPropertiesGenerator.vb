@@ -26,6 +26,11 @@ Namespace Common
                     _Name = value
                     _Name = _Name.Replace(" ", "")
                     _Name = _Name.Replace(".", "")
+                    _Name = _Name.Replace("(", "")
+                    _Name = _Name.Replace(")", "")
+                    _Name = _Name.Replace("$", "")
+                    _Name = _Name.Replace("!", "")
+                    _Name = _Name.Replace("-", "")
                 End Set
             End Property
 
