@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
@@ -93,6 +94,7 @@
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
     <Compile Include="src\database\CuttagDatabaseConnection.vb" />
+    <Compile Include="src\database\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,6 +112,12 @@
     <Compile Include="src\export\Export.vb" />
     <Compile Include="src\export\PropertyProcessor.vb" />
     <Compile Include="src\export\PropertyProxy.vb" />
+    <Compile Include="src\forms\frmCustom.Designer.vb">
+      <DependentUpon>frmCustom.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmCustom.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmExport.Designer.vb">
       <DependentUpon>frmExport.vb</DependentUpon>
     </Compile>
@@ -201,10 +209,14 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\misc\ActiveDetail.vb" />
+    <Compile Include="src\misc\ListWithEvents2.vb" />
+    <Compile Include="src\misc\QuoteTypeList.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveHeader.vb" />
     <Compile Include="src\model\common\ComponentProperties.vb" />
     <Compile Include="src\model\common\ComputationProperties.vb" />
+    <Compile Include="src\model\common\CustomProperties.vb" />
+    <Compile Include="src\model\common\CustomPropertiesFactory.vb" />
     <Compile Include="src\model\common\Detail.vb" />
     <Compile Include="src\model\common\DetailCollection.vb" />
     <Compile Include="src\model\common\Header.vb" />
@@ -213,7 +225,7 @@
     <Compile Include="src\model\common\Weights.vb" />
     <Compile Include="src\model\common\WireProperties.vb" />
     <Compile Include="src\model\quote\PrimaryPropeties.vb" />
-    <Compile Include="src\database\PropertyLoader.vb" />
+    <Compile Include="src\database\ObjectGenerator.vb" />
     <Compile Include="src\misc\SaveableProperties.vb" />
     <Compile Include="src\database\DatabaseException.vb" />
     <Compile Include="src\model\Shipping.vb" />
@@ -259,6 +271,9 @@
     <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="src\forms\frmCustom.resx">
+      <DependentUpon>frmCustom.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmExport.resx">
       <DependentUpon>frmExport.vb</DependentUpon>
     </EmbeddedResource>
