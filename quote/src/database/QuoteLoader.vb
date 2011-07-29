@@ -51,7 +51,7 @@ Public Class QuoteLoader
             q.SetOtherProperties(o2)
             Dim o3 = LoadProperties(id, _
                 CommonSaver.CUSTOM_PROPERTIES_ID, q.CustomProperties)
-            q.SetCustomProperties(o2)
+            q.SetCustomProperties(o3)
 
         End If
 
