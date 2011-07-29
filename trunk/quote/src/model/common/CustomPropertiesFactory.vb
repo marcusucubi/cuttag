@@ -48,8 +48,7 @@ Namespace Common
             Next
 
             g.BaseTypeName = "Common.CustomProperties"
-            g.BaseTypeName = "Model.Template.ComputationProperties"
-            g.InitObject = _Parent
+            g.InitObject = _Parent.ComputationProperties
 
             Return g.Generate
         End Function

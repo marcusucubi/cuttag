@@ -8,7 +8,7 @@ Namespace Common
         Protected _PrimaryProperties As Common.PrimaryPropeties
         Protected _OtherProperties As Common.OtherProperties
         Protected _ComputationProperties As Common.ComputationProperties
-        Protected _CustomProperties As Object = New Common.CustomProperties(Me)
+        Protected _CustomProperties As Object = New Common.CustomProperties()
         Protected _CustomPropertiesFactory As New Common.CustomPropertiesFactory(Me)
         Protected WithEvents _Details As New DetailCollection(Of Common.Detail)
 
