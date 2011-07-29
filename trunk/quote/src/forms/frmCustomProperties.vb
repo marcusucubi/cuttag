@@ -4,7 +4,7 @@ Imports System.ComponentModel
 Imports System.Windows.Forms.Design
 Imports System.ComponentModel.Design
 
-Public Class frmCustom
+Public Class frmCustomProperties
     Inherits DockContent
 
     Private WithEvents _ActiveQuote As ActiveHeader
