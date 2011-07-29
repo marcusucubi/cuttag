@@ -21,6 +21,7 @@ Namespace Model.Template
                 info.Name = o.Name
                 info.CodeSnippet = o.Expression
                 info.TypeName = "System.String"
+                info.Description = o.Expression
                 g.Add(info)
             Next
 
