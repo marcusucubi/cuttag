@@ -54,6 +54,7 @@ Public Class TemplateLoader
             CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
             CommonLoader.LoadOtherProperties(id, q.OtherProperties)
             CommonLoader.LoadComponents(q)
+            CommonLoader.LoadCustomPropertiesGenerator(q.CustomPropertiesGenerator)
         End If
 
         q.ComputationProperties.ClearDirty()
