@@ -60,6 +60,7 @@ Namespace Model.Template
 
         Private Overloads Sub SendEvents()
             Me.ComputationProperties.SendEvents()
+            Me.CustomProperties.SendEvents()
         End Sub
 
     End Class
