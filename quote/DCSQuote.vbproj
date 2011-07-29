@@ -214,7 +214,7 @@
     <Compile Include="src\misc\ActiveHeader.vb" />
     <Compile Include="src\model\common\ComponentProperties.vb" />
     <Compile Include="src\model\common\ComputationProperties.vb" />
-    <Compile Include="src\model\common\CustomPropertiesFactory.vb" />
+    <Compile Include="src\model\common\CustomPropertiesGenerator.vb" />
     <Compile Include="src\model\common\Detail.vb" />
     <Compile Include="src\model\common\DetailCollection.vb" />
     <Compile Include="src\model\common\Header.vb" />
@@ -224,11 +224,12 @@
     <Compile Include="src\model\common\WireProperties.vb" />
     <Compile Include="src\model\quote\PrimaryPropeties.vb" />
     <Compile Include="src\misc\ObjectGenerator.vb" />
-    <Compile Include="src\misc\SaveableProperties.vb" />
+    <Compile Include="src\model\common\SaveableProperties.vb" />
     <Compile Include="src\database\DatabaseException.vb" />
     <Compile Include="src\model\Shipping.vb" />
     <Compile Include="src\model\template\ComponentProperties.vb" />
     <Compile Include="src\model\template\ComputationProperties.vb" />
+    <Compile Include="src\model\template\CustomPropertiesGenerator.vb" />
     <Compile Include="src\model\template\Detail.vb" />
     <Compile Include="src\model\template\Header.vb" />
     <Compile Include="src\model\template\OtherProperties.vb" />
@@ -243,13 +244,6 @@
     <Compile Include="src\forms\frmQuoteA.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\misc\frmQuoteMain.Designer.vb">
-      <DependentUpon>frmQuoteMain.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\misc\frmQuoteMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\misc\LoadXL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -265,7 +259,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="src\misc\Quote.vb" />
     <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -316,10 +309,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
       <DependentUpon>WireAndComponentView.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\misc\frmQuoteMain.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>frmQuoteMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
