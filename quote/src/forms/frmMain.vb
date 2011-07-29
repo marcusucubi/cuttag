@@ -14,7 +14,7 @@ Public Class frmMain
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _SaveableProperties As SaveableProperties
+    Private WithEvents _SaveableProperties As Common.SaveableProperties
 
     Public Shared Property frmMain As frmMain
 
@@ -81,7 +81,7 @@ Public Class frmMain
         LoadQuote()
     End Sub
 
-    Private Sub _SaveableProperties_SavableChange(ByVal subject As SaveableProperties) Handles _SaveableProperties.SavableChange
+    Private Sub _SaveableProperties_SavableChange(ByVal subject As Common.SaveableProperties) Handles _SaveableProperties.SavableChange
         EnableButtons()
     End Sub
 

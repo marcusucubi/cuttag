@@ -34,7 +34,7 @@ Public Class frmCustom
         UpdateProperties()
     End Sub
 
-    Private Sub _Header_SavableChange(ByVal subject As SaveableProperties) Handles _Header.SavableChange
+    Private Sub _Header_SavableChange(ByVal subject As Common.SaveableProperties) Handles _Header.SavableChange
         UpdateProperties()
     End Sub
 
@@ -42,7 +42,7 @@ Public Class frmCustom
         Me.PropertyGrid2.Refresh()
     End Sub
 
-    Private Sub _ComputationProperties_SavableChange(ByVal subject As SaveableProperties) Handles _ComputationProperties.SavableChange
+    Private Sub _ComputationProperties_SavableChange(ByVal subject As Common.SaveableProperties) Handles _ComputationProperties.SavableChange
         Me.PropertyGrid2.Refresh()
     End Sub
 

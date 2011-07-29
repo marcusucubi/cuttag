@@ -12,7 +12,7 @@
         Init(o)
     End Sub
 
-    Private Sub _Detail_SavableChange(ByVal subject As SaveableProperties) Handles _Detail.SavableChange
+    Private Sub _Detail_SavableChange(ByVal subject As Common.SaveableProperties) Handles _Detail.SavableChange
         Init(_Detail)
     End Sub
 

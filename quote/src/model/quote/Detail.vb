@@ -6,7 +6,7 @@ Namespace Model.Quote
     Public Class Detail
         Inherits Common.Detail
 
-        Private _Properties As New SaveableProperties
+        Private _Properties As New Common.SaveableProperties
 
         Friend Sub New(ByVal header As Common.Header, _
                        ByVal product As Product)
@@ -25,7 +25,7 @@ Namespace Model.Quote
             End Get
         End Property
 
-        Public Sub SetProperties(ByVal props As SaveableProperties)
+        Public Sub SetProperties(ByVal props As Common.SaveableProperties)
             Me._Properties = props
         End Sub
 
