@@ -47,7 +47,7 @@ Namespace Common
                 g.Add(info)
             Next
 
-            g.BaseTypeName = "SaveableProperties"
+            g.BaseTypeName = GetType(SaveableProperties).Name
             g.InitObject = _Parent.ComputationProperties
 
             Return g.Generate
