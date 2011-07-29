@@ -91,7 +91,7 @@ Public Class ObjectGenerator
                 New CodeGeneratorOptions())
             tw.Close()
             sourceFile = sw.ToString
-            Console.WriteLine(sourceFile)
+            'Console.WriteLine(sourceFile)
         End Using
 
         Return sourceFile
