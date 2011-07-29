@@ -9,7 +9,7 @@ Namespace Common
         Protected _OtherProperties As Common.OtherProperties
         Protected _ComputationProperties As Common.ComputationProperties
         Protected _CustomProperties As SaveableProperties = New SaveableProperties()
-        Protected _CustomPropertiesFactory As New Common.CustomPropertiesFactory(Me)
+        Protected _CustomPropertiesFactory As New Common.CustomPropertiesGenerator(Me)
         Protected WithEvents _Details As New DetailCollection(Of Common.Detail)
 
         Public Property ID As Integer
@@ -40,7 +40,7 @@ Namespace Common
             End Get
         End Property
 
-        Public ReadOnly Property CustomPropertiesFactory As Common.CustomPropertiesFactory
+        Public ReadOnly Property CustomPropertiesFactory As Common.CustomPropertiesGenerator
             Get
                 Return _CustomPropertiesFactory
             End Get
