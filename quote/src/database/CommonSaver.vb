@@ -6,17 +6,13 @@ Imports System.Reflection
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
 Imports System.ComponentModel
+Imports DCS.Quote.Common.CustomPropertiesGenerator
 
 Public Class CommonSaver
 
     Public Shared ReadOnly COMPUTATION_PROPERTIES_ID = -1
     Public Shared ReadOnly OTHER_PROPERTIES_ID = -2
     Public Shared ReadOnly CUSTOM_PROPERTIES_ID = -3
-
-    Public Shared Sub SaveCustomProperties(ByVal obj As Object, _
-                                           ByVal SaveAll As Boolean)
-        SaveProperties(CUSTOM_PROPERTIES_ID, CUSTOM_PROPERTIES_ID, obj, SaveAll)
-    End Sub
 
     Public Shared Sub SaveOtherProperties(ByVal id As Integer, _
                                           ByVal obj As Object, _
@@ -28,6 +24,18 @@ Public Class CommonSaver
                                      ByVal obj As Object, _
                                      ByVal SaveAll As Boolean)
         SaveProperties(id, COMPUTATION_PROPERTIES_ID, obj, SaveAll)
+    End Sub
+
+    Public Shared Sub SaveCustomProperties(ByVal gen As CustomPropertiesGenerator)
+
+        Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
+
+        For Each p As PropInfo In gen.Properties
+            Dim desc As String = ""
+            Dim cat As String = ""
+            adaptor.Insert(CUSTOM_PROPERTIES_ID, CUSTOM_PROPERTIES_ID, _
+                p.Name, p.Expression, Nothing, Nothing, cat, desc, Nothing)
+        Next
     End Sub
 
     Private Shared Sub SaveProperties(ByVal id As Integer, _
