@@ -122,7 +122,7 @@ Namespace Common
                          ByVal source As List(Of PropInfo))
             destination.Clear()
             For Each o As PropInfo In source
-                destination.Add(o)
+                destination.Add(o.Clone)
             Next
         End Sub
 
