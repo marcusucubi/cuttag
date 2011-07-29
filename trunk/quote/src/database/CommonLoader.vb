@@ -116,8 +116,12 @@ Public Class CommonLoader
 
         For Each row As QuoteDataBase._QuotePropertiesRow In table.Rows
             Dim prop As New PropInfo
-            prop.Expression = row.PropertyStringValue
-            prop.Name = row.PropertyName
+            If Not row.IsPropertyStringValueNull Then
+                prop.Expression = row.PropertyStringValue
+            End If
+            If Not row.IsPropertyNameNull Then
+                prop.Name = row.PropertyName
+            End If
             gen.Properties.Add(prop)
         Next
     End Sub
