@@ -12,7 +12,7 @@ Public Class frmCustom
     Private WithEvents _ComputationProperties As Common.ComputationProperties
 
     Private Sub frmCustom_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim o As Object = ActiveHeader.ActiveHeader.Header.CustomPropertiesFactory
+        Dim o As Object = ActiveHeader.ActiveHeader.Header.CustomPropertiesGenerator
         Me.PropertyGrid1.SelectedObject = o
         Me.UpdateProperties()
     End Sub

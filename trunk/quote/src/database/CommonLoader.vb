@@ -5,6 +5,8 @@ Imports System.Reflection
 Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
+Imports DCS.Quote.Common
+Imports DCS.Quote.Common.CustomPropertiesGenerator
 
 Public Class CommonLoader
 
@@ -49,7 +51,7 @@ Public Class CommonLoader
 
             If (detail IsNot Nothing) Then
                 detail.Qty = row.Qty
-                LoadProperties(id, row.ID, detail.QuoteDetailProperties)
+                LoadProperties(id, row.id, detail.QuoteDetailProperties)
             End If
         Next
     End Sub
@@ -102,6 +104,21 @@ Public Class CommonLoader
                     End If
                 End If
             End If
+        Next
+    End Sub
+
+    Public Shared Sub LoadCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
+
+        Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
+
+        Dim table As QuoteDataBase._QuotePropertiesDataTable
+        table = adaptor.GetDataByQuoteID(CommonSaver.CUSTOM_PROPERTIES_ID)
+
+        For Each row As QuoteDataBase._QuotePropertiesRow In table.Rows
+            Dim prop As New PropInfo
+            prop.Expression = row.PropertyStringValue
+            prop.Name = row.PropertyName
+            gen.Properties.Add(prop)
         Next
     End Sub
 

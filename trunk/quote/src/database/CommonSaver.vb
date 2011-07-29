@@ -26,7 +26,7 @@ Public Class CommonSaver
         SaveProperties(id, COMPUTATION_PROPERTIES_ID, obj, SaveAll)
     End Sub
 
-    Public Shared Sub SaveCustomProperties(ByVal gen As CustomPropertiesGenerator)
+    Public Shared Sub SaveCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 

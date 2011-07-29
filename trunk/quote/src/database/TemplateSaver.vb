@@ -53,7 +53,7 @@ Public Class TemplateSaver
 
         adaptor.Connection.Open()
         CommonSaver.DeleteCustomProperties()
-        CommonSaver.SaveCustomProperties(q.CustomPropertiesFactory)
+        CommonSaver.SaveCustomPropertiesGenerator(q.CustomPropertiesGenerator)
         CommonSaver.DeleteProperties(newId)
         CommonSaver.SaveOtherProperties(newId, q.OtherProperties, False)
         CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, False)
