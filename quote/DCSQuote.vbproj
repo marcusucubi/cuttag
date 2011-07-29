@@ -94,7 +94,7 @@
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
     <Compile Include="src\database\CuttagDatabaseConnection.vb" />
-    <Compile Include="src\database\ObjectGeneratorException.vb" />
+    <Compile Include="src\misc\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -209,13 +209,11 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\misc\ActiveDetail.vb" />
-    <Compile Include="src\misc\ListWithEvents2.vb" />
     <Compile Include="src\misc\QuoteTypeList.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveHeader.vb" />
     <Compile Include="src\model\common\ComponentProperties.vb" />
     <Compile Include="src\model\common\ComputationProperties.vb" />
-    <Compile Include="src\model\common\CustomProperties.vb" />
     <Compile Include="src\model\common\CustomPropertiesFactory.vb" />
     <Compile Include="src\model\common\Detail.vb" />
     <Compile Include="src\model\common\DetailCollection.vb" />
@@ -225,7 +223,7 @@
     <Compile Include="src\model\common\Weights.vb" />
     <Compile Include="src\model\common\WireProperties.vb" />
     <Compile Include="src\model\quote\PrimaryPropeties.vb" />
-    <Compile Include="src\database\ObjectGenerator.vb" />
+    <Compile Include="src\misc\ObjectGenerator.vb" />
     <Compile Include="src\misc\SaveableProperties.vb" />
     <Compile Include="src\database\DatabaseException.vb" />
     <Compile Include="src\model\Shipping.vb" />

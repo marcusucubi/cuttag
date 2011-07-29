@@ -9,7 +9,7 @@ Namespace Common
     Public Class CustomPropertiesFactory
         Inherits SaveableProperties
 
-        Private WithEvents _PropInfos As New ListWithEvents2
+        Private WithEvents _PropInfos As New List(Of PropInfo)
         Private _Parent As Common.Header
 
         Public Class PropInfo
@@ -29,7 +29,7 @@ Namespace Common
         End Sub
 
         <EditorAttribute(GetType(PropCollectionEditor), GetType(UITypeEditor))> _
-        Public ReadOnly Property Properties As ListWithEvents2
+        Public ReadOnly Property Properties As List(Of PropInfo)
             Get
                 Return _PropInfos
             End Get
