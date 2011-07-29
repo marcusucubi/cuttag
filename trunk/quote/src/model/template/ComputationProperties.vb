@@ -6,7 +6,7 @@ Namespace Model.Template
     Public Class ComputationProperties
         Inherits Common.ComputationProperties
 
-        Public Sub New(ByVal Header As Header)
+        Public Sub New(ByVal Header As Object)
             _Header = Header
         End Sub
 

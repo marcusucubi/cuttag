@@ -15,6 +15,7 @@ Public Class ObjectGenerator
         Public Property Name As String
         Public Property TypeName As String
         Public Property Value As Object
+        Public Property CodeSnippet As String
         Public Property Category As String
         Public Property Description As String
     End Class
@@ -24,6 +25,7 @@ Public Class ObjectGenerator
 
     Public Property ClassName As String = "GeneratedProperties"
     Public Property BaseTypeName As String
+    Public Property InitObject As Object
 
     Public Sub Add(ByVal node As PropertyInfo)
         If Not _NameList.Contains(node.Name) Then
@@ -47,9 +49,24 @@ Public Class ObjectGenerator
             class1.BaseTypes.Add(Me.BaseTypeName)
         End If
 
+        If Me.InitObject IsNot Nothing Then
+
+            Dim ctor As New CodeConstructor
+            ctor.Parameters.Add(New CodeParameterDeclarationExpression( _
+                                "System.Object", "Parent"))
+            ctor.BaseConstructorArgs.Add(New CodeVariableReferenceExpression("Parent"))
+            ctor.Attributes = MemberAttributes.Public
+            class1.Members.Add(ctor)
+        End If
+
         For Each node As PropertyInfo In Me._InfoList
-            Me.AddProperty(class1, node.Name, _
-               node.TypeName, node.Value, node.Category, node.Description)
+            If node.Value Is Nothing And node.CodeSnippet Is Nothing Then
+                Me.AddProperty(class1, node.Name)
+            Else
+                Me.AddProperty(class1, node.Name, _
+                   node.TypeName, node.Value, node.CodeSnippet, _
+                   node.Category, node.Description)
+            End If
         Next
 
         Dim code As String = GenerateCode(compileUnit)
@@ -68,6 +85,7 @@ Public Class ObjectGenerator
                 New CodeGeneratorOptions())
             tw.Close()
             sourceFile = sw.ToString
+            Console.WriteLine(sourceFile)
         End Using
 
         Return sourceFile
@@ -91,13 +109,11 @@ Public Class ObjectGenerator
 
         If cr.Errors.Count > 0 Then
             Dim writer As New StringWriter
-            'writer.WriteLine("Errors building {0} into {1}", _
-            '    sourceFile, cr.PathToAssembly)
             For Each ce As CompilerError In cr.Errors
-                writer.WriteLine("  {0}", ce.ToString())
+                writer.WriteLine("{0}", ce.ToString())
                 writer.WriteLine()
             Next ce
-            MsgBox(writer.ToString)
+            Throw New ObjectGeneratorException(writer.ToString)
         End If
 
         Dim ca As Assembly = cr.CompiledAssembly
@@ -105,7 +121,12 @@ Public Class ObjectGenerator
         For Each t As Type In classes
             If t.Name = ClassName Then
                 result = t.MakeByRefType()
-                result = Activator.CreateInstance(t)
+                If Me.InitObject Is Nothing Then
+                    result = Activator.CreateInstance(t)
+                Else
+                    Dim params() As Object = {Me.InitObject}
+                    result = Activator.CreateInstance(t, params)
+                End If
             End If
         Next
 
@@ -118,10 +139,11 @@ Public Class ObjectGenerator
 
     Private Sub AddProperty(ByVal class1 As CodeTypeDeclaration, _
                             ByVal name As String, _
-                            ByVal typeName As String, _
-                            ByVal value As Object, _
-                            ByVal category As String, _
-                            ByVal desc As String)
+                            Optional ByVal typeName As String = "System.String", _
+                            Optional ByVal value As Object = Nothing, _
+                            Optional ByVal snippet As String = Nothing, _
+                            Optional ByVal category As String = "", _
+                            Optional ByVal desc As String = "")
 
         Dim property1 As New CodeMemberProperty()
         property1.Name = name
@@ -140,9 +162,15 @@ Public Class ObjectGenerator
             End If
         End If
 
-        property1.GetStatements.Add( _
-            New CodeMethodReturnStatement( _
-                New CodePrimitiveExpression(value)))
+        If snippet Is Nothing Then
+            property1.GetStatements.Add( _
+                New CodeMethodReturnStatement( _
+                    New CodePrimitiveExpression(value)))
+        Else
+            property1.GetStatements.Add( _
+                New CodeMethodReturnStatement( _
+                    New CodeSnippetExpression(snippet)))
+        End If
 
         Dim arg = New CodeAttributeArgument( _
             New CodePrimitiveExpression(category))
