@@ -2,11 +2,11 @@
 Imports System.Drawing.Design
 Imports DCS.Quote.ObjectGenerator
 Imports System.ComponentModel.Design
-Imports DCS.Quote.Common.CustomPropertiesFactory
+Imports DCS.Quote.Common.CustomPropertiesGenerator
 
 Namespace Common
 
-    Public Class CustomPropertiesFactory
+    Public Class CustomPropertiesGenerator
         Inherits SaveableProperties
 
         Private WithEvents _PropInfos As New List(Of PropInfo)
