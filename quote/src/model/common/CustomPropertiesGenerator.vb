@@ -13,13 +13,25 @@ Namespace Common
         Private _Parent As Common.Header
 
         Public Class PropInfo
-            Public Property Name As String = "Property"
-            Public Property Expression As String
             Private Shared _Count As Integer
+            Private _Name As String = "Property"
+
+            Public Property Name As String
+                Get
+                    Return _Name
+                End Get
+                Set(ByVal value As String)
+                    _Name = value
+                    _Name = _Name.Replace(" ", "")
+                    _Name = _Name.Replace(".", "")
+                End Set
+            End Property
+
+            Public Property Expression As String
 
             Public Sub New()
                 _Count = _Count + 1
-                Name = Name & _Count
+                _Name = _Name & _Count
             End Sub
 
         End Class
