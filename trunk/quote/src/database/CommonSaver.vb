@@ -14,6 +14,11 @@ Public Class CommonSaver
     Public Shared ReadOnly OTHER_PROPERTIES_ID = -2
     Public Shared ReadOnly CUSTOM_PROPERTIES_ID = -3
 
+    Public Shared Sub SaveCustomProperties(ByVal id As Integer, _
+                                           ByVal obj As Object)
+        SaveProperties(id, CUSTOM_PROPERTIES_ID, obj, True)
+    End Sub
+
     Public Shared Sub SaveOtherProperties(ByVal id As Integer, _
                                           ByVal obj As Object, _
                                           ByVal SaveAll As Boolean)

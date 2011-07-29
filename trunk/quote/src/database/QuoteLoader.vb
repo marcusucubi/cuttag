@@ -43,9 +43,14 @@ Public Class QuoteLoader
 
             LoadComponents(q)
 
-            Dim o1 = LoadProperties(id, -1, q.ComputationProperties)
+            Dim o1 = LoadProperties(id, _
+                CommonSaver.COMPUTATION_PROPERTIES_ID, q.ComputationProperties)
             q.SetComputationProperties(o1)
-            Dim o2 = LoadProperties(id, -2, q.OtherProperties)
+            Dim o2 = LoadProperties(id, _
+                CommonSaver.OTHER_PROPERTIES_ID, q.OtherProperties)
+            q.SetOtherProperties(o2)
+            Dim o3 = LoadProperties(id, _
+                CommonSaver.CUSTOM_PROPERTIES_ID, q.CustomProperties)
             q.SetOtherProperties(o2)
 
         End If
@@ -81,13 +86,13 @@ Public Class QuoteLoader
 
         Dim node As New ObjectGenerator.PropertyInfo
         node.Name = row.PropertyName
-        If row("PropertyStringValue") IsNot DBNull.Value Then
+        If Not row.IsPropertyStringValueNull Then
             node.TypeName = "System.String"
             node.Value = row.PropertyStringValue
-        ElseIf row("PropertyDecimalValue") IsNot DBNull.Value Then
+        ElseIf Not row.IsPropertyDecimalValueNull Then
             node.TypeName = "System.Decimal"
             node.Value = row.PropertyDecimalValue
-        ElseIf row("PropertyIntegerValue") IsNot DBNull.Value Then
+        ElseIf Not row.IsPropertyIntegerValueNull Then
             node.TypeName = "System.Int32"
             node.Value = row.PropertyIntegerValue
         ElseIf Not row.IsPropertyDateValueNull Then
@@ -99,8 +104,12 @@ Public Class QuoteLoader
                 node.Value = ""
             End If
         End If
-        node.Category = row.PropertyCatagory
-        node.Description = row.PropertyDescription
+        If Not row.IsPropertyCatagoryNull Then
+            node.Category = row.PropertyCatagory
+        End If
+        If Not row.IsPropertyDescriptionNull Then
+            node.Description = row.PropertyDescription
+        End If
         _PropertyLoader.Add(node)
     End Sub
 
