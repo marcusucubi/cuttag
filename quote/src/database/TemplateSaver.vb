@@ -52,8 +52,9 @@ Public Class TemplateSaver
         End If
 
         adaptor.Connection.Open()
+        CommonSaver.DeleteCustomProperties()
+        CommonSaver.SaveCustomProperties(q.CustomPropertiesFactory)
         CommonSaver.DeleteProperties(newId)
-        CommonSaver.SaveCustomProperties(q.CustomProperties, False)
         CommonSaver.SaveOtherProperties(newId, q.OtherProperties, False)
         CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, False)
         CommonSaver.DeleteComponents(newId)
