@@ -11,6 +11,12 @@ Public Class CommonSaver
 
     Public Shared ReadOnly COMPUTATION_PROPERTIES_ID = -1
     Public Shared ReadOnly OTHER_PROPERTIES_ID = -2
+    Public Shared ReadOnly CUSTOM_PROPERTIES_ID = -3
+
+    Public Shared Sub SaveCustomProperties(ByVal obj As Object, _
+                                           ByVal SaveAll As Boolean)
+        SaveProperties(CUSTOM_PROPERTIES_ID, CUSTOM_PROPERTIES_ID, obj, SaveAll)
+    End Sub
 
     Public Shared Sub SaveOtherProperties(ByVal id As Integer, _
                                           ByVal obj As Object, _
@@ -102,13 +108,17 @@ Public Class CommonSaver
         Next
     End Sub
 
+    Public Shared Sub DeleteCustomProperties()
+        DeleteProperties(CUSTOM_PROPERTIES_ID)
+    End Sub
+
     Public Shared Sub DeleteProperties(ByVal QuoteID As Integer)
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
         Dim table As _QuotePropertiesDataTable = _
             adaptor.GetDataByQuoteID(QuoteID)
         For Each row As _QuotePropertiesRow In table.Rows
-            adaptor.Delete(row.ID)
+            adaptor.Delete(row.id)
         Next
     End Sub
 

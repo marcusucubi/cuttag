@@ -101,16 +101,17 @@ Namespace Common
                 _WorkingObject = MyBase.EditValue(context, provider, _WorkingObject)
                 If UseCopy Then
                     Copy(_WorkingObject, _Copy)
-                End If
 
-                Dim h As Common.Header = ActiveHeader.ActiveHeader.Header
-                Try
-                    h.GenerateCustomProperties()
-                    h.SendEvents()
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                    Continue Do
-                End Try
+                Else
+                    Dim h As Common.Header = ActiveHeader.ActiveHeader.Header
+                    Try
+                        h.GenerateCustomProperties()
+                        h.SendEvents()
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                        Continue Do
+                    End Try
+                End If
 
                 Exit Do
             Loop
