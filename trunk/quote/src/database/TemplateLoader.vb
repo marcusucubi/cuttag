@@ -55,6 +55,11 @@ Public Class TemplateLoader
             CommonLoader.LoadOtherProperties(id, q.OtherProperties)
             CommonLoader.LoadComponents(q)
             CommonLoader.LoadCustomPropertiesGenerator(q.CustomPropertiesGenerator)
+            Try
+                q.GenerateCustomProperties()
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
         End If
 
         q.ComputationProperties.ClearDirty()
