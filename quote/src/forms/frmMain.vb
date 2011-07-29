@@ -9,7 +9,7 @@ Imports System.Reflection
 Public Class frmMain
 
     Private _Properties As New frmComputationProperties
-    Private _CustomProperties As New frmCustom
+    Private _CustomProperties As New frmCustomProperties
     Private _OtherProperties As New frmOtherProperties
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
@@ -234,11 +234,11 @@ Public Class frmMain
 
     Private Sub ShowCustomProperties()
         If (_CustomProperties Is Nothing) Then
-            _CustomProperties = New frmCustom
+            _CustomProperties = New frmCustomProperties
             InitChild(_CustomProperties)
         End If
         If (_CustomProperties.IsHidden Or _CustomProperties.IsDisposed) Then
-            _CustomProperties = New frmCustom
+            _CustomProperties = New frmCustomProperties
             InitChild(_CustomProperties)
         End If
     End Sub
