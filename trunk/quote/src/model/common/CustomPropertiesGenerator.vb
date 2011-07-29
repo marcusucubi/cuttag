@@ -6,7 +6,7 @@ Imports DCS.Quote.Common.CustomPropertiesGenerator
 
 Namespace Common
 
-    Public Class CustomPropertiesGenerator
+    Public MustInherit Class CustomPropertiesGenerator
         Inherits SaveableProperties
 
         Private WithEvents _PropInfos As New List(Of PropInfo)
@@ -35,23 +35,14 @@ Namespace Common
             End Get
         End Property
 
-        Public Function Generate() As SaveableProperties
+        <Browsable(False)> _
+        Public ReadOnly Property Parent As Common.Header
+            Get
+                Return _Parent
+            End Get
+        End Property
 
-            Dim g As New ObjectGenerator
-
-            For Each o As PropInfo In Me._PropInfos
-                Dim info As New PropertyInfo
-                info.Name = o.Name
-                info.CodeSnippet = o.Expression
-                info.TypeName = "System.String"
-                g.Add(info)
-            Next
-
-            g.BaseTypeName = GetType(SaveableProperties).Name
-            g.InitObject = _Parent.ComputationProperties
-
-            Return g.Generate
-        End Function
+        Public MustOverride Function Generate() As SaveableProperties
 
     End Class
 

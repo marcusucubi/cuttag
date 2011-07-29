@@ -16,6 +16,7 @@ Namespace Model.Template
             _ComputationProperties = New ComputationProperties(Me)
             _OtherProperties = New OtherProperties(Me)
             _CustomProperties = New SaveableProperties()
+            _CustomPropertiesFactory = New CustomPropertiesGenerator(Me)
             MyBase.AddDependent(_ComputationProperties)
             MyBase.AddDependent(_OtherProperties)
             MyBase.AddDependent(_PrimaryProperties)
