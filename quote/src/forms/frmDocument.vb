@@ -92,7 +92,7 @@ Public Class frmDocument
             If r = MsgBoxResult.Cancel Then
                 e.Cancel = True
             ElseIf r = MsgBoxResult.Yes Then
-                Dim saver As New TemplateSaver
+                Dim saver As New BOMSaver
                 saver.Save(QuoteHeader)
             End If
         End If

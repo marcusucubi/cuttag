@@ -8,7 +8,7 @@ Imports DCS.Quote.QuoteDataBaseTableAdapters
 Imports DCS.Quote.QuoteDataBase
 Imports DCS.Quote.Model
 
-Public Class TemplateLoader
+Public Class BOMLoader
 
     Public Function Load(ByVal id As Long) As Header
 
