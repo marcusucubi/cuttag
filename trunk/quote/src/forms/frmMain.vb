@@ -281,7 +281,7 @@ Public Class frmMain
 
     Private Sub SaveTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
-            Dim saver As New TemplateSaver
+            Dim saver As New BOMSaver
             saver.Save(Me._ActiveHeader.Header)
         End If
         EnableButtons()
@@ -301,7 +301,7 @@ Public Class frmMain
             Return
         End If
 
-        Dim loader As New TemplateLoader
+        Dim loader As New BOMLoader
         Dim q As Common.Header
 
         q = loader.Load(id)

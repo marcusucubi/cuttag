@@ -7,7 +7,7 @@ Imports System.Data.OleDb
 Imports System.Transactions
 Imports DCS.Quote.QuoteDataBaseTableAdapters
 
-Public Class TemplateSaver
+Public Class BOMSaver
 
     Public Function Save(ByVal q As Header) _
                         As Integer
