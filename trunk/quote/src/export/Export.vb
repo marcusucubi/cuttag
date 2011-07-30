@@ -10,7 +10,6 @@
         ExportObject(header.OtherProperties)
         ExportObject(header.PrimaryProperties)
         ExportObject(header.ComputationProperties)
-        ExportObject(header.CustomProperties)
 
         _Excel.Term()
         Return _Excel.Path

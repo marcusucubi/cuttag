@@ -53,7 +53,6 @@ Public Class BOMSaver
 
         adaptor.Connection.Open()
         CommonSaver.DeleteCustomProperties()
-        CommonSaver.SaveCustomPropertiesGenerator(q.CustomPropertiesGenerator)
         CommonSaver.DeleteProperties(newId)
         CommonSaver.SaveOtherProperties(newId, q.OtherProperties, False)
         CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, False)
@@ -66,7 +65,6 @@ Public Class BOMSaver
         q.ComputationProperties.ClearDirty()
         q.OtherProperties.ClearDirty()
         q.PrimaryProperties.ClearDirty()
-        q.CustomProperties.ClearDirty()
         q.ClearDirty()
 
         frmMain.frmMain.UseWaitCursor = False

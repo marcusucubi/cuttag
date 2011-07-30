@@ -10,6 +10,7 @@ Public Class frmCustomProperties
     Private WithEvents _ActiveQuote As ActiveHeader
     Private WithEvents _Header As Common.Header
     Private WithEvents _ComputationProperties As Common.ComputationProperties
+    Private WithEvents _ActiveCustom As ActiveCustomProperties = ActiveCustomProperties.ActiveCustomProperties
 
     Private Sub frmCustom_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _ActiveQuote = ActiveHeader.ActiveHeader
@@ -37,24 +38,21 @@ Public Class frmCustomProperties
         UpdateProperties()
     End Sub
 
+    Private Sub _ActiveCustom_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveCustom.PropertyChanged
+        UpdateProperties()
+    End Sub
+
     Private Sub UpdateProperties()
-        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
-            Dim o1 As Object = ActiveHeader.ActiveHeader.Header.CustomPropertiesGenerator
-            Me.PropertyGrid1.SelectedObject = o1
-            Dim o As Object = ActiveHeader.ActiveHeader.Header.CustomProperties
-            Me.PropertyGrid2.SelectedObject = o
-            Me._Header = ActiveHeader.ActiveHeader.Header
-            Me._ComputationProperties = Me._Header.ComputationProperties
-            If _Header.IsQuote Then
-                Me.PropertyGrid1.Visible = False
-            Else
-                Me.PropertyGrid1.Visible = True
-            End If
+        Dim o1 As Object = ActiveCustomProperties.ActiveCustomProperties.Generator
+        Me.PropertyGrid1.SelectedObject = o1
+        Dim o As Object = ActiveCustomProperties.ActiveCustomProperties.Properties
+        Me.PropertyGrid2.SelectedObject = o
+        Me._Header = ActiveHeader.ActiveHeader.Header
+        Me._ComputationProperties = Me._Header.ComputationProperties
+        If _Header.IsQuote Then
+            Me.PropertyGrid1.Visible = False
         Else
-            Me.PropertyGrid1.SelectedObject = Nothing
-            Me._Header = Nothing
-            Me.PropertyGrid2.SelectedObject = Nothing
-            Me._ComputationProperties = Nothing
+            Me.PropertyGrid1.Visible = True
         End If
     End Sub
 

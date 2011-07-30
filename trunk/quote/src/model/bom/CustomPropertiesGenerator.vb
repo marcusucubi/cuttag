@@ -8,11 +8,11 @@ Namespace Model.Template
     Public Class CustomPropertiesGenerator
         Inherits Common.CustomPropertiesGenerator
 
-        Public Sub New(ByVal parent As Common.Header)
-            MyBase.New(parent)
-        End Sub
-
         Public Overrides Function Generate() As SaveableProperties
+
+            If ActiveHeader.ActiveHeader.Header Is Nothing Then
+                Return New SaveableProperties
+            End If
 
             Dim g As New ObjectGenerator
 
@@ -26,7 +26,9 @@ Namespace Model.Template
             Next
 
             g.BaseTypeName = GetType(SaveableProperties).Name
-            g.InitObject = Me.Parent.ComputationProperties
+            g.InitObject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+
+            CommonSaver.SaveCustomPropertiesGenerator(Me)
 
             Return g.Generate
         End Function

@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices
+Imports DCS.Quote.Common
 
 Namespace My
 
@@ -10,6 +11,8 @@ Namespace My
 
             Dim s As String = CuttagDatabaseConnection.ConnectionString
             My.MySettings.Default.SetConnectionString(s)
+
+            ActiveCustomProperties.ActiveCustomProperties.Load()
 
         End Sub
 

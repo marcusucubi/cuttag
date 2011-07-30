@@ -90,10 +90,23 @@
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="src\controls\ListViewColumnSorter.vb" />
+    <Compile Include="src\controls\UserControl1.Designer.vb">
+      <DependentUpon>UserControl1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\controls\UserControl1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\controls\WireAndComponentItem.vb" />
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
     <Compile Include="src\database\CuttagDatabaseConnection.vb" />
+    <Compile Include="src\forms\frmDocumentA.Designer.vb">
+      <DependentUpon>frmDocumentA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmDocumentA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\misc\ActiveCustomProperties.vb" />
     <Compile Include="src\misc\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -105,8 +118,8 @@
     </Compile>
     <Compile Include="src\database\QuoteLoader.vb" />
     <Compile Include="src\database\QuoteSaver.vb" />
-    <Compile Include="src\database\TemplateLoader.vb" />
-    <Compile Include="src\database\TemplateSaver.vb" />
+    <Compile Include="src\database\BOMLoader.vb" />
+    <Compile Include="src\database\BOMSaver.vb" />
     <Compile Include="src\export\ExcellWriter.vb" />
     <Compile Include="src\export\PropertyPrinter.vb" />
     <Compile Include="src\export\Export.vb" />
@@ -214,6 +227,7 @@
     <Compile Include="src\misc\ActiveHeader.vb" />
     <Compile Include="src\model\bom\ComponentProperties.vb" />
     <Compile Include="src\model\bom\ComputationProperties.vb" />
+    <Compile Include="src\model\bom\CustomPropertiesGenerator.vb" />
     <Compile Include="src\model\bom\Detail.vb" />
     <Compile Include="src\model\bom\Header.vb" />
     <Compile Include="src\model\bom\OtherProperties.vb" />
@@ -237,12 +251,6 @@
     <Compile Include="src\model\UnitOfMeasure.vb" />
     <Compile Include="src\model\quote\Header.vb" />
     <Compile Include="src\model\quote\Detail.vb" />
-    <Compile Include="src\forms\frmQuoteA.Designer.vb">
-      <DependentUpon>frmQuoteA.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmQuoteA.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -273,6 +281,9 @@
     <EmbeddedResource Include="src\forms\frmNewBOM.resx">
       <DependentUpon>frmNewBOM.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmDocumentA.resx">
+      <DependentUpon>frmDocumentA.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>
     </EmbeddedResource>
@@ -293,9 +304,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmPartLookup.resx">
       <DependentUpon>frmPartLookup.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmQuoteA.resx">
-      <DependentUpon>frmQuoteA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmComputationProperties.resx">
       <DependentUpon>frmComputationProperties.vb</DependentUpon>

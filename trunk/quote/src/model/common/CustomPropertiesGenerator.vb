@@ -10,7 +10,6 @@ Namespace Common
         Inherits SaveableProperties
 
         Private WithEvents _PropInfos As New List(Of PropInfo)
-        Private _Parent As Common.Header
 
         Public Class PropInfo
             Implements ICloneable
@@ -47,21 +46,10 @@ Namespace Common
 
         End Class
 
-        Public Sub New(ByVal parent As Common.Header)
-            Me._Parent = parent
-        End Sub
-
         <EditorAttribute(GetType(PropCollectionEditor), GetType(UITypeEditor))> _
         Public ReadOnly Property Properties As List(Of PropInfo)
             Get
                 Return _PropInfos
-            End Get
-        End Property
-
-        <Browsable(False)> _
-        Public ReadOnly Property Parent As Common.Header
-            Get
-                Return _Parent
             End Get
         End Property
 
@@ -108,10 +96,9 @@ Namespace Common
                     Copy(_WorkingObject, _Copy)
 
                 Else
-                    Dim h As Common.Header = ActiveHeader.ActiveHeader.Header
                     Try
-                        h.GenerateCustomProperties()
-                        h.SendEvents()
+                        ActiveCustomProperties.ActiveCustomProperties.GenerateCustomProperties()
+                        ActiveCustomProperties.ActiveCustomProperties.Properties.SendEvents()
                     Catch ex As Exception
                         MsgBox(ex.Message)
                         Continue Do
