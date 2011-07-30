@@ -15,9 +15,12 @@ Namespace Model.Template
             _PrimaryProperties = New PrimaryPropeties(Me, id)
             _ComputationProperties = New ComputationProperties(Me)
             _OtherProperties = New OtherProperties(Me)
+            _CustomProperties = New Common.SaveableProperties()
+            _CustomPropertiesGenerator = New CustomPropertiesGenerator(Me)
             MyBase.AddDependent(_ComputationProperties)
             MyBase.AddDependent(_OtherProperties)
             MyBase.AddDependent(_PrimaryProperties)
+            MyBase.AddDependent(_CustomProperties)
         End Sub
 
         Public Overloads ReadOnly Property IsQuote As Boolean
@@ -36,7 +39,6 @@ Namespace Model.Template
 
             Dim oo As Detail = New Detail(Me, product)
 
-            AddHandler oo.PropertyChanged, AddressOf ForwardEvent
             MyBase.Details.Add(oo)
             MyBase.AddDependent(oo)
             SendEvents()
@@ -48,14 +50,9 @@ Namespace Model.Template
             If detail IsNot Nothing Then
                 Me.Details.Remove(detail)
 
-                RemoveHandler detail.PropertyChanged, AddressOf ForwardEvent
                 MyBase.RemoveDependent(detail)
                 SendEvents()
             End If
-        End Sub
-
-        Private Sub ForwardEvent(ByVal sender, ByVal e)
-            'RaiseEvent MyBase.PropertyChanged(sender, e)
         End Sub
 
         Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _Details.ListChanged
@@ -64,6 +61,7 @@ Namespace Model.Template
 
         Private Overloads Sub SendEvents()
             Me.ComputationProperties.SendEvents()
+            Me.CustomProperties.SendEvents()
         End Sub
 
     End Class

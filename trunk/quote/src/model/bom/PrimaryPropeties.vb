@@ -14,7 +14,7 @@ Namespace Model.Template
             CustomerName = "Caterpillar Inc."
         End Sub
 
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute("Date"), _
         DisplayName("CreatedDate"), _
         DescriptionAttribute("Created Date")> _
         Public ReadOnly Property CreatedDate As DateTime
@@ -23,7 +23,7 @@ Namespace Model.Template
             End Get
         End Property
 
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute("Date"), _
         DisplayName("LastModified"), _
         DescriptionAttribute("Last Modified Date")> _
         Public ReadOnly Property LastModified As DateTime
@@ -32,7 +32,7 @@ Namespace Model.Template
             End Get
         End Property
 
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute("Misc"), _
         DisplayName("Initials"), _
         DescriptionAttribute("Initials of creator")> _
         Public ReadOnly Property Initials As String
@@ -80,7 +80,7 @@ Namespace Model.Template
             End Set
         End Property
 
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute("Misc"), _
         DisplayName("QuoteNumnber"), _
         DescriptionAttribute("Quote Numnber")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer

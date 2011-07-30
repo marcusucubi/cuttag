@@ -11,12 +11,13 @@ Namespace Model.Template
         Private _LeadTimeStandard As Integer
         Private _EstimatedAnnualUnits As Integer
         Private _DueDate As DateTime
+        Private _QuoteType As String = "Production"
 
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
         End Sub
 
-        <CategoryAttribute("Supply Chain"), _
+        <CategoryAttribute("Quote"), _
         DisplayName("Initial Lead Time"), _
         DescriptionAttribute("Minimum number of days between the first purchase order and delivery")> _
         Public Property LeadTimeInitial As Integer
@@ -29,7 +30,7 @@ Namespace Model.Template
             End Set
         End Property
 
-        <CategoryAttribute("Supply Chain"), _
+        <CategoryAttribute("Quote"), _
         DisplayName("Standard Lead Time"), _
         DescriptionAttribute("Minimum number of days between the purchase order and delivery")> _
         Public Property LeadTimeStandard As Integer
@@ -42,7 +43,7 @@ Namespace Model.Template
             End Set
         End Property
 
-        <CategoryAttribute("Supply Chain"), _
+        <CategoryAttribute("Quote"), _
         DisplayName("Estimated Annual Units"), _
         DescriptionAttribute("Estimated Annual Units")> _
         Public Property EstimatedAnnualUnits As Integer
@@ -64,6 +65,20 @@ Namespace Model.Template
             End Get
             Set(ByVal value As DateTime)
                 _DueDate = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("Quote Type"), _
+        TypeConverter(GetType(QuoteTypeList)), _
+        DescriptionAttribute("The type of quote")> _
+        Public Property QuoteType As String
+            Get
+                Return _QuoteType
+            End Get
+            Set(ByVal value As String)
+                _QuoteType = value
                 Me.SendEvents()
             End Set
         End Property

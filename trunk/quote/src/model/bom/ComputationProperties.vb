@@ -6,7 +6,7 @@ Namespace Model.Template
     Public Class ComputationProperties
         Inherits Common.ComputationProperties
 
-        Public Sub New(ByVal Header As Header)
+        Public Sub New(ByVal Header As Object)
             _Header = Header
         End Sub
 
@@ -23,7 +23,7 @@ Namespace Model.Template
         Private _WireMachineTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 10
-        Private _PercentCopperScrap As Decimal = 0
+        Private _PercentCopperScrap As Decimal = 3
         Private _CopperPrice As Decimal = 1
         Private _MaterialMarkup As Decimal = 1
         Private _ComponentSetupTime As Decimal
@@ -44,7 +44,7 @@ Namespace Model.Template
 
         <CategoryAttribute("Copper"), _
         DisplayName("Copper Weight"), _
-        DescriptionAttribute("Weight of Copper Scrap. " + Chr(10) + "(Pounds)")> _
+        DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)")> _
         Public ReadOnly Property CopperWeight As Decimal
             Get
                 Return Me._Header.WeightProperties.Weight
@@ -78,12 +78,12 @@ Namespace Model.Template
         End Property
 
         <CategoryAttribute("Copper"), _
-        DisplayName("Copper Cost"), _
-        DescriptionAttribute("(CopperWeight + CopperScrapWeight) * CopperPrice. " _
+        DisplayName("Copper Scrap Cost"), _
+        DescriptionAttribute("CopperScrapWeight * CopperPrice. " _
             + Chr(10) + "(Dollars Per Pounds)")> _
-        Public ReadOnly Property CopperCost As Decimal
+        Public ReadOnly Property CopperScrapCost As Decimal
             Get
-                Return Math.Round((Me.CopperWeight + Me.CopperScrapWeight) * Me.CopperPrice, 2)
+                Return Math.Round(Me.CopperScrapWeight * Me.CopperPrice, 2)
             End Get
         End Property
 
@@ -214,7 +214,7 @@ Namespace Model.Template
             End Get
         End Property
 
-        <DescriptionAttribute("WireLengthFeet * WireTime " + Chr(10) + "(Seconds)"), _
+        <DescriptionAttribute("WireLengthFeet * WireMachineTime " + Chr(10) + "(Seconds)"), _
         DisplayName("Total Wire Machine Time"), _
         CategoryAttribute("Machine Time")> _
         Public ReadOnly Property TotalWireMachineTime As Decimal
@@ -420,8 +420,8 @@ Namespace Model.Template
             Get
                 Return Math.Round( _
                     (Me.TotalMaterialCost * Me._MaterialMarkup) + _
-                    Me.CopperCost + _
-                    Me.ShippingCost, 2)
+                     Me.CopperScrapCost + _
+                     Me.ShippingCost, 2)
             End Get
         End Property
 
