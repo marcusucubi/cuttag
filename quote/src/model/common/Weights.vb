@@ -44,7 +44,8 @@ Namespace Common
             _Header = Header
         End Sub
 
-        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) _
+            Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Private WithEvents _Header As Header
 
