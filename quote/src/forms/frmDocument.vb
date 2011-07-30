@@ -8,7 +8,7 @@ Imports System.ComponentModel
 Imports DCS.Quote.Common
 Imports System.Windows
 
-Public Class frmQuoteA
+Public Class frmDocument
     Inherits DockContent
 
     Private WithEvents _Header As Header
