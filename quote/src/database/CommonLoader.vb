@@ -113,6 +113,7 @@ Public Class CommonLoader
 
         Dim table As QuoteDataBase._QuotePropertiesDataTable
         table = adaptor.GetDataByQuoteID(CommonSaver.CUSTOM_PROPERTIES_ID)
+        gen.Properties.Clear()
 
         For Each row As QuoteDataBase._QuotePropertiesRow In table.Rows
             Dim prop As New PropInfo
