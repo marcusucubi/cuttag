@@ -130,10 +130,10 @@
     <Compile Include="src\forms\frmNewQuote.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmNewTemplate.Designer.vb">
-      <DependentUpon>frmNewTemplate.vb</DependentUpon>
+    <Compile Include="src\forms\frmNewBOM.Designer.vb">
+      <DependentUpon>frmNewBOM.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmNewTemplate.vb">
+    <Compile Include="src\forms\frmNewBOM.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmQuoteSearch.Designer.vb">
@@ -142,10 +142,10 @@
     <Compile Include="src\forms\frmQuoteSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmTemplateLookup.Designer.vb">
-      <DependentUpon>frmTemplateLookup.vb</DependentUpon>
+    <Compile Include="src\forms\frmBOMLookup.Designer.vb">
+      <DependentUpon>frmBOMLookup.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmTemplateLookup.vb">
+    <Compile Include="src\forms\frmBOMLookup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmDetailProperties.Designer.vb">
@@ -178,10 +178,10 @@
     <Compile Include="src\forms\frmComputationProperties.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmTemplateSearch.Designer.vb">
-      <DependentUpon>frmTemplateSearch.vb</DependentUpon>
+    <Compile Include="src\forms\frmBOMSearch.Designer.vb">
+      <DependentUpon>frmBOMSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmTemplateSearch.vb">
+    <Compile Include="src\forms\frmBOMSearch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmWireLookup.Designer.vb">
@@ -271,14 +271,14 @@
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmNewTemplate.resx">
-      <DependentUpon>frmNewTemplate.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmNewBOM.resx">
+      <DependentUpon>frmNewBOM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmTemplateLookup.resx">
-      <DependentUpon>frmTemplateLookup.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmBOMLookup.resx">
+      <DependentUpon>frmBOMLookup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmDetailProperties.resx">
       <DependentUpon>frmDetailProperties.vb</DependentUpon>
@@ -301,8 +301,8 @@
     <EmbeddedResource Include="src\forms\frmComputationProperties.resx">
       <DependentUpon>frmComputationProperties.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmTemplateSearch.resx">
-      <DependentUpon>frmTemplateSearch.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmBOMSearch.resx">
+      <DependentUpon>frmBOMSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmWireLookup.resx">
       <DependentUpon>frmWireLookup.vb</DependentUpon>

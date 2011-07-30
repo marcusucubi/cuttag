@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmTemplateLookup
+Partial Class frmBOMLookup
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -91,9 +91,9 @@ Partial Class frmTemplateLookup
         Me.ComboBox1.DataSource = Me.QuoteBindingSource
         Me.ComboBox1.DisplayMember = "ID"
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(117, 17)
+        Me.ComboBox1.Location = New System.Drawing.Point(92, 17)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(67, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(92, 21)
         Me.ComboBox1.TabIndex = 1
         '
         'Label1
@@ -101,9 +101,9 @@ Partial Class frmTemplateLookup
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(12, 20)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(94, 13)
+        Me.Label1.Size = New System.Drawing.Size(74, 13)
         Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Template Number:"
+        Me.Label1.Text = "BOM Number:"
         '
         'frmTemplateLookup
         '
@@ -121,7 +121,7 @@ Partial Class frmTemplateLookup
         Me.Name = "frmTemplateLookup"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Open Template "
+        Me.Text = "Open BOM"
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()

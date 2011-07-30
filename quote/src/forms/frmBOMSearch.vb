@@ -1,4 +1,4 @@
-﻿Public Class frmTemplateSearch
+﻿Public Class frmBOMSearch
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.DialogResult = System.Windows.Forms.DialogResult.OK

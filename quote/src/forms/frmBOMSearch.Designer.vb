@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmTemplateSearch
+Partial Class frmBOMSearch
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -224,7 +224,7 @@ Partial Class frmTemplateSearch
         Me.MinimizeBox = False
         Me.Name = "frmTemplateSearch"
         Me.ShowInTaskbar = False
-        Me.Text = "Search Templates"
+        Me.Text = "Search BOMs"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         Me.SplitContainer1.ResumeLayout(False)

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmNewTemplate
+Partial Class frmNewBOM
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -81,7 +81,7 @@ Partial Class frmNewTemplate
         Me.txtInitials.Size = New System.Drawing.Size(145, 20)
         Me.txtInitials.TabIndex = 2
         '
-        'frmNewTemplate
+        'frmNewBOM
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -94,10 +94,10 @@ Partial Class frmNewTemplate
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmNewTemplate"
+        Me.Name = "frmNewBOM"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "New Template"
+        Me.Text = "New BOM"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

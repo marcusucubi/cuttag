@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 
-Public Class frmTemplateLookup
+Public Class frmBOMLookup
 
     Public Shared Property QuoteID As Long
 

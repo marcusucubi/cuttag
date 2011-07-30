@@ -94,11 +94,11 @@ Public Class frmMain
     End Sub
 
     Private Sub SearchTemplateMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchTemplateMenuItem1.Click
-        frmTemplateSearch.ShowDialog(Me)
+        frmBOMSearch.ShowDialog(Me)
     End Sub
 
     Private Sub ToolSearchTemplates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchTemplates.Click
-        frmTemplateSearch.ShowDialog(Me)
+        frmBOMSearch.ShowDialog(Me)
     End Sub
 
     Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
@@ -158,7 +158,7 @@ Public Class frmMain
 
     Private Sub CreateNewTemplate()
 
-        Dim frm As New frmNewTemplate
+        Dim frm As New frmNewBOM
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
             Dim ChildForm As New frmQuoteA(frm.Initials, frm.Initials)
@@ -288,9 +288,9 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadTemplate()
-        Dim r As DialogResult = frmTemplateLookup.ShowDialog
+        Dim r As DialogResult = frmBOMLookup.ShowDialog
         If r = DialogResult.OK Then
-            LoadTemplate(frmTemplateLookup.QuoteID)
+            LoadTemplate(frmBOMLookup.QuoteID)
         End If
         EnableButtons()
     End Sub
