@@ -2,7 +2,7 @@
 Imports DCS.Quote.Model.Quote
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmQuoteA
+Partial Class frmDocument
     Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
@@ -90,7 +90,7 @@ Partial Class frmQuoteA
         Me.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmQuoteA"
-        Me.Text = "New Template"
+        Me.Text = "New BOM"
         Me.panelButtons.ResumeLayout(False)
         Me.ResumeLayout(False)
 

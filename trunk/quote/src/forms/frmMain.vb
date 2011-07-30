@@ -161,7 +161,7 @@ Public Class frmMain
         Dim frm As New frmNewBOM
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            Dim ChildForm As New frmQuoteA(frm.Initials, frm.Initials)
+            Dim ChildForm As New frmDocument(frm.Initials, frm.Initials)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
             DisplayViews()
@@ -308,7 +308,7 @@ Public Class frmMain
         If q.PrimaryProperties.CommonID = 0 Then
             MsgBox("Not Found")
         Else
-            Dim ChildForm As New frmQuoteA(q)
+            Dim ChildForm As New frmDocument(q)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
             Me.DisplayViews()
@@ -336,7 +336,7 @@ Public Class frmMain
         If q.PrimaryProperties.CommonID = 0 Then
             MsgBox("Not Found")
         Else
-            Dim ChildForm As New frmQuoteA(q)
+            Dim ChildForm As New frmDocument(q)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
             Me.DisplayViews()
@@ -346,7 +346,7 @@ Public Class frmMain
 
     Private Function IsLoaded(ByVal id As String) As Boolean
         Dim result As Boolean
-        For Each w As frmQuoteA In Me.MdiChildren
+        For Each w As frmDocument In Me.MdiChildren
             Dim test = w.QuoteHeader.PrimaryProperties.CommonID
             If id = test Then
                 w.Activate()
