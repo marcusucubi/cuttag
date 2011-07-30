@@ -10,10 +10,6 @@ Namespace Model.Template
 
         Public Overrides Function Generate() As SaveableProperties
 
-            If ActiveHeader.ActiveHeader.Header Is Nothing Then
-                Return New SaveableProperties
-            End If
-
             Dim g As New ObjectGenerator
 
             For Each o As PropInfo In Me.Properties
@@ -26,7 +22,9 @@ Namespace Model.Template
             Next
 
             g.BaseTypeName = GetType(SaveableProperties).Name
-            g.InitObject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+            If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
+                g.InitObject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+            End If
 
             CommonSaver.SaveCustomPropertiesGenerator(Me)
 
