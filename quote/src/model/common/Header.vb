@@ -8,8 +8,6 @@ Namespace Common
         Protected _PrimaryProperties As Common.PrimaryPropeties
         Protected _OtherProperties As Common.OtherProperties
         Protected _ComputationProperties As Common.ComputationProperties
-        Protected _CustomProperties As New SaveableProperties()
-        Protected _CustomPropertiesGenerator As Common.CustomPropertiesGenerator
         Protected WithEvents _Details As New DetailCollection(Of Common.Detail)
 
         Public Property ID As Integer
@@ -34,18 +32,6 @@ Namespace Common
             End Get
         End Property
 
-        Public ReadOnly Property CustomProperties As SaveableProperties
-            Get
-                Return _CustomProperties
-            End Get
-        End Property
-
-        Public ReadOnly Property CustomPropertiesGenerator As Common.CustomPropertiesGenerator
-            Get
-                Return _CustomPropertiesGenerator
-            End Get
-        End Property
-
         Public ReadOnly Property Details As DetailCollection(Of Common.Detail)
             Get
                 Return _Details
@@ -66,10 +52,6 @@ Namespace Common
                 Return s & " " & Me.PrimaryProperties.CommonID
             End Get
         End Property
-
-        Public Sub GenerateCustomProperties()
-            Me._CustomProperties = Me._CustomPropertiesGenerator.Generate
-        End Sub
 
         Public MustOverride Function NewDetail(ByVal product As Model.Product) As Detail
 
