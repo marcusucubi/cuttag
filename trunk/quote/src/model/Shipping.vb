@@ -10,7 +10,7 @@ Public Class Shipping
         If (_Dictionary.ContainsKey(Description)) Then
             Return _Dictionary(Description)
         End If
-        Return "Not Found"
+        Return 0
     End Function
 
     Private Sub New()
