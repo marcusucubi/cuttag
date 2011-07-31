@@ -90,12 +90,6 @@
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="src\controls\ListViewColumnSorter.vb" />
-    <Compile Include="src\controls\UserControl1.Designer.vb">
-      <DependentUpon>UserControl1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\controls\UserControl1.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="src\controls\WireAndComponentItem.vb" />
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
