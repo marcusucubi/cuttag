@@ -22,18 +22,12 @@ Partial Class frmBOMLookup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
-        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -70,26 +64,8 @@ Partial Class frmBOMLookup
         Me.Cancel_Button.TabIndex = 1
         Me.Cancel_Button.Text = "Cancel"
         '
-        'QuoteBindingSource
-        '
-        Me.QuoteBindingSource.DataMember = "_Quote"
-        Me.QuoteBindingSource.DataSource = Me.QuoteDataBase
-        Me.QuoteBindingSource.Filter = "IsQuote=False"
-        Me.QuoteBindingSource.Sort = "ID DESC"
-        '
-        'QuoteDataBase
-        '
-        Me.QuoteDataBase.DataSetName = "QuoteDataBase"
-        Me.QuoteDataBase.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        '_QuoteTableAdapter
-        '
-        Me._QuoteTableAdapter.ClearBeforeFill = True
-        '
         'ComboBox1
         '
-        Me.ComboBox1.DataSource = Me.QuoteBindingSource
-        Me.ComboBox1.DisplayMember = "ID"
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(92, 17)
         Me.ComboBox1.Name = "ComboBox1"
@@ -105,7 +81,7 @@ Partial Class frmBOMLookup
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "BOM Number:"
         '
-        'frmTemplateLookup
+        'frmBOMLookup
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -118,13 +94,11 @@ Partial Class frmBOMLookup
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmTemplateLookup"
+        Me.Name = "frmBOMLookup"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Open BOM"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -132,9 +106,6 @@ Partial Class frmBOMLookup
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
-    Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
 

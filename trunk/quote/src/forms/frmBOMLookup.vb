@@ -5,7 +5,11 @@ Public Class frmBOMLookup
     Public Shared Property QuoteID As Long
 
     Private Sub frmQuoteOpen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me._QuoteTableAdapter.Fill(Me.QuoteDataBase._Quote)
+
+        Dim table As QuoteDataBase._QuoteDataTable
+        table = New QuoteDataBaseTableAdapters._QuoteTableAdapter().GetDataByWithTemplates
+        Me.ComboBox1.DataSource = table
+        Me.ComboBox1.DisplayMember = "ID"
         GetQuoteID()
     End Sub
 
@@ -30,7 +34,9 @@ Public Class frmBOMLookup
 
     Private Sub GetQuoteID()
         Try
-            QuoteID = CLng(Me.ComboBox1.Text)
+            If Me.ComboBox1.Text.Length > 0 Then
+                QuoteID = CLng(Me.ComboBox1.Text)
+            End If
         Catch ex As Exception
             QuoteID = 0
         End Try
