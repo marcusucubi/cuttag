@@ -55,20 +55,6 @@ Public Class ObjectGenerator
             End If
         Next
 
-        'OnGenerateParentProperty(class1)
-
-        If Me.InitObject IsNot Nothing Then
-            'Dim ctor As New CodeConstructor
-            'ctor.Parameters.Add(New CodeParameterDeclarationExpression( _
-            '                    "System.Object", "Parent"))
-            'Dim as1 As New CodeAssignStatement( _
-            '    New CodeVariableReferenceExpression("_Parent"), _
-            '    New CodeVariableReferenceExpression("Parent"))
-            'ctor.Statements.Add(as1)
-            'ctor.Attributes = MemberAttributes.Public
-            'class1.Members.Add(ctor)
-        End If
-
         Dim code As String = GenerateCode(compileUnit)
         Return CompileCode(code)
     End Function
