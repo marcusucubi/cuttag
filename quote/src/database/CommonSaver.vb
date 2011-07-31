@@ -33,6 +33,7 @@ Public Class CommonSaver
 
     Public Shared Sub SaveCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
 
+        Console.WriteLine("Save")
         DeleteCustomProperties()
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
@@ -123,7 +124,7 @@ Public Class CommonSaver
         Next
     End Sub
 
-    Public Shared Sub DeleteCustomProperties()
+    Private Shared Sub DeleteCustomProperties()
         DeleteProperties(CUSTOM_PROPERTIES_ID)
     End Sub
 
