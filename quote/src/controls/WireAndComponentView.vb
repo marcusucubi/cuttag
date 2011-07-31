@@ -42,17 +42,22 @@
 
     End Sub
 
+    Private Sub ListView1_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles ListView1.GotFocus
+        SelectDetail()
+    End Sub
+
+    Private Sub ListView1_ItemActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles ListView1.ItemActivate
+        SelectDetail()
+    End Sub
+
+    Private Sub ListView1_ItemSelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.ListViewItemSelectionChangedEventArgs) Handles ListView1.ItemSelectionChanged
+        SelectDetail()
+    End Sub
+
     Private Sub ListView1_SelectedIndexChanged(ByVal sender As Object, _
                                                ByVal e As System.EventArgs) _
                                            Handles ListView1.SelectedIndexChanged
-        If ListView1.SelectedItems.Count > 0 Then
-            Dim i As Common.Detail
-            i = ListView1.SelectedItems(0).Tag
-            ActiveDetail.ActiveDetail.Detail = i
-        Else
-            ActiveDetail.ActiveDetail.Detail = Nothing
-        End If
-
+        'SelectDetail()
     End Sub
 
     Private Sub _DetailCollection_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _DetailCollection.ListChanged
@@ -70,6 +75,17 @@
         Next
         Dim left As ColumnHeader = Me.ListView1.Columns(0)
         left.Width = Me.ListView1.Width - size
+    End Sub
+
+    Private Sub SelectDetail()
+        Console.WriteLine("SelectDetail {0}", ListView1.SelectedItems.Count)
+        If ListView1.SelectedItems.Count > 0 Then
+            Dim i As Common.Detail
+            i = ListView1.SelectedItems(0).Tag
+            ActiveDetail.ActiveDetail.Detail = i
+        Else
+            ActiveDetail.ActiveDetail.Detail = Nothing
+        End If
     End Sub
 
     Private Sub Sync()
