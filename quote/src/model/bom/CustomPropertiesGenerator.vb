@@ -3,7 +3,7 @@ Imports System.ComponentModel
 Imports DCS.Quote.Common
 Imports System.Drawing.Design
 
-Namespace Model.Template
+Namespace Model.BOM
 
     Public Class CustomPropertiesGenerator
         Inherits Common.CustomPropertiesGenerator
@@ -25,7 +25,7 @@ Namespace Model.Template
             If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
                 g.InitObject = ActiveHeader.ActiveHeader.Header.ComputationProperties
             Else
-                Dim h As New Model.Template.Header
+                Dim h As New Model.BOM.Header
                 g.InitObject = h.ComputationProperties
             End If
 

@@ -1,6 +1,6 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 Imports DCS.Quote.Model
-Imports DCS.Quote.Model.Template
+Imports DCS.Quote.Model.BOM
 Imports System.ComponentModel
 
 Public Class frmComputationProperties

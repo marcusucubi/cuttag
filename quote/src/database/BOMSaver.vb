@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports DCS.Quote.Model.Template
+Imports DCS.Quote.Model.BOM
 Imports DCS.Quote.Model
 Imports DCS.Quote.QuoteDataBase
 Imports System.Reflection

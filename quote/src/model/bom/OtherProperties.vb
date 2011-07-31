@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Namespace Model.Template
+Namespace Model.BOM
 
     Public Class OtherProperties
         Inherits Common.OtherProperties

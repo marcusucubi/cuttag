@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Namespace Model.Template
+Namespace Model.BOM
     Public Class ComponentProperties
         Inherits Common.ComponentProperties
 
@@ -79,7 +79,7 @@ Namespace Model.Template
         Public Overloads ReadOnly Property UnitOfMeasure() As String
             Get
                 Return _QuoteDetail.Product.UnitOfMeasure.value
-              End Get
+            End Get
         End Property
 
         <DisplayName("Unit Cost")> _

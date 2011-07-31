@@ -2,7 +2,7 @@
 Imports System.Reflection
 Imports DCS.Quote.Model.Quote
 
-Namespace Model.Template
+Namespace Model.BOM
 
     Public Class WireProperties
         Inherits Common.WireProperties

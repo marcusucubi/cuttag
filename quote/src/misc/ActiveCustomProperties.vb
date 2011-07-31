@@ -5,7 +5,7 @@ Public Class ActiveCustomProperties
     Implements INotifyPropertyChanged
 
     Private _CustomProperties As New SaveableProperties
-    Private _CustomPropertiesGenerator As New Model.Template.CustomPropertiesGenerator
+    Private _CustomPropertiesGenerator As New Model.BOM.CustomPropertiesGenerator
 
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged
