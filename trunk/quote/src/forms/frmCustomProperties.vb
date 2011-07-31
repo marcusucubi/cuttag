@@ -49,6 +49,8 @@ Public Class frmCustomProperties
         Dim o As SaveableProperties = ActiveCustomProperties.ActiveCustomProperties.Properties
         If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
             o.Subject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+        Else
+            o.Subject = New Model.BOM.Header().ComputationProperties
         End If
         Me.PropertyGrid2.SelectedObject = o
         Me._Header = ActiveHeader.ActiveHeader.Header
