@@ -34,7 +34,7 @@ Public Class frmBOMLookup
 
     Private Sub GetQuoteID()
         Try
-            If Me.ComboBox1.Text.Length > 0 Then
+            If IsNumeric(Me.ComboBox1.Text) Then
                 QuoteID = CLng(Me.ComboBox1.Text)
             End If
         Catch ex As Exception
