@@ -33,7 +33,6 @@ Public Class frmDetailProperties
         Me._Active = Nothing
         Me._WireProperties = Nothing
         Me._ComponentProperties = Nothing
-        Me.PropertyGrid1.SelectedObject = Nothing
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

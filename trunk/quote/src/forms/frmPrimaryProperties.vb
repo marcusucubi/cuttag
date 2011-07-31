@@ -13,7 +13,6 @@ Public Class frmPrimaryProperties
 
     Private Sub _Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
         Me._ActiveQuote = Nothing
-        Me.PropertyGrid1.SelectedObject = Nothing
         _Properties = Nothing
     End Sub
 

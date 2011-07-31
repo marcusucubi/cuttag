@@ -14,7 +14,6 @@ Public Class frmOtherProperties
 
     Private Sub frmProperties_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
         Me._ActiveQuote = Nothing
-        Me.PropertyGrid1.SelectedObject = Nothing
         _NonQuoteProperties = Nothing
     End Sub
 

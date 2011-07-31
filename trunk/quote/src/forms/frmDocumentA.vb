@@ -72,15 +72,17 @@ Public Class frmDocumentA
         End If
     End Sub
 
-    Private Sub frmQuoteA_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
+    Private Sub Me_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
         ActiveHeader.ActiveHeader.Header = Me._Header
         EnableButtons()
+        Console.WriteLine("Activated")
     End Sub
 
-    Private Sub frmQuoteA_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
+    Private Sub Me_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
         ActiveHeader.ActiveHeader.Header = Nothing
         ActiveDetail.ActiveDetail.Detail = Nothing
         EnableButtons()
+        Console.WriteLine("Deactivated")
     End Sub
 
     Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
