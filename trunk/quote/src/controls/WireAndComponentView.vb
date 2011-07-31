@@ -54,12 +54,6 @@
         SelectDetail()
     End Sub
 
-    Private Sub ListView1_SelectedIndexChanged(ByVal sender As Object, _
-                                               ByVal e As System.EventArgs) _
-                                           Handles ListView1.SelectedIndexChanged
-        'SelectDetail()
-    End Sub
-
     Private Sub _DetailCollection_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _DetailCollection.ListChanged
         Sync()
     End Sub
@@ -78,7 +72,6 @@
     End Sub
 
     Private Sub SelectDetail()
-        Console.WriteLine("SelectDetail {0}", ListView1.SelectedItems.Count)
         If ListView1.SelectedItems.Count > 0 Then
             Dim i As Common.Detail
             i = ListView1.SelectedItems(0).Tag
