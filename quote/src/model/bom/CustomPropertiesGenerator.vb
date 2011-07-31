@@ -24,6 +24,9 @@ Namespace Model.Template
             g.BaseTypeName = GetType(SaveableProperties).Name
             If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
                 g.InitObject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+            Else
+                Dim h As New Model.Template.Header
+                g.InitObject = h.ComputationProperties
             End If
 
             CommonSaver.SaveCustomPropertiesGenerator(Me)
