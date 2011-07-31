@@ -31,6 +31,7 @@ Public Class ActiveCustomProperties
     End Sub
 
     Public Sub Save()
+        CommonSaver.DeleteCustomProperties()
         CommonSaver.SaveCustomPropertiesGenerator(_CustomProperties)
     End Sub
 

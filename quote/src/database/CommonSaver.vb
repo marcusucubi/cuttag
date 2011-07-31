@@ -33,6 +33,8 @@ Public Class CommonSaver
 
     Public Shared Sub SaveCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
 
+        DeleteCustomProperties()
+
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
         For Each p As PropInfo In gen.Properties
