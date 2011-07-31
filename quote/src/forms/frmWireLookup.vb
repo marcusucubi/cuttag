@@ -38,7 +38,12 @@ Public Class frmWireLookup
 
     Private Sub frmPartLookup_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            Me._WiresTableAdapter.Fill(Me.DevDataSet1._Wires)
+            'Me.DevDataSet1._Wires = Me._WiresTableAdapter.GetData()
+            'Me._WiresTableAdapter.Fill(Me.DevDataSet1._Wires)
+            Dim table As QuoteDataBase._WiresDataTable
+            table = New QuoteDataBaseTableAdapters._WiresTableAdapter().GetData
+            Me.ListBox1.DataSource = table
+            Me.ListBox1.DisplayMember = "PartNumber"
         Catch ex As Exception
             Console.WriteLine(ex.Message)
             MsgBox(ex.Message)

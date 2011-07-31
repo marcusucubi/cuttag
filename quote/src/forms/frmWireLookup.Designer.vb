@@ -22,17 +22,11 @@ Partial Class frmWireLookup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.DevDataSet1 = New DCS.Quote.QuoteDataBase()
-        Me.WiresBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me._WiresTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._WiresTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.DevDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.WiresBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -71,27 +65,11 @@ Partial Class frmWireLookup
         '
         'ListBox1
         '
-        Me.ListBox1.DataSource = Me.WiresBindingSource
-        Me.ListBox1.DisplayMember = "PartNumber"
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(12, 23)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(165, 186)
         Me.ListBox1.TabIndex = 1
-        '
-        'DevDataSet1
-        '
-        Me.DevDataSet1.DataSetName = "devDataSet1"
-        Me.DevDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'WiresBindingSource
-        '
-        Me.WiresBindingSource.DataMember = "_Wires"
-        Me.WiresBindingSource.DataSource = Me.DevDataSet1
-        '
-        '_WiresTableAdapter
-        '
-        Me._WiresTableAdapter.ClearBeforeFill = True
         '
         'frmWireLookup
         '
@@ -109,8 +87,6 @@ Partial Class frmWireLookup
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Wires"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.DevDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.WiresBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -118,8 +94,5 @@ Partial Class frmWireLookup
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents DevDataSet1 As DCS.Quote.QuoteDataBase
-    Friend WithEvents WiresBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _WiresTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._WiresTableAdapter
 
 End Class
