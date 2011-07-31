@@ -59,25 +59,31 @@ Public Class ObjectGenerator
             End If
         Next
 
+        OnGenerateParentProperty(class1)
+
         If Me.InitObject IsNot Nothing Then
-
-            Dim parent As New CodeMemberField("System.Object", "_Parent")
-            class1.Members.Add(parent)
-
-            Dim ctor As New CodeConstructor
-            ctor.Parameters.Add(New CodeParameterDeclarationExpression( _
-                                "System.Object", "Parent"))
-            Dim as1 As New CodeAssignStatement( _
-                New CodeVariableReferenceExpression("_Parent"), _
-                New CodeVariableReferenceExpression("Parent"))
-            ctor.Statements.Add(as1)
-            ctor.Attributes = MemberAttributes.Public
-            class1.Members.Add(ctor)
+            'Dim ctor As New CodeConstructor
+            'ctor.Parameters.Add(New CodeParameterDeclarationExpression( _
+            '                    "System.Object", "Parent"))
+            'Dim as1 As New CodeAssignStatement( _
+            '    New CodeVariableReferenceExpression("_Parent"), _
+            '    New CodeVariableReferenceExpression("Parent"))
+            'ctor.Statements.Add(as1)
+            'ctor.Attributes = MemberAttributes.Public
+            'class1.Members.Add(ctor)
         End If
 
         Dim code As String = GenerateCode(compileUnit)
         Return CompileCode(code)
     End Function
+
+    Private Sub OnGenerateParentProperty(ByVal class1 As CodeTypeDeclaration)
+        Dim parent As New CodeMemberField()
+        parent.Name = "Parent"
+        parent.Type = New CodeTypeReference("System.Object")
+        parent.Attributes = MemberAttributes.Public
+        class1.Members.Add(parent)
+    End Sub
 
     Private Function GenerateCode(ByVal compileunit As CodeCompileUnit) _
         As String
@@ -91,7 +97,7 @@ Public Class ObjectGenerator
                 New CodeGeneratorOptions())
             tw.Close()
             sourceFile = sw.ToString
-            'Console.WriteLine(sourceFile)
+            Console.WriteLine(sourceFile)
         End Using
 
         Return sourceFile
@@ -127,11 +133,9 @@ Public Class ObjectGenerator
         For Each t As Type In classes
             If t.Name = ClassName Then
                 result = t.MakeByRefType()
-                If Me.InitObject Is Nothing Then
-                    result = Activator.CreateInstance(t)
-                Else
-                    Dim params() As Object = {Me.InitObject}
-                    result = Activator.CreateInstance(t, params)
+                result = Activator.CreateInstance(t)
+                If Me.InitObject IsNot Nothing Then
+                    result.Parent = Me.InitObject
                 End If
             End If
         Next
@@ -175,7 +179,8 @@ Public Class ObjectGenerator
         Else
             If Me.InitObject IsNot Nothing Then
                 For Each node As System.Reflection.PropertyInfo In Me.InitObject.GetType.GetProperties
-                    Dim variableRef1 As New CodeVariableReferenceExpression("_Parent")
+                    Dim variableRef1 As New CodeFieldReferenceExpression( _
+                        New CodeThisReferenceExpression(), "Parent")
                     Dim propertyRef As New CodePropertyReferenceExpression( _
                         variableRef1, node.Name)
                     Dim variableDeclaration As New CodeVariableDeclarationStatement( _
