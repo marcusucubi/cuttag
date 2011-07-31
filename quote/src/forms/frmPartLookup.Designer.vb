@@ -22,17 +22,11 @@ Partial Class frmComponentLookup
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.PartsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DevDataSet = New DCS.Quote.QuoteDataBase()
-        Me._PartsTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._PartsTableAdapter()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -72,29 +66,13 @@ Partial Class frmComponentLookup
         '
         'ListBox1
         '
-        Me.ListBox1.DataSource = Me.PartsBindingSource
-        Me.ListBox1.DisplayMember = "PartNumber"
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(12, 12)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(187, 199)
         Me.ListBox1.TabIndex = 1
         '
-        'PartsBindingSource
-        '
-        Me.PartsBindingSource.DataMember = "_Parts"
-        Me.PartsBindingSource.DataSource = Me.DevDataSet
-        '
-        'DevDataSet
-        '
-        Me.DevDataSet.DataSetName = "devDataSet"
-        Me.DevDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        '_PartsTableAdapter
-        '
-        Me._PartsTableAdapter.ClearBeforeFill = True
-        '
-        'frmPartLookup
+        'frmComponentLookup
         '
         Me.AcceptButton = Me.OK_Button
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -106,13 +84,11 @@ Partial Class frmComponentLookup
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "frmPartLookup"
+        Me.Name = "frmComponentLookup"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Components"
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.PartsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DevDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -120,8 +96,5 @@ Partial Class frmComponentLookup
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents DevDataSet As DCS.Quote.QuoteDataBase
-    Friend WithEvents PartsBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _PartsTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._PartsTableAdapter
 
 End Class

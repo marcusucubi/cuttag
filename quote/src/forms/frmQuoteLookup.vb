@@ -5,8 +5,11 @@ Public Class frmQuoteLookup
     Public Shared Property QuoteID As Long
 
     Private Sub frmQuoteOpen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'QuoteDataBase._Quote' table. You can move, or remove it, as needed.
-        Me._QuoteTableAdapter.Fill(Me.QuoteDataSet._Quote)
+
+        Dim table As QuoteDataBase._QuoteDataTable
+        table = New QuoteDataBaseTableAdapters._QuoteTableAdapter().GetDataByWithQuotes
+        Me.ComboBox1.DataSource = table
+        Me.ComboBox1.DisplayMember = "ID"
         GetQuoteID()
     End Sub
 
@@ -31,7 +34,9 @@ Public Class frmQuoteLookup
 
     Private Sub GetQuoteID()
         Try
-            QuoteID = CLng(Me.ComboBox1.Text)
+            If IsNumeric(Me.ComboBox1.Text) Then
+                QuoteID = CLng(Me.ComboBox1.Text)
+            End If
         Catch ex As Exception
             QuoteID = 0
         End Try
