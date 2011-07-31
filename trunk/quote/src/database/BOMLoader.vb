@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports DCS.Quote
-Imports DCS.Quote.Model.Template
+Imports DCS.Quote.Model.BOM
 Imports System.Reflection
 Imports System.Data.OleDb
 Imports System.Transactions
