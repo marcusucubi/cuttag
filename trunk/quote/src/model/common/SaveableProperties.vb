@@ -14,6 +14,9 @@ Namespace Common
 
         Public Event SavableChange As SavableChangeHandler
 
+        <Browsable(False)> _
+        Public Property Subject As Object
+
         <Browsable(False)>
         Public ReadOnly Property Dirty As Boolean
             Get

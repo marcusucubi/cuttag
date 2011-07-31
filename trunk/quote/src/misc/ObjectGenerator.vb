@@ -5,10 +5,6 @@ Imports Microsoft.CSharp
 Imports System.Reflection
 Imports System.Collections.Specialized
 
-''' <summary>
-''' Creates an object with properties in the PropertyInfo list.
-''' </summary>
-''' <remarks></remarks>
 Public Class ObjectGenerator
 
     Public Class PropertyInfo
@@ -59,7 +55,7 @@ Public Class ObjectGenerator
             End If
         Next
 
-        OnGenerateParentProperty(class1)
+        'OnGenerateParentProperty(class1)
 
         If Me.InitObject IsNot Nothing Then
             'Dim ctor As New CodeConstructor
@@ -135,7 +131,7 @@ Public Class ObjectGenerator
                 result = t.MakeByRefType()
                 result = Activator.CreateInstance(t)
                 If Me.InitObject IsNot Nothing Then
-                    result.Parent = Me.InitObject
+                    result.Subject = Me.InitObject
                 End If
             End If
         Next
@@ -179,8 +175,8 @@ Public Class ObjectGenerator
         Else
             If Me.InitObject IsNot Nothing Then
                 For Each node As System.Reflection.PropertyInfo In Me.InitObject.GetType.GetProperties
-                    Dim variableRef1 As New CodeFieldReferenceExpression( _
-                        New CodeThisReferenceExpression(), "Parent")
+                    Dim variableRef1 As New CodePropertyReferenceExpression( _
+                        New CodeThisReferenceExpression(), "Subject")
                     Dim propertyRef As New CodePropertyReferenceExpression( _
                         variableRef1, node.Name)
                     Dim variableDeclaration As New CodeVariableDeclarationStatement( _
