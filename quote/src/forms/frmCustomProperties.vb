@@ -3,6 +3,7 @@ Imports System.Drawing.Design
 Imports System.ComponentModel
 Imports System.Windows.Forms.Design
 Imports System.ComponentModel.Design
+Imports DCS.Quote.Common
 
 Public Class frmCustomProperties
     Inherits DockContent
@@ -45,14 +46,19 @@ Public Class frmCustomProperties
     Private Sub UpdateProperties()
         Dim o1 As Object = ActiveCustomProperties.ActiveCustomProperties.Generator
         Me.PropertyGrid1.SelectedObject = o1
-        Dim o As Object = ActiveCustomProperties.ActiveCustomProperties.Properties
+        Dim o As SaveableProperties = ActiveCustomProperties.ActiveCustomProperties.Properties
+        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
+            o.Subject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+        End If
         Me.PropertyGrid2.SelectedObject = o
         Me._Header = ActiveHeader.ActiveHeader.Header
-        Me._ComputationProperties = Me._Header.ComputationProperties
-        If _Header.IsQuote Then
-            Me.PropertyGrid1.Visible = False
-        Else
-            Me.PropertyGrid1.Visible = True
+        If Me._Header IsNot Nothing Then
+            Me._ComputationProperties = Me._Header.ComputationProperties
+            If _Header.IsQuote Then
+                Me.PropertyGrid1.Visible = False
+            Else
+                Me.PropertyGrid1.Visible = True
+            End If
         End If
     End Sub
 
