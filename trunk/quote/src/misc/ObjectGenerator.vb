@@ -79,7 +79,7 @@ Public Class ObjectGenerator
                 New CodeGeneratorOptions())
             tw.Close()
             sourceFile = sw.ToString
-            'Console.WriteLine(sourceFile)
+            Console.WriteLine(sourceFile)
         End Using
 
         Return sourceFile
@@ -165,8 +165,10 @@ Public Class ObjectGenerator
                         New CodeThisReferenceExpression(), "Subject")
                     Dim propertyRef As New CodePropertyReferenceExpression( _
                         variableRef1, node.Name)
+                    '                    Dim variableDeclaration As New CodeVariableDeclarationStatement( _
+                    '                        node.PropertyType, node.Name, propertyRef)
                     Dim variableDeclaration As New CodeVariableDeclarationStatement( _
-                        node.PropertyType, node.Name, propertyRef)
+                        GetType(System.Object), node.Name, propertyRef)
                     property1.GetStatements.Add(variableDeclaration)
                 Next
             End If
