@@ -46,13 +46,20 @@ Public Class frmCustomProperties
     Private Sub UpdateProperties()
         Dim o1 As Object = ActiveCustomProperties.ActiveCustomProperties.Generator
         Me.PropertyGrid1.SelectedObject = o1
+
         Dim o As SaveableProperties = ActiveCustomProperties.ActiveCustomProperties.Properties
         If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
-            o.Subject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+            If ActiveHeader.ActiveHeader.Header.IsQuote Then
+                o = ActiveHeader.ActiveHeader.Header.CustomProperties
+            Else
+                o.Subject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+            End If
         Else
             o.Subject = New Model.BOM.Header().ComputationProperties
         End If
+
         Me.PropertyGrid2.SelectedObject = o
+
         Me._Header = ActiveHeader.ActiveHeader.Header
         If Me._Header IsNot Nothing Then
             Me._ComputationProperties = Me._Header.ComputationProperties
