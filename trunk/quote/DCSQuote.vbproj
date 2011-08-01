@@ -336,7 +336,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="QuoteTemplate.xls">
+    <None Include="Spreadsheets\QuoteTemplate.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="src\database\QuoteDataBase.xsc">
@@ -350,7 +350,7 @@
     <None Include="src\database\QuoteDataBase.xss">
       <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </None>
-    <None Include="Testdate5.xls" />
+    <None Include="Spreadsheets\Testdate5.xls" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
