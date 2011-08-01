@@ -336,6 +336,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="Spreadsheets\ProductionTemplate.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Spreadsheets\QuoteTemplate.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
