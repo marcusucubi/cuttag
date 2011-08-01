@@ -7,8 +7,15 @@ Public Class frmExport
 
     Private Sub frmExport_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim path As String
-        path = System.IO.Path.GetFullPath("QuoteTemplate.xls")
-        Me.txtPath.Text = path
+        path = System.IO.Path.GetFullPath("Spreadsheets")
+
+        Dim dirs() As String = Directory.GetFiles("Spreadsheets")
+        For Each fullPath As String In dirs
+            Dim lastPart As String = fullPath.Substring(fullPath.LastIndexOf("\") + 1)
+            Me.ComboBox1.Items.Add(lastPart)
+        Next
+        Me.ComboBox1.SelectedIndex = 0
+
         Me._FilePath = path
     End Sub
 
@@ -23,42 +30,19 @@ Public Class frmExport
         Me.Close()
     End Sub
 
-    Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
-
-        Dim myStream As Stream = Nothing
-        Dim openFileDialog1 As New OpenFileDialog()
-
-        openFileDialog1.InitialDirectory = "c:\"
-        openFileDialog1.Filter = "xls files (*.xls)|*.xls|All files (*.*)|*.*"
-        openFileDialog1.FilterIndex = 1
-        openFileDialog1.RestoreDirectory = True
-
-        If openFileDialog1.ShowDialog() = DialogResult.OK Then
-            Try
-                myStream = openFileDialog1.OpenFile()
-                If (myStream IsNot Nothing) Then
-                    _FilePath = openFileDialog1.FileName
-                    Me.txtPath.Text = _FilePath
-                    EnableButtons()
-                End If
-            Catch Ex As Exception
-                MessageBox.Show("Cannot read file from disk. Original error: " & Ex.Message)
-            Finally
-                ' Check this again, since we need to make sure we didn't throw an exception on open.
-                If (myStream IsNot Nothing) Then
-                    myStream.Close()
-                End If
-            End Try
-        End If
-    End Sub
-
     Private Sub EnableButtons()
         Me.OK_Button.Enabled = True
     End Sub
 
     Private Sub Export()
         Dim export As New Export
-        export.Export(ActiveHeader.ActiveHeader.Header, _FilePath)
+        Dim file As String = _FilePath & "\" & Me.ComboBox1.Text
+        export.Export(ActiveHeader.ActiveHeader.Header, file)
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim s As String = Directory.GetCurrentDirectory() + "\Spreadsheets"
+        Process.Start("explorer.exe", s)
     End Sub
 
 End Class
