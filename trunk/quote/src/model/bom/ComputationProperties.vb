@@ -193,7 +193,7 @@ Namespace Model.BOM
         DescriptionAttribute("ShippingContainerCost / FunctionalQuantity" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
             Get
-                If (Me.MinimumOrderQuantity = 0) Then
+                If (Me.FunctionalQuantity = 0) Then
                     Return 0
                 End If
                 Return Math.Round(Me.ShippingContainerCost / Me.FunctionalQuantity, 2)
