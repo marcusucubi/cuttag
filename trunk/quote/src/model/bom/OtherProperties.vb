@@ -69,20 +69,6 @@ Namespace Model.BOM
             End Set
         End Property
 
-        <CategoryAttribute("Quote"), _
-        DisplayName("Quote Type"), _
-        TypeConverter(GetType(QuoteTypeList)), _
-        DescriptionAttribute("The type of quote")> _
-        Public Property QuoteType As String
-            Get
-                Return _QuoteType
-            End Get
-            Set(ByVal value As String)
-                _QuoteType = value
-                Me.SendEvents()
-            End Set
-        End Property
-
     End Class
 
 End Namespace
