@@ -16,7 +16,6 @@ Namespace Model.BOM
                 Dim info As New PropertyInfo
                 info.Name = o.Name
                 info.CodeSnippet = o.Expression
-                info.TypeName = "System.String"
                 info.TypeName = GetType(System.Object).Name
                 info.Description = o.Expression
                 g.Add(info)
