@@ -22,11 +22,14 @@ Namespace Model.BOM
         Private _WireSetupTime As Integer = 120
         Private _WireMachineTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
-        Private _MinimumOrderQuantity As Integer = 10
+        Private _MinimumOrderQuantity As Integer = 0
+        Private _OrderQuantity As Integer = 0
+        Private _SingleDefQuantity As Integer = 0
         Private _PercentCopperScrap As Decimal = 3
         Private _CopperPrice As Decimal = 1
         Private _MaterialMarkup As Decimal = 1
         Private _ComponentSetupTime As Decimal
+        Private _QuoteType As String = "Production"
 
 #End Region
 
@@ -128,6 +131,52 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute("Shipping"), _
+        DisplayName("Functional Quantity"), _
+        DescriptionAttribute("If(QuoteType = PRODUCTION) then " + Chr(10) + _
+            "     MinimumOrderQuantity" + Chr(10) + _
+            "ElseIf(QuoteType = SINGLE_DEFINATE) then " + Chr(10) + _
+            "     SingleDefinateQuantity" + Chr(10) + _
+            "Else OrderQuantity" + Chr(10) _
+            )> _
+        Public ReadOnly Property FunctionalQuantity As Integer
+            Get
+                Dim result As Integer
+                If _QuoteType = QuoteTypeList.PRODUCTION Then
+                    result = Me._MinimumOrderQuantity
+                ElseIf _QuoteType = QuoteTypeList.SINGLE_DEFINATE Then
+                    result = Me._SingleDefQuantity
+                Else
+                    result = Me._OrderQuantity
+                End If
+                Return result
+            End Get
+        End Property
+
+        <CategoryAttribute("Shipping"), _
+        DisplayName("Order Quantity")> _
+        Public Property OrderQuantity As Integer
+            Get
+                Return _OrderQuantity
+            End Get
+            Set(ByVal Value As Integer)
+                _OrderQuantity = Value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Shipping"), _
+        DisplayName("Single Definite Quantity")> _
+        Public Property SingleDefiniteQuantity As Integer
+            Get
+                Return _SingleDefQuantity
+            End Get
+            Set(ByVal Value As Integer)
+                _SingleDefQuantity = Value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Shipping"), _
         DisplayName("Shipping Container Cost"), _
         DescriptionAttribute("Cost of the Shipping Container" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingContainerCost As Decimal
@@ -141,13 +190,13 @@ Namespace Model.BOM
 
         <CategoryAttribute("Shipping"), _
         DisplayName("Shipping Container Cost Per Order"), _
-        DescriptionAttribute("ShippingContainerCost / MinimumOrderQuantity" + Chr(10) + "(Dollars)")> _
+        DescriptionAttribute("ShippingContainerCost / FunctionalQuantity" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
             Get
                 If (Me.MinimumOrderQuantity = 0) Then
                     Return 0
                 End If
-                Return Math.Round(Me.ShippingContainerCost / Me.MinimumOrderQuantity, 2)
+                Return Math.Round(Me.ShippingContainerCost / Me.FunctionalQuantity, 2)
             End Get
         End Property
 
@@ -174,6 +223,20 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As String)
                 _ShippingCost = Value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Shipping"), _
+        DisplayName("Quote Type"), _
+        TypeConverter(GetType(QuoteTypeList)), _
+        DescriptionAttribute("The type of quote")> _
+        Public Property QuoteType As String
+            Get
+                Return _QuoteType
+            End Get
+            Set(ByVal value As String)
+                _QuoteType = value
                 Me.SendEvents()
             End Set
         End Property
