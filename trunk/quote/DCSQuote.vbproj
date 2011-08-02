@@ -336,7 +336,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Spreadsheets\PilotTemplate.xls">
+    <None Include="Spreadsheets\NonProductionTemplate.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Spreadsheets\ProductionTemplate.xls">
