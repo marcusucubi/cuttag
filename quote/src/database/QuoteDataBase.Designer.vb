@@ -3079,7 +3079,7 @@ Partial Public Class QuoteDataBase
         Public Function NewWireComponentSourceRow() As WireComponentSourceRow
             Return CType(Me.NewRow,WireComponentSourceRow)
         End Function
-        
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow

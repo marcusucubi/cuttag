@@ -65,22 +65,31 @@ Namespace Model
             End Get
         End Property
 
-        Public Overloads ReadOnly Property Description() As String
+        Public Property Description() As String
             Get
                 Return m_Description
             End Get
+            Set(ByVal value As String)
+                m_Description = value
+            End Set
         End Property
 
-        Public Overloads ReadOnly Property LeadTime() As Integer
+        Public Property LeadTime() As Integer
             Get
                 Return m_LeadTime
             End Get
+            Set(ByVal value As Integer)
+                m_LeadTime = value
+            End Set
         End Property
 
-        Public Overloads ReadOnly Property Vendor() As String
+        Public Property Vendor() As String
             Get
                 Return m_Vendor
             End Get
+            Set(ByVal value As String)
+                m_Vendor = value
+            End Set
         End Property
 
     End Class
