@@ -52,41 +52,53 @@ Namespace Model.BOM
 
         <DisplayName("Description"), _
         CategoryAttribute("Vendor")> _
-        Public Overloads ReadOnly Property Description() As String
+        Public Property Description() As String
             Get
                 Return _QuoteDetail.Product.Description
             End Get
+            Set(ByVal value As String)
+                _QuoteDetail.Product.Description = value
+            End Set
         End Property
 
         <DisplayName("Lead Time"), _
         CategoryAttribute("Vendor")> _
-        Public Overloads ReadOnly Property LeadTime() As Integer
+        Public Property LeadTime() As Integer
             Get
                 Return _QuoteDetail.Product.LeadTime
             End Get
+            Set(ByVal value As Integer)
+                _QuoteDetail.Product.LeadTime = value
+            End Set
         End Property
 
         <DisplayName("Vendor"), _
         CategoryAttribute("Vendor")> _
-        Public Overloads ReadOnly Property Vendor() As String
+        Public Property Vendor() As String
             Get
                 Return _QuoteDetail.Product.Vendor
             End Get
+            Set(ByVal value As String)
+                _QuoteDetail.Product.Vendor = value
+            End Set
         End Property
 
         <DisplayName("Unit Of Measure"), _
         CategoryAttribute("Vendor")> _
-        Public Overloads ReadOnly Property UnitOfMeasure() As String
+        Public ReadOnly Property UnitOfMeasure() As String
             Get
                 Return _QuoteDetail.Product.UnitOfMeasure.value
             End Get
         End Property
 
         <DisplayName("Unit Cost")> _
-        Public Overloads ReadOnly Property UnitCost() As Decimal
+        Public Property UnitCost() As Decimal
             Get
                 Return _QuoteDetail.UnitCost
             End Get
+            Set(ByVal value As Decimal)
+                _QuoteDetail.UnitCost = value
+            End Set
         End Property
 
         Private Overloads Sub SendEvents()

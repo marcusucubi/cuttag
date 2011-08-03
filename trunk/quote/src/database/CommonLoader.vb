@@ -27,8 +27,12 @@ Public Class CommonLoader
             If (parts.Count > 0) Then
                 Dim part As WireComponentSourceRow
                 part = parts(0)
+                Dim price As Decimal = 0
+                If Not part.IsQuotePriceNull Then
+                    price = part.QuotePrice
+                End If
                 Dim partObj As New Product( _
-                    part.PartNumber, part.QuotePrice, _
+                    part.PartNumber, price, _
                     0, UnitOfMeasure.BY_EACH, Nothing, part)
 
                 detail = q.NewDetail(partObj)
