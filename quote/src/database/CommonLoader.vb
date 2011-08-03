@@ -14,7 +14,8 @@ Public Class CommonLoader
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim partAdaptor As New _PartsTableAdapter
-        Dim wireAdaptor As New _WiresTableAdapter
+        Dim wireAdaptor As New WireSourceTableAdapter
+        Dim gageAdaptor As New GageTableAdapter
         Dim id As Integer = q.PrimaryProperties.CommonID
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
@@ -33,17 +34,26 @@ Public Class CommonLoader
                 detail = q.NewDetail(partObj)
             End If
 
-            Dim wires As _WiresDataTable
+            Dim wires As WireSourceDataTable
             wires = wireAdaptor.GetDataByPartNumber(row.ProductCode)
             If (wires.Count > 0) Then
-                Dim wire As _WiresRow
+                Dim wire As WireSourceRow
                 wire = wires(0)
                 Dim gage As String = ""
-                If Not wire.IsGageNull Then
-                    gage = wire.Gage
+                Dim gageTable As GageDataTable
+                gageTable = gageAdaptor.GetDataByGageID(wire.GageID)
+                If gageTable IsNot Nothing Then
+                    Dim gageRow As GageRow = gageTable.Rows(0)
+                    gage = gageRow.Gage
                 End If
-                Dim wireObj As New Product( _
-                    wire.PartNumber, wire.Price, _
+
+                Dim price As Decimal = 0
+                If Not wire.IsWireTypeIDNull Then
+                    price = wire.QuotePrice
+                End If
+                Dim wireObj As Product
+                wireObj = New Product( _
+                    wire.PartNumber, price, _
                     gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
 
                 detail = q.NewDetail(wireObj)

@@ -20,7 +20,7 @@ Namespace Model
                        ByVal UnitCost As Decimal, _
                        ByVal Gage As String, _
                        ByVal UnitOfMeasure As UnitOfMeasure, _
-                       ByVal WireRow As QuoteDataBase._WiresRow, _
+                       ByVal WireRow As QuoteDataBase.WireSourceRow, _
                        ByVal PartRow As QuoteDataBase._PartsRow
                        )
             Me.m_code = Code

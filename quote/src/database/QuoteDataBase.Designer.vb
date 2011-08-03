@@ -35,7 +35,9 @@ Partial Public Class QuoteDataBase
     
     Private table_Parts As _PartsDataTable
     
-    Private table_Wires As _WiresDataTable
+    Private tableWireSource As WireSourceDataTable
+    
+    Private tableGage As GageDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -81,8 +83,11 @@ Partial Public Class QuoteDataBase
             If (Not (ds.Tables("_Parts")) Is Nothing) Then
                 MyBase.Tables.Add(New _PartsDataTable(ds.Tables("_Parts")))
             End If
-            If (Not (ds.Tables("_Wires")) Is Nothing) Then
-                MyBase.Tables.Add(New _WiresDataTable(ds.Tables("_Wires")))
+            If (Not (ds.Tables("WireSource")) Is Nothing) Then
+                MyBase.Tables.Add(New WireSourceDataTable(ds.Tables("WireSource")))
+            End If
+            If (Not (ds.Tables("Gage")) Is Nothing) Then
+                MyBase.Tables.Add(New GageDataTable(ds.Tables("Gage")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -155,9 +160,19 @@ Partial Public Class QuoteDataBase
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property _Wires() As _WiresDataTable
+    Public ReadOnly Property WireSource() As WireSourceDataTable
         Get
-            Return Me.table_Wires
+            Return Me.tableWireSource
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property Gage() As GageDataTable
+        Get
+            Return Me.tableGage
         End Get
     End Property
     
@@ -243,8 +258,11 @@ Partial Public Class QuoteDataBase
             If (Not (ds.Tables("_Parts")) Is Nothing) Then
                 MyBase.Tables.Add(New _PartsDataTable(ds.Tables("_Parts")))
             End If
-            If (Not (ds.Tables("_Wires")) Is Nothing) Then
-                MyBase.Tables.Add(New _WiresDataTable(ds.Tables("_Wires")))
+            If (Not (ds.Tables("WireSource")) Is Nothing) Then
+                MyBase.Tables.Add(New WireSourceDataTable(ds.Tables("WireSource")))
+            End If
+            If (Not (ds.Tables("Gage")) Is Nothing) Then
+                MyBase.Tables.Add(New GageDataTable(ds.Tables("Gage")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -308,10 +326,16 @@ Partial Public Class QuoteDataBase
                 Me.table_Parts.InitVars
             End If
         End If
-        Me.table_Wires = CType(MyBase.Tables("_Wires"),_WiresDataTable)
+        Me.tableWireSource = CType(MyBase.Tables("WireSource"),WireSourceDataTable)
         If (initTable = true) Then
-            If (Not (Me.table_Wires) Is Nothing) Then
-                Me.table_Wires.InitVars
+            If (Not (Me.tableWireSource) Is Nothing) Then
+                Me.tableWireSource.InitVars
+            End If
+        End If
+        Me.tableGage = CType(MyBase.Tables("Gage"),GageDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableGage) Is Nothing) Then
+                Me.tableGage.InitVars
             End If
         End If
     End Sub
@@ -334,8 +358,10 @@ Partial Public Class QuoteDataBase
         MyBase.Tables.Add(Me.table_QuoteDetail)
         Me.table_Parts = New _PartsDataTable()
         MyBase.Tables.Add(Me.table_Parts)
-        Me.table_Wires = New _WiresDataTable()
-        MyBase.Tables.Add(Me.table_Wires)
+        Me.tableWireSource = New WireSourceDataTable()
+        MyBase.Tables.Add(Me.tableWireSource)
+        Me.tableGage = New GageDataTable()
+        MyBase.Tables.Add(Me.tableGage)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -370,7 +396,13 @@ Partial Public Class QuoteDataBase
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerialize_Wires() As Boolean
+    Private Function ShouldSerializeWireSource() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Function ShouldSerializeGage() As Boolean
         Return false
     End Function
     
@@ -448,7 +480,10 @@ Partial Public Class QuoteDataBase
     Public Delegate Sub _PartsRowChangeEventHandler(ByVal sender As Object, ByVal e As _PartsRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub _WiresRowChangeEventHandler(ByVal sender As Object, ByVal e As _WiresRowChangeEvent)
+    Public Delegate Sub WireSourceRowChangeEventHandler(ByVal sender As Object, ByVal e As WireSourceRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub GageRowChangeEventHandler(ByVal sender As Object, ByVal e As GageRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -2207,23 +2242,51 @@ Partial Public Class QuoteDataBase
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class _WiresDataTable
+    Partial Public Class WireSourceDataTable
         Inherits Global.System.Data.DataTable
         Implements Global.System.Collections.IEnumerable
         
-        Private columnID As Global.System.Data.DataColumn
+        Private columnWireSourceID As Global.System.Data.DataColumn
+        
+        Private columnOrganizationID As Global.System.Data.DataColumn
         
         Private columnPartNumber As Global.System.Data.DataColumn
         
-        Private columnPrice As Global.System.Data.DataColumn
+        Private columnDescription As Global.System.Data.DataColumn
         
-        Private columnGage As Global.System.Data.DataColumn
+        Private columnNew As Global.System.Data.DataColumn
+        
+        Private columnConductorCount As Global.System.Data.DataColumn
+        
+        Private columnIsTwisted As Global.System.Data.DataColumn
+        
+        Private columnColorID As Global.System.Data.DataColumn
+        
+        Private columnWireTypeID As Global.System.Data.DataColumn
+        
+        Private columnGageID As Global.System.Data.DataColumn
+        
+        Private columnCopperWtPerFt As Global.System.Data.DataColumn
+        
+        Private columnDataColumn1 As Global.System.Data.DataColumn
+        
+        Private columnCopperFtPerLb As Global.System.Data.DataColumn
+        
+        Private columnColor As Global.System.Data.DataColumn
+        
+        Private columnUOM As Global.System.Data.DataColumn
+        
+        Private columnMM2_Conductor As Global.System.Data.DataColumn
+        
+        Private columnOD As Global.System.Data.DataColumn
+        
+        Private columnQuotePrice As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "_Wires"
+            Me.TableName = "WireSource"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -2256,9 +2319,17 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property WireSourceIDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnID
+                Return Me.columnWireSourceID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property OrganizationIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOrganizationID
             End Get
         End Property
         
@@ -2272,17 +2343,121 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PriceColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property DescriptionColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnPrice
+                Return Me.columnDescription
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property GageColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property NewColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnGage
+                Return Me.columnNew
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ConductorCountColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnConductorCount
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IsTwistedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsTwisted
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ColorIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnColorID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WireTypeIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWireTypeID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GageIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGageID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CopperWtPerFtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCopperWtPerFt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DataColumn1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDataColumn1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CopperFtPerLbColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCopperFtPerLb
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ColorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnColor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UOMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUOM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MM2_ConductorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMM2_Conductor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ODColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property QuotePriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQuotePrice
             End Get
         End Property
         
@@ -2297,38 +2472,62 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As _WiresRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As WireSourceRow
             Get
-                Return CType(Me.Rows(index),_WiresRow)
+                Return CType(Me.Rows(index),WireSourceRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event _WiresRowChanging As _WiresRowChangeEventHandler
+        Public Event WireSourceRowChanging As WireSourceRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event _WiresRowChanged As _WiresRowChangeEventHandler
+        Public Event WireSourceRowChanged As WireSourceRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event _WiresRowDeleting As _WiresRowChangeEventHandler
+        Public Event WireSourceRowDeleting As WireSourceRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event _WiresRowDeleted As _WiresRowChangeEventHandler
+        Public Event WireSourceRowDeleted As WireSourceRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub Add_WiresRow(ByVal row As _WiresRow)
+        Public Overloads Sub AddWireSourceRow(ByVal row As WireSourceRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Add_WiresRow(ByVal ID As Integer, ByVal PartNumber As String, ByVal Price As Decimal, ByVal Gage As String) As _WiresRow
-            Dim row_WiresRow As _WiresRow = CType(Me.NewRow,_WiresRow)
-            Dim columnValuesArray() As Object = New Object() {ID, PartNumber, Price, Gage}
-            row_WiresRow.ItemArray = columnValuesArray
-            Me.Rows.Add(row_WiresRow)
-            Return row_WiresRow
+        Public Overloads Function AddWireSourceRow( _
+                    ByVal WireSourceID As System.Guid,  _
+                    ByVal OrganizationID As Integer,  _
+                    ByVal PartNumber As String,  _
+                    ByVal Description As String,  _
+                    ByVal _New As Boolean,  _
+                    ByVal ConductorCount As Integer,  _
+                    ByVal IsTwisted As Boolean,  _
+                    ByVal ColorID As System.Guid,  _
+                    ByVal WireTypeID As System.Guid,  _
+                    ByVal GageID As System.Guid,  _
+                    ByVal CopperWtPerFt As Double,  _
+                    ByVal DataColumn1 As String,  _
+                    ByVal CopperFtPerLb As Double,  _
+                    ByVal Color As String,  _
+                    ByVal UOM As String,  _
+                    ByVal MM2_Conductor As Decimal,  _
+                    ByVal OD As Decimal,  _
+                    ByVal QuotePrice As Decimal) As WireSourceRow
+            Dim rowWireSourceRow As WireSourceRow = CType(Me.NewRow,WireSourceRow)
+            Dim columnValuesArray() As Object = New Object() {WireSourceID, OrganizationID, PartNumber, Description, _New, ConductorCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, DataColumn1, CopperFtPerLb, Color, UOM, MM2_Conductor, OD, QuotePrice}
+            rowWireSourceRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowWireSourceRow)
+            Return rowWireSourceRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByWireSourceID(ByVal WireSourceID As System.Guid) As WireSourceRow
+            Return CType(Me.Rows.Find(New Object() {WireSourceID}),WireSourceRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2340,7 +2539,7 @@ Partial Public Class QuoteDataBase
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As _WiresDataTable = CType(MyBase.Clone,_WiresDataTable)
+            Dim cln As WireSourceDataTable = CType(MyBase.Clone,WireSourceDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -2348,58 +2547,111 @@ Partial Public Class QuoteDataBase
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New _WiresDataTable()
+            Return New WireSourceDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnID = MyBase.Columns("ID")
+            Me.columnWireSourceID = MyBase.Columns("WireSourceID")
+            Me.columnOrganizationID = MyBase.Columns("OrganizationID")
             Me.columnPartNumber = MyBase.Columns("PartNumber")
-            Me.columnPrice = MyBase.Columns("Price")
-            Me.columnGage = MyBase.Columns("Gage")
+            Me.columnDescription = MyBase.Columns("Description")
+            Me.columnNew = MyBase.Columns("New")
+            Me.columnConductorCount = MyBase.Columns("ConductorCount")
+            Me.columnIsTwisted = MyBase.Columns("IsTwisted")
+            Me.columnColorID = MyBase.Columns("ColorID")
+            Me.columnWireTypeID = MyBase.Columns("WireTypeID")
+            Me.columnGageID = MyBase.Columns("GageID")
+            Me.columnCopperWtPerFt = MyBase.Columns("CopperWtPerFt")
+            Me.columnDataColumn1 = MyBase.Columns("DataColumn1")
+            Me.columnCopperFtPerLb = MyBase.Columns("CopperFtPerLb")
+            Me.columnColor = MyBase.Columns("Color")
+            Me.columnUOM = MyBase.Columns("UOM")
+            Me.columnMM2_Conductor = MyBase.Columns("MM2_Conductor")
+            Me.columnOD = MyBase.Columns("OD")
+            Me.columnQuotePrice = MyBase.Columns("QuotePrice")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnID)
+            Me.columnWireSourceID = New Global.System.Data.DataColumn("WireSourceID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWireSourceID)
+            Me.columnOrganizationID = New Global.System.Data.DataColumn("OrganizationID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOrganizationID)
             Me.columnPartNumber = New Global.System.Data.DataColumn("PartNumber", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPartNumber)
-            Me.columnPrice = New Global.System.Data.DataColumn("Price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrice)
-            Me.columnGage = New Global.System.Data.DataColumn("Gage", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnGage)
-            Me.columnID.AllowDBNull = false
-            Me.columnPartNumber.MaxLength = 255
-            Me.columnGage.MaxLength = 255
+            Me.columnDescription = New Global.System.Data.DataColumn("Description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDescription)
+            Me.columnNew = New Global.System.Data.DataColumn("New", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnNew.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "NewColumn")
+            Me.columnNew.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnNew")
+            Me.columnNew.ExtendedProperties.Add("Generator_UserColumnName", "New")
+            MyBase.Columns.Add(Me.columnNew)
+            Me.columnConductorCount = New Global.System.Data.DataColumn("ConductorCount", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnConductorCount)
+            Me.columnIsTwisted = New Global.System.Data.DataColumn("IsTwisted", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsTwisted)
+            Me.columnColorID = New Global.System.Data.DataColumn("ColorID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnColorID)
+            Me.columnWireTypeID = New Global.System.Data.DataColumn("WireTypeID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWireTypeID)
+            Me.columnGageID = New Global.System.Data.DataColumn("GageID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGageID)
+            Me.columnCopperWtPerFt = New Global.System.Data.DataColumn("CopperWtPerFt", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCopperWtPerFt)
+            Me.columnDataColumn1 = New Global.System.Data.DataColumn("DataColumn1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDataColumn1)
+            Me.columnCopperFtPerLb = New Global.System.Data.DataColumn("CopperFtPerLb", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCopperFtPerLb)
+            Me.columnColor = New Global.System.Data.DataColumn("Color", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnColor)
+            Me.columnUOM = New Global.System.Data.DataColumn("UOM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUOM)
+            Me.columnMM2_Conductor = New Global.System.Data.DataColumn("MM2_Conductor", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMM2_Conductor)
+            Me.columnOD = New Global.System.Data.DataColumn("OD", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOD)
+            Me.columnQuotePrice = New Global.System.Data.DataColumn("QuotePrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQuotePrice)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnWireSourceID}, true))
+            Me.columnWireSourceID.AllowDBNull = false
+            Me.columnWireSourceID.Unique = true
+            Me.columnOrganizationID.AllowDBNull = false
+            Me.columnPartNumber.AllowDBNull = false
+            Me.columnPartNumber.MaxLength = 20
+            Me.columnDescription.MaxLength = 80
+            Me.columnIsTwisted.AllowDBNull = false
+            Me.columnColor.MaxLength = 15
+            Me.columnUOM.MaxLength = 3
+            Me.columnQuotePrice.DefaultValue = CType(0,Decimal)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function New_WiresRow() As _WiresRow
-            Return CType(Me.NewRow,_WiresRow)
+        Public Function NewWireSourceRow() As WireSourceRow
+            Return CType(Me.NewRow,WireSourceRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New _WiresRow(builder)
+            Return New WireSourceRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(_WiresRow)
+            Return GetType(WireSourceRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me._WiresRowChangedEvent) Is Nothing) Then
-                RaiseEvent _WiresRowChanged(Me, New _WiresRowChangeEvent(CType(e.Row,_WiresRow), e.Action))
+            If (Not (Me.WireSourceRowChangedEvent) Is Nothing) Then
+                RaiseEvent WireSourceRowChanged(Me, New WireSourceRowChangeEvent(CType(e.Row,WireSourceRow), e.Action))
             End If
         End Sub
         
@@ -2407,8 +2659,8 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me._WiresRowChangingEvent) Is Nothing) Then
-                RaiseEvent _WiresRowChanging(Me, New _WiresRowChangeEvent(CType(e.Row,_WiresRow), e.Action))
+            If (Not (Me.WireSourceRowChangingEvent) Is Nothing) Then
+                RaiseEvent WireSourceRowChanging(Me, New WireSourceRowChangeEvent(CType(e.Row,WireSourceRow), e.Action))
             End If
         End Sub
         
@@ -2416,8 +2668,8 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me._WiresRowDeletedEvent) Is Nothing) Then
-                RaiseEvent _WiresRowDeleted(Me, New _WiresRowChangeEvent(CType(e.Row,_WiresRow), e.Action))
+            If (Not (Me.WireSourceRowDeletedEvent) Is Nothing) Then
+                RaiseEvent WireSourceRowDeleted(Me, New WireSourceRowChangeEvent(CType(e.Row,WireSourceRow), e.Action))
             End If
         End Sub
         
@@ -2425,14 +2677,14 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me._WiresRowDeletingEvent) Is Nothing) Then
-                RaiseEvent _WiresRowDeleting(Me, New _WiresRowChangeEvent(CType(e.Row,_WiresRow), e.Action))
+            If (Not (Me.WireSourceRowDeletingEvent) Is Nothing) Then
+                RaiseEvent WireSourceRowDeleting(Me, New WireSourceRowChangeEvent(CType(e.Row,WireSourceRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub Remove_WiresRow(ByVal row As _WiresRow)
+        Public Sub RemoveWireSourceRow(ByVal row As WireSourceRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -2459,7 +2711,342 @@ Partial Public Class QuoteDataBase
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "_WiresDataTable"
+            attribute2.FixedValue = "WireSourceDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class GageDataTable
+        Inherits Global.System.Data.DataTable
+        Implements Global.System.Collections.IEnumerable
+        
+        Private columnOrganizationID As Global.System.Data.DataColumn
+        
+        Private columnGageID As Global.System.Data.DataColumn
+        
+        Private columnGage As Global.System.Data.DataColumn
+        
+        Private columnMM As Global.System.Data.DataColumn
+        
+        Private columnUnitOfMeasure As Global.System.Data.DataColumn
+        
+        Private columnSortOrder As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "Gage"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property OrganizationIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOrganizationID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GageIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGageID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GageColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGage
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UnitOfMeasureColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUnitOfMeasure
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SortOrderColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSortOrder
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As GageRow
+            Get
+                Return CType(Me.Rows(index),GageRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event GageRowChanging As GageRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event GageRowChanged As GageRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event GageRowDeleting As GageRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event GageRowDeleted As GageRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddGageRow(ByVal row As GageRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddGageRow(ByVal OrganizationID As Integer, ByVal GageID As System.Guid, ByVal Gage As String, ByVal MM As Double, ByVal UnitOfMeasure As String, ByVal SortOrder As Integer) As GageRow
+            Dim rowGageRow As GageRow = CType(Me.NewRow,GageRow)
+            Dim columnValuesArray() As Object = New Object() {OrganizationID, GageID, Gage, MM, UnitOfMeasure, SortOrder}
+            rowGageRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowGageRow)
+            Return rowGageRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByOrganizationIDGageID(ByVal OrganizationID As Integer, ByVal GageID As System.Guid) As GageRow
+            Return CType(Me.Rows.Find(New Object() {OrganizationID, GageID}),GageRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
+            Return Me.Rows.GetEnumerator
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As GageDataTable = CType(MyBase.Clone,GageDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New GageDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnOrganizationID = MyBase.Columns("OrganizationID")
+            Me.columnGageID = MyBase.Columns("GageID")
+            Me.columnGage = MyBase.Columns("Gage")
+            Me.columnMM = MyBase.Columns("MM")
+            Me.columnUnitOfMeasure = MyBase.Columns("UnitOfMeasure")
+            Me.columnSortOrder = MyBase.Columns("SortOrder")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnOrganizationID = New Global.System.Data.DataColumn("OrganizationID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOrganizationID)
+            Me.columnGageID = New Global.System.Data.DataColumn("GageID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGageID)
+            Me.columnGage = New Global.System.Data.DataColumn("Gage", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGage)
+            Me.columnMM = New Global.System.Data.DataColumn("MM", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMM)
+            Me.columnUnitOfMeasure = New Global.System.Data.DataColumn("UnitOfMeasure", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUnitOfMeasure)
+            Me.columnSortOrder = New Global.System.Data.DataColumn("SortOrder", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSortOrder)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnOrganizationID, Me.columnGageID}, true))
+            Me.columnOrganizationID.AllowDBNull = false
+            Me.columnGageID.AllowDBNull = false
+            Me.columnGage.MaxLength = 10
+            Me.columnUnitOfMeasure.MaxLength = 10
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewGageRow() As GageRow
+            Return CType(Me.NewRow,GageRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New GageRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(GageRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.GageRowChangedEvent) Is Nothing) Then
+                RaiseEvent GageRowChanged(Me, New GageRowChangeEvent(CType(e.Row,GageRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.GageRowChangingEvent) Is Nothing) Then
+                RaiseEvent GageRowChanging(Me, New GageRowChangeEvent(CType(e.Row,GageRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.GageRowDeletedEvent) Is Nothing) Then
+                RaiseEvent GageRowDeleted(Me, New GageRowChangeEvent(CType(e.Row,GageRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.GageRowDeletingEvent) Is Nothing) Then
+                RaiseEvent GageRowDeleting(Me, New GageRowChangeEvent(CType(e.Row,GageRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveGageRow(ByVal row As GageRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As QuoteDataBase = New QuoteDataBase()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "GageDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -3439,26 +4026,37 @@ Partial Public Class QuoteDataBase
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class _WiresRow
+    Partial Public Class WireSourceRow
         Inherits Global.System.Data.DataRow
         
-        Private table_Wires As _WiresDataTable
+        Private tableWireSource As WireSourceDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.table_Wires = CType(Me.Table,_WiresDataTable)
+            Me.tableWireSource = CType(Me.Table,WireSourceDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ID() As Integer
+        Public Property WireSourceID() As System.Guid
             Get
-                Return CType(Me(Me.table_Wires.IDColumn),Integer)
+                Return CType(Me(Me.tableWireSource.WireSourceIDColumn),Global.System.Guid)
             End Get
             Set
-                Me(Me.table_Wires.IDColumn) = value
+                Me(Me.tableWireSource.WireSourceIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property OrganizationID() As Integer
+            Get
+                Return CType(Me(Me.tableWireSource.OrganizationIDColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableWireSource.OrganizationIDColumn) = value
             End Set
         End Property
         
@@ -3466,29 +4064,437 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property PartNumber() As String
             Get
-                Try 
-                    Return CType(Me(Me.table_Wires.PartNumberColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'PartNumber' in table '_Wires' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableWireSource.PartNumberColumn),String)
             End Get
             Set
-                Me(Me.table_Wires.PartNumberColumn) = value
+                Me(Me.tableWireSource.PartNumberColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Price() As Decimal
+        Public Property Description() As String
             Get
                 Try 
-                    Return CType(Me(Me.table_Wires.PriceColumn),Decimal)
+                    Return CType(Me(Me.tableWireSource.DescriptionColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Price' in table '_Wires' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Description' in table 'WireSource' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.table_Wires.PriceColumn) = value
+                Me(Me.tableWireSource.DescriptionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _New() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.NewColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'New' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.NewColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ConductorCount() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.ConductorCountColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ConductorCount' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.ConductorCountColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IsTwisted() As Boolean
+            Get
+                Return CType(Me(Me.tableWireSource.IsTwistedColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableWireSource.IsTwistedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ColorID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.ColorIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ColorID' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.ColorIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property WireTypeID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.WireTypeIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'WireTypeID' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.WireTypeIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property GageID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.GageIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'GageID' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.GageIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CopperWtPerFt() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.CopperWtPerFtColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CopperWtPerFt' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.CopperWtPerFtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property DataColumn1() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.DataColumn1Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DataColumn1' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.DataColumn1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property CopperFtPerLb() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.CopperFtPerLbColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CopperFtPerLb' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.CopperFtPerLbColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Color() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.ColorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Color' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.ColorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property UOM() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.UOMColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UOM' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.UOMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MM2_Conductor() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.MM2_ConductorColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MM2_Conductor' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.MM2_ConductorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property OD() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.ODColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OD' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.ODColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property QuotePrice() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireSource.QuotePriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'QuotePrice' in table 'WireSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireSource.QuotePriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDescriptionNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.DescriptionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDescriptionNull()
+            Me(Me.tableWireSource.DescriptionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_NewNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.NewColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_NewNull()
+            Me(Me.tableWireSource.NewColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsConductorCountNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.ConductorCountColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetConductorCountNull()
+            Me(Me.tableWireSource.ConductorCountColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsColorIDNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.ColorIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetColorIDNull()
+            Me(Me.tableWireSource.ColorIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWireTypeIDNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.WireTypeIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWireTypeIDNull()
+            Me(Me.tableWireSource.WireTypeIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGageIDNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.GageIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGageIDNull()
+            Me(Me.tableWireSource.GageIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCopperWtPerFtNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.CopperWtPerFtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCopperWtPerFtNull()
+            Me(Me.tableWireSource.CopperWtPerFtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDataColumn1Null() As Boolean
+            Return Me.IsNull(Me.tableWireSource.DataColumn1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDataColumn1Null()
+            Me(Me.tableWireSource.DataColumn1Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCopperFtPerLbNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.CopperFtPerLbColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCopperFtPerLbNull()
+            Me(Me.tableWireSource.CopperFtPerLbColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsColorNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.ColorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetColorNull()
+            Me(Me.tableWireSource.ColorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUOMNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.UOMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUOMNull()
+            Me(Me.tableWireSource.UOMColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMM2_ConductorNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.MM2_ConductorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMM2_ConductorNull()
+            Me(Me.tableWireSource.MM2_ConductorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsODNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.ODColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetODNull()
+            Me(Me.tableWireSource.ODColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsQuotePriceNull() As Boolean
+            Return Me.IsNull(Me.tableWireSource.QuotePriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetQuotePriceNull()
+            Me(Me.tableWireSource.QuotePriceColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class GageRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableGage As GageDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableGage = CType(Me.Table,GageDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property OrganizationID() As Integer
+            Get
+                Return CType(Me(Me.tableGage.OrganizationIDColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableGage.OrganizationIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property GageID() As System.Guid
+            Get
+                Return CType(Me(Me.tableGage.GageIDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tableGage.GageIDColumn) = value
             End Set
         End Property
         
@@ -3497,50 +4503,107 @@ Partial Public Class QuoteDataBase
         Public Property Gage() As String
             Get
                 Try 
-                    Return CType(Me(Me.table_Wires.GageColumn),String)
+                    Return CType(Me(Me.tableGage.GageColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gage' in table '_Wires' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gage' in table 'Gage' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.table_Wires.GageColumn) = value
+                Me(Me.tableGage.GageColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPartNumberNull() As Boolean
-            Return Me.IsNull(Me.table_Wires.PartNumberColumn)
-        End Function
+        Public Property MM() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableGage.MMColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MM' in table 'Gage' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGage.MMColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPartNumberNull()
-            Me(Me.table_Wires.PartNumberColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property UnitOfMeasure() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableGage.UnitOfMeasureColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UnitOfMeasure' in table 'Gage' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGage.UnitOfMeasureColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPriceNull() As Boolean
-            Return Me.IsNull(Me.table_Wires.PriceColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPriceNull()
-            Me(Me.table_Wires.PriceColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property SortOrder() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableGage.SortOrderColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SortOrder' in table 'Gage' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableGage.SortOrderColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsGageNull() As Boolean
-            Return Me.IsNull(Me.table_Wires.GageColumn)
+            Return Me.IsNull(Me.tableGage.GageColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetGageNull()
-            Me(Me.table_Wires.GageColumn) = Global.System.Convert.DBNull
+            Me(Me.tableGage.GageColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMMNull() As Boolean
+            Return Me.IsNull(Me.tableGage.MMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMMNull()
+            Me(Me.tableGage.MMColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUnitOfMeasureNull() As Boolean
+            Return Me.IsNull(Me.tableGage.UnitOfMeasureColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUnitOfMeasureNull()
+            Me(Me.tableGage.UnitOfMeasureColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSortOrderNull() As Boolean
+            Return Me.IsNull(Me.tableGage.SortOrderColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSortOrderNull()
+            Me(Me.tableGage.SortOrderColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -3728,16 +4791,16 @@ Partial Public Class QuoteDataBase
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class _WiresRowChangeEvent
+    Public Class WireSourceRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As _WiresRow
+        Private eventRow As WireSourceRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As _WiresRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As WireSourceRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -3745,7 +4808,43 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As _WiresRow
+        Public ReadOnly Property Row() As WireSourceRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class GageRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As GageRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As GageRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As GageRow
             Get
                 Return Me.eventRow
             End Get
@@ -4464,7 +5563,7 @@ Namespace QuoteDataBaseTableAdapters
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
@@ -5952,7 +7051,7 @@ Namespace QuoteDataBaseTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class _WiresTableAdapter
+    Partial Public Class WireSourceTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -6069,21 +7168,172 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "_Wires"
-            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.DataSetTable = "WireSource"
+            tableMapping.ColumnMappings.Add("WireSourceID", "WireSourceID")
+            tableMapping.ColumnMappings.Add("OrganizationID", "OrganizationID")
             tableMapping.ColumnMappings.Add("PartNumber", "PartNumber")
-            tableMapping.ColumnMappings.Add("Price", "Price")
-            tableMapping.ColumnMappings.Add("Gage", "Gage")
+            tableMapping.ColumnMappings.Add("Description", "Description")
+            tableMapping.ColumnMappings.Add("New", "New")
+            tableMapping.ColumnMappings.Add("ConductorCount", "ConductorCount")
+            tableMapping.ColumnMappings.Add("IsTwisted", "IsTwisted")
+            tableMapping.ColumnMappings.Add("ColorID", "ColorID")
+            tableMapping.ColumnMappings.Add("WireTypeID", "WireTypeID")
+            tableMapping.ColumnMappings.Add("GageID", "GageID")
+            tableMapping.ColumnMappings.Add("CopperWtPerFt", "CopperWtPerFt")
+            tableMapping.ColumnMappings.Add("CopperFtPerLb", "CopperFtPerLb")
+            tableMapping.ColumnMappings.Add("Color", "Color")
+            tableMapping.ColumnMappings.Add("UOM", "UOM")
+            tableMapping.ColumnMappings.Add("MM2_Conductor", "MM2_Conductor")
+            tableMapping.ColumnMappings.Add("OD", "OD")
             Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [WireSource] WHERE (([WireSourceID] = @Original_WireSourceID) AND ([O"& _ 
+                "rganizationID] = @Original_OrganizationID) AND ([PartNumber] = @Original_PartNum"& _ 
+                "ber) AND ((@IsNull_Description = 1 AND [Description] IS NULL) OR ([Description] "& _ 
+                "= @Original_Description)) AND ((@IsNull_New = 1 AND [New] IS NULL) OR ([New] = @"& _ 
+                "Original_New)) AND ((@IsNull_ConductorCount = 1 AND [ConductorCount] IS NULL) OR"& _ 
+                " ([ConductorCount] = @Original_ConductorCount)) AND ([IsTwisted] = @Original_IsT"& _ 
+                "wisted) AND ((@IsNull_ColorID = 1 AND [ColorID] IS NULL) OR ([ColorID] = @Origin"& _ 
+                "al_ColorID)) AND ((@IsNull_WireTypeID = 1 AND [WireTypeID] IS NULL) OR ([WireTyp"& _ 
+                "eID] = @Original_WireTypeID)) AND ((@IsNull_GageID = 1 AND [GageID] IS NULL) OR "& _ 
+                "([GageID] = @Original_GageID)) AND ((@IsNull_CopperWtPerFt = 1 AND [CopperWtPerF"& _ 
+                "t] IS NULL) OR ([CopperWtPerFt] = @Original_CopperWtPerFt)) AND ((@IsNull_Copper"& _ 
+                "FtPerLb = 1 AND [CopperFtPerLb] IS NULL) OR ([CopperFtPerLb] = @Original_CopperF"& _ 
+                "tPerLb)) AND ((@IsNull_Color = 1 AND [Color] IS NULL) OR ([Color] = @Original_Co"& _ 
+                "lor)) AND ((@IsNull_UOM = 1 AND [UOM] IS NULL) OR ([UOM] = @Original_UOM)) AND ("& _ 
+                "(@IsNull_MM2_Conductor = 1 AND [MM2_Conductor] IS NULL) OR ([MM2_Conductor] = @O"& _ 
+                "riginal_MM2_Conductor)) AND ((@IsNull_OD = 1 AND [OD] IS NULL) OR ([OD] = @Origi"& _ 
+                "nal_OD)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireSourceID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Description", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Description", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_New", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "New", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_New", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "New", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ConductorCount", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ConductorCount", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ConductorCount", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ConductorCount", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsTwisted", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsTwisted", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ColorID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ColorID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ColorID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_WireTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTypeID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTypeID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_GageID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_GageID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CopperWtPerFt", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperWtPerFt", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CopperWtPerFt", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperWtPerFt", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CopperFtPerLb", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperFtPerLb", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CopperFtPerLb", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperFtPerLb", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Color", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Color", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Color", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Color", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_UOM", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UOM", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_UOM", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UOM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MM2_Conductor", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MM2_Conductor", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MM2_Conductor", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "MM2_Conductor", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_OD", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OD", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OD", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "OD", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [_Wires] ([ID], [PartNumber], [Price], [Gage]) VALUES (@ID, @PartNumb"& _ 
-                "er, @Price, @Gage)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [WireSource] ([WireSourceID], [OrganizationID], [PartNumber], [Descri"& _ 
+                "ption], [New], [ConductorCount], [IsTwisted], [ColorID], [WireTypeID], [GageID],"& _ 
+                " [CopperWtPerFt], [CopperFtPerLb], [Color], [UOM], [MM2_Conductor], [OD]) VALUES"& _ 
+                " (@WireSourceID, @OrganizationID, @PartNumber, @Description, @New, @ConductorCou"& _ 
+                "nt, @IsTwisted, @ColorID, @WireTypeID, @GageID, @CopperWtPerFt, @CopperFtPerLb, "& _ 
+                "@Color, @UOM, @MM2_Conductor, @OD);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT WireSourceID, OrganizationID, PartNu"& _ 
+                "mber, Description, New, ConductorCount, IsTwisted, ColorID, WireTypeID, GageID, "& _ 
+                "CopperWtPerFt, CopperFtPerLb, Color, UOM, MM2_Conductor, OD FROM WireSource WHER"& _ 
+                "E (WireSourceID = @WireSourceID) ORDER BY PartNumber"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireSourceID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Price", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Price", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Gage", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Gage", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Description", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@New", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "New", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ConductorCount", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ConductorCount", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsTwisted", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsTwisted", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ColorID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GageID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CopperWtPerFt", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperWtPerFt", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CopperFtPerLb", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperFtPerLb", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Color", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Color", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UOM", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UOM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MM2_Conductor", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "MM2_Conductor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OD", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "OD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [WireSource] SET [WireSourceID] = @WireSourceID, [OrganizationID] = @Organ"& _ 
+                "izationID, [PartNumber] = @PartNumber, [Description] = @Description, [New] = @Ne"& _ 
+                "w, [ConductorCount] = @ConductorCount, [IsTwisted] = @IsTwisted, [ColorID] = @Co"& _ 
+                "lorID, [WireTypeID] = @WireTypeID, [GageID] = @GageID, [CopperWtPerFt] = @Copper"& _ 
+                "WtPerFt, [CopperFtPerLb] = @CopperFtPerLb, [Color] = @Color, [UOM] = @UOM, [MM2_"& _ 
+                "Conductor] = @MM2_Conductor, [OD] = @OD WHERE (([WireSourceID] = @Original_WireS"& _ 
+                "ourceID) AND ([OrganizationID] = @Original_OrganizationID) AND ([PartNumber] = @"& _ 
+                "Original_PartNumber) AND ((@IsNull_Description = 1 AND [Description] IS NULL) OR"& _ 
+                " ([Description] = @Original_Description)) AND ((@IsNull_New = 1 AND [New] IS NUL"& _ 
+                "L) OR ([New] = @Original_New)) AND ((@IsNull_ConductorCount = 1 AND [ConductorCo"& _ 
+                "unt] IS NULL) OR ([ConductorCount] = @Original_ConductorCount)) AND ([IsTwisted]"& _ 
+                " = @Original_IsTwisted) AND ((@IsNull_ColorID = 1 AND [ColorID] IS NULL) OR ([Co"& _ 
+                "lorID] = @Original_ColorID)) AND ((@IsNull_WireTypeID = 1 AND [WireTypeID] IS NU"& _ 
+                "LL) OR ([WireTypeID] = @Original_WireTypeID)) AND ((@IsNull_GageID = 1 AND [Gage"& _ 
+                "ID] IS NULL) OR ([GageID] = @Original_GageID)) AND ((@IsNull_CopperWtPerFt = 1 A"& _ 
+                "ND [CopperWtPerFt] IS NULL) OR ([CopperWtPerFt] = @Original_CopperWtPerFt)) AND "& _ 
+                "((@IsNull_CopperFtPerLb = 1 AND [CopperFtPerLb] IS NULL) OR ([CopperFtPerLb] = @"& _ 
+                "Original_CopperFtPerLb)) AND ((@IsNull_Color = 1 AND [Color] IS NULL) OR ([Color"& _ 
+                "] = @Original_Color)) AND ((@IsNull_UOM = 1 AND [UOM] IS NULL) OR ([UOM] = @Orig"& _ 
+                "inal_UOM)) AND ((@IsNull_MM2_Conductor = 1 AND [MM2_Conductor] IS NULL) OR ([MM2"& _ 
+                "_Conductor] = @Original_MM2_Conductor)) AND ((@IsNull_OD = 1 AND [OD] IS NULL) O"& _ 
+                "R ([OD] = @Original_OD)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT WireSourceID, OrganizationID, PartNumber, Des"& _ 
+                "cription, New, ConductorCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtP"& _ 
+                "erFt, CopperFtPerLb, Color, UOM, MM2_Conductor, OD FROM WireSource WHERE (WireSo"& _ 
+                "urceID = @WireSourceID) ORDER BY PartNumber"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireSourceID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Description", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@New", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "New", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ConductorCount", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ConductorCount", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsTwisted", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsTwisted", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ColorID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GageID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CopperWtPerFt", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperWtPerFt", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CopperFtPerLb", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperFtPerLb", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Color", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Color", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UOM", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UOM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MM2_Conductor", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "MM2_Conductor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OD", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "OD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireSourceID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Description", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Description", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Description", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_New", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "New", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_New", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "New", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ConductorCount", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ConductorCount", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ConductorCount", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ConductorCount", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsTwisted", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsTwisted", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ColorID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ColorID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ColorID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_WireTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTypeID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTypeID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_GageID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_GageID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CopperWtPerFt", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperWtPerFt", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CopperWtPerFt", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperWtPerFt", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CopperFtPerLb", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperFtPerLb", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CopperFtPerLb", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CopperFtPerLb", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Color", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Color", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Color", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Color", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_UOM", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UOM", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_UOM", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UOM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MM2_Conductor", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MM2_Conductor", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MM2_Conductor", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "MM2_Conductor", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_OD", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OD", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OD", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 19, 6, "OD", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6099,21 +7349,25 @@ Namespace QuoteDataBaseTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, PartNumber, Price, Gage"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            _Wires"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartN"& _ 
-                "umber"
+            Me._commandCollection(0).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct"& _ 
+                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C"& _ 
+                "olor, UOM,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          MM2_Conductor, OD"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            WireSou"& _ 
+                "rce"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartNumber"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT Gage, ID, PartNumber, Price FROM _Wires WHERE (PartNumber = @PartNumber)"
+            Me._commandCollection(1).CommandText = "SELECT Color, ColorID, ConductorCount, CopperFtPerLb, CopperWtPerFt, Description,"& _ 
+                " GageID, IsTwisted, MM2_Conductor, New, OD, OrganizationID, PartNumber, UOM, Wir"& _ 
+                "eSourceID, WireTypeID FROM WireSource WHERE (PartNumber = @PartNumber)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As QuoteDataBase._WiresDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As QuoteDataBase.WireSourceDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -6126,9 +7380,9 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As QuoteDataBase._WiresDataTable
+        Public Overloads Overridable Function GetData() As QuoteDataBase.WireSourceDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As QuoteDataBase._WiresDataTable = New QuoteDataBase._WiresDataTable()
+            Dim dataTable As QuoteDataBase.WireSourceDataTable = New QuoteDataBase.WireSourceDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -6137,10 +7391,10 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByPartNumber(ByVal dataTable As QuoteDataBase._WiresDataTable, ByVal PartNumber As String) As Integer
+        Public Overloads Overridable Function FillByPartNumber(ByVal dataTable As QuoteDataBase.WireSourceDataTable, ByVal PartNumber As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (PartNumber Is Nothing) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("PartNumber")
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber,String)
             End If
@@ -6155,14 +7409,14 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByPartNumber(ByVal PartNumber As String) As QuoteDataBase._WiresDataTable
+        Public Overloads Overridable Function GetDataByPartNumber(ByVal PartNumber As String) As QuoteDataBase.WireSourceDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (PartNumber Is Nothing) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+                Throw New Global.System.ArgumentNullException("PartNumber")
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber,String)
             End If
-            Dim dataTable As QuoteDataBase._WiresDataTable = New QuoteDataBase._WiresDataTable()
+            Dim dataTable As QuoteDataBase.WireSourceDataTable = New QuoteDataBase.WireSourceDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -6170,7 +7424,7 @@ Namespace QuoteDataBaseTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As QuoteDataBase._WiresDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As QuoteDataBase.WireSourceDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
@@ -6178,7 +7432,740 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function Update(ByVal dataSet As QuoteDataBase) As Integer
-            Return Me.Adapter.Update(dataSet, "_Wires")
+            Return Me.Adapter.Update(dataSet, "WireSource")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete( _
+                    ByVal Original_WireSourceID As System.Guid,  _
+                    ByVal Original_OrganizationID As Integer,  _
+                    ByVal Original_PartNumber As String,  _
+                    ByVal Original_Description As String,  _
+                    ByVal Original_New As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_IsTwisted As Boolean,  _
+                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double),  _
+                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double),  _
+                    ByVal Original_Color As String,  _
+                    ByVal Original_UOM As String,  _
+                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_OD As Global.System.Nullable(Of Decimal)) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_WireSourceID,System.Guid)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_OrganizationID,Integer)
+            If (Original_PartNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PartNumber")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_PartNumber,String)
+            End If
+            If (Original_Description Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Description,String)
+            End If
+            If (Original_New.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_New.Value,Boolean)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ConductorCount.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_ConductorCount.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_IsTwisted,Boolean)
+            If (Original_ColorID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_ColorID.Value,System.Guid)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (Original_WireTypeID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_WireTypeID.Value,System.Guid)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (Original_GageID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_GageID.Value,System.Guid)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CopperWtPerFt.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_CopperWtPerFt.Value,Double)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CopperFtPerLb.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_CopperFtPerLb.Value,Double)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Color Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(21).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_Color,String)
+            End If
+            If (Original_UOM Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_UOM,String)
+            End If
+            If (Original_MM2_Conductor.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_MM2_Conductor.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = Global.System.DBNull.Value
+            End If
+            If (Original_OD.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_OD.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert( _
+                    ByVal WireSourceID As System.Guid,  _
+                    ByVal OrganizationID As Integer,  _
+                    ByVal PartNumber As String,  _
+                    ByVal Description As String,  _
+                    ByVal _New As Global.System.Nullable(Of Boolean),  _
+                    ByVal ConductorCount As Global.System.Nullable(Of Integer),  _
+                    ByVal IsTwisted As Boolean,  _
+                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double),  _
+                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double),  _
+                    ByVal Color As String,  _
+                    ByVal UOM As String,  _
+                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal),  _
+                    ByVal OD As Global.System.Nullable(Of Decimal)) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(WireSourceID,System.Guid)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(OrganizationID,Integer)
+            If (PartNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PartNumber")
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(PartNumber,String)
+            End If
+            If (Description Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Description,String)
+            End If
+            If (_New.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(_New.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (ConductorCount.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ConductorCount.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(IsTwisted,Boolean)
+            If (ColorID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(ColorID.Value,System.Guid)
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            End If
+            If (WireTypeID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(WireTypeID.Value,System.Guid)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (GageID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(GageID.Value,System.Guid)
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
+            If (CopperWtPerFt.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(CopperWtPerFt.Value,Double)
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (CopperFtPerLb.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(CopperFtPerLb.Value,Double)
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (Color Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Color,String)
+            End If
+            If (UOM Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(UOM,String)
+            End If
+            If (MM2_Conductor.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(MM2_Conductor.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (OD.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(OD.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal WireSourceID As System.Guid,  _
+                    ByVal OrganizationID As Integer,  _
+                    ByVal PartNumber As String,  _
+                    ByVal Description As String,  _
+                    ByVal _New As Global.System.Nullable(Of Boolean),  _
+                    ByVal ConductorCount As Global.System.Nullable(Of Integer),  _
+                    ByVal IsTwisted As Boolean,  _
+                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double),  _
+                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double),  _
+                    ByVal Color As String,  _
+                    ByVal UOM As String,  _
+                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal),  _
+                    ByVal OD As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_WireSourceID As System.Guid,  _
+                    ByVal Original_OrganizationID As Integer,  _
+                    ByVal Original_PartNumber As String,  _
+                    ByVal Original_Description As String,  _
+                    ByVal Original_New As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_IsTwisted As Boolean,  _
+                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double),  _
+                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double),  _
+                    ByVal Original_Color As String,  _
+                    ByVal Original_UOM As String,  _
+                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_OD As Global.System.Nullable(Of Decimal)) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(WireSourceID,System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(OrganizationID,Integer)
+            If (PartNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PartNumber")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(PartNumber,String)
+            End If
+            If (Description Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Description,String)
+            End If
+            If (_New.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(_New.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            If (ConductorCount.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ConductorCount.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(IsTwisted,Boolean)
+            If (ColorID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(ColorID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            End If
+            If (WireTypeID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(WireTypeID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (GageID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(GageID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
+            If (CopperWtPerFt.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(CopperWtPerFt.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (CopperFtPerLb.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(CopperFtPerLb.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (Color Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Color,String)
+            End If
+            If (UOM Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(UOM,String)
+            End If
+            If (MM2_Conductor.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(MM2_Conductor.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            End If
+            If (OD.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(OD.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_WireSourceID,System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_OrganizationID,Integer)
+            If (Original_PartNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PartNumber")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_PartNumber,String)
+            End If
+            If (Original_Description Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Description,String)
+            End If
+            If (Original_New.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_New.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ConductorCount.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_ConductorCount.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_IsTwisted,Boolean)
+            If (Original_ColorID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_ColorID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            If (Original_WireTypeID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_WireTypeID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
+            End If
+            If (Original_GageID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_GageID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CopperWtPerFt.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_CopperWtPerFt.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CopperFtPerLb.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_CopperFtPerLb.Value,Double)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Color Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Color,String)
+            End If
+            If (Original_UOM Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_UOM,String)
+            End If
+            If (Original_MM2_Conductor.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_MM2_Conductor.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
+            End If
+            If (Original_OD.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_OD.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal OrganizationID As Integer,  _
+                    ByVal PartNumber As String,  _
+                    ByVal Description As String,  _
+                    ByVal _New As Global.System.Nullable(Of Boolean),  _
+                    ByVal ConductorCount As Global.System.Nullable(Of Integer),  _
+                    ByVal IsTwisted As Boolean,  _
+                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double),  _
+                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double),  _
+                    ByVal Color As String,  _
+                    ByVal UOM As String,  _
+                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal),  _
+                    ByVal OD As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_WireSourceID As System.Guid,  _
+                    ByVal Original_OrganizationID As Integer,  _
+                    ByVal Original_PartNumber As String,  _
+                    ByVal Original_Description As String,  _
+                    ByVal Original_New As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_IsTwisted As Boolean,  _
+                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double),  _
+                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double),  _
+                    ByVal Original_Color As String,  _
+                    ByVal Original_UOM As String,  _
+                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_OD As Global.System.Nullable(Of Decimal)) As Integer
+            Return Me.Update(Original_WireSourceID, OrganizationID, PartNumber, Description, _New, ConductorCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, Color, UOM, MM2_Conductor, OD, Original_WireSourceID, Original_OrganizationID, Original_PartNumber, Original_Description, Original_New, Original_ConductorCount, Original_IsTwisted, Original_ColorID, Original_WireTypeID, Original_GageID, Original_CopperWtPerFt, Original_CopperFtPerLb, Original_Color, Original_UOM, Original_MM2_Conductor, Original_OD)
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class GageTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "Gage"
+            tableMapping.ColumnMappings.Add("OrganizationID", "OrganizationID")
+            tableMapping.ColumnMappings.Add("GageID", "GageID")
+            tableMapping.ColumnMappings.Add("Gage", "Gage")
+            tableMapping.ColumnMappings.Add("MM", "MM")
+            tableMapping.ColumnMappings.Add("UnitOfMeasure", "UnitOfMeasure")
+            tableMapping.ColumnMappings.Add("SortOrder", "SortOrder")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Gage] ([OrganizationID], [GageID], [Gage], [MM], [UnitOfMeasur"& _ 
+                "e], [SortOrder]) VALUES (@OrganizationID, @GageID, @Gage, @MM, @UnitOfMeasure, @"& _ 
+                "SortOrder)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GageID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Gage", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Gage", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MM", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UnitOfMeasure", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitOfMeasure", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SortOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SortOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.DCS.Quote.My.MySettings.Default.cuttagSKEConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT OrganizationID, GageID, Gage, MM, UnitOfMeasure, SortOrder FROM dbo.Gage"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        OrganizationID, GageID, Gage, MM, UnitOfMeasure, SortOrder"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   "& _ 
+                "         Gage"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (GageID = @GageID)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@GageID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "GageID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As QuoteDataBase.GageDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As QuoteDataBase.GageDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As QuoteDataBase.GageDataTable = New QuoteDataBase.GageDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByGageID(ByVal dataTable As QuoteDataBase.GageDataTable, ByVal GageID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(GageID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByGageID(ByVal GageID As System.Guid) As QuoteDataBase.GageDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(GageID,System.Guid)
+            Dim dataTable As QuoteDataBase.GageDataTable = New QuoteDataBase.GageDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As QuoteDataBase.GageDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As QuoteDataBase) As Integer
+            Return Me.Adapter.Update(dataSet, "Gage")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6199,22 +8186,28 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal ID As Integer, ByVal PartNumber As String, ByVal Price As Global.System.Nullable(Of Decimal), ByVal Gage As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(ID,Integer)
-            If (PartNumber Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(PartNumber,String)
-            End If
-            If (Price.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Price.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
+        Public Overloads Overridable Function Insert(ByVal OrganizationID As Integer, ByVal GageID As System.Guid, ByVal Gage As String, ByVal MM As Global.System.Nullable(Of Double), ByVal UnitOfMeasure As String, ByVal SortOrder As Global.System.Nullable(Of Integer)) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(OrganizationID,Integer)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(GageID,System.Guid)
             If (Gage Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Gage,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Gage,String)
+            End If
+            If (MM.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(MM.Value,Double)
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (UnitOfMeasure Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(UnitOfMeasure,String)
+            End If
+            If (SortOrder.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(SortOrder.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -6255,7 +8248,9 @@ Namespace QuoteDataBaseTableAdapters
         
         Private __PartsTableAdapter As _PartsTableAdapter
         
-        Private __WiresTableAdapter As _WiresTableAdapter
+        Private _wireSourceTableAdapter As WireSourceTableAdapter
+        
+        Private _gageTableAdapter As GageTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -6347,12 +8342,26 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property _WiresTableAdapter() As _WiresTableAdapter
+        Public Property WireSourceTableAdapter() As WireSourceTableAdapter
             Get
-                Return Me.__WiresTableAdapter
+                Return Me._wireSourceTableAdapter
             End Get
             Set
-                Me.__WiresTableAdapter = value
+                Me._wireSourceTableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property GageTableAdapter() As GageTableAdapter
+            Get
+                Return Me._gageTableAdapter
+            End Get
+            Set
+                Me._gageTableAdapter = value
             End Set
         End Property
         
@@ -6395,9 +8404,13 @@ Namespace QuoteDataBaseTableAdapters
                             AndAlso (Not (Me.__PartsTableAdapter.Connection) Is Nothing)) Then
                     Return Me.__PartsTableAdapter.Connection
                 End If
-                If ((Not (Me.__WiresTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me.__WiresTableAdapter.Connection) Is Nothing)) Then
-                    Return Me.__WiresTableAdapter.Connection
+                If ((Not (Me._wireSourceTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._wireSourceTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._wireSourceTableAdapter.Connection
+                End If
+                If ((Not (Me._gageTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._gageTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._gageTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -6427,7 +8440,10 @@ Namespace QuoteDataBaseTableAdapters
                 If (Not (Me.__PartsTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me.__WiresTableAdapter) Is Nothing) Then
+                If (Not (Me._wireSourceTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
+                If (Not (Me._gageTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -6441,15 +8457,6 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As QuoteDataBase, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me.__QuoteDetailTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet._QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me.__QuoteDetailTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me.__PartsTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet._Parts.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -6459,12 +8466,30 @@ Namespace QuoteDataBaseTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me.__WiresTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet._Wires.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._wireSourceTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.WireSource.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me.__WiresTableAdapter.Update(updatedRows))
+                    result = (result + Me._wireSourceTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._gageTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Gage.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._gageTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me.__QuoteDetailTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet._QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me.__QuoteDetailTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -6505,14 +8530,6 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As QuoteDataBase, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me.__QuoteDetailTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet._QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me.__QuoteDetailTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me.__PartsTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet._Parts.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -6521,11 +8538,27 @@ Namespace QuoteDataBaseTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me.__WiresTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet._Wires.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._wireSourceTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.WireSource.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me.__WiresTableAdapter.Update(addedRows))
+                    result = (result + Me._wireSourceTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._gageTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.Gage.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._gageTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me.__QuoteDetailTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet._QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me.__QuoteDetailTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -6587,11 +8620,27 @@ Namespace QuoteDataBaseTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me.__WiresTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet._Wires.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me.__QuoteDetailTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet._QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me.__WiresTableAdapter.Update(deletedRows))
+                    result = (result + Me.__QuoteDetailTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._gageTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Gage.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._gageTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._wireSourceTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.WireSource.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._wireSourceTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -6600,14 +8649,6 @@ Namespace QuoteDataBaseTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me.__PartsTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me.__QuoteDetailTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet._QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me.__QuoteDetailTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -6677,8 +8718,13 @@ Namespace QuoteDataBaseTableAdapters
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me.__WiresTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me.__WiresTableAdapter.Connection) = false)) Then
+            If ((Not (Me._wireSourceTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._wireSourceTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
+            If ((Not (Me._gageTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._gageTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -6759,13 +8805,22 @@ Namespace QuoteDataBaseTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me.__PartsTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me.__WiresTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me.__WiresTableAdapter, Me.__WiresTableAdapter.Connection)
-                    Me.__WiresTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me.__WiresTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me.__WiresTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me.__WiresTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me.__WiresTableAdapter.Adapter)
+                If (Not (Me._wireSourceTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._wireSourceTableAdapter, Me._wireSourceTableAdapter.Connection)
+                    Me._wireSourceTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._wireSourceTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._wireSourceTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._wireSourceTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._wireSourceTableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._gageTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._gageTableAdapter, Me._gageTableAdapter.Connection)
+                    Me._gageTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._gageTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._gageTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._gageTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._gageTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -6848,9 +8903,13 @@ Namespace QuoteDataBaseTableAdapters
                     Me.__PartsTableAdapter.Connection = CType(revertConnections(Me.__PartsTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me.__PartsTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me.__WiresTableAdapter) Is Nothing) Then
-                    Me.__WiresTableAdapter.Connection = CType(revertConnections(Me.__WiresTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me.__WiresTableAdapter.Transaction = Nothing
+                If (Not (Me._wireSourceTableAdapter) Is Nothing) Then
+                    Me._wireSourceTableAdapter.Connection = CType(revertConnections(Me._wireSourceTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._wireSourceTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._gageTableAdapter) Is Nothing) Then
+                    Me._gageTableAdapter.Connection = CType(revertConnections(Me._gageTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._gageTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

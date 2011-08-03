@@ -117,7 +117,8 @@ Public Class QuoteLoader
 
         Dim adaptor As New _QuoteDetailTableAdapter
         Dim partAdaptor As New _PartsTableAdapter
-        Dim wireAdaptor As New _WiresTableAdapter
+        Dim wireAdaptor As New WireSourceTableAdapter
+        Dim gageAdaptor As New GageTableAdapter
         Dim id As Integer = q.PrimaryProperties.CommonID
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
@@ -129,24 +130,28 @@ Public Class QuoteLoader
             If (parts.Count > 0) Then
                 Dim part As _PartsRow
                 part = parts(0)
-                Dim partObj As New Product( _
+                Dim partObj As Product
+                partObj = New Product( _
                     part.PartNumber, part.UnitCost, _
                     0, UnitOfMeasure.BY_EACH, Nothing, part)
 
                 detail = q.NewDetail(partObj)
             End If
 
-            Dim wires As _WiresDataTable
+            Dim wires As WireSourceDataTable
             wires = wireAdaptor.GetDataByPartNumber(row.ProductCode)
             If (wires.Count > 0) Then
-                Dim wire As _WiresRow
+                Dim wire As WireSourceRow
                 wire = wires(0)
                 Dim gage As String = ""
-                If Not wire.IsGageNull Then
-                    gage = wire.Gage
+                Dim gageTable As GageDataTable
+                gageTable = gageAdaptor.GetDataByGageID(wire.GageID)
+                If gageTable IsNot Nothing Then
+                    Dim gageRow As GageRow = gageTable.Rows(0)
+                    gage = gageRow.Gage
                 End If
                 Dim wireObj As New Product( _
-                    wire.PartNumber, wire.Price, _
+                    wire.PartNumber, wire.QuotePrice, _
                     gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
 
                 detail = q.NewDetail(wireObj)

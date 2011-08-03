@@ -1,5 +1,7 @@
 ﻿Imports System.Windows.Forms
 Imports DCS.Quote.Model
+Imports DCS.Quote.QuoteDataBase
+Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class frmWireLookup
 
@@ -13,18 +15,19 @@ Public Class frmWireLookup
 
     Private Sub SelectProduct()
         Dim View As System.Data.DataRowView = Me.ListBox1.SelectedItem
-        Dim row As QuoteDataBase._WiresRow = View.Row
-        Dim num As String = ""
-        If Not row.IsPartNumberNull Then
-            num = row.PartNumber
-        End If
+        Dim row As QuoteDataBase.WireSourceRow = View.Row
+        Dim num As String = row.PartNumber
         Dim cost As Decimal = 0
-        If Not row.IsPriceNull Then
-            cost = row.Price
+        If Not row.IsQuotePriceNull Then
+            cost = row.QuotePrice
         End If
         Dim gage As String = ""
-        If Not row.IsGageNull Then
-            gage = row.Gage
+        Dim gageTable As GageDataTable
+        Dim gageAdaptor As New GageTableAdapter
+        gageTable = gageAdaptor.GetDataByGageID(row.GageID)
+        If gageTable IsNot Nothing Then
+            Dim gageRow As GageRow = gageTable.Rows(0)
+            gage = gageRow.Gage
         End If
         Product = New Product( _
             num, cost, gage, UnitOfMeasure.BY_LENGTH, _
@@ -40,8 +43,8 @@ Public Class frmWireLookup
         Try
             'Me.DevDataSet1._Wires = Me._WiresTableAdapter.GetData()
             'Me._WiresTableAdapter.Fill(Me.DevDataSet1._Wires)
-            Dim table As QuoteDataBase._WiresDataTable
-            table = New QuoteDataBaseTableAdapters._WiresTableAdapter().GetData
+            Dim table As QuoteDataBase.WireSourceDataTable
+            table = New QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetData
             Me.ListBox1.DataSource = table
             Me.ListBox1.DisplayMember = "PartNumber"
         Catch ex As Exception
