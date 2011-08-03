@@ -23,7 +23,6 @@ Partial Class frmBOMSearch
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.txtRFQ = New System.Windows.Forms.TextBox()
@@ -42,50 +41,31 @@ Partial Class frmBOMSearch
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
         Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBox1)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(603, 262)
-        Me.SplitContainer1.SplitterDistance = 93
-        Me.SplitContainer1.TabIndex = 0
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TableLayoutPanel1)
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.txtRFQ)
-        Me.GroupBox1.Controls.Add(Me.txtPartNumber)
-        Me.GroupBox1.Controls.Add(Me.btnRFQ)
-        Me.GroupBox1.Controls.Add(Me.btnPartNumber)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(10)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(319, 73)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(10)
+        Me.GroupBox1.Size = New System.Drawing.Size(696, 100)
         Me.GroupBox1.TabIndex = 11
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filter"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(227, 19)
+        Me.Button1.Location = New System.Drawing.Point(264, 19)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 7
@@ -94,22 +74,25 @@ Partial Class frmBOMSearch
         '
         'txtRFQ
         '
-        Me.txtRFQ.Location = New System.Drawing.Point(99, 44)
+        Me.txtRFQ.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.txtRFQ.Location = New System.Drawing.Point(109, 36)
         Me.txtRFQ.Name = "txtRFQ"
         Me.txtRFQ.Size = New System.Drawing.Size(100, 20)
         Me.txtRFQ.TabIndex = 10
         '
         'txtPartNumber
         '
-        Me.txtPartNumber.Location = New System.Drawing.Point(99, 18)
+        Me.txtPartNumber.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.txtPartNumber.Location = New System.Drawing.Point(109, 5)
         Me.txtPartNumber.Name = "txtPartNumber"
         Me.txtPartNumber.Size = New System.Drawing.Size(100, 20)
         Me.txtPartNumber.TabIndex = 6
         '
         'btnRFQ
         '
+        Me.btnRFQ.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.btnRFQ.AutoSize = True
-        Me.btnRFQ.Location = New System.Drawing.Point(9, 45)
+        Me.btnRFQ.Location = New System.Drawing.Point(3, 38)
         Me.btnRFQ.Name = "btnRFQ"
         Me.btnRFQ.Size = New System.Drawing.Size(47, 17)
         Me.btnRFQ.TabIndex = 9
@@ -118,9 +101,10 @@ Partial Class frmBOMSearch
         '
         'btnPartNumber
         '
+        Me.btnPartNumber.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.btnPartNumber.AutoSize = True
         Me.btnPartNumber.Checked = True
-        Me.btnPartNumber.Location = New System.Drawing.Point(9, 19)
+        Me.btnPartNumber.Location = New System.Drawing.Point(3, 7)
         Me.btnPartNumber.Name = "btnPartNumber"
         Me.btnPartNumber.Size = New System.Drawing.Size(84, 17)
         Me.btnPartNumber.TabIndex = 8
@@ -137,12 +121,12 @@ Partial Class frmBOMSearch
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CustomerNameDataGridViewTextBoxColumn, Me.RequestForQuoteNumberDataGridViewTextBoxColumn, Me.PartNumberDataGridViewTextBoxColumn, Me.IsQuoteDataGridViewCheckBoxColumn, Me.TemplateIDDataGridViewTextBoxColumn, Me.InitialsDataGridViewTextBoxColumn, Me.CreatedDateDataGridViewTextBoxColumn, Me.LastModifedDateDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.QuoteBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 100)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(603, 165)
+        Me.DataGridView1.Size = New System.Drawing.Size(696, 233)
         Me.DataGridView1.TabIndex = 1
         '
         'CustomerNameDataGridViewTextBoxColumn
@@ -215,28 +199,43 @@ Partial Class frmBOMSearch
         '
         Me._QuoteTableAdapter.ClearBeforeFill = True
         '
-        'frmTemplateSearch
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.68966!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.31034!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btnPartNumber, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnRFQ, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.txtRFQ, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.txtPartNumber, 1, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 19)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(232, 62)
+        Me.TableLayoutPanel1.TabIndex = 11
+        '
+        'frmBOMSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(603, 262)
-        Me.Controls.Add(Me.SplitContainer1)
+        Me.ClientSize = New System.Drawing.Size(696, 333)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.GroupBox1)
         Me.MinimizeBox = False
-        Me.Name = "frmTemplateSearch"
+        Me.Name = "frmBOMSearch"
         Me.ShowInTaskbar = False
         Me.Text = "Search BOMs"
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        Me.SplitContainer1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
@@ -257,4 +256,5 @@ Partial Class frmBOMSearch
     Friend WithEvents CreatedDateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LastModifedDateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
 End Class
