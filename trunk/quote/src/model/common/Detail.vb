@@ -29,10 +29,14 @@ Namespace Common
             End Get
         End Property
 
-        Public ReadOnly Property UnitCost As Decimal
+        Public Property UnitCost As Decimal
             Get
                 Return Product.UnitCost
             End Get
+            Set(ByVal value As Decimal)
+                Product.UnitCost = value
+                SendEvents()
+            End Set
         End Property
 
         Public ReadOnly Property LengthFeet As Decimal

@@ -52,10 +52,13 @@ Namespace Model
             End Get
         End Property
 
-        ReadOnly Property UnitCost As Decimal
+        Property UnitCost As Decimal
             Get
                 Return m_unitCost
             End Get
+            Set(ByVal value As Decimal)
+                m_unitCost = Math.Round(value, 2)
+            End Set
         End Property
 
         ReadOnly Property UnitOfMeasure As UnitOfMeasure

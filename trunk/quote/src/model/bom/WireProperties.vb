@@ -68,10 +68,13 @@ Namespace Model.BOM
         End Property
 
         <DisplayName("Unit Cost")> _
-        Public Overloads ReadOnly Property UnitCost() As Decimal
+        Public Property UnitCost() As Decimal
             Get
                 Return _QuoteDetail.UnitCost
             End Get
+            Set(ByVal value As Decimal)
+                _QuoteDetail.UnitCost = value
+            End Set
         End Property
 
         Private Overloads Sub SendEvents()
