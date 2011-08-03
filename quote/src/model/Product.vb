@@ -21,16 +21,14 @@ Namespace Model
                        ByVal Gage As String, _
                        ByVal UnitOfMeasure As UnitOfMeasure, _
                        ByVal WireRow As QuoteDataBase.WireSourceRow, _
-                       ByVal PartRow As QuoteDataBase._PartsRow
+                       ByVal PartRow As QuoteDataBase.WireComponentSourceRow
                        )
             Me.m_code = Code
             Me.m_unitCost = UnitCost
             Me.m_gage = Gage
             Me.m_unitOfMeasure = UnitOfMeasure
             If PartRow IsNot Nothing Then
-                If Not PartRow.IsDescriptionNull Then
-                    Me.m_Description = PartRow.Description
-                End If
+                Me.m_Description = PartRow.Description
                 If Not PartRow.IsLeadTimeNull Then
                     Me.m_LeadTime = PartRow.LeadTime
                 End If

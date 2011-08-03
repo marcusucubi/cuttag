@@ -13,7 +13,7 @@ Public Class CommonLoader
     Public Shared Sub LoadComponents(ByVal q As Common.Header)
 
         Dim adaptor As New _QuoteDetailTableAdapter
-        Dim partAdaptor As New _PartsTableAdapter
+        Dim partAdaptor As New WireComponentSourceTableAdapter
         Dim wireAdaptor As New WireSourceTableAdapter
         Dim gageAdaptor As New GageTableAdapter
         Dim id As Integer = q.PrimaryProperties.CommonID
@@ -22,13 +22,13 @@ Public Class CommonLoader
 
             Dim detail As Common.Detail = Nothing
 
-            Dim parts As _PartsDataTable
+            Dim parts As WireComponentSourceDataTable
             parts = partAdaptor.GetDataByPartNumber(row.ProductCode)
             If (parts.Count > 0) Then
-                Dim part As _PartsRow
+                Dim part As WireComponentSourceRow
                 part = parts(0)
                 Dim partObj As New Product( _
-                    part.PartNumber, part.UnitCost, _
+                    part.PartNumber, part.QuotePrice, _
                     0, UnitOfMeasure.BY_EACH, Nothing, part)
 
                 detail = q.NewDetail(partObj)

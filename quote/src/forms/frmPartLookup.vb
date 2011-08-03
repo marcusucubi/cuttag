@@ -14,9 +14,13 @@ Public Class frmComponentLookup
     Private Sub SelectProduct()
 
         Dim View As System.Data.DataRowView = Me.ListBox1.SelectedItem
+        Dim row As QuoteDataBase.WireComponentSourceRow = View.Row
 
-        Dim num As String = View.Row.ItemArray(1)
-        Dim cost As Decimal = View.Row.ItemArray(2)
+        Dim num As String = row.PartNumber
+        Dim cost As Decimal = 0
+        If Not row.IsQuotePriceNull Then
+            cost = row.QuotePrice
+        End If
 
         Product = New Product( _
             num, cost, "", UnitOfMeasure.BY_EACH, _
@@ -31,8 +35,8 @@ Public Class frmComponentLookup
     Private Sub frmPartLookup_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         Try
-            Dim table As QuoteDataBase._PartsDataTable
-            table = New QuoteDataBaseTableAdapters._PartsTableAdapter().GetData()
+            Dim table As QuoteDataBase.WireComponentSourceDataTable
+            table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetData()
             Me.ListBox1.DataSource = table
             Me.ListBox1.DisplayMember = "PartNumber"
         Catch ex As Exception
