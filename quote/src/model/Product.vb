@@ -10,6 +10,7 @@ Namespace Model
         Private m_code As String
         Private m_gage As String
         Private m_unitCost As Decimal
+        Private m_machineTime As Integer
         Private m_unitOfMeasure As UnitOfMeasure
         Private m_Description As String
         Private m_LeadTime As Integer
@@ -34,6 +35,9 @@ Namespace Model
                 End If
                 If Not PartRow.IsVendorNull Then
                     Me.m_Vendor = PartRow.Vendor
+                End If
+                If Not PartRow.IsMachineTimeNull Then
+                    Me.m_machineTime = PartRow.MachineTime
                 End If
             End If
         End Sub
@@ -89,6 +93,15 @@ Namespace Model
             End Get
             Set(ByVal value As String)
                 m_Vendor = value
+            End Set
+        End Property
+
+        Public Property MachineTime() As Integer
+            Get
+                Return m_machineTime
+            End Get
+            Set(ByVal value As Integer)
+                m_machineTime = value
             End Set
         End Property
 
