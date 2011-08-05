@@ -6,8 +6,16 @@ Namespace Model.BOM
     Public Class Detail
         Inherits Common.Detail
 
-        Private _WireProperties As New WireProperties(Me)
-        Private _ComponentProperties As New ComponentProperties(Me)
+        Private _WireProperties As WireProperties
+        Private _ComponentProperties As ComponentProperties
+
+        Friend Sub New(ByVal header As Header, ByVal product As Product)
+            Me.Header = header
+            Me._Product = product
+            Me._WireProperties = New WireProperties(Me)
+            Me._ComponentProperties = New ComponentProperties(Me)
+            Me._Quantity = 1
+        End Sub
 
         <BrowsableAttribute(False)>
         Property Header As Header
@@ -21,12 +29,6 @@ Namespace Model.BOM
                 Return _ComponentProperties
             End Get
         End Property
-
-        Friend Sub New(ByVal header As Header, ByVal product As Product)
-            Me.Header = header
-            Me._Product = product
-            Me._Quantity = 1
-        End Sub
 
     End Class
 End Namespace

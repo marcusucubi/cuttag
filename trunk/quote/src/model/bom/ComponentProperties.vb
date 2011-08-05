@@ -11,11 +11,7 @@ Namespace Model.BOM
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
-                If (_QuoteDetail.Product.UnitOfMeasure = _
-                    Model.UnitOfMeasure.BY_EACH) Then
-
-                    Me.MachineTime = 10
-                End If
+                Me.MachineTime = _QuoteDetail.Product.MachineTime
             End If
         End Sub
 
