@@ -54,6 +54,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _QuoteDetail.Product.Description = value
+                SendEvents()
             End Set
         End Property
 
@@ -65,6 +66,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Integer)
                 _QuoteDetail.Product.LeadTime = value
+                SendEvents()
             End Set
         End Property
 
@@ -76,6 +78,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _QuoteDetail.Product.Vendor = value
+                SendEvents()
             End Set
         End Property
 
@@ -94,6 +97,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _QuoteDetail.UnitCost = value
+                SendEvents()
             End Set
         End Property
 
