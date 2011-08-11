@@ -23,8 +23,8 @@ Public Class CuttagDatabaseConnection
             ConnectionString = "data source= " + DataSource _
                 + ";initial catalog= " + DataBase _
                 + ";integrated security=" + sSecurity _
-                + ";persist security info=False; " _
-                + ";packet size=4096;connect timeout=30"
+                + ";persist security info=False;" _
+                + ";packet size=4096;connect timeout=5"
             If Not Open() Then
                 ConnectionString = My.MySettings.Default.cuttagSKEConnectionString
             End If
