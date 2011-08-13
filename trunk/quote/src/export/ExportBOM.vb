@@ -7,6 +7,10 @@
         _ExcelBOMRwiter = New ExcelBOMWriter
         _ExcelBOMRwiter.Init()
 
+        For Each detail As Common.Detail In header.Details
+            ExportObject(detail.QuoteDetailProperties)
+        Next
+
         ExportObject(header.OtherProperties)
         ExportObject(header.PrimaryProperties)
         ExportObject(header.ComputationProperties)
@@ -20,12 +24,7 @@
         Dim o As Object = Target
         Dim processor As New PropertyProcessor()
         processor.Target = o
-
-        Dim printer As New PropertyPrinter
-        printer.Processor = processor
-        If (_ExcelBOMRwiter IsNot Nothing) Then
-            _ExcelBOMRwiter.Processor = processor
-        End If
+        _ExcelBOMRwiter.Processor = processor
 
         processor.Process()
 

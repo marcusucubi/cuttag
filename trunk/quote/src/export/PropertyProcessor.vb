@@ -20,8 +20,6 @@ Public Class PropertyProcessor
 
     Public Sub Process()
 
-        Dim printer As New PropertyPrinter
-
         Dim index As Integer
         Do
             If index >= _Info.Length Then

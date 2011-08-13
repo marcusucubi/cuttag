@@ -4,7 +4,7 @@ Imports NPOI.HSSF.UserModel
 
 Public Class ExcelBOMWriter
 
-    Private Const SHEET_NAME As String = "Names"
+    Private Const SHEET_NAME As String = "BOM"
     Private Const XLS_FILE_NAME As String = "Export.xls"
 
     Private _Workbook As New HSSFWorkbook
@@ -29,15 +29,7 @@ Public Class ExcelBOMWriter
         SetupPath()
 
         _Workbook = New HSSFWorkbook()
-
-        _Sheet = _Workbook.GetSheet(SHEET_NAME)
-        If _Sheet IsNot Nothing Then
-            Dim index As Integer = _Workbook.GetSheetIndex(_Sheet)
-            _Workbook.RemoveSheetAt(index)
-        End If
         _Sheet = _Workbook.CreateSheet(SHEET_NAME)
-        Dim i As Integer = _Workbook.GetSheetIndex(_Sheet)
-        _Workbook.SetSheetHidden(i, True)
     End Sub
 
     Public Sub Term()
