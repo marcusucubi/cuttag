@@ -1,11 +1,8 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Reflection
 Imports DCS.Quote.Model
-Imports DCS.Quote.QuoteDataBase
-Imports System.Reflection
-Imports System.Data.OleDb
-Imports System.Transactions
-Imports DCS.Quote.QuoteDataBaseTableAdapters
 Imports DCS.Quote.Model.Quote
+Imports DCS.Quote.QuoteDataBaseTableAdapters
+Imports DCS.Quote.QuoteDataBase
 
 Public Class QuoteLoader
 
@@ -38,7 +35,7 @@ Public Class QuoteLoader
                 templateID = row.TemplateID
             End If
 
-            q = New Model.Quote.Header(row.ID, customer, rfq, part, templateID, _
+            q = New Model.Quote.Header(row.id, customer, rfq, part, templateID, _
                 row.Initials, row.CreatedDate, row.LastModifedDate)
 
             LoadComponents(q)
@@ -52,6 +49,9 @@ Public Class QuoteLoader
             Dim o3 = LoadProperties(id, _
                 CommonSaver.CUSTOM_PROPERTIES_ID, q.CustomProperties)
             q.SetCustomProperties(o3)
+            Dim o4 = LoadProperties(id, _
+                CommonSaver.NOTE_PROPERTIES_ID, q.NoteProperties)
+            q.SetNoteProperties(o4)
 
         End If
 
@@ -159,7 +159,7 @@ Public Class QuoteLoader
 
             If (detail IsNot Nothing) Then
                 detail.Qty = row.Qty
-                Dim o1 = LoadProperties(id, row.ID, detail.QuoteDetailProperties)
+                Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
                 detail.SetProperties(o1)
             End If
         Next
