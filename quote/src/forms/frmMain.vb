@@ -146,9 +146,9 @@ Public Class frmMain
         If Me._ActiveHeader.Header IsNot Nothing Then
             Dim id As Integer
             id = Me._ActiveHeader.Header.PrimaryProperties.CommonID
-            Dim IsQuote As Boolean
-            IsQuote = Me._ActiveHeader.Header.IsQuote
-            If id > 0 And Not IsQuote Then
+            Dim IsQuote As Boolean = Me._ActiveHeader.Header.IsQuote
+            Dim IsDirty As Boolean = Me._ActiveHeader.Header.Dirty
+            If id > 0 And Not IsQuote And Not IsDirty Then
                 result = True
             End If
         End If
