@@ -12,6 +12,7 @@
             Set(ByVal value As String)
                 If _Note <> value Then
                     _Note = value
+                    Console.WriteLine(" -- " + value)
                     Me.SendEvents()
                 End If
             End Set

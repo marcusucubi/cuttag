@@ -42,6 +42,10 @@ Namespace Model.Quote
             Me._CustomProperties = o
         End Sub
 
+        Public Sub SetNoteProperties(ByVal o As Object)
+            Me._NoteProperties = o
+        End Sub
+
         Public Shadows ReadOnly Property ID As Integer
             Get
                 Return PrimaryProperties.CommonID
