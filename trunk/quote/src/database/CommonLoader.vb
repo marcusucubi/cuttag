@@ -10,6 +10,21 @@ Imports DCS.Quote.Common.CustomPropertiesGenerator
 
 Public Class CommonLoader
 
+    Public Shared Sub LoadNoteProperties(ByVal id As Integer, _
+                                         ByVal obj As Object)
+        LoadProperties(id, CommonSaver.NOTE_PROPERTIES_ID, obj)
+    End Sub
+
+    Public Shared Sub LoadOtherProperties(ByVal id As Integer, _
+                                          ByVal obj As Object)
+        LoadProperties(id, CommonSaver.OTHER_PROPERTIES_ID, obj)
+    End Sub
+
+    Public Shared Sub LoadComputationProperties(ByVal id As Integer, _
+                                                ByVal obj As Object)
+        LoadProperties(id, CommonSaver.COMPUTATION_PROPERTIES_ID, obj)
+    End Sub
+
     Public Shared Sub LoadComponents(ByVal q As Common.Header)
 
         Dim adaptor As New _QuoteDetailTableAdapter
@@ -68,16 +83,6 @@ Public Class CommonLoader
                 LoadProperties(id, row.id, detail.QuoteDetailProperties)
             End If
         Next
-    End Sub
-
-    Public Shared Sub LoadOtherProperties(ByVal id As Integer, _
-                                          ByVal obj As Object)
-        LoadProperties(id, CommonSaver.OTHER_PROPERTIES_ID, obj)
-    End Sub
-
-    Public Shared Sub LoadComputationProperties(ByVal id As Integer, _
-                                                ByVal obj As Object)
-        LoadProperties(id, CommonSaver.COMPUTATION_PROPERTIES_ID, obj)
     End Sub
 
     Private Shared Sub LoadProperties(ByVal id As Integer, _

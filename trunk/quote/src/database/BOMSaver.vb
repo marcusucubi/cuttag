@@ -53,6 +53,7 @@ Public Class BOMSaver
 
         adaptor.Connection.Open()
         CommonSaver.DeleteProperties(newId)
+        CommonSaver.SaveNoteProperties(newId, q.NoteProperties)
         CommonSaver.SaveOtherProperties(newId, q.OtherProperties, False)
         CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, False)
         CommonSaver.DeleteComponents(newId)

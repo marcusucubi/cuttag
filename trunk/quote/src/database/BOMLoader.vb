@@ -53,12 +53,14 @@ Public Class BOMLoader
 
             CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
             CommonLoader.LoadOtherProperties(id, q.OtherProperties)
+            CommonLoader.LoadNoteProperties(id, q.NoteProperties)
             CommonLoader.LoadComponents(q)
         End If
 
         q.ComputationProperties.ClearDirty()
         q.OtherProperties.ClearDirty()
         q.PrimaryProperties.ClearDirty()
+        q.NoteProperties.ClearDirty()
         q.ClearDirty()
 
         frmMain.frmMain.UseWaitCursor = False
