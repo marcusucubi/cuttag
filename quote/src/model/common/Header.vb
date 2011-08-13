@@ -9,6 +9,7 @@ Namespace Common
         Protected _OtherProperties As Common.OtherProperties
         Protected _ComputationProperties As Common.ComputationProperties
         Protected _CustomProperties As New Common.SaveableProperties
+        Protected _NoteProperties As New Common.NoteProperties
         Protected WithEvents _Details As New DetailCollection(Of Common.Detail)
 
         Public Property ID As Integer
@@ -36,6 +37,12 @@ Namespace Common
         Public ReadOnly Property CustomProperties As Common.SaveableProperties
             Get
                 Return _CustomProperties
+            End Get
+        End Property
+
+        Public ReadOnly Property NoteProperties As Common.NoteProperties
+            Get
+                Return _NoteProperties
             End Get
         End Property
 

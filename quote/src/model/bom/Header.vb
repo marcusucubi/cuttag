@@ -15,6 +15,7 @@ Namespace Model.BOM
             _PrimaryProperties = New PrimaryPropeties(Me, id)
             _ComputationProperties = New ComputationProperties(Me)
             _OtherProperties = New OtherProperties(Me)
+            _NoteProperties = New NoteProperties(Me)
             MyBase.AddDependent(_ComputationProperties)
             MyBase.AddDependent(_OtherProperties)
             MyBase.AddDependent(_PrimaryProperties)
