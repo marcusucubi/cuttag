@@ -57,6 +57,7 @@ Namespace Model.BOM
             SendEvents()
         End Sub
 
+        <DescriptionAttribute("Number of Decameters")> _
         Public Property Quantity() As Integer
             Get
                 Return Me._QuoteDetail.Qty
@@ -67,7 +68,8 @@ Namespace Model.BOM
             End Set
         End Property
 
-        <DisplayName("Unit Cost")> _
+        <DisplayName("Unit Cost"), _
+        DescriptionAttribute("Dollars per Decameter")> _
         Public Property UnitCost() As Decimal
             Get
                 Return _QuoteDetail.UnitCost
