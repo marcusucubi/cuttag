@@ -123,12 +123,17 @@ Public Class frmMain
     End Sub
 
     Private Sub BOMExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BOMExportButton.Click
-
+        DoBOMExport()
     End Sub
 
     Private Sub DoExport()
         Dim frm As New frmExport
         frm.ShowDialog()
+    End Sub
+
+    Private Sub DoBOMExport()
+        Dim export As New Export
+        export.ExportBOM(ActiveHeader.ActiveHeader.Header)
     End Sub
 
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
