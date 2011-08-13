@@ -22,6 +22,8 @@ Public Class frmNoteProperties
         _ActiveQuote = ActiveHeader.ActiveHeader
         If (_ActiveQuote.Header IsNot Nothing) Then
             _Notes = _ActiveQuote.Header.NoteProperties
+        Else
+            _Notes = Nothing
         End If
         UpdateProperties()
     End Sub
@@ -32,27 +34,36 @@ Public Class frmNoteProperties
 
     Private Sub TextBox1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
         If _Notes IsNot Nothing Then
-            If _Notes.Note <> Me.TextBox1.Text Then
-                _Notes.Note = Me.TextBox1.Text
+            Dim o As Object = _Notes
+            If o.Note <> Me.TextBox1.Text Then
+                o.Note = Me.TextBox1.Text
             End If
         End If
     End Sub
 
     Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
         If _Notes IsNot Nothing Then
-            If _Notes.Note <> Me.TextBox1.Text Then
-                _Notes.Note = Me.TextBox1.Text
+            Dim o As Object = _Notes
+            If o.Note <> Me.TextBox1.Text Then
+                o.Note = Me.TextBox1.Text
             End If
         End If
     End Sub
 
     Private Sub UpdateProperties()
         If _Notes IsNot Nothing Then
-            Me.TextBox1.Text = _Notes.Note
+            Dim o As Object = _Notes
+            Me.TextBox1.Text = o.Note
+            If o.GetType().GetProperty("Note").CanWrite Then
+                Me.TextBox1.ReadOnly = False
+            Else
+                Me.TextBox1.ReadOnly = True
+            End If
         Else
             If (Me.TextBox1.Text.Length > 0) Then
                 Me.TextBox1.Text = ""
             End If
+            Me.TextBox1.ReadOnly = True
         End If
     End Sub
 
