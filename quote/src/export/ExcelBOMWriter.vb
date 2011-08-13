@@ -11,9 +11,19 @@ Public Class ExcelBOMWriter
     Private _Sheet As Sheet
     Private _Index As Integer
     Private WithEvents _Processor As PropertyProcessor
+    Private _Indent As Integer
 
     Public Path As String
     Public TemplatePath As String
+
+    Public Sub StartIndent(ByVal s As String)
+        WriteValue(s, "")
+        _Indent = _Indent + 1
+    End Sub
+
+    Public Sub EndIndent()
+        _Indent = _Indent - 1
+    End Sub
 
     Public Property Processor As PropertyProcessor
         Get
@@ -30,6 +40,10 @@ Public Class ExcelBOMWriter
 
         _Workbook = New HSSFWorkbook()
         _Sheet = _Workbook.CreateSheet(SHEET_NAME)
+        _Sheet.SetColumnWidth(0, 1000 * 5)
+        _Sheet.SetColumnWidth(1, 1000 * 5)
+        _Sheet.SetColumnWidth(2, 1000 * 6)
+        _Sheet.SetColumnWidth(3, 1000 * 5)
     End Sub
 
     Public Sub Term()
@@ -67,20 +81,17 @@ Public Class ExcelBOMWriter
             Return
         End If
 
-        Dim cell2 As Cell
+        WriteValue(Prop.DisplayName, Prop.Value.ToString)
+    End Sub
 
-        Dim name As Name = _Workbook.GetName(Prop.DisplayName)
-        If name Is Nothing Then
-            name = _Workbook.CreateName()
-            name.NameName = Prop.DisplayName
-        End If
-        name.RefersToFormula = SHEET_NAME & "!$B$" & (_Index + 1)
+    Private Sub WriteValue(ByVal name As String, ByVal value As String)
+
         Dim row As Row = _Sheet.CreateRow(_Index)
-        Dim cell As Cell = row.CreateCell(0)
-        cell.SetCellValue(Prop.DisplayName)
-        cell2 = row.CreateCell(1)
+        Dim cell As Cell = row.CreateCell(_Indent)
+        cell.SetCellValue(name)
+        Dim cell2 As Cell = row.CreateCell(_Indent + 1)
 
-        cell2.SetCellValue(Prop.Value.ToString)
+        cell2.SetCellValue(value)
         _Index = _Index + 1
 
     End Sub
