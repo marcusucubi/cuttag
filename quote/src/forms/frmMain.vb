@@ -13,6 +13,7 @@ Public Class frmMain
     Private _OtherProperties As New frmOtherProperties
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
+    Private _NoteProperties As New frmNoteProperties
     Private WithEvents _ActiveHeader As ActiveHeader
     Private WithEvents _SaveableProperties As Common.SaveableProperties
 
@@ -105,6 +106,14 @@ Public Class frmMain
         frmQuoteSearch.ShowDialog(Me)
     End Sub
 
+    Private Sub NotesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotesToolStripMenuItem.Click
+        ShowNoteProperties()
+    End Sub
+
+    Private Sub CustomToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomToolStripMenuItem.Click
+        ShowCustomProperties()
+    End Sub
+
     Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
         DoExport()
     End Sub
@@ -172,6 +181,7 @@ Public Class frmMain
         ShowDetailProperties()
         ShowPrimaryProperties()
         ShowOtherProperties()
+        ShowNoteProperties()
         ShowCustomProperties()
         ShowComputationProperties()
     End Sub
@@ -229,6 +239,17 @@ Public Class frmMain
         If (_OtherProperties.IsHidden Or _OtherProperties.IsDisposed) Then
             _OtherProperties = New frmOtherProperties
             InitChild(_OtherProperties)
+        End If
+    End Sub
+
+    Private Sub ShowNoteProperties()
+        If (_NoteProperties Is Nothing) Then
+            _NoteProperties = New frmNoteProperties
+            InitChild(_NoteProperties)
+        End If
+        If (_NoteProperties.IsHidden Or _NoteProperties.IsDisposed) Then
+            _NoteProperties = New frmNoteProperties
+            InitChild(_NoteProperties)
         End If
     End Sub
 
