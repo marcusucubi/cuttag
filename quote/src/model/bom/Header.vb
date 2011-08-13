@@ -19,6 +19,7 @@ Namespace Model.BOM
             MyBase.AddDependent(_ComputationProperties)
             MyBase.AddDependent(_OtherProperties)
             MyBase.AddDependent(_PrimaryProperties)
+            MyBase.AddDependent(_NoteProperties)
         End Sub
 
         Public Overloads ReadOnly Property IsQuote As Boolean

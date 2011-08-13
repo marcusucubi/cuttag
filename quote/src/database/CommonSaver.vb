@@ -13,6 +13,12 @@ Public Class CommonSaver
     Public Shared ReadOnly COMPUTATION_PROPERTIES_ID = -1
     Public Shared ReadOnly OTHER_PROPERTIES_ID = -2
     Public Shared ReadOnly CUSTOM_PROPERTIES_ID = -3
+    Public Shared ReadOnly NOTE_PROPERTIES_ID = -4
+
+    Public Shared Sub SaveNoteProperties(ByVal id As Integer, _
+                                         ByVal obj As Object)
+        SaveProperties(id, NOTE_PROPERTIES_ID, obj, True)
+    End Sub
 
     Public Shared Sub SaveCustomProperties(ByVal id As Integer, _
                                            ByVal obj As Object)
@@ -99,7 +105,12 @@ Public Class CommonSaver
                 adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc, Nothing)
             End If
             If TypeOf o Is String Then
+                Dim t As New QuoteDataBase._QuotePropertiesDataTable
+                Dim max = t.PropertyStringValueColumn.MaxLength
                 s = CStr(o)
+                If s.Length > max Then
+                    s = s.Substring(0, max - 1)
+                End If
                 adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc, Nothing)
             End If
             If TypeOf o Is Decimal Then
