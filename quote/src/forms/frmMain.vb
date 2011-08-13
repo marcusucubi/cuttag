@@ -132,8 +132,8 @@ Public Class frmMain
     End Sub
 
     Private Sub DoBOMExport()
-        Dim export As New Export
-        export.ExportBOM(ActiveHeader.ActiveHeader.Header)
+        Dim export As New ExportBOM
+        export.Export(ActiveHeader.ActiveHeader.Header)
     End Sub
 
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click

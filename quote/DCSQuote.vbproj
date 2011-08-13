@@ -97,6 +97,8 @@
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
     <Compile Include="src\database\CuttagDatabaseConnection.vb" />
+    <Compile Include="src\export\ExcelBOMWriter.vb" />
+    <Compile Include="src\export\ExportBOM.vb" />
     <Compile Include="src\forms\frmDatabaseTest.Designer.vb">
       <DependentUpon>frmDatabaseTest.vb</DependentUpon>
     </Compile>
