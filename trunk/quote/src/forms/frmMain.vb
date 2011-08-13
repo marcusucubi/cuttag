@@ -122,6 +122,10 @@ Public Class frmMain
         DoExport()
     End Sub
 
+    Private Sub BOMExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BOMExportButton.Click
+
+    End Sub
+
     Private Sub DoExport()
         Dim frm As New frmExport
         frm.ShowDialog()
@@ -190,6 +194,7 @@ Public Class frmMain
         ToolStripTemplate.Enabled = False
         ExportToolStripMenuItem.Enabled = False
         ExportButton.Enabled = False
+        BOMExportButton.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
@@ -202,6 +207,7 @@ Public Class frmMain
                 ExportToolStripMenuItem.Enabled = True
                 ExportButton.Enabled = True
             Else
+                BOMExportButton.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True

@@ -75,6 +75,7 @@ Partial Class frmMain
         Me.DetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CustomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BOMExportButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -137,7 +138,7 @@ Partial Class frmMain
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.LoadButton, Me.ToolSearchTemplates, Me.SaveToolButton, Me.ToolStripSeparator4, Me.NewQuoteButton, Me.LoadQuoteButton, Me.ToolSearchQuotes, Me.ToolStripTemplate, Me.ExportButton})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnNew, Me.LoadButton, Me.ToolSearchTemplates, Me.SaveToolButton, Me.BOMExportButton, Me.ToolStripSeparator4, Me.NewQuoteButton, Me.LoadQuoteButton, Me.ToolSearchQuotes, Me.ToolStripTemplate, Me.ExportButton})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(873, 25)
@@ -380,6 +381,16 @@ Partial Class frmMain
         Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.CustomToolStripMenuItem.Text = "Custom"
         '
+        'BOMExportButton
+        '
+        Me.BOMExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BOMExportButton.Enabled = False
+        Me.BOMExportButton.Image = Global.DCS.Quote.My.Resources.Resources.excel
+        Me.BOMExportButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BOMExportButton.Name = "BOMExportButton"
+        Me.BOMExportButton.Size = New System.Drawing.Size(23, 22)
+        Me.BOMExportButton.Text = "Export BOM"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -438,5 +449,6 @@ Partial Class frmMain
     Friend WithEvents ExportButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents NotesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CustomToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BOMExportButton As System.Windows.Forms.ToolStripButton
 
 End Class
