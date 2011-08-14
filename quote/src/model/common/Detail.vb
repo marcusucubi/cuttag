@@ -39,6 +39,7 @@ Namespace Common
             End Set
         End Property
 
+        <Browsable(False)> _
         Public ReadOnly Property LengthFeet As Decimal
             Get
                 Return Math.Round(Qty / 3.048, 4)
