@@ -18,10 +18,6 @@
         ExportObject(header.ComputationProperties)
         _Writer.EndIndent()
 
-        _Writer.StartIndent("NoteProperties")
-        ExportObject(header.NoteProperties)
-        _Writer.EndIndent()
-
         _Writer = New ExcelBOMWriter(_Writer.Path, _Writer.Workbook, "Wires")
         Dim index As Integer
         For Each detail As Common.Detail In header.Details
@@ -50,6 +46,15 @@
             End If
         Next
 
+        Dim w As NPOI.SS.UserModel.Workbook = _Writer.Workbook
+        Dim sheet As NPOI.SS.UserModel.Sheet = w.CreateSheet("Notes")
+        Dim cell As NPOI.SS.UserModel.Cell = sheet.CreateRow(0).CreateCell(0)
+        Dim notes As Model.BOM.NoteProperties = header.NoteProperties
+        cell.SetCellValue(notes.Note)
+        cell.Sheet.SetColumnWidth(0, 1000 * 1000)
+        cell.Row.Height = 1000 * 5
+        cell.CellStyle.WrapText = True
+        cell.CellStyle.VerticalAlignment = NPOI.SS.UserModel.VerticalAlignment.TOP
 
         _Writer.Open()
         Return _Writer.Path
