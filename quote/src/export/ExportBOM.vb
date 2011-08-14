@@ -14,6 +14,10 @@
         ExportObject(header.OtherProperties)
         _Writer.EndIndent()
 
+        _Writer.StartIndent("CustomProperties")
+        ExportObject(ActiveCustomProperties.ActiveCustomProperties.Properties)
+        _Writer.EndIndent()
+
         _Writer.StartIndent("ComputationProperties")
         ExportObject(header.ComputationProperties)
         _Writer.EndIndent()
@@ -23,9 +27,11 @@
         For Each detail As Common.Detail In header.Details
             If (detail.Product.UnitOfMeasure = Model.UnitOfMeasure.BY_LENGTH) Then
                 If index = 0 Then
+                    PrintWireColumns(detail)
                     PrintWireColumns(detail.QuoteDetailProperties)
                     _Writer.IncrementIndex()
                 End If
+                PrintWireValue(detail)
                 PrintWireValue(detail.QuoteDetailProperties)
                 _Writer.IncrementIndex()
                 index = index + 1
@@ -37,9 +43,11 @@
         For Each detail As Common.Detail In header.Details
             If (detail.Product.UnitOfMeasure = Model.UnitOfMeasure.BY_EACH) Then
                 If index = 0 Then
+                    PrintWireColumns(detail)
                     PrintWireColumns(detail.QuoteDetailProperties)
                     _Writer.IncrementIndex()
                 End If
+                PrintWireValue(detail)
                 PrintWireValue(detail.QuoteDetailProperties)
                 _Writer.IncrementIndex()
                 index = index + 1
