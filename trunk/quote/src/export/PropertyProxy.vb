@@ -31,7 +31,13 @@ Public Class PropertyProxy
 
     Public ReadOnly Property DisplayName As String
         Get
-            Return _Info.Name
+            Dim result As String = _Info.Name
+            Dim oa As DisplayNameAttribute() = _
+                    _Info.GetCustomAttributes(GetType(DisplayNameAttribute), False)
+            If oa.Length > 0 Then
+                result = oa(0).DisplayName
+            End If
+            Return result
         End Get
     End Property
 

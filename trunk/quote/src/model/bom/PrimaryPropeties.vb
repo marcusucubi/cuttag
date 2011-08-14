@@ -81,8 +81,8 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute("Misc"), _
-        DisplayName("QuoteNumnber"), _
-        DescriptionAttribute("Quote Numnber")> _
+        DisplayName("Quote Number"), _
+        DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
             Get
                 Return MyBase.CommonID
