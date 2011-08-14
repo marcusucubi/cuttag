@@ -4,17 +4,66 @@ Imports NPOI.HSSF.UserModel
 
 Public Class ExcelBOMWriter
 
-    Private Const SHEET_NAME As String = "BOM"
     Private Const XLS_FILE_NAME As String = "Export.xls"
 
+    Private WithEvents _Processor As PropertyProcessor
     Private _Workbook As New HSSFWorkbook
     Private _Sheet As Sheet
     Private _Index As Integer
-    Private WithEvents _Processor As PropertyProcessor
     Private _Indent As Integer
+    Private _CursorX As Integer
 
     Public Path As String
     Public TemplatePath As String
+
+    Public UpdateWithValue As Boolean = True
+    Public UpdateWithName As Boolean = True
+    Public MoveRight As Boolean
+    Public MoveDown As Boolean = True
+    Public SaveUpdateWithValue As Boolean
+    Public SaveUpdateWithName As Boolean
+    Public SaveMoveRight As Boolean
+    Public SaveMoveDown As Boolean
+
+    Public Sub New(ByVal sheetName As String)
+        _Workbook = New HSSFWorkbook()
+        SetupPath()
+        _Sheet = _Workbook.CreateSheet(sheetName)
+        SizeColumns()
+    End Sub
+
+    Public Sub New(ByVal Path As String, ByVal workbook As HSSFWorkbook, ByVal sheetName As String)
+        _Workbook = workbook
+        Me.Path = Path
+        _Sheet = _Workbook.CreateSheet(sheetName)
+        SizeColumns()
+    End Sub
+
+    Public Sub SizeColumns()
+        For i As Integer = 0 To 10
+            _Sheet.SetColumnWidth(i, 1000 * 5)
+        Next
+    End Sub
+
+    Public ReadOnly Property Workbook As HSSFWorkbook
+        Get
+            Return _Workbook
+        End Get
+    End Property
+
+    Public Sub SaveSettings()
+        SaveUpdateWithValue = UpdateWithValue
+        SaveUpdateWithName = UpdateWithName
+        SaveMoveRight = MoveRight
+        SaveMoveDown = MoveDown
+    End Sub
+
+    Public Sub RestoreSettings()
+        UpdateWithValue = SaveUpdateWithValue
+        UpdateWithName = SaveUpdateWithName
+        MoveRight = SaveMoveRight
+        MoveDown = SaveMoveDown
+    End Sub
 
     Public Sub StartIndent(ByVal s As String)
         WriteValue(s, "")
@@ -23,6 +72,11 @@ Public Class ExcelBOMWriter
 
     Public Sub EndIndent()
         _Indent = _Indent - 1
+    End Sub
+
+    Public Sub IncrementIndex()
+        _CursorX = 0
+        _Index = _Index + 1
     End Sub
 
     Public Property Processor As PropertyProcessor
@@ -34,21 +88,8 @@ Public Class ExcelBOMWriter
         End Set
     End Property
 
-    Public Sub Init()
-
-        SetupPath()
-
-        _Workbook = New HSSFWorkbook()
-        _Sheet = _Workbook.CreateSheet(SHEET_NAME)
-        _Sheet.SetColumnWidth(0, 1000 * 5)
-        _Sheet.SetColumnWidth(1, 1000 * 5)
-        _Sheet.SetColumnWidth(2, 1000 * 6)
-        _Sheet.SetColumnWidth(3, 1000 * 5)
-    End Sub
-
-    Public Sub Term()
+    Public Sub Open()
         Dim s As New FileStream(Me.Path, FileMode.OpenOrCreate)
-        _Workbook.GetSheetAt(0).ForceFormulaRecalculation = True
         _Workbook.Write(s)
         s.Close()
 
@@ -75,24 +116,61 @@ Public Class ExcelBOMWriter
 
     End Sub
 
-    Private Sub _Processor_NextPropertyEvent(ByRef Prop As PropertyProxy) Handles _Processor.NextPropertyEvent
+    Private Sub _Processor_NextPropertyEvent(ByRef Prop As PropertyProxy) _
+        Handles _Processor.NextPropertyEvent
 
         If Not Prop.Browsable Then
             Return
         End If
 
-        WriteValue(Prop.DisplayName, Prop.Value.ToString)
+        WriteValue(Prop.DisplayName, Prop.Value)
     End Sub
 
     Private Sub WriteValue(ByVal name As String, ByVal value As String)
 
-        Dim row As Row = _Sheet.CreateRow(_Index)
-        Dim cell As Cell = row.CreateCell(_Indent)
-        cell.SetCellValue(name)
-        Dim cell2 As Cell = row.CreateCell(_Indent + 1)
+        Dim row As Row = _Sheet.GetRow(_Index)
+        If row Is Nothing Then
+            row = _Sheet.CreateRow(_Index)
+        End If
+        Dim cell As Cell = row.GetCell(_Indent + _CursorX)
+        If cell Is Nothing Then
+            cell = row.CreateCell(_Indent + _CursorX)
+        End If
 
-        cell2.SetCellValue(value)
-        _Index = _Index + 1
+        If UpdateWithValue And UpdateWithName Then
+            cell.SetCellValue(name)
+            cell = row.GetCell(_Indent + _CursorX + 1)
+            If cell Is Nothing Then
+                cell = row.CreateCell(_Indent + _CursorX + 1)
+            End If
+            If IsNumeric(value) Then
+                cell.SetCellValue(CDec(value))
+                cell.SetCellType(CellType.NUMERIC)
+            Else
+                cell.SetCellValue(value)
+            End If
+        Else
+            If UpdateWithValue Then
+                If IsNumeric(value) Then
+                    cell.SetCellValue(CDec(value))
+                    cell.SetCellType(CellType.NUMERIC)
+                Else
+                    cell.SetCellValue(value)
+                End If
+                Console.WriteLine("(" & _Index & ":" & _Indent & ") " & value)
+            End If
+            If UpdateWithName Then
+                cell.SetCellValue(name)
+                Console.WriteLine("(" & _Index & ":" & _Indent & ") " & name)
+            End If
+        End If
+
+        If MoveRight Then
+            _CursorX = _CursorX + 1
+        End If
+        If MoveDown Then
+            _Index = _Index + 1
+        End If
 
     End Sub
 
