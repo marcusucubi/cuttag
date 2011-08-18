@@ -58,11 +58,11 @@ Namespace Model.BOM
         End Sub
 
         <DescriptionAttribute("Number of Decameters")> _
-        Public Property Quantity() As Integer
+        Public Property Quantity() As Decimal
             Get
                 Return Me._QuoteDetail.Qty
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 Me._QuoteDetail.Qty = value
                 Me.SendEvents()
             End Set

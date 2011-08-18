@@ -53,11 +53,13 @@ Public Class frmNoteProperties
     Private Sub UpdateProperties()
         If _Notes IsNot Nothing Then
             Dim o As Object = _Notes
-            Me.TextBox1.Text = o.Note
-            If o.GetType().GetProperty("Note").CanWrite Then
-                Me.TextBox1.ReadOnly = False
-            Else
-                Me.TextBox1.ReadOnly = True
+            If o.GetType().GetProperty("Note") IsNot Nothing Then
+                Me.TextBox1.Text = o.Note
+                If o.GetType().GetProperty("Note").CanWrite Then
+                    Me.TextBox1.ReadOnly = False
+                Else
+                    Me.TextBox1.ReadOnly = True
+                End If
             End If
         Else
             If (Me.TextBox1.Text.Length > 0) Then

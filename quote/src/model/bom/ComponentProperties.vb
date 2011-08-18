@@ -6,7 +6,7 @@ Namespace Model.BOM
         Inherits Common.ComponentProperties
 
         Private _QuoteDetail As Detail
-        Private _MachineTime As Integer
+        Private _MachineTime As Decimal
 
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
@@ -17,18 +17,18 @@ Namespace Model.BOM
 
         <DisplayName("Total Machine Time"), _
         Browsable(False)>
-        Public Overloads ReadOnly Property TotalMachineTime() As Integer
+        Public Overloads ReadOnly Property TotalMachineTime() As Decimal
             Get
                 Return (_MachineTime * _QuoteDetail.Qty)
             End Get
         End Property
 
         <DisplayName("Machine Time")>
-        Public Overloads Property MachineTime() As Integer
+        Public Overloads Property MachineTime() As Decimal
             Get
                 Return Me._MachineTime
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 If Not (value = _MachineTime) Then
                     Me._MachineTime = value
                     SendEvents()
@@ -36,11 +36,11 @@ Namespace Model.BOM
             End Set
         End Property
 
-        Public Overloads Property Quantity() As Integer
+        Public Overloads Property Quantity() As Decimal
             Get
                 Return Me._QuoteDetail.Qty
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 Me._QuoteDetail.Qty = value
                 SendEvents()
             End Set
