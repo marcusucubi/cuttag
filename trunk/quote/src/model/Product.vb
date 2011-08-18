@@ -59,7 +59,7 @@ Namespace Model
                 Return m_unitCost
             End Get
             Set(ByVal value As Decimal)
-                m_unitCost = Math.Round(value, 2)
+                m_unitCost = value
             End Set
         End Property
 

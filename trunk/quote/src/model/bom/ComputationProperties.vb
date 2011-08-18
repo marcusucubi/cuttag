@@ -247,11 +247,11 @@ Namespace Model.BOM
         <DescriptionAttribute("Used with TotalWireMachineTime " + Chr(10) + "(Seconds)"), _
         DisplayName("Wire Machine Time"), _
         CategoryAttribute("Machine Time")> _
-        Public Property WireMachineTime As Integer
+        Public Property WireMachineTime As Decimal
             Get
                 Return Me._WireMachineTime
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 Me._WireMachineTime = value
                 Me.SendEvents()
             End Set
@@ -557,8 +557,8 @@ Namespace Model.BOM
             Return result
         End Function
 
-        Private Function SumTime(ByVal uom As UnitOfMeasure) As Integer
-            Dim result As Integer
+        Private Function SumTime(ByVal uom As UnitOfMeasure) As Decimal
+            Dim result As Decimal
             For Each detail As Detail In _Header.Details
                 If detail.Product.UnitOfMeasure = uom Then
                     result += detail.QuoteDetailProperties.TotalMachineTime
