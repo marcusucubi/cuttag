@@ -20,7 +20,10 @@ Namespace My
                                                      ByVal e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) _
                                                  Handles Me.UnhandledException
 
-            MsgBox(e.Exception.Message)
+            Dim s As String
+            s = e.Exception.ToString() + vbCrLf + vbCrLf + vbCrLf
+            s += e.Exception.StackTrace
+            MsgBox(s)
 
         End Sub
 
