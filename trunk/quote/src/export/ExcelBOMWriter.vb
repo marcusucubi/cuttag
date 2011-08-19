@@ -152,8 +152,19 @@ Public Class ExcelBOMWriter
         Else
             If UpdateWithValue Then
                 If IsNumeric(value) Then
-                    cell.SetCellValue(CDec(value))
+                    Dim d As Decimal = 0
+                    value = value.TrimEnd("0")
+                    value = value.TrimStart("0")
+                    value = value.TrimEnd(".")
+                    If (value.Length > 0) Then
+                        d = CDbl(value)
+                    End If
+                    '                    If Decimal.TryParse(value.Trim(), d) Then
+                    ' cell.SetCellValue(value)
+                    'Else
+                    cell.SetCellValue(d)
                     cell.SetCellType(CellType.NUMERIC)
+                    'End If
                 Else
                     cell.SetCellValue(value)
                 End If
