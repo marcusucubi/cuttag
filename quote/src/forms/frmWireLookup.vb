@@ -77,6 +77,19 @@ Public Class frmWireLookup
         End If
         Me.ListBox1.DataSource = table
         Me.ListBox1.DisplayMember = "PartNumber"
+        EnableButtons()
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
+        EnableButtons()
+    End Sub
+
+    Private Sub EnableButtons()
+        If ListBox1.SelectedItems.Count > 0 Then
+            OK_Button.Enabled = True
+        Else
+            OK_Button.Enabled = False
+        End If
     End Sub
 
 End Class
