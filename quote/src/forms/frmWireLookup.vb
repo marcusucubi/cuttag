@@ -41,8 +41,6 @@ Public Class frmWireLookup
 
     Private Sub frmPartLookup_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            'Me.DevDataSet1._Wires = Me._WiresTableAdapter.GetData()
-            'Me._WiresTableAdapter.Fill(Me.DevDataSet1._Wires)
             Dim table As QuoteDataBase.WireSourceDataTable
             table = New QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetData
             Me.ListBox1.DataSource = table
@@ -65,6 +63,20 @@ Public Class frmWireLookup
         Else
             OK_Button.Enabled = False
         End If
+    End Sub
+
+    Private Sub TextBox1_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyUp
+
+        Dim table As WireSourceDataTable
+
+        If (Me.TextBox1.Text.Length > 0) Then
+            table = New QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetDataLikePartNumber( _
+                Me.TextBox1.Text + "%")
+        Else
+            table = New QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetData()
+        End If
+        Me.ListBox1.DataSource = table
+        Me.ListBox1.DisplayMember = "PartNumber"
     End Sub
 
 End Class
