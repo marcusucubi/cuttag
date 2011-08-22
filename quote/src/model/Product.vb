@@ -15,6 +15,8 @@ Namespace Model
         Private m_Description As String
         Private m_LeadTime As Integer
         Private m_Vendor As String
+        Private m_MinimumQty As Decimal
+        Private m_MinimumDollar As Decimal
 
         Public Sub New( _
                        ByVal Code As String, _
@@ -38,6 +40,12 @@ Namespace Model
                 End If
                 If Not PartRow.IsMachineTimeNull Then
                     Me.m_machineTime = PartRow.MachineTime
+                End If
+                If Not PartRow.IsMinimumQtyNull Then
+                    Me.m_MinimumQty = PartRow.MinimumQty
+                End If
+                If Not PartRow.IsMinimumDollarNull Then
+                    Me.m_MinimumDollar = PartRow.MinimumDollar
                 End If
             End If
         End Sub
@@ -96,12 +104,30 @@ Namespace Model
             End Set
         End Property
 
-        Public Property MachineTime() As Integer
+        Public Property MachineTime() As Decimal
             Get
                 Return m_machineTime
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 m_machineTime = value
+            End Set
+        End Property
+
+        Public Property MinimumQty() As Decimal
+            Get
+                Return m_MinimumQty
+            End Get
+            Set(ByVal value As Decimal)
+                m_MinimumQty = value
+            End Set
+        End Property
+
+        Public Property MinimumDollar() As Decimal
+            Get
+                Return m_MinimumDollar
+            End Get
+            Set(ByVal value As Decimal)
+                m_MinimumDollar = value
             End Set
         End Property
 
