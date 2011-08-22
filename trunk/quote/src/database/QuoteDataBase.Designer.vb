@@ -2777,6 +2777,10 @@ Partial Public Class QuoteDataBase
         
         Private columnMachineTime As Global.System.Data.DataColumn
         
+        Private columnMinimumQty As Global.System.Data.DataColumn
+        
+        Private columnMinimumDollar As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -2941,6 +2945,22 @@ Partial Public Class QuoteDataBase
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MinimumQtyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMinimumQty
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MinimumDollarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMinimumDollar
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2993,9 +3013,11 @@ Partial Public Class QuoteDataBase
                     ByVal QuotePrice As Decimal,  _
                     ByVal Vendor As String,  _
                     ByVal LeadTime As Integer,  _
-                    ByVal MachineTime As Integer) As WireComponentSourceRow
+                    ByVal MachineTime As Integer,  _
+                    ByVal MinimumQty As Decimal,  _
+                    ByVal MinimumDollar As Decimal) As WireComponentSourceRow
             Dim rowWireComponentSourceRow As WireComponentSourceRow = CType(Me.NewRow,WireComponentSourceRow)
-            Dim columnValuesArray() As Object = New Object() {WireComponentSourceID, OrganizationID, PartNumber, _New, Description, PositionCount, ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Vendor, LeadTime, MachineTime}
+            Dim columnValuesArray() As Object = New Object() {WireComponentSourceID, OrganizationID, PartNumber, _New, Description, PositionCount, ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Vendor, LeadTime, MachineTime, MinimumQty, MinimumDollar}
             rowWireComponentSourceRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowWireComponentSourceRow)
             Return rowWireComponentSourceRow
@@ -3046,6 +3068,8 @@ Partial Public Class QuoteDataBase
             Me.columnVendor = MyBase.Columns("Vendor")
             Me.columnLeadTime = MyBase.Columns("LeadTime")
             Me.columnMachineTime = MyBase.Columns("MachineTime")
+            Me.columnMinimumQty = MyBase.Columns("MinimumQty")
+            Me.columnMinimumDollar = MyBase.Columns("MinimumDollar")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3086,6 +3110,10 @@ Partial Public Class QuoteDataBase
             MyBase.Columns.Add(Me.columnLeadTime)
             Me.columnMachineTime = New Global.System.Data.DataColumn("MachineTime", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnMachineTime)
+            Me.columnMinimumQty = New Global.System.Data.DataColumn("MinimumQty", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMinimumQty)
+            Me.columnMinimumDollar = New Global.System.Data.DataColumn("MinimumDollar", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMinimumDollar)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnWireComponentSourceID}, true))
             Me.columnWireComponentSourceID.AllowDBNull = false
             Me.columnWireComponentSourceID.Unique = true
@@ -4763,6 +4791,36 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MinimumQty() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireComponentSource.MinimumQtyColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MinimumQty' in table 'WireComponentSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireComponentSource.MinimumQtyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MinimumDollar() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableWireComponentSource.MinimumDollarColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MinimumDollar' in table 'WireComponentSource' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableWireComponentSource.MinimumDollarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsPositionCountNull() As Boolean
             Return Me.IsNull(Me.tableWireComponentSource.PositionCountColumn)
         End Function
@@ -4879,6 +4937,30 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetMachineTimeNull()
             Me(Me.tableWireComponentSource.MachineTimeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMinimumQtyNull() As Boolean
+            Return Me.IsNull(Me.tableWireComponentSource.MinimumQtyColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMinimumQtyNull()
+            Me(Me.tableWireComponentSource.MinimumQtyColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMinimumDollarNull() As Boolean
+            Return Me.IsNull(Me.tableWireComponentSource.MinimumDollarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMinimumDollarNull()
+            Me(Me.tableWireComponentSource.MinimumDollarColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -8324,6 +8406,8 @@ Namespace QuoteDataBaseTableAdapters
             tableMapping.ColumnMappings.Add("Vendor", "Vendor")
             tableMapping.ColumnMappings.Add("LeadTime", "LeadTime")
             tableMapping.ColumnMappings.Add("MachineTime", "MachineTime")
+            tableMapping.ColumnMappings.Add("MinimumQty", "MinimumQty")
+            tableMapping.ColumnMappings.Add("Minimum$", "MinimumDollar")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -8342,7 +8426,9 @@ Namespace QuoteDataBaseTableAdapters
                 "IsNull_Vendor = 1 AND [Vendor] IS NULL) OR ([Vendor] = @Original_Vendor)) AND (("& _ 
                 "@IsNull_LeadTime = 1 AND [LeadTime] IS NULL) OR ([LeadTime] = @Original_LeadTime"& _ 
                 ")) AND ((@IsNull_MachineTime = 1 AND [MachineTime] IS NULL) OR ([MachineTime] = "& _ 
-                "@Original_MachineTime)))"
+                "@Original_MachineTime)) AND ((@IsNull_MinimumQty = 1 AND [MinimumQty] IS NULL) O"& _ 
+                "R ([MinimumQty] = @Original_MinimumQty)) AND ((@IsNull_Minimum$ = 1 AND [Minimum"& _ 
+                "$] IS NULL) OR ([Minimum$] = @Original_Minimum$)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireComponentSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireComponentSourceID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -8370,18 +8456,23 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MachineTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MachineTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MachineTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MachineTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MinimumQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MinimumQty", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "MinimumQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Minimum$", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum$", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Minimum$", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "Minimum$", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [WireComponentSource] ([WireComponentSourceID], [OrganizationID], [Pa"& _ 
                 "rtNumber], [New], [Description], [PositionCount], [ClassID], [CenterDeduct], [Ou"& _ 
                 "terDeduct], [WireLengthAdjust], [UOM], [IDN], [QuotePrice], [Vendor], [LeadTime]"& _ 
-                ", [MachineTime]) VALUES (@WireComponentSourceID, @OrganizationID, @PartNumber, @"& _ 
-                "New, @Description, @PositionCount, @ClassID, @CenterDeduct, @OuterDeduct, @WireL"& _ 
-                "engthAdjust, @UOM, @IDN, @QuotePrice, @Vendor, @LeadTime, @MachineTime);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT"& _ 
-                " WireComponentSourceID, OrganizationID, PartNumber, New, Description, PositionCo"& _ 
-                "unt, ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice,"& _ 
-                " Vendor, LeadTime, MachineTime FROM WireComponentSource WHERE (WireComponentSour"& _ 
-                "ceID = @WireComponentSourceID) ORDER BY PartNumber"
+                ", [MachineTime], [MinimumQty], [Minimum$]) VALUES (@WireComponentSourceID, @Orga"& _ 
+                "nizationID, @PartNumber, @New, @Description, @PositionCount, @ClassID, @CenterDe"& _ 
+                "duct, @OuterDeduct, @WireLengthAdjust, @UOM, @IDN, @QuotePrice, @Vendor, @LeadTi"& _ 
+                "me, @MachineTime, @MinimumQty, @Minimum$);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT WireComponentSourceID, Organi"& _ 
+                "zationID, PartNumber, New, Description, PositionCount, ClassID, CenterDeduct, Ou"& _ 
+                "terDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Vendor, LeadTime, MachineTime"& _ 
+                ", MinimumQty, Minimum$ FROM WireComponentSource WHERE (WireComponentSourceID = @"& _ 
+                "WireComponentSourceID) ORDER BY PartNumber"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireComponentSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireComponentSourceID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8399,6 +8490,8 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vendor", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Vendor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MachineTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MachineTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MinimumQty", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "MinimumQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Minimum$", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "Minimum$", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [WireComponentSource] SET [WireComponentSourceID] = @WireComponentSourceID"& _ 
@@ -8406,26 +8499,29 @@ Namespace QuoteDataBaseTableAdapters
                 "[Description] = @Description, [PositionCount] = @PositionCount, [ClassID] = @Cla"& _ 
                 "ssID, [CenterDeduct] = @CenterDeduct, [OuterDeduct] = @OuterDeduct, [WireLengthA"& _ 
                 "djust] = @WireLengthAdjust, [UOM] = @UOM, [IDN] = @IDN, [QuotePrice] = @QuotePri"& _ 
-                "ce, [Vendor] = @Vendor, [LeadTime] = @LeadTime, [MachineTime] = @MachineTime WHE"& _ 
-                "RE (([WireComponentSourceID] = @Original_WireComponentSourceID) AND ([Organizati"& _ 
-                "onID] = @Original_OrganizationID) AND ([PartNumber] = @Original_PartNumber) AND "& _ 
-                "([New] = @Original_New) AND ([Description] = @Original_Description) AND ((@IsNul"& _ 
-                "l_PositionCount = 1 AND [PositionCount] IS NULL) OR ([PositionCount] = @Original"& _ 
-                "_PositionCount)) AND ((@IsNull_ClassID = 1 AND [ClassID] IS NULL) OR ([ClassID] "& _ 
-                "= @Original_ClassID)) AND ((@IsNull_CenterDeduct = 1 AND [CenterDeduct] IS NULL)"& _ 
-                " OR ([CenterDeduct] = @Original_CenterDeduct)) AND ((@IsNull_OuterDeduct = 1 AND"& _ 
-                " [OuterDeduct] IS NULL) OR ([OuterDeduct] = @Original_OuterDeduct)) AND ([WireLe"& _ 
-                "ngthAdjust] = @Original_WireLengthAdjust) AND ((@IsNull_UOM = 1 AND [UOM] IS NUL"& _ 
-                "L) OR ([UOM] = @Original_UOM)) AND ((@IsNull_IDN = 1 AND [IDN] IS NULL) OR ([IDN"& _ 
-                "] = @Original_IDN)) AND ((@IsNull_QuotePrice = 1 AND [QuotePrice] IS NULL) OR (["& _ 
-                "QuotePrice] = @Original_QuotePrice)) AND ((@IsNull_Vendor = 1 AND [Vendor] IS NU"& _ 
-                "LL) OR ([Vendor] = @Original_Vendor)) AND ((@IsNull_LeadTime = 1 AND [LeadTime] "& _ 
-                "IS NULL) OR ([LeadTime] = @Original_LeadTime)) AND ((@IsNull_MachineTime = 1 AND"& _ 
-                " [MachineTime] IS NULL) OR ([MachineTime] = @Original_MachineTime)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Wi"& _ 
-                "reComponentSourceID, OrganizationID, PartNumber, New, Description, PositionCount"& _ 
-                ", ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Ve"& _ 
-                "ndor, LeadTime, MachineTime FROM WireComponentSource WHERE (WireComponentSourceI"& _ 
-                "D = @WireComponentSourceID) ORDER BY PartNumber"
+                "ce, [Vendor] = @Vendor, [LeadTime] = @LeadTime, [MachineTime] = @MachineTime, [M"& _ 
+                "inimumQty] = @MinimumQty, [Minimum$] = @Minimum$ WHERE (([WireComponentSourceID]"& _ 
+                " = @Original_WireComponentSourceID) AND ([OrganizationID] = @Original_Organizati"& _ 
+                "onID) AND ([PartNumber] = @Original_PartNumber) AND ([New] = @Original_New) AND "& _ 
+                "([Description] = @Original_Description) AND ((@IsNull_PositionCount = 1 AND [Pos"& _ 
+                "itionCount] IS NULL) OR ([PositionCount] = @Original_PositionCount)) AND ((@IsNu"& _ 
+                "ll_ClassID = 1 AND [ClassID] IS NULL) OR ([ClassID] = @Original_ClassID)) AND (("& _ 
+                "@IsNull_CenterDeduct = 1 AND [CenterDeduct] IS NULL) OR ([CenterDeduct] = @Origi"& _ 
+                "nal_CenterDeduct)) AND ((@IsNull_OuterDeduct = 1 AND [OuterDeduct] IS NULL) OR ("& _ 
+                "[OuterDeduct] = @Original_OuterDeduct)) AND ([WireLengthAdjust] = @Original_Wire"& _ 
+                "LengthAdjust) AND ((@IsNull_UOM = 1 AND [UOM] IS NULL) OR ([UOM] = @Original_UOM"& _ 
+                ")) AND ((@IsNull_IDN = 1 AND [IDN] IS NULL) OR ([IDN] = @Original_IDN)) AND ((@I"& _ 
+                "sNull_QuotePrice = 1 AND [QuotePrice] IS NULL) OR ([QuotePrice] = @Original_Quot"& _ 
+                "ePrice)) AND ((@IsNull_Vendor = 1 AND [Vendor] IS NULL) OR ([Vendor] = @Original"& _ 
+                "_Vendor)) AND ((@IsNull_LeadTime = 1 AND [LeadTime] IS NULL) OR ([LeadTime] = @O"& _ 
+                "riginal_LeadTime)) AND ((@IsNull_MachineTime = 1 AND [MachineTime] IS NULL) OR ("& _ 
+                "[MachineTime] = @Original_MachineTime)) AND ((@IsNull_MinimumQty = 1 AND [Minimu"& _ 
+                "mQty] IS NULL) OR ([MinimumQty] = @Original_MinimumQty)) AND ((@IsNull_Minimum$ "& _ 
+                "= 1 AND [Minimum$] IS NULL) OR ([Minimum$] = @Original_Minimum$)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT Wire"& _ 
+                "ComponentSourceID, OrganizationID, PartNumber, New, Description, PositionCount, "& _ 
+                "ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Vend"& _ 
+                "or, LeadTime, MachineTime, MinimumQty, Minimum$ FROM WireComponentSource WHERE ("& _ 
+                "WireComponentSourceID = @WireComponentSourceID) ORDER BY PartNumber"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireComponentSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireComponentSourceID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8443,6 +8539,8 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Vendor", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Vendor", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MachineTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MachineTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MinimumQty", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "MinimumQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Minimum$", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "Minimum$", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireComponentSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireComponentSourceID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrganizationID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrganizationID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -8469,6 +8567,10 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MachineTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MachineTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MachineTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MachineTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MinimumQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MinimumQty", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "MinimumQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Minimum$", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum$", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Minimum$", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "Minimum$", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8486,15 +8588,15 @@ Namespace QuoteDataBaseTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        WireComponentSourceID, OrganizationID, PartNumber, New, Description"& _ 
                 ", PositionCount, ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN,"& _ 
-                " "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         QuotePrice, Vendor, LeadTime, MachineTime"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM     "& _ 
-                "       WireComponentSource"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartNumber"
+                " "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         QuotePrice, Vendor, LeadTime, MachineTime, MinimumQt"& _ 
+                "y, Minimum$"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            WireComponentSource"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartNumber"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT CenterDeduct, ClassID, Description, IDN, LeadTime, MachineTime, New, Organ"& _ 
-                "izationID, OuterDeduct, PartNumber, PositionCount, QuotePrice, UOM, Vendor, Wire"& _ 
-                "ComponentSourceID, WireLengthAdjust FROM WireComponentSource WHERE (PartNumber ="& _ 
-                " @PartNumber)"
+            Me._commandCollection(1).CommandText = "SELECT CenterDeduct, ClassID, Description, IDN, LeadTime, MachineTime, Minimum$, "& _ 
+                "MinimumQty, New, OrganizationID, OuterDeduct, PartNumber, PositionCount, QuotePr"& _ 
+                "ice, UOM, Vendor, WireComponentSourceID, WireLengthAdjust FROM WireComponentSour"& _ 
+                "ce WHERE (PartNumber = @PartNumber)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -8605,7 +8707,9 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Vendor As String,  _
                     ByVal Original_LeadTime As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MachineTime As Global.System.Nullable(Of Integer)) As Integer
+                    ByVal Original_MachineTime As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_MinimumQty As Global.System.Nullable(Of Decimal),  _
+                    ByVal _Original_Minimum_ As Global.System.Nullable(Of Decimal)) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_WireComponentSourceID,System.Guid)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_OrganizationID,Integer)
             If (Original_PartNumber Is Nothing) Then
@@ -8690,6 +8794,20 @@ Namespace QuoteDataBaseTableAdapters
                 Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1,Object)
                 Me.Adapter.DeleteCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
+            If (Original_MinimumQty.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_MinimumQty.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            If (_Original_Minimum_.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(_Original_Minimum_.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8725,7 +8843,9 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal QuotePrice As Global.System.Nullable(Of Decimal),  _
                     ByVal Vendor As String,  _
                     ByVal LeadTime As Global.System.Nullable(Of Integer),  _
-                    ByVal MachineTime As Global.System.Nullable(Of Integer)) As Integer
+                    ByVal MachineTime As Global.System.Nullable(Of Integer),  _
+                    ByVal MinimumQty As Global.System.Nullable(Of Decimal),  _
+                    ByVal _Minimum_ As Global.System.Nullable(Of Decimal)) As Integer
             Me.Adapter.InsertCommand.Parameters(0).Value = CType(WireComponentSourceID,System.Guid)
             Me.Adapter.InsertCommand.Parameters(1).Value = CType(OrganizationID,Integer)
             If (PartNumber Is Nothing) Then
@@ -8790,6 +8910,16 @@ Namespace QuoteDataBaseTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
+            If (MinimumQty.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(MinimumQty.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (_Minimum_.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(_Minimum_.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8826,6 +8956,8 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Vendor As String,  _
                     ByVal LeadTime As Global.System.Nullable(Of Integer),  _
                     ByVal MachineTime As Global.System.Nullable(Of Integer),  _
+                    ByVal MinimumQty As Global.System.Nullable(Of Decimal),  _
+                    ByVal _Minimum_ As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_WireComponentSourceID As System.Guid,  _
                     ByVal Original_OrganizationID As Integer,  _
                     ByVal Original_PartNumber As String,  _
@@ -8841,7 +8973,9 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Vendor As String,  _
                     ByVal Original_LeadTime As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MachineTime As Global.System.Nullable(Of Integer)) As Integer
+                    ByVal Original_MachineTime As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_MinimumQty As Global.System.Nullable(Of Decimal),  _
+                    ByVal _Original_Minimum_ As Global.System.Nullable(Of Decimal)) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(WireComponentSourceID,System.Guid)
             Me.Adapter.UpdateCommand.Parameters(1).Value = CType(OrganizationID,Integer)
             If (PartNumber Is Nothing) Then
@@ -8906,89 +9040,113 @@ Namespace QuoteDataBaseTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_WireComponentSourceID,System.Guid)
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_OrganizationID,Integer)
+            If (MinimumQty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(MinimumQty.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (_Minimum_.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(_Minimum_.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_WireComponentSourceID,System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_OrganizationID,Integer)
             If (Original_PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_PartNumber")
             Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_PartNumber,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_PartNumber,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_New,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_New,Boolean)
             If (Original_Description Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_Description")
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Description,String)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_Description,String)
             End If
             If (Original_PositionCount.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_PositionCount.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ClassID.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_ClassID.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_PositionCount.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
-            If (Original_CenterDeduct Is Nothing) Then
+            If (Original_ClassID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_ClassID.Value,Integer)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_CenterDeduct,String)
             End If
-            If (Original_OuterDeduct Is Nothing) Then
+            If (Original_CenterDeduct Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_OuterDeduct,String)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_CenterDeduct,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_WireLengthAdjust,Double)
+            If (Original_OuterDeduct Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_OuterDeduct,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_WireLengthAdjust,Double)
             If (Original_UOM Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_UOM,String)
-            End If
-            If (Original_IDN.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_IDN.Value,Integer)
-            Else
                 Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_UOM,String)
             End If
-            If (Original_QuotePrice.HasValue = true) Then
+            If (Original_IDN.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_QuotePrice.Value,Decimal)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_IDN.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
             End If
-            If (Original_Vendor Is Nothing) Then
+            If (Original_QuotePrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_QuotePrice.Value,Decimal)
+            Else
                 Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Vendor,String)
             End If
-            If (Original_LeadTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_LeadTime.Value,Integer)
-            Else
+            If (Original_Vendor Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_Vendor,String)
             End If
-            If (Original_MachineTime.HasValue = true) Then
+            If (Original_LeadTime.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_MachineTime.Value,Integer)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_LeadTime.Value,Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
                 Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
+            End If
+            If (Original_MachineTime.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_MachineTime.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
+            End If
+            If (Original_MinimumQty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_MinimumQty.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
+            End If
+            If (_Original_Minimum_.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(_Original_Minimum_.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(47).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -9025,6 +9183,8 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Vendor As String,  _
                     ByVal LeadTime As Global.System.Nullable(Of Integer),  _
                     ByVal MachineTime As Global.System.Nullable(Of Integer),  _
+                    ByVal MinimumQty As Global.System.Nullable(Of Decimal),  _
+                    ByVal _Minimum_ As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_WireComponentSourceID As System.Guid,  _
                     ByVal Original_OrganizationID As Integer,  _
                     ByVal Original_PartNumber As String,  _
@@ -9040,8 +9200,10 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_Vendor As String,  _
                     ByVal Original_LeadTime As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_MachineTime As Global.System.Nullable(Of Integer)) As Integer
-            Return Me.Update(Original_WireComponentSourceID, OrganizationID, PartNumber, _New, Description, PositionCount, ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Vendor, LeadTime, MachineTime, Original_WireComponentSourceID, Original_OrganizationID, Original_PartNumber, Original_New, Original_Description, Original_PositionCount, Original_ClassID, Original_CenterDeduct, Original_OuterDeduct, Original_WireLengthAdjust, Original_UOM, Original_IDN, Original_QuotePrice, Original_Vendor, Original_LeadTime, Original_MachineTime)
+                    ByVal Original_MachineTime As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_MinimumQty As Global.System.Nullable(Of Decimal),  _
+                    ByVal _Original_Minimum_ As Global.System.Nullable(Of Decimal)) As Integer
+            Return Me.Update(Original_WireComponentSourceID, OrganizationID, PartNumber, _New, Description, PositionCount, ClassID, CenterDeduct, OuterDeduct, WireLengthAdjust, UOM, IDN, QuotePrice, Vendor, LeadTime, MachineTime, MinimumQty, _Minimum_, Original_WireComponentSourceID, Original_OrganizationID, Original_PartNumber, Original_New, Original_Description, Original_PositionCount, Original_ClassID, Original_CenterDeduct, Original_OuterDeduct, Original_WireLengthAdjust, Original_UOM, Original_IDN, Original_QuotePrice, Original_Vendor, Original_LeadTime, Original_MachineTime, Original_MinimumQty, _Original_Minimum_)
         End Function
     End Class
     

@@ -7,11 +7,15 @@ Namespace Model.BOM
 
         Private _QuoteDetail As Detail
         Private _MachineTime As Decimal
+        Private _MinimumQty As Decimal
+        Private _MinimumDollar As Decimal
 
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
-                Me.MachineTime = _QuoteDetail.Product.MachineTime
+                Me._MachineTime = _QuoteDetail.Product.MachineTime
+                Me._MinimumQty = _QuoteDetail.Product.MinimumQty
+                Me._MinimumDollar = _QuoteDetail.Product.MinimumDollar
             End If
         End Sub
 
@@ -31,6 +35,34 @@ Namespace Model.BOM
             Set(ByVal value As Decimal)
                 If Not (value = _MachineTime) Then
                     Me._MachineTime = value
+                    SendEvents()
+                End If
+            End Set
+        End Property
+
+        <DisplayName("Minimum Qty"), _
+        CategoryAttribute("Vendor")> _
+        Public Overloads Property MinimumQty() As Decimal
+            Get
+                Return Me._MinimumQty
+            End Get
+            Set(ByVal value As Decimal)
+                If Not (value = _MinimumQty) Then
+                    Me._MinimumQty = value
+                    SendEvents()
+                End If
+            End Set
+        End Property
+
+        <DisplayName("Minimum Dollar"), _
+        CategoryAttribute("Vendor")> _
+        Public Overloads Property MinimumDollar() As Decimal
+            Get
+                Return Me._MinimumDollar
+            End Get
+            Set(ByVal value As Decimal)
+                If Not (value = _MinimumDollar) Then
+                    Me._MinimumDollar = value
                     SendEvents()
                 End If
             End Set
