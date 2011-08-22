@@ -60,4 +60,18 @@ Public Class frmComponentLookup
         End If
     End Sub
 
+    Private Sub TextBox1_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyUp
+
+        Dim table As QuoteDataBase.WireComponentSourceDataTable
+
+        If (Me.TextBox1.Text.Length > 0) Then
+            table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetDataLikePartNumber( _
+                Me.TextBox1.Text + "%")
+        Else
+            table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetData()
+        End If
+        Me.ListBox1.DataSource = table
+        Me.ListBox1.DisplayMember = "PartNumber"
+    End Sub
+
 End Class
