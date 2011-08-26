@@ -59,7 +59,7 @@ Partial Class frmDocumentA
         Me.bntAddWire.Name = "bntAddWire"
         Me.bntAddWire.Size = New System.Drawing.Size(75, 23)
         Me.bntAddWire.TabIndex = 1
-        Me.bntAddWire.Text = "Add Wire"
+        Me.bntAddWire.Text = "Add &Wire"
         Me.bntAddWire.UseVisualStyleBackColor = True
         '
         'btnAddComponent
@@ -68,7 +68,7 @@ Partial Class frmDocumentA
         Me.btnAddComponent.Name = "btnAddComponent"
         Me.btnAddComponent.Size = New System.Drawing.Size(75, 38)
         Me.btnAddComponent.TabIndex = 0
-        Me.btnAddComponent.Text = "Add Component"
+        Me.btnAddComponent.Text = "Add &Component"
         Me.btnAddComponent.UseVisualStyleBackColor = True
         '
         'WireAndComponentView1
@@ -80,7 +80,7 @@ Partial Class frmDocumentA
         Me.WireAndComponentView1.Size = New System.Drawing.Size(475, 218)
         Me.WireAndComponentView1.TabIndex = 6
         '
-        'frmQuoteA
+        'frmDocumentA
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -89,7 +89,7 @@ Partial Class frmDocumentA
         Me.Controls.Add(Me.panelButtons)
         Me.DockAreas = WeifenLuo.WinFormsUI.Docking.DockAreas.Document
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Name = "frmQuoteA"
+        Me.Name = "frmDocumentA"
         Me.Text = "New Template"
         Me.panelButtons.ResumeLayout(False)
         Me.ResumeLayout(False)

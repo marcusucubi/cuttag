@@ -402,5 +402,10 @@ Public Class frmMain
         Return result
     End Function
 
+    Protected Overrides Sub OnKeyPress(ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        MyBase.OnKeyPress(e)
+        Console.WriteLine(e.ToString)
+    End Sub
+
 End Class
 

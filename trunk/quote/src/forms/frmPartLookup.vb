@@ -33,17 +33,8 @@ Public Class frmComponentLookup
     End Sub
 
     Private Sub frmPartLookup_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
-        Try
-            Dim table As QuoteDataBase.WireComponentSourceDataTable
-            table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetData()
-            Me.ListBox1.DataSource = table
-            Me.ListBox1.DisplayMember = "PartNumber"
-        Catch ex As Exception
-            Console.WriteLine(ex.Message)
-            MsgBox(ex.Message)
-        End Try
-
+        DoFilter()
+        ListBox1.Focus()
     End Sub
 
     Private Sub ListBox1_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles ListBox1.DoubleClick
@@ -60,15 +51,28 @@ Public Class frmComponentLookup
         End If
     End Sub
 
+    Protected Overrides Sub OnActivated(ByVal e As System.EventArgs)
+        MyBase.OnActivated(e)
+        DoFilter()
+        ListBox1.Focus()
+    End Sub
+
     Private Sub TextBox1_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyUp
+        DoFilter()
+        EnableButtons()
+    End Sub
+
+    Private Sub DoFilter()
 
         Dim table As QuoteDataBase.WireComponentSourceDataTable
 
         If (Me.TextBox1.Text.Length > 0) Then
-            table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetDataLikePartNumber( _
-                Me.TextBox1.Text + "%")
+            Dim filter As String = "%" & Me.TextBox1.Text.Trim.ToUpper & "%"
+            table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetDataLikePartNumber(filter)
+            Console.WriteLine("Wire Filter = '" & filter)
         Else
             table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetData()
+            Console.WriteLine("No Wire Filter")
         End If
         Me.ListBox1.DataSource = table
         Me.ListBox1.DisplayMember = "PartNumber"
