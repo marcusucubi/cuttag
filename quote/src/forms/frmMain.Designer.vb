@@ -76,6 +76,7 @@ Partial Class frmMain
         Me.DetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CustomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OutputToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -349,7 +350,7 @@ Partial Class frmMain
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.PrimaryToolStripMenuItem, Me.DetailToolStripMenuItem, Me.NotesToolStripMenuItem, Me.CustomToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.PrimaryToolStripMenuItem, Me.DetailToolStripMenuItem, Me.NotesToolStripMenuItem, Me.CustomToolStripMenuItem, Me.OutputToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "View"
@@ -358,38 +359,44 @@ Partial Class frmMain
         '
         Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
         Me.PropertiesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
-        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PropertiesToolStripMenuItem.Text = "Costs"
         '
         'ComputationalPropertiesToolStripMenuItem
         '
         Me.ComputationalPropertiesToolStripMenuItem.Name = "ComputationalPropertiesToolStripMenuItem"
-        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ComputationalPropertiesToolStripMenuItem.Text = "Other"
         '
         'PrimaryToolStripMenuItem
         '
         Me.PrimaryToolStripMenuItem.Name = "PrimaryToolStripMenuItem"
-        Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.PrimaryToolStripMenuItem.Text = "Primary"
         '
         'DetailToolStripMenuItem
         '
         Me.DetailToolStripMenuItem.Name = "DetailToolStripMenuItem"
-        Me.DetailToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.DetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DetailToolStripMenuItem.Text = "Properties"
         '
         'NotesToolStripMenuItem
         '
         Me.NotesToolStripMenuItem.Name = "NotesToolStripMenuItem"
-        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.NotesToolStripMenuItem.Text = "Notes"
         '
         'CustomToolStripMenuItem
         '
         Me.CustomToolStripMenuItem.Name = "CustomToolStripMenuItem"
-        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CustomToolStripMenuItem.Text = "Custom"
+        '
+        'OutputToolStripMenuItem
+        '
+        Me.OutputToolStripMenuItem.Name = "OutputToolStripMenuItem"
+        Me.OutputToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OutputToolStripMenuItem.Text = "Output"
         '
         'frmMain
         '
@@ -450,5 +457,6 @@ Partial Class frmMain
     Friend WithEvents NotesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CustomToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BOMExportButton As System.Windows.Forms.ToolStripButton
+    Friend WithEvents OutputToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

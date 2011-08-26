@@ -14,6 +14,7 @@ Public Class frmMain
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
     Private _NoteProperties As New frmNoteProperties
+    Private _Output As New frmOutput
     Private WithEvents _ActiveHeader As ActiveHeader
     Private WithEvents _SaveableProperties As Common.SaveableProperties
 
@@ -283,6 +284,19 @@ Public Class frmMain
         If (_PrimaryProperties.IsHidden Or _PrimaryProperties.IsDisposed) Then
             _PrimaryProperties = New frmPrimaryProperties
             InitChild(_PrimaryProperties)
+        End If
+    End Sub
+
+    Private Sub OutputToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutputToolStripMenuItem.Click
+        If (_Output Is Nothing) Then
+            _Output = New frmOutput
+            DockPanel1.SuspendLayout(True)
+            _Output.Show(DockPanel1, DockState.DockBottom)
+            DockPanel1.ResumeLayout(True, True)
+        End If
+        If (_Output.IsHidden Or _Output.IsDisposed) Then
+            _Output = New frmOutput
+            InitChild(_Output, DockState.DockBottom)
         End If
     End Sub
 
