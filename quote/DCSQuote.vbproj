@@ -117,6 +117,12 @@
     <Compile Include="src\forms\frmNoteProperties.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\forms\frmOutput.Designer.vb">
+      <DependentUpon>frmOutput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmOutput.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\misc\ActiveCustomProperties.vb" />
     <Compile Include="src\misc\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
@@ -302,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNoteProperties.resx">
       <DependentUpon>frmNoteProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmOutput.resx">
+      <DependentUpon>frmOutput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>

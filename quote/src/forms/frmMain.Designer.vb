@@ -359,43 +359,43 @@ Partial Class frmMain
         '
         Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
         Me.PropertiesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
-        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.PropertiesToolStripMenuItem.Text = "Costs"
         '
         'ComputationalPropertiesToolStripMenuItem
         '
         Me.ComputationalPropertiesToolStripMenuItem.Name = "ComputationalPropertiesToolStripMenuItem"
-        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.ComputationalPropertiesToolStripMenuItem.Text = "Other"
         '
         'PrimaryToolStripMenuItem
         '
         Me.PrimaryToolStripMenuItem.Name = "PrimaryToolStripMenuItem"
-        Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.PrimaryToolStripMenuItem.Text = "Primary"
         '
         'DetailToolStripMenuItem
         '
         Me.DetailToolStripMenuItem.Name = "DetailToolStripMenuItem"
-        Me.DetailToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DetailToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.DetailToolStripMenuItem.Text = "Properties"
         '
         'NotesToolStripMenuItem
         '
         Me.NotesToolStripMenuItem.Name = "NotesToolStripMenuItem"
-        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.NotesToolStripMenuItem.Text = "Notes"
         '
         'CustomToolStripMenuItem
         '
         Me.CustomToolStripMenuItem.Name = "CustomToolStripMenuItem"
-        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.CustomToolStripMenuItem.Text = "Custom"
         '
         'OutputToolStripMenuItem
         '
         Me.OutputToolStripMenuItem.Name = "OutputToolStripMenuItem"
-        Me.OutputToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OutputToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.OutputToolStripMenuItem.Text = "Output"
         '
         'frmMain
@@ -411,7 +411,7 @@ Partial Class frmMain
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmMain"
-        Me.Text = "Harness Quote v1.0.0.6"
+        Me.Text = "Harness Quote v1.0.0.7"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
