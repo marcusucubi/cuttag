@@ -67,7 +67,7 @@ Public Class CommonLoader
                 End If
 
                 Dim price As Decimal = 0
-                If Not wire.IsWireTypeIDNull Then
+                If Not wire.IsQuotePriceNull Then
                     price = wire.QuotePrice
                 End If
                 Dim wireObj As Product
