@@ -1,10 +1,6 @@
 ﻿Imports System.Data.SqlClient
-Imports DCS.Quote.Model.BOM
-Imports DCS.Quote.Model
-Imports DCS.Quote.QuoteDataBase
-Imports System.Reflection
-Imports System.Data.OleDb
 Imports System.Transactions
+Imports DCS.Quote.Model.BOM
 Imports DCS.Quote.QuoteDataBaseTableAdapters
 
 Public Class BOMSaver
@@ -54,10 +50,10 @@ Public Class BOMSaver
         adaptor.Connection.Open()
         CommonSaver.DeleteProperties(newId)
         CommonSaver.SaveNoteProperties(newId, q.NoteProperties)
-        CommonSaver.SaveOtherProperties(newId, q.OtherProperties, False)
-        CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, False)
+        CommonSaver.SaveOtherProperties(newId, q.OtherProperties, True)
+        CommonSaver.SaveComputationProperties(newId, q.ComputationProperties, True)
         CommonSaver.DeleteComponents(newId)
-        CommonSaver.SaveComponents(q, newId, False)
+        CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()
 
         q.PrimaryProperties.SendEvents()
