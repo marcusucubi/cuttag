@@ -75,15 +75,25 @@ Public Class BOMLoader
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 
+            Dim temp As New TempObj
+            CommonLoader.LoadProperties(id, row.id, temp)
+
+            Dim unit As Model.UnitOfMeasure
+            If temp.UnitOfMeasure = "Each" Then
+                unit = UnitOfMeasure.BY_EACH
+            Else
+                unit = UnitOfMeasure.BY_LENGTH
+            End If
+
             Dim product As New Model.Product( _
                 row.ProductCode, _
-                "Imported", _
+                "", _
                 0, _
                 0, _
-                Model.UnitOfMeasure.BY_EACH, _
-                "Imported", _
+                unit, _
+                "", _
                 0,
-                "Imported", _
+                "", _
                 0, _
                 0)
 
@@ -93,5 +103,8 @@ Public Class BOMLoader
         Next
     End Sub
 
+    Public Class TempObj
+        Public Property UnitOfMeasure As String
+    End Class
 
 End Class

@@ -4,11 +4,11 @@ Imports DCS.Quote.QuoteDataBase
 
 Public Class QuoteImport
 
-    Public Function Import() As Integer
+    Public Function Import(ByVal QuoteNumber As Integer) As Integer
 
-        Console.WriteLine("----- Importing -----")
+        Console.WriteLine("----- Importing " & QuoteNumber)
 
-        Dim row As ImportDataSet.QuoteHeaderRow = GetHeader()
+        Dim row As ImportDataSet.QuoteHeaderRow = GetHeader(QuoteNumber)
         Dim header As New Model.BOM.Header
         TransferHeader(row, header)
 
@@ -18,16 +18,17 @@ Public Class QuoteImport
         Dim id As Integer = BOMSaver.Save(header)
 
         Console.WriteLine("QuoteID: " & id)
+        Console.WriteLine("----- Finished")
 
         Return id
     End Function
 
-    Public Function GetHeader() As ImportDataSet.QuoteHeaderRow
+    Public Function GetHeader(ByVal QuoteNumber As Integer) As ImportDataSet.QuoteHeaderRow
 
         Dim adaptor As New ImportDataSetTableAdapters.QuoteHeaderTableAdapter
         Dim table As ImportDataSet.QuoteHeaderDataTable
 
-        table = adaptor.GetDataByQuoteNumber(17616)
+        table = adaptor.GetDataByQuoteNumber(QuoteNumber)
         Dim row As ImportDataSet.QuoteHeaderRow = table.Rows.Item(0)
 
         Console.WriteLine("QuoteNumber: " & row.QuoteNumber)
@@ -78,15 +79,22 @@ Public Class QuoteImport
                 time = detailRow.Time
             End If
 
+            Dim unit As Model.UnitOfMeasure
+            If (detailRow.IsWire) Then
+                unit = Model.UnitOfMeasure.BY_LENGTH
+            Else
+                unit = Model.UnitOfMeasure.BY_EACH
+            End If
+
             Dim product As New Model.Product( _
                 detailRow.PartNumber, _
-                "Imported", _
+                "", _
                 detailRow.UnitCost, _
                 time, _
-                Model.UnitOfMeasure.BY_EACH, _
-                "Imported", _
+                unit, _
+                "", _
                 0,
-                "Imported", _
+                "", _
                 0, _
                 0)
 
@@ -96,5 +104,9 @@ Public Class QuoteImport
         Next
 
     End Function
+
+    Public Class TempObj
+
+    End Class
 
 End Class

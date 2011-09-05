@@ -32,11 +32,11 @@
         _ItemQuantity.Name = "Quantity"
         i.SubItems.Add(_ItemQuantity)
 
-        _ItemUnitCost.Text = Math.Round(o.UnitCost, 2)
+        _ItemUnitCost.Text = Math.Round(o.UnitCost, 4)
         _ItemUnitCost.Name = "UnitCost"
         i.SubItems.Add(_ItemUnitCost)
 
-        _ItemTotalCost.Text = Math.Round(o.TotalCost, 2)
+        _ItemTotalCost.Text = Math.Round(o.TotalCost, 4)
         _ItemTotalCost.Name = "TotalCost"
         i.SubItems.Add(_ItemTotalCost)
 

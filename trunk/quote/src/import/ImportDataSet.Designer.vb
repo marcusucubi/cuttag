@@ -29,6 +29,8 @@ Partial Public Class ImportDataSet
     
     Private tableQuoteDetail As QuoteDetailDataTable
     
+    Private relationFK_QuoteDetail_QuoteHeader As Global.System.Data.DataRelation
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -202,7 +204,7 @@ Partial Public Class ImportDataSet
     Friend Overloads Sub InitVars()
         Me.InitVars(true)
     End Sub
-
+    
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
@@ -218,44 +220,47 @@ Partial Public Class ImportDataSet
                 Me.tableQuoteDetail.InitVars
             End If
         End If
+        Me.relationFK_QuoteDetail_QuoteHeader = Me.Relations("FK_QuoteDetail_QuoteHeader")
     End Sub
     
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Private Sub InitClass()
         Me.DataSetName = "ImportDataSet"
         Me.Prefix = ""
         Me.Namespace = "http://tempuri.org/ImportDataSet.xsd"
-        Me.EnforceConstraints = true
+        Me.EnforceConstraints = True
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
         Me.tableQuoteHeader = New QuoteHeaderDataTable()
         MyBase.Tables.Add(Me.tableQuoteHeader)
         Me.tableQuoteDetail = New QuoteDetailDataTable()
         MyBase.Tables.Add(Me.tableQuoteDetail)
+        Me.relationFK_QuoteDetail_QuoteHeader = New Global.System.Data.DataRelation("FK_QuoteDetail_QuoteHeader", New Global.System.Data.DataColumn() {Me.tableQuoteHeader.QuoteIDColumn}, New Global.System.Data.DataColumn() {Me.tableQuoteDetail.QuoteIDColumn}, False)
+        Me.Relations.Add(Me.relationFK_QuoteDetail_QuoteHeader)
     End Sub
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Private Function ShouldSerializeQuoteHeader() As Boolean
-        Return false
+        Return False
     End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Private Function ShouldSerializeQuoteDetail() As Boolean
-        Return false
+        Return False
     End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Private Sub SchemaChanged(ByVal sender As Object, ByVal e As Global.System.ComponentModel.CollectionChangeEventArgs)
         If (e.Action = Global.System.ComponentModel.CollectionChangeAction.Remove) Then
-            Me.InitVars
+            Me.InitVars()
         End If
     End Sub
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Shared Function GetTypedDataSetSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
         Dim ds As ImportDataSet = New ImportDataSet()
         Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
@@ -268,159 +273,159 @@ Partial Public Class ImportDataSet
         If xs.Contains(dsSchema.TargetNamespace) Then
             Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
             Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-            Try 
+            Try
                 Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
                 dsSchema.Write(s1)
                 Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
                 Do While schemas.MoveNext
-                    schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                    schema = CType(schemas.Current, Global.System.Xml.Schema.XmlSchema)
                     s2.SetLength(0)
                     schema.Write(s2)
                     If (s1.Length = s2.Length) Then
                         s1.Position = 0
                         s2.Position = 0
-                        
-                        Do While ((s1.Position <> s1.Length)  _
+
+                        Do While ((s1.Position <> s1.Length) _
                                     AndAlso (s1.ReadByte = s2.ReadByte))
-                            
-                            
+
+
                         Loop
                         If (s1.Position = s1.Length) Then
                             Return type
                         End If
                     End If
-                    
+
                 Loop
             Finally
                 If (Not (s1) Is Nothing) Then
-                    s1.Close
+                    s1.Close()
                 End If
                 If (Not (s2) Is Nothing) Then
-                    s2.Close
+                    s2.Close()
                 End If
             End Try
         End If
         xs.Add(dsSchema)
         Return type
     End Function
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Delegate Sub QuoteHeaderRowChangeEventHandler(ByVal sender As Object, ByVal e As QuoteHeaderRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Delegate Sub QuoteDetailRowChangeEventHandler(ByVal sender As Object, ByVal e As QuoteDetailRowChangeEvent)
-    
+
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    <Global.System.Serializable(), _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")> _
     Partial Public Class QuoteHeaderDataTable
         Inherits Global.System.Data.DataTable
         Implements Global.System.Collections.IEnumerable
-        
+
         Private columnQuoteID As Global.System.Data.DataColumn
-        
+
         Private columnQuoteNumber As Global.System.Data.DataColumn
-        
+
         Private columnCustomerID As Global.System.Data.DataColumn
-        
+
         Private columnContactName As Global.System.Data.DataColumn
-        
+
         Private columnRFQ As Global.System.Data.DataColumn
-        
+
         Private columnQuoteDate As Global.System.Data.DataColumn
-        
+
         Private columnDueDate As Global.System.Data.DataColumn
-        
+
         Private columnPartNumber As Global.System.Data.DataColumn
-        
+
         Private columnPartVersion As Global.System.Data.DataColumn
-        
+
         Private columnPartRevision As Global.System.Data.DataColumn
-        
+
         Private columnPartID As Global.System.Data.DataColumn
-        
+
         Private columnShippedBefore As Global.System.Data.DataColumn
-        
+
         Private columnNewRevision As Global.System.Data.DataColumn
-        
+
         Private columnComment As Global.System.Data.DataColumn
-        
+
         Private columnCreatedBy As Global.System.Data.DataColumn
-        
+
         Private columnStartDate As Global.System.Data.DataColumn
-        
+
         Private columnCompletedDate As Global.System.Data.DataColumn
-        
+
         Private columnVerifiedBy As Global.System.Data.DataColumn
-        
+
         Private columnVerifiedDate As Global.System.Data.DataColumn
-        
+
         Private columnIsToolingPORecd As Global.System.Data.DataColumn
-        
+
         Private columnEAU As Global.System.Data.DataColumn
-        
+
         Private columnMinimum As Global.System.Data.DataColumn
-        
+
         Private columnLeadTimeInitial As Global.System.Data.DataColumn
-        
+
         Private columnLeadTimeStandard As Global.System.Data.DataColumn
-        
+
         Private columnQuoteTypeID As Global.System.Data.DataColumn
-        
+
         Private columnUnitPrice As Global.System.Data.DataColumn
-        
+
         Private columnMinimumOrder As Global.System.Data.DataColumn
-        
+
         Private columnLaborMinutes As Global.System.Data.DataColumn
-        
+
         Private columnLaborRate As Global.System.Data.DataColumn
-        
+
         Private columnTooling As Global.System.Data.DataColumn
-        
+
         Private columnShipping As Global.System.Data.DataColumn
-        
+
         Private columnFormBoardRequired As Global.System.Data.DataColumn
-        
+
         Private columnFormBoardCost As Global.System.Data.DataColumn
-        
+
         Private columnSingleDefQty As Global.System.Data.DataColumn
-        
+
         Private columnOrderQty As Global.System.Data.DataColumn
-        
+
         Private columnWireTime As Global.System.Data.DataColumn
-        
+
         Private columnCutTime As Global.System.Data.DataColumn
-        
+
         Private columnCuts As Global.System.Data.DataColumn
-        
+
         Private columnBoxSize As Global.System.Data.DataColumn
-        
+
         Private columnBoxPrice As Global.System.Data.DataColumn
-        
+
         Private columnCuPrice As Global.System.Data.DataColumn
-        
+
         Private columnCuWeight As Global.System.Data.DataColumn
-        
+
         Private columnCuWeightMultiplier As Global.System.Data.DataColumn
-        
+
         Private columnTimeMultiplier As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
-            MyBase.New
+            MyBase.New()
             Me.TableName = "QuoteHeader"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
+            Me.BeginInit()
+            Me.InitClass()
+            Me.EndInit()
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
+            MyBase.New()
             Me.TableName = table.TableName
             If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
                 Me.CaseSensitive = table.CaseSensitive
@@ -434,483 +439,483 @@ Partial Public Class ImportDataSet
             Me.Prefix = table.Prefix
             Me.MinimumCapacity = table.MinimumCapacity
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
             MyBase.New(info, context)
-            Me.InitVars
+            Me.InitVars()
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property QuoteIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQuoteID
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property QuoteNumberColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQuoteNumber
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CustomerIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCustomerID
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property ContactNameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnContactName
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property RFQColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnRFQ
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property QuoteDateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQuoteDate
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property DueDateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnDueDate
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property PartNumberColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPartNumber
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property PartVersionColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPartVersion
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property PartRevisionColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPartRevision
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property PartIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPartID
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property ShippedBeforeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnShippedBefore
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property NewRevisionColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnNewRevision
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CommentColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnComment
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CreatedByColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCreatedBy
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property StartDateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnStartDate
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CompletedDateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCompletedDate
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property VerifiedByColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnVerifiedBy
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property VerifiedDateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnVerifiedDate
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property IsToolingPORecdColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnIsToolingPORecd
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property EAUColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnEAU
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property MinimumColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnMinimum
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property LeadTimeInitialColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLeadTimeInitial
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property LeadTimeStandardColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLeadTimeStandard
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property QuoteTypeIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQuoteTypeID
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property UnitPriceColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnUnitPrice
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property MinimumOrderColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnMinimumOrder
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property LaborMinutesColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLaborMinutes
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property LaborRateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLaborRate
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property ToolingColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTooling
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property ShippingColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnShipping
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property FormBoardRequiredColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFormBoardRequired
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property FormBoardCostColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFormBoardCost
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property SingleDefQtyColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnSingleDefQty
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property OrderQtyColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnOrderQty
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property WireTimeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnWireTime
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CutTimeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCutTime
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CutsColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCuts
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property BoxSizeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnBoxSize
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property BoxPriceColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnBoxPrice
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CuPriceColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCuPrice
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CuWeightColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCuWeight
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property CuWeightMultiplierColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCuWeightMultiplier
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property TimeMultiplierColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTimeMultiplier
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
             Get
                 Return Me.Rows.Count
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As QuoteHeaderRow
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Default Public ReadOnly Property Item(ByVal index As Integer) As QuoteHeaderRow
             Get
-                Return CType(Me.Rows(index),QuoteHeaderRow)
+                Return CType(Me.Rows(index), QuoteHeaderRow)
             End Get
         End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteHeaderRowChanging As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteHeaderRowChanged As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteHeaderRowDeleting As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteHeaderRowDeleted As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overloads Sub AddQuoteHeaderRow(ByVal row As QuoteHeaderRow)
             Me.Rows.Add(row)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overloads Function AddQuoteHeaderRow( _
-                    ByVal QuoteID As System.Guid,  _
-                    ByVal QuoteNumber As String,  _
-                    ByVal CustomerID As Integer,  _
-                    ByVal ContactName As String,  _
-                    ByVal RFQ As String,  _
-                    ByVal QuoteDate As Date,  _
-                    ByVal DueDate As Date,  _
-                    ByVal PartNumber As String,  _
-                    ByVal PartVersion As String,  _
-                    ByVal PartRevision As String,  _
-                    ByVal PartID As System.Guid,  _
-                    ByVal ShippedBefore As Boolean,  _
-                    ByVal NewRevision As Boolean,  _
-                    ByVal Comment As String,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal StartDate As Date,  _
-                    ByVal CompletedDate As Date,  _
-                    ByVal VerifiedBy As String,  _
-                    ByVal VerifiedDate As Date,  _
-                    ByVal IsToolingPORecd As Boolean,  _
-                    ByVal EAU As Integer,  _
-                    ByVal Minimum As Integer,  _
-                    ByVal LeadTimeInitial As Integer,  _
-                    ByVal LeadTimeStandard As Integer,  _
-                    ByVal QuoteTypeID As Integer,  _
-                    ByVal UnitPrice As Decimal,  _
-                    ByVal MinimumOrder As Decimal,  _
-                    ByVal LaborMinutes As Decimal,  _
-                    ByVal LaborRate As Decimal,  _
-                    ByVal Tooling As Decimal,  _
-                    ByVal Shipping As Decimal,  _
-                    ByVal FormBoardRequired As Boolean,  _
-                    ByVal FormBoardCost As Decimal,  _
-                    ByVal SingleDefQty As Integer,  _
-                    ByVal OrderQty As Integer,  _
-                    ByVal WireTime As Decimal,  _
-                    ByVal CutTime As Decimal,  _
-                    ByVal Cuts As Integer,  _
-                    ByVal BoxSize As String,  _
-                    ByVal BoxPrice As Decimal,  _
-                    ByVal CuPrice As Decimal,  _
-                    ByVal CuWeight As Decimal,  _
-                    ByVal CuWeightMultiplier As Decimal,  _
+                    ByVal QuoteID As System.Guid, _
+                    ByVal QuoteNumber As String, _
+                    ByVal CustomerID As Integer, _
+                    ByVal ContactName As String, _
+                    ByVal RFQ As String, _
+                    ByVal QuoteDate As Date, _
+                    ByVal DueDate As Date, _
+                    ByVal PartNumber As String, _
+                    ByVal PartVersion As String, _
+                    ByVal PartRevision As String, _
+                    ByVal PartID As System.Guid, _
+                    ByVal ShippedBefore As Boolean, _
+                    ByVal NewRevision As Boolean, _
+                    ByVal Comment As String, _
+                    ByVal CreatedBy As String, _
+                    ByVal StartDate As Date, _
+                    ByVal CompletedDate As Date, _
+                    ByVal VerifiedBy As String, _
+                    ByVal VerifiedDate As Date, _
+                    ByVal IsToolingPORecd As Boolean, _
+                    ByVal EAU As Integer, _
+                    ByVal Minimum As Integer, _
+                    ByVal LeadTimeInitial As Integer, _
+                    ByVal LeadTimeStandard As Integer, _
+                    ByVal QuoteTypeID As Integer, _
+                    ByVal UnitPrice As Decimal, _
+                    ByVal MinimumOrder As Decimal, _
+                    ByVal LaborMinutes As Decimal, _
+                    ByVal LaborRate As Decimal, _
+                    ByVal Tooling As Decimal, _
+                    ByVal Shipping As Decimal, _
+                    ByVal FormBoardRequired As Boolean, _
+                    ByVal FormBoardCost As Decimal, _
+                    ByVal SingleDefQty As Integer, _
+                    ByVal OrderQty As Integer, _
+                    ByVal WireTime As Decimal, _
+                    ByVal CutTime As Decimal, _
+                    ByVal Cuts As Integer, _
+                    ByVal BoxSize As String, _
+                    ByVal BoxPrice As Decimal, _
+                    ByVal CuPrice As Decimal, _
+                    ByVal CuWeight As Decimal, _
+                    ByVal CuWeightMultiplier As Decimal, _
                     ByVal TimeMultiplier As Decimal) As QuoteHeaderRow
-            Dim rowQuoteHeaderRow As QuoteHeaderRow = CType(Me.NewRow,QuoteHeaderRow)
+            Dim rowQuoteHeaderRow As QuoteHeaderRow = CType(Me.NewRow, QuoteHeaderRow)
             Dim columnValuesArray() As Object = New Object() {QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier}
             rowQuoteHeaderRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowQuoteHeaderRow)
             Return rowQuoteHeaderRow
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function FindByQuoteID(ByVal QuoteID As System.Guid) As QuoteHeaderRow
-            Return CType(Me.Rows.Find(New Object() {QuoteID}),QuoteHeaderRow)
+            Return CType(Me.Rows.Find(New Object() {QuoteID}), QuoteHeaderRow)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
             Return Me.Rows.GetEnumerator
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As QuoteHeaderDataTable = CType(MyBase.Clone,QuoteHeaderDataTable)
-            cln.InitVars
+            Dim cln As QuoteHeaderDataTable = CType(MyBase.Clone, QuoteHeaderDataTable)
+            cln.InitVars()
             Return cln
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
             Return New QuoteHeaderDataTable()
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub InitVars()
             Me.columnQuoteID = MyBase.Columns("QuoteID")
             Me.columnQuoteNumber = MyBase.Columns("QuoteNumber")
@@ -957,9 +962,9 @@ Partial Public Class ImportDataSet
             Me.columnCuWeightMultiplier = MyBase.Columns("CuWeightMultiplier")
             Me.columnTimeMultiplier = MyBase.Columns("TimeMultiplier")
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitClass()
             Me.columnQuoteID = New Global.System.Data.DataColumn("QuoteID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQuoteID)
@@ -1049,10 +1054,10 @@ Partial Public Class ImportDataSet
             MyBase.Columns.Add(Me.columnCuWeightMultiplier)
             Me.columnTimeMultiplier = New Global.System.Data.DataColumn("TimeMultiplier", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTimeMultiplier)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID}, true))
-            Me.columnQuoteID.AllowDBNull = false
-            Me.columnQuoteID.Unique = true
-            Me.columnQuoteNumber.AllowDBNull = false
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID}, True))
+            Me.columnQuoteID.AllowDBNull = False
+            Me.columnQuoteID.Unique = True
+            Me.columnQuoteNumber.AllowDBNull = False
             Me.columnQuoteNumber.MaxLength = 50
             Me.columnContactName.MaxLength = 100
             Me.columnRFQ.MaxLength = 100
@@ -1064,69 +1069,69 @@ Partial Public Class ImportDataSet
             Me.columnVerifiedBy.MaxLength = 100
             Me.columnBoxSize.MaxLength = 50
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function NewQuoteHeaderRow() As QuoteHeaderRow
-            Return CType(Me.NewRow,QuoteHeaderRow)
+            Return CType(Me.NewRow, QuoteHeaderRow)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
             Return New QuoteHeaderRow(builder)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function GetRowType() As Global.System.Type
             Return GetType(QuoteHeaderRow)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
             If (Not (Me.QuoteHeaderRowChangedEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowChanged(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+                RaiseEvent QuoteHeaderRowChanged(Me, New QuoteHeaderRowChangeEvent(CType(e.Row, QuoteHeaderRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
             If (Not (Me.QuoteHeaderRowChangingEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowChanging(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+                RaiseEvent QuoteHeaderRowChanging(Me, New QuoteHeaderRowChangeEvent(CType(e.Row, QuoteHeaderRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
             If (Not (Me.QuoteHeaderRowDeletedEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowDeleted(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+                RaiseEvent QuoteHeaderRowDeleted(Me, New QuoteHeaderRowChangeEvent(CType(e.Row, QuoteHeaderRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
             If (Not (Me.QuoteHeaderRowDeletingEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowDeleting(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+                RaiseEvent QuoteHeaderRowDeleting(Me, New QuoteHeaderRowChangeEvent(CType(e.Row, QuoteHeaderRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub RemoveQuoteHeaderRow(ByVal row As QuoteHeaderRow)
             Me.Rows.Remove(row)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
@@ -1155,35 +1160,35 @@ Partial Public Class ImportDataSet
             If xs.Contains(dsSchema.TargetNamespace) Then
                 Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
                 Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
+                Try
                     Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
                     dsSchema.Write(s1)
                     Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
                     Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        schema = CType(schemas.Current, Global.System.Xml.Schema.XmlSchema)
                         s2.SetLength(0)
                         schema.Write(s2)
                         If (s1.Length = s2.Length) Then
                             s1.Position = 0
                             s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
+
+                            Do While ((s1.Position <> s1.Length) _
                                         AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
+
+
                             Loop
                             If (s1.Position = s1.Length) Then
                                 Return type
                             End If
                         End If
-                        
+
                     Loop
                 Finally
                     If (Not (s1) Is Nothing) Then
-                        s1.Close
+                        s1.Close()
                     End If
                     If (Not (s2) Is Nothing) Then
-                        s2.Close
+                        s2.Close()
                     End If
                 End Try
             End If
@@ -1191,46 +1196,46 @@ Partial Public Class ImportDataSet
             Return type
         End Function
     End Class
-    
+
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    <Global.System.Serializable(), _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")> _
     Partial Public Class QuoteDetailDataTable
         Inherits Global.System.Data.DataTable
         Implements Global.System.Collections.IEnumerable
-        
+
         Private columnQuoteID As Global.System.Data.DataColumn
-        
+
         Private columnLineNumber As Global.System.Data.DataColumn
-        
+
         Private columnQty As Global.System.Data.DataColumn
-        
+
         Private columnItemID As Global.System.Data.DataColumn
-        
+
         Private columnPartNumber As Global.System.Data.DataColumn
-        
+
         Private columnUnitCost As Global.System.Data.DataColumn
-        
+
         Private columnIsWire As Global.System.Data.DataColumn
-        
+
         Private columnTime As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
-            MyBase.New
+            MyBase.New()
             Me.TableName = "QuoteDetail"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
+            Me.BeginInit()
+            Me.InitClass()
+            Me.EndInit()
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
+            MyBase.New()
             Me.TableName = table.TableName
             If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
                 Me.CaseSensitive = table.CaseSensitive
@@ -1244,151 +1249,154 @@ Partial Public Class ImportDataSet
             Me.Prefix = table.Prefix
             Me.MinimumCapacity = table.MinimumCapacity
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
             MyBase.New(info, context)
-            Me.InitVars
+            Me.InitVars()
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property QuoteIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQuoteID
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property LineNumberColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnLineNumber
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property QtyColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQty
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property ItemIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnItemID
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property PartNumberColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPartNumber
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property UnitCostColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnUnitCost
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property IsWireColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnIsWire
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property TimeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTime
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
             Get
                 Return Me.Rows.Count
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As QuoteDetailRow
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Default Public ReadOnly Property Item(ByVal index As Integer) As QuoteDetailRow
             Get
-                Return CType(Me.Rows(index),QuoteDetailRow)
+                Return CType(Me.Rows(index), QuoteDetailRow)
             End Get
         End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteDetailRowChanging As QuoteDetailRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteDetailRowChanged As QuoteDetailRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteDetailRowDeleting As QuoteDetailRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Event QuoteDetailRowDeleted As QuoteDetailRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overloads Sub AddQuoteDetailRow(ByVal row As QuoteDetailRow)
             Me.Rows.Add(row)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddQuoteDetailRow(ByVal QuoteID As System.Guid, ByVal LineNumber As Integer, ByVal Qty As Decimal, ByVal ItemID As System.Guid, ByVal PartNumber As String, ByVal UnitCost As Decimal, ByVal IsWire As Boolean, ByVal Time As Decimal) As QuoteDetailRow
-            Dim rowQuoteDetailRow As QuoteDetailRow = CType(Me.NewRow,QuoteDetailRow)
-            Dim columnValuesArray() As Object = New Object() {QuoteID, LineNumber, Qty, ItemID, PartNumber, UnitCost, IsWire, Time}
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Overloads Function AddQuoteDetailRow(ByVal parentQuoteHeaderRowByFK_QuoteDetail_QuoteHeader As QuoteHeaderRow, ByVal LineNumber As Integer, ByVal Qty As Decimal, ByVal ItemID As System.Guid, ByVal PartNumber As String, ByVal UnitCost As Decimal, ByVal IsWire As Boolean, ByVal Time As Decimal) As QuoteDetailRow
+            Dim rowQuoteDetailRow As QuoteDetailRow = CType(Me.NewRow, QuoteDetailRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, LineNumber, Qty, ItemID, PartNumber, UnitCost, IsWire, Time}
+            If (Not (parentQuoteHeaderRowByFK_QuoteDetail_QuoteHeader) Is Nothing) Then
+                columnValuesArray(0) = parentQuoteHeaderRowByFK_QuoteDetail_QuoteHeader(0)
+            End If
             rowQuoteDetailRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowQuoteDetailRow)
             Return rowQuoteDetailRow
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function FindByQuoteIDLineNumber(ByVal QuoteID As System.Guid, ByVal LineNumber As Integer) As QuoteDetailRow
-            Return CType(Me.Rows.Find(New Object() {QuoteID, LineNumber}),QuoteDetailRow)
+            Return CType(Me.Rows.Find(New Object() {QuoteID, LineNumber}), QuoteDetailRow)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
             Return Me.Rows.GetEnumerator
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As QuoteDetailDataTable = CType(MyBase.Clone,QuoteDetailDataTable)
-            cln.InitVars
+            Dim cln As QuoteDetailDataTable = CType(MyBase.Clone, QuoteDetailDataTable)
+            cln.InitVars()
             Return cln
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
             Return New QuoteDetailDataTable()
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub InitVars()
             Me.columnQuoteID = MyBase.Columns("QuoteID")
             Me.columnLineNumber = MyBase.Columns("LineNumber")
@@ -1399,9 +1407,9 @@ Partial Public Class ImportDataSet
             Me.columnIsWire = MyBase.Columns("IsWire")
             Me.columnTime = MyBase.Columns("Time")
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitClass()
             Me.columnQuoteID = New Global.System.Data.DataColumn("QuoteID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQuoteID)
@@ -1419,77 +1427,77 @@ Partial Public Class ImportDataSet
             MyBase.Columns.Add(Me.columnIsWire)
             Me.columnTime = New Global.System.Data.DataColumn("Time", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTime)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID, Me.columnLineNumber}, true))
-            Me.columnQuoteID.AllowDBNull = false
-            Me.columnLineNumber.AllowDBNull = false
-            Me.columnQty.AllowDBNull = false
-            Me.columnPartNumber.AllowDBNull = false
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID, Me.columnLineNumber}, True))
+            Me.columnQuoteID.AllowDBNull = False
+            Me.columnLineNumber.AllowDBNull = False
+            Me.columnQty.AllowDBNull = False
+            Me.columnPartNumber.AllowDBNull = False
             Me.columnPartNumber.MaxLength = 100
-            Me.columnIsWire.AllowDBNull = false
+            Me.columnIsWire.AllowDBNull = False
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function NewQuoteDetailRow() As QuoteDetailRow
-            Return CType(Me.NewRow,QuoteDetailRow)
+            Return CType(Me.NewRow, QuoteDetailRow)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
             Return New QuoteDetailRow(builder)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function GetRowType() As Global.System.Type
             Return GetType(QuoteDetailRow)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
             If (Not (Me.QuoteDetailRowChangedEvent) Is Nothing) Then
-                RaiseEvent QuoteDetailRowChanged(Me, New QuoteDetailRowChangeEvent(CType(e.Row,QuoteDetailRow), e.Action))
+                RaiseEvent QuoteDetailRowChanged(Me, New QuoteDetailRowChangeEvent(CType(e.Row, QuoteDetailRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
             If (Not (Me.QuoteDetailRowChangingEvent) Is Nothing) Then
-                RaiseEvent QuoteDetailRowChanging(Me, New QuoteDetailRowChangeEvent(CType(e.Row,QuoteDetailRow), e.Action))
+                RaiseEvent QuoteDetailRowChanging(Me, New QuoteDetailRowChangeEvent(CType(e.Row, QuoteDetailRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
             If (Not (Me.QuoteDetailRowDeletedEvent) Is Nothing) Then
-                RaiseEvent QuoteDetailRowDeleted(Me, New QuoteDetailRowChangeEvent(CType(e.Row,QuoteDetailRow), e.Action))
+                RaiseEvent QuoteDetailRowDeleted(Me, New QuoteDetailRowChangeEvent(CType(e.Row, QuoteDetailRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
             If (Not (Me.QuoteDetailRowDeletingEvent) Is Nothing) Then
-                RaiseEvent QuoteDetailRowDeleting(Me, New QuoteDetailRowChangeEvent(CType(e.Row,QuoteDetailRow), e.Action))
+                RaiseEvent QuoteDetailRowDeleting(Me, New QuoteDetailRowChangeEvent(CType(e.Row, QuoteDetailRow), e.Action))
             End If
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub RemoveQuoteDetailRow(ByVal row As QuoteDetailRow)
             Me.Rows.Remove(row)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
             Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
             Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
@@ -1518,35 +1526,35 @@ Partial Public Class ImportDataSet
             If xs.Contains(dsSchema.TargetNamespace) Then
                 Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
                 Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
+                Try
                     Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
                     dsSchema.Write(s1)
                     Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
                     Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        schema = CType(schemas.Current, Global.System.Xml.Schema.XmlSchema)
                         s2.SetLength(0)
                         schema.Write(s2)
                         If (s1.Length = s2.Length) Then
                             s1.Position = 0
                             s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
+
+                            Do While ((s1.Position <> s1.Length) _
                                         AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
+
+
                             Loop
                             If (s1.Position = s1.Length) Then
                                 Return type
                             End If
                         End If
-                        
+
                     Loop
                 Finally
                     If (Not (s1) Is Nothing) Then
-                        s1.Close
+                        s1.Close()
                     End If
                     If (Not (s2) Is Nothing) Then
-                        s2.Close
+                        s2.Close()
                     End If
                 End Try
             End If
@@ -1554,1396 +1562,1417 @@ Partial Public Class ImportDataSet
             Return type
         End Function
     End Class
-    
+
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class QuoteHeaderRow
         Inherits Global.System.Data.DataRow
-        
+
         Private tableQuoteHeader As QuoteHeaderDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableQuoteHeader = CType(Me.Table,QuoteHeaderDataTable)
+            Me.tableQuoteHeader = CType(Me.Table, QuoteHeaderDataTable)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property QuoteID() As System.Guid
             Get
-                Return CType(Me(Me.tableQuoteHeader.QuoteIDColumn),Global.System.Guid)
+                Return CType(Me(Me.tableQuoteHeader.QuoteIDColumn), Global.System.Guid)
             End Get
-            Set
-                Me(Me.tableQuoteHeader.QuoteIDColumn) = value
+            Set(ByVal value As System.Guid)
+                Me(Me.tableQuoteHeader.QuoteIDColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property QuoteNumber() As String
             Get
-                Return CType(Me(Me.tableQuoteHeader.QuoteNumberColumn),String)
+                Return CType(Me(Me.tableQuoteHeader.QuoteNumberColumn), String)
             End Get
-            Set
-                Me(Me.tableQuoteHeader.QuoteNumberColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.QuoteNumberColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CustomerID() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CustomerIDColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CustomerIDColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CustomerID' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CustomerIDColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.CustomerIDColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property ContactName() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.ContactNameColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.ContactNameColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'ContactName' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.ContactNameColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.ContactNameColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property RFQ() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.RFQColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.RFQColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'RFQ' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.RFQColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.RFQColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property QuoteDate() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.QuoteDateColumn),Date)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.QuoteDateColumn), Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'QuoteDate' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.QuoteDateColumn) = value
+            Set(ByVal value As Date)
+                Me(Me.tableQuoteHeader.QuoteDateColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property DueDate() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.DueDateColumn),Date)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.DueDateColumn), Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'DueDate' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.DueDateColumn) = value
+            Set(ByVal value As Date)
+                Me(Me.tableQuoteHeader.DueDateColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PartNumber() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.PartNumberColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.PartNumberColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'PartNumber' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.PartNumberColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.PartNumberColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PartVersion() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.PartVersionColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.PartVersionColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'PartVersion' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.PartVersionColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.PartVersionColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PartRevision() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.PartRevisionColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.PartRevisionColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'PartRevision' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.PartRevisionColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.PartRevisionColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PartID() As System.Guid
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.PartIDColumn),Global.System.Guid)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.PartIDColumn), Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'PartID' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.PartIDColumn) = value
+            Set(ByVal value As System.Guid)
+                Me(Me.tableQuoteHeader.PartIDColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property ShippedBefore() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.ShippedBeforeColumn),Boolean)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.ShippedBeforeColumn), Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'ShippedBefore' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.ShippedBeforeColumn) = value
+            Set(ByVal value As Boolean)
+                Me(Me.tableQuoteHeader.ShippedBeforeColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property NewRevision() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.NewRevisionColumn),Boolean)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.NewRevisionColumn), Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'NewRevision' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.NewRevisionColumn) = value
+            Set(ByVal value As Boolean)
+                Me(Me.tableQuoteHeader.NewRevisionColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Comment() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CommentColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CommentColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Comment' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CommentColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.CommentColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CreatedBy() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CreatedByColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CreatedByColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CreatedBy' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CreatedByColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.CreatedByColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property StartDate() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.StartDateColumn),Date)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.StartDateColumn), Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'StartDate' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.StartDateColumn) = value
+            Set(ByVal value As Date)
+                Me(Me.tableQuoteHeader.StartDateColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CompletedDate() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CompletedDateColumn),Date)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CompletedDateColumn), Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CompletedDate' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CompletedDateColumn) = value
+            Set(ByVal value As Date)
+                Me(Me.tableQuoteHeader.CompletedDateColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property VerifiedBy() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.VerifiedByColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.VerifiedByColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'VerifiedBy' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.VerifiedByColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.VerifiedByColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property VerifiedDate() As Date
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.VerifiedDateColumn),Date)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.VerifiedDateColumn), Date)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'VerifiedDate' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.VerifiedDateColumn) = value
+            Set(ByVal value As Date)
+                Me(Me.tableQuoteHeader.VerifiedDateColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IsToolingPORecd() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.IsToolingPORecdColumn),Boolean)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.IsToolingPORecdColumn), Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'IsToolingPORecd' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.IsToolingPORecdColumn) = value
+            Set(ByVal value As Boolean)
+                Me(Me.tableQuoteHeader.IsToolingPORecdColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property EAU() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.EAUColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.EAUColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'EAU' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.EAUColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.EAUColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Minimum() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.MinimumColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.MinimumColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Minimum' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.MinimumColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.MinimumColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property LeadTimeInitial() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.LeadTimeInitialColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.LeadTimeInitialColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'LeadTimeInitial' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.LeadTimeInitialColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.LeadTimeInitialColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property LeadTimeStandard() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.LeadTimeStandardColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.LeadTimeStandardColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'LeadTimeStandard' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.LeadTimeStandardColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.LeadTimeStandardColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property QuoteTypeID() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.QuoteTypeIDColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.QuoteTypeIDColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'QuoteTypeID' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.QuoteTypeIDColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.QuoteTypeIDColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property UnitPrice() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.UnitPriceColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.UnitPriceColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'UnitPrice' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.UnitPriceColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.UnitPriceColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property MinimumOrder() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.MinimumOrderColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.MinimumOrderColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'MinimumOrder' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.MinimumOrderColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.MinimumOrderColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property LaborMinutes() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.LaborMinutesColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.LaborMinutesColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'LaborMinutes' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.LaborMinutesColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.LaborMinutesColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property LaborRate() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.LaborRateColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.LaborRateColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'LaborRate' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.LaborRateColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.LaborRateColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Tooling() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.ToolingColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.ToolingColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Tooling' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.ToolingColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.ToolingColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Shipping() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.ShippingColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.ShippingColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Shipping' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.ShippingColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.ShippingColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property FormBoardRequired() As Boolean
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.FormBoardRequiredColumn),Boolean)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.FormBoardRequiredColumn), Boolean)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'FormBoardRequired' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.FormBoardRequiredColumn) = value
+            Set(ByVal value As Boolean)
+                Me(Me.tableQuoteHeader.FormBoardRequiredColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property FormBoardCost() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.FormBoardCostColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.FormBoardCostColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'FormBoardCost' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.FormBoardCostColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.FormBoardCostColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property SingleDefQty() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.SingleDefQtyColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.SingleDefQtyColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'SingleDefQty' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.SingleDefQtyColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.SingleDefQtyColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property OrderQty() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.OrderQtyColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.OrderQtyColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'OrderQty' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.OrderQtyColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.OrderQtyColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property WireTime() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.WireTimeColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.WireTimeColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'WireTime' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.WireTimeColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.WireTimeColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CutTime() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CutTimeColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CutTimeColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CutTime' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CutTimeColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.CutTimeColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Cuts() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CutsColumn),Integer)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CutsColumn), Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Cuts' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CutsColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteHeader.CutsColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property BoxSize() As String
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.BoxSizeColumn),String)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.BoxSizeColumn), String)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'BoxSize' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.BoxSizeColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteHeader.BoxSizeColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property BoxPrice() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.BoxPriceColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.BoxPriceColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'BoxPrice' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.BoxPriceColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.BoxPriceColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CuPrice() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CuPriceColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CuPriceColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CuPrice' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CuPriceColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.CuPriceColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CuWeight() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CuWeightColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CuWeightColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CuWeight' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CuWeightColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.CuWeightColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CuWeightMultiplier() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.CuWeightMultiplierColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.CuWeightMultiplierColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'CuWeightMultiplier' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.CuWeightMultiplierColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.CuWeightMultiplierColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property TimeMultiplier() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteHeader.TimeMultiplierColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteHeader.TimeMultiplierColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'TimeMultiplier' in table 'QuoteHeader' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteHeader.TimeMultiplierColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteHeader.TimeMultiplierColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCustomerIDNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CustomerIDColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCustomerIDNull()
             Me(Me.tableQuoteHeader.CustomerIDColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsContactNameNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.ContactNameColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetContactNameNull()
             Me(Me.tableQuoteHeader.ContactNameColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsRFQNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.RFQColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetRFQNull()
             Me(Me.tableQuoteHeader.RFQColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsQuoteDateNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.QuoteDateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetQuoteDateNull()
             Me(Me.tableQuoteHeader.QuoteDateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsDueDateNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.DueDateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetDueDateNull()
             Me(Me.tableQuoteHeader.DueDateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPartNumberNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.PartNumberColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPartNumberNull()
             Me(Me.tableQuoteHeader.PartNumberColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPartVersionNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.PartVersionColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPartVersionNull()
             Me(Me.tableQuoteHeader.PartVersionColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPartRevisionNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.PartRevisionColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPartRevisionNull()
             Me(Me.tableQuoteHeader.PartRevisionColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsPartIDNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.PartIDColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetPartIDNull()
             Me(Me.tableQuoteHeader.PartIDColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsShippedBeforeNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.ShippedBeforeColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetShippedBeforeNull()
             Me(Me.tableQuoteHeader.ShippedBeforeColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsNewRevisionNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.NewRevisionColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetNewRevisionNull()
             Me(Me.tableQuoteHeader.NewRevisionColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCommentNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CommentColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCommentNull()
             Me(Me.tableQuoteHeader.CommentColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCreatedByNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CreatedByColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCreatedByNull()
             Me(Me.tableQuoteHeader.CreatedByColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsStartDateNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.StartDateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetStartDateNull()
             Me(Me.tableQuoteHeader.StartDateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCompletedDateNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CompletedDateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCompletedDateNull()
             Me(Me.tableQuoteHeader.CompletedDateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsVerifiedByNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.VerifiedByColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetVerifiedByNull()
             Me(Me.tableQuoteHeader.VerifiedByColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsVerifiedDateNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.VerifiedDateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetVerifiedDateNull()
             Me(Me.tableQuoteHeader.VerifiedDateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsIsToolingPORecdNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.IsToolingPORecdColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIsToolingPORecdNull()
             Me(Me.tableQuoteHeader.IsToolingPORecdColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsEAUNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.EAUColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetEAUNull()
             Me(Me.tableQuoteHeader.EAUColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsMinimumNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.MinimumColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetMinimumNull()
             Me(Me.tableQuoteHeader.MinimumColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsLeadTimeInitialNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.LeadTimeInitialColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLeadTimeInitialNull()
             Me(Me.tableQuoteHeader.LeadTimeInitialColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsLeadTimeStandardNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.LeadTimeStandardColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLeadTimeStandardNull()
             Me(Me.tableQuoteHeader.LeadTimeStandardColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsQuoteTypeIDNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.QuoteTypeIDColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetQuoteTypeIDNull()
             Me(Me.tableQuoteHeader.QuoteTypeIDColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsUnitPriceNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.UnitPriceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetUnitPriceNull()
             Me(Me.tableQuoteHeader.UnitPriceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsMinimumOrderNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.MinimumOrderColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetMinimumOrderNull()
             Me(Me.tableQuoteHeader.MinimumOrderColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsLaborMinutesNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.LaborMinutesColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLaborMinutesNull()
             Me(Me.tableQuoteHeader.LaborMinutesColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsLaborRateNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.LaborRateColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetLaborRateNull()
             Me(Me.tableQuoteHeader.LaborRateColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsToolingNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.ToolingColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetToolingNull()
             Me(Me.tableQuoteHeader.ToolingColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsShippingNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.ShippingColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetShippingNull()
             Me(Me.tableQuoteHeader.ShippingColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsFormBoardRequiredNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.FormBoardRequiredColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetFormBoardRequiredNull()
             Me(Me.tableQuoteHeader.FormBoardRequiredColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsFormBoardCostNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.FormBoardCostColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetFormBoardCostNull()
             Me(Me.tableQuoteHeader.FormBoardCostColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsSingleDefQtyNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.SingleDefQtyColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetSingleDefQtyNull()
             Me(Me.tableQuoteHeader.SingleDefQtyColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsOrderQtyNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.OrderQtyColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetOrderQtyNull()
             Me(Me.tableQuoteHeader.OrderQtyColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsWireTimeNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.WireTimeColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetWireTimeNull()
             Me(Me.tableQuoteHeader.WireTimeColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCutTimeNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CutTimeColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCutTimeNull()
             Me(Me.tableQuoteHeader.CutTimeColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCutsNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CutsColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCutsNull()
             Me(Me.tableQuoteHeader.CutsColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsBoxSizeNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.BoxSizeColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetBoxSizeNull()
             Me(Me.tableQuoteHeader.BoxSizeColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsBoxPriceNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.BoxPriceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetBoxPriceNull()
             Me(Me.tableQuoteHeader.BoxPriceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCuPriceNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CuPriceColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCuPriceNull()
             Me(Me.tableQuoteHeader.CuPriceColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCuWeightNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CuWeightColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCuWeightNull()
             Me(Me.tableQuoteHeader.CuWeightColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsCuWeightMultiplierNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CuWeightMultiplierColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetCuWeightMultiplierNull()
             Me(Me.tableQuoteHeader.CuWeightMultiplierColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsTimeMultiplierNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.TimeMultiplierColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetTimeMultiplierNull()
             Me(Me.tableQuoteHeader.TimeMultiplierColumn) = Global.System.Convert.DBNull
         End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function GetQuoteDetailRows() As QuoteDetailRow()
+            If (Me.Table.ChildRelations("FK_QuoteDetail_QuoteHeader") Is Nothing) Then
+                Return New QuoteDetailRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_QuoteDetail_QuoteHeader")), QuoteDetailRow())
+            End If
+        End Function
     End Class
-    
+
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class QuoteDetailRow
         Inherits Global.System.Data.DataRow
-        
+
         Private tableQuoteDetail As QuoteDetailDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableQuoteDetail = CType(Me.Table,QuoteDetailDataTable)
+            Me.tableQuoteDetail = CType(Me.Table, QuoteDetailDataTable)
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property QuoteID() As System.Guid
             Get
-                Return CType(Me(Me.tableQuoteDetail.QuoteIDColumn),Global.System.Guid)
+                Return CType(Me(Me.tableQuoteDetail.QuoteIDColumn), Global.System.Guid)
             End Get
-            Set
-                Me(Me.tableQuoteDetail.QuoteIDColumn) = value
+            Set(ByVal value As System.Guid)
+                Me(Me.tableQuoteDetail.QuoteIDColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property LineNumber() As Integer
             Get
-                Return CType(Me(Me.tableQuoteDetail.LineNumberColumn),Integer)
+                Return CType(Me(Me.tableQuoteDetail.LineNumberColumn), Integer)
             End Get
-            Set
-                Me(Me.tableQuoteDetail.LineNumberColumn) = value
+            Set(ByVal value As Integer)
+                Me(Me.tableQuoteDetail.LineNumberColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Qty() As Decimal
             Get
-                Return CType(Me(Me.tableQuoteDetail.QtyColumn),Decimal)
+                Return CType(Me(Me.tableQuoteDetail.QtyColumn), Decimal)
             End Get
-            Set
-                Me(Me.tableQuoteDetail.QtyColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteDetail.QtyColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property ItemID() As System.Guid
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.ItemIDColumn),Global.System.Guid)
+                Try
+                    Return CType(Me(Me.tableQuoteDetail.ItemIDColumn), Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'ItemID' in table 'QuoteDetail' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteDetail.ItemIDColumn) = value
+            Set(ByVal value As System.Guid)
+                Me(Me.tableQuoteDetail.ItemIDColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property PartNumber() As String
             Get
-                Return CType(Me(Me.tableQuoteDetail.PartNumberColumn),String)
+                Return CType(Me(Me.tableQuoteDetail.PartNumberColumn), String)
             End Get
-            Set
-                Me(Me.tableQuoteDetail.PartNumberColumn) = value
+            Set(ByVal value As String)
+                Me(Me.tableQuoteDetail.PartNumberColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property UnitCost() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.UnitCostColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteDetail.UnitCostColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'UnitCost' in table 'QuoteDetail' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteDetail.UnitCostColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteDetail.UnitCostColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property IsWire() As Boolean
             Get
-                Return CType(Me(Me.tableQuoteDetail.IsWireColumn),Boolean)
+                Return CType(Me(Me.tableQuoteDetail.IsWireColumn), Boolean)
             End Get
-            Set
-                Me(Me.tableQuoteDetail.IsWireColumn) = value
+            Set(ByVal value As Boolean)
+                Me(Me.tableQuoteDetail.IsWireColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property Time() As Decimal
             Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.TimeColumn),Decimal)
+                Try
+                    Return CType(Me(Me.tableQuoteDetail.TimeColumn), Decimal)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Time' in table 'QuoteDetail' is DBNull.", e)
                 End Try
             End Get
-            Set
-                Me(Me.tableQuoteDetail.TimeColumn) = value
+            Set(ByVal value As Decimal)
+                Me(Me.tableQuoteDetail.TimeColumn) = Value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property QuoteHeaderRow() As QuoteHeaderRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_QuoteDetail_QuoteHeader")), QuoteHeaderRow)
+            End Get
+            Set(ByVal value As QuoteHeaderRow)
+                Me.SetParentRow(Value, Me.Table.ParentRelations("FK_QuoteDetail_QuoteHeader"))
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsItemIDNull() As Boolean
             Return Me.IsNull(Me.tableQuoteDetail.ItemIDColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetItemIDNull()
             Me(Me.tableQuoteDetail.ItemIDColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsUnitCostNull() As Boolean
             Return Me.IsNull(Me.tableQuoteDetail.UnitCostColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetUnitCostNull()
             Me(Me.tableQuoteDetail.UnitCostColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsTimeNull() As Boolean
             Return Me.IsNull(Me.tableQuoteDetail.TimeColumn)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetTimeNull()
             Me(Me.tableQuoteDetail.TimeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class QuoteHeaderRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As QuoteHeaderRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As QuoteHeaderRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As QuoteHeaderRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
             End Get
         End Property
     End Class
-    
+
     '''<summary>
     '''Row event argument class
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Public Class QuoteDetailRowChangeEvent
         Inherits Global.System.EventArgs
-        
+
         Private eventRow As QuoteDetailRow
-        
+
         Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New(ByVal row As QuoteDetailRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
+            MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Row() As QuoteDetailRow
             Get
                 Return Me.eventRow
             End Get
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property Action() As Global.System.Data.DataRowAction
             Get
                 Return Me.eventAction
@@ -3128,58 +3157,58 @@ Namespace ImportDataSetTableAdapters
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[QuoteHeader] WHERE (([QuoteID] = @Original_QuoteID) AND ([Quot"& _ 
-                "eNumber] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 AND [CustomerID] "& _ 
-                "IS NULL) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull_ContactName = 1"& _ 
-                " AND [ContactName] IS NULL) OR ([ContactName] = @Original_ContactName)) AND ((@I"& _ 
-                "sNull_RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND ((@IsNull_Quote"& _ 
-                "Date = 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_QuoteDate)) AND (("& _ 
-                "@IsNull_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Original_DueDate)) A"& _ 
-                "ND ((@IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartNumber] = @Origin"& _ 
-                "al_PartNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] IS NULL) OR ([Pa"& _ 
-                "rtVersion] = @Original_PartVersion)) AND ((@IsNull_PartRevision = 1 AND [PartRev"& _ 
-                "ision] IS NULL) OR ([PartRevision] = @Original_PartRevision)) AND ((@IsNull_Part"& _ 
-                "ID = 1 AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) AND ((@IsNull_Shi"& _ 
-                "ppedBefore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] = @Original_Ship"& _ 
-                "pedBefore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS NULL) OR ([NewRev"& _ 
-                "ision] = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS "& _ 
-                "NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_StartDate = 1 AND [S"& _ 
-                "tartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_Complet"& _ 
-                "edDate = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @Original_Complete"& _ 
-                "dDate)) AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) OR ([VerifiedBy] "& _ 
-                "= @Original_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [VerifiedDate] IS NU"& _ 
-                "LL) OR ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_IsToolingPORecd "& _ 
-                "= 1 AND [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Original_IsToolingPO"& _ 
-                "Recd)) AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Original_EAU)) AND "& _ 
-                "((@IsNull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Original_Minimum))"& _ 
-                " AND ((@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL) OR ([LeadTimeI"& _ 
-                "nitial] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStandard = 1 AND [Le"& _ 
-                "adTimeStandard] IS NULL) OR ([LeadTimeStandard] = @Original_LeadTimeStandard)) A"& _ 
-                "ND ((@IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([QuoteTypeID] = @Ori"& _ 
-                "ginal_QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] IS NULL) OR ([Un"& _ 
-                "itPrice] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 AND [MinimumOrde"& _ 
-                "r] IS NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND ((@IsNull_LaborMin"& _ 
-                "utes = 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Original_LaborMinutes"& _ 
-                ")) AND ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([LaborRate] = @Origi"& _ 
-                "nal_LaborRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL) OR ([Tooling] ="& _ 
-                " @Original_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] IS NULL) OR ([Shi"& _ 
-                "pping] = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = 1 AND [FormBoard"& _ 
-                "Required] IS NULL) OR ([FormBoardRequired] = @Original_FormBoardRequired)) AND ("& _ 
-                "(@IsNull_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([FormBoardCost] = @O"& _ 
-                "riginal_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [SingleDefQty] IS NUL"& _ 
-                "L) OR ([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_OrderQty = 1 AND "& _ 
-                "[OrderQty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND ((@IsNull_WireTime"& _ 
-                " = 1 AND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime)) AND ((@IsNull"& _ 
-                "_CutTime = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_CutTime)) AND ((@I"& _ 
-                "sNull_Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts)) AND ((@IsNull_B"& _ 
-                "oxSize = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxSize)) AND ((@IsN"& _ 
-                "ull_BoxPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Original_BoxPrice)) A"& _ 
-                "ND ((@IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = @Original_CuPric"& _ 
-                "e)) AND ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWeight] = @Origina"& _ 
-                "l_CuWeight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightMultiplier] IS NU"& _ 
-                "LL) OR ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AND ((@IsNull_Time"& _ 
-                "Multiplier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier] = @Original_Ti"& _ 
-                "meMultiplier)))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [QuoteHeader] WHERE (([QuoteID] = @Original_QuoteID) AND ([QuoteNumbe"& _ 
+                "r] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 AND [CustomerID] IS NUL"& _ 
+                "L) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull_ContactName = 1 AND ["& _ 
+                "ContactName] IS NULL) OR ([ContactName] = @Original_ContactName)) AND ((@IsNull_"& _ 
+                "RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND ((@IsNull_QuoteDate ="& _ 
+                " 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_QuoteDate)) AND ((@IsNul"& _ 
+                "l_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Original_DueDate)) AND ((@"& _ 
+                "IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartNumber] = @Original_Par"& _ 
+                "tNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] IS NULL) OR ([PartVers"& _ 
+                "ion] = @Original_PartVersion)) AND ((@IsNull_PartRevision = 1 AND [PartRevision]"& _ 
+                " IS NULL) OR ([PartRevision] = @Original_PartRevision)) AND ((@IsNull_PartID = 1"& _ 
+                " AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) AND ((@IsNull_ShippedBe"& _ 
+                "fore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] = @Original_ShippedBef"& _ 
+                "ore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS NULL) OR ([NewRevision]"& _ 
+                " = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) "& _ 
+                "OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_StartDate = 1 AND [StartDa"& _ 
+                "te] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_CompletedDate"& _ 
+                " = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @Original_CompletedDate)"& _ 
+                ") AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) OR ([VerifiedBy] = @Ori"& _ 
+                "ginal_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [VerifiedDate] IS NULL) OR"& _ 
+                " ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_IsToolingPORecd = 1 AN"& _ 
+                "D [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Original_IsToolingPORecd))"& _ 
+                " AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Original_EAU)) AND ((@IsN"& _ 
+                "ull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Original_Minimum)) AND ("& _ 
+                "(@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL) OR ([LeadTimeInitial"& _ 
+                "] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStandard = 1 AND [LeadTime"& _ 
+                "Standard] IS NULL) OR ([LeadTimeStandard] = @Original_LeadTimeStandard)) AND ((@"& _ 
+                "IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([QuoteTypeID] = @Original_"& _ 
+                "QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] IS NULL) OR ([UnitPric"& _ 
+                "e] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 AND [MinimumOrder] IS "& _ 
+                "NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND ((@IsNull_LaborMinutes ="& _ 
+                " 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Original_LaborMinutes)) AND"& _ 
+                " ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([LaborRate] = @Original_La"& _ 
+                "borRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL) OR ([Tooling] = @Orig"& _ 
+                "inal_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] IS NULL) OR ([Shipping]"& _ 
+                " = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = 1 AND [FormBoardRequir"& _ 
+                "ed] IS NULL) OR ([FormBoardRequired] = @Original_FormBoardRequired)) AND ((@IsNu"& _ 
+                "ll_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([FormBoardCost] = @Origina"& _ 
+                "l_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [SingleDefQty] IS NULL) OR "& _ 
+                "([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_OrderQty = 1 AND [Order"& _ 
+                "Qty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND ((@IsNull_WireTime = 1 A"& _ 
+                "ND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime)) AND ((@IsNull_CutTi"& _ 
+                "me = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_CutTime)) AND ((@IsNull_"& _ 
+                "Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts)) AND ((@IsNull_BoxSize"& _ 
+                " = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxSize)) AND ((@IsNull_Bo"& _ 
+                "xPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Original_BoxPrice)) AND ((@"& _ 
+                "IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = @Original_CuPrice)) AN"& _ 
+                "D ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWeight] = @Original_CuWe"& _ 
+                "ight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightMultiplier] IS NULL) OR"& _ 
+                " ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AND ((@IsNull_TimeMultip"& _ 
+                "lier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier] = @Original_TimeMult"& _ 
+                "iplier)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -3267,29 +3296,29 @@ Namespace ImportDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[QuoteHeader] ([QuoteID], [QuoteNumber], [CustomerID], [Contact"& _ 
-                "Name], [RFQ], [QuoteDate], [DueDate], [PartNumber], [PartVersion], [PartRevision"& _ 
-                "], [PartID], [ShippedBefore], [NewRevision], [Comment], [CreatedBy], [StartDate]"& _ 
-                ", [CompletedDate], [VerifiedBy], [VerifiedDate], [IsToolingPORecd], [EAU], [Mini"& _ 
-                "mum], [LeadTimeInitial], [LeadTimeStandard], [QuoteTypeID], [UnitPrice], [Minimu"& _ 
-                "mOrder], [LaborMinutes], [LaborRate], [Tooling], [Shipping], [FormBoardRequired]"& _ 
-                ", [FormBoardCost], [SingleDefQty], [OrderQty], [WireTime], [CutTime], [Cuts], [B"& _ 
-                "oxSize], [BoxPrice], [CuPrice], [CuWeight], [CuWeightMultiplier], [TimeMultiplie"& _ 
-                "r]) VALUES (@QuoteID, @QuoteNumber, @CustomerID, @ContactName, @RFQ, @QuoteDate,"& _ 
-                " @DueDate, @PartNumber, @PartVersion, @PartRevision, @PartID, @ShippedBefore, @N"& _ 
-                "ewRevision, @Comment, @CreatedBy, @StartDate, @CompletedDate, @VerifiedBy, @Veri"& _ 
-                "fiedDate, @IsToolingPORecd, @EAU, @Minimum, @LeadTimeInitial, @LeadTimeStandard,"& _ 
-                " @QuoteTypeID, @UnitPrice, @MinimumOrder, @LaborMinutes, @LaborRate, @Tooling, @"& _ 
-                "Shipping, @FormBoardRequired, @FormBoardCost, @SingleDefQty, @OrderQty, @WireTim"& _ 
-                "e, @CutTime, @Cuts, @BoxSize, @BoxPrice, @CuPrice, @CuWeight, @CuWeightMultiplie"& _ 
-                "r, @TimeMultiplier);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT QuoteID, QuoteNumber, CustomerID, ContactName, RFQ,"& _ 
-                " QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefor"& _ 
-                "e, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, Verifi"& _ 
-                "edDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteT"& _ 
-                "ypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, Form"& _ 
-                "BoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, B"& _ 
-                "oxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier FROM Quo"& _ 
-                "teHeader WHERE (QuoteID = @QuoteID)"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [QuoteHeader] ([QuoteID], [QuoteNumber], [CustomerID], [ContactName],"& _ 
+                " [RFQ], [QuoteDate], [DueDate], [PartNumber], [PartVersion], [PartRevision], [Pa"& _ 
+                "rtID], [ShippedBefore], [NewRevision], [Comment], [CreatedBy], [StartDate], [Com"& _ 
+                "pletedDate], [VerifiedBy], [VerifiedDate], [IsToolingPORecd], [EAU], [Minimum], "& _ 
+                "[LeadTimeInitial], [LeadTimeStandard], [QuoteTypeID], [UnitPrice], [MinimumOrder"& _ 
+                "], [LaborMinutes], [LaborRate], [Tooling], [Shipping], [FormBoardRequired], [For"& _ 
+                "mBoardCost], [SingleDefQty], [OrderQty], [WireTime], [CutTime], [Cuts], [BoxSize"& _ 
+                "], [BoxPrice], [CuPrice], [CuWeight], [CuWeightMultiplier], [TimeMultiplier]) VA"& _ 
+                "LUES (@QuoteID, @QuoteNumber, @CustomerID, @ContactName, @RFQ, @QuoteDate, @DueD"& _ 
+                "ate, @PartNumber, @PartVersion, @PartRevision, @PartID, @ShippedBefore, @NewRevi"& _ 
+                "sion, @Comment, @CreatedBy, @StartDate, @CompletedDate, @VerifiedBy, @VerifiedDa"& _ 
+                "te, @IsToolingPORecd, @EAU, @Minimum, @LeadTimeInitial, @LeadTimeStandard, @Quot"& _ 
+                "eTypeID, @UnitPrice, @MinimumOrder, @LaborMinutes, @LaborRate, @Tooling, @Shippi"& _ 
+                "ng, @FormBoardRequired, @FormBoardCost, @SingleDefQty, @OrderQty, @WireTime, @Cu"& _ 
+                "tTime, @Cuts, @BoxSize, @BoxPrice, @CuPrice, @CuWeight, @CuWeightMultiplier, @Ti"& _ 
+                "meMultiplier);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, Quote"& _ 
+                "Date, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, New"& _ 
+                "Revision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate"& _ 
+                ", IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID,"& _ 
+                " UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardR"& _ 
+                "equired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize"& _ 
+                ", BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier FROM QuoteHead"& _ 
+                "er WHERE (QuoteID = @QuoteID) ORDER BY QuoteNumber DESC"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -3337,80 +3366,80 @@ Namespace ImportDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[QuoteHeader] SET [QuoteID] = @QuoteID, [QuoteNumber] = @QuoteNumber"& _ 
-                ", [CustomerID] = @CustomerID, [ContactName] = @ContactName, [RFQ] = @RFQ, [Quote"& _ 
-                "Date] = @QuoteDate, [DueDate] = @DueDate, [PartNumber] = @PartNumber, [PartVersi"& _ 
-                "on] = @PartVersion, [PartRevision] = @PartRevision, [PartID] = @PartID, [Shipped"& _ 
-                "Before] = @ShippedBefore, [NewRevision] = @NewRevision, [Comment] = @Comment, [C"& _ 
-                "reatedBy] = @CreatedBy, [StartDate] = @StartDate, [CompletedDate] = @CompletedDa"& _ 
-                "te, [VerifiedBy] = @VerifiedBy, [VerifiedDate] = @VerifiedDate, [IsToolingPORecd"& _ 
-                "] = @IsToolingPORecd, [EAU] = @EAU, [Minimum] = @Minimum, [LeadTimeInitial] = @L"& _ 
-                "eadTimeInitial, [LeadTimeStandard] = @LeadTimeStandard, [QuoteTypeID] = @QuoteTy"& _ 
-                "peID, [UnitPrice] = @UnitPrice, [MinimumOrder] = @MinimumOrder, [LaborMinutes] ="& _ 
-                " @LaborMinutes, [LaborRate] = @LaborRate, [Tooling] = @Tooling, [Shipping] = @Sh"& _ 
-                "ipping, [FormBoardRequired] = @FormBoardRequired, [FormBoardCost] = @FormBoardCo"& _ 
-                "st, [SingleDefQty] = @SingleDefQty, [OrderQty] = @OrderQty, [WireTime] = @WireTi"& _ 
-                "me, [CutTime] = @CutTime, [Cuts] = @Cuts, [BoxSize] = @BoxSize, [BoxPrice] = @Bo"& _ 
-                "xPrice, [CuPrice] = @CuPrice, [CuWeight] = @CuWeight, [CuWeightMultiplier] = @Cu"& _ 
-                "WeightMultiplier, [TimeMultiplier] = @TimeMultiplier WHERE (([QuoteID] = @Origin"& _ 
-                "al_QuoteID) AND ([QuoteNumber] = @Original_QuoteNumber) AND ((@IsNull_CustomerID"& _ 
-                " = 1 AND [CustomerID] IS NULL) OR ([CustomerID] = @Original_CustomerID)) AND ((@"& _ 
-                "IsNull_ContactName = 1 AND [ContactName] IS NULL) OR ([ContactName] = @Original_"& _ 
-                "ContactName)) AND ((@IsNull_RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ"& _ 
-                ")) AND ((@IsNull_QuoteDate = 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Origi"& _ 
-                "nal_QuoteDate)) AND ((@IsNull_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] ="& _ 
-                " @Original_DueDate)) AND ((@IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ("& _ 
-                "[PartNumber] = @Original_PartNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVer"& _ 
-                "sion] IS NULL) OR ([PartVersion] = @Original_PartVersion)) AND ((@IsNull_PartRev"& _ 
-                "ision = 1 AND [PartRevision] IS NULL) OR ([PartRevision] = @Original_PartRevisio"& _ 
-                "n)) AND ((@IsNull_PartID = 1 AND [PartID] IS NULL) OR ([PartID] = @Original_Part"& _ 
-                "ID)) AND ((@IsNull_ShippedBefore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBe"& _ 
-                "fore] = @Original_ShippedBefore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision"& _ 
-                "] IS NULL) OR ([NewRevision] = @Original_NewRevision)) AND ((@IsNull_CreatedBy ="& _ 
-                " 1 AND [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNul"& _ 
-                "l_StartDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate))"& _ 
-                " AND ((@IsNull_CompletedDate = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate"& _ 
-                "] = @Original_CompletedDate)) AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS N"& _ 
-                "ULL) OR ([VerifiedBy] = @Original_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AN"& _ 
-                "D [VerifiedDate] IS NULL) OR ([VerifiedDate] = @Original_VerifiedDate)) AND ((@I"& _ 
-                "sNull_IsToolingPORecd = 1 AND [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] ="& _ 
-                " @Original_IsToolingPORecd)) AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] "& _ 
-                "= @Original_EAU)) AND ((@IsNull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum]"& _ 
-                " = @Original_Minimum)) AND ((@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] I"& _ 
-                "S NULL) OR ([LeadTimeInitial] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTi"& _ 
-                "meStandard = 1 AND [LeadTimeStandard] IS NULL) OR ([LeadTimeStandard] = @Origina"& _ 
-                "l_LeadTimeStandard)) AND ((@IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR"& _ 
-                " ([QuoteTypeID] = @Original_QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitP"& _ 
-                "rice] IS NULL) OR ([UnitPrice] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrde"& _ 
-                "r = 1 AND [MinimumOrder] IS NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) "& _ 
-                "AND ((@IsNull_LaborMinutes = 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = "& _ 
-                "@Original_LaborMinutes)) AND ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR"& _ 
-                " ([LaborRate] = @Original_LaborRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS"& _ 
-                " NULL) OR ([Tooling] = @Original_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipp"& _ 
-                "ing] IS NULL) OR ([Shipping] = @Original_Shipping)) AND ((@IsNull_FormBoardRequi"& _ 
-                "red = 1 AND [FormBoardRequired] IS NULL) OR ([FormBoardRequired] = @Original_For"& _ 
-                "mBoardRequired)) AND ((@IsNull_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR"& _ 
-                " ([FormBoardCost] = @Original_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND"& _ 
-                " [SingleDefQty] IS NULL) OR ([SingleDefQty] = @Original_SingleDefQty)) AND ((@Is"& _ 
-                "Null_OrderQty = 1 AND [OrderQty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) "& _ 
-                "AND ((@IsNull_WireTime = 1 AND [WireTime] IS NULL) OR ([WireTime] = @Original_Wi"& _ 
-                "reTime)) AND ((@IsNull_CutTime = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Origi"& _ 
-                "nal_CutTime)) AND ((@IsNull_Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_"& _ 
-                "Cuts)) AND ((@IsNull_BoxSize = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Origina"& _ 
-                "l_BoxSize)) AND ((@IsNull_BoxPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = "& _ 
-                "@Original_BoxPrice)) AND ((@IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPri"& _ 
-                "ce] = @Original_CuPrice)) AND ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR "& _ 
-                "([CuWeight] = @Original_CuWeight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuW"& _ 
-                "eightMultiplier] IS NULL) OR ([CuWeightMultiplier] = @Original_CuWeightMultiplie"& _ 
-                "r)) AND ((@IsNull_TimeMultiplier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMult"& _ 
-                "iplier] = @Original_TimeMultiplier)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT QuoteID, QuoteNumber, CustomerID,"& _ 
-                " ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, Pa"& _ 
-                "rtID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, "& _ 
-                "VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTi"& _ 
-                "meStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooli"& _ 
-                "ng, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime"& _ 
-                ", CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeM"& _ 
-                "ultiplier FROM QuoteHeader WHERE (QuoteID = @QuoteID)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [QuoteHeader] SET [QuoteID] = @QuoteID, [QuoteNumber] = @QuoteNumber, [Cus"& _ 
+                "tomerID] = @CustomerID, [ContactName] = @ContactName, [RFQ] = @RFQ, [QuoteDate] "& _ 
+                "= @QuoteDate, [DueDate] = @DueDate, [PartNumber] = @PartNumber, [PartVersion] = "& _ 
+                "@PartVersion, [PartRevision] = @PartRevision, [PartID] = @PartID, [ShippedBefore"& _ 
+                "] = @ShippedBefore, [NewRevision] = @NewRevision, [Comment] = @Comment, [Created"& _ 
+                "By] = @CreatedBy, [StartDate] = @StartDate, [CompletedDate] = @CompletedDate, [V"& _ 
+                "erifiedBy] = @VerifiedBy, [VerifiedDate] = @VerifiedDate, [IsToolingPORecd] = @I"& _ 
+                "sToolingPORecd, [EAU] = @EAU, [Minimum] = @Minimum, [LeadTimeInitial] = @LeadTim"& _ 
+                "eInitial, [LeadTimeStandard] = @LeadTimeStandard, [QuoteTypeID] = @QuoteTypeID, "& _ 
+                "[UnitPrice] = @UnitPrice, [MinimumOrder] = @MinimumOrder, [LaborMinutes] = @Labo"& _ 
+                "rMinutes, [LaborRate] = @LaborRate, [Tooling] = @Tooling, [Shipping] = @Shipping"& _ 
+                ", [FormBoardRequired] = @FormBoardRequired, [FormBoardCost] = @FormBoardCost, [S"& _ 
+                "ingleDefQty] = @SingleDefQty, [OrderQty] = @OrderQty, [WireTime] = @WireTime, [C"& _ 
+                "utTime] = @CutTime, [Cuts] = @Cuts, [BoxSize] = @BoxSize, [BoxPrice] = @BoxPrice"& _ 
+                ", [CuPrice] = @CuPrice, [CuWeight] = @CuWeight, [CuWeightMultiplier] = @CuWeight"& _ 
+                "Multiplier, [TimeMultiplier] = @TimeMultiplier WHERE (([QuoteID] = @Original_Quo"& _ 
+                "teID) AND ([QuoteNumber] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 A"& _ 
+                "ND [CustomerID] IS NULL) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull"& _ 
+                "_ContactName = 1 AND [ContactName] IS NULL) OR ([ContactName] = @Original_Contac"& _ 
+                "tName)) AND ((@IsNull_RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND"& _ 
+                " ((@IsNull_QuoteDate = 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_Qu"& _ 
+                "oteDate)) AND ((@IsNull_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Orig"& _ 
+                "inal_DueDate)) AND ((@IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartN"& _ 
+                "umber] = @Original_PartNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] "& _ 
+                "IS NULL) OR ([PartVersion] = @Original_PartVersion)) AND ((@IsNull_PartRevision "& _ 
+                "= 1 AND [PartRevision] IS NULL) OR ([PartRevision] = @Original_PartRevision)) AN"& _ 
+                "D ((@IsNull_PartID = 1 AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) A"& _ 
+                "ND ((@IsNull_ShippedBefore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] "& _ 
+                "= @Original_ShippedBefore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS N"& _ 
+                "ULL) OR ([NewRevision] = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND"& _ 
+                " [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_Star"& _ 
+                "tDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ("& _ 
+                "(@IsNull_CompletedDate = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @O"& _ 
+                "riginal_CompletedDate)) AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) O"& _ 
+                "R ([VerifiedBy] = @Original_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [Ver"& _ 
+                "ifiedDate] IS NULL) OR ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_"& _ 
+                "IsToolingPORecd = 1 AND [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Orig"& _ 
+                "inal_IsToolingPORecd)) AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Ori"& _ 
+                "ginal_EAU)) AND ((@IsNull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Or"& _ 
+                "iginal_Minimum)) AND ((@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL"& _ 
+                ") OR ([LeadTimeInitial] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStan"& _ 
+                "dard = 1 AND [LeadTimeStandard] IS NULL) OR ([LeadTimeStandard] = @Original_Lead"& _ 
+                "TimeStandard)) AND ((@IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([Quo"& _ 
+                "teTypeID] = @Original_QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] "& _ 
+                "IS NULL) OR ([UnitPrice] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 "& _ 
+                "AND [MinimumOrder] IS NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND (("& _ 
+                "@IsNull_LaborMinutes = 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Origi"& _ 
+                "nal_LaborMinutes)) AND ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([Lab"& _ 
+                "orRate] = @Original_LaborRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL)"& _ 
+                " OR ([Tooling] = @Original_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] I"& _ 
+                "S NULL) OR ([Shipping] = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = "& _ 
+                "1 AND [FormBoardRequired] IS NULL) OR ([FormBoardRequired] = @Original_FormBoard"& _ 
+                "Required)) AND ((@IsNull_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([For"& _ 
+                "mBoardCost] = @Original_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [Sing"& _ 
+                "leDefQty] IS NULL) OR ([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_O"& _ 
+                "rderQty = 1 AND [OrderQty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND (("& _ 
+                "@IsNull_WireTime = 1 AND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime"& _ 
+                ")) AND ((@IsNull_CutTime = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_Cu"& _ 
+                "tTime)) AND ((@IsNull_Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts))"& _ 
+                " AND ((@IsNull_BoxSize = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxS"& _ 
+                "ize)) AND ((@IsNull_BoxPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Origi"& _ 
+                "nal_BoxPrice)) AND ((@IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = "& _ 
+                "@Original_CuPrice)) AND ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWe"& _ 
+                "ight] = @Original_CuWeight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightM"& _ 
+                "ultiplier] IS NULL) OR ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AN"& _ 
+                "D ((@IsNull_TimeMultiplier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier"& _ 
+                "] = @Original_TimeMultiplier)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT QuoteID, QuoteNumber, CustomerID, Conta"& _ 
+                "ctName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, "& _ 
+                "ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, Verifi"& _ 
+                "edBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStan"& _ 
+                "dard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Sh"& _ 
+                "ipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutT"& _ 
+                "ime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultipl"& _ 
+                "ier FROM QuoteHeader WHERE (QuoteID = @QuoteID) ORDER BY QuoteNumber DESC"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -3555,17 +3584,7 @@ Namespace ImportDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, Pa"& _ 
-                "rtNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment"& _ 
-                ", CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd"& _ 
-                ", EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, Minim"& _ 
-                "umOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoar"& _ 
-                "dCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPri"& _ 
-                "ce, CuWeight, CuWeightMultiplier, TimeMultiplier FROM dbo.QuoteHeader"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueD"& _ 
+            Me._commandCollection(0).CommandText = "SELECT        QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueD"& _ 
                 "ate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, "& _ 
                 ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Comment, CreatedBy, StartDate, CompletedDate, Verifie"& _ 
                 "dBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStand"& _ 
@@ -3573,7 +3592,18 @@ Namespace ImportDataSetTableAdapters
                 "es, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty"& _ 
                 ", OrderQty, WireTime, CutTime, Cuts, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BoxSize, BoxPric"& _ 
                 "e, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            QuoteH"& _ 
-                "eader"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (QuoteNumber = @QuoteNumber)"
+                "eader"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY QuoteNumber DESC"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT BoxPrice, BoxSize, Comment, CompletedDate, ContactName, CreatedBy, CuPrice"& _ 
+                ", CuWeight, CuWeightMultiplier, CustomerID, CutTime, Cuts, DueDate, EAU, FormBoa"& _ 
+                "rdCost, FormBoardRequired, IsToolingPORecd, LaborMinutes, LaborRate, LeadTimeIni"& _ 
+                "tial, LeadTimeStandard, Minimum, MinimumOrder, NewRevision, OrderQty, PartID, Pa"& _ 
+                "rtNumber, PartRevision, PartVersion, QuoteDate, QuoteID, QuoteNumber, QuoteTypeI"& _ 
+                "D, RFQ, ShippedBefore, Shipping, SingleDefQty, StartDate, TimeMultiplier, Toolin"& _ 
+                "g, UnitPrice, VerifiedBy, VerifiedDate, WireTime FROM QuoteHeader WHERE (QuoteNu"& _ 
+                "mber = @QuoteNumber)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -5629,21 +5659,21 @@ Namespace ImportDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As ImportDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._quoteDetailTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.QuoteHeader.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._quoteHeaderTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._quoteDetailTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -5657,19 +5687,19 @@ Namespace ImportDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As ImportDataSet, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._quoteDetailTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.QuoteHeader.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._quoteHeaderTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._quoteDetailTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -5683,19 +5713,19 @@ Namespace ImportDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As ImportDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.QuoteHeader.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._quoteHeaderTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.QuoteDetail.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._quoteDetailTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.QuoteHeader.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._quoteHeaderTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
