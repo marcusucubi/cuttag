@@ -19,6 +19,30 @@ Namespace Model
         Private m_MinimumDollar As Decimal
 
         Public Sub New( _
+                     ByVal m_code As String,
+                     ByVal m_gage As String,
+                     ByVal m_unitCost As Decimal,
+                     ByVal m_machineTime As Integer,
+                     ByVal m_unitOfMeasure As UnitOfMeasure,
+                     ByVal m_Description As String,
+                     ByVal m_LeadTime As Integer,
+                     ByVal m_Vendor As String,
+                     ByVal m_MinimumQty As Decimal,
+                     ByVal m_MinimumDollar As Decimal
+                       )
+            Me.m_code = m_code
+            Me.m_gage = m_gage
+            Me.m_unitCost = m_unitCost
+            Me.m_machineTime = m_machineTime
+            Me.m_unitOfMeasure = m_unitOfMeasure
+            Me.m_Description = m_Description
+            Me.m_LeadTime = m_LeadTime
+            Me.m_Vendor = m_Vendor
+            Me.m_MinimumQty = m_MinimumQty
+            Me.m_MinimumDollar = m_MinimumDollar
+        End Sub
+
+        Public Sub New( _
                        ByVal Code As String, _
                        ByVal UnitCost As Decimal, _
                        ByVal Gage As String, _

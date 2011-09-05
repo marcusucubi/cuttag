@@ -123,6 +123,12 @@
     <Compile Include="src\forms\frmOutput.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\import\ImportDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="src\import\QuoteImport.vb" />
     <Compile Include="src\misc\ActiveCustomProperties.vb" />
     <Compile Include="src\misc\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
@@ -388,6 +394,17 @@
       <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </None>
     <None Include="Spreadsheets\Testdate5.xls" />
+    <None Include="src\import\ImportDataSet.xsc">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="src\import\ImportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="src\import\ImportDataSet.xss">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -434,9 +451,7 @@
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\import\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>
