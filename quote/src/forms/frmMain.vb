@@ -407,5 +407,11 @@ Public Class frmMain
         Console.WriteLine(e.ToString)
     End Sub
 
+    Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click
+        Dim import As New QuoteImport
+        Dim id As Integer = import.Import()
+        LoadTemplate(id)
+    End Sub
+
 End Class
 
