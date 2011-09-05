@@ -39,7 +39,6 @@ Public Class CommonSaver
 
     Public Shared Sub SaveCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
 
-        Console.WriteLine("Save")
         DeleteCustomProperties()
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
@@ -111,7 +110,6 @@ Public Class CommonSaver
                 If s.Length > max Then
                     s = s.Substring(0, max - 1)
                 End If
-                Console.WriteLine("--> " + p.Name + ": " + s)
                 adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc, Nothing)
             End If
             If TypeOf o Is Decimal Then
