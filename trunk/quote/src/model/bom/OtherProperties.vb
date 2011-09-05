@@ -11,6 +11,7 @@ Namespace Model.BOM
         Private _LeadTimeStandard As Integer
         Private _EstimatedAnnualUnits As Integer
         Private _Tooling As Decimal
+        Private _FormBoardCost As Decimal
         Private _DueDate As DateTime
         Private _QuoteType As String = "Production"
 
@@ -53,6 +54,19 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Integer)
                 _EstimatedAnnualUnits = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Quote"), _
+        DisplayName("Form Board Cost"), _
+        DescriptionAttribute("Form Board Cost")> _
+        Public Property FormBoardCost As Decimal
+            Get
+                Return _FormBoardCost
+            End Get
+            Set(ByVal value As Decimal)
+                _FormBoardCost = value
                 Me.SendEvents()
             End Set
         End Property
