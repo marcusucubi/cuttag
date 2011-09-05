@@ -68,7 +68,7 @@
             End If
         Next
         Dim left As ColumnHeader = Me.ListView1.Columns(0)
-        left.Width = Me.ListView1.Width - size
+        left.Width = Me.ListView1.Width - (size + 25)
     End Sub
 
     Private Sub SelectDetail()

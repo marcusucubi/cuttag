@@ -54,7 +54,7 @@ Public Class BOMLoader
             CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
             CommonLoader.LoadOtherProperties(id, q.OtherProperties)
             CommonLoader.LoadNoteProperties(id, q.NoteProperties)
-            CommonLoader.LoadComponents(q)
+            LoadComponents(q)
         End If
 
         q.ComputationProperties.ClearDirty()
@@ -67,5 +67,31 @@ Public Class BOMLoader
 
         Return q
     End Function
+
+    Public Shared Sub LoadComponents(ByVal q As Common.Header)
+
+        Dim adaptor As New _QuoteDetailTableAdapter
+        Dim id As Integer = q.PrimaryProperties.CommonID
+        Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
+        For Each row As _QuoteDetailRow In table.Rows
+
+            Dim product As New Model.Product( _
+                row.ProductCode, _
+                "Imported", _
+                0, _
+                0, _
+                Model.UnitOfMeasure.BY_EACH, _
+                "Imported", _
+                0,
+                "Imported", _
+                0, _
+                0)
+
+            Dim detail As Common.Detail = q.NewDetail(product)
+            detail.Qty = row.Qty
+            CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
+        Next
+    End Sub
+
 
 End Class

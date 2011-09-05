@@ -85,7 +85,7 @@ Public Class CommonLoader
         Next
     End Sub
 
-    Private Shared Sub LoadProperties(ByVal id As Integer, _
+    Public Shared Sub LoadProperties(ByVal id As Integer, _
                                      ByVal childId As Integer, _
                                      ByVal obj As Object)
 
