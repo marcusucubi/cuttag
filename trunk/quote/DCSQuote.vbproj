@@ -434,6 +434,9 @@
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\import\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>
