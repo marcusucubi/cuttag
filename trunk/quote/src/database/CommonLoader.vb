@@ -102,7 +102,6 @@ Public Class CommonLoader
                 If Not row.IsPropertyStringValueNull Then
                     If p.PropertyType.Name = "String" And p.CanWrite Then
                         p.SetValue(obj, row.PropertyStringValue, Nothing)
-                        Console.WriteLine("<--" + p.Name + ": " + row.PropertyStringValue)
                     End If
                 End If
                 If Not row.IsPropertyIntegerValueNull Then

@@ -14,6 +14,7 @@ Namespace Model.BOM
         Private _FormBoardCost As Decimal
         Private _DueDate As DateTime
         Private _QuoteType As String = "Production"
+        Private _ImportedUnitCost As Decimal
 
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
@@ -93,6 +94,19 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As DateTime)
                 _DueDate = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("Import"), _
+        DisplayName("ImportedUnitCost"), _
+        DescriptionAttribute("Imported Unit Cost")> _
+        Public Property ImportedUnitCost As Decimal
+            Get
+                Return _ImportedUnitCost
+            End Get
+            Set(ByVal value As Decimal)
+                _ImportedUnitCost = value
                 Me.SendEvents()
             End Set
         End Property
