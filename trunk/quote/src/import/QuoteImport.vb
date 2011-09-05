@@ -60,6 +60,13 @@ Public Class QuoteImport
         comp.LaborRate = row.LaborRate
         comp.NumberOfCuts = row.Cuts
         comp.MinimumOrderQuantity = row.Minimum
+        comp.ShippingContainer = row.BoxSize
+        comp.TimeMultiplier = row.TimeMultiplier
+        comp.PercentCopperScrap = (row.CuWeightMultiplier - 1) * 100
+
+        Dim note As Model.BOM.NoteProperties = header.NoteProperties
+        note.Note = "Imported from " & row.QuoteNumber
+
     End Sub
 
     Public Function GetDetails(ByVal header As Model.BOM.Header, _
