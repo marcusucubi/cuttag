@@ -1,10 +1,6 @@
-﻿Imports System.Windows.Forms
-Imports WeifenLuo.WinFormsUI.Docking
-Imports DCS.Quote.Model
-Imports System.ComponentModel
-Imports System.Collections.Specialized
+﻿Imports System.ComponentModel
 Imports DCS.Quote.Model.Quote
-Imports System.Reflection
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmMain
 
@@ -408,9 +404,15 @@ Public Class frmMain
     End Sub
 
     Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click
-        Dim import As New QuoteImport
-        Dim id As Integer = import.Import()
-        LoadTemplate(id)
+
+        Dim frm As New frmImport
+        Dim result As DialogResult = frm.ShowDialog()
+        If result = DialogResult.OK Then
+            Dim import As New QuoteImport
+            Dim id As Integer = import.Import(frm.QuoteNumber)
+            LoadTemplate(id)
+        End If
+
     End Sub
 
 End Class
