@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports DCS.Quote.QuoteDataBaseTableAdapters
+Imports DCS.Quote.QuoteDataBase
 
 Public Class QuoteImport
 
@@ -67,11 +69,15 @@ Public Class QuoteImport
         Dim table As ImportDataSet.QuoteDetailDataTable
 
         table = adaptor.GetDataByQuoteID(quotID)
-        For Each detailRow As ImportDataSet.QuoteDetailRow In table.Rows
+        For i As Integer = 0 To table.Rows.Count - 1
+
+            Dim detailRow As ImportDataSet.QuoteDetailRow = table.Rows.Item(i)
+
             Dim time As Integer = 0
             If Not detailRow.IsTimeNull Then
                 time = detailRow.Time
             End If
+
             Dim product As New Model.Product( _
                 detailRow.PartNumber, _
                 "Imported", _
@@ -83,6 +89,7 @@ Public Class QuoteImport
                 "Imported", _
                 0, _
                 0)
+
             Dim detail As New Model.BOM.Detail(header, product)
             detail.Qty = detailRow.Qty
             header.Details.Add(detail)

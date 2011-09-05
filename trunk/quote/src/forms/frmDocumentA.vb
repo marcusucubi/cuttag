@@ -1,12 +1,9 @@
-﻿Imports VB = Microsoft.VisualBasic
-Imports System.Data.OleDb
-Imports System.Data.SqlClient
-Imports System.Data.Common
-Imports WeifenLuo.WinFormsUI.Docking
-Imports DCS.Quote.Model
-Imports System.ComponentModel
-Imports DCS.Quote.Common
+﻿Imports System.ComponentModel
 Imports System.Windows
+Imports DCS.Quote.Common
+Imports DCS.Quote.Model
+Imports VB = Microsoft.VisualBasic
+Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmDocumentA
     Inherits DockContent
