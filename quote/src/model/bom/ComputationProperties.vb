@@ -30,9 +30,35 @@ Namespace Model.BOM
         Private _MaterialMarkup As Decimal = 1
         Private _ComponentSetupTime As Decimal
         Private _QuoteType As String = "Production"
+        Private _NumberOfTwistedPairs As Integer
 
 #End Region
 
+#Region " Twisted Pairs "
+
+        <DescriptionAttribute("Number Of Twisted Pairs " + Chr(10) + "(Number)"), _
+        DisplayName("Twisted Pairs"), _
+        CategoryAttribute("Twisted Pairs")> _
+        Public Property NumberOfTwistedPairs As Integer
+            Get
+                Return Me._NumberOfTwistedPairs
+            End Get
+            Set(ByVal value As Integer)
+                Me._NumberOfTwistedPairs = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("Twisted Pairs Machine Time " + Chr(10) + "(Number)"), _
+        DisplayName("Twisted Pairs Machine Time"), _
+        CategoryAttribute("Machine Time")> _
+        Public ReadOnly Property TwistedPairsMachineTime As Decimal
+            Get
+                Return (Me._NumberOfTwistedPairs * 600)
+            End Get
+        End Property
+
+#End Region
 #Region " Copper "
 
         <CategoryAttribute("Copper"), _
@@ -258,13 +284,13 @@ Namespace Model.BOM
         End Property
 
         <DescriptionAttribute("TotalWireMachineTime + " + _
-            "TotalComponentMachineTime" + Chr(10) + "(Seconds)"), _
+            "TotalComponentMachineTime + TwistedPairsMachineTime" + Chr(10) + "(Seconds)"), _
         DisplayName("Total Machine Time"), _
         CategoryAttribute("Machine Time")> _
         Public ReadOnly Property TotalMachineTime As Decimal
             Get
                 Return Math.Round(Me.TotalComponentMachineTime + _
-                    Me.TotalWireMachineTime, 4)
+                    Me.TotalWireMachineTime + TwistedPairsMachineTime)
             End Get
         End Property
 
@@ -273,7 +299,7 @@ Namespace Model.BOM
         CategoryAttribute("Machine Time")> _
         Public ReadOnly Property TotalComponentMachineTime As Decimal
             Get
-                Return Me.SumTime(UnitOfMeasure.BY_EACH)
+                Return Math.Round(Me.SumTime(UnitOfMeasure.BY_EACH))
             End Get
         End Property
 
@@ -282,7 +308,7 @@ Namespace Model.BOM
         CategoryAttribute("Machine Time")> _
         Public ReadOnly Property TotalWireMachineTime As Decimal
             Get
-                Return Math.Round(Me.WireLengthFeet * Me.WireMachineTime, 4)
+                Return Math.Round(Me.WireLengthFeet * Me.WireMachineTime)
             End Get
         End Property
 
