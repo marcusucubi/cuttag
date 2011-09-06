@@ -28,9 +28,9 @@ Public Class QuoteImport
         Console.WriteLine("    Old: " & Math.Round(_OldUnitCost, 2))
         Console.WriteLine("    New: " & Math.Round(_NewUnitCost, 2))
         Dim percent As Decimal = Math.Round((Math.Abs(_OldUnitCost - _NewUnitCost) / _OldUnitCost) * 100)
-        Console.WriteLine("    percent: " & percent)
+        Console.WriteLine("    Difference: " & percent & "%")
         If (percent > 2) Then
-            Console.WriteLine("    Warning")
+            Console.WriteLine("    *** Warning ***")
         End If
         Console.WriteLine("----- Finished")
 
