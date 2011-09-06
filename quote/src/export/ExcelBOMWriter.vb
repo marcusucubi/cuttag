@@ -168,11 +168,9 @@ Public Class ExcelBOMWriter
                 Else
                     cell.SetCellValue(value)
                 End If
-                Console.WriteLine("(" & _Index & ":" & _Indent & ") " & value)
             End If
             If UpdateWithName Then
                 cell.SetCellValue(name)
-                Console.WriteLine("(" & _Index & ":" & _Indent & ") " & name)
             End If
         End If
 

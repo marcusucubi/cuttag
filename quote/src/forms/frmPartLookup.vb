@@ -69,10 +69,8 @@ Public Class frmComponentLookup
         If (Me.TextBox1.Text.Length > 0) Then
             Dim filter As String = "%" & Me.TextBox1.Text.Trim.ToUpper & "%"
             table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetDataLikePartNumber(filter)
-            Console.WriteLine("Wire Filter = '" & filter)
         Else
             table = New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter().GetData()
-            Console.WriteLine("No Wire Filter")
         End If
         Me.ListBox1.DataSource = table
         Me.ListBox1.DisplayMember = "PartNumber"

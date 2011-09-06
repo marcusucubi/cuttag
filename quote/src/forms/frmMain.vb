@@ -402,11 +402,6 @@ Public Class frmMain
         Return result
     End Function
 
-    Protected Overrides Sub OnKeyPress(ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        MyBase.OnKeyPress(e)
-        Console.WriteLine(e.ToString)
-    End Sub
-
     Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click
 
         Dim frm As New frmImport
