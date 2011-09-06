@@ -25,9 +25,9 @@ Option Explicit On
 Partial Public Class ImportDataSet
     Inherits Global.System.Data.DataSet
     
-    Private tableQuoteHeader As QuoteHeaderDataTable
-    
     Private tableQuoteDetail As QuoteDetailDataTable
+    
+    Private tableQuoteHeader As QuoteHeaderDataTable
     
     Private relationFK_QuoteDetail_QuoteHeader As Global.System.Data.DataRelation
     
@@ -60,11 +60,11 @@ Partial Public Class ImportDataSet
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("QuoteHeader")) Is Nothing) Then
-                MyBase.Tables.Add(New QuoteHeaderDataTable(ds.Tables("QuoteHeader")))
-            End If
             If (Not (ds.Tables("QuoteDetail")) Is Nothing) Then
                 MyBase.Tables.Add(New QuoteDetailDataTable(ds.Tables("QuoteDetail")))
+            End If
+            If (Not (ds.Tables("QuoteHeader")) Is Nothing) Then
+                MyBase.Tables.Add(New QuoteHeaderDataTable(ds.Tables("QuoteHeader")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -87,9 +87,9 @@ Partial Public Class ImportDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property QuoteHeader() As QuoteHeaderDataTable
+    Public ReadOnly Property QuoteDetail() As QuoteDetailDataTable
         Get
-            Return Me.tableQuoteHeader
+            Return Me.tableQuoteDetail
         End Get
     End Property
     
@@ -97,9 +97,9 @@ Partial Public Class ImportDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property QuoteDetail() As QuoteDetailDataTable
+    Public ReadOnly Property QuoteHeader() As QuoteHeaderDataTable
         Get
-            Return Me.tableQuoteDetail
+            Return Me.tableQuoteHeader
         End Get
     End Property
     
@@ -170,11 +170,11 @@ Partial Public Class ImportDataSet
             Me.Reset
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("QuoteHeader")) Is Nothing) Then
-                MyBase.Tables.Add(New QuoteHeaderDataTable(ds.Tables("QuoteHeader")))
-            End If
             If (Not (ds.Tables("QuoteDetail")) Is Nothing) Then
                 MyBase.Tables.Add(New QuoteDetailDataTable(ds.Tables("QuoteDetail")))
+            End If
+            If (Not (ds.Tables("QuoteHeader")) Is Nothing) Then
+                MyBase.Tables.Add(New QuoteHeaderDataTable(ds.Tables("QuoteHeader")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -204,20 +204,20 @@ Partial Public Class ImportDataSet
     Friend Overloads Sub InitVars()
         Me.InitVars(true)
     End Sub
-    
+
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tableQuoteHeader = CType(MyBase.Tables("QuoteHeader"),QuoteHeaderDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableQuoteHeader) Is Nothing) Then
-                Me.tableQuoteHeader.InitVars
-            End If
-        End If
         Me.tableQuoteDetail = CType(MyBase.Tables("QuoteDetail"),QuoteDetailDataTable)
         If (initTable = true) Then
             If (Not (Me.tableQuoteDetail) Is Nothing) Then
                 Me.tableQuoteDetail.InitVars
+            End If
+        End If
+        Me.tableQuoteHeader = CType(MyBase.Tables("QuoteHeader"),QuoteHeaderDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableQuoteHeader) Is Nothing) Then
+                Me.tableQuoteHeader.InitVars
             End If
         End If
         Me.relationFK_QuoteDetail_QuoteHeader = Me.Relations("FK_QuoteDetail_QuoteHeader")
@@ -231,23 +231,23 @@ Partial Public Class ImportDataSet
         Me.Namespace = "http://tempuri.org/ImportDataSet.xsd"
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tableQuoteHeader = New QuoteHeaderDataTable()
-        MyBase.Tables.Add(Me.tableQuoteHeader)
         Me.tableQuoteDetail = New QuoteDetailDataTable()
         MyBase.Tables.Add(Me.tableQuoteDetail)
+        Me.tableQuoteHeader = New QuoteHeaderDataTable()
+        MyBase.Tables.Add(Me.tableQuoteHeader)
         Me.relationFK_QuoteDetail_QuoteHeader = New Global.System.Data.DataRelation("FK_QuoteDetail_QuoteHeader", New Global.System.Data.DataColumn() {Me.tableQuoteHeader.QuoteIDColumn}, New Global.System.Data.DataColumn() {Me.tableQuoteDetail.QuoteIDColumn}, false)
         Me.Relations.Add(Me.relationFK_QuoteDetail_QuoteHeader)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeQuoteHeader() As Boolean
+    Private Function ShouldSerializeQuoteDetail() As Boolean
         Return false
     End Function
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeQuoteDetail() As Boolean
+    Private Function ShouldSerializeQuoteHeader() As Boolean
         Return false
     End Function
     
@@ -310,892 +310,10 @@ Partial Public Class ImportDataSet
     End Function
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub QuoteHeaderRowChangeEventHandler(ByVal sender As Object, ByVal e As QuoteHeaderRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub QuoteDetailRowChangeEventHandler(ByVal sender As Object, ByVal e As QuoteDetailRowChangeEvent)
     
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class QuoteHeaderDataTable
-        Inherits Global.System.Data.DataTable
-        Implements Global.System.Collections.IEnumerable
-        
-        Private columnQuoteID As Global.System.Data.DataColumn
-        
-        Private columnQuoteNumber As Global.System.Data.DataColumn
-        
-        Private columnCustomerID As Global.System.Data.DataColumn
-        
-        Private columnContactName As Global.System.Data.DataColumn
-        
-        Private columnRFQ As Global.System.Data.DataColumn
-        
-        Private columnQuoteDate As Global.System.Data.DataColumn
-        
-        Private columnDueDate As Global.System.Data.DataColumn
-        
-        Private columnPartNumber As Global.System.Data.DataColumn
-        
-        Private columnPartVersion As Global.System.Data.DataColumn
-        
-        Private columnPartRevision As Global.System.Data.DataColumn
-        
-        Private columnPartID As Global.System.Data.DataColumn
-        
-        Private columnShippedBefore As Global.System.Data.DataColumn
-        
-        Private columnNewRevision As Global.System.Data.DataColumn
-        
-        Private columnComment As Global.System.Data.DataColumn
-        
-        Private columnCreatedBy As Global.System.Data.DataColumn
-        
-        Private columnStartDate As Global.System.Data.DataColumn
-        
-        Private columnCompletedDate As Global.System.Data.DataColumn
-        
-        Private columnVerifiedBy As Global.System.Data.DataColumn
-        
-        Private columnVerifiedDate As Global.System.Data.DataColumn
-        
-        Private columnIsToolingPORecd As Global.System.Data.DataColumn
-        
-        Private columnEAU As Global.System.Data.DataColumn
-        
-        Private columnMinimum As Global.System.Data.DataColumn
-        
-        Private columnLeadTimeInitial As Global.System.Data.DataColumn
-        
-        Private columnLeadTimeStandard As Global.System.Data.DataColumn
-        
-        Private columnQuoteTypeID As Global.System.Data.DataColumn
-        
-        Private columnUnitPrice As Global.System.Data.DataColumn
-        
-        Private columnMinimumOrder As Global.System.Data.DataColumn
-        
-        Private columnLaborMinutes As Global.System.Data.DataColumn
-        
-        Private columnLaborRate As Global.System.Data.DataColumn
-        
-        Private columnTooling As Global.System.Data.DataColumn
-        
-        Private columnShipping As Global.System.Data.DataColumn
-        
-        Private columnFormBoardRequired As Global.System.Data.DataColumn
-        
-        Private columnFormBoardCost As Global.System.Data.DataColumn
-        
-        Private columnSingleDefQty As Global.System.Data.DataColumn
-        
-        Private columnOrderQty As Global.System.Data.DataColumn
-        
-        Private columnWireTime As Global.System.Data.DataColumn
-        
-        Private columnCutTime As Global.System.Data.DataColumn
-        
-        Private columnCuts As Global.System.Data.DataColumn
-        
-        Private columnBoxSize As Global.System.Data.DataColumn
-        
-        Private columnBoxPrice As Global.System.Data.DataColumn
-        
-        Private columnCuPrice As Global.System.Data.DataColumn
-        
-        Private columnCuWeight As Global.System.Data.DataColumn
-        
-        Private columnCuWeightMultiplier As Global.System.Data.DataColumn
-        
-        Private columnTimeMultiplier As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "QuoteHeader"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property QuoteIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnQuoteID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property QuoteNumberColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnQuoteNumber
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CustomerIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCustomerID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ContactNameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnContactName
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property RFQColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnRFQ
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property QuoteDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnQuoteDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property DueDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDueDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PartNumberColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPartNumber
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PartVersionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPartVersion
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PartRevisionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPartRevision
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PartIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPartID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ShippedBeforeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnShippedBefore
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property NewRevisionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnNewRevision
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CommentColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnComment
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CreatedByColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCreatedBy
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property StartDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnStartDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CompletedDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCompletedDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property VerifiedByColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnVerifiedBy
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property VerifiedDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnVerifiedDate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IsToolingPORecdColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIsToolingPORecd
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property EAUColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEAU
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property MinimumColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMinimum
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property LeadTimeInitialColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLeadTimeInitial
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property LeadTimeStandardColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLeadTimeStandard
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property QuoteTypeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnQuoteTypeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property UnitPriceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnUnitPrice
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property MinimumOrderColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMinimumOrder
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property LaborMinutesColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLaborMinutes
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property LaborRateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLaborRate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ToolingColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTooling
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ShippingColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnShipping
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property FormBoardRequiredColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnFormBoardRequired
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property FormBoardCostColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnFormBoardCost
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property SingleDefQtyColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSingleDefQty
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OrderQtyColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOrderQty
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property WireTimeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnWireTime
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CutTimeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCutTime
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CutsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCuts
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BoxSizeColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBoxSize
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BoxPriceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBoxPrice
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CuPriceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCuPrice
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CuWeightColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCuWeight
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property CuWeightMultiplierColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnCuWeightMultiplier
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property TimeMultiplierColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTimeMultiplier
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As QuoteHeaderRow
-            Get
-                Return CType(Me.Rows(index),QuoteHeaderRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event QuoteHeaderRowChanging As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event QuoteHeaderRowChanged As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event QuoteHeaderRowDeleting As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event QuoteHeaderRowDeleted As QuoteHeaderRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddQuoteHeaderRow(ByVal row As QuoteHeaderRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddQuoteHeaderRow( _
-                    ByVal QuoteID As System.Guid,  _
-                    ByVal QuoteNumber As String,  _
-                    ByVal CustomerID As Integer,  _
-                    ByVal ContactName As String,  _
-                    ByVal RFQ As String,  _
-                    ByVal QuoteDate As Date,  _
-                    ByVal DueDate As Date,  _
-                    ByVal PartNumber As String,  _
-                    ByVal PartVersion As String,  _
-                    ByVal PartRevision As String,  _
-                    ByVal PartID As System.Guid,  _
-                    ByVal ShippedBefore As Boolean,  _
-                    ByVal NewRevision As Boolean,  _
-                    ByVal Comment As String,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal StartDate As Date,  _
-                    ByVal CompletedDate As Date,  _
-                    ByVal VerifiedBy As String,  _
-                    ByVal VerifiedDate As Date,  _
-                    ByVal IsToolingPORecd As Boolean,  _
-                    ByVal EAU As Integer,  _
-                    ByVal Minimum As Integer,  _
-                    ByVal LeadTimeInitial As Integer,  _
-                    ByVal LeadTimeStandard As Integer,  _
-                    ByVal QuoteTypeID As Integer,  _
-                    ByVal UnitPrice As Decimal,  _
-                    ByVal MinimumOrder As Decimal,  _
-                    ByVal LaborMinutes As Decimal,  _
-                    ByVal LaborRate As Decimal,  _
-                    ByVal Tooling As Decimal,  _
-                    ByVal Shipping As Decimal,  _
-                    ByVal FormBoardRequired As Boolean,  _
-                    ByVal FormBoardCost As Decimal,  _
-                    ByVal SingleDefQty As Integer,  _
-                    ByVal OrderQty As Integer,  _
-                    ByVal WireTime As Decimal,  _
-                    ByVal CutTime As Decimal,  _
-                    ByVal Cuts As Integer,  _
-                    ByVal BoxSize As String,  _
-                    ByVal BoxPrice As Decimal,  _
-                    ByVal CuPrice As Decimal,  _
-                    ByVal CuWeight As Decimal,  _
-                    ByVal CuWeightMultiplier As Decimal,  _
-                    ByVal TimeMultiplier As Decimal) As QuoteHeaderRow
-            Dim rowQuoteHeaderRow As QuoteHeaderRow = CType(Me.NewRow,QuoteHeaderRow)
-            Dim columnValuesArray() As Object = New Object() {QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier}
-            rowQuoteHeaderRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowQuoteHeaderRow)
-            Return rowQuoteHeaderRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByQuoteID(ByVal QuoteID As System.Guid) As QuoteHeaderRow
-            Return CType(Me.Rows.Find(New Object() {QuoteID}),QuoteHeaderRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
-            Return Me.Rows.GetEnumerator
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As QuoteHeaderDataTable = CType(MyBase.Clone,QuoteHeaderDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New QuoteHeaderDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnQuoteID = MyBase.Columns("QuoteID")
-            Me.columnQuoteNumber = MyBase.Columns("QuoteNumber")
-            Me.columnCustomerID = MyBase.Columns("CustomerID")
-            Me.columnContactName = MyBase.Columns("ContactName")
-            Me.columnRFQ = MyBase.Columns("RFQ")
-            Me.columnQuoteDate = MyBase.Columns("QuoteDate")
-            Me.columnDueDate = MyBase.Columns("DueDate")
-            Me.columnPartNumber = MyBase.Columns("PartNumber")
-            Me.columnPartVersion = MyBase.Columns("PartVersion")
-            Me.columnPartRevision = MyBase.Columns("PartRevision")
-            Me.columnPartID = MyBase.Columns("PartID")
-            Me.columnShippedBefore = MyBase.Columns("ShippedBefore")
-            Me.columnNewRevision = MyBase.Columns("NewRevision")
-            Me.columnComment = MyBase.Columns("Comment")
-            Me.columnCreatedBy = MyBase.Columns("CreatedBy")
-            Me.columnStartDate = MyBase.Columns("StartDate")
-            Me.columnCompletedDate = MyBase.Columns("CompletedDate")
-            Me.columnVerifiedBy = MyBase.Columns("VerifiedBy")
-            Me.columnVerifiedDate = MyBase.Columns("VerifiedDate")
-            Me.columnIsToolingPORecd = MyBase.Columns("IsToolingPORecd")
-            Me.columnEAU = MyBase.Columns("EAU")
-            Me.columnMinimum = MyBase.Columns("Minimum")
-            Me.columnLeadTimeInitial = MyBase.Columns("LeadTimeInitial")
-            Me.columnLeadTimeStandard = MyBase.Columns("LeadTimeStandard")
-            Me.columnQuoteTypeID = MyBase.Columns("QuoteTypeID")
-            Me.columnUnitPrice = MyBase.Columns("UnitPrice")
-            Me.columnMinimumOrder = MyBase.Columns("MinimumOrder")
-            Me.columnLaborMinutes = MyBase.Columns("LaborMinutes")
-            Me.columnLaborRate = MyBase.Columns("LaborRate")
-            Me.columnTooling = MyBase.Columns("Tooling")
-            Me.columnShipping = MyBase.Columns("Shipping")
-            Me.columnFormBoardRequired = MyBase.Columns("FormBoardRequired")
-            Me.columnFormBoardCost = MyBase.Columns("FormBoardCost")
-            Me.columnSingleDefQty = MyBase.Columns("SingleDefQty")
-            Me.columnOrderQty = MyBase.Columns("OrderQty")
-            Me.columnWireTime = MyBase.Columns("WireTime")
-            Me.columnCutTime = MyBase.Columns("CutTime")
-            Me.columnCuts = MyBase.Columns("Cuts")
-            Me.columnBoxSize = MyBase.Columns("BoxSize")
-            Me.columnBoxPrice = MyBase.Columns("BoxPrice")
-            Me.columnCuPrice = MyBase.Columns("CuPrice")
-            Me.columnCuWeight = MyBase.Columns("CuWeight")
-            Me.columnCuWeightMultiplier = MyBase.Columns("CuWeightMultiplier")
-            Me.columnTimeMultiplier = MyBase.Columns("TimeMultiplier")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnQuoteID = New Global.System.Data.DataColumn("QuoteID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnQuoteID)
-            Me.columnQuoteNumber = New Global.System.Data.DataColumn("QuoteNumber", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnQuoteNumber)
-            Me.columnCustomerID = New Global.System.Data.DataColumn("CustomerID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCustomerID)
-            Me.columnContactName = New Global.System.Data.DataColumn("ContactName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnContactName)
-            Me.columnRFQ = New Global.System.Data.DataColumn("RFQ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnRFQ)
-            Me.columnQuoteDate = New Global.System.Data.DataColumn("QuoteDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnQuoteDate)
-            Me.columnDueDate = New Global.System.Data.DataColumn("DueDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDueDate)
-            Me.columnPartNumber = New Global.System.Data.DataColumn("PartNumber", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPartNumber)
-            Me.columnPartVersion = New Global.System.Data.DataColumn("PartVersion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPartVersion)
-            Me.columnPartRevision = New Global.System.Data.DataColumn("PartRevision", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPartRevision)
-            Me.columnPartID = New Global.System.Data.DataColumn("PartID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPartID)
-            Me.columnShippedBefore = New Global.System.Data.DataColumn("ShippedBefore", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnShippedBefore)
-            Me.columnNewRevision = New Global.System.Data.DataColumn("NewRevision", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnNewRevision)
-            Me.columnComment = New Global.System.Data.DataColumn("Comment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnComment)
-            Me.columnCreatedBy = New Global.System.Data.DataColumn("CreatedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCreatedBy)
-            Me.columnStartDate = New Global.System.Data.DataColumn("StartDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStartDate)
-            Me.columnCompletedDate = New Global.System.Data.DataColumn("CompletedDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCompletedDate)
-            Me.columnVerifiedBy = New Global.System.Data.DataColumn("VerifiedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVerifiedBy)
-            Me.columnVerifiedDate = New Global.System.Data.DataColumn("VerifiedDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVerifiedDate)
-            Me.columnIsToolingPORecd = New Global.System.Data.DataColumn("IsToolingPORecd", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIsToolingPORecd)
-            Me.columnEAU = New Global.System.Data.DataColumn("EAU", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEAU)
-            Me.columnMinimum = New Global.System.Data.DataColumn("Minimum", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMinimum)
-            Me.columnLeadTimeInitial = New Global.System.Data.DataColumn("LeadTimeInitial", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLeadTimeInitial)
-            Me.columnLeadTimeStandard = New Global.System.Data.DataColumn("LeadTimeStandard", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLeadTimeStandard)
-            Me.columnQuoteTypeID = New Global.System.Data.DataColumn("QuoteTypeID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnQuoteTypeID)
-            Me.columnUnitPrice = New Global.System.Data.DataColumn("UnitPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnUnitPrice)
-            Me.columnMinimumOrder = New Global.System.Data.DataColumn("MinimumOrder", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMinimumOrder)
-            Me.columnLaborMinutes = New Global.System.Data.DataColumn("LaborMinutes", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLaborMinutes)
-            Me.columnLaborRate = New Global.System.Data.DataColumn("LaborRate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLaborRate)
-            Me.columnTooling = New Global.System.Data.DataColumn("Tooling", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTooling)
-            Me.columnShipping = New Global.System.Data.DataColumn("Shipping", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnShipping)
-            Me.columnFormBoardRequired = New Global.System.Data.DataColumn("FormBoardRequired", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnFormBoardRequired)
-            Me.columnFormBoardCost = New Global.System.Data.DataColumn("FormBoardCost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnFormBoardCost)
-            Me.columnSingleDefQty = New Global.System.Data.DataColumn("SingleDefQty", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSingleDefQty)
-            Me.columnOrderQty = New Global.System.Data.DataColumn("OrderQty", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOrderQty)
-            Me.columnWireTime = New Global.System.Data.DataColumn("WireTime", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnWireTime)
-            Me.columnCutTime = New Global.System.Data.DataColumn("CutTime", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCutTime)
-            Me.columnCuts = New Global.System.Data.DataColumn("Cuts", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCuts)
-            Me.columnBoxSize = New Global.System.Data.DataColumn("BoxSize", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBoxSize)
-            Me.columnBoxPrice = New Global.System.Data.DataColumn("BoxPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBoxPrice)
-            Me.columnCuPrice = New Global.System.Data.DataColumn("CuPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCuPrice)
-            Me.columnCuWeight = New Global.System.Data.DataColumn("CuWeight", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCuWeight)
-            Me.columnCuWeightMultiplier = New Global.System.Data.DataColumn("CuWeightMultiplier", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnCuWeightMultiplier)
-            Me.columnTimeMultiplier = New Global.System.Data.DataColumn("TimeMultiplier", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTimeMultiplier)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID}, true))
-            Me.columnQuoteID.AllowDBNull = false
-            Me.columnQuoteID.Unique = true
-            Me.columnQuoteNumber.AllowDBNull = false
-            Me.columnQuoteNumber.MaxLength = 50
-            Me.columnContactName.MaxLength = 100
-            Me.columnRFQ.MaxLength = 100
-            Me.columnPartNumber.MaxLength = 50
-            Me.columnPartVersion.MaxLength = 10
-            Me.columnPartRevision.MaxLength = 10
-            Me.columnComment.MaxLength = 2147483647
-            Me.columnCreatedBy.MaxLength = 100
-            Me.columnVerifiedBy.MaxLength = 100
-            Me.columnBoxSize.MaxLength = 50
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewQuoteHeaderRow() As QuoteHeaderRow
-            Return CType(Me.NewRow,QuoteHeaderRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New QuoteHeaderRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(QuoteHeaderRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.QuoteHeaderRowChangedEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowChanged(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.QuoteHeaderRowChangingEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowChanging(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.QuoteHeaderRowDeletedEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowDeleted(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.QuoteHeaderRowDeletingEvent) Is Nothing) Then
-                RaiseEvent QuoteHeaderRowDeleting(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveQuoteHeaderRow(ByVal row As QuoteHeaderRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As ImportDataSet = New ImportDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "QuoteHeaderDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub QuoteHeaderRowChangeEventHandler(ByVal sender As Object, ByVal e As QuoteHeaderRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1575,6 +693,1106 @@ Partial Public Class ImportDataSet
             xs.Add(dsSchema)
             Return type
         End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class QuoteHeaderDataTable
+        Inherits Global.System.Data.DataTable
+        Implements Global.System.Collections.IEnumerable
+        
+        Private columnQuoteID As Global.System.Data.DataColumn
+        
+        Private columnQuoteNumber As Global.System.Data.DataColumn
+        
+        Private columnCustomerID As Global.System.Data.DataColumn
+        
+        Private columnContactName As Global.System.Data.DataColumn
+        
+        Private columnRFQ As Global.System.Data.DataColumn
+        
+        Private columnQuoteDate As Global.System.Data.DataColumn
+        
+        Private columnDueDate As Global.System.Data.DataColumn
+        
+        Private columnPartNumber As Global.System.Data.DataColumn
+        
+        Private columnPartVersion As Global.System.Data.DataColumn
+        
+        Private columnPartRevision As Global.System.Data.DataColumn
+        
+        Private columnPartID As Global.System.Data.DataColumn
+        
+        Private columnShippedBefore As Global.System.Data.DataColumn
+        
+        Private columnNewRevision As Global.System.Data.DataColumn
+        
+        Private columnComment As Global.System.Data.DataColumn
+        
+        Private columnCreatedBy As Global.System.Data.DataColumn
+        
+        Private columnStartDate As Global.System.Data.DataColumn
+        
+        Private columnCompletedDate As Global.System.Data.DataColumn
+        
+        Private columnVerifiedBy As Global.System.Data.DataColumn
+        
+        Private columnVerifiedDate As Global.System.Data.DataColumn
+        
+        Private columnIsToolingPORecd As Global.System.Data.DataColumn
+        
+        Private columnEAU As Global.System.Data.DataColumn
+        
+        Private columnMinimum As Global.System.Data.DataColumn
+        
+        Private columnLeadTimeInitial As Global.System.Data.DataColumn
+        
+        Private columnLeadTimeStandard As Global.System.Data.DataColumn
+        
+        Private columnQuoteTypeID As Global.System.Data.DataColumn
+        
+        Private columnUnitPrice As Global.System.Data.DataColumn
+        
+        Private columnMinimumOrder As Global.System.Data.DataColumn
+        
+        Private columnLaborMinutes As Global.System.Data.DataColumn
+        
+        Private columnLaborRate As Global.System.Data.DataColumn
+        
+        Private columnTooling As Global.System.Data.DataColumn
+        
+        Private columnShipping As Global.System.Data.DataColumn
+        
+        Private columnFormBoardRequired As Global.System.Data.DataColumn
+        
+        Private columnFormBoardCost As Global.System.Data.DataColumn
+        
+        Private columnSingleDefQty As Global.System.Data.DataColumn
+        
+        Private columnOrderQty As Global.System.Data.DataColumn
+        
+        Private columnWireTime As Global.System.Data.DataColumn
+        
+        Private columnCutTime As Global.System.Data.DataColumn
+        
+        Private columnCuts As Global.System.Data.DataColumn
+        
+        Private columnBoxSize As Global.System.Data.DataColumn
+        
+        Private columnBoxPrice As Global.System.Data.DataColumn
+        
+        Private columnCuPrice As Global.System.Data.DataColumn
+        
+        Private columnCuWeight As Global.System.Data.DataColumn
+        
+        Private columnCuWeightMultiplier As Global.System.Data.DataColumn
+        
+        Private columnTimeMultiplier As Global.System.Data.DataColumn
+        
+        Private columnFinalMarkup As Global.System.Data.DataColumn
+        
+        Private columnMaterialMarkup As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "QuoteHeader"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property QuoteIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQuoteID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property QuoteNumberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQuoteNumber
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CustomerIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCustomerID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ContactNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnContactName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property RFQColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRFQ
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property QuoteDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQuoteDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DueDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDueDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PartNumberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPartNumber
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PartVersionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPartVersion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PartRevisionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPartRevision
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PartIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPartID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ShippedBeforeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnShippedBefore
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property NewRevisionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNewRevision
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CommentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnComment
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CreatedByColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCreatedBy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property StartDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnStartDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CompletedDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCompletedDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property VerifiedByColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVerifiedBy
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property VerifiedDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVerifiedDate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IsToolingPORecdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsToolingPORecd
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EAUColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEAU
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MinimumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMinimum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LeadTimeInitialColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLeadTimeInitial
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LeadTimeStandardColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLeadTimeStandard
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property QuoteTypeIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnQuoteTypeID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property UnitPriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnUnitPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MinimumOrderColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMinimumOrder
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LaborMinutesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLaborMinutes
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property LaborRateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLaborRate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ToolingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTooling
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ShippingColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnShipping
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FormBoardRequiredColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFormBoardRequired
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FormBoardCostColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFormBoardCost
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SingleDefQtyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSingleDefQty
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property OrderQtyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOrderQty
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WireTimeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWireTime
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CutTimeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCutTime
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CutsColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCuts
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BoxSizeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBoxSize
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BoxPriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBoxPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CuPriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCuPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CuWeightColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCuWeight
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CuWeightMultiplierColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCuWeightMultiplier
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property TimeMultiplierColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTimeMultiplier
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FinalMarkupColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFinalMarkup
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property MaterialMarkupColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMaterialMarkup
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As QuoteHeaderRow
+            Get
+                Return CType(Me.Rows(index),QuoteHeaderRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event QuoteHeaderRowChanging As QuoteHeaderRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event QuoteHeaderRowChanged As QuoteHeaderRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event QuoteHeaderRowDeleting As QuoteHeaderRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event QuoteHeaderRowDeleted As QuoteHeaderRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddQuoteHeaderRow(ByVal row As QuoteHeaderRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddQuoteHeaderRow( _
+                    ByVal QuoteID As System.Guid,  _
+                    ByVal QuoteNumber As String,  _
+                    ByVal CustomerID As Integer,  _
+                    ByVal ContactName As String,  _
+                    ByVal RFQ As String,  _
+                    ByVal QuoteDate As Date,  _
+                    ByVal DueDate As Date,  _
+                    ByVal PartNumber As String,  _
+                    ByVal PartVersion As String,  _
+                    ByVal PartRevision As String,  _
+                    ByVal PartID As System.Guid,  _
+                    ByVal ShippedBefore As Boolean,  _
+                    ByVal NewRevision As Boolean,  _
+                    ByVal Comment As String,  _
+                    ByVal CreatedBy As String,  _
+                    ByVal StartDate As Date,  _
+                    ByVal CompletedDate As Date,  _
+                    ByVal VerifiedBy As String,  _
+                    ByVal VerifiedDate As Date,  _
+                    ByVal IsToolingPORecd As Boolean,  _
+                    ByVal EAU As Integer,  _
+                    ByVal Minimum As Integer,  _
+                    ByVal LeadTimeInitial As Integer,  _
+                    ByVal LeadTimeStandard As Integer,  _
+                    ByVal QuoteTypeID As Integer,  _
+                    ByVal UnitPrice As Decimal,  _
+                    ByVal MinimumOrder As Decimal,  _
+                    ByVal LaborMinutes As Decimal,  _
+                    ByVal LaborRate As Decimal,  _
+                    ByVal Tooling As Decimal,  _
+                    ByVal Shipping As Decimal,  _
+                    ByVal FormBoardRequired As Boolean,  _
+                    ByVal FormBoardCost As Decimal,  _
+                    ByVal SingleDefQty As Integer,  _
+                    ByVal OrderQty As Integer,  _
+                    ByVal WireTime As Decimal,  _
+                    ByVal CutTime As Decimal,  _
+                    ByVal Cuts As Integer,  _
+                    ByVal BoxSize As String,  _
+                    ByVal BoxPrice As Decimal,  _
+                    ByVal CuPrice As Decimal,  _
+                    ByVal CuWeight As Decimal,  _
+                    ByVal CuWeightMultiplier As Decimal,  _
+                    ByVal TimeMultiplier As Decimal,  _
+                    ByVal FinalMarkup As Decimal,  _
+                    ByVal MaterialMarkup As Decimal) As QuoteHeaderRow
+            Dim rowQuoteHeaderRow As QuoteHeaderRow = CType(Me.NewRow,QuoteHeaderRow)
+            Dim columnValuesArray() As Object = New Object() {QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialMarkup}
+            rowQuoteHeaderRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowQuoteHeaderRow)
+            Return rowQuoteHeaderRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByQuoteID(ByVal QuoteID As System.Guid) As QuoteHeaderRow
+            Return CType(Me.Rows.Find(New Object() {QuoteID}),QuoteHeaderRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
+            Return Me.Rows.GetEnumerator
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As QuoteHeaderDataTable = CType(MyBase.Clone,QuoteHeaderDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New QuoteHeaderDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnQuoteID = MyBase.Columns("QuoteID")
+            Me.columnQuoteNumber = MyBase.Columns("QuoteNumber")
+            Me.columnCustomerID = MyBase.Columns("CustomerID")
+            Me.columnContactName = MyBase.Columns("ContactName")
+            Me.columnRFQ = MyBase.Columns("RFQ")
+            Me.columnQuoteDate = MyBase.Columns("QuoteDate")
+            Me.columnDueDate = MyBase.Columns("DueDate")
+            Me.columnPartNumber = MyBase.Columns("PartNumber")
+            Me.columnPartVersion = MyBase.Columns("PartVersion")
+            Me.columnPartRevision = MyBase.Columns("PartRevision")
+            Me.columnPartID = MyBase.Columns("PartID")
+            Me.columnShippedBefore = MyBase.Columns("ShippedBefore")
+            Me.columnNewRevision = MyBase.Columns("NewRevision")
+            Me.columnComment = MyBase.Columns("Comment")
+            Me.columnCreatedBy = MyBase.Columns("CreatedBy")
+            Me.columnStartDate = MyBase.Columns("StartDate")
+            Me.columnCompletedDate = MyBase.Columns("CompletedDate")
+            Me.columnVerifiedBy = MyBase.Columns("VerifiedBy")
+            Me.columnVerifiedDate = MyBase.Columns("VerifiedDate")
+            Me.columnIsToolingPORecd = MyBase.Columns("IsToolingPORecd")
+            Me.columnEAU = MyBase.Columns("EAU")
+            Me.columnMinimum = MyBase.Columns("Minimum")
+            Me.columnLeadTimeInitial = MyBase.Columns("LeadTimeInitial")
+            Me.columnLeadTimeStandard = MyBase.Columns("LeadTimeStandard")
+            Me.columnQuoteTypeID = MyBase.Columns("QuoteTypeID")
+            Me.columnUnitPrice = MyBase.Columns("UnitPrice")
+            Me.columnMinimumOrder = MyBase.Columns("MinimumOrder")
+            Me.columnLaborMinutes = MyBase.Columns("LaborMinutes")
+            Me.columnLaborRate = MyBase.Columns("LaborRate")
+            Me.columnTooling = MyBase.Columns("Tooling")
+            Me.columnShipping = MyBase.Columns("Shipping")
+            Me.columnFormBoardRequired = MyBase.Columns("FormBoardRequired")
+            Me.columnFormBoardCost = MyBase.Columns("FormBoardCost")
+            Me.columnSingleDefQty = MyBase.Columns("SingleDefQty")
+            Me.columnOrderQty = MyBase.Columns("OrderQty")
+            Me.columnWireTime = MyBase.Columns("WireTime")
+            Me.columnCutTime = MyBase.Columns("CutTime")
+            Me.columnCuts = MyBase.Columns("Cuts")
+            Me.columnBoxSize = MyBase.Columns("BoxSize")
+            Me.columnBoxPrice = MyBase.Columns("BoxPrice")
+            Me.columnCuPrice = MyBase.Columns("CuPrice")
+            Me.columnCuWeight = MyBase.Columns("CuWeight")
+            Me.columnCuWeightMultiplier = MyBase.Columns("CuWeightMultiplier")
+            Me.columnTimeMultiplier = MyBase.Columns("TimeMultiplier")
+            Me.columnFinalMarkup = MyBase.Columns("FinalMarkup")
+            Me.columnMaterialMarkup = MyBase.Columns("MaterialMarkup")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnQuoteID = New Global.System.Data.DataColumn("QuoteID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQuoteID)
+            Me.columnQuoteNumber = New Global.System.Data.DataColumn("QuoteNumber", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQuoteNumber)
+            Me.columnCustomerID = New Global.System.Data.DataColumn("CustomerID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCustomerID)
+            Me.columnContactName = New Global.System.Data.DataColumn("ContactName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnContactName)
+            Me.columnRFQ = New Global.System.Data.DataColumn("RFQ", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRFQ)
+            Me.columnQuoteDate = New Global.System.Data.DataColumn("QuoteDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQuoteDate)
+            Me.columnDueDate = New Global.System.Data.DataColumn("DueDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDueDate)
+            Me.columnPartNumber = New Global.System.Data.DataColumn("PartNumber", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPartNumber)
+            Me.columnPartVersion = New Global.System.Data.DataColumn("PartVersion", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPartVersion)
+            Me.columnPartRevision = New Global.System.Data.DataColumn("PartRevision", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPartRevision)
+            Me.columnPartID = New Global.System.Data.DataColumn("PartID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPartID)
+            Me.columnShippedBefore = New Global.System.Data.DataColumn("ShippedBefore", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnShippedBefore)
+            Me.columnNewRevision = New Global.System.Data.DataColumn("NewRevision", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNewRevision)
+            Me.columnComment = New Global.System.Data.DataColumn("Comment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnComment)
+            Me.columnCreatedBy = New Global.System.Data.DataColumn("CreatedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCreatedBy)
+            Me.columnStartDate = New Global.System.Data.DataColumn("StartDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnStartDate)
+            Me.columnCompletedDate = New Global.System.Data.DataColumn("CompletedDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCompletedDate)
+            Me.columnVerifiedBy = New Global.System.Data.DataColumn("VerifiedBy", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVerifiedBy)
+            Me.columnVerifiedDate = New Global.System.Data.DataColumn("VerifiedDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVerifiedDate)
+            Me.columnIsToolingPORecd = New Global.System.Data.DataColumn("IsToolingPORecd", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsToolingPORecd)
+            Me.columnEAU = New Global.System.Data.DataColumn("EAU", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEAU)
+            Me.columnMinimum = New Global.System.Data.DataColumn("Minimum", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMinimum)
+            Me.columnLeadTimeInitial = New Global.System.Data.DataColumn("LeadTimeInitial", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLeadTimeInitial)
+            Me.columnLeadTimeStandard = New Global.System.Data.DataColumn("LeadTimeStandard", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLeadTimeStandard)
+            Me.columnQuoteTypeID = New Global.System.Data.DataColumn("QuoteTypeID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnQuoteTypeID)
+            Me.columnUnitPrice = New Global.System.Data.DataColumn("UnitPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnUnitPrice)
+            Me.columnMinimumOrder = New Global.System.Data.DataColumn("MinimumOrder", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMinimumOrder)
+            Me.columnLaborMinutes = New Global.System.Data.DataColumn("LaborMinutes", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLaborMinutes)
+            Me.columnLaborRate = New Global.System.Data.DataColumn("LaborRate", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLaborRate)
+            Me.columnTooling = New Global.System.Data.DataColumn("Tooling", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTooling)
+            Me.columnShipping = New Global.System.Data.DataColumn("Shipping", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnShipping)
+            Me.columnFormBoardRequired = New Global.System.Data.DataColumn("FormBoardRequired", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFormBoardRequired)
+            Me.columnFormBoardCost = New Global.System.Data.DataColumn("FormBoardCost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFormBoardCost)
+            Me.columnSingleDefQty = New Global.System.Data.DataColumn("SingleDefQty", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSingleDefQty)
+            Me.columnOrderQty = New Global.System.Data.DataColumn("OrderQty", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOrderQty)
+            Me.columnWireTime = New Global.System.Data.DataColumn("WireTime", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWireTime)
+            Me.columnCutTime = New Global.System.Data.DataColumn("CutTime", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCutTime)
+            Me.columnCuts = New Global.System.Data.DataColumn("Cuts", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCuts)
+            Me.columnBoxSize = New Global.System.Data.DataColumn("BoxSize", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBoxSize)
+            Me.columnBoxPrice = New Global.System.Data.DataColumn("BoxPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBoxPrice)
+            Me.columnCuPrice = New Global.System.Data.DataColumn("CuPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCuPrice)
+            Me.columnCuWeight = New Global.System.Data.DataColumn("CuWeight", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCuWeight)
+            Me.columnCuWeightMultiplier = New Global.System.Data.DataColumn("CuWeightMultiplier", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCuWeightMultiplier)
+            Me.columnTimeMultiplier = New Global.System.Data.DataColumn("TimeMultiplier", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTimeMultiplier)
+            Me.columnFinalMarkup = New Global.System.Data.DataColumn("FinalMarkup", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFinalMarkup)
+            Me.columnMaterialMarkup = New Global.System.Data.DataColumn("MaterialMarkup", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMaterialMarkup)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID}, true))
+            Me.columnQuoteID.AllowDBNull = false
+            Me.columnQuoteID.Unique = true
+            Me.columnQuoteNumber.AllowDBNull = false
+            Me.columnQuoteNumber.MaxLength = 50
+            Me.columnContactName.MaxLength = 100
+            Me.columnRFQ.MaxLength = 100
+            Me.columnPartNumber.MaxLength = 50
+            Me.columnPartVersion.MaxLength = 10
+            Me.columnPartRevision.MaxLength = 10
+            Me.columnComment.MaxLength = 2147483647
+            Me.columnCreatedBy.MaxLength = 100
+            Me.columnVerifiedBy.MaxLength = 100
+            Me.columnBoxSize.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewQuoteHeaderRow() As QuoteHeaderRow
+            Return CType(Me.NewRow,QuoteHeaderRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New QuoteHeaderRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(QuoteHeaderRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.QuoteHeaderRowChangedEvent) Is Nothing) Then
+                RaiseEvent QuoteHeaderRowChanged(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.QuoteHeaderRowChangingEvent) Is Nothing) Then
+                RaiseEvent QuoteHeaderRowChanging(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.QuoteHeaderRowDeletedEvent) Is Nothing) Then
+                RaiseEvent QuoteHeaderRowDeleted(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.QuoteHeaderRowDeletingEvent) Is Nothing) Then
+                RaiseEvent QuoteHeaderRowDeleting(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveQuoteHeaderRow(ByVal row As QuoteHeaderRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As ImportDataSet = New ImportDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "QuoteHeaderDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class QuoteDetailRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableQuoteDetail As QuoteDetailDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableQuoteDetail = CType(Me.Table,QuoteDetailDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property QuoteID() As System.Guid
+            Get
+                Return CType(Me(Me.tableQuoteDetail.QuoteIDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.QuoteIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property LineNumber() As Integer
+            Get
+                Return CType(Me(Me.tableQuoteDetail.LineNumberColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.LineNumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Qty() As Decimal
+            Get
+                Return CType(Me(Me.tableQuoteDetail.QtyColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.QtyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ItemID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteDetail.ItemIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ItemID' in table 'QuoteDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.ItemIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PartNumber() As String
+            Get
+                Return CType(Me(Me.tableQuoteDetail.PartNumberColumn),String)
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.PartNumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property UnitCost() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteDetail.UnitCostColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'UnitCost' in table 'QuoteDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.UnitCostColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IsWire() As Boolean
+            Get
+                Return CType(Me(Me.tableQuoteDetail.IsWireColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.IsWireColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Time() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteDetail.TimeColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Time' in table 'QuoteDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.TimeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Gage() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteDetail.GageColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gage' in table 'QuoteDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteDetail.GageColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property QuoteHeaderRow() As QuoteHeaderRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_QuoteDetail_QuoteHeader")),QuoteHeaderRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_QuoteDetail_QuoteHeader"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsItemIDNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteDetail.ItemIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetItemIDNull()
+            Me(Me.tableQuoteDetail.ItemIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsUnitCostNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteDetail.UnitCostColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetUnitCostNull()
+            Me(Me.tableQuoteDetail.UnitCostColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTimeNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteDetail.TimeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTimeNull()
+            Me(Me.tableQuoteDetail.TimeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGageNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteDetail.GageColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGageNull()
+            Me(Me.tableQuoteDetail.GageColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -2246,6 +2464,36 @@ Partial Public Class ImportDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property FinalMarkup() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteHeader.FinalMarkupColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'FinalMarkup' in table 'QuoteHeader' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteHeader.FinalMarkupColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MaterialMarkup() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteHeader.MaterialMarkupColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MaterialMarkup' in table 'QuoteHeader' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteHeader.MaterialMarkupColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCustomerIDNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CustomerIDColumn)
         End Function
@@ -2750,6 +2998,30 @@ Partial Public Class ImportDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFinalMarkupNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteHeader.FinalMarkupColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFinalMarkupNull()
+            Me(Me.tableQuoteHeader.FinalMarkupColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsMaterialMarkupNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteHeader.MaterialMarkupColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetMaterialMarkupNull()
+            Me(Me.tableQuoteHeader.MaterialMarkupColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function GetQuoteDetailRows() As QuoteDetailRow()
             If (Me.Table.ChildRelations("FK_QuoteDetail_QuoteHeader") Is Nothing) Then
                 Return New QuoteDetailRow(-1) {}
@@ -2757,232 +3029,6 @@ Partial Public Class ImportDataSet
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_QuoteDetail_QuoteHeader")),QuoteDetailRow())
             End If
         End Function
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class QuoteDetailRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableQuoteDetail As QuoteDetailDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableQuoteDetail = CType(Me.Table,QuoteDetailDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property QuoteID() As System.Guid
-            Get
-                Return CType(Me(Me.tableQuoteDetail.QuoteIDColumn),Global.System.Guid)
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.QuoteIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property LineNumber() As Integer
-            Get
-                Return CType(Me(Me.tableQuoteDetail.LineNumberColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.LineNumberColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Qty() As Decimal
-            Get
-                Return CType(Me(Me.tableQuoteDetail.QtyColumn),Decimal)
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.QtyColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ItemID() As System.Guid
-            Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.ItemIDColumn),Global.System.Guid)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ItemID' in table 'QuoteDetail' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.ItemIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property PartNumber() As String
-            Get
-                Return CType(Me(Me.tableQuoteDetail.PartNumberColumn),String)
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.PartNumberColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property UnitCost() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.UnitCostColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'UnitCost' in table 'QuoteDetail' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.UnitCostColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property IsWire() As Boolean
-            Get
-                Return CType(Me(Me.tableQuoteDetail.IsWireColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.IsWireColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Time() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.TimeColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Time' in table 'QuoteDetail' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.TimeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Gage() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableQuoteDetail.GageColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Gage' in table 'QuoteDetail' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableQuoteDetail.GageColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property QuoteHeaderRow() As QuoteHeaderRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_QuoteDetail_QuoteHeader")),QuoteHeaderRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_QuoteDetail_QuoteHeader"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsItemIDNull() As Boolean
-            Return Me.IsNull(Me.tableQuoteDetail.ItemIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetItemIDNull()
-            Me(Me.tableQuoteDetail.ItemIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsUnitCostNull() As Boolean
-            Return Me.IsNull(Me.tableQuoteDetail.UnitCostColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetUnitCostNull()
-            Me(Me.tableQuoteDetail.UnitCostColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsTimeNull() As Boolean
-            Return Me.IsNull(Me.tableQuoteDetail.TimeColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetTimeNull()
-            Me(Me.tableQuoteDetail.TimeColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsGageNull() As Boolean
-            Return Me.IsNull(Me.tableQuoteDetail.GageColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetGageNull()
-            Me(Me.tableQuoteDetail.GageColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class QuoteHeaderRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As QuoteHeaderRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As QuoteHeaderRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As QuoteHeaderRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
     End Class
     
     '''<summary>
@@ -3020,2067 +3066,45 @@ Partial Public Class ImportDataSet
             End Get
         End Property
     End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class QuoteHeaderRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As QuoteHeaderRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As QuoteHeaderRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As QuoteHeaderRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
 End Class
 
 Namespace ImportDataSetTableAdapters
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class QuoteHeaderTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
-        
-        Private _connection As Global.System.Data.SqlClient.SqlConnection
-        
-        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
-        
-        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "QuoteHeader"
-            tableMapping.ColumnMappings.Add("QuoteID", "QuoteID")
-            tableMapping.ColumnMappings.Add("QuoteNumber", "QuoteNumber")
-            tableMapping.ColumnMappings.Add("CustomerID", "CustomerID")
-            tableMapping.ColumnMappings.Add("ContactName", "ContactName")
-            tableMapping.ColumnMappings.Add("RFQ", "RFQ")
-            tableMapping.ColumnMappings.Add("QuoteDate", "QuoteDate")
-            tableMapping.ColumnMappings.Add("DueDate", "DueDate")
-            tableMapping.ColumnMappings.Add("PartNumber", "PartNumber")
-            tableMapping.ColumnMappings.Add("PartVersion", "PartVersion")
-            tableMapping.ColumnMappings.Add("PartRevision", "PartRevision")
-            tableMapping.ColumnMappings.Add("PartID", "PartID")
-            tableMapping.ColumnMappings.Add("ShippedBefore", "ShippedBefore")
-            tableMapping.ColumnMappings.Add("NewRevision", "NewRevision")
-            tableMapping.ColumnMappings.Add("Comment", "Comment")
-            tableMapping.ColumnMappings.Add("CreatedBy", "CreatedBy")
-            tableMapping.ColumnMappings.Add("StartDate", "StartDate")
-            tableMapping.ColumnMappings.Add("CompletedDate", "CompletedDate")
-            tableMapping.ColumnMappings.Add("VerifiedBy", "VerifiedBy")
-            tableMapping.ColumnMappings.Add("VerifiedDate", "VerifiedDate")
-            tableMapping.ColumnMappings.Add("IsToolingPORecd", "IsToolingPORecd")
-            tableMapping.ColumnMappings.Add("EAU", "EAU")
-            tableMapping.ColumnMappings.Add("Minimum", "Minimum")
-            tableMapping.ColumnMappings.Add("LeadTimeInitial", "LeadTimeInitial")
-            tableMapping.ColumnMappings.Add("LeadTimeStandard", "LeadTimeStandard")
-            tableMapping.ColumnMappings.Add("QuoteTypeID", "QuoteTypeID")
-            tableMapping.ColumnMappings.Add("UnitPrice", "UnitPrice")
-            tableMapping.ColumnMappings.Add("MinimumOrder", "MinimumOrder")
-            tableMapping.ColumnMappings.Add("LaborMinutes", "LaborMinutes")
-            tableMapping.ColumnMappings.Add("LaborRate", "LaborRate")
-            tableMapping.ColumnMappings.Add("Tooling", "Tooling")
-            tableMapping.ColumnMappings.Add("Shipping", "Shipping")
-            tableMapping.ColumnMappings.Add("FormBoardRequired", "FormBoardRequired")
-            tableMapping.ColumnMappings.Add("FormBoardCost", "FormBoardCost")
-            tableMapping.ColumnMappings.Add("SingleDefQty", "SingleDefQty")
-            tableMapping.ColumnMappings.Add("OrderQty", "OrderQty")
-            tableMapping.ColumnMappings.Add("WireTime", "WireTime")
-            tableMapping.ColumnMappings.Add("CutTime", "CutTime")
-            tableMapping.ColumnMappings.Add("Cuts", "Cuts")
-            tableMapping.ColumnMappings.Add("BoxSize", "BoxSize")
-            tableMapping.ColumnMappings.Add("BoxPrice", "BoxPrice")
-            tableMapping.ColumnMappings.Add("CuPrice", "CuPrice")
-            tableMapping.ColumnMappings.Add("CuWeight", "CuWeight")
-            tableMapping.ColumnMappings.Add("CuWeightMultiplier", "CuWeightMultiplier")
-            tableMapping.ColumnMappings.Add("TimeMultiplier", "TimeMultiplier")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [QuoteHeader] WHERE (([QuoteID] = @Original_QuoteID) AND ([QuoteNumbe"& _ 
-                "r] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 AND [CustomerID] IS NUL"& _ 
-                "L) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull_ContactName = 1 AND ["& _ 
-                "ContactName] IS NULL) OR ([ContactName] = @Original_ContactName)) AND ((@IsNull_"& _ 
-                "RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND ((@IsNull_QuoteDate ="& _ 
-                " 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_QuoteDate)) AND ((@IsNul"& _ 
-                "l_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Original_DueDate)) AND ((@"& _ 
-                "IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartNumber] = @Original_Par"& _ 
-                "tNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] IS NULL) OR ([PartVers"& _ 
-                "ion] = @Original_PartVersion)) AND ((@IsNull_PartRevision = 1 AND [PartRevision]"& _ 
-                " IS NULL) OR ([PartRevision] = @Original_PartRevision)) AND ((@IsNull_PartID = 1"& _ 
-                " AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) AND ((@IsNull_ShippedBe"& _ 
-                "fore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] = @Original_ShippedBef"& _ 
-                "ore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS NULL) OR ([NewRevision]"& _ 
-                " = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) "& _ 
-                "OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_StartDate = 1 AND [StartDa"& _ 
-                "te] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_CompletedDate"& _ 
-                " = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @Original_CompletedDate)"& _ 
-                ") AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) OR ([VerifiedBy] = @Ori"& _ 
-                "ginal_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [VerifiedDate] IS NULL) OR"& _ 
-                " ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_IsToolingPORecd = 1 AN"& _ 
-                "D [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Original_IsToolingPORecd))"& _ 
-                " AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Original_EAU)) AND ((@IsN"& _ 
-                "ull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Original_Minimum)) AND ("& _ 
-                "(@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL) OR ([LeadTimeInitial"& _ 
-                "] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStandard = 1 AND [LeadTime"& _ 
-                "Standard] IS NULL) OR ([LeadTimeStandard] = @Original_LeadTimeStandard)) AND ((@"& _ 
-                "IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([QuoteTypeID] = @Original_"& _ 
-                "QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] IS NULL) OR ([UnitPric"& _ 
-                "e] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 AND [MinimumOrder] IS "& _ 
-                "NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND ((@IsNull_LaborMinutes ="& _ 
-                " 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Original_LaborMinutes)) AND"& _ 
-                " ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([LaborRate] = @Original_La"& _ 
-                "borRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL) OR ([Tooling] = @Orig"& _ 
-                "inal_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] IS NULL) OR ([Shipping]"& _ 
-                " = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = 1 AND [FormBoardRequir"& _ 
-                "ed] IS NULL) OR ([FormBoardRequired] = @Original_FormBoardRequired)) AND ((@IsNu"& _ 
-                "ll_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([FormBoardCost] = @Origina"& _ 
-                "l_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [SingleDefQty] IS NULL) OR "& _ 
-                "([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_OrderQty = 1 AND [Order"& _ 
-                "Qty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND ((@IsNull_WireTime = 1 A"& _ 
-                "ND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime)) AND ((@IsNull_CutTi"& _ 
-                "me = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_CutTime)) AND ((@IsNull_"& _ 
-                "Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts)) AND ((@IsNull_BoxSize"& _ 
-                " = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxSize)) AND ((@IsNull_Bo"& _ 
-                "xPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Original_BoxPrice)) AND ((@"& _ 
-                "IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = @Original_CuPrice)) AN"& _ 
-                "D ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWeight] = @Original_CuWe"& _ 
-                "ight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightMultiplier] IS NULL) OR"& _ 
-                " ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AND ((@IsNull_TimeMultip"& _ 
-                "lier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier] = @Original_TimeMult"& _ 
-                "iplier)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ContactName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_RFQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_DueDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartVersion", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ShippedBefore", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NewRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CreatedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_StartDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CompletedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_IsToolingPORecd", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_UnitPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MinimumOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborMinutes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborMinutes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborRate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Tooling", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Shipping", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardRequired", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardCost", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_WireTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CutTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CutTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxSize", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeight", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeight", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeightMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TimeMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [QuoteHeader] ([QuoteID], [QuoteNumber], [CustomerID], [ContactName],"& _ 
-                " [RFQ], [QuoteDate], [DueDate], [PartNumber], [PartVersion], [PartRevision], [Pa"& _ 
-                "rtID], [ShippedBefore], [NewRevision], [Comment], [CreatedBy], [StartDate], [Com"& _ 
-                "pletedDate], [VerifiedBy], [VerifiedDate], [IsToolingPORecd], [EAU], [Minimum], "& _ 
-                "[LeadTimeInitial], [LeadTimeStandard], [QuoteTypeID], [UnitPrice], [MinimumOrder"& _ 
-                "], [LaborMinutes], [LaborRate], [Tooling], [Shipping], [FormBoardRequired], [For"& _ 
-                "mBoardCost], [SingleDefQty], [OrderQty], [WireTime], [CutTime], [Cuts], [BoxSize"& _ 
-                "], [BoxPrice], [CuPrice], [CuWeight], [CuWeightMultiplier], [TimeMultiplier]) VA"& _ 
-                "LUES (@QuoteID, @QuoteNumber, @CustomerID, @ContactName, @RFQ, @QuoteDate, @DueD"& _ 
-                "ate, @PartNumber, @PartVersion, @PartRevision, @PartID, @ShippedBefore, @NewRevi"& _ 
-                "sion, @Comment, @CreatedBy, @StartDate, @CompletedDate, @VerifiedBy, @VerifiedDa"& _ 
-                "te, @IsToolingPORecd, @EAU, @Minimum, @LeadTimeInitial, @LeadTimeStandard, @Quot"& _ 
-                "eTypeID, @UnitPrice, @MinimumOrder, @LaborMinutes, @LaborRate, @Tooling, @Shippi"& _ 
-                "ng, @FormBoardRequired, @FormBoardCost, @SingleDefQty, @OrderQty, @WireTime, @Cu"& _ 
-                "tTime, @Cuts, @BoxSize, @BoxPrice, @CuPrice, @CuWeight, @CuWeightMultiplier, @Ti"& _ 
-                "meMultiplier);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, Quote"& _ 
-                "Date, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, New"& _ 
-                "Revision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate"& _ 
-                ", IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID,"& _ 
-                " UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardR"& _ 
-                "equired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize"& _ 
-                ", BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier FROM QuoteHead"& _ 
-                "er WHERE (QuoteID = @QuoteID) ORDER BY QuoteNumber DESC"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Comment", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Comment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [QuoteHeader] SET [QuoteID] = @QuoteID, [QuoteNumber] = @QuoteNumber, [Cus"& _ 
-                "tomerID] = @CustomerID, [ContactName] = @ContactName, [RFQ] = @RFQ, [QuoteDate] "& _ 
-                "= @QuoteDate, [DueDate] = @DueDate, [PartNumber] = @PartNumber, [PartVersion] = "& _ 
-                "@PartVersion, [PartRevision] = @PartRevision, [PartID] = @PartID, [ShippedBefore"& _ 
-                "] = @ShippedBefore, [NewRevision] = @NewRevision, [Comment] = @Comment, [Created"& _ 
-                "By] = @CreatedBy, [StartDate] = @StartDate, [CompletedDate] = @CompletedDate, [V"& _ 
-                "erifiedBy] = @VerifiedBy, [VerifiedDate] = @VerifiedDate, [IsToolingPORecd] = @I"& _ 
-                "sToolingPORecd, [EAU] = @EAU, [Minimum] = @Minimum, [LeadTimeInitial] = @LeadTim"& _ 
-                "eInitial, [LeadTimeStandard] = @LeadTimeStandard, [QuoteTypeID] = @QuoteTypeID, "& _ 
-                "[UnitPrice] = @UnitPrice, [MinimumOrder] = @MinimumOrder, [LaborMinutes] = @Labo"& _ 
-                "rMinutes, [LaborRate] = @LaborRate, [Tooling] = @Tooling, [Shipping] = @Shipping"& _ 
-                ", [FormBoardRequired] = @FormBoardRequired, [FormBoardCost] = @FormBoardCost, [S"& _ 
-                "ingleDefQty] = @SingleDefQty, [OrderQty] = @OrderQty, [WireTime] = @WireTime, [C"& _ 
-                "utTime] = @CutTime, [Cuts] = @Cuts, [BoxSize] = @BoxSize, [BoxPrice] = @BoxPrice"& _ 
-                ", [CuPrice] = @CuPrice, [CuWeight] = @CuWeight, [CuWeightMultiplier] = @CuWeight"& _ 
-                "Multiplier, [TimeMultiplier] = @TimeMultiplier WHERE (([QuoteID] = @Original_Quo"& _ 
-                "teID) AND ([QuoteNumber] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 A"& _ 
-                "ND [CustomerID] IS NULL) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull"& _ 
-                "_ContactName = 1 AND [ContactName] IS NULL) OR ([ContactName] = @Original_Contac"& _ 
-                "tName)) AND ((@IsNull_RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND"& _ 
-                " ((@IsNull_QuoteDate = 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_Qu"& _ 
-                "oteDate)) AND ((@IsNull_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Orig"& _ 
-                "inal_DueDate)) AND ((@IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartN"& _ 
-                "umber] = @Original_PartNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] "& _ 
-                "IS NULL) OR ([PartVersion] = @Original_PartVersion)) AND ((@IsNull_PartRevision "& _ 
-                "= 1 AND [PartRevision] IS NULL) OR ([PartRevision] = @Original_PartRevision)) AN"& _ 
-                "D ((@IsNull_PartID = 1 AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) A"& _ 
-                "ND ((@IsNull_ShippedBefore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] "& _ 
-                "= @Original_ShippedBefore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS N"& _ 
-                "ULL) OR ([NewRevision] = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND"& _ 
-                " [CreatedBy] IS NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_Star"& _ 
-                "tDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ("& _ 
-                "(@IsNull_CompletedDate = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @O"& _ 
-                "riginal_CompletedDate)) AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) O"& _ 
-                "R ([VerifiedBy] = @Original_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [Ver"& _ 
-                "ifiedDate] IS NULL) OR ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_"& _ 
-                "IsToolingPORecd = 1 AND [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Orig"& _ 
-                "inal_IsToolingPORecd)) AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Ori"& _ 
-                "ginal_EAU)) AND ((@IsNull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Or"& _ 
-                "iginal_Minimum)) AND ((@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL"& _ 
-                ") OR ([LeadTimeInitial] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStan"& _ 
-                "dard = 1 AND [LeadTimeStandard] IS NULL) OR ([LeadTimeStandard] = @Original_Lead"& _ 
-                "TimeStandard)) AND ((@IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([Quo"& _ 
-                "teTypeID] = @Original_QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] "& _ 
-                "IS NULL) OR ([UnitPrice] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 "& _ 
-                "AND [MinimumOrder] IS NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND (("& _ 
-                "@IsNull_LaborMinutes = 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Origi"& _ 
-                "nal_LaborMinutes)) AND ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([Lab"& _ 
-                "orRate] = @Original_LaborRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL)"& _ 
-                " OR ([Tooling] = @Original_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] I"& _ 
-                "S NULL) OR ([Shipping] = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = "& _ 
-                "1 AND [FormBoardRequired] IS NULL) OR ([FormBoardRequired] = @Original_FormBoard"& _ 
-                "Required)) AND ((@IsNull_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([For"& _ 
-                "mBoardCost] = @Original_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [Sing"& _ 
-                "leDefQty] IS NULL) OR ([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_O"& _ 
-                "rderQty = 1 AND [OrderQty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND (("& _ 
-                "@IsNull_WireTime = 1 AND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime"& _ 
-                ")) AND ((@IsNull_CutTime = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_Cu"& _ 
-                "tTime)) AND ((@IsNull_Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts))"& _ 
-                " AND ((@IsNull_BoxSize = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxS"& _ 
-                "ize)) AND ((@IsNull_BoxPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Origi"& _ 
-                "nal_BoxPrice)) AND ((@IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = "& _ 
-                "@Original_CuPrice)) AND ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWe"& _ 
-                "ight] = @Original_CuWeight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightM"& _ 
-                "ultiplier] IS NULL) OR ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AN"& _ 
-                "D ((@IsNull_TimeMultiplier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier"& _ 
-                "] = @Original_TimeMultiplier)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT QuoteID, QuoteNumber, CustomerID, Conta"& _ 
-                "ctName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, "& _ 
-                "ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, Verifi"& _ 
-                "edBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStan"& _ 
-                "dard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Sh"& _ 
-                "ipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutT"& _ 
-                "ime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultipl"& _ 
-                "ier FROM QuoteHeader WHERE (QuoteID = @QuoteID) ORDER BY QuoteNumber DESC"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Comment", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Comment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ContactName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_RFQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_DueDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartVersion", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ShippedBefore", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NewRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CreatedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_StartDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CompletedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_IsToolingPORecd", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_UnitPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MinimumOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborMinutes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborMinutes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborRate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Tooling", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Shipping", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardRequired", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardCost", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_WireTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CutTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CutTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxSize", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeight", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeight", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeightMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TimeMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.DCS.Quote.My.MySettings.Default.cuttagSKEConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
-            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueD"& _ 
-                "ate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, "& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Comment, CreatedBy, StartDate, CompletedDate, Verifie"& _ 
-                "dBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStand"& _ 
-                "ard, QuoteTypeID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         UnitPrice, MinimumOrder, LaborMinut"& _ 
-                "es, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty"& _ 
-                ", OrderQty, WireTime, CutTime, Cuts, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BoxSize, BoxPric"& _ 
-                "e, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            QuoteH"& _ 
-                "eader"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY QuoteNumber DESC"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT BoxPrice, BoxSize, Comment, CompletedDate, ContactName, CreatedBy, CuPrice"& _ 
-                ", CuWeight, CuWeightMultiplier, CustomerID, CutTime, Cuts, DueDate, EAU, FormBoa"& _ 
-                "rdCost, FormBoardRequired, IsToolingPORecd, LaborMinutes, LaborRate, LeadTimeIni"& _ 
-                "tial, LeadTimeStandard, Minimum, MinimumOrder, NewRevision, OrderQty, PartID, Pa"& _ 
-                "rtNumber, PartRevision, PartVersion, QuoteDate, QuoteID, QuoteNumber, QuoteTypeI"& _ 
-                "D, RFQ, ShippedBefore, Shipping, SingleDefQty, StartDate, TimeMultiplier, Toolin"& _ 
-                "g, UnitPrice, VerifiedBy, VerifiedDate, WireTime FROM QuoteHeader WHERE (QuoteNu"& _ 
-                "mber = @QuoteNumber)"
-            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As ImportDataSet.QuoteHeaderDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As ImportDataSet.QuoteHeaderDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As ImportDataSet.QuoteHeaderDataTable = New ImportDataSet.QuoteHeaderDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByQuoteNumber(ByVal dataTable As ImportDataSet.QuoteHeaderDataTable, ByVal QuoteNumber As String) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (QuoteNumber Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("QuoteNumber")
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(QuoteNumber,String)
-            End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByQuoteNumber(ByVal QuoteNumber As String) As ImportDataSet.QuoteHeaderDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (QuoteNumber Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("QuoteNumber")
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(QuoteNumber,String)
-            End If
-            Dim dataTable As ImportDataSet.QuoteHeaderDataTable = New ImportDataSet.QuoteHeaderDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As ImportDataSet.QuoteHeaderDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As ImportDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "QuoteHeader")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_QuoteID As System.Guid,  _
-                    ByVal Original_QuoteNumber As String,  _
-                    ByVal Original_CustomerID As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ContactName As String,  _
-                    ByVal Original_RFQ As String,  _
-                    ByVal Original_QuoteDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_DueDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_PartNumber As String,  _
-                    ByVal Original_PartVersion As String,  _
-                    ByVal Original_PartRevision As String,  _
-                    ByVal Original_PartID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_ShippedBefore As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_NewRevision As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_CreatedBy As String,  _
-                    ByVal Original_StartDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_CompletedDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_VerifiedBy As String,  _
-                    ByVal Original_VerifiedDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_EAU As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Minimum As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LeadTimeInitial As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LeadTimeStandard As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_QuoteTypeID As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_UnitPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_MinimumOrder As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LaborMinutes As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LaborRate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Tooling As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Shipping As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_FormBoardRequired As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_FormBoardCost As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_SingleDefQty As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_OrderQty As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_WireTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CutTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Cuts As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_BoxSize As String,  _
-                    ByVal Original_BoxPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuWeight As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_TimeMultiplier As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_QuoteID,System.Guid)
-            If (Original_QuoteNumber Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_QuoteNumber")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_QuoteNumber,String)
-            End If
-            If (Original_CustomerID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_CustomerID.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ContactName Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_ContactName,String)
-            End If
-            If (Original_RFQ Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_RFQ,String)
-            End If
-            If (Original_QuoteDate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_QuoteDate.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            If (Original_DueDate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_DueDate.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PartNumber Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_PartNumber,String)
-            End If
-            If (Original_PartVersion Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_PartVersion,String)
-            End If
-            If (Original_PartRevision Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_PartRevision,String)
-            End If
-            If (Original_PartID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_PartID.Value,System.Guid)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ShippedBefore.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_ShippedBefore.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NewRevision.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_NewRevision.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CreatedBy Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(25).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_CreatedBy,String)
-            End If
-            If (Original_StartDate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_StartDate.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(27).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CompletedDate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(Original_CompletedDate.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(29).Value = Global.System.DBNull.Value
-            End If
-            If (Original_VerifiedBy Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(Original_VerifiedBy,String)
-            End If
-            If (Original_VerifiedDate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(Original_VerifiedDate.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(33).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IsToolingPORecd.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(Original_IsToolingPORecd.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(35).Value = Global.System.DBNull.Value
-            End If
-            If (Original_EAU.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(Original_EAU.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(37).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Minimum.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(Original_Minimum.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(39).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LeadTimeInitial.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(Original_LeadTimeInitial.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(41).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LeadTimeStandard.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(Original_LeadTimeStandard.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(43).Value = Global.System.DBNull.Value
-            End If
-            If (Original_QuoteTypeID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(44).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(45).Value = CType(Original_QuoteTypeID.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(44).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(45).Value = Global.System.DBNull.Value
-            End If
-            If (Original_UnitPrice.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(47).Value = CType(Original_UnitPrice.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(47).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MinimumOrder.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(48).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(49).Value = CType(Original_MinimumOrder.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(48).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(49).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LaborMinutes.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(50).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(51).Value = CType(Original_LaborMinutes.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(50).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(51).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LaborRate.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(52).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(53).Value = CType(Original_LaborRate.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(52).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(53).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Tooling.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(54).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(55).Value = CType(Original_Tooling.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(54).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(55).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Shipping.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(56).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(57).Value = CType(Original_Shipping.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(56).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(57).Value = Global.System.DBNull.Value
-            End If
-            If (Original_FormBoardRequired.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(58).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(59).Value = CType(Original_FormBoardRequired.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(58).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(59).Value = Global.System.DBNull.Value
-            End If
-            If (Original_FormBoardCost.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(60).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(61).Value = CType(Original_FormBoardCost.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(60).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(61).Value = Global.System.DBNull.Value
-            End If
-            If (Original_SingleDefQty.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(62).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(63).Value = CType(Original_SingleDefQty.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(62).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(63).Value = Global.System.DBNull.Value
-            End If
-            If (Original_OrderQty.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(64).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(65).Value = CType(Original_OrderQty.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(64).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(65).Value = Global.System.DBNull.Value
-            End If
-            If (Original_WireTime.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(66).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(67).Value = CType(Original_WireTime.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(66).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(67).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CutTime.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(68).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(69).Value = CType(Original_CutTime.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(68).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(69).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Cuts.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(70).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(71).Value = CType(Original_Cuts.Value,Integer)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(70).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(71).Value = Global.System.DBNull.Value
-            End If
-            If (Original_BoxSize Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(72).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(73).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(72).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(73).Value = CType(Original_BoxSize,String)
-            End If
-            If (Original_BoxPrice.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(74).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(75).Value = CType(Original_BoxPrice.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(74).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(75).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CuPrice.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(76).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(77).Value = CType(Original_CuPrice.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(76).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(77).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CuWeight.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(78).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(79).Value = CType(Original_CuWeight.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(78).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(79).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CuWeightMultiplier.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(80).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(81).Value = CType(Original_CuWeightMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(80).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(81).Value = Global.System.DBNull.Value
-            End If
-            If (Original_TimeMultiplier.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(82).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(83).Value = CType(Original_TimeMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(82).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(83).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal QuoteID As System.Guid,  _
-                    ByVal QuoteNumber As String,  _
-                    ByVal CustomerID As Global.System.Nullable(Of Integer),  _
-                    ByVal ContactName As String,  _
-                    ByVal RFQ As String,  _
-                    ByVal QuoteDate As Global.System.Nullable(Of Date),  _
-                    ByVal DueDate As Global.System.Nullable(Of Date),  _
-                    ByVal PartNumber As String,  _
-                    ByVal PartVersion As String,  _
-                    ByVal PartRevision As String,  _
-                    ByVal PartID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal ShippedBefore As Global.System.Nullable(Of Boolean),  _
-                    ByVal NewRevision As Global.System.Nullable(Of Boolean),  _
-                    ByVal Comment As String,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal StartDate As Global.System.Nullable(Of Date),  _
-                    ByVal CompletedDate As Global.System.Nullable(Of Date),  _
-                    ByVal VerifiedBy As String,  _
-                    ByVal VerifiedDate As Global.System.Nullable(Of Date),  _
-                    ByVal IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
-                    ByVal EAU As Global.System.Nullable(Of Integer),  _
-                    ByVal Minimum As Global.System.Nullable(Of Integer),  _
-                    ByVal LeadTimeInitial As Global.System.Nullable(Of Integer),  _
-                    ByVal LeadTimeStandard As Global.System.Nullable(Of Integer),  _
-                    ByVal QuoteTypeID As Global.System.Nullable(Of Integer),  _
-                    ByVal UnitPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal MinimumOrder As Global.System.Nullable(Of Decimal),  _
-                    ByVal LaborMinutes As Global.System.Nullable(Of Decimal),  _
-                    ByVal LaborRate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Tooling As Global.System.Nullable(Of Decimal),  _
-                    ByVal Shipping As Global.System.Nullable(Of Decimal),  _
-                    ByVal FormBoardRequired As Global.System.Nullable(Of Boolean),  _
-                    ByVal FormBoardCost As Global.System.Nullable(Of Decimal),  _
-                    ByVal SingleDefQty As Global.System.Nullable(Of Integer),  _
-                    ByVal OrderQty As Global.System.Nullable(Of Integer),  _
-                    ByVal WireTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal CutTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Cuts As Global.System.Nullable(Of Integer),  _
-                    ByVal BoxSize As String,  _
-                    ByVal BoxPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuWeight As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal TimeMultiplier As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(QuoteID,System.Guid)
-            If (QuoteNumber Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("QuoteNumber")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(QuoteNumber,String)
-            End If
-            If (CustomerID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(CustomerID.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (ContactName Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(ContactName,String)
-            End If
-            If (RFQ Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(RFQ,String)
-            End If
-            If (QuoteDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(QuoteDate.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (DueDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(DueDate.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (PartNumber Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(PartNumber,String)
-            End If
-            If (PartVersion Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(PartVersion,String)
-            End If
-            If (PartRevision Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(PartRevision,String)
-            End If
-            If (PartID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(PartID.Value,System.Guid)
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (ShippedBefore.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(ShippedBefore.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (NewRevision.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(NewRevision.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (Comment Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Comment,String)
-            End If
-            If (CreatedBy Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(CreatedBy,String)
-            End If
-            If (StartDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(StartDate.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
-            End If
-            If (CompletedDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(CompletedDate.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (VerifiedBy Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(VerifiedBy,String)
-            End If
-            If (VerifiedDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(VerifiedDate.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
-            End If
-            If (IsToolingPORecd.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(IsToolingPORecd.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (EAU.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(EAU.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            If (Minimum.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(Minimum.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (LeadTimeInitial.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(22).Value = CType(LeadTimeInitial.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (LeadTimeStandard.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(23).Value = CType(LeadTimeStandard.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (QuoteTypeID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(24).Value = CType(QuoteTypeID.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
-            End If
-            If (UnitPrice.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(25).Value = CType(UnitPrice.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            If (MinimumOrder.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(26).Value = CType(MinimumOrder.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(26).Value = Global.System.DBNull.Value
-            End If
-            If (LaborMinutes.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(27).Value = CType(LaborMinutes.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(27).Value = Global.System.DBNull.Value
-            End If
-            If (LaborRate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(28).Value = CType(LaborRate.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(28).Value = Global.System.DBNull.Value
-            End If
-            If (Tooling.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(29).Value = CType(Tooling.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(29).Value = Global.System.DBNull.Value
-            End If
-            If (Shipping.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(30).Value = CType(Shipping.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            If (FormBoardRequired.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(31).Value = CType(FormBoardRequired.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(31).Value = Global.System.DBNull.Value
-            End If
-            If (FormBoardCost.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(32).Value = CType(FormBoardCost.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(32).Value = Global.System.DBNull.Value
-            End If
-            If (SingleDefQty.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(33).Value = CType(SingleDefQty.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(33).Value = Global.System.DBNull.Value
-            End If
-            If (OrderQty.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(34).Value = CType(OrderQty.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(34).Value = Global.System.DBNull.Value
-            End If
-            If (WireTime.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(35).Value = CType(WireTime.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(35).Value = Global.System.DBNull.Value
-            End If
-            If (CutTime.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(36).Value = CType(CutTime.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(36).Value = Global.System.DBNull.Value
-            End If
-            If (Cuts.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(37).Value = CType(Cuts.Value,Integer)
-            Else
-                Me.Adapter.InsertCommand.Parameters(37).Value = Global.System.DBNull.Value
-            End If
-            If (BoxSize Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(38).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(38).Value = CType(BoxSize,String)
-            End If
-            If (BoxPrice.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(39).Value = CType(BoxPrice.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(39).Value = Global.System.DBNull.Value
-            End If
-            If (CuPrice.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(40).Value = CType(CuPrice.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(40).Value = Global.System.DBNull.Value
-            End If
-            If (CuWeight.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(41).Value = CType(CuWeight.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(41).Value = Global.System.DBNull.Value
-            End If
-            If (CuWeightMultiplier.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(42).Value = CType(CuWeightMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(42).Value = Global.System.DBNull.Value
-            End If
-            If (TimeMultiplier.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(43).Value = CType(TimeMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(43).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal QuoteID As System.Guid,  _
-                    ByVal QuoteNumber As String,  _
-                    ByVal CustomerID As Global.System.Nullable(Of Integer),  _
-                    ByVal ContactName As String,  _
-                    ByVal RFQ As String,  _
-                    ByVal QuoteDate As Global.System.Nullable(Of Date),  _
-                    ByVal DueDate As Global.System.Nullable(Of Date),  _
-                    ByVal PartNumber As String,  _
-                    ByVal PartVersion As String,  _
-                    ByVal PartRevision As String,  _
-                    ByVal PartID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal ShippedBefore As Global.System.Nullable(Of Boolean),  _
-                    ByVal NewRevision As Global.System.Nullable(Of Boolean),  _
-                    ByVal Comment As String,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal StartDate As Global.System.Nullable(Of Date),  _
-                    ByVal CompletedDate As Global.System.Nullable(Of Date),  _
-                    ByVal VerifiedBy As String,  _
-                    ByVal VerifiedDate As Global.System.Nullable(Of Date),  _
-                    ByVal IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
-                    ByVal EAU As Global.System.Nullable(Of Integer),  _
-                    ByVal Minimum As Global.System.Nullable(Of Integer),  _
-                    ByVal LeadTimeInitial As Global.System.Nullable(Of Integer),  _
-                    ByVal LeadTimeStandard As Global.System.Nullable(Of Integer),  _
-                    ByVal QuoteTypeID As Global.System.Nullable(Of Integer),  _
-                    ByVal UnitPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal MinimumOrder As Global.System.Nullable(Of Decimal),  _
-                    ByVal LaborMinutes As Global.System.Nullable(Of Decimal),  _
-                    ByVal LaborRate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Tooling As Global.System.Nullable(Of Decimal),  _
-                    ByVal Shipping As Global.System.Nullable(Of Decimal),  _
-                    ByVal FormBoardRequired As Global.System.Nullable(Of Boolean),  _
-                    ByVal FormBoardCost As Global.System.Nullable(Of Decimal),  _
-                    ByVal SingleDefQty As Global.System.Nullable(Of Integer),  _
-                    ByVal OrderQty As Global.System.Nullable(Of Integer),  _
-                    ByVal WireTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal CutTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Cuts As Global.System.Nullable(Of Integer),  _
-                    ByVal BoxSize As String,  _
-                    ByVal BoxPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuWeight As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal TimeMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_QuoteID As System.Guid,  _
-                    ByVal Original_QuoteNumber As String,  _
-                    ByVal Original_CustomerID As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ContactName As String,  _
-                    ByVal Original_RFQ As String,  _
-                    ByVal Original_QuoteDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_DueDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_PartNumber As String,  _
-                    ByVal Original_PartVersion As String,  _
-                    ByVal Original_PartRevision As String,  _
-                    ByVal Original_PartID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_ShippedBefore As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_NewRevision As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_CreatedBy As String,  _
-                    ByVal Original_StartDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_CompletedDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_VerifiedBy As String,  _
-                    ByVal Original_VerifiedDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_EAU As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Minimum As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LeadTimeInitial As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LeadTimeStandard As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_QuoteTypeID As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_UnitPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_MinimumOrder As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LaborMinutes As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LaborRate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Tooling As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Shipping As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_FormBoardRequired As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_FormBoardCost As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_SingleDefQty As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_OrderQty As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_WireTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CutTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Cuts As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_BoxSize As String,  _
-                    ByVal Original_BoxPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuWeight As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_TimeMultiplier As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(QuoteID,System.Guid)
-            If (QuoteNumber Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("QuoteNumber")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(QuoteNumber,String)
-            End If
-            If (CustomerID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(CustomerID.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (ContactName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(ContactName,String)
-            End If
-            If (RFQ Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(RFQ,String)
-            End If
-            If (QuoteDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(QuoteDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (DueDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(DueDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (PartNumber Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PartNumber,String)
-            End If
-            If (PartVersion Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PartVersion,String)
-            End If
-            If (PartRevision Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(PartRevision,String)
-            End If
-            If (PartID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PartID.Value,System.Guid)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (ShippedBefore.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(ShippedBefore.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (NewRevision.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(NewRevision.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (Comment Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Comment,String)
-            End If
-            If (CreatedBy Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(CreatedBy,String)
-            End If
-            If (StartDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(StartDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            End If
-            If (CompletedDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(CompletedDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (VerifiedBy Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(VerifiedBy,String)
-            End If
-            If (VerifiedDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(VerifiedDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
-            End If
-            If (IsToolingPORecd.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(IsToolingPORecd.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (EAU.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(EAU.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            If (Minimum.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Minimum.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (LeadTimeInitial.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(LeadTimeInitial.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (LeadTimeStandard.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(LeadTimeStandard.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (QuoteTypeID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(QuoteTypeID.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
-            End If
-            If (UnitPrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(UnitPrice.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            If (MinimumOrder.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(MinimumOrder.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
-            End If
-            If (LaborMinutes.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(LaborMinutes.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
-            End If
-            If (LaborRate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(LaborRate.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
-            End If
-            If (Tooling.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Tooling.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
-            End If
-            If (Shipping.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Shipping.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            If (FormBoardRequired.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(FormBoardRequired.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            End If
-            If (FormBoardCost.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(FormBoardCost.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
-            End If
-            If (SingleDefQty.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(SingleDefQty.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
-            End If
-            If (OrderQty.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(OrderQty.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
-            End If
-            If (WireTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(WireTime.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
-            End If
-            If (CutTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(CutTime.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
-            End If
-            If (Cuts.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Cuts.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            End If
-            If (BoxSize Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(BoxSize,String)
-            End If
-            If (BoxPrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(BoxPrice.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
-            End If
-            If (CuPrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(CuPrice.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
-            End If
-            If (CuWeight.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(CuWeight.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
-            End If
-            If (CuWeightMultiplier.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(CuWeightMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
-            End If
-            If (TimeMultiplier.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(TimeMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_QuoteID,System.Guid)
-            If (Original_QuoteNumber Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_QuoteNumber")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_QuoteNumber,String)
-            End If
-            If (Original_CustomerID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_CustomerID.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ContactName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(Original_ContactName,String)
-            End If
-            If (Original_RFQ Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(51).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(Original_RFQ,String)
-            End If
-            If (Original_QuoteDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(Original_QuoteDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(53).Value = Global.System.DBNull.Value
-            End If
-            If (Original_DueDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(Original_DueDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(55).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PartNumber Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(57).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(Original_PartNumber,String)
-            End If
-            If (Original_PartVersion Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(59).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(Original_PartVersion,String)
-            End If
-            If (Original_PartRevision Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(61).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(Original_PartRevision,String)
-            End If
-            If (Original_PartID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(Original_PartID.Value,System.Guid)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(63).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ShippedBefore.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(Original_ShippedBefore.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(65).Value = Global.System.DBNull.Value
-            End If
-            If (Original_NewRevision.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(Original_NewRevision.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(67).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CreatedBy Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(69).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_CreatedBy,String)
-            End If
-            If (Original_StartDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(71).Value = CType(Original_StartDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(71).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CompletedDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(73).Value = CType(Original_CompletedDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(73).Value = Global.System.DBNull.Value
-            End If
-            If (Original_VerifiedBy Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(75).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(75).Value = CType(Original_VerifiedBy,String)
-            End If
-            If (Original_VerifiedDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(77).Value = CType(Original_VerifiedDate.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(77).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IsToolingPORecd.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(Original_IsToolingPORecd.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(79).Value = Global.System.DBNull.Value
-            End If
-            If (Original_EAU.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(81).Value = CType(Original_EAU.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(81).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Minimum.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(83).Value = CType(Original_Minimum.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(83).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LeadTimeInitial.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(85).Value = CType(Original_LeadTimeInitial.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(85).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LeadTimeStandard.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(Original_LeadTimeStandard.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(87).Value = Global.System.DBNull.Value
-            End If
-            If (Original_QuoteTypeID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(Original_QuoteTypeID.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(89).Value = Global.System.DBNull.Value
-            End If
-            If (Original_UnitPrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(Original_UnitPrice.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(91).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MinimumOrder.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(Original_MinimumOrder.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(93).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LaborMinutes.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(Original_LaborMinutes.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(95).Value = Global.System.DBNull.Value
-            End If
-            If (Original_LaborRate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(Original_LaborRate.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(97).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Tooling.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(Original_Tooling.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(99).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Shipping.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(Original_Shipping.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(101).Value = Global.System.DBNull.Value
-            End If
-            If (Original_FormBoardRequired.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(103).Value = CType(Original_FormBoardRequired.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(103).Value = Global.System.DBNull.Value
-            End If
-            If (Original_FormBoardCost.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(104).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(105).Value = CType(Original_FormBoardCost.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(104).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(105).Value = Global.System.DBNull.Value
-            End If
-            If (Original_SingleDefQty.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(106).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(107).Value = CType(Original_SingleDefQty.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(106).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(107).Value = Global.System.DBNull.Value
-            End If
-            If (Original_OrderQty.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(108).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(109).Value = CType(Original_OrderQty.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(108).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(109).Value = Global.System.DBNull.Value
-            End If
-            If (Original_WireTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(110).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(111).Value = CType(Original_WireTime.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(110).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(111).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CutTime.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(112).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(113).Value = CType(Original_CutTime.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(112).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(113).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Cuts.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(114).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(115).Value = CType(Original_Cuts.Value,Integer)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(114).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(115).Value = Global.System.DBNull.Value
-            End If
-            If (Original_BoxSize Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(116).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(117).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(116).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(117).Value = CType(Original_BoxSize,String)
-            End If
-            If (Original_BoxPrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(118).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(119).Value = CType(Original_BoxPrice.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(118).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(119).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CuPrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(120).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(121).Value = CType(Original_CuPrice.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(120).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(121).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CuWeight.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(122).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(123).Value = CType(Original_CuWeight.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(122).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(123).Value = Global.System.DBNull.Value
-            End If
-            If (Original_CuWeightMultiplier.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(124).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(125).Value = CType(Original_CuWeightMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(124).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(125).Value = Global.System.DBNull.Value
-            End If
-            If (Original_TimeMultiplier.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(126).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(127).Value = CType(Original_TimeMultiplier.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(126).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(127).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal QuoteNumber As String,  _
-                    ByVal CustomerID As Global.System.Nullable(Of Integer),  _
-                    ByVal ContactName As String,  _
-                    ByVal RFQ As String,  _
-                    ByVal QuoteDate As Global.System.Nullable(Of Date),  _
-                    ByVal DueDate As Global.System.Nullable(Of Date),  _
-                    ByVal PartNumber As String,  _
-                    ByVal PartVersion As String,  _
-                    ByVal PartRevision As String,  _
-                    ByVal PartID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal ShippedBefore As Global.System.Nullable(Of Boolean),  _
-                    ByVal NewRevision As Global.System.Nullable(Of Boolean),  _
-                    ByVal Comment As String,  _
-                    ByVal CreatedBy As String,  _
-                    ByVal StartDate As Global.System.Nullable(Of Date),  _
-                    ByVal CompletedDate As Global.System.Nullable(Of Date),  _
-                    ByVal VerifiedBy As String,  _
-                    ByVal VerifiedDate As Global.System.Nullable(Of Date),  _
-                    ByVal IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
-                    ByVal EAU As Global.System.Nullable(Of Integer),  _
-                    ByVal Minimum As Global.System.Nullable(Of Integer),  _
-                    ByVal LeadTimeInitial As Global.System.Nullable(Of Integer),  _
-                    ByVal LeadTimeStandard As Global.System.Nullable(Of Integer),  _
-                    ByVal QuoteTypeID As Global.System.Nullable(Of Integer),  _
-                    ByVal UnitPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal MinimumOrder As Global.System.Nullable(Of Decimal),  _
-                    ByVal LaborMinutes As Global.System.Nullable(Of Decimal),  _
-                    ByVal LaborRate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Tooling As Global.System.Nullable(Of Decimal),  _
-                    ByVal Shipping As Global.System.Nullable(Of Decimal),  _
-                    ByVal FormBoardRequired As Global.System.Nullable(Of Boolean),  _
-                    ByVal FormBoardCost As Global.System.Nullable(Of Decimal),  _
-                    ByVal SingleDefQty As Global.System.Nullable(Of Integer),  _
-                    ByVal OrderQty As Global.System.Nullable(Of Integer),  _
-                    ByVal WireTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal CutTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Cuts As Global.System.Nullable(Of Integer),  _
-                    ByVal BoxSize As String,  _
-                    ByVal BoxPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuWeight As Global.System.Nullable(Of Decimal),  _
-                    ByVal CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal TimeMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_QuoteID As System.Guid,  _
-                    ByVal Original_QuoteNumber As String,  _
-                    ByVal Original_CustomerID As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_ContactName As String,  _
-                    ByVal Original_RFQ As String,  _
-                    ByVal Original_QuoteDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_DueDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_PartNumber As String,  _
-                    ByVal Original_PartVersion As String,  _
-                    ByVal Original_PartRevision As String,  _
-                    ByVal Original_PartID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_ShippedBefore As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_NewRevision As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_CreatedBy As String,  _
-                    ByVal Original_StartDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_CompletedDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_VerifiedBy As String,  _
-                    ByVal Original_VerifiedDate As Global.System.Nullable(Of Date),  _
-                    ByVal Original_IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_EAU As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Minimum As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LeadTimeInitial As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_LeadTimeStandard As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_QuoteTypeID As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_UnitPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_MinimumOrder As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LaborMinutes As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_LaborRate As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Tooling As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Shipping As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_FormBoardRequired As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_FormBoardCost As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_SingleDefQty As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_OrderQty As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_WireTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CutTime As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Cuts As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_BoxSize As String,  _
-                    ByVal Original_BoxPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuPrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuWeight As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_TimeMultiplier As Global.System.Nullable(Of Decimal)) As Integer
-            Return Me.Update(Original_QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, Original_QuoteID, Original_QuoteNumber, Original_CustomerID, Original_ContactName, Original_RFQ, Original_QuoteDate, Original_DueDate, Original_PartNumber, Original_PartVersion, Original_PartRevision, Original_PartID, Original_ShippedBefore, Original_NewRevision, Original_CreatedBy, Original_StartDate, Original_CompletedDate, Original_VerifiedBy, Original_VerifiedDate, Original_IsToolingPORecd, Original_EAU, Original_Minimum, Original_LeadTimeInitial, Original_LeadTimeStandard, Original_QuoteTypeID, Original_UnitPrice, Original_MinimumOrder, Original_LaborMinutes, Original_LaborRate, Original_Tooling, Original_Shipping, Original_FormBoardRequired, Original_FormBoardCost, Original_SingleDefQty, Original_OrderQty, Original_WireTime, Original_CutTime, Original_Cuts, Original_BoxSize, Original_BoxPrice, Original_CuPrice, Original_CuWeight, Original_CuWeightMultiplier, Original_TimeMultiplier)
-        End Function
-    End Class
     
     '''<summary>
     '''Represents the connection and commands used to retrieve and save data.
@@ -5634,6 +3658,2147 @@ Namespace ImportDataSetTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class QuoteHeaderTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "QuoteHeader"
+            tableMapping.ColumnMappings.Add("QuoteID", "QuoteID")
+            tableMapping.ColumnMappings.Add("QuoteNumber", "QuoteNumber")
+            tableMapping.ColumnMappings.Add("CustomerID", "CustomerID")
+            tableMapping.ColumnMappings.Add("ContactName", "ContactName")
+            tableMapping.ColumnMappings.Add("RFQ", "RFQ")
+            tableMapping.ColumnMappings.Add("QuoteDate", "QuoteDate")
+            tableMapping.ColumnMappings.Add("DueDate", "DueDate")
+            tableMapping.ColumnMappings.Add("PartNumber", "PartNumber")
+            tableMapping.ColumnMappings.Add("PartVersion", "PartVersion")
+            tableMapping.ColumnMappings.Add("PartRevision", "PartRevision")
+            tableMapping.ColumnMappings.Add("PartID", "PartID")
+            tableMapping.ColumnMappings.Add("ShippedBefore", "ShippedBefore")
+            tableMapping.ColumnMappings.Add("NewRevision", "NewRevision")
+            tableMapping.ColumnMappings.Add("Comment", "Comment")
+            tableMapping.ColumnMappings.Add("CreatedBy", "CreatedBy")
+            tableMapping.ColumnMappings.Add("StartDate", "StartDate")
+            tableMapping.ColumnMappings.Add("CompletedDate", "CompletedDate")
+            tableMapping.ColumnMappings.Add("VerifiedBy", "VerifiedBy")
+            tableMapping.ColumnMappings.Add("VerifiedDate", "VerifiedDate")
+            tableMapping.ColumnMappings.Add("IsToolingPORecd", "IsToolingPORecd")
+            tableMapping.ColumnMappings.Add("EAU", "EAU")
+            tableMapping.ColumnMappings.Add("Minimum", "Minimum")
+            tableMapping.ColumnMappings.Add("LeadTimeInitial", "LeadTimeInitial")
+            tableMapping.ColumnMappings.Add("LeadTimeStandard", "LeadTimeStandard")
+            tableMapping.ColumnMappings.Add("QuoteTypeID", "QuoteTypeID")
+            tableMapping.ColumnMappings.Add("UnitPrice", "UnitPrice")
+            tableMapping.ColumnMappings.Add("MinimumOrder", "MinimumOrder")
+            tableMapping.ColumnMappings.Add("LaborMinutes", "LaborMinutes")
+            tableMapping.ColumnMappings.Add("LaborRate", "LaborRate")
+            tableMapping.ColumnMappings.Add("Tooling", "Tooling")
+            tableMapping.ColumnMappings.Add("Shipping", "Shipping")
+            tableMapping.ColumnMappings.Add("FormBoardRequired", "FormBoardRequired")
+            tableMapping.ColumnMappings.Add("FormBoardCost", "FormBoardCost")
+            tableMapping.ColumnMappings.Add("SingleDefQty", "SingleDefQty")
+            tableMapping.ColumnMappings.Add("OrderQty", "OrderQty")
+            tableMapping.ColumnMappings.Add("WireTime", "WireTime")
+            tableMapping.ColumnMappings.Add("CutTime", "CutTime")
+            tableMapping.ColumnMappings.Add("Cuts", "Cuts")
+            tableMapping.ColumnMappings.Add("BoxSize", "BoxSize")
+            tableMapping.ColumnMappings.Add("BoxPrice", "BoxPrice")
+            tableMapping.ColumnMappings.Add("CuPrice", "CuPrice")
+            tableMapping.ColumnMappings.Add("CuWeight", "CuWeight")
+            tableMapping.ColumnMappings.Add("CuWeightMultiplier", "CuWeightMultiplier")
+            tableMapping.ColumnMappings.Add("TimeMultiplier", "TimeMultiplier")
+            tableMapping.ColumnMappings.Add("FinalMarkup", "FinalMarkup")
+            tableMapping.ColumnMappings.Add("MaterialMarkup", "MaterialMarkup")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [QuoteHeader] WHERE (([QuoteID] = @Original_QuoteID) AND ([QuoteNumbe"& _ 
+                "r] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 AND [CustomerID] IS NUL"& _ 
+                "L) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull_ContactName = 1 AND ["& _ 
+                "ContactName] IS NULL) OR ([ContactName] = @Original_ContactName)) AND ((@IsNull_"& _ 
+                "RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND ((@IsNull_QuoteDate ="& _ 
+                " 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_QuoteDate)) AND ((@IsNul"& _ 
+                "l_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Original_DueDate)) AND ((@"& _ 
+                "IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartNumber] = @Original_Par"& _ 
+                "tNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] IS NULL) OR ([PartVers"& _ 
+                "ion] = @Original_PartVersion)) AND ((@IsNull_PartRevision = 1 AND [PartRevision]"& _ 
+                " IS NULL) OR ([PartRevision] = @Original_PartRevision)) AND ((@IsNull_PartID = 1"& _ 
+                " AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) AND ((@IsNull_ShippedBe"& _ 
+                "fore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] = @Original_ShippedBef"& _ 
+                "ore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS NULL) OR ([NewRevision]"& _ 
+                " = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] IS NULL) "& _ 
+                "OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_StartDate = 1 AND [StartDa"& _ 
+                "te] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_CompletedDate"& _ 
+                " = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @Original_CompletedDate)"& _ 
+                ") AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) OR ([VerifiedBy] = @Ori"& _ 
+                "ginal_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [VerifiedDate] IS NULL) OR"& _ 
+                " ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_IsToolingPORecd = 1 AN"& _ 
+                "D [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Original_IsToolingPORecd))"& _ 
+                " AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Original_EAU)) AND ((@IsN"& _ 
+                "ull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Original_Minimum)) AND ("& _ 
+                "(@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL) OR ([LeadTimeInitial"& _ 
+                "] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStandard = 1 AND [LeadTime"& _ 
+                "Standard] IS NULL) OR ([LeadTimeStandard] = @Original_LeadTimeStandard)) AND ((@"& _ 
+                "IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([QuoteTypeID] = @Original_"& _ 
+                "QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] IS NULL) OR ([UnitPric"& _ 
+                "e] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 AND [MinimumOrder] IS "& _ 
+                "NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND ((@IsNull_LaborMinutes ="& _ 
+                " 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Original_LaborMinutes)) AND"& _ 
+                " ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([LaborRate] = @Original_La"& _ 
+                "borRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL) OR ([Tooling] = @Orig"& _ 
+                "inal_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] IS NULL) OR ([Shipping]"& _ 
+                " = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = 1 AND [FormBoardRequir"& _ 
+                "ed] IS NULL) OR ([FormBoardRequired] = @Original_FormBoardRequired)) AND ((@IsNu"& _ 
+                "ll_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([FormBoardCost] = @Origina"& _ 
+                "l_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [SingleDefQty] IS NULL) OR "& _ 
+                "([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_OrderQty = 1 AND [Order"& _ 
+                "Qty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND ((@IsNull_WireTime = 1 A"& _ 
+                "ND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime)) AND ((@IsNull_CutTi"& _ 
+                "me = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_CutTime)) AND ((@IsNull_"& _ 
+                "Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts)) AND ((@IsNull_BoxSize"& _ 
+                " = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxSize)) AND ((@IsNull_Bo"& _ 
+                "xPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Original_BoxPrice)) AND ((@"& _ 
+                "IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = @Original_CuPrice)) AN"& _ 
+                "D ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWeight] = @Original_CuWe"& _ 
+                "ight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightMultiplier] IS NULL) OR"& _ 
+                " ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AND ((@IsNull_TimeMultip"& _ 
+                "lier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier] = @Original_TimeMult"& _ 
+                "iplier)) AND ((@IsNull_FinalMarkup = 1 AND [FinalMarkup] IS NULL) OR ([FinalMark"& _ 
+                "up] = @Original_FinalMarkup)) AND ((@IsNull_MaterialMarkup = 1 AND [MaterialMark"& _ 
+                "up] IS NULL) OR ([MaterialMarkup] = @Original_MaterialMarkup)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ContactName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_RFQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_DueDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartVersion", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ShippedBefore", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NewRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CreatedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_StartDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CompletedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_IsToolingPORecd", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_UnitPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MinimumOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborMinutes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborMinutes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborRate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Tooling", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Shipping", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardRequired", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardCost", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_WireTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CutTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CutTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxSize", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeight", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeight", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeightMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TimeMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FinalMarkup", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FinalMarkup", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FinalMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "FinalMarkup", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MaterialMarkup", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MaterialMarkup", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MaterialMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "MaterialMarkup", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [QuoteHeader] ([QuoteID], [QuoteNumber], [CustomerID], [ContactName],"& _ 
+                " [RFQ], [QuoteDate], [DueDate], [PartNumber], [PartVersion], [PartRevision], [Pa"& _ 
+                "rtID], [ShippedBefore], [NewRevision], [Comment], [CreatedBy], [StartDate], [Com"& _ 
+                "pletedDate], [VerifiedBy], [VerifiedDate], [IsToolingPORecd], [EAU], [Minimum], "& _ 
+                "[LeadTimeInitial], [LeadTimeStandard], [QuoteTypeID], [UnitPrice], [MinimumOrder"& _ 
+                "], [LaborMinutes], [LaborRate], [Tooling], [Shipping], [FormBoardRequired], [For"& _ 
+                "mBoardCost], [SingleDefQty], [OrderQty], [WireTime], [CutTime], [Cuts], [BoxSize"& _ 
+                "], [BoxPrice], [CuPrice], [CuWeight], [CuWeightMultiplier], [TimeMultiplier], [F"& _ 
+                "inalMarkup], [MaterialMarkup]) VALUES (@QuoteID, @QuoteNumber, @CustomerID, @Con"& _ 
+                "tactName, @RFQ, @QuoteDate, @DueDate, @PartNumber, @PartVersion, @PartRevision, "& _ 
+                "@PartID, @ShippedBefore, @NewRevision, @Comment, @CreatedBy, @StartDate, @Comple"& _ 
+                "tedDate, @VerifiedBy, @VerifiedDate, @IsToolingPORecd, @EAU, @Minimum, @LeadTime"& _ 
+                "Initial, @LeadTimeStandard, @QuoteTypeID, @UnitPrice, @MinimumOrder, @LaborMinut"& _ 
+                "es, @LaborRate, @Tooling, @Shipping, @FormBoardRequired, @FormBoardCost, @Single"& _ 
+                "DefQty, @OrderQty, @WireTime, @CutTime, @Cuts, @BoxSize, @BoxPrice, @CuPrice, @C"& _ 
+                "uWeight, @CuWeightMultiplier, @TimeMultiplier, @FinalMarkup, @MaterialMarkup);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "SELECT QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, P"& _ 
+                "artNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Commen"& _ 
+                "t, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORec"& _ 
+                "d, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, Mini"& _ 
+                "mumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoa"& _ 
+                "rdCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPr"& _ 
+                "ice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialMarkup F"& _ 
+                "ROM QuoteHeader WHERE (QuoteID = @QuoteID) ORDER BY QuoteNumber DESC"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Comment", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Comment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FinalMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "FinalMarkup", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MaterialMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "MaterialMarkup", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [QuoteHeader] SET [QuoteID] = @QuoteID, [QuoteNumber] = @QuoteNumber, [Cus"& _ 
+                "tomerID] = @CustomerID, [ContactName] = @ContactName, [RFQ] = @RFQ, [QuoteDate] "& _ 
+                "= @QuoteDate, [DueDate] = @DueDate, [PartNumber] = @PartNumber, [PartVersion] = "& _ 
+                "@PartVersion, [PartRevision] = @PartRevision, [PartID] = @PartID, [ShippedBefore"& _ 
+                "] = @ShippedBefore, [NewRevision] = @NewRevision, [Comment] = @Comment, [Created"& _ 
+                "By] = @CreatedBy, [StartDate] = @StartDate, [CompletedDate] = @CompletedDate, [V"& _ 
+                "erifiedBy] = @VerifiedBy, [VerifiedDate] = @VerifiedDate, [IsToolingPORecd] = @I"& _ 
+                "sToolingPORecd, [EAU] = @EAU, [Minimum] = @Minimum, [LeadTimeInitial] = @LeadTim"& _ 
+                "eInitial, [LeadTimeStandard] = @LeadTimeStandard, [QuoteTypeID] = @QuoteTypeID, "& _ 
+                "[UnitPrice] = @UnitPrice, [MinimumOrder] = @MinimumOrder, [LaborMinutes] = @Labo"& _ 
+                "rMinutes, [LaborRate] = @LaborRate, [Tooling] = @Tooling, [Shipping] = @Shipping"& _ 
+                ", [FormBoardRequired] = @FormBoardRequired, [FormBoardCost] = @FormBoardCost, [S"& _ 
+                "ingleDefQty] = @SingleDefQty, [OrderQty] = @OrderQty, [WireTime] = @WireTime, [C"& _ 
+                "utTime] = @CutTime, [Cuts] = @Cuts, [BoxSize] = @BoxSize, [BoxPrice] = @BoxPrice"& _ 
+                ", [CuPrice] = @CuPrice, [CuWeight] = @CuWeight, [CuWeightMultiplier] = @CuWeight"& _ 
+                "Multiplier, [TimeMultiplier] = @TimeMultiplier, [FinalMarkup] = @FinalMarkup, [M"& _ 
+                "aterialMarkup] = @MaterialMarkup WHERE (([QuoteID] = @Original_QuoteID) AND ([Qu"& _ 
+                "oteNumber] = @Original_QuoteNumber) AND ((@IsNull_CustomerID = 1 AND [CustomerID"& _ 
+                "] IS NULL) OR ([CustomerID] = @Original_CustomerID)) AND ((@IsNull_ContactName ="& _ 
+                " 1 AND [ContactName] IS NULL) OR ([ContactName] = @Original_ContactName)) AND (("& _ 
+                "@IsNull_RFQ = 1 AND [RFQ] IS NULL) OR ([RFQ] = @Original_RFQ)) AND ((@IsNull_Quo"& _ 
+                "teDate = 1 AND [QuoteDate] IS NULL) OR ([QuoteDate] = @Original_QuoteDate)) AND "& _ 
+                "((@IsNull_DueDate = 1 AND [DueDate] IS NULL) OR ([DueDate] = @Original_DueDate))"& _ 
+                " AND ((@IsNull_PartNumber = 1 AND [PartNumber] IS NULL) OR ([PartNumber] = @Orig"& _ 
+                "inal_PartNumber)) AND ((@IsNull_PartVersion = 1 AND [PartVersion] IS NULL) OR (["& _ 
+                "PartVersion] = @Original_PartVersion)) AND ((@IsNull_PartRevision = 1 AND [PartR"& _ 
+                "evision] IS NULL) OR ([PartRevision] = @Original_PartRevision)) AND ((@IsNull_Pa"& _ 
+                "rtID = 1 AND [PartID] IS NULL) OR ([PartID] = @Original_PartID)) AND ((@IsNull_S"& _ 
+                "hippedBefore = 1 AND [ShippedBefore] IS NULL) OR ([ShippedBefore] = @Original_Sh"& _ 
+                "ippedBefore)) AND ((@IsNull_NewRevision = 1 AND [NewRevision] IS NULL) OR ([NewR"& _ 
+                "evision] = @Original_NewRevision)) AND ((@IsNull_CreatedBy = 1 AND [CreatedBy] I"& _ 
+                "S NULL) OR ([CreatedBy] = @Original_CreatedBy)) AND ((@IsNull_StartDate = 1 AND "& _ 
+                "[StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_Compl"& _ 
+                "etedDate = 1 AND [CompletedDate] IS NULL) OR ([CompletedDate] = @Original_Comple"& _ 
+                "tedDate)) AND ((@IsNull_VerifiedBy = 1 AND [VerifiedBy] IS NULL) OR ([VerifiedBy"& _ 
+                "] = @Original_VerifiedBy)) AND ((@IsNull_VerifiedDate = 1 AND [VerifiedDate] IS "& _ 
+                "NULL) OR ([VerifiedDate] = @Original_VerifiedDate)) AND ((@IsNull_IsToolingPORec"& _ 
+                "d = 1 AND [IsToolingPORecd] IS NULL) OR ([IsToolingPORecd] = @Original_IsTooling"& _ 
+                "PORecd)) AND ((@IsNull_EAU = 1 AND [EAU] IS NULL) OR ([EAU] = @Original_EAU)) AN"& _ 
+                "D ((@IsNull_Minimum = 1 AND [Minimum] IS NULL) OR ([Minimum] = @Original_Minimum"& _ 
+                ")) AND ((@IsNull_LeadTimeInitial = 1 AND [LeadTimeInitial] IS NULL) OR ([LeadTim"& _ 
+                "eInitial] = @Original_LeadTimeInitial)) AND ((@IsNull_LeadTimeStandard = 1 AND ["& _ 
+                "LeadTimeStandard] IS NULL) OR ([LeadTimeStandard] = @Original_LeadTimeStandard))"& _ 
+                " AND ((@IsNull_QuoteTypeID = 1 AND [QuoteTypeID] IS NULL) OR ([QuoteTypeID] = @O"& _ 
+                "riginal_QuoteTypeID)) AND ((@IsNull_UnitPrice = 1 AND [UnitPrice] IS NULL) OR (["& _ 
+                "UnitPrice] = @Original_UnitPrice)) AND ((@IsNull_MinimumOrder = 1 AND [MinimumOr"& _ 
+                "der] IS NULL) OR ([MinimumOrder] = @Original_MinimumOrder)) AND ((@IsNull_LaborM"& _ 
+                "inutes = 1 AND [LaborMinutes] IS NULL) OR ([LaborMinutes] = @Original_LaborMinut"& _ 
+                "es)) AND ((@IsNull_LaborRate = 1 AND [LaborRate] IS NULL) OR ([LaborRate] = @Ori"& _ 
+                "ginal_LaborRate)) AND ((@IsNull_Tooling = 1 AND [Tooling] IS NULL) OR ([Tooling]"& _ 
+                " = @Original_Tooling)) AND ((@IsNull_Shipping = 1 AND [Shipping] IS NULL) OR ([S"& _ 
+                "hipping] = @Original_Shipping)) AND ((@IsNull_FormBoardRequired = 1 AND [FormBoa"& _ 
+                "rdRequired] IS NULL) OR ([FormBoardRequired] = @Original_FormBoardRequired)) AND"& _ 
+                " ((@IsNull_FormBoardCost = 1 AND [FormBoardCost] IS NULL) OR ([FormBoardCost] = "& _ 
+                "@Original_FormBoardCost)) AND ((@IsNull_SingleDefQty = 1 AND [SingleDefQty] IS N"& _ 
+                "ULL) OR ([SingleDefQty] = @Original_SingleDefQty)) AND ((@IsNull_OrderQty = 1 AN"& _ 
+                "D [OrderQty] IS NULL) OR ([OrderQty] = @Original_OrderQty)) AND ((@IsNull_WireTi"& _ 
+                "me = 1 AND [WireTime] IS NULL) OR ([WireTime] = @Original_WireTime)) AND ((@IsNu"& _ 
+                "ll_CutTime = 1 AND [CutTime] IS NULL) OR ([CutTime] = @Original_CutTime)) AND (("& _ 
+                "@IsNull_Cuts = 1 AND [Cuts] IS NULL) OR ([Cuts] = @Original_Cuts)) AND ((@IsNull"& _ 
+                "_BoxSize = 1 AND [BoxSize] IS NULL) OR ([BoxSize] = @Original_BoxSize)) AND ((@I"& _ 
+                "sNull_BoxPrice = 1 AND [BoxPrice] IS NULL) OR ([BoxPrice] = @Original_BoxPrice))"& _ 
+                " AND ((@IsNull_CuPrice = 1 AND [CuPrice] IS NULL) OR ([CuPrice] = @Original_CuPr"& _ 
+                "ice)) AND ((@IsNull_CuWeight = 1 AND [CuWeight] IS NULL) OR ([CuWeight] = @Origi"& _ 
+                "nal_CuWeight)) AND ((@IsNull_CuWeightMultiplier = 1 AND [CuWeightMultiplier] IS "& _ 
+                "NULL) OR ([CuWeightMultiplier] = @Original_CuWeightMultiplier)) AND ((@IsNull_Ti"& _ 
+                "meMultiplier = 1 AND [TimeMultiplier] IS NULL) OR ([TimeMultiplier] = @Original_"& _ 
+                "TimeMultiplier)) AND ((@IsNull_FinalMarkup = 1 AND [FinalMarkup] IS NULL) OR ([F"& _ 
+                "inalMarkup] = @Original_FinalMarkup)) AND ((@IsNull_MaterialMarkup = 1 AND [Mate"& _ 
+                "rialMarkup] IS NULL) OR ([MaterialMarkup] = @Original_MaterialMarkup)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT"& _ 
+                " QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNum"& _ 
+                "ber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, Cre"& _ 
+                "atedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU"& _ 
+                ", Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrd"& _ 
+                "er, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost"& _ 
+                ", SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, C"& _ 
+                "uWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialMarkup FROM Qu"& _ 
+                "oteHeader WHERE (QuoteID = @QuoteID) ORDER BY QuoteNumber DESC"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Comment", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Comment", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@FinalMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "FinalMarkup", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@MaterialMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "MaterialMarkup", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CustomerID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CustomerID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ContactName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ContactName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ContactName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_RFQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_RFQ", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "RFQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_DueDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DueDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DueDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartNumber", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartVersion", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartVersion", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartVersion", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartRevision", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PartID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PartID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PartID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ShippedBefore", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ShippedBefore", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ShippedBefore", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_NewRevision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_NewRevision", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "NewRevision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CreatedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CreatedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CreatedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_StartDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_StartDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "StartDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CompletedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CompletedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CompletedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedBy", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedBy", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedBy", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_VerifiedDate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_VerifiedDate", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "VerifiedDate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_IsToolingPORecd", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsToolingPORecd", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsToolingPORecd", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_EAU", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "EAU", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Minimum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Minimum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeInitial", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeInitial", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LeadTimeStandard", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LeadTimeStandard", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteTypeID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteTypeID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_UnitPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_UnitPrice", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "UnitPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MinimumOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MinimumOrder", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MinimumOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborMinutes", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborMinutes", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborMinutes", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "LaborMinutes", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_LaborRate", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_LaborRate", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "LaborRate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Tooling", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Tooling", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Tooling", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Shipping", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Shipping", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Shipping", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardRequired", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardRequired", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardRequired", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FormBoardCost", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FormBoardCost", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FormBoardCost", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SingleDefQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SingleDefQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_OrderQty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "OrderQty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_WireTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "WireTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_WireTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "WireTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CutTime", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CutTime", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CutTime", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CutTime", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Cuts", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Cuts", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxSize", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxSize", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxSize", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_BoxPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BoxPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BoxPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "BoxPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuPrice", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuPrice", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuPrice", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuPrice", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeight", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeight", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeight", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 5, "CuWeight", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CuWeightMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CuWeightMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "CuWeightMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_TimeMultiplier", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_TimeMultiplier", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "TimeMultiplier", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_FinalMarkup", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "FinalMarkup", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_FinalMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "FinalMarkup", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_MaterialMarkup", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "MaterialMarkup", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_MaterialMarkup", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "MaterialMarkup", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.DCS.Quote.My.MySettings.Default.cuttagSKEConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueD"& _ 
+                "ate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Comment, CreatedBy, StartDate, CompletedDate, Verifie"& _ 
+                "dBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStand"& _ 
+                "ard, QuoteTypeID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         UnitPrice, MinimumOrder, LaborMinut"& _ 
+                "es, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty"& _ 
+                ", OrderQty, WireTime, CutTime, Cuts, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BoxSize, BoxPric"& _ 
+                "e, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialM"& _ 
+                "arkup"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            QuoteHeader"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY QuoteNumber DESC"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueD"& _ 
+                "ate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Comment, CreatedBy, StartDate, CompletedDate, Verifie"& _ 
+                "dBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStand"& _ 
+                "ard, QuoteTypeID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         UnitPrice, MinimumOrder, LaborMinut"& _ 
+                "es, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty"& _ 
+                ", OrderQty, WireTime, CutTime, Cuts, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         BoxSize, BoxPric"& _ 
+                "e, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialM"& _ 
+                "arkup"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            QuoteHeader"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (QuoteNumber = @QuoteNumber)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"O"& _ 
+                "RDER BY QuoteNumber DESC"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteNumber", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As ImportDataSet.QuoteHeaderDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As ImportDataSet.QuoteHeaderDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As ImportDataSet.QuoteHeaderDataTable = New ImportDataSet.QuoteHeaderDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByQuoteNumber(ByVal dataTable As ImportDataSet.QuoteHeaderDataTable, ByVal QuoteNumber As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (QuoteNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("QuoteNumber")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(QuoteNumber,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByQuoteNumber(ByVal QuoteNumber As String) As ImportDataSet.QuoteHeaderDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (QuoteNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("QuoteNumber")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(QuoteNumber,String)
+            End If
+            Dim dataTable As ImportDataSet.QuoteHeaderDataTable = New ImportDataSet.QuoteHeaderDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As ImportDataSet.QuoteHeaderDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As ImportDataSet) As Integer
+            Return Me.Adapter.Update(dataSet, "QuoteHeader")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete( _
+                    ByVal Original_QuoteID As System.Guid,  _
+                    ByVal Original_QuoteNumber As String,  _
+                    ByVal Original_CustomerID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_ContactName As String,  _
+                    ByVal Original_RFQ As String,  _
+                    ByVal Original_QuoteDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_DueDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PartNumber As String,  _
+                    ByVal Original_PartVersion As String,  _
+                    ByVal Original_PartRevision As String,  _
+                    ByVal Original_PartID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_ShippedBefore As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_NewRevision As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_CreatedBy As String,  _
+                    ByVal Original_StartDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_CompletedDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_VerifiedBy As String,  _
+                    ByVal Original_VerifiedDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_EAU As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_Minimum As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_LeadTimeInitial As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_LeadTimeStandard As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_QuoteTypeID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_UnitPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_MinimumOrder As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_LaborMinutes As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_LaborRate As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Tooling As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Shipping As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_FormBoardRequired As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_FormBoardCost As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_SingleDefQty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_OrderQty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_WireTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CutTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Cuts As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_BoxSize As String,  _
+                    ByVal Original_BoxPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuWeight As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TimeMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_FinalMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_MaterialMarkup As Global.System.Nullable(Of Decimal)) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_QuoteID,System.Guid)
+            If (Original_QuoteNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_QuoteNumber")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_QuoteNumber,String)
+            End If
+            If (Original_CustomerID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_CustomerID.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ContactName Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_ContactName,String)
+            End If
+            If (Original_RFQ Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_RFQ,String)
+            End If
+            If (Original_QuoteDate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_QuoteDate.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
+            If (Original_DueDate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_DueDate.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PartNumber Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_PartNumber,String)
+            End If
+            If (Original_PartVersion Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_PartVersion,String)
+            End If
+            If (Original_PartRevision Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_PartRevision,String)
+            End If
+            If (Original_PartID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_PartID.Value,System.Guid)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ShippedBefore.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_ShippedBefore.Value,Boolean)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(21).Value = Global.System.DBNull.Value
+            End If
+            If (Original_NewRevision.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_NewRevision.Value,Boolean)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(23).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CreatedBy Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_CreatedBy,String)
+            End If
+            If (Original_StartDate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_StartDate.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CompletedDate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(Original_CompletedDate.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = Global.System.DBNull.Value
+            End If
+            If (Original_VerifiedBy Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(31).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(Original_VerifiedBy,String)
+            End If
+            If (Original_VerifiedDate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(Original_VerifiedDate.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(33).Value = Global.System.DBNull.Value
+            End If
+            If (Original_IsToolingPORecd.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(Original_IsToolingPORecd.Value,Boolean)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(35).Value = Global.System.DBNull.Value
+            End If
+            If (Original_EAU.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(Original_EAU.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(37).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Minimum.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(39).Value = CType(Original_Minimum.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(39).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LeadTimeInitial.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(Original_LeadTimeInitial.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(41).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LeadTimeStandard.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(Original_LeadTimeStandard.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(43).Value = Global.System.DBNull.Value
+            End If
+            If (Original_QuoteTypeID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(44).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(45).Value = CType(Original_QuoteTypeID.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(44).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(45).Value = Global.System.DBNull.Value
+            End If
+            If (Original_UnitPrice.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(47).Value = CType(Original_UnitPrice.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(46).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(47).Value = Global.System.DBNull.Value
+            End If
+            If (Original_MinimumOrder.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(48).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(49).Value = CType(Original_MinimumOrder.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(48).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(49).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LaborMinutes.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(50).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(51).Value = CType(Original_LaborMinutes.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(50).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(51).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LaborRate.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(52).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(53).Value = CType(Original_LaborRate.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(52).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(53).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Tooling.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(54).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(55).Value = CType(Original_Tooling.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(54).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(55).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Shipping.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(56).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(57).Value = CType(Original_Shipping.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(56).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(57).Value = Global.System.DBNull.Value
+            End If
+            If (Original_FormBoardRequired.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(58).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(59).Value = CType(Original_FormBoardRequired.Value,Boolean)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(58).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(59).Value = Global.System.DBNull.Value
+            End If
+            If (Original_FormBoardCost.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(60).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(61).Value = CType(Original_FormBoardCost.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(60).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(61).Value = Global.System.DBNull.Value
+            End If
+            If (Original_SingleDefQty.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(62).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(63).Value = CType(Original_SingleDefQty.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(62).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(63).Value = Global.System.DBNull.Value
+            End If
+            If (Original_OrderQty.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(64).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(65).Value = CType(Original_OrderQty.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(64).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(65).Value = Global.System.DBNull.Value
+            End If
+            If (Original_WireTime.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(66).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(67).Value = CType(Original_WireTime.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(66).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(67).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CutTime.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(68).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(69).Value = CType(Original_CutTime.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(68).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(69).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Cuts.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(70).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(71).Value = CType(Original_Cuts.Value,Integer)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(70).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(71).Value = Global.System.DBNull.Value
+            End If
+            If (Original_BoxSize Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(72).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(73).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(72).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(73).Value = CType(Original_BoxSize,String)
+            End If
+            If (Original_BoxPrice.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(74).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(75).Value = CType(Original_BoxPrice.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(74).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(75).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CuPrice.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(76).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(77).Value = CType(Original_CuPrice.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(76).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(77).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CuWeight.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(78).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(79).Value = CType(Original_CuWeight.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(78).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(79).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CuWeightMultiplier.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(80).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(81).Value = CType(Original_CuWeightMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(80).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(81).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TimeMultiplier.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(82).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(83).Value = CType(Original_TimeMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(82).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(83).Value = Global.System.DBNull.Value
+            End If
+            If (Original_FinalMarkup.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(84).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(85).Value = CType(Original_FinalMarkup.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(84).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(85).Value = Global.System.DBNull.Value
+            End If
+            If (Original_MaterialMarkup.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(86).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(87).Value = CType(Original_MaterialMarkup.Value,Decimal)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(86).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(87).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert( _
+                    ByVal QuoteID As System.Guid,  _
+                    ByVal QuoteNumber As String,  _
+                    ByVal CustomerID As Global.System.Nullable(Of Integer),  _
+                    ByVal ContactName As String,  _
+                    ByVal RFQ As String,  _
+                    ByVal QuoteDate As Global.System.Nullable(Of Date),  _
+                    ByVal DueDate As Global.System.Nullable(Of Date),  _
+                    ByVal PartNumber As String,  _
+                    ByVal PartVersion As String,  _
+                    ByVal PartRevision As String,  _
+                    ByVal PartID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal ShippedBefore As Global.System.Nullable(Of Boolean),  _
+                    ByVal NewRevision As Global.System.Nullable(Of Boolean),  _
+                    ByVal Comment As String,  _
+                    ByVal CreatedBy As String,  _
+                    ByVal StartDate As Global.System.Nullable(Of Date),  _
+                    ByVal CompletedDate As Global.System.Nullable(Of Date),  _
+                    ByVal VerifiedBy As String,  _
+                    ByVal VerifiedDate As Global.System.Nullable(Of Date),  _
+                    ByVal IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
+                    ByVal EAU As Global.System.Nullable(Of Integer),  _
+                    ByVal Minimum As Global.System.Nullable(Of Integer),  _
+                    ByVal LeadTimeInitial As Global.System.Nullable(Of Integer),  _
+                    ByVal LeadTimeStandard As Global.System.Nullable(Of Integer),  _
+                    ByVal QuoteTypeID As Global.System.Nullable(Of Integer),  _
+                    ByVal UnitPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal MinimumOrder As Global.System.Nullable(Of Decimal),  _
+                    ByVal LaborMinutes As Global.System.Nullable(Of Decimal),  _
+                    ByVal LaborRate As Global.System.Nullable(Of Decimal),  _
+                    ByVal Tooling As Global.System.Nullable(Of Decimal),  _
+                    ByVal Shipping As Global.System.Nullable(Of Decimal),  _
+                    ByVal FormBoardRequired As Global.System.Nullable(Of Boolean),  _
+                    ByVal FormBoardCost As Global.System.Nullable(Of Decimal),  _
+                    ByVal SingleDefQty As Global.System.Nullable(Of Integer),  _
+                    ByVal OrderQty As Global.System.Nullable(Of Integer),  _
+                    ByVal WireTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal CutTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Cuts As Global.System.Nullable(Of Integer),  _
+                    ByVal BoxSize As String,  _
+                    ByVal BoxPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuWeight As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal TimeMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal FinalMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal MaterialMarkup As Global.System.Nullable(Of Decimal)) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(QuoteID,System.Guid)
+            If (QuoteNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("QuoteNumber")
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(QuoteNumber,String)
+            End If
+            If (CustomerID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(CustomerID.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (ContactName Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(ContactName,String)
+            End If
+            If (RFQ Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(RFQ,String)
+            End If
+            If (QuoteDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(QuoteDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            If (DueDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(DueDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (PartNumber Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(PartNumber,String)
+            End If
+            If (PartVersion Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(PartVersion,String)
+            End If
+            If (PartRevision Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(PartRevision,String)
+            End If
+            If (PartID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(PartID.Value,System.Guid)
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (ShippedBefore.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(ShippedBefore.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (NewRevision.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(NewRevision.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            If (Comment Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(Comment,String)
+            End If
+            If (CreatedBy Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(CreatedBy,String)
+            End If
+            If (StartDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(StartDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (CompletedDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(CompletedDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (VerifiedBy Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(17).Value = CType(VerifiedBy,String)
+            End If
+            If (VerifiedDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(18).Value = CType(VerifiedDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
+            If (IsToolingPORecd.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(19).Value = CType(IsToolingPORecd.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (EAU.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(20).Value = CType(EAU.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
+            End If
+            If (Minimum.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(21).Value = CType(Minimum.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
+            End If
+            If (LeadTimeInitial.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(22).Value = CType(LeadTimeInitial.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (LeadTimeStandard.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(23).Value = CType(LeadTimeStandard.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(23).Value = Global.System.DBNull.Value
+            End If
+            If (QuoteTypeID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(24).Value = CType(QuoteTypeID.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
+            End If
+            If (UnitPrice.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(25).Value = CType(UnitPrice.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(25).Value = Global.System.DBNull.Value
+            End If
+            If (MinimumOrder.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(26).Value = CType(MinimumOrder.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(26).Value = Global.System.DBNull.Value
+            End If
+            If (LaborMinutes.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(27).Value = CType(LaborMinutes.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            If (LaborRate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(28).Value = CType(LaborRate.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(28).Value = Global.System.DBNull.Value
+            End If
+            If (Tooling.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(29).Value = CType(Tooling.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(29).Value = Global.System.DBNull.Value
+            End If
+            If (Shipping.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(30).Value = CType(Shipping.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(30).Value = Global.System.DBNull.Value
+            End If
+            If (FormBoardRequired.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(31).Value = CType(FormBoardRequired.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(31).Value = Global.System.DBNull.Value
+            End If
+            If (FormBoardCost.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(32).Value = CType(FormBoardCost.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(32).Value = Global.System.DBNull.Value
+            End If
+            If (SingleDefQty.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(33).Value = CType(SingleDefQty.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(33).Value = Global.System.DBNull.Value
+            End If
+            If (OrderQty.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(34).Value = CType(OrderQty.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(34).Value = Global.System.DBNull.Value
+            End If
+            If (WireTime.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(35).Value = CType(WireTime.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(35).Value = Global.System.DBNull.Value
+            End If
+            If (CutTime.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(36).Value = CType(CutTime.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(36).Value = Global.System.DBNull.Value
+            End If
+            If (Cuts.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(37).Value = CType(Cuts.Value,Integer)
+            Else
+                Me.Adapter.InsertCommand.Parameters(37).Value = Global.System.DBNull.Value
+            End If
+            If (BoxSize Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(38).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(38).Value = CType(BoxSize,String)
+            End If
+            If (BoxPrice.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(39).Value = CType(BoxPrice.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(39).Value = Global.System.DBNull.Value
+            End If
+            If (CuPrice.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(40).Value = CType(CuPrice.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(40).Value = Global.System.DBNull.Value
+            End If
+            If (CuWeight.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(41).Value = CType(CuWeight.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(41).Value = Global.System.DBNull.Value
+            End If
+            If (CuWeightMultiplier.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(42).Value = CType(CuWeightMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(42).Value = Global.System.DBNull.Value
+            End If
+            If (TimeMultiplier.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(43).Value = CType(TimeMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(43).Value = Global.System.DBNull.Value
+            End If
+            If (FinalMarkup.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(44).Value = CType(FinalMarkup.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(44).Value = Global.System.DBNull.Value
+            End If
+            If (MaterialMarkup.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(45).Value = CType(MaterialMarkup.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(45).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal QuoteID As System.Guid,  _
+                    ByVal QuoteNumber As String,  _
+                    ByVal CustomerID As Global.System.Nullable(Of Integer),  _
+                    ByVal ContactName As String,  _
+                    ByVal RFQ As String,  _
+                    ByVal QuoteDate As Global.System.Nullable(Of Date),  _
+                    ByVal DueDate As Global.System.Nullable(Of Date),  _
+                    ByVal PartNumber As String,  _
+                    ByVal PartVersion As String,  _
+                    ByVal PartRevision As String,  _
+                    ByVal PartID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal ShippedBefore As Global.System.Nullable(Of Boolean),  _
+                    ByVal NewRevision As Global.System.Nullable(Of Boolean),  _
+                    ByVal Comment As String,  _
+                    ByVal CreatedBy As String,  _
+                    ByVal StartDate As Global.System.Nullable(Of Date),  _
+                    ByVal CompletedDate As Global.System.Nullable(Of Date),  _
+                    ByVal VerifiedBy As String,  _
+                    ByVal VerifiedDate As Global.System.Nullable(Of Date),  _
+                    ByVal IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
+                    ByVal EAU As Global.System.Nullable(Of Integer),  _
+                    ByVal Minimum As Global.System.Nullable(Of Integer),  _
+                    ByVal LeadTimeInitial As Global.System.Nullable(Of Integer),  _
+                    ByVal LeadTimeStandard As Global.System.Nullable(Of Integer),  _
+                    ByVal QuoteTypeID As Global.System.Nullable(Of Integer),  _
+                    ByVal UnitPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal MinimumOrder As Global.System.Nullable(Of Decimal),  _
+                    ByVal LaborMinutes As Global.System.Nullable(Of Decimal),  _
+                    ByVal LaborRate As Global.System.Nullable(Of Decimal),  _
+                    ByVal Tooling As Global.System.Nullable(Of Decimal),  _
+                    ByVal Shipping As Global.System.Nullable(Of Decimal),  _
+                    ByVal FormBoardRequired As Global.System.Nullable(Of Boolean),  _
+                    ByVal FormBoardCost As Global.System.Nullable(Of Decimal),  _
+                    ByVal SingleDefQty As Global.System.Nullable(Of Integer),  _
+                    ByVal OrderQty As Global.System.Nullable(Of Integer),  _
+                    ByVal WireTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal CutTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Cuts As Global.System.Nullable(Of Integer),  _
+                    ByVal BoxSize As String,  _
+                    ByVal BoxPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuWeight As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal TimeMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal FinalMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal MaterialMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_QuoteID As System.Guid,  _
+                    ByVal Original_QuoteNumber As String,  _
+                    ByVal Original_CustomerID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_ContactName As String,  _
+                    ByVal Original_RFQ As String,  _
+                    ByVal Original_QuoteDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_DueDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PartNumber As String,  _
+                    ByVal Original_PartVersion As String,  _
+                    ByVal Original_PartRevision As String,  _
+                    ByVal Original_PartID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_ShippedBefore As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_NewRevision As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_CreatedBy As String,  _
+                    ByVal Original_StartDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_CompletedDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_VerifiedBy As String,  _
+                    ByVal Original_VerifiedDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_EAU As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_Minimum As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_LeadTimeInitial As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_LeadTimeStandard As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_QuoteTypeID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_UnitPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_MinimumOrder As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_LaborMinutes As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_LaborRate As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Tooling As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Shipping As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_FormBoardRequired As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_FormBoardCost As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_SingleDefQty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_OrderQty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_WireTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CutTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Cuts As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_BoxSize As String,  _
+                    ByVal Original_BoxPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuWeight As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TimeMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_FinalMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_MaterialMarkup As Global.System.Nullable(Of Decimal)) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(QuoteID,System.Guid)
+            If (QuoteNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("QuoteNumber")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(QuoteNumber,String)
+            End If
+            If (CustomerID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(CustomerID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (ContactName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(ContactName,String)
+            End If
+            If (RFQ Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(RFQ,String)
+            End If
+            If (QuoteDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(QuoteDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            End If
+            If (DueDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(DueDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+            End If
+            If (PartNumber Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PartNumber,String)
+            End If
+            If (PartVersion Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(PartVersion,String)
+            End If
+            If (PartRevision Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(PartRevision,String)
+            End If
+            If (PartID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PartID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (ShippedBefore.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(ShippedBefore.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (NewRevision.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(NewRevision.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            If (Comment Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Comment,String)
+            End If
+            If (CreatedBy Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(CreatedBy,String)
+            End If
+            If (StartDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(StartDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (CompletedDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(CompletedDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            If (VerifiedBy Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(VerifiedBy,String)
+            End If
+            If (VerifiedDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(VerifiedDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
+            End If
+            If (IsToolingPORecd.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(IsToolingPORecd.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (EAU.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(EAU.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
+            End If
+            If (Minimum.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Minimum.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+            End If
+            If (LeadTimeInitial.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(LeadTimeInitial.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
+            End If
+            If (LeadTimeStandard.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(LeadTimeStandard.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+            End If
+            If (QuoteTypeID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(QuoteTypeID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
+            End If
+            If (UnitPrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(UnitPrice.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+            End If
+            If (MinimumOrder.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(MinimumOrder.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+            End If
+            If (LaborMinutes.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(LaborMinutes.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            If (LaborRate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(LaborRate.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+            End If
+            If (Tooling.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Tooling.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
+            End If
+            If (Shipping.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Shipping.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            End If
+            If (FormBoardRequired.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(FormBoardRequired.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
+            End If
+            If (FormBoardCost.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(FormBoardCost.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            End If
+            If (SingleDefQty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(SingleDefQty.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
+            End If
+            If (OrderQty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(OrderQty.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
+            End If
+            If (WireTime.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(WireTime.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
+            End If
+            If (CutTime.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(CutTime.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
+            End If
+            If (Cuts.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Cuts.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
+            End If
+            If (BoxSize Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(BoxSize,String)
+            End If
+            If (BoxPrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(BoxPrice.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
+            End If
+            If (CuPrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(CuPrice.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
+            End If
+            If (CuWeight.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(CuWeight.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
+            End If
+            If (CuWeightMultiplier.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(CuWeightMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
+            End If
+            If (TimeMultiplier.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(TimeMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
+            End If
+            If (FinalMarkup.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(FinalMarkup.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
+            End If
+            If (MaterialMarkup.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(MaterialMarkup.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_QuoteID,System.Guid)
+            If (Original_QuoteNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_QuoteNumber")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_QuoteNumber,String)
+            End If
+            If (Original_CustomerID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(Original_CustomerID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(49).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ContactName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(51).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(Original_ContactName,String)
+            End If
+            If (Original_RFQ Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(53).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(Original_RFQ,String)
+            End If
+            If (Original_QuoteDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(Original_QuoteDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(55).Value = Global.System.DBNull.Value
+            End If
+            If (Original_DueDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(Original_DueDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(57).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PartNumber Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(59).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(Original_PartNumber,String)
+            End If
+            If (Original_PartVersion Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(61).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(Original_PartVersion,String)
+            End If
+            If (Original_PartRevision Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(63).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(Original_PartRevision,String)
+            End If
+            If (Original_PartID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(65).Value = CType(Original_PartID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(65).Value = Global.System.DBNull.Value
+            End If
+            If (Original_ShippedBefore.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(Original_ShippedBefore.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(67).Value = Global.System.DBNull.Value
+            End If
+            If (Original_NewRevision.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_NewRevision.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(69).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CreatedBy Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(71).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(70).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(71).Value = CType(Original_CreatedBy,String)
+            End If
+            If (Original_StartDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(73).Value = CType(Original_StartDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(72).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(73).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CompletedDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(75).Value = CType(Original_CompletedDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(74).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(75).Value = Global.System.DBNull.Value
+            End If
+            If (Original_VerifiedBy Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(77).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(76).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(77).Value = CType(Original_VerifiedBy,String)
+            End If
+            If (Original_VerifiedDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(79).Value = CType(Original_VerifiedDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(78).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(79).Value = Global.System.DBNull.Value
+            End If
+            If (Original_IsToolingPORecd.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(81).Value = CType(Original_IsToolingPORecd.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(80).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(81).Value = Global.System.DBNull.Value
+            End If
+            If (Original_EAU.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(83).Value = CType(Original_EAU.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(82).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(83).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Minimum.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(85).Value = CType(Original_Minimum.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(84).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(85).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LeadTimeInitial.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(87).Value = CType(Original_LeadTimeInitial.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(86).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(87).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LeadTimeStandard.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(89).Value = CType(Original_LeadTimeStandard.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(88).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(89).Value = Global.System.DBNull.Value
+            End If
+            If (Original_QuoteTypeID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(91).Value = CType(Original_QuoteTypeID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(90).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(91).Value = Global.System.DBNull.Value
+            End If
+            If (Original_UnitPrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(93).Value = CType(Original_UnitPrice.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(92).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(93).Value = Global.System.DBNull.Value
+            End If
+            If (Original_MinimumOrder.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(95).Value = CType(Original_MinimumOrder.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(94).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(95).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LaborMinutes.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(97).Value = CType(Original_LaborMinutes.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(96).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(97).Value = Global.System.DBNull.Value
+            End If
+            If (Original_LaborRate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(99).Value = CType(Original_LaborRate.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(98).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(99).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Tooling.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(101).Value = CType(Original_Tooling.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(100).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(101).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Shipping.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(103).Value = CType(Original_Shipping.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(102).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(103).Value = Global.System.DBNull.Value
+            End If
+            If (Original_FormBoardRequired.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(104).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(105).Value = CType(Original_FormBoardRequired.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(104).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(105).Value = Global.System.DBNull.Value
+            End If
+            If (Original_FormBoardCost.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(106).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(107).Value = CType(Original_FormBoardCost.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(106).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(107).Value = Global.System.DBNull.Value
+            End If
+            If (Original_SingleDefQty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(108).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(109).Value = CType(Original_SingleDefQty.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(108).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(109).Value = Global.System.DBNull.Value
+            End If
+            If (Original_OrderQty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(110).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(111).Value = CType(Original_OrderQty.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(110).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(111).Value = Global.System.DBNull.Value
+            End If
+            If (Original_WireTime.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(112).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(113).Value = CType(Original_WireTime.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(112).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(113).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CutTime.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(114).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(115).Value = CType(Original_CutTime.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(114).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(115).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Cuts.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(116).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(117).Value = CType(Original_Cuts.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(116).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(117).Value = Global.System.DBNull.Value
+            End If
+            If (Original_BoxSize Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(118).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(119).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(118).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(119).Value = CType(Original_BoxSize,String)
+            End If
+            If (Original_BoxPrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(120).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(121).Value = CType(Original_BoxPrice.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(120).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(121).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CuPrice.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(122).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(123).Value = CType(Original_CuPrice.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(122).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(123).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CuWeight.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(124).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(125).Value = CType(Original_CuWeight.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(124).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(125).Value = Global.System.DBNull.Value
+            End If
+            If (Original_CuWeightMultiplier.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(126).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(127).Value = CType(Original_CuWeightMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(126).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(127).Value = Global.System.DBNull.Value
+            End If
+            If (Original_TimeMultiplier.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(128).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(129).Value = CType(Original_TimeMultiplier.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(128).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(129).Value = Global.System.DBNull.Value
+            End If
+            If (Original_FinalMarkup.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(130).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(131).Value = CType(Original_FinalMarkup.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(130).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(131).Value = Global.System.DBNull.Value
+            End If
+            If (Original_MaterialMarkup.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(132).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(133).Value = CType(Original_MaterialMarkup.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(132).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(133).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal QuoteNumber As String,  _
+                    ByVal CustomerID As Global.System.Nullable(Of Integer),  _
+                    ByVal ContactName As String,  _
+                    ByVal RFQ As String,  _
+                    ByVal QuoteDate As Global.System.Nullable(Of Date),  _
+                    ByVal DueDate As Global.System.Nullable(Of Date),  _
+                    ByVal PartNumber As String,  _
+                    ByVal PartVersion As String,  _
+                    ByVal PartRevision As String,  _
+                    ByVal PartID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal ShippedBefore As Global.System.Nullable(Of Boolean),  _
+                    ByVal NewRevision As Global.System.Nullable(Of Boolean),  _
+                    ByVal Comment As String,  _
+                    ByVal CreatedBy As String,  _
+                    ByVal StartDate As Global.System.Nullable(Of Date),  _
+                    ByVal CompletedDate As Global.System.Nullable(Of Date),  _
+                    ByVal VerifiedBy As String,  _
+                    ByVal VerifiedDate As Global.System.Nullable(Of Date),  _
+                    ByVal IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
+                    ByVal EAU As Global.System.Nullable(Of Integer),  _
+                    ByVal Minimum As Global.System.Nullable(Of Integer),  _
+                    ByVal LeadTimeInitial As Global.System.Nullable(Of Integer),  _
+                    ByVal LeadTimeStandard As Global.System.Nullable(Of Integer),  _
+                    ByVal QuoteTypeID As Global.System.Nullable(Of Integer),  _
+                    ByVal UnitPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal MinimumOrder As Global.System.Nullable(Of Decimal),  _
+                    ByVal LaborMinutes As Global.System.Nullable(Of Decimal),  _
+                    ByVal LaborRate As Global.System.Nullable(Of Decimal),  _
+                    ByVal Tooling As Global.System.Nullable(Of Decimal),  _
+                    ByVal Shipping As Global.System.Nullable(Of Decimal),  _
+                    ByVal FormBoardRequired As Global.System.Nullable(Of Boolean),  _
+                    ByVal FormBoardCost As Global.System.Nullable(Of Decimal),  _
+                    ByVal SingleDefQty As Global.System.Nullable(Of Integer),  _
+                    ByVal OrderQty As Global.System.Nullable(Of Integer),  _
+                    ByVal WireTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal CutTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Cuts As Global.System.Nullable(Of Integer),  _
+                    ByVal BoxSize As String,  _
+                    ByVal BoxPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuWeight As Global.System.Nullable(Of Decimal),  _
+                    ByVal CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal TimeMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal FinalMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal MaterialMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_QuoteID As System.Guid,  _
+                    ByVal Original_QuoteNumber As String,  _
+                    ByVal Original_CustomerID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_ContactName As String,  _
+                    ByVal Original_RFQ As String,  _
+                    ByVal Original_QuoteDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_DueDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PartNumber As String,  _
+                    ByVal Original_PartVersion As String,  _
+                    ByVal Original_PartRevision As String,  _
+                    ByVal Original_PartID As Global.System.Nullable(Of Global.System.Guid),  _
+                    ByVal Original_ShippedBefore As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_NewRevision As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_CreatedBy As String,  _
+                    ByVal Original_StartDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_CompletedDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_VerifiedBy As String,  _
+                    ByVal Original_VerifiedDate As Global.System.Nullable(Of Date),  _
+                    ByVal Original_IsToolingPORecd As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_EAU As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_Minimum As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_LeadTimeInitial As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_LeadTimeStandard As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_QuoteTypeID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_UnitPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_MinimumOrder As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_LaborMinutes As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_LaborRate As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Tooling As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Shipping As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_FormBoardRequired As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_FormBoardCost As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_SingleDefQty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_OrderQty As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_WireTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CutTime As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_Cuts As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_BoxSize As String,  _
+                    ByVal Original_BoxPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuPrice As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuWeight As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_CuWeightMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_TimeMultiplier As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_FinalMarkup As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_MaterialMarkup As Global.System.Nullable(Of Decimal)) As Integer
+            Return Me.Update(Original_QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialMarkup, Original_QuoteID, Original_QuoteNumber, Original_CustomerID, Original_ContactName, Original_RFQ, Original_QuoteDate, Original_DueDate, Original_PartNumber, Original_PartVersion, Original_PartRevision, Original_PartID, Original_ShippedBefore, Original_NewRevision, Original_CreatedBy, Original_StartDate, Original_CompletedDate, Original_VerifiedBy, Original_VerifiedDate, Original_IsToolingPORecd, Original_EAU, Original_Minimum, Original_LeadTimeInitial, Original_LeadTimeStandard, Original_QuoteTypeID, Original_UnitPrice, Original_MinimumOrder, Original_LaborMinutes, Original_LaborRate, Original_Tooling, Original_Shipping, Original_FormBoardRequired, Original_FormBoardCost, Original_SingleDefQty, Original_OrderQty, Original_WireTime, Original_CutTime, Original_Cuts, Original_BoxSize, Original_BoxPrice, Original_CuPrice, Original_CuWeight, Original_CuWeightMultiplier, Original_TimeMultiplier, Original_FinalMarkup, Original_MaterialMarkup)
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -5646,9 +5811,9 @@ Namespace ImportDataSetTableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _quoteHeaderTableAdapter As QuoteHeaderTableAdapter
-        
         Private _quoteDetailTableAdapter As QuoteDetailTableAdapter
+        
+        Private _quoteHeaderTableAdapter As QuoteHeaderTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -5670,12 +5835,12 @@ Namespace ImportDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property QuoteHeaderTableAdapter() As QuoteHeaderTableAdapter
+        Public Property QuoteDetailTableAdapter() As QuoteDetailTableAdapter
             Get
-                Return Me._quoteHeaderTableAdapter
+                Return Me._quoteDetailTableAdapter
             End Get
             Set
-                Me._quoteHeaderTableAdapter = value
+                Me._quoteDetailTableAdapter = value
             End Set
         End Property
         
@@ -5684,12 +5849,12 @@ Namespace ImportDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property QuoteDetailTableAdapter() As QuoteDetailTableAdapter
+        Public Property QuoteHeaderTableAdapter() As QuoteHeaderTableAdapter
             Get
-                Return Me._quoteDetailTableAdapter
+                Return Me._quoteHeaderTableAdapter
             End Get
             Set
-                Me._quoteDetailTableAdapter = value
+                Me._quoteHeaderTableAdapter = value
             End Set
         End Property
         
@@ -5712,13 +5877,13 @@ Namespace ImportDataSetTableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._quoteHeaderTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._quoteHeaderTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._quoteHeaderTableAdapter.Connection
-                End If
                 If ((Not (Me._quoteDetailTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._quoteDetailTableAdapter.Connection) Is Nothing)) Then
                     Return Me._quoteDetailTableAdapter.Connection
+                End If
+                If ((Not (Me._quoteHeaderTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._quoteHeaderTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._quoteHeaderTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -5733,10 +5898,10 @@ Namespace ImportDataSetTableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
+                If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
+                If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -5861,13 +6026,13 @@ Namespace ImportDataSetTableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._quoteHeaderTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._quoteHeaderTableAdapter.Connection) = false)) Then
+            If ((Not (Me._quoteDetailTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._quoteDetailTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._quoteDetailTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._quoteDetailTableAdapter.Connection) = false)) Then
+            If ((Not (Me._quoteHeaderTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._quoteHeaderTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -5903,15 +6068,6 @@ Namespace ImportDataSetTableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._quoteHeaderTableAdapter, Me._quoteHeaderTableAdapter.Connection)
-                    Me._quoteHeaderTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._quoteHeaderTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._quoteHeaderTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._quoteHeaderTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._quoteHeaderTableAdapter.Adapter)
-                    End If
-                End If
                 If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
                     revertConnections.Add(Me._quoteDetailTableAdapter, Me._quoteDetailTableAdapter.Connection)
                     Me._quoteDetailTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
@@ -5919,6 +6075,15 @@ Namespace ImportDataSetTableAdapters
                     If Me._quoteDetailTableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._quoteDetailTableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._quoteDetailTableAdapter.Adapter)
+                    End If
+                End If
+                If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._quoteHeaderTableAdapter, Me._quoteHeaderTableAdapter.Connection)
+                    Me._quoteHeaderTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._quoteHeaderTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._quoteHeaderTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._quoteHeaderTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._quoteHeaderTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -5981,13 +6146,13 @@ Namespace ImportDataSetTableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
-                    Me._quoteHeaderTableAdapter.Connection = CType(revertConnections(Me._quoteHeaderTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._quoteHeaderTableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._quoteDetailTableAdapter) Is Nothing) Then
                     Me._quoteDetailTableAdapter.Connection = CType(revertConnections(Me._quoteDetailTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._quoteDetailTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._quoteHeaderTableAdapter) Is Nothing) Then
+                    Me._quoteHeaderTableAdapter.Connection = CType(revertConnections(Me._quoteHeaderTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._quoteHeaderTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

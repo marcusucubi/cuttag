@@ -23,14 +23,14 @@ Public Class QuoteImport
         Dim BOMSaver As New BOMSaver
         Dim id As Integer = BOMSaver.Save(header)
 
-        Console.WriteLine("    New Quote Number: " & id)
+        Console.WriteLine("    New QuoteNumber: " & id)
 
-        Console.WriteLine("    Old: " & Math.Round(_OldUnitCost, 2))
-        Console.WriteLine("    New: " & Math.Round(_NewUnitCost, 2))
+        Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
+        Console.WriteLine("    New UnitCost: " & Math.Round(_NewUnitCost, 2))
         Dim percent As Decimal = Math.Round((Math.Abs(_OldUnitCost - _NewUnitCost) / _OldUnitCost) * 100)
-        Console.WriteLine("    Difference: " & percent & "%")
         If (percent > 2) Then
-            Console.WriteLine("    *** Warning ***")
+            Console.WriteLine("    *** Warning *** Difference: " & percent & "%")
+        Else
         End If
         Console.WriteLine("----- Finished")
 
@@ -46,7 +46,6 @@ Public Class QuoteImport
         Dim row As ImportDataSet.QuoteHeaderRow = table.Rows.Item(0)
 
         Console.WriteLine("    QuoteNumber: " & row.QuoteNumber)
-        Console.WriteLine("    PartNumber: " & row.PartNumber)
 
         Return row
     End Function
@@ -78,6 +77,16 @@ Public Class QuoteImport
         comp.ShippingContainer = row.BoxSize
         comp.TimeMultiplier = row.TimeMultiplier
         comp.PercentCopperScrap = (row.CuWeightMultiplier - 1) * 100
+        If row.IsFinalMarkupNull Then
+            Console.WriteLine("    Warning: FinalMarkup is null")
+        Else
+            comp.ManufacturingMarkup = row.FinalMarkup
+        End If
+        If row.IsMaterialMarkupNull Then
+            Console.WriteLine("    Warning: MaterialMarkUp is null")
+        Else
+            comp.MaterialMarkUp = row.MaterialMarkup
+        End If
 
         Dim note As Model.BOM.NoteProperties = header.NoteProperties
         note.Note = "Imported from " & row.QuoteNumber
