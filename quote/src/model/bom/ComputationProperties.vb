@@ -455,7 +455,7 @@ Namespace Model.BOM
 
         <CategoryAttribute("Material Cost"), _
         DisplayName("Adjusted Total Material Cost"), _
-        DescriptionAttribute("TotalMaterialCost * LaborRate" + Chr(10) + "(Dollars)")> _
+        DescriptionAttribute("TotalMaterialCost * MaterialMarkup" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property AdjustedTotalMaterialCost As Decimal
             Get
                 Return Math.Round(TotalMaterialCost * Me._MaterialMarkup, 2)
