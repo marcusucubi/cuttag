@@ -134,6 +134,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="src\import\ImportDataSet.vb">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="src\import\QuoteImport.vb" />
     <Compile Include="src\misc\ActiveCustomProperties.vb" />
     <Compile Include="src\misc\ObjectGeneratorException.vb" />
