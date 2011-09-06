@@ -105,7 +105,7 @@ Public Class QuoteImport
 
             Dim detailRow As ImportDataSet.QuoteDetailRow = table.Rows.Item(i)
 
-            Dim time As Integer = 0
+            Dim time As Decimal = 0
             If Not detailRow.IsTimeNull Then
                 time = detailRow.Time
             End If
