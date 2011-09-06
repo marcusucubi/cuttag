@@ -4,6 +4,9 @@ Imports DCS.Quote.QuoteDataBase
 
 Public Class QuoteImport
 
+    Private _OldUnitCost As Decimal
+    Private _NewUnitCost As Decimal
+
     Public Function Import(ByVal QuoteNumber As Integer) As Integer
 
         Console.WriteLine("----- Importing " & QuoteNumber)
@@ -14,16 +17,27 @@ Public Class QuoteImport
 
         GetDetails(header, row.QuoteID)
 
+        Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
+        _NewUnitCost = comp.TotalUnitCost
+
         Dim BOMSaver As New BOMSaver
         Dim id As Integer = BOMSaver.Save(header)
 
-        Console.WriteLine("QuoteID: " & id)
+        Console.WriteLine("    New Quote Number: " & id)
+
+        Console.WriteLine("    Old: " & Math.Round(_OldUnitCost, 2))
+        Console.WriteLine("    New: " & Math.Round(_NewUnitCost, 2))
+        Dim percent As Decimal = Math.Round((Math.Abs(_OldUnitCost - _NewUnitCost) / _OldUnitCost) * 100)
+        Console.WriteLine("    percent: " & percent)
+        If (percent > 2) Then
+            Console.WriteLine("    Warning")
+        End If
         Console.WriteLine("----- Finished")
 
         Return id
     End Function
 
-    Public Function GetHeader(ByVal QuoteNumber As Integer) As ImportDataSet.QuoteHeaderRow
+    Private Function GetHeader(ByVal QuoteNumber As Integer) As ImportDataSet.QuoteHeaderRow
 
         Dim adaptor As New ImportDataSetTableAdapters.QuoteHeaderTableAdapter
         Dim table As ImportDataSet.QuoteHeaderDataTable
@@ -31,13 +45,13 @@ Public Class QuoteImport
         table = adaptor.GetDataByQuoteNumber(QuoteNumber)
         Dim row As ImportDataSet.QuoteHeaderRow = table.Rows.Item(0)
 
-        Console.WriteLine("QuoteNumber: " & row.QuoteNumber)
-        Console.WriteLine("PartNumber: " & row.PartNumber)
+        Console.WriteLine("    QuoteNumber: " & row.QuoteNumber)
+        Console.WriteLine("    PartNumber: " & row.PartNumber)
 
         Return row
     End Function
 
-    Public Sub TransferHeader(ByVal row As ImportDataSet.QuoteHeaderRow, _
+    Private Sub TransferHeader(ByVal row As ImportDataSet.QuoteHeaderRow, _
                               ByVal header As Model.BOM.Header)
 
         Dim customer As String = row.ContactName
@@ -54,6 +68,7 @@ Public Class QuoteImport
         other.LeadTimeStandard = row.LeadTimeStandard
         other.Tooling = row.Tooling
         other.ImportedUnitCost = row.UnitPrice
+        _OldUnitCost = row.UnitPrice
 
         Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
         comp.CopperPrice = row.CuPrice
@@ -69,7 +84,7 @@ Public Class QuoteImport
 
     End Sub
 
-    Public Function GetDetails(ByVal header As Model.BOM.Header, _
+    Private Function GetDetails(ByVal header As Model.BOM.Header, _
                                ByVal quotID As System.Guid) _
                            As Integer
 
@@ -115,9 +130,5 @@ Public Class QuoteImport
         Next
 
     End Function
-
-    Public Class TempObj
-
-    End Class
 
 End Class
