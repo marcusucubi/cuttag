@@ -92,10 +92,14 @@ Public Class QuoteImport
             Else
                 unit = Model.UnitOfMeasure.BY_EACH
             End If
+            Dim gage As String = ""
+            If (Not detailRow.IsGageNull) Then
+                gage = detailRow.Gage.Trim()
+            End If
 
             Dim product As New Model.Product( _
                 detailRow.PartNumber, _
-                "", _
+                gage, _
                 detailRow.UnitCost, _
                 time, _
                 unit, _
