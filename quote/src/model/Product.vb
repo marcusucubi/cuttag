@@ -10,7 +10,7 @@ Namespace Model
         Private m_code As String
         Private m_gage As String
         Private m_unitCost As Decimal
-        Private m_machineTime As Integer
+        Private m_machineTime As Decimal
         Private m_unitOfMeasure As UnitOfMeasure
         Private m_Description As String
         Private m_LeadTime As Integer
@@ -22,7 +22,7 @@ Namespace Model
                      ByVal m_code As String,
                      ByVal m_gage As String,
                      ByVal m_unitCost As Decimal,
-                     ByVal m_machineTime As Integer,
+                     ByVal m_machineTime As Decimal,
                      ByVal m_unitOfMeasure As UnitOfMeasure,
                      ByVal m_Description As String,
                      ByVal m_LeadTime As Integer,
