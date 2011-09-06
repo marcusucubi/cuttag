@@ -24,7 +24,7 @@ Namespace Model.BOM
         End Property
 
         <DescriptionAttribute("Length in Decameters")> _
-        Public ReadOnly Property Length As String
+        Public ReadOnly Property Length As Decimal
             Get
                 Return _QuoteDetail.Qty
             End Get
