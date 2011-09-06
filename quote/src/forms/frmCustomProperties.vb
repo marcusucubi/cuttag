@@ -44,6 +44,11 @@ Public Class frmCustomProperties
     End Sub
 
     Private Sub UpdateProperties()
+
+        If Me.IsDisposed Then
+            Return
+        End If
+
         Dim o1 As Object = ActiveCustomProperties.ActiveCustomProperties.Generator
         Me.PropertyGrid1.SelectedObject = o1
 
