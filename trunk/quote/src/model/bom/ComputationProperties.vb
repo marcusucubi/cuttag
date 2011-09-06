@@ -217,11 +217,11 @@ Namespace Model.BOM
         <DisplayName("Shipping Cost"), _
         CategoryAttribute("Shipping"), _
         DescriptionAttribute("Shipping Cost" + Chr(10) + "(Dollars)")> _
-        Public Property ShippingCost() As String
+        Public Property ShippingCost() As Decimal
             Get
                 Return _ShippingCost
             End Get
-            Set(ByVal Value As String)
+            Set(ByVal Value As Decimal)
                 _ShippingCost = Value
                 Me.SendEvents()
             End Set
