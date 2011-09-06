@@ -87,7 +87,7 @@ Public Class BOMLoader
 
             Dim product As New Model.Product( _
                 row.ProductCode, _
-                "", _
+                temp.Gage, _
                 0, _
                 0, _
                 unit, _
@@ -105,6 +105,7 @@ Public Class BOMLoader
 
     Public Class TempObj
         Public Property UnitOfMeasure As String
+        Public Property Gage As String = ""
     End Class
 
 End Class
