@@ -123,6 +123,10 @@ Public Class frmMain
         DoBOMExport()
     End Sub
 
+    Private Sub OutputToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutputToolStripMenuItem.Click
+        ShowOutput()
+    End Sub
+
     Private Sub DoExport()
         Dim frm As New frmExport
         frm.ShowDialog()
@@ -283,16 +287,16 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub OutputToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutputToolStripMenuItem.Click
+    Private Sub ShowOutput()
         If (_Output Is Nothing) Then
             _Output = New frmOutput
             DockPanel1.SuspendLayout(True)
-            _Output.Show(DockPanel1, DockState.DockBottom)
+            _Output.Show(DockPanel1, DockState.DockLeft)
             DockPanel1.ResumeLayout(True, True)
         End If
         If (_Output.IsHidden Or _Output.IsDisposed) Then
             _Output = New frmOutput
-            InitChild(_Output, DockState.DockBottom)
+            InitChild(_Output, DockState.DockLeft)
         End If
     End Sub
 
@@ -408,6 +412,7 @@ Public Class frmMain
         Dim frm As New frmImport
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
+            Me.ShowOutput()
             Dim import As New QuoteImport
             Dim id As Integer = import.Import(frm.QuoteNumber)
             LoadTemplate(id)
