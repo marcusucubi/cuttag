@@ -18,7 +18,7 @@ Public Class QuoteImport
         GetDetails(header, row.QuoteID)
 
         Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
-        _NewUnitCost = comp.TotalUnitCost
+        _NewUnitCost = comp.AdjustedTotalUnitCost
 
         Dim BOMSaver As New BOMSaver
         Dim id As Integer = BOMSaver.Save(header)
@@ -77,6 +77,8 @@ Public Class QuoteImport
         comp.ShippingContainer = row.BoxSize
         comp.TimeMultiplier = row.TimeMultiplier
         comp.PercentCopperScrap = (row.CuWeightMultiplier - 1) * 100
+        comp.WireSetupTime = row.CutTime
+        comp.WireMachineTime = row.WireTime
         If row.IsFinalMarkupNull Then
             Console.WriteLine("    Warning: FinalMarkup is null")
         Else
