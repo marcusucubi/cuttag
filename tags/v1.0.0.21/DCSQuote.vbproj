@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>DCS.Quote.My.MyApplication</StartupObject>
+    <RootNamespace>DCS.Quote</RootNamespace>
+    <AssemblyName>Quote</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Quote.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Quote.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.15095, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Settings.vb" />
+    <Compile Include="src\controls\ListViewColumnSorter.vb" />
+    <Compile Include="src\controls\WireAndComponentItem.vb" />
+    <Compile Include="src\database\CommonLoader.vb" />
+    <Compile Include="src\database\CommonSaver.vb" />
+    <Compile Include="src\database\CuttagDatabaseConnection.vb" />
+    <Compile Include="src\export\ExcelBOMWriter.vb" />
+    <Compile Include="src\export\ExportBOM.vb" />
+    <Compile Include="src\forms\frmDatabaseTest.Designer.vb">
+      <DependentUpon>frmDatabaseTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmDatabaseTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmDocumentA.Designer.vb">
+      <DependentUpon>frmDocumentA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmDocumentA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\import\frmImport.Designer.vb">
+      <DependentUpon>frmImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\import\frmImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmNoteProperties.Designer.vb">
+      <DependentUpon>frmNoteProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmNoteProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmOutput.Designer.vb">
+      <DependentUpon>frmOutput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmOutput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\import\ImportDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="src\import\ImportDataSet.vb">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="src\import\QuoteImport.vb" />
+    <Compile Include="src\misc\ActiveCustomProperties.vb" />
+    <Compile Include="src\misc\ObjectGeneratorException.vb" />
+    <Compile Include="src\database\QuoteDataBase.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="src\database\QuoteDataBase.vb">
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="src\database\QuoteLoader.vb" />
+    <Compile Include="src\database\QuoteSaver.vb" />
+    <Compile Include="src\database\BOMLoader.vb" />
+    <Compile Include="src\database\BOMSaver.vb" />
+    <Compile Include="src\export\ExcellWriter.vb" />
+    <Compile Include="src\export\PropertyPrinter.vb" />
+    <Compile Include="src\export\Export.vb" />
+    <Compile Include="src\export\PropertyProcessor.vb" />
+    <Compile Include="src\export\PropertyProxy.vb" />
+    <Compile Include="src\forms\frmCustomProperties.Designer.vb">
+      <DependentUpon>frmCustomProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmCustomProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmExport.Designer.vb">
+      <DependentUpon>frmExport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmExport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmNewQuote.Designer.vb">
+      <DependentUpon>frmNewQuote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmNewQuote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmNewBOM.Designer.vb">
+      <DependentUpon>frmNewBOM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmNewBOM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmQuoteSearch.Designer.vb">
+      <DependentUpon>frmQuoteSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmQuoteSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmBOMLookup.Designer.vb">
+      <DependentUpon>frmBOMLookup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmBOMLookup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmDetailProperties.Designer.vb">
+      <DependentUpon>frmDetailProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmDetailProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmQuoteLookup.Designer.vb">
+      <DependentUpon>frmQuoteLookup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmQuoteLookup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmPrimaryProperties.Designer.vb">
+      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmPrimaryProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmOtherProperties.Designer.vb">
+      <DependentUpon>frmOtherProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmOtherProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmComputationProperties.Designer.vb">
+      <DependentUpon>frmComputationProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmComputationProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmBOMSearch.Designer.vb">
+      <DependentUpon>frmBOMSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmBOMSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmWireLookup.Designer.vb">
+      <DependentUpon>frmWireLookup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmWireLookup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmPartLookup.Designer.vb">
+      <DependentUpon>frmPartLookup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmPartLookup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\controls\WireAndComponentView.Designer.vb">
+      <DependentUpon>WireAndComponentView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\controls\WireAndComponentView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="src\misc\ActiveDetail.vb" />
+    <Compile Include="src\misc\QuoteTypeList.vb" />
+    <Compile Include="src\misc\ShippingList.vb" />
+    <Compile Include="src\misc\ActiveHeader.vb" />
+    <Compile Include="src\model\bom\ComponentProperties.vb" />
+    <Compile Include="src\model\bom\ComputationProperties.vb" />
+    <Compile Include="src\model\bom\CustomPropertiesGenerator.vb" />
+    <Compile Include="src\model\bom\Detail.vb" />
+    <Compile Include="src\model\bom\Header.vb" />
+    <Compile Include="src\model\bom\NoteProperties.vb" />
+    <Compile Include="src\model\bom\OtherProperties.vb" />
+    <Compile Include="src\model\bom\PrimaryPropeties.vb" />
+    <Compile Include="src\model\bom\WireProperties.vb" />
+    <Compile Include="src\model\common\ComponentProperties.vb" />
+    <Compile Include="src\model\common\ComputationProperties.vb" />
+    <Compile Include="src\model\common\CustomPropertiesGenerator.vb" />
+    <Compile Include="src\model\common\Detail.vb" />
+    <Compile Include="src\model\common\DetailCollection.vb" />
+    <Compile Include="src\model\common\Header.vb" />
+    <Compile Include="src\model\common\NoteProperties.vb" />
+    <Compile Include="src\model\common\OtherProperties.vb" />
+    <Compile Include="src\model\common\PrimaryPropeties.vb" />
+    <Compile Include="src\model\common\Weights.vb" />
+    <Compile Include="src\model\common\WireProperties.vb" />
+    <Compile Include="src\model\quote\PrimaryPropeties.vb" />
+    <Compile Include="src\misc\ObjectGenerator.vb" />
+    <Compile Include="src\model\common\SaveableProperties.vb" />
+    <Compile Include="src\database\DatabaseException.vb" />
+    <Compile Include="src\model\Shipping.vb" />
+    <Compile Include="src\model\UnitOfMeasure.vb" />
+    <Compile Include="src\model\quote\Header.vb" />
+    <Compile Include="src\model\quote\Detail.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="src\model\Product.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="src\forms\frmCustomProperties.resx">
+      <DependentUpon>frmCustomProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmDatabaseTest.resx">
+      <DependentUpon>frmDatabaseTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmExport.resx">
+      <DependentUpon>frmExport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\import\frmImport.resx">
+      <DependentUpon>frmImport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmNewQuote.resx">
+      <DependentUpon>frmNewQuote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmNewBOM.resx">
+      <DependentUpon>frmNewBOM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmDocumentA.resx">
+      <DependentUpon>frmDocumentA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmNoteProperties.resx">
+      <DependentUpon>frmNoteProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmOutput.resx">
+      <DependentUpon>frmOutput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
+      <DependentUpon>frmQuoteSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmBOMLookup.resx">
+      <DependentUpon>frmBOMLookup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmDetailProperties.resx">
+      <DependentUpon>frmDetailProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmPrimaryProperties.resx">
+      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmQuoteLookup.resx">
+      <DependentUpon>frmQuoteLookup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmOtherProperties.resx">
+      <DependentUpon>frmOtherProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmPartLookup.resx">
+      <DependentUpon>frmPartLookup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmComputationProperties.resx">
+      <DependentUpon>frmComputationProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmBOMSearch.resx">
+      <DependentUpon>frmBOMSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmWireLookup.resx">
+      <DependentUpon>frmWireLookup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
+      <DependentUpon>WireAndComponentView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\DCS.Quote.Common.Detail.datasource" />
+    <None Include="My Project\DataSources\DCS.Quote.Common.Header.datasource" />
+    <None Include="My Project\DataSources\DCS.Quote.Model.EditableQuoteHeader.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Spreadsheets\NonProductionTemplate.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Spreadsheets\ProductionTemplate.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="src\database\QuoteDataBase.xsc">
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
+    </None>
+    <None Include="src\database\QuoteDataBase.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuoteDataBase.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="src\database\QuoteDataBase.xss">
+      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
+    </None>
+    <None Include="Spreadsheets\Testdate5.xls" />
+    <None Include="src\import\ImportDataSet.xsc">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="src\import\ImportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="src\import\ImportDataSet.xss">
+      <DependentUpon>ImportDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.10.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2008 Express</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Ionic.Zip.dll" />
+    <Content Include="lib\NPOI.dll" />
+    <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\truck.jpg" />
+    <None Include="Resources\source.jpg" />
+    <None Include="Resources\search_icon.png" />
+    <None Include="Resources\quotes.jpg" />
+    <None Include="Resources\load.png" />
+    <None Include="Resources\weight.png" />
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
