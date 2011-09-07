@@ -103,41 +103,41 @@ Namespace Model.BOM
         <CategoryAttribute("Import"), _
         DisplayName("ImportedUnitCost"), _
         DescriptionAttribute("Imported Unit Cost")> _
-        Public Property ImportedUnitCost As Decimal
+        Public ReadOnly Property ImportedUnitCost As Decimal
             Get
                 Return _ImportedUnitCost
             End Get
-            Set(ByVal value As Decimal)
-                _ImportedUnitCost = value
-                Me.SendEvents()
-            End Set
         End Property
+
+        Public Sub SetImportedUnitCost(ByVal value As Decimal)
+            _ImportedUnitCost = value
+        End Sub
 
         <CategoryAttribute("Import"), _
         DisplayName("ImportedCuWeight"), _
         DescriptionAttribute("Imported CuWeight")> _
-        Public Property ImportedCuWeight As Decimal
+        Public ReadOnly Property ImportedCuWeight As Decimal
             Get
                 Return _ImportedCuWeight
             End Get
-            Set(ByVal value As Decimal)
-                _ImportedCuWeight = value
-                Me.SendEvents()
-            End Set
         End Property
+
+        Public Sub SetImportedCuWeight(ByVal value As Decimal)
+            _ImportedCuWeight = value
+        End Sub
 
         <CategoryAttribute("Import"), _
         DisplayName("ImportedLaborMinutes"), _
         DescriptionAttribute("Imported Labor Minutes")> _
-        Public Property ImportedLaborMinutes As Decimal
+        Public ReadOnly Property ImportedLaborMinutes As Decimal
             Get
                 Return _ImportedLaborMinutes
             End Get
-            Set(ByVal value As Decimal)
-                _ImportedLaborMinutes = value
-                Me.SendEvents()
-            End Set
         End Property
+
+        Public Sub SetImportedLaborMinutes(ByVal value As Decimal)
+            _ImportedLaborMinutes = value
+        End Sub
 
     End Class
 

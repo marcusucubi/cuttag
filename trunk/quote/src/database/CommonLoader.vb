@@ -113,6 +113,12 @@ Public Class CommonLoader
                     If p.PropertyType.Name = "Decimal" And p.CanWrite Then
                         p.SetValue(obj, row.PropertyDecimalValue, Nothing)
                     End If
+                    If p.PropertyType.Name = "Decimal" And Not p.CanWrite Then
+                        Dim m As MethodInfo = obj.GetType.GetMethod("Set" + p.Name)
+                        If (m IsNot Nothing) Then
+                            m.Invoke(obj, New Object() {row.PropertyDecimalValue})
+                        End If
+                    End If
                 End If
                 If Not row.IsPropertyDateValueNull Then
                     If p.PropertyType.Name = "DateTime" And p.CanWrite Then
