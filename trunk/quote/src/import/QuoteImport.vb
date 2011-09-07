@@ -6,10 +6,95 @@ Public Class QuoteImport
 
     Private _OldUnitCost As Decimal
     Private _NewUnitCost As Decimal
+    Private _NumberOfWarnings As Integer
 
-    Public Function Import(ByVal QuoteNumber As Integer) As Integer
+    Public Sub DoImport()
+
+        Dim frm As New frmImport
+        Dim result As DialogResult = frm.ShowDialog()
+        If result = DialogResult.OK Then
+            frmMain.ShowOutput()
+
+            If frm.ImportTest Then
+                ImportTest()
+            ElseIf frm.ImportAll Then
+                ImportAll()
+            Else
+                Dim id As Integer = Import(frm.QuoteNumber)
+                frmMain.LoadTemplate(id)
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub ImportTest()
+
+        Console.WriteLine("----- Testing ")
+
+        Dim table As ImportDataSet.QuoteHeaderDataTable
+        table = New ImportDataSetTableAdapters.QuoteHeaderTableAdapter().GetData()
+        For Each row As ImportDataSet.QuoteHeaderRow In table
+            ImportTest(row.QuoteNumber)
+            Application.DoEvents()
+        Next
+
+        Console.WriteLine("----- Finished")
+        Console.WriteLine("----- Warnings: " & _NumberOfWarnings)
+
+    End Sub
+
+    Private Sub ImportAll()
+
+        Console.WriteLine("----- Import All ")
+
+        Dim table As ImportDataSet.QuoteHeaderDataTable
+        Dim adaptor As New ImportDataSetTableAdapters.QuoteHeaderTableAdapter()
+        table = adaptor.GetData()
+        For Each row As ImportDataSet.QuoteHeaderRow In table
+
+            If row.IsProcessedNull Then
+                row.Processed = 0
+            End If
+            If row.Processed = 0 Then
+
+                Dim header As New Model.BOM.Header
+                header = BuildHeader(row.QuoteNumber)
+                Save(header)
+
+                Application.DoEvents()
+                row.Processed = row.Processed + 1
+                adaptor.Update(row)
+            End If
+
+        Next
+
+        Console.WriteLine("----- Finished")
+        Console.WriteLine("----- Warnings: " & _NumberOfWarnings)
+
+    End Sub
+
+    Private Sub ImportTest(ByVal QuoteNumber As Integer)
+
+        Dim header As New Model.BOM.Header
+        header = BuildHeader(QuoteNumber)
+
+    End Sub
+
+    Private Function Import(ByVal QuoteNumber As Integer) As Integer
 
         Console.WriteLine("----- Importing " & QuoteNumber)
+
+        Dim header As New Model.BOM.Header
+        header = BuildHeader(QuoteNumber)
+        Dim id As Integer = Save(header)
+
+        Console.WriteLine("----- Finished")
+
+        Return id
+    End Function
+
+    Private Function BuildHeader(ByVal QuoteNumber As Integer) As Model.BOM.Header
 
         Dim row As ImportDataSet.QuoteHeaderRow = GetHeader(QuoteNumber)
         Dim header As New Model.BOM.Header
@@ -20,19 +105,24 @@ Public Class QuoteImport
         Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
         _NewUnitCost = comp.AdjustedTotalUnitCost
 
+        Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
+        Console.WriteLine("    New UnitCost: " & Math.Round(_NewUnitCost, 2))
+
+        Dim percent As Decimal = Math.Round((Math.Abs(_OldUnitCost - _NewUnitCost) / _OldUnitCost) * 100)
+        If (percent > 2) Then
+            _NumberOfWarnings = _NumberOfWarnings + 1
+            Console.WriteLine("    *** Warning *** Difference: " & percent & "%")
+        End If
+
+        Return header
+    End Function
+
+    Private Function Save(ByVal header As Model.BOM.Header) As Integer
+
         Dim BOMSaver As New BOMSaver
         Dim id As Integer = BOMSaver.Save(header)
 
         Console.WriteLine("    New QuoteNumber: " & id)
-
-        Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
-        Console.WriteLine("    New UnitCost: " & Math.Round(_NewUnitCost, 2))
-        Dim percent As Decimal = Math.Round((Math.Abs(_OldUnitCost - _NewUnitCost) / _OldUnitCost) * 100)
-        If (percent > 2) Then
-            Console.WriteLine("    *** Warning *** Difference: " & percent & "%")
-        Else
-        End If
-        Console.WriteLine("----- Finished")
 
         Return id
     End Function

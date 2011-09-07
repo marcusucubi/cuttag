@@ -17,9 +17,11 @@ Public Class frmOutput
 
         Public Overrides Sub Write(ByVal value As Char)
             MyBase.Write(value)
+            _TextBox.SuspendLayout()
             _TextBox.Text = _TextBox.Text + value
             _TextBox.SelectionStart = _TextBox.TextLength
             _TextBox.ScrollToCaret()
+            _TextBox.ResumeLayout()
         End Sub
 
         Public Overrides ReadOnly Property Encoding As System.Text.Encoding

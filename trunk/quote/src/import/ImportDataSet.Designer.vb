@@ -567,7 +567,7 @@ Partial Public Class ImportDataSet
             Me.columnIsWire.AllowDBNull = false
             Me.columnGage.MaxLength = 50
         End Sub
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function NewQuoteDetailRow() As QuoteDetailRow
@@ -603,7 +603,7 @@ Partial Public Class ImportDataSet
                 RaiseEvent QuoteDetailRowChanging(Me, New QuoteDetailRowChangeEvent(CType(e.Row,QuoteDetailRow), e.Action))
             End If
         End Sub
-        
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
@@ -799,6 +799,8 @@ Partial Public Class ImportDataSet
         Private columnNumberOfTwists As Global.System.Data.DataColumn
         
         Private columnComponentSetupTime As Global.System.Data.DataColumn
+        
+        Private columnProcessed As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1220,6 +1222,14 @@ Partial Public Class ImportDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ProcessedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcessed
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1304,9 +1314,10 @@ Partial Public Class ImportDataSet
                     ByVal FinalMarkup As Decimal,  _
                     ByVal MaterialMarkup As Decimal,  _
                     ByVal NumberOfTwists As Integer,  _
-                    ByVal ComponentSetupTime As Decimal) As QuoteHeaderRow
+                    ByVal ComponentSetupTime As Decimal,  _
+                    ByVal Processed As Integer) As QuoteHeaderRow
             Dim rowQuoteHeaderRow As QuoteHeaderRow = CType(Me.NewRow,QuoteHeaderRow)
-            Dim columnValuesArray() As Object = New Object() {QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialMarkup, NumberOfTwists, ComponentSetupTime}
+            Dim columnValuesArray() As Object = New Object() {QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, PartNumber, PartVersion, PartRevision, PartID, ShippedBefore, NewRevision, Comment, CreatedBy, StartDate, CompletedDate, VerifiedBy, VerifiedDate, IsToolingPORecd, EAU, Minimum, LeadTimeInitial, LeadTimeStandard, QuoteTypeID, UnitPrice, MinimumOrder, LaborMinutes, LaborRate, Tooling, Shipping, FormBoardRequired, FormBoardCost, SingleDefQty, OrderQty, WireTime, CutTime, Cuts, BoxSize, BoxPrice, CuPrice, CuWeight, CuWeightMultiplier, TimeMultiplier, FinalMarkup, MaterialMarkup, NumberOfTwists, ComponentSetupTime, Processed}
             rowQuoteHeaderRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowQuoteHeaderRow)
             Return rowQuoteHeaderRow
@@ -1389,6 +1400,7 @@ Partial Public Class ImportDataSet
             Me.columnMaterialMarkup = MyBase.Columns("MaterialMarkup")
             Me.columnNumberOfTwists = MyBase.Columns("NumberOfTwists")
             Me.columnComponentSetupTime = MyBase.Columns("ComponentSetupTime")
+            Me.columnProcessed = MyBase.Columns("Processed")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1490,6 +1502,8 @@ Partial Public Class ImportDataSet
             MyBase.Columns.Add(Me.columnNumberOfTwists)
             Me.columnComponentSetupTime = New Global.System.Data.DataColumn("ComponentSetupTime", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnComponentSetupTime)
+            Me.columnProcessed = New Global.System.Data.DataColumn("Processed", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcessed)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnQuoteID}, true))
             Me.columnQuoteID.AllowDBNull = false
             Me.columnQuoteID.Unique = true
@@ -2552,6 +2566,21 @@ Partial Public Class ImportDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Processed() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableQuoteHeader.ProcessedColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Processed' in table 'QuoteHeader' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableQuoteHeader.ProcessedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsCustomerIDNull() As Boolean
             Return Me.IsNull(Me.tableQuoteHeader.CustomerIDColumn)
         End Function
@@ -3100,6 +3129,18 @@ Partial Public Class ImportDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetComponentSetupTimeNull()
             Me(Me.tableQuoteHeader.ComponentSetupTimeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsProcessedNull() As Boolean
+            Return Me.IsNull(Me.tableQuoteHeader.ProcessedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetProcessedNull()
+            Me(Me.tableQuoteHeader.ProcessedColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3914,6 +3955,7 @@ Namespace ImportDataSetTableAdapters
             tableMapping.ColumnMappings.Add("MaterialMarkup", "MaterialMarkup")
             tableMapping.ColumnMappings.Add("NumberOfTwists", "NumberOfTwists")
             tableMapping.ColumnMappings.Add("ComponentSetupTime", "ComponentSetupTime")
+            tableMapping.ColumnMappings.Add("Processed", "Processed")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
