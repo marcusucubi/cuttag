@@ -5,7 +5,6 @@ Imports DCS.Quote.Model.Quote
 
 Namespace Common
     Public Class Weights
-        Implements INotifyPropertyChanged
 
         Class WireWeight
             Sub New(ByVal Gage As String, ByVal Value As Decimal)
@@ -43,9 +42,6 @@ Namespace Common
         Public Sub New(ByVal Header As Common.Header)
             _Header = Header
         End Sub
-
-        Public Event PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) _
-            Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 
         Private WithEvents _Header As Header
 
@@ -272,13 +268,6 @@ Namespace Common
             Next
             Return r
         End Function
-
-        Private Sub _QuoteHeader_PropertyChanged(ByVal sender As Object, _
-                                                 ByVal e As System.ComponentModel.PropertyChangedEventArgs) _
-                Handles _Header.PropertyChanged
-
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
-        End Sub
 
     End Class
 End Namespace
