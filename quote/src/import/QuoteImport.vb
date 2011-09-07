@@ -53,9 +53,6 @@ Public Class QuoteImport
         table = adaptor.GetData()
         For Each row As ImportDataSet.QuoteHeaderRow In table
 
-            If row.IsProcessedNull Then
-                row.Processed = 0
-            End If
             If row.Processed = 0 Then
 
                 Dim header As New Model.BOM.Header
@@ -63,8 +60,13 @@ Public Class QuoteImport
                 Save(header)
 
                 Application.DoEvents()
+
+                adaptor.Connection.Open()
+                adaptor.Transaction = adaptor.Connection.BeginTransaction()
                 row.Processed = row.Processed + 1
-                adaptor.Update(row)
+                adaptor.Update(row.Processed, row.QuoteID)
+                adaptor.Transaction.Commit()
+                adaptor.Connection.Close()
             End If
 
         Next
