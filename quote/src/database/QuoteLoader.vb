@@ -147,48 +147,9 @@ Public Class QuoteLoader
 
             Dim detail As Detail = q.NewDetail(product)
             detail.Qty = row.Qty
-            'CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
             Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
             detail.SetProperties(o1)
 
-            'Dim detail As Detail = Nothing
-            'Dim parts As WireComponentSourceDataTable
-            'parts = partAdaptor.GetDataByPartNumber(row.ProductCode)
-            'If (parts.Count > 0) Then
-            '    Dim part As WireComponentSourceRow
-            '    part = parts(0)
-            '    Dim partObj As Product
-            '    partObj = New Product( _
-            '        part.PartNumber, part.QuotePrice, _
-            '        0, UnitOfMeasure.BY_EACH, Nothing, part)
-
-            '    detail = q.NewDetail(partObj)
-            'End If
-
-            'Dim wires As WireSourceDataTable
-            'wires = wireAdaptor.GetDataByPartNumber(row.ProductCode)
-            'If (wires.Count > 0) Then
-            '    Dim wire As WireSourceRow
-            '    wire = wires(0)
-            '    Dim gage As String = ""
-            '    Dim gageTable As GageDataTable
-            '    gageTable = gageAdaptor.GetDataByGageID(wire.GageID)
-            '    If gageTable IsNot Nothing Then
-            '        Dim gageRow As GageRow = gageTable.Rows(0)
-            '        gage = gageRow.Gage
-            '    End If
-            '    Dim wireObj As New Product( _
-            '        wire.PartNumber, wire.QuotePrice, _
-            '        gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
-
-            '    detail = q.NewDetail(wireObj)
-            'End If
-
-            'If (detail IsNot Nothing) Then
-            '    detail.Qty = row.Qty
-            '    Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
-            '    detail.SetProperties(o1)
-            'End If
         Next
     End Sub
 
