@@ -66,9 +66,9 @@ Public Class QuoteImport
         other.LeadTimeInitial = row.LeadTimeInitial
         other.LeadTimeStandard = row.LeadTimeStandard
         other.Tooling = row.Tooling
-        other.ImportedUnitCost = row.UnitPrice
-        other.ImportedCuWeight = row.CuWeight
-        other.ImportedLaborMinutes = row.LaborMinutes
+        other.SetImportedUnitCost(row.UnitPrice)
+        other.SetImportedCuWeight(row.CuWeight)
+        other.SetImportedLaborMinutes(row.LaborMinutes)
         _OldUnitCost = row.UnitPrice
 
         Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
