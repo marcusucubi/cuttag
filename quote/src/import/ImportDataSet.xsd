@@ -465,6 +465,8 @@ SELECT QuoteID, QuoteNumber, CustomerID, ContactName, RFQ, QuoteDate, DueDate, P
               <Mapping SourceColumn="TimeMultiplier" DataSetColumn="TimeMultiplier" />
               <Mapping SourceColumn="FinalMarkup" DataSetColumn="FinalMarkup" />
               <Mapping SourceColumn="MaterialMarkup" DataSetColumn="MaterialMarkup" />
+              <Mapping SourceColumn="NumberOfTwists" DataSetColumn="NumberOfTwists" />
+              <Mapping SourceColumn="ComponentSetupTime" DataSetColumn="ComponentSetupTime" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cuttagSKEConnectionString (MySettings)" DbObjectName="cuttagSKE.dbo.QuoteHeader" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByQuoteNumber" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteNumber" GeneratorSourceName="FillByQuoteNumber" GetMethodModifier="Public" GetMethodName="GetDataByQuoteNumber" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteNumber" UserSourceName="FillByQuoteNumber">
@@ -629,6 +631,8 @@ ORDER BY QuoteNumber DESC</CommandText>
               <xs:element name="TimeMultiplier" msprop:Generator_ColumnVarNameInTable="columnTimeMultiplier" msprop:Generator_ColumnPropNameInRow="TimeMultiplier" msprop:Generator_ColumnPropNameInTable="TimeMultiplierColumn" msprop:Generator_UserColumnName="TimeMultiplier" type="xs:decimal" minOccurs="0" />
               <xs:element name="FinalMarkup" msprop:Generator_ColumnVarNameInTable="columnFinalMarkup" msprop:Generator_ColumnPropNameInRow="FinalMarkup" msprop:Generator_ColumnPropNameInTable="FinalMarkupColumn" msprop:Generator_UserColumnName="FinalMarkup" type="xs:decimal" minOccurs="0" />
               <xs:element name="MaterialMarkup" msprop:Generator_ColumnVarNameInTable="columnMaterialMarkup" msprop:Generator_ColumnPropNameInRow="MaterialMarkup" msprop:Generator_ColumnPropNameInTable="MaterialMarkupColumn" msprop:Generator_UserColumnName="MaterialMarkup" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NumberOfTwists" msprop:Generator_ColumnVarNameInTable="columnNumberOfTwists" msprop:Generator_ColumnPropNameInRow="NumberOfTwists" msprop:Generator_ColumnPropNameInTable="NumberOfTwistsColumn" msprop:Generator_UserColumnName="NumberOfTwists" type="xs:int" minOccurs="0" />
+              <xs:element name="ComponentSetupTime" msprop:Generator_ColumnVarNameInTable="columnComponentSetupTime" msprop:Generator_ColumnPropNameInRow="ComponentSetupTime" msprop:Generator_ColumnPropNameInTable="ComponentSetupTimeColumn" msprop:Generator_UserColumnName="ComponentSetupTime" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
