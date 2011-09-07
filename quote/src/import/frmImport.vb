@@ -3,6 +3,8 @@
 Public Class frmImport
 
     Public Property QuoteNumber As Integer
+    Public Property ImportAll As Boolean
+    Public Property ImportTest As Boolean
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
@@ -44,6 +46,17 @@ Public Class frmImport
     Private Sub EnableButtons()
 
         Dim num As String = Me.ComboBox1.Text
+        If num = "all" Then
+            Me.OK_Button.Enabled = True
+            ImportAll = True
+            Return
+        End If
+        If num = "test" Then
+            Me.OK_Button.Enabled = True
+            ImportTest = True
+            Return
+        End If
+
         Dim table As ImportDataSet.QuoteHeaderDataTable
         table = New ImportDataSetTableAdapters.QuoteHeaderTableAdapter().GetDataByQuoteNumber(num)
         If table.Count > 0 Then
