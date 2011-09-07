@@ -67,6 +67,8 @@ Public Class QuoteImport
         other.LeadTimeStandard = row.LeadTimeStandard
         other.Tooling = row.Tooling
         other.ImportedUnitCost = row.UnitPrice
+        other.ImportedCuWeight = row.CuWeight
+        other.ImportedLaborMinutes = row.LaborMinutes
         _OldUnitCost = row.UnitPrice
 
         Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
@@ -79,6 +81,15 @@ Public Class QuoteImport
         comp.PercentCopperScrap = (row.CuWeightMultiplier - 1) * 100
         comp.WireSetupTime = row.CutTime
         comp.WireMachineTime = row.WireTime
+        If Not row.IsComponentSetupTimeNull Then
+            comp.ComponentSetupTime = row.ComponentSetupTime
+        End If
+        If Not row.IsShippingNull Then
+            comp.ShippingCost = row.Shipping
+        End If
+        If Not row.IsNumberOfTwistsNull Then
+            comp.NumberOfTwistedPairs = row.NumberOfTwists
+        End If
         If row.IsFinalMarkupNull Then
             Console.WriteLine("    Warning: FinalMarkup is null")
         Else
