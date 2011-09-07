@@ -111,10 +111,10 @@
     <Compile Include="src\forms\frmDocumentA.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmImport.Designer.vb">
+    <Compile Include="src\import\frmImport.Designer.vb">
       <DependentUpon>frmImport.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmImport.vb">
+    <Compile Include="src\import\frmImport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmNoteProperties.Designer.vb">
@@ -312,7 +312,7 @@
     <EmbeddedResource Include="src\forms\frmExport.resx">
       <DependentUpon>frmExport.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmImport.resx">
+    <EmbeddedResource Include="src\import\frmImport.resx">
       <DependentUpon>frmImport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
