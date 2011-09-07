@@ -148,8 +148,8 @@ Public Class QuoteLoader
             Dim detail As Detail = q.NewDetail(product)
             detail.Qty = row.Qty
             Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
+            detail.UnitCost = o1.UnitCost
             detail.SetProperties(o1)
-
         Next
     End Sub
 
