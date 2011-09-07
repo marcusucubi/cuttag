@@ -123,46 +123,78 @@ Public Class QuoteLoader
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 
-            Dim detail As Detail = Nothing
+            Dim temp As New TempObj
+            CommonLoader.LoadProperties(id, row.id, temp)
 
-            Dim parts As WireComponentSourceDataTable
-            parts = partAdaptor.GetDataByPartNumber(row.ProductCode)
-            If (parts.Count > 0) Then
-                Dim part As WireComponentSourceRow
-                part = parts(0)
-                Dim partObj As Product
-                partObj = New Product( _
-                    part.PartNumber, part.QuotePrice, _
-                    0, UnitOfMeasure.BY_EACH, Nothing, part)
-
-                detail = q.NewDetail(partObj)
+            Dim unit As Model.UnitOfMeasure
+            If temp.UnitOfMeasure = "Each" Then
+                unit = UnitOfMeasure.BY_EACH
+            Else
+                unit = UnitOfMeasure.BY_LENGTH
             End If
 
-            Dim wires As WireSourceDataTable
-            wires = wireAdaptor.GetDataByPartNumber(row.ProductCode)
-            If (wires.Count > 0) Then
-                Dim wire As WireSourceRow
-                wire = wires(0)
-                Dim gage As String = ""
-                Dim gageTable As GageDataTable
-                gageTable = gageAdaptor.GetDataByGageID(wire.GageID)
-                If gageTable IsNot Nothing Then
-                    Dim gageRow As GageRow = gageTable.Rows(0)
-                    gage = gageRow.Gage
-                End If
-                Dim wireObj As New Product( _
-                    wire.PartNumber, wire.QuotePrice, _
-                    gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
+            Dim product As New Model.Product( _
+                row.ProductCode, _
+                temp.Gage, _
+                0, _
+                0, _
+                unit, _
+                "", _
+                0,
+                "", _
+                0, _
+                0)
 
-                detail = q.NewDetail(wireObj)
-            End If
+            Dim detail As Detail = q.NewDetail(product)
+            detail.Qty = row.Qty
+            'CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
+            Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
+            detail.SetProperties(o1)
 
-            If (detail IsNot Nothing) Then
-                detail.Qty = row.Qty
-                Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
-                detail.SetProperties(o1)
-            End If
+            'Dim detail As Detail = Nothing
+            'Dim parts As WireComponentSourceDataTable
+            'parts = partAdaptor.GetDataByPartNumber(row.ProductCode)
+            'If (parts.Count > 0) Then
+            '    Dim part As WireComponentSourceRow
+            '    part = parts(0)
+            '    Dim partObj As Product
+            '    partObj = New Product( _
+            '        part.PartNumber, part.QuotePrice, _
+            '        0, UnitOfMeasure.BY_EACH, Nothing, part)
+
+            '    detail = q.NewDetail(partObj)
+            'End If
+
+            'Dim wires As WireSourceDataTable
+            'wires = wireAdaptor.GetDataByPartNumber(row.ProductCode)
+            'If (wires.Count > 0) Then
+            '    Dim wire As WireSourceRow
+            '    wire = wires(0)
+            '    Dim gage As String = ""
+            '    Dim gageTable As GageDataTable
+            '    gageTable = gageAdaptor.GetDataByGageID(wire.GageID)
+            '    If gageTable IsNot Nothing Then
+            '        Dim gageRow As GageRow = gageTable.Rows(0)
+            '        gage = gageRow.Gage
+            '    End If
+            '    Dim wireObj As New Product( _
+            '        wire.PartNumber, wire.QuotePrice, _
+            '        gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
+
+            '    detail = q.NewDetail(wireObj)
+            'End If
+
+            'If (detail IsNot Nothing) Then
+            '    detail.Qty = row.Qty
+            '    Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
+            '    detail.SetProperties(o1)
+            'End If
         Next
     End Sub
+
+    Public Class TempObj
+        Public Property UnitOfMeasure As String
+        Public Property Gage As String = ""
+    End Class
 
 End Class
