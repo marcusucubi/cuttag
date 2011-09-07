@@ -20,10 +20,12 @@ Public Class frmImport
         Me.ComboBox1.DataSource = table
         Me.ComboBox1.DisplayMember = "QuoteNumber"
         SelectProduct()
+        EnableButtons()
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
         SelectProduct()
+        EnableButtons()
     End Sub
 
     Private Sub SelectProduct()
@@ -32,6 +34,23 @@ Public Class frmImport
         Dim row As ImportDataSet.QuoteHeaderRow = View.Row
 
         Me.QuoteNumber = row.QuoteNumber
+
+    End Sub
+
+    Private Sub ComboBox1_TextUpdate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.TextUpdate
+        EnableButtons()
+    End Sub
+
+    Private Sub EnableButtons()
+
+        Dim num As String = Me.ComboBox1.Text
+        Dim table As ImportDataSet.QuoteHeaderDataTable
+        table = New ImportDataSetTableAdapters.QuoteHeaderTableAdapter().GetDataByQuoteNumber(num)
+        If table.Count > 0 Then
+            Me.OK_Button.Enabled = True
+        Else
+            Me.OK_Button.Enabled = False
+        End If
 
     End Sub
 
