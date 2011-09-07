@@ -19,8 +19,10 @@ Public Class frmOutput
             MyBase.Write(value)
             _TextBox.SuspendLayout()
             _TextBox.Text = _TextBox.Text + value
-            _TextBox.SelectionStart = _TextBox.TextLength
-            _TextBox.ScrollToCaret()
+            If value = Chr(10) Then
+                _TextBox.SelectionStart = _TextBox.TextLength
+                _TextBox.ScrollToCaret()
+            End If
             _TextBox.ResumeLayout()
         End Sub
 
