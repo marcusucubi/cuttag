@@ -287,7 +287,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub ShowOutput()
+    Public Sub ShowOutput()
         If (_Output Is Nothing) Then
             _Output = New frmOutput
             DockPanel1.SuspendLayout(True)
@@ -404,14 +404,8 @@ Public Class frmMain
 
     Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click
 
-        Dim frm As New frmImport
-        Dim result As DialogResult = frm.ShowDialog()
-        If result = DialogResult.OK Then
-            Me.ShowOutput()
-            Dim import As New QuoteImport
-            Dim id As Integer = import.Import(frm.QuoteNumber)
-            LoadTemplate(id)
-        End If
+        Dim import As New QuoteImport
+        import.DoImport()
 
     End Sub
 
