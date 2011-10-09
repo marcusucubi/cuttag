@@ -321,8 +321,7 @@ Partial Public Class ImportDataSet
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class QuoteDetailDataTable
-        Inherits Global.System.Data.DataTable
-        Implements Global.System.Collections.IEnumerable
+        Inherits Global.System.Data.TypedTableBase(Of QuoteDetailRow)
         
         Private columnQuoteID As Global.System.Data.DataColumn
         
@@ -501,12 +500,6 @@ Partial Public Class ImportDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function FindByQuoteIDLineNumber(ByVal QuoteID As System.Guid, ByVal LineNumber As Integer) As QuoteDetailRow
             Return CType(Me.Rows.Find(New Object() {QuoteID, LineNumber}),QuoteDetailRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
-            Return Me.Rows.GetEnumerator
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -701,8 +694,7 @@ Partial Public Class ImportDataSet
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class QuoteHeaderDataTable
-        Inherits Global.System.Data.DataTable
-        Implements Global.System.Collections.IEnumerable
+        Inherits Global.System.Data.TypedTableBase(Of QuoteHeaderRow)
         
         Private columnQuoteID As Global.System.Data.DataColumn
         
@@ -1331,12 +1323,6 @@ Partial Public Class ImportDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overridable Function GetEnumerator() As Global.System.Collections.IEnumerator Implements Global.System.Collections.IEnumerable.GetEnumerator
-            Return Me.Rows.GetEnumerator
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As QuoteHeaderDataTable = CType(MyBase.Clone,QuoteHeaderDataTable)
             cln.InitVars
@@ -1556,7 +1542,7 @@ Partial Public Class ImportDataSet
                 RaiseEvent QuoteHeaderRowChanging(Me, New QuoteHeaderRowChangeEvent(CType(e.Row,QuoteHeaderRow), e.Action))
             End If
         End Sub
-
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
