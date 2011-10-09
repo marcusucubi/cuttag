@@ -103,6 +103,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="src\controls\WireAndComponentItem.vb" />
+    <Compile Include="src\controls\WireAndComponentView.Designer.vb">
+      <DependentUpon>WireAndComponentView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\controls\WireAndComponentView.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\controls\WireAndComponentViewSearchGrid.vb">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,6 +127,12 @@
       <DependentUpon>frmDocumentA.vb</DependentUpon>
     </Compile>
     <Compile Include="src\forms\frmDocumentA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\forms\frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\import\frmImport.Designer.vb">
@@ -253,18 +265,6 @@
     <Compile Include="src\forms\frmPartLookup.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmMain.Designer.vb">
-      <DependentUpon>frmMain.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmMain.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\controls\WireAndComponentView.Designer.vb">
-      <DependentUpon>WireAndComponentView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\controls\WireAndComponentView.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="src\misc\ActiveDetail.vb" />
     <Compile Include="src\misc\QuoteTypeList.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
@@ -315,14 +315,23 @@
     <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
+      <DependentUpon>WireAndComponentView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmCustomProperties.resx">
       <DependentUpon>frmCustomProperties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmDatabaseTest.resx">
       <DependentUpon>frmDatabaseTest.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmDocumentA.resx">
+      <DependentUpon>frmDocumentA.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmExport.resx">
       <DependentUpon>frmExport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\import\frmImport.resx">
       <DependentUpon>frmImport.vb</DependentUpon>
@@ -332,9 +341,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNewBOM.resx">
       <DependentUpon>frmNewBOM.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmDocumentA.resx">
-      <DependentUpon>frmDocumentA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNoteProperties.resx">
       <DependentUpon>frmNoteProperties.vb</DependentUpon>
@@ -371,12 +377,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmWireLookup.resx">
       <DependentUpon>frmWireLookup.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
-      <DependentUpon>WireAndComponentView.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmMain.resx">
-      <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

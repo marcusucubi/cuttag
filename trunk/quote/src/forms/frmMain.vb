@@ -409,5 +409,31 @@ Public Class frmMain
 
     End Sub
 
+	Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
+		Me.Close()
+	End Sub
+	Private Sub frmMain_MdiChildActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.MdiChildActivate
+		If IsNothing(Me._ActiveHeader.Header) OrElse Me._ActiveHeader.Header.IsQuote Then
+			EditToolStripMenuItem.Visible = False
+		Else
+			EditToolStripMenuItem.Visible = True
+		End If
+	End Sub
+	Private Sub AddItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddItemToolStripMenuItem.Click
+		If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
+			Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
+			If Not Me._ActiveHeader.Header.IsQuote Then
+				frm.AddItem()
+			End If
+		End If
+	End Sub
+	Private Sub DeleteItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteItemToolStripMenuItem.Click
+		If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
+			Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
+			If Not Me._ActiveHeader.Header.IsQuote Then
+				frm.DeleteItem()
+			End If
+		End If
+	End Sub
 End Class
 

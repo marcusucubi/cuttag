@@ -1597,9 +1597,15 @@ Partial Public Class QuoteDataBase
         
         Private columnQuoteID As Global.System.Data.DataColumn
         
+        Private columnSequenceNumber As Global.System.Data.DataColumn
+        
         Private columnQty As Global.System.Data.DataColumn
         
         Private columnProductCode As Global.System.Data.DataColumn
+        
+        Private columnSourceID As Global.System.Data.DataColumn
+        
+        Private columnIsWire As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1654,6 +1660,14 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SequenceNumberColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSequenceNumber
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property QtyColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnQty
@@ -1665,6 +1679,22 @@ Partial Public Class QuoteDataBase
         Public ReadOnly Property ProductCodeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnProductCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SourceIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSourceID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IsWireColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsWire
             End Get
         End Property
         
@@ -1705,9 +1735,9 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function Add_QuoteDetailRow(ByVal QuoteID As Integer, ByVal Qty As Decimal, ByVal ProductCode As String) As _QuoteDetailRow
+        Public Overloads Function Add_QuoteDetailRow(ByVal QuoteID As Integer, ByVal SequenceNumber As Integer, ByVal Qty As Decimal, ByVal ProductCode As String, ByVal SourceID As System.Guid, ByVal IsWire As Boolean) As _QuoteDetailRow
             Dim row_QuoteDetailRow As _QuoteDetailRow = CType(Me.NewRow,_QuoteDetailRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, QuoteID, Qty, ProductCode}
+            Dim columnValuesArray() As Object = New Object() {Nothing, QuoteID, SequenceNumber, Qty, ProductCode, SourceID, IsWire}
             row_QuoteDetailRow.ItemArray = columnValuesArray
             Me.Rows.Add(row_QuoteDetailRow)
             Return row_QuoteDetailRow
@@ -1738,8 +1768,11 @@ Partial Public Class QuoteDataBase
         Friend Sub InitVars()
             Me.columnid = MyBase.Columns("id")
             Me.columnQuoteID = MyBase.Columns("QuoteID")
+            Me.columnSequenceNumber = MyBase.Columns("SequenceNumber")
             Me.columnQty = MyBase.Columns("Qty")
             Me.columnProductCode = MyBase.Columns("ProductCode")
+            Me.columnSourceID = MyBase.Columns("SourceID")
+            Me.columnIsWire = MyBase.Columns("IsWire")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1749,10 +1782,16 @@ Partial Public Class QuoteDataBase
             MyBase.Columns.Add(Me.columnid)
             Me.columnQuoteID = New Global.System.Data.DataColumn("QuoteID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQuoteID)
+            Me.columnSequenceNumber = New Global.System.Data.DataColumn("SequenceNumber", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSequenceNumber)
             Me.columnQty = New Global.System.Data.DataColumn("Qty", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQty)
             Me.columnProductCode = New Global.System.Data.DataColumn("ProductCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnProductCode)
+            Me.columnSourceID = New Global.System.Data.DataColumn("SourceID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSourceID)
+            Me.columnIsWire = New Global.System.Data.DataColumn("IsWire", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsWire)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnid}, true))
             Me.columnid.AutoIncrement = true
             Me.columnid.AutoIncrementSeed = -1
@@ -1760,7 +1799,10 @@ Partial Public Class QuoteDataBase
             Me.columnid.AllowDBNull = false
             Me.columnid.ReadOnly = true
             Me.columnid.Unique = true
+            Me.columnSequenceNumber.AllowDBNull = false
+            Me.columnSequenceNumber.DefaultValue = CType(1,Integer)
             Me.columnProductCode.MaxLength = 50
+            Me.columnIsWire.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4192,6 +4234,17 @@ Partial Public Class QuoteDataBase
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SequenceNumber() As Integer
+            Get
+                Return CType(Me(Me.table_QuoteDetail.SequenceNumberColumn),Integer)
+            End Get
+            Set
+                Me(Me.table_QuoteDetail.SequenceNumberColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property Qty() As Decimal
             Get
                 Try 
@@ -4217,6 +4270,32 @@ Partial Public Class QuoteDataBase
             End Get
             Set
                 Me(Me.table_QuoteDetail.ProductCodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SourceID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.table_QuoteDetail.SourceIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SourceID' in table '_QuoteDetail' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.table_QuoteDetail.SourceIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IsWire() As Boolean
+            Get
+                Return CType(Me(Me.table_QuoteDetail.IsWireColumn),Boolean)
+            End Get
+            Set
+                Me(Me.table_QuoteDetail.IsWireColumn) = value
             End Set
         End Property
         
@@ -4254,6 +4333,18 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetProductCodeNull()
             Me(Me.table_QuoteDetail.ProductCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSourceIDNull() As Boolean
+            Return Me.IsNull(Me.table_QuoteDetail.SourceIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSourceIDNull()
+            Me(Me.table_QuoteDetail.SourceIDColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7292,32 +7383,59 @@ Namespace QuoteDataBaseTableAdapters
             tableMapping.ColumnMappings.Add("QuoteID", "QuoteID")
             tableMapping.ColumnMappings.Add("Qty", "Qty")
             tableMapping.ColumnMappings.Add("ProductCode", "ProductCode")
+            tableMapping.ColumnMappings.Add("IsWire", "IsWire")
+            tableMapping.ColumnMappings.Add("SourceID", "SourceID")
+            tableMapping.ColumnMappings.Add("SequenceNumber", "SequenceNumber")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM _QuoteDetail"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = @Original_id)"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM _QuoteDetail"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = @Original_idl)"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_idl", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[_QuoteDetail] ([QuoteID], [Qty], [ProductCode]) VALUES (@Quote"& _ 
-                "ID, @Qty, @ProductCode);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT id, QuoteID, Qty, ProductCode FROM _QuoteDetail"& _ 
-                " WHERE (id = SCOPE_IDENTITY())"
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[_QuoteDetail] ([QuoteID], [Qty], [SequenceNumber], [ProductCod"& _ 
+                "e], [SourceID], [IsWire]) VALUES (@QuoteID, @Qty, @SequenceNumber, @ProductCode,"& _ 
+                " @SourceID, @IsWire);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT id, QuoteID, Qty, SequenceNumber, ProductCode, Sou"& _ 
+                "rceID, IsWire FROM _QuoteDetail WHERE (id = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Qty", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SequenceNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SequenceNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ProductCode", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ProductCode", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SourceID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsWire", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsWire", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE       _QuoteDetail"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                QuoteID = @QuoteID, Qty = @Qty, Pro"& _ 
-                "ductCode = @ProductCode"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = @ID); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT id, QuoteID, Qty, Pro"& _ 
-                "ductCode FROM _QuoteDetail WHERE (id = @id)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[_QuoteDetail] SET [QuoteID] = @QuoteID, [Qty] = @Qty, [SequenceNumb"& _ 
+                "er] = @SequenceNumber, [ProductCode] = @ProductCode, [SourceID] = @SourceID, [Is"& _ 
+                "Wire] = @IsWire WHERE (([id] = @Original_id) AND ((@IsNull_QuoteID = 1 AND [Quot"& _ 
+                "eID] IS NULL) OR ([QuoteID] = @Original_QuoteID)) AND ((@IsNull_Qty = 1 AND [Qty"& _ 
+                "] IS NULL) OR ([Qty] = @Original_Qty)) AND ([SequenceNumber] = @Original_Sequenc"& _ 
+                "eNumber) AND ((@IsNull_ProductCode = 1 AND [ProductCode] IS NULL) OR ([ProductCo"& _ 
+                "de] = @Original_ProductCode)) AND ((@IsNull_SourceID = 1 AND [SourceID] IS NULL)"& _ 
+                " OR ([SourceID] = @Original_SourceID)) AND ([IsWire] = @Original_IsWire));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELE"& _ 
+                "CT id, QuoteID, Qty, SequenceNumber, ProductCode, SourceID, IsWire FROM _QuoteDe"& _ 
+                "tail WHERE (id = @id)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Qty", Global.System.Data.SqlDbType.Money, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ProductCode", Global.System.Data.SqlDbType.NVarChar, 50, Global.System.Data.ParameterDirection.Input, 0, 0, "ProductCode", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Qty", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Qty", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SequenceNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SequenceNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ProductCode", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ProductCode", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SourceID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsWire", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsWire", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_id", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_Qty", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Qty", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Qty", Global.System.Data.SqlDbType.Money, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Qty", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SequenceNumber", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SequenceNumber", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_ProductCode", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ProductCode", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ProductCode", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ProductCode", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_SourceID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SourceID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_SourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SourceID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IsWire", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IsWire", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7333,12 +7451,13 @@ Namespace QuoteDataBaseTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT id, QuoteID, Qty, ProductCode FROM dbo.[_QuoteDetail]"
+            Me._commandCollection(0).CommandText = "SELECT id, QuoteID, Qty, SequenceNumber, ProductCode, SourceID, IsWire FROM dbo.["& _ 
+                "_QuoteDetail]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        id, QuoteID, Qty, ProductCode"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            _QuoteDetail"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
-                "       (QuoteID = @QuoteID)"
+            Me._commandCollection(1).CommandText = "SELECT IsWire, ProductCode, Qty, QuoteID, SequenceNumber, SourceID, id FROM _Quot"& _ 
+                "eDetail WHERE (QuoteID = @QuoteID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -7433,8 +7552,8 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_id As Decimal) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_id,Decimal)
+        Public Overloads Overridable Function Delete(ByVal Original_idl As Decimal) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_idl,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7454,7 +7573,7 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal Qty As Global.System.Nullable(Of Decimal), ByVal ProductCode As String) As Integer
+        Public Overloads Overridable Function Insert(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal Qty As Global.System.Nullable(Of Decimal), ByVal SequenceNumber As Integer, ByVal ProductCode As String, ByVal SourceID As Global.System.Nullable(Of Global.System.Guid), ByVal IsWire As Boolean) As Integer
             If (QuoteID.HasValue = true) Then
                 Me.Adapter.InsertCommand.Parameters(0).Value = CType(QuoteID.Value,Integer)
             Else
@@ -7465,11 +7584,18 @@ Namespace QuoteDataBaseTableAdapters
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(SequenceNumber,Integer)
             If (ProductCode Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(ProductCode,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(ProductCode,String)
             End If
+            If (SourceID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(SourceID.Value,System.Guid)
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(IsWire,Boolean)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7489,7 +7615,7 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal Qty As Global.System.Nullable(Of Decimal), ByVal ProductCode As String, ByVal ID As Decimal, ByVal id1 As Decimal) As Integer
+        Public Overloads Overridable Function Update(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal Qty As Global.System.Nullable(Of Decimal), ByVal SequenceNumber As Integer, ByVal ProductCode As String, ByVal SourceID As Global.System.Nullable(Of Global.System.Guid), ByVal IsWire As Boolean, ByVal Original_id As Decimal, ByVal Original_QuoteID As Global.System.Nullable(Of Integer), ByVal Original_Qty As Global.System.Nullable(Of Decimal), ByVal Original_SequenceNumber As Integer, ByVal Original_ProductCode As String, ByVal Original_SourceID As Global.System.Nullable(Of Global.System.Guid), ByVal Original_IsWire As Boolean, ByVal id As Decimal) As Integer
             If (QuoteID.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(QuoteID.Value,Integer)
             Else
@@ -7500,13 +7626,50 @@ Namespace QuoteDataBaseTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(SequenceNumber,Integer)
             If (ProductCode Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(ProductCode,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(ProductCode,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(ID,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(id1,Decimal)
+            If (SourceID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(SourceID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(IsWire,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_id,Decimal)
+            If (Original_QuoteID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Original_QuoteID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (Original_Qty.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Qty.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_SequenceNumber,Integer)
+            If (Original_ProductCode Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_ProductCode,String)
+            End If
+            If (Original_SourceID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_SourceID.Value,System.Guid)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_IsWire,Boolean)
+            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(id,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7520,6 +7683,14 @@ Namespace QuoteDataBaseTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal Qty As Global.System.Nullable(Of Decimal), ByVal SequenceNumber As Integer, ByVal ProductCode As String, ByVal SourceID As Global.System.Nullable(Of Global.System.Guid), ByVal IsWire As Boolean, ByVal Original_id As Decimal, ByVal Original_QuoteID As Global.System.Nullable(Of Integer), ByVal Original_Qty As Global.System.Nullable(Of Decimal), ByVal Original_SequenceNumber As Integer, ByVal Original_ProductCode As String, ByVal Original_SourceID As Global.System.Nullable(Of Global.System.Guid), ByVal Original_IsWire As Boolean) As Integer
+            Return Me.Update(QuoteID, Qty, SequenceNumber, ProductCode, SourceID, IsWire, Original_id, Original_QuoteID, Original_Qty, Original_SequenceNumber, Original_ProductCode, Original_SourceID, Original_IsWire, Original_id)
         End Function
     End Class
     
