@@ -9,11 +9,11 @@ Namespace Common
 		Protected _Quantity As Decimal = 1
 		Protected _Product As Model.Product
 		Protected _QuoteDetailProperties As Object
-		'dd_added 10/2/11
+		'dd_Added 10/2/11
 		Protected _SequenceNumber As Integer = 1
 		Protected _SourceID As Guid
 		Protected _IsWire As Boolean
-		'dd_added end
+		'dd_Added end
 
 		Public Shadows Property Qty() As Decimal
 			Get
@@ -28,7 +28,7 @@ Namespace Common
 			End Set
 		End Property
 
-		'dd_added Set 9/26/11
+		'dd_Added Set 9/26/11
 		Public Property ProductCode As String
 			Get
 				Return Product.Code.Trim
@@ -40,7 +40,7 @@ Namespace Common
 				End If
 			End Set
 		End Property
-		'dd_added Property 10/8/11
+		'dd_Added Property 10/8/11
 		Public Property SequenceNumber As Integer
 			Get
 				Return _SequenceNumber
@@ -52,7 +52,7 @@ Namespace Common
 				End If
 			End Set
 		End Property
-		'dd_added 10/3/11
+		'dd_Added 10/3/11
 		Public Property SourceID As Guid
 			Get
 				Return _SourceID
@@ -61,7 +61,7 @@ Namespace Common
 				_SourceID = value
 			End Set
 		End Property
-		'dd_added Property 10/2/11
+		'dd_Added Property 10/2/11
 		Public Property IsWire As Boolean
 			Get
 				Return _IsWire
@@ -72,7 +72,7 @@ Namespace Common
 				End If
 			End Set
 		End Property
-		'dd_added End
+		'dd_Added End
 
 		Public Property UnitCost As Decimal
 			Get
