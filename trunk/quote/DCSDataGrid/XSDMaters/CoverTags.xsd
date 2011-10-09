@@ -1,0 +1,26 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="CoverTags" targetNamespace="http://www.tempuri.org/CoverTags.xsd" xmlns:mstns="http://www.tempuri.org/CoverTags.xsd" xmlns="http://www.tempuri.org/CoverTags.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="CoverTags" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="CoverTagsDetail">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Feet" type="xs:int" minOccurs="0" />
+              <xs:element name="Inches" type="xs:int" minOccurs="0" />
+              <xs:element name="LevelBreak" type="xs:int" />
+              <xs:element name="Mark" type="xs:string" />
+              <xs:element name="SequenceMax" type="xs:int" minOccurs="0" />
+              <xs:element name="SequenceMin" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CoverTagsDetail" />
+      <xs:field xpath="mstns:LevelBreak" />
+      <xs:field xpath="mstns:Mark" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
