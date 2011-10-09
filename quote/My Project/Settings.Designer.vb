@@ -64,17 +64,6 @@ Namespace My
                 Return CType(Me("cuttagSKEConnectionString"),String)
             End Get
         End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOPDD5\SQLEXPRESS08;Initial Catalog=cuttagSKE;Integrated Security="& _ 
-            "True")>  _
-        Public ReadOnly Property cuttagSKEConnectionString1() As String
-            Get
-                Return CType(Me("cuttagSKEConnectionString1"),String)
-            End Get
-        End Property
     End Class
 End Namespace
 
