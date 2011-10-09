@@ -94,8 +94,18 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Settings.vb" />
+    <Compile Include="src\controls\DetailSortComparer.vb" />
     <Compile Include="src\controls\ListViewColumnSorter.vb" />
+    <Compile Include="src\controls\LookupDataGridView.Designer.vb">
+      <DependentUpon>LookupDataGridView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\controls\LookupDataGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="src\controls\WireAndComponentItem.vb" />
+    <Compile Include="src\controls\WireAndComponentViewSearchGrid.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="src\database\CommonLoader.vb" />
     <Compile Include="src\database\CommonSaver.vb" />
     <Compile Include="src\database\CuttagDatabaseConnection.vb" />
@@ -465,7 +475,16 @@
     <None Include="Resources\weight.png" />
     <None Include="Resources\save.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="DCSDataCommon\DCSDataCommon.vbproj">
+      <Project>{9A59AF91-9074-4358-AD27-41D9C9D50986}</Project>
+      <Name>DCSDataCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="DCSDataGrid\DCSDataGrid.vbproj">
+      <Project>{B3093DDF-04C2-47AB-8E5B-99D151AA1C53}</Project>
+      <Name>DCSDataGrid</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>
