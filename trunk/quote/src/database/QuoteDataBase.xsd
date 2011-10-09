@@ -791,7 +791,7 @@ ORDER BY PartNumber</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemSourceLookupListTableAdapter" GeneratorDataComponentClassName="ItemSourceLookupListTableAdapter" Name="ItemSourceLookupList" UserDataComponentName="ItemSourceLookupListTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="cuttagSKEConnectionString1 (MySettings)" DbObjectName="cuttagSKE.dbo.HX_GetItemSourceLookupList" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="cuttagSKEConnectionString (MySettings)" DbObjectName="cuttagSKE.dbo.HX_GetItemSourceLookupList" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.HX_GetItemSourceLookupList</CommandText>
