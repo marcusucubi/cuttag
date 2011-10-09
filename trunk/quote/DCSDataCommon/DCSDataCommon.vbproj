@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A59AF91-9074-4358-AD27-41D9C9D50986}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DCSDataCommon</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>DCS</RootNamespace>
+    <StartupObject>DCS.%28None%29</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>DCSDataCommon.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>DCSDataCommon.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSets\dsBatchImport.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBatchImport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsBatchImport.vb">
+      <DependentUpon>dsBatchImport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsBOM.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBOM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsBOM.vb">
+      <DependentUpon>dsBOM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsQuote.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsQuote.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsQuote.vb">
+      <DependentUpon>dsQuote.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsTags.designer.vb">
+      <DependentUpon>dsTags.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataSets\dsTags.vb">
+      <DependentUpon>dsTags.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.vb" />
+    <Compile Include="SQLComponents\BaseDB.vb" />
+    <Compile Include="DataSets\dsAttributes.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAttributes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsMachine.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMachine.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsPartImport.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPartImport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\dsRules.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRules.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataTools.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ErrorProcessor.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Permutation.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\BatchImportDB.vb" />
+    <Compile Include="SQLComponents\BomDB.vb" />
+    <Compile Include="SQLComponents\ComputerHistoryDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\CreateTagsSettingsDB.vb" />
+    <Compile Include="SQLComponents\GenericCommand.vb" />
+    <Compile Include="SQLComponents\MachineDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\MachineSetupInfoDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\PartImportConductorColorDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\PartImportLayoutDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\PartImportPartInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\RuleDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\SecurityDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\SharedComponentDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\ShiftDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\SQLSharedDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\StripLength.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\WireLength.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLComponents\WireOperationsDB.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="DataTools.resx">
+      <DependentUpon>DataTools.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="DataSets\dsAttributes.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAttributes.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DataSets\dsMachine.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMachine.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DataSets\dsPartImport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPartImport.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DataSets\dsRules.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRules.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="app.config" />
+    <None Include="DataSets\dsAttributes.xsc">
+      <DependentUpon>dsAttributes.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsAttributes.xsx">
+      <DependentUpon>dsAttributes.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsBatchImport.xsc">
+      <DependentUpon>dsBatchImport.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsBatchImport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBatchImport.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\dsBatchImport.xss">
+      <DependentUpon>dsBatchImport.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsBOM.xsc">
+      <DependentUpon>dsBOM.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsBOM.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBOM.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\dsBOM.xss">
+      <DependentUpon>dsBOM.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsMachine.xsc">
+      <DependentUpon>dsMachine.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsMachine.xss">
+      <DependentUpon>dsMachine.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsMachine.xsx">
+      <DependentUpon>dsMachine.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsPartImport.xsc">
+      <DependentUpon>dsPartImport.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsPartImport.xsx">
+      <DependentUpon>dsPartImport.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsQuote.xsc">
+      <DependentUpon>dsQuote.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsQuote.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsQuote.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\dsQuote.xss">
+      <DependentUpon>dsQuote.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsRules.xsc">
+      <DependentUpon>dsRules.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsRules.xsx">
+      <DependentUpon>dsRules.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsTags.xsc">
+      <DependentUpon>dsTags.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsTags.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTags.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSets\dsTags.xss">
+      <DependentUpon>dsTags.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\dsTags.xsx">
+      <DependentUpon>dsTags.xsd</DependentUpon>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
