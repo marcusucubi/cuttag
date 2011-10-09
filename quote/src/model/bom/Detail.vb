@@ -15,20 +15,20 @@ Namespace Model.BOM
 			Me._WireProperties = New WireProperties(Me)
 			Me._ComponentProperties = New ComponentProperties(Me)
 			Me._Quantity = 1
-			'dd_added 10/8/11
+			'dd_Added 10/8/11
 			Me.SequenceNumber = Me.Header.NextSequenceNumber
-			'dd_added end
+			'dd_Added end
 
 		End Sub
 
 		<BrowsableAttribute(False)>
 		Property Header As Header
-		'dd_added 10/8/11
+		'dd_Added 10/8/11
 		Public Sub UpdateComponentProperties(ByVal pProduct As Product)
 			Me._Product = pProduct
 			Me._ComponentProperties = New ComponentProperties(Me)
 		End Sub
-		'dd_added end
+		'dd_Added end
 
 		<BrowsableAttribute(False)>
 		Public Overrides ReadOnly Property QuoteDetailProperties As Object

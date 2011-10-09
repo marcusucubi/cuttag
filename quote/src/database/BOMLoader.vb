@@ -99,13 +99,13 @@ Public Class BOMLoader
 
 			Dim detail As Common.Detail = q.NewDetail(product)
 			detail.Qty = row.Qty
-			'dd_added 10/3/11, 10/7/11
+			'dd_Added 10/3/11, 10/7/11
 			With detail
 				.IsWire = row.IsWire
 				If Not row.IsSourceIDNull Then .SourceID = row.SourceID
 				.SequenceNumber = row.SequenceNumber
 			End With
-			'dd_added end
+			'dd_Added end
 
 			CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
 		Next

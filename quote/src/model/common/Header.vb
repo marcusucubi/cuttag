@@ -14,7 +14,7 @@ Namespace Common
 		Public Property ID As Integer
 		Public Property WeightProperties As New Common.Weights(Me)
 		Public Property IsQuote As Boolean
-		'dd_added 10/8/11
+		'dd_Added 10/8/11
 		Public ReadOnly Property NextSequenceNumber
 			Get
 				Dim iMax As Integer = 0
@@ -25,7 +25,7 @@ Namespace Common
 				Return iMax
 			End Get
 		End Property
-		'ddAdded end
+		'dd_Added end
 		Public ReadOnly Property ComputationProperties As Common.ComputationProperties
 			Get
 				Return _ComputationProperties

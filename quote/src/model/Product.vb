@@ -73,7 +73,7 @@ Namespace Model
 				End If
 			End If
 		End Sub
-		'dd_added Set 9/26/11
+		'dd_Added Set 9/26/11
 		Property Code As String
 			Get
 				Return m_code
@@ -82,7 +82,7 @@ Namespace Model
 				m_code = Value
 			End Set
 		End Property
-		'dd_added end
+		'dd_Added end
 		ReadOnly Property Gage As String
 			Get
 				Return m_gage

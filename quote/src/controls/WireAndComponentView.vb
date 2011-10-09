@@ -159,7 +159,7 @@ Public Class WireAndComponentView
 		'Next
 		'ListView1.Refresh()
 
-		'dd_added 9/1/11
+		'dd_Added 9/1/11
 		Me.dgvQuoteDetail.DataSource = Me._DetailCollection
 		With dgvQuoteDetail_Lookup
 			.SearchGrid.DataSource = _PartLookupDataSource

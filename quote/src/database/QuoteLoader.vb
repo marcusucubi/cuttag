@@ -147,13 +147,13 @@ Public Class QuoteLoader
 
 			Dim detail As Detail = q.NewDetail(product)
 			detail.Qty = row.Qty
-			'ddAdded 10/3/11, 10/7/11
+			'dd_Added 10/3/11, 10/7/11
 			With detail
 				.IsWire = row.IsWire
 				If Not row.IsSourceIDNull Then .SourceID = row.SourceID
 				.SequenceNumber = row.SequenceNumber
 			End With
-			'ddAdded end
+			'dd_Added end
 
 			Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
 			detail.UnitCost = o1.UnitCost
