@@ -5,7 +5,7 @@ Namespace Common
 	Public Class DetailCollection(Of T)
 		Inherits System.ComponentModel.BindingList(Of T)
 		'dd_Added 10/8/11
-		Private _Sorted As Boolean = False
+		Private _IsSorted As Boolean = False
 		Private _SortDirection As ListSortDirection = ListSortDirection.Ascending
 		Private _SortProperty As PropertyDescriptor = Nothing
 		Protected Overrides ReadOnly Property SupportsSearchingCore As Boolean
@@ -28,6 +28,11 @@ Namespace Common
 				Return Me._SortProperty
 			End Get
 		End Property
+		Protected Overrides ReadOnly Property IsSortedCore As Boolean
+			Get
+				Return Me._IsSorted
+			End Get
+		End Property
 		Protected Overrides Sub ApplySortCore(ByVal prop As System.ComponentModel.PropertyDescriptor, ByVal direction As System.ComponentModel.ListSortDirection)
 			Me._SortDirection = direction
 			Me._SortProperty = prop
@@ -38,7 +43,7 @@ Namespace Common
 			Dim listRef As List(Of Detail) = MyBase.Items
 			If Not IsNothing(listRef) Then
 				listRef.Sort(oComparer)
-				_Sorted = True
+				_IsSorted = True
 				OnListChanged(New ListChangedEventArgs(ListChangedType.Reset, -1))
 			End If
 		End Sub
