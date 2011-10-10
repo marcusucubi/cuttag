@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="PartImport" targetNamespace="http://tempuri.org/dsPartImport.xsd" elementFormDefault="qualified"
+	attributeFormDefault="qualified" xmlns="http://tempuri.org/dsPartImport.xsd" xmlns:mstns="http://tempuri.org/dsPartImport.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="dsPartImport" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Layout">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="LayoutID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="PartImportTypeID" type="xs:int" minOccurs="0" />
+							<xs:element name="Description" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TableDef">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TableID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="LayoutID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="TableName" type="xs:string" />
+							<xs:element name="FixedName" type="xs:string" />
+							<xs:element name="Identifier" type="xs:string" minOccurs="0" />
+							<xs:element name="ColumnHeadRelativeY" type="xs:double" />
+							<xs:element name="TopRowBorderRelativeY" type="xs:double" minOccurs="0" />
+							<xs:element name="TopRowBorderRelativeX" type="xs:double" minOccurs="0" />
+							<xs:element name="RowHeight" type="xs:double" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ColumnDef">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TableID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="ColumnNumber" type="xs:int" />
+							<xs:element name="ColumnName" type="xs:string" />
+							<xs:element name="DBTableName" type="xs:string" minOccurs="0" />
+							<xs:element name="DBType" type="xs:string" minOccurs="0" />
+							<xs:element name="DBAttribute" type="xs:string" minOccurs="0" />
+							<xs:element name="ColumnWidth" type="xs:double" minOccurs="0" />
+							<xs:element name="WireEnd" type="xs:string" minOccurs="0" />
+							<xs:element name="IsCentered" type="xs:boolean" />
+							<xs:element name="IsRequired" type="xs:string" />
+							<xs:element name="Verify" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="TableAttributes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TableID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="AttributeNumber" type="xs:int" />
+							<xs:element name="AttributeName" type="xs:string" />
+							<xs:element name="CellBorderRelativeY" type="xs:double" minOccurs="0" />
+							<xs:element name="CellBorderRelativeX" type="xs:double" minOccurs="0" />
+							<xs:element name="CellWidth" type="xs:double" minOccurs="0" />
+							<xs:element name="TextRelativeHandle" type="xs:int" minOccurs="0" />
+							<xs:element name="Applies2Instance" type="xs:boolean" />
+							<xs:element name="IsInstanceID" type="xs:boolean" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PartImportGageSubstitute">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="GageInput" type="xs:string" />
+							<xs:element name="GageSubstitute" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:key name="PK_Layout" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Layout" />
+			<xs:field xpath="mstns:LayoutID" />
+		</xs:key>
+		<xs:key name="PK_TableDef" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:TableDef" />
+			<xs:field xpath="mstns:TableID" />
+		</xs:key>
+		<xs:key name="PK_ColumnDef" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:ColumnDef" />
+			<xs:field xpath="mstns:TableID" />
+			<xs:field xpath="mstns:ColumnNumber" />
+		</xs:key>
+		<xs:keyref name="LayoutTableDef" refer="PK_Layout">
+			<xs:selector xpath=".//mstns:TableDef" />
+			<xs:field xpath="mstns:LayoutID" />
+		</xs:keyref>
+		<xs:keyref name="TableDefColumnDef" refer="PK_TableDef">
+			<xs:selector xpath=".//mstns:ColumnDef" />
+			<xs:field xpath="mstns:TableID" />
+		</xs:keyref>
+		<xs:unique name="PK_TableAttributes" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:TableAttributes" />
+			<xs:field xpath="mstns:TableID" />
+			<xs:field xpath="mstns:AttributeNumber" />
+		</xs:unique>
+		<xs:keyref name="TableDefTableAttributes" refer="PK_TableDef" msdata:AcceptRejectRule="Cascade"
+			msdata:DeleteRule="Cascade" msdata:UpdateRule="Cascade">
+			<xs:selector xpath=".//mstns:TableAttributes" />
+			<xs:field xpath="mstns:TableID" />
+		</xs:keyref>
+		<xs:unique name="dsPartImportKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:PartImportGageSubstitute" />
+			<xs:field xpath="mstns:GageInput" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

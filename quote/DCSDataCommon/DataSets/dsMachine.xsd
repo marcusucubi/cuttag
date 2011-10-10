@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="dsMachine" targetNamespace="http://tempuri.org/dsMachine.xsd" elementFormDefault="qualified"
+	attributeFormDefault="qualified" xmlns="http://tempuri.org/dsMachine.xsd" xmlns:mstns="http://tempuri.org/dsMachine.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="dsMachine" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Machine">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OrganizationID" type="xs:int" />
+							<xs:element name="MachineID" type="xs:int" />
+							<xs:element name="MachineName" type="xs:string" />
+							<xs:element name="MachineDescription" type="xs:string" />
+							<xs:element name="Active" type="xs:boolean" />
+							<xs:element name="Fixed" type="xs:boolean" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MachineSetupInfo">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Attribute" type="xs:string" />
+							<xs:element name="IsTerminal" type="xs:boolean" minOccurs="0" />
+							<xs:element name="SetUpHours" type="xs:double" />
+							<xs:element name="ReverseSort" type="xs:boolean" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="PK_Machine" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Machine" />
+			<xs:field xpath="mstns:OrganizationID" />
+			<xs:field xpath="mstns:MachineID" />
+		</xs:unique>
+		<xs:key name="PK_MachineSetupInfo" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:MachineSetupInfo" />
+			<xs:field xpath="mstns:Attribute" />
+		</xs:key>
+	</xs:element>
+</xs:schema>
