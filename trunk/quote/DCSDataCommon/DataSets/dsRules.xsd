@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="dsRules" targetNamespace="http://tempuri.org/dsRules.xsd" elementFormDefault="qualified"
+	attributeFormDefault="qualified" xmlns="http://tempuri.org/dsRules.xsd" xmlns:mstns="http://tempuri.org/dsRules.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="dsRules" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Rule">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OrganizationID" type="xs:int" />
+							<xs:element name="RuleID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="Type" type="xs:int" />
+							<xs:element name="Source" type="xs:int" />
+							<xs:element name="Description" type="xs:string" minOccurs="0" />
+							<xs:element name="Expression" type="xs:string" minOccurs="0" />
+							<xs:element name="Value" type="xs:double" minOccurs="0" />
+							<xs:element name="Priority" type="xs:int" />
+							<xs:element name="Flexibility" type="xs:int" />
+							<xs:element name="AppliesTo" type="xs:int" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RuleTCP">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RuleID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="Sort" type="xs:int" />
+							<xs:element name="FillFraction" type="xs:float" minOccurs="0" />
+							<xs:element name="X" type="xs:int" minOccurs="0" />
+							<xs:element name="Y" type="xs:int" minOccurs="0" />
+							<xs:element name="TerminateX" type="xs:boolean" minOccurs="0" />
+							<xs:element name="TerminateY" type="xs:boolean" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="dsRulesKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Rule" />
+			<xs:field xpath="mstns:RuleID" />
+		</xs:unique>
+		<xs:unique name="dsRulesKey4" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:RuleTCP" />
+			<xs:field xpath="mstns:RuleID" />
+			<xs:field xpath="mstns:Sort" />
+		</xs:unique>
+		<xs:keyref name="RuleRuleTCP" refer="dsRulesKey1" msdata:AcceptRejectRule="Cascade" msdata:DeleteRule="Cascade"
+			msdata:UpdateRule="Cascade">
+			<xs:selector xpath=".//mstns:RuleTCP" />
+			<xs:field xpath="mstns:RuleID" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>
