@@ -195,10 +195,13 @@ Public Class WireAndComponentView
 					Dim drGage As QuoteDataBase.GageRow
 					drGage = _PartLookupDataSource.Gage.FindByOrganizationIDGageID(10, drSource.GageID)	'ddFix organizationid
 					If drGage IsNot Nothing Then sGage = drGage.Gage
-					dCost = drSource.QuotePrice
+					dCost = 0
+					If Not drSource.IsQuotePriceNull Then
+						dCost = drSource.QuotePrice
+					End If
 					pProduct = New DCS.Quote.Model.Product( _
-					 sPartNumber, dCost, sGage, Model.UnitOfMeasure.BY_LENGTH, _
-					 drSource, Nothing)
+			sPartNumber, dCost, sGage, Model.UnitOfMeasure.BY_LENGTH, _
+			drSource, Nothing)
 				Else
 					Dim drSource As QuoteDataBase.WireComponentSourceRow = _PartLookupDataSource.WireComponentSource.FindByWireComponentSourceID(gSourceID)
 					dCost = drSource.QuotePrice
