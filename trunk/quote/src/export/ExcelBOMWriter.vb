@@ -122,6 +122,9 @@ Public Class ExcelBOMWriter
         If Not Prop.Browsable Then
             Return
         End If
+        If Prop.Type = (New System.Guid().GetType()) Then
+            Return
+        End If
 
         WriteValue(Prop.DisplayName, Prop.Value)
     End Sub
