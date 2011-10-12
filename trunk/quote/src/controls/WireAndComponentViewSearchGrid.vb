@@ -15,7 +15,8 @@ Public Class WireAndComponentViewSearchGrid
 			'			.DataSource = ds
 			'.DataMember = "WireSource"
 			.BoundColumnName = "SourceID"
-			.DisplayColumnName = "PartNumber"
+			'			.DisplayColumnName = "PartNumber"
+			.DisplayColumnName = "Keyword"
 			'.ChildRelationName = "WireSourceKeyWords"
 			'.ChildLookupColumnName = "KeyWord"
 			.SearchGridTableStylesAdd(SetUpWireSourceSearchGrid())
