@@ -70,7 +70,7 @@ Public Class WireAndComponentView
 		ListView1.Sort()
 
 	End Sub
-	
+
 	Private Sub ListView1_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles ListView1.GotFocus
 		SelectDetail()
 	End Sub
@@ -84,8 +84,8 @@ Public Class WireAndComponentView
 		Sync()
 	End Sub
 	Private Sub WireAndComponentView_Resize(ByVal sender As Object, _
-			 ByVal e As System.EventArgs) _
-			 Handles Me.Resize
+		 ByVal e As System.EventArgs) _
+		 Handles Me.Resize
 		Dim size As Integer
 		For Each col As ColumnHeader In Me.ListView1.Columns
 			If col.DisplayIndex > 0 Then
@@ -181,8 +181,9 @@ Public Class WireAndComponentView
 		'dd_Added 10/4/11
 		If e.ColumnIndex = dgvQuoteDetail_Lookup.Index Then
 			If Not _PartNumberSave = dgvQuoteDetail.CurrentCell.Value Then
-				Dim sPartNumber As String = dgvQuoteDetail.CurrentCell.Value
+				'Dim sPartNumber As String = dgvQuoteDetail.CurrentCell.Value
 				Dim drLookup As QuoteDataBase.ItemSourceLookupListRow = CType(dgvQuoteDetail_Lookup.SearchGrid.GetCurrentRow, DCS.Quote.QuoteDataBase.ItemSourceLookupListRow)
+				Dim sPartNumber As String = drLookup.PartNumber
 				Dim gSourceID As Guid = drLookup.SourceID
 				Dim oDetail As DCS.Quote.Model.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, DCS.Quote.Model.BOM.Detail)
 				oDetail.IsWire = drLookup.IsWire
@@ -200,8 +201,8 @@ Public Class WireAndComponentView
 						dCost = drSource.QuotePrice
 					End If
 					pProduct = New DCS.Quote.Model.Product( _
-			sPartNumber, dCost, sGage, Model.UnitOfMeasure.BY_LENGTH, _
-			drSource, Nothing)
+					sPartNumber, dCost, sGage, Model.UnitOfMeasure.BY_LENGTH, _
+				 drSource, Nothing)
 				Else
 					Dim drSource As QuoteDataBase.WireComponentSourceRow = _PartLookupDataSource.WireComponentSource.FindByWireComponentSourceID(gSourceID)
 					dCost = drSource.QuotePrice
@@ -238,7 +239,7 @@ Public Class WireAndComponentView
 		End If
 	End Sub
 
-	
+
 	Private Sub dgvQuoteDetail_UserDeletedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles dgvQuoteDetail.UserDeletedRow
 		Sync()
 		SelectDetail()
