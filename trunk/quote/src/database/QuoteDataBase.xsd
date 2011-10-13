@@ -145,13 +145,13 @@ WHERE        (id = @Original_id)</CommandText>
             <Mappings>
               <Mapping SourceColumn="id" DataSetColumn="id" />
               <Mapping SourceColumn="CustomerName" DataSetColumn="CustomerName" />
-              <Mapping SourceColumn="PartNumber" DataSetColumn="RequestForQuoteNumber" />
               <Mapping SourceColumn="IsQuote" DataSetColumn="IsQuote" />
               <Mapping SourceColumn="TemplateID" DataSetColumn="TemplateID" />
               <Mapping SourceColumn="Initials" DataSetColumn="Initials" />
               <Mapping SourceColumn="CreatedDate" DataSetColumn="CreatedDate" />
               <Mapping SourceColumn="LastModifedDate" DataSetColumn="LastModifedDate" />
-              <Mapping SourceColumn="RequestForQuoteNumber" DataSetColumn="PartNumber" />
+              <Mapping SourceColumn="PartNumber" DataSetColumn="PartNumber" />
+              <Mapping SourceColumn="RequestForQuoteNumber" DataSetColumn="RequestForQuoteNumber" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="cuttagSKEConnectionString (MySettings)" DbObjectName="cuttagSKE.dbo._Quote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByByQuoteID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByQuoteID" GeneratorSourceName="FillByByQuoteID" GetMethodModifier="Public" GetMethodName="GetDataByQuoteID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByQuoteID" UserSourceName="FillByByQuoteID">

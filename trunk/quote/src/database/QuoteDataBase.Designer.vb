@@ -200,7 +200,7 @@ Partial Public Class QuoteDataBase
             Return Me._schemaSerializationMode
         End Get
         Set(ByVal value As Global.System.Data.SchemaSerializationMode)
-            Me._schemaSerializationMode = Value
+            Me._schemaSerializationMode = value
         End Set
     End Property
 
@@ -3604,7 +3604,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_Shipping.IDColumn), Integer)
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_Shipping.IDColumn) = Value
+                Me(Me.table_Shipping.IDColumn) = value
             End Set
         End Property
 
@@ -3619,7 +3619,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_Shipping.IndexColumn) = Value
+                Me(Me.table_Shipping.IndexColumn) = value
             End Set
         End Property
 
@@ -3634,7 +3634,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_Shipping.DescriptionColumn) = Value
+                Me(Me.table_Shipping.DescriptionColumn) = value
             End Set
         End Property
 
@@ -3649,7 +3649,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.table_Shipping.CostColumn) = Value
+                Me(Me.table_Shipping.CostColumn) = value
             End Set
         End Property
 
@@ -3712,7 +3712,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_Quote.idColumn), Decimal)
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.table_Quote.idColumn) = Value
+                Me(Me.table_Quote.idColumn) = value
             End Set
         End Property
 
@@ -3727,7 +3727,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_Quote.CustomerNameColumn) = Value
+                Me(Me.table_Quote.CustomerNameColumn) = value
             End Set
         End Property
 
@@ -3742,7 +3742,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_Quote.RequestForQuoteNumberColumn) = Value
+                Me(Me.table_Quote.RequestForQuoteNumberColumn) = value
             End Set
         End Property
 
@@ -3757,7 +3757,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_Quote.PartNumberColumn) = Value
+                Me(Me.table_Quote.PartNumberColumn) = value
             End Set
         End Property
 
@@ -3768,7 +3768,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_Quote.IsQuoteColumn), Boolean)
             End Get
             Set(ByVal value As Boolean)
-                Me(Me.table_Quote.IsQuoteColumn) = Value
+                Me(Me.table_Quote.IsQuoteColumn) = value
             End Set
         End Property
 
@@ -3783,7 +3783,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_Quote.TemplateIDColumn) = Value
+                Me(Me.table_Quote.TemplateIDColumn) = value
             End Set
         End Property
 
@@ -3798,7 +3798,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_Quote.InitialsColumn) = Value
+                Me(Me.table_Quote.InitialsColumn) = value
             End Set
         End Property
 
@@ -3813,7 +3813,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Date)
-                Me(Me.table_Quote.CreatedDateColumn) = Value
+                Me(Me.table_Quote.CreatedDateColumn) = value
             End Set
         End Property
 
@@ -3828,7 +3828,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Date)
-                Me(Me.table_Quote.LastModifedDateColumn) = Value
+                Me(Me.table_Quote.LastModifedDateColumn) = value
             End Set
         End Property
 
@@ -3939,7 +3939,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_QuoteProperties.idColumn), Decimal)
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.table_QuoteProperties.idColumn) = Value
+                Me(Me.table_QuoteProperties.idColumn) = value
             End Set
         End Property
 
@@ -3954,7 +3954,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_QuoteProperties.QuoteIDColumn) = Value
+                Me(Me.table_QuoteProperties.QuoteIDColumn) = value
             End Set
         End Property
 
@@ -3969,7 +3969,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_QuoteProperties.PropertyIDColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyIDColumn) = value
             End Set
         End Property
 
@@ -3984,7 +3984,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_QuoteProperties.PropertyNameColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyNameColumn) = value
             End Set
         End Property
 
@@ -4000,7 +4000,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_QuoteProperties.PropertyStringValueColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyStringValueColumn) = value
             End Set
         End Property
 
@@ -4016,7 +4016,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.table_QuoteProperties.PropertyDecimalValueColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyDecimalValueColumn) = value
             End Set
         End Property
 
@@ -4032,7 +4032,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_QuoteProperties.PropertyIntegerValueColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyIntegerValueColumn) = value
             End Set
         End Property
 
@@ -4047,7 +4047,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_QuoteProperties.PropertyCatagoryColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyCatagoryColumn) = value
             End Set
         End Property
 
@@ -4063,7 +4063,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_QuoteProperties.PropertyDescriptionColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyDescriptionColumn) = value
             End Set
         End Property
 
@@ -4078,7 +4078,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Date)
-                Me(Me.table_QuoteProperties.PropertyDateValueColumn) = Value
+                Me(Me.table_QuoteProperties.PropertyDateValueColumn) = value
             End Set
         End Property
 
@@ -4213,7 +4213,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_QuoteDetail.idColumn), Decimal)
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.table_QuoteDetail.idColumn) = Value
+                Me(Me.table_QuoteDetail.idColumn) = value
             End Set
         End Property
 
@@ -4228,7 +4228,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_QuoteDetail.QuoteIDColumn) = Value
+                Me(Me.table_QuoteDetail.QuoteIDColumn) = value
             End Set
         End Property
 
@@ -4239,7 +4239,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_QuoteDetail.SequenceNumberColumn), Integer)
             End Get
             Set(ByVal value As Integer)
-                Me(Me.table_QuoteDetail.SequenceNumberColumn) = Value
+                Me(Me.table_QuoteDetail.SequenceNumberColumn) = value
             End Set
         End Property
 
@@ -4254,7 +4254,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.table_QuoteDetail.QtyColumn) = Value
+                Me(Me.table_QuoteDetail.QtyColumn) = value
             End Set
         End Property
 
@@ -4269,7 +4269,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.table_QuoteDetail.ProductCodeColumn) = Value
+                Me(Me.table_QuoteDetail.ProductCodeColumn) = value
             End Set
         End Property
 
@@ -4284,7 +4284,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.table_QuoteDetail.SourceIDColumn) = Value
+                Me(Me.table_QuoteDetail.SourceIDColumn) = value
             End Set
         End Property
 
@@ -4295,7 +4295,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.table_QuoteDetail.IsWireColumn), Boolean)
             End Get
             Set(ByVal value As Boolean)
-                Me(Me.table_QuoteDetail.IsWireColumn) = Value
+                Me(Me.table_QuoteDetail.IsWireColumn) = value
             End Set
         End Property
 
@@ -4370,7 +4370,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableGage.OrganizationIDColumn), Integer)
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableGage.OrganizationIDColumn) = Value
+                Me(Me.tableGage.OrganizationIDColumn) = value
             End Set
         End Property
 
@@ -4381,7 +4381,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableGage.GageIDColumn), Global.System.Guid)
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableGage.GageIDColumn) = Value
+                Me(Me.tableGage.GageIDColumn) = value
             End Set
         End Property
 
@@ -4396,7 +4396,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableGage.GageColumn) = Value
+                Me(Me.tableGage.GageColumn) = value
             End Set
         End Property
 
@@ -4411,7 +4411,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Double)
-                Me(Me.tableGage.MMColumn) = Value
+                Me(Me.tableGage.MMColumn) = value
             End Set
         End Property
 
@@ -4426,7 +4426,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableGage.UnitOfMeasureColumn) = Value
+                Me(Me.tableGage.UnitOfMeasureColumn) = value
             End Set
         End Property
 
@@ -4441,7 +4441,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableGage.SortOrderColumn) = Value
+                Me(Me.tableGage.SortOrderColumn) = value
             End Set
         End Property
 
@@ -4516,7 +4516,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireComponentSource.WireComponentSourceIDColumn), Global.System.Guid)
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableWireComponentSource.WireComponentSourceIDColumn) = Value
+                Me(Me.tableWireComponentSource.WireComponentSourceIDColumn) = value
             End Set
         End Property
 
@@ -4527,7 +4527,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireComponentSource.OrganizationIDColumn), Integer)
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireComponentSource.OrganizationIDColumn) = Value
+                Me(Me.tableWireComponentSource.OrganizationIDColumn) = value
             End Set
         End Property
 
@@ -4538,7 +4538,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireComponentSource.PartNumberColumn), String)
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireComponentSource.PartNumberColumn) = Value
+                Me(Me.tableWireComponentSource.PartNumberColumn) = value
             End Set
         End Property
 
@@ -4549,7 +4549,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireComponentSource.NewColumn), Boolean)
             End Get
             Set(ByVal value As Boolean)
-                Me(Me.tableWireComponentSource.NewColumn) = Value
+                Me(Me.tableWireComponentSource.NewColumn) = value
             End Set
         End Property
 
@@ -4560,7 +4560,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireComponentSource.DescriptionColumn), String)
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireComponentSource.DescriptionColumn) = Value
+                Me(Me.tableWireComponentSource.DescriptionColumn) = value
             End Set
         End Property
 
@@ -4575,7 +4575,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireComponentSource.PositionCountColumn) = Value
+                Me(Me.tableWireComponentSource.PositionCountColumn) = value
             End Set
         End Property
 
@@ -4590,7 +4590,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireComponentSource.ClassIDColumn) = Value
+                Me(Me.tableWireComponentSource.ClassIDColumn) = value
             End Set
         End Property
 
@@ -4605,7 +4605,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireComponentSource.CenterDeductColumn) = Value
+                Me(Me.tableWireComponentSource.CenterDeductColumn) = value
             End Set
         End Property
 
@@ -4620,7 +4620,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireComponentSource.OuterDeductColumn) = Value
+                Me(Me.tableWireComponentSource.OuterDeductColumn) = value
             End Set
         End Property
 
@@ -4631,7 +4631,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireComponentSource.WireLengthAdjustColumn), Double)
             End Get
             Set(ByVal value As Double)
-                Me(Me.tableWireComponentSource.WireLengthAdjustColumn) = Value
+                Me(Me.tableWireComponentSource.WireLengthAdjustColumn) = value
             End Set
         End Property
 
@@ -4646,7 +4646,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireComponentSource.UOMColumn) = Value
+                Me(Me.tableWireComponentSource.UOMColumn) = value
             End Set
         End Property
 
@@ -4661,7 +4661,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireComponentSource.IDNColumn) = Value
+                Me(Me.tableWireComponentSource.IDNColumn) = value
             End Set
         End Property
 
@@ -4676,7 +4676,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.tableWireComponentSource.QuotePriceColumn) = Value
+                Me(Me.tableWireComponentSource.QuotePriceColumn) = value
             End Set
         End Property
 
@@ -4691,7 +4691,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireComponentSource.VendorColumn) = Value
+                Me(Me.tableWireComponentSource.VendorColumn) = value
             End Set
         End Property
 
@@ -4706,7 +4706,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireComponentSource.LeadTimeColumn) = Value
+                Me(Me.tableWireComponentSource.LeadTimeColumn) = value
             End Set
         End Property
 
@@ -4721,7 +4721,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireComponentSource.MachineTimeColumn) = Value
+                Me(Me.tableWireComponentSource.MachineTimeColumn) = value
             End Set
         End Property
 
@@ -4736,7 +4736,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.tableWireComponentSource.MinimumQtyColumn) = Value
+                Me(Me.tableWireComponentSource.MinimumQtyColumn) = value
             End Set
         End Property
 
@@ -4751,7 +4751,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.tableWireComponentSource.MinimumDollarColumn) = Value
+                Me(Me.tableWireComponentSource.MinimumDollarColumn) = value
             End Set
         End Property
 
@@ -4922,7 +4922,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireSource.WireSourceIDColumn), Global.System.Guid)
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableWireSource.WireSourceIDColumn) = Value
+                Me(Me.tableWireSource.WireSourceIDColumn) = value
             End Set
         End Property
 
@@ -4933,7 +4933,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireSource.OrganizationIDColumn), Integer)
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireSource.OrganizationIDColumn) = Value
+                Me(Me.tableWireSource.OrganizationIDColumn) = value
             End Set
         End Property
 
@@ -4944,7 +4944,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireSource.PartNumberColumn), String)
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireSource.PartNumberColumn) = Value
+                Me(Me.tableWireSource.PartNumberColumn) = value
             End Set
         End Property
 
@@ -4959,7 +4959,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireSource.DescriptionColumn) = Value
+                Me(Me.tableWireSource.DescriptionColumn) = value
             End Set
         End Property
 
@@ -4974,7 +4974,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Boolean)
-                Me(Me.tableWireSource.NewColumn) = Value
+                Me(Me.tableWireSource.NewColumn) = value
             End Set
         End Property
 
@@ -4989,7 +4989,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Integer)
-                Me(Me.tableWireSource.ConductorCountColumn) = Value
+                Me(Me.tableWireSource.ConductorCountColumn) = value
             End Set
         End Property
 
@@ -5000,7 +5000,7 @@ Partial Public Class QuoteDataBase
                 Return CType(Me(Me.tableWireSource.IsTwistedColumn), Boolean)
             End Get
             Set(ByVal value As Boolean)
-                Me(Me.tableWireSource.IsTwistedColumn) = Value
+                Me(Me.tableWireSource.IsTwistedColumn) = value
             End Set
         End Property
 
@@ -5015,7 +5015,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableWireSource.ColorIDColumn) = Value
+                Me(Me.tableWireSource.ColorIDColumn) = value
             End Set
         End Property
 
@@ -5030,7 +5030,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableWireSource.WireTypeIDColumn) = Value
+                Me(Me.tableWireSource.WireTypeIDColumn) = value
             End Set
         End Property
 
@@ -5045,7 +5045,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableWireSource.GageIDColumn) = Value
+                Me(Me.tableWireSource.GageIDColumn) = value
             End Set
         End Property
 
@@ -5060,7 +5060,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Double)
-                Me(Me.tableWireSource.CopperWtPerFtColumn) = Value
+                Me(Me.tableWireSource.CopperWtPerFtColumn) = value
             End Set
         End Property
 
@@ -5075,7 +5075,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Double)
-                Me(Me.tableWireSource.CopperFtPerLbColumn) = Value
+                Me(Me.tableWireSource.CopperFtPerLbColumn) = value
             End Set
         End Property
 
@@ -5090,7 +5090,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireSource.ColorColumn) = Value
+                Me(Me.tableWireSource.ColorColumn) = value
             End Set
         End Property
 
@@ -5105,7 +5105,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableWireSource.UOMColumn) = Value
+                Me(Me.tableWireSource.UOMColumn) = value
             End Set
         End Property
 
@@ -5120,7 +5120,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.tableWireSource.MM2_ConductorColumn) = Value
+                Me(Me.tableWireSource.MM2_ConductorColumn) = value
             End Set
         End Property
 
@@ -5135,7 +5135,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.tableWireSource.ODColumn) = Value
+                Me(Me.tableWireSource.ODColumn) = value
             End Set
         End Property
 
@@ -5150,7 +5150,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Decimal)
-                Me(Me.tableWireSource.QuotePriceColumn) = Value
+                Me(Me.tableWireSource.QuotePriceColumn) = value
             End Set
         End Property
 
@@ -5337,7 +5337,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As System.Guid)
-                Me(Me.tableItemSourceLookupList.SourceIDColumn) = Value
+                Me(Me.tableItemSourceLookupList.SourceIDColumn) = value
             End Set
         End Property
 
@@ -5352,7 +5352,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableItemSourceLookupList.KeywordColumn) = Value
+                Me(Me.tableItemSourceLookupList.KeywordColumn) = value
             End Set
         End Property
 
@@ -5367,7 +5367,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableItemSourceLookupList.PartNumberColumn) = Value
+                Me(Me.tableItemSourceLookupList.PartNumberColumn) = value
             End Set
         End Property
 
@@ -5382,7 +5382,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As String)
-                Me(Me.tableItemSourceLookupList.DescriptionColumn) = Value
+                Me(Me.tableItemSourceLookupList.DescriptionColumn) = value
             End Set
         End Property
 
@@ -5397,7 +5397,7 @@ Partial Public Class QuoteDataBase
                 End Try
             End Get
             Set(ByVal value As Boolean)
-                Me(Me.tableItemSourceLookupList.IsWireColumn) = Value
+                Me(Me.tableItemSourceLookupList.IsWireColumn) = value
             End Set
         End Property
 
@@ -5803,20 +5803,20 @@ Namespace QuoteDataBaseTableAdapters
                 Return Me._connection
             End Get
             Set(ByVal value As Global.System.Data.SqlClient.SqlConnection)
-                Me._connection = Value
+                Me._connection = value
                 If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = Value
+                    Me.Adapter.InsertCommand.Connection = value
                 End If
                 If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = Value
+                    Me.Adapter.DeleteCommand.Connection = value
                 End If
                 If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = Value
+                    Me.Adapter.UpdateCommand.Connection = value
                 End If
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i), Global.System.Data.SqlClient.SqlCommand).Connection = Value
+                        CType(Me.CommandCollection(i), Global.System.Data.SqlClient.SqlCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
@@ -5830,7 +5830,7 @@ Namespace QuoteDataBaseTableAdapters
                 Return Me._transaction
             End Get
             Set(ByVal value As Global.System.Data.SqlClient.SqlTransaction)
-                Me._transaction = Value
+                Me._transaction = value
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     Me.CommandCollection(i).Transaction = Me._transaction
@@ -5869,7 +5869,7 @@ Namespace QuoteDataBaseTableAdapters
                 Return Me._clearBeforeFill
             End Get
             Set(ByVal value As Boolean)
-                Me._clearBeforeFill = Value
+                Me._clearBeforeFill = value
             End Set
         End Property
 
@@ -6178,20 +6178,20 @@ Namespace QuoteDataBaseTableAdapters
                 Return Me._connection
             End Get
             Set(ByVal value As Global.System.Data.SqlClient.SqlConnection)
-                Me._connection = Value
+                Me._connection = value
                 If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = Value
+                    Me.Adapter.InsertCommand.Connection = value
                 End If
                 If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = Value
+                    Me.Adapter.DeleteCommand.Connection = value
                 End If
                 If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = Value
+                    Me.Adapter.UpdateCommand.Connection = value
                 End If
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i), Global.System.Data.SqlClient.SqlCommand).Connection = Value
+                        CType(Me.CommandCollection(i), Global.System.Data.SqlClient.SqlCommand).Connection = value
                     End If
                     i = (i + 1)
                 Loop
@@ -6205,7 +6205,7 @@ Namespace QuoteDataBaseTableAdapters
                 Return Me._transaction
             End Get
             Set(ByVal value As Global.System.Data.SqlClient.SqlTransaction)
-                Me._transaction = Value
+                Me._transaction = value
                 Dim i As Integer = 0
                 Do While (i < Me.CommandCollection.Length)
                     Me.CommandCollection(i).Transaction = Me._transaction
@@ -6244,7 +6244,7 @@ Namespace QuoteDataBaseTableAdapters
                 Return Me._clearBeforeFill
             End Get
             Set(ByVal value As Boolean)
-                Me._clearBeforeFill = Value
+                Me._clearBeforeFill = value
             End Set
         End Property
 
@@ -6257,13 +6257,13 @@ Namespace QuoteDataBaseTableAdapters
             tableMapping.DataSetTable = "_Quote"
             tableMapping.ColumnMappings.Add("id", "id")
             tableMapping.ColumnMappings.Add("CustomerName", "CustomerName")
-            tableMapping.ColumnMappings.Add("PartNumber", "RequestForQuoteNumber")
             tableMapping.ColumnMappings.Add("IsQuote", "IsQuote")
             tableMapping.ColumnMappings.Add("TemplateID", "TemplateID")
             tableMapping.ColumnMappings.Add("Initials", "Initials")
             tableMapping.ColumnMappings.Add("CreatedDate", "CreatedDate")
             tableMapping.ColumnMappings.Add("LastModifedDate", "LastModifedDate")
-            tableMapping.ColumnMappings.Add("RequestForQuoteNumber", "PartNumber")
+            tableMapping.ColumnMappings.Add("PartNumber", "PartNumber")
+            tableMapping.ColumnMappings.Add("RequestForQuoteNumber", "RequestForQuoteNumber")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
