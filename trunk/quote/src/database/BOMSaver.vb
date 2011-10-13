@@ -34,7 +34,7 @@ Public Class BOMSaver
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
-                o.PartNumber, o.RequestForQuoteNumber, False, 0, _
+                o.RequestForQuoteNumber, o.PartNumber, False, 0, _
                 o.CommonInitials, Date.Now, Date.Now)
             Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
