@@ -16,18 +16,18 @@ Namespace Model.BOM
         Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
-        Private _TimeMultiplier As Decimal = 1
-        Private _ManufacturingMarkup As Decimal = 1
-        Private _LaborRate As Decimal = 10
-        Private _WireSetupTime As Integer = 120
-        Private _WireMachineTime As Decimal = 30
+		Private _TimeMultiplier As Decimal = 1.15
+		Private _ManufacturingMarkup As Decimal = 1.25
+		Private _LaborRate As Decimal = 21.5
+		Private _WireSetupTime As Integer = 300
+		Private _WireMachineTime As Decimal = 30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 0
         Private _OrderQuantity As Integer = 0
         Private _SingleDefQuantity As Integer = 0
-        Private _PercentCopperScrap As Decimal = 3
-        Private _CopperPrice As Decimal = 1
-        Private _MaterialMarkup As Decimal = 1
+		Private _PercentCopperScrap As Decimal = 3
+		Private _CopperPrice As Decimal = 4.5
+		Private _MaterialMarkup As Decimal = 1.075
         Private _ComponentSetupTime As Decimal
         Private _QuoteType As String = "Production"
         Private _NumberOfTwistedPairs As Integer
