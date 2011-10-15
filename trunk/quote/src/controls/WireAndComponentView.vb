@@ -200,15 +200,15 @@ Public Class WireAndComponentView
 					If Not drSource.IsQuotePriceNull Then
 						dCost = drSource.QuotePrice
 					End If
-					pProduct = New DCS.Quote.Model.Product( _
-					sPartNumber, dCost, sGage, Model.UnitOfMeasure.BY_LENGTH, _
-				 drSource, Nothing)
+                    pProduct = New DCS.Quote.Model.Product( _
+                    sPartNumber, dCost, sGage, True, _
+                    drSource, Nothing)
 				Else
 					Dim drSource As QuoteDataBase.WireComponentSourceRow = _PartLookupDataSource.WireComponentSource.FindByWireComponentSourceID(gSourceID)
 					dCost = drSource.QuotePrice
-					pProduct = New DCS.Quote.Model.Product( _
-					 sPartNumber, dCost, "", Model.UnitOfMeasure.BY_EACH, _
-					 Nothing, drSource)
+                    pProduct = New DCS.Quote.Model.Product( _
+                     sPartNumber, dCost, "", False, _
+                     Nothing, drSource)
 				End If
 				With oDetail
 					.UpdateComponentProperties(pProduct)

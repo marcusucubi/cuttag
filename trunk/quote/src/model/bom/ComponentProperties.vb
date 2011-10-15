@@ -118,7 +118,13 @@ Namespace Model.BOM
         CategoryAttribute("Vendor")> _
         Public ReadOnly Property UnitOfMeasure() As String
             Get
-                Return _QuoteDetail.Product.UnitOfMeasure.value
+                Dim s As String
+                If _QuoteDetail.Product.IsWire Then
+                    s = "Feet"
+                Else
+                    s = "Each"
+                End If
+                Return s
             End Get
         End Property
 

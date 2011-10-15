@@ -215,12 +215,7 @@ Public Class QuoteImport
                 time = detailRow.Time
             End If
 
-            Dim unit As Model.UnitOfMeasure
-            If (detailRow.IsWire) Then
-                unit = Model.UnitOfMeasure.BY_LENGTH
-            Else
-                unit = Model.UnitOfMeasure.BY_EACH
-            End If
+            'detailRow.IsWire
             Dim gage As String = ""
             If (Not detailRow.IsGageNull) Then
                 gage = detailRow.Gage.Trim()
@@ -231,7 +226,7 @@ Public Class QuoteImport
                 gage, _
                 detailRow.UnitCost, _
                 time, _
-                unit, _
+                detailRow.IsWire, _
                 "", _
                 0,
                 "", _
