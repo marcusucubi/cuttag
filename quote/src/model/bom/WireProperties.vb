@@ -79,7 +79,8 @@ Namespace Model.BOM
             End Set
         End Property
 
-        <DisplayName("Unit Of Measure")> _
+        <DisplayName("Unit Of Measure"), _
+        TypeConverter(GetType(UOMConverter))> _
         Public Property UnitOfMeasure() As String
             Get
                 Return _QuoteDetail.UOM
