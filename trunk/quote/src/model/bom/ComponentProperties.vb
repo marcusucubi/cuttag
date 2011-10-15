@@ -115,6 +115,7 @@ Namespace Model.BOM
         End Property
 
         <DisplayName("Unit Of Measure"), _
+        TypeConverter(GetType(UOMConverter)), _
         CategoryAttribute("Vendor")> _
         Public Property UnitOfMeasure() As String
             Get
