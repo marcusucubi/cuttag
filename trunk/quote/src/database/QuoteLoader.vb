@@ -144,7 +144,8 @@ Public Class QuoteLoader
 			With detail
 				.IsWire = row.IsWire
 				If Not row.IsSourceIDNull Then .SourceID = row.SourceID
-				.SequenceNumber = row.SequenceNumber
+                .SequenceNumber = row.SequenceNumber
+                .UOM = row.UOM
 			End With
 			'dd_Added end
 
