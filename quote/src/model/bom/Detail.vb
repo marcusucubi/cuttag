@@ -15,36 +15,36 @@ Namespace Model.BOM
 			Me._WireProperties = New WireProperties(Me)
 			Me._ComponentProperties = New ComponentProperties(Me)
 			Me._Quantity = 1
-			'dd_Added 10/8/11
-			Me.SequenceNumber = Me.Header.NextSequenceNumber
-			'dd_Added end
+            Me.SequenceNumber = Me.Header.NextSequenceNumber
+            SetupUOM()
+        End Sub
 
-		End Sub
+        Private Sub SetupUOM()
+            If (_Product.IsWire) Then
+                _UOM = "Decameter"
+            Else
+                _UOM = "Each"
+            End If
+        End Sub
 
-		<BrowsableAttribute(False)>
-		Property Header As Header
-		'dd_Added 10/8/11
-		Public Sub UpdateComponentProperties(ByVal pProduct As Product)
-			Me._Product = pProduct
-			Me._ComponentProperties = New ComponentProperties(Me)
-		End Sub
-		'dd_Added end
+        <BrowsableAttribute(False)>
+        Property Header As Header
+
+        Public Sub UpdateComponentProperties(ByVal pProduct As Product)
+            Me._Product = pProduct
+            Me._ComponentProperties = New ComponentProperties(Me)
+            SetupUOM()
+        End Sub
 
 		<BrowsableAttribute(False)>
 		Public Overrides ReadOnly Property QuoteDetailProperties As Object
 			Get
-				'dd_changed 10/3/11
-				'	If Me._Product.UnitOfMeasure = UnitOfMeasure.BY_LENGTH Then
-				'		Return _WireProperties
-				'	End If
-				'	Return _ComponentProperties
-				If Me.IsWire Then
-					Return _WireProperties
-				Else
-					Return _ComponentProperties
-				End If
-				'dd_changed End
-			End Get
+                If Me.IsWire Then
+                    Return _WireProperties
+                Else
+                    Return _ComponentProperties
+                End If
+            End Get
 		End Property
 
 	End Class
