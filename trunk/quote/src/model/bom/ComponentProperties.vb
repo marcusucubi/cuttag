@@ -116,16 +116,13 @@ Namespace Model.BOM
 
         <DisplayName("Unit Of Measure"), _
         CategoryAttribute("Vendor")> _
-        Public ReadOnly Property UnitOfMeasure() As String
+        Public Property UnitOfMeasure() As String
             Get
-                Dim s As String
-                If _QuoteDetail.Product.IsWire Then
-                    s = "Feet"
-                Else
-                    s = "Each"
-                End If
-                Return s
+                Return _QuoteDetail.UOM
             End Get
+            Set(ByVal value As String)
+                _QuoteDetail.UOM = value
+            End Set
         End Property
 
         <DisplayName("Unit Cost")> _
