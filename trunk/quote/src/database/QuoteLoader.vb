@@ -126,19 +126,12 @@ Public Class QuoteLoader
 			Dim temp As New TempObj
 			CommonLoader.LoadProperties(id, row.id, temp)
 
-            Dim IsWire As Boolean
-			If temp.UnitOfMeasure = "Each" Then
-                IsWire = False
-			Else
-                IsWire = True
-			End If
-
             Dim product As New Model.Product( _
               row.ProductCode, _
               temp.Gage, _
               0, _
               0, _
-              IsWire, _
+              row.IsWire, _
               "", _
               0,
               "", _
