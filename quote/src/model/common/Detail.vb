@@ -9,11 +9,10 @@ Namespace Common
 		Protected _Quantity As Decimal = 1
 		Protected _Product As Model.Product
 		Protected _QuoteDetailProperties As Object
-		'dd_Added 10/2/11
-		Protected _SequenceNumber As Integer = 1
+        Protected _SequenceNumber As Integer = 1
 		Protected _SourceID As Guid
-		Protected _IsWire As Boolean
-		'dd_Added end
+        Protected _IsWire As Boolean
+        Protected _UOM As String
 
 		Public Shadows Property Qty() As Decimal
 			Get
@@ -28,30 +27,41 @@ Namespace Common
 			End Set
 		End Property
 
-		'dd_Added Set 9/26/11
-		Public Property ProductCode As String
-			Get
-				Return Product.Code.Trim
-			End Get
-			Set(ByVal value As String)
-				If Not (value = Product.Code) Then
-					Product.Code = value
-					SendEvents()
-				End If
-			End Set
-		End Property
-		'dd_Added Property 10/8/11
-		Public Property SequenceNumber As Integer
-			Get
-				Return _SequenceNumber
-			End Get
-			Set(ByVal value As Integer)
-				If Not (value = _SequenceNumber) Then
-					Me._SequenceNumber = value
-					SendEvents()
-				End If
-			End Set
-		End Property
+        Public Property ProductCode As String
+            Get
+                Return Product.Code.Trim
+            End Get
+            Set(ByVal value As String)
+                If Not (value = Product.Code) Then
+                    Product.Code = value
+                    SendEvents()
+                End If
+            End Set
+        End Property
+
+        Public Property UOM As String
+            Get
+                Return _UOM
+            End Get
+            Set(ByVal value As String)
+                If Not (_UOM = value) Then
+                    _UOM = value
+                    SendEvents()
+                End If
+            End Set
+        End Property
+
+        Public Property SequenceNumber As Integer
+            Get
+                Return _SequenceNumber
+            End Get
+            Set(ByVal value As Integer)
+                If Not (value = _SequenceNumber) Then
+                    Me._SequenceNumber = value
+                    SendEvents()
+                End If
+            End Set
+        End Property
 		'dd_Added 10/3/11
 		Public Property SourceID As Guid
 			Get

@@ -79,6 +79,16 @@ Namespace Model.BOM
             End Set
         End Property
 
+        <DisplayName("Unit Of Measure")> _
+        Public Property UnitOfMeasure() As String
+            Get
+                Return _QuoteDetail.UOM
+            End Get
+            Set(ByVal value As String)
+                _QuoteDetail.UOM = value
+            End Set
+        End Property
+
         Private Overloads Sub SendEvents()
             MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
