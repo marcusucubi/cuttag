@@ -25,7 +25,7 @@
         _Writer = New ExcelBOMWriter(_Writer.Path, _Writer.Workbook, "Wires")
         Dim index As Integer
         For Each detail As Common.Detail In header.Details
-            If (detail.Product.UnitOfMeasure = Model.UnitOfMeasure.BY_LENGTH) Then
+            If (detail.Product.IsWire) Then
                 If index = 0 Then
                     PrintWireColumns(detail)
                     PrintWireColumns(detail.QuoteDetailProperties)
@@ -41,7 +41,7 @@
         index = 0
         _Writer = New ExcelBOMWriter(_Writer.Path, _Writer.Workbook, "Components")
         For Each detail As Common.Detail In header.Details
-            If (detail.Product.UnitOfMeasure = Model.UnitOfMeasure.BY_EACH) Then
+            If (detail.Product.IsWire = False) Then
                 If index = 0 Then
                     PrintWireColumns(detail)
                     PrintWireColumns(detail.QuoteDetailProperties)

@@ -48,7 +48,7 @@ Public Class CommonLoader
                 End If
                 Dim partObj As New Product( _
                     part.PartNumber, price, _
-                    0, UnitOfMeasure.BY_EACH, Nothing, part)
+                    0, False, Nothing, part)
 
                 detail = q.NewDetail(partObj)
             End If
@@ -73,7 +73,7 @@ Public Class CommonLoader
                 Dim wireObj As Product
                 wireObj = New Product( _
                     wire.PartNumber, price, _
-                    gage, UnitOfMeasure.BY_LENGTH, wire, Nothing)
+                    gage, True, wire, Nothing)
 
                 detail = q.NewDetail(wireObj)
             End If

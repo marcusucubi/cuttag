@@ -23,7 +23,7 @@ Public Class frmComponentLookup
         End If
 
         Product = New Product( _
-            num, cost, "", UnitOfMeasure.BY_EACH, _
+            num, cost, "", False, _
             Nothing, View.Row)
     End Sub
 

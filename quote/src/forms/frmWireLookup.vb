@@ -30,7 +30,7 @@ Public Class frmWireLookup
             gage = gageRow.Gage
         End If
         Product = New Product( _
-            num, cost, gage, UnitOfMeasure.BY_LENGTH, _
+            num, cost, gage, True, _
             row, Nothing)
     End Sub
 

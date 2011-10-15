@@ -107,18 +107,17 @@ Namespace Common
 		<BrowsableAttribute(True), DisplayName("Type")>
 		Public ReadOnly Property DisplayableProductClass As String
 			Get
-				Return IIf(Product.UnitOfMeasure = Model.UnitOfMeasure.BY_EACH, _
-									 "Component", "Wire")
+                Return IIf(Product.IsWire, "Wire", "Component")
 			End Get
 		End Property
 
 		Public ReadOnly Property TotalCost As Decimal
 			Get
-				If Product.UnitOfMeasure = Model.UnitOfMeasure.BY_EACH Then
-					Return Math.Round(Me.UnitCost * Me.Qty, 2)
-				Else
-					Return Math.Round(Me.UnitCost * Me.LengthFeet, 2)
-				End If
+                If Product.IsWire Then
+                    Return Math.Round(Me.UnitCost * Me.LengthFeet, 2)
+                Else
+                    Return Math.Round(Me.UnitCost * Me.Qty, 2)
+                End If
 			End Get
 		End Property
 

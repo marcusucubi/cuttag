@@ -299,7 +299,7 @@ Namespace Model.BOM
         CategoryAttribute("Machine Time")> _
         Public ReadOnly Property TotalComponentMachineTime As Decimal
             Get
-                Return Math.Round(Me.SumTime(UnitOfMeasure.BY_EACH))
+                Return Math.Round(Me.SumTime(False))
             End Get
         End Property
 
@@ -408,7 +408,7 @@ Namespace Model.BOM
         CategoryAttribute("Time")> _
         Public ReadOnly Property NumberOfWires() As Decimal
             Get
-                Return Count(UnitOfMeasure.BY_LENGTH)
+                Return Count(True)
             End Get
         End Property
 
@@ -417,7 +417,7 @@ Namespace Model.BOM
         CategoryAttribute("Time")> _
         Public ReadOnly Property NumberOfComponents() As Decimal
             Get
-                Return Count(UnitOfMeasure.BY_EACH)
+                Return Count(False)
             End Get
         End Property
 
@@ -451,7 +451,7 @@ Namespace Model.BOM
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLength() As Decimal
             Get
-                Return SumQty(UnitOfMeasure.BY_LENGTH)
+                Return SumQty(True)
             End Get
         End Property
 
@@ -460,7 +460,7 @@ Namespace Model.BOM
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
             Get
-                Return Math.Round(SumQty(UnitOfMeasure.BY_LENGTH) / 3.048, 4)
+                Return Math.Round(SumQty(True) / 3.048, 4)
             End Get
         End Property
 
@@ -519,7 +519,7 @@ Namespace Model.BOM
         CategoryAttribute("Material Cost")> _
         Public ReadOnly Property WireMaterialCost() As Decimal
             Get
-                Return Math.Round(SumCost(UnitOfMeasure.BY_LENGTH), 2)
+                Return Math.Round(SumCost(True), 2)
             End Get
         End Property
 
@@ -528,7 +528,7 @@ Namespace Model.BOM
         CategoryAttribute("Material Cost")> _
         Public ReadOnly Property ComponentMaterialCost() As Decimal
             Get
-                Return Math.Round(SumCost(UnitOfMeasure.BY_EACH), 2)
+                Return Math.Round(SumCost(False), 2)
             End Get
         End Property
 
@@ -573,40 +573,40 @@ Namespace Model.BOM
 
 #Region " Methods "
 
-        Private Function SumCost(ByVal measure As UnitOfMeasure) As Decimal
+        Private Function SumCost(ByVal IsWire As Boolean) As Decimal
             Dim result As Decimal
             For Each detail As Detail In _Header.Details
-                If detail.Product.UnitOfMeasure = measure Then
+                If detail.Product.IsWire = IsWire Then
                     result += detail.TotalCost
                 End If
             Next
             Return result
         End Function
 
-        Private Function SumTime(ByVal uom As UnitOfMeasure) As Decimal
+        Private Function SumTime(ByVal IsWire As Boolean) As Decimal
             Dim result As Decimal
             For Each detail As Detail In _Header.Details
-                If detail.Product.UnitOfMeasure = uom Then
+                If detail.Product.IsWire = IsWire Then
                     result += detail.QuoteDetailProperties.TotalMachineTime
                 End If
             Next
             Return result
         End Function
 
-        Private Function SumQty(ByVal measure As UnitOfMeasure) As Decimal
+        Private Function SumQty(ByVal IsWire As Boolean) As Decimal
             Dim result As Decimal
             For Each detail As Detail In _Header.Details
-                If detail.Product.UnitOfMeasure = measure Then
+                If detail.Product.IsWire = IsWire Then
                     result += detail.Qty
                 End If
             Next
             Return result
         End Function
 
-        Private Function Count(ByVal measure As UnitOfMeasure) As Decimal
+        Private Function Count(ByVal IsWire As Boolean) As Decimal
             Dim result As Integer
             For Each detail As Detail In _Header.Details
-                If detail.Product.UnitOfMeasure = measure Then
+                If detail.Product.IsWire = IsWire Then
                     result += 1
                 End If
             Next
