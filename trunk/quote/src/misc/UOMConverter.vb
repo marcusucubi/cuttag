@@ -8,12 +8,14 @@ Public Class UOMConverter : Inherits StringConverter
         As TypeConverter.StandardValuesCollection
 
         Dim l As New List(Of String)
-        l.AddRange(New String() {
-            "Feet", _
-            "Decameter", _
-            "Each", _
-            "Meter"
-        })
+
+        Dim table As QuoteDataBase._UnitOfMeasureDataTable
+        table = New QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter().GetData()
+        For Each row As QuoteDataBase._UnitOfMeasureRow In table.Rows
+            l.AddRange(New String() {row.Name })
+        Next
+        l.Sort()
+
         Return New StandardValuesCollection(l)
     End Function
 
