@@ -269,6 +269,7 @@
     <Compile Include="src\misc\QuoteTypeList.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveHeader.vb" />
+    <Compile Include="src\misc\UOMConverter.vb" />
     <Compile Include="src\model\bom\ComponentProperties.vb" />
     <Compile Include="src\model\bom\ComputationProperties.vb" />
     <Compile Include="src\model\bom\CustomPropertiesGenerator.vb" />
@@ -294,7 +295,6 @@
     <Compile Include="src\model\common\SaveableProperties.vb" />
     <Compile Include="src\database\DatabaseException.vb" />
     <Compile Include="src\model\Shipping.vb" />
-    <Compile Include="src\model\UnitOfMeasure.vb" />
     <Compile Include="src\model\quote\Header.vb" />
     <Compile Include="src\model\quote\Detail.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -466,6 +466,7 @@
     <Content Include="lib\Ionic.Zip.dll" />
     <Content Include="lib\NPOI.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="SQL\upgrade.sql" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\truck.jpg" />
     <None Include="Resources\source.jpg" />
