@@ -22,7 +22,7 @@ VALUES ('Feet')
 GO
 
 INSERT INTO dbo._UnitOfMeasure (Name) 
-VALUES ('Decameter')
+VALUES ('Decimeter')
 GO
 
 INSERT INTO dbo._UnitOfMeasure (Name) 

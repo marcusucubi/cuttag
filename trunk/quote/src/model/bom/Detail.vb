@@ -21,7 +21,7 @@ Namespace Model.BOM
 
         Private Sub SetupUOM()
             If (_Product.IsWire) Then
-                _UOM = "Decameter"
+                _UOM = "Decimeter"
             Else
                 _UOM = "Each"
             End If
