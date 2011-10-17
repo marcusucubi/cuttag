@@ -216,7 +216,7 @@ Namespace Common
 		End Property
 
 		<CategoryAttribute("Total"), _
-		DescriptionAttribute("Total Length" + Chr(10) + "(Decameters)")> _
+		DescriptionAttribute("Total Length" + Chr(10) + "(Decimeters)")> _
 		Public ReadOnly Property Length As Decimal
 			Get
 				Return CalcQty(Nothing)

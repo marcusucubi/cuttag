@@ -446,7 +446,7 @@ Namespace Model.BOM
 #End Region
 #Region " Wires "
 
-        <DescriptionAttribute("Wire Length" + Chr(10) + "(Decameter)"), _
+        <DescriptionAttribute("Wire Length" + Chr(10) + "(Decimeter)"), _
         DisplayName("Wire Length"), _
         CategoryAttribute("Wires")> _
         Public ReadOnly Property WireLength() As Decimal

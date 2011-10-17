@@ -23,7 +23,7 @@ Namespace Model.BOM
             End Get
         End Property
 
-        <DescriptionAttribute("Length in Decameters")> _
+        <DescriptionAttribute("Length in Decimeters")> _
         Public ReadOnly Property Length As Decimal
             Get
                 Return _QuoteDetail.Qty
@@ -57,7 +57,7 @@ Namespace Model.BOM
             SendEvents()
         End Sub
 
-        <DescriptionAttribute("Number of Decameters")> _
+        <DescriptionAttribute("Number of Decimeters")> _
         Public Property Quantity() As Decimal
             Get
                 Return Me._QuoteDetail.Qty
@@ -69,7 +69,7 @@ Namespace Model.BOM
         End Property
 
         <DisplayName("Unit Cost"), _
-        DescriptionAttribute("Dollars per Decameter")> _
+        DescriptionAttribute("Dollars per Decimeter")> _
         Public Property UnitCost() As Decimal
             Get
                 Return _QuoteDetail.UnitCost
