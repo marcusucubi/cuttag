@@ -159,8 +159,8 @@ Public Class CommonSaver
 			adaptor.Connection.Open()
 			adaptor.Transaction = adaptor.Connection.BeginTransaction
 			'dd_Added sourceID, IsWire 10/3/11, SequenceNumber 10/7/11
-            adaptor.Insert(quoteId, detail.Qty, _
-                           detail.SequenceNumber, _
+            adaptor.Insert(quoteId, detail.SequenceNumber, _
+                           detail.Qty, _
                            detail.Product.Code, _
                            detail.SourceID, _
                            detail.IsWire, "")
