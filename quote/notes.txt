@@ -1,0 +1,14 @@
+﻿
+Total Twisting time= TwistingRuntime + TwistingSetupTime
+
+TwistingRuntime=
+(Length of A twisted wires*Run_Time_TW2#wires rate)
++
+( Length of B twisted wires*Run_Time_TW3#wires rate)
+...
+
+TwistingSetupTime=
+((Set_up_TW2*No.Pairs)
++ 
+(Set_up_TW3*No.3Wires)+…)
+/Min_Order_Qty)
