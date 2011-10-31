@@ -51,7 +51,7 @@ Namespace Common
         End Sub
 
         Friend Sub SendEvents()
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("sp"))
             MakeDirty()
         End Sub
 

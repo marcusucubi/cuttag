@@ -60,8 +60,7 @@ Public Class LookupDataGridView
 		MyBase.OnEditingControlShowing(e)
 
 	End Sub
-
-	Public Sub New()
+    Public Sub New()
 
 		' This call is required by the designer.
 		InitializeComponent()
