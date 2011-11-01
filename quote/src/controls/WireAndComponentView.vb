@@ -227,43 +227,44 @@ Public Class WireAndComponentView
 	Private Sub dgvQuoteDetail_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dgvQuoteDetail.EditingControlShowing
 		Debug.WriteLine("Edit Control Showing")
 	End Sub
-	Private Sub dgvQuoteDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvQuoteDetail.RowEnter
-        Debug.WriteLine("dgvTest_RowEnter")
-        'With dgvQuoteDetail
-        '    If Not IsNothing(.CurrentCell) AndAlso .Rows(e.RowIndex).IsNewRow Then
-        '        '  .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, e.RowIndex)
-        '        '        .BeginEdit(False)
-        '        '    End If
-        '        'If Not IsNothing(.CurrentRow) AndAlso .CurrentRow.IsNewRow Then
-        '        '    .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, .RowCount - 1)
-        '        '    .BeginEdit(False)
-        '    End If
-        'End With
-    End Sub
-
-	Private Sub dgvQuoteDetail_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvQuoteDetail.SelectionChanged
-        Debug.WriteLine("dgvTest_SelectionChanged: " + dgvQuoteDetail.RowCount.ToString)
-		If CType(sender, LookupDataGridView).Focused Then
-			Me.Sync()
-			SelectDetail()
+    'Private Sub dgvQuoteDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvQuoteDetail.RowEnter
+    '       Debug.WriteLine("dgvTest_RowEnter")
+    '       'With dgvQuoteDetail
+    '       '    If Not IsNothing(.CurrentCell) AndAlso .Rows(e.RowIndex).IsNewRow Then
+    '       '        '  .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, e.RowIndex)
+    '       '        '        .BeginEdit(False)
+    '       '        '    End If
+    '       '        'If Not IsNothing(.CurrentRow) AndAlso .CurrentRow.IsNewRow Then
+    '       '        '    .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, .RowCount - 1)
+    '       '        '    .BeginEdit(False)
+    '       '    End If
+    '       'End With
+    '   End Sub
+    Private Sub dgvQuoteDetail_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvQuoteDetail.SelectionChanged
+        '        Debug.WriteLine("dgvTest_SelectionChanged: " + dgvQuoteDetail.RowCount.ToString)
+        If CType(sender, LookupDataGridView).Focused Then
+            Me.Sync()
+            SelectDetail()
         End If
 
     End Sub
-
-
-	Private Sub dgvQuoteDetail_UserDeletedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles dgvQuoteDetail.UserDeletedRow
-		Sync()
-		SelectDetail()
-	End Sub
-
-	Private Sub dgvQuoteDetail_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles dgvQuoteDetail.UserDeletingRow
-		dgvQuoteDetail.CurrentCell = Nothing
-	End Sub
-
+    Private Sub dgvQuoteDetail_UserDeletedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles dgvQuoteDetail.UserDeletedRow
+        Sync()
+        SelectDetail()
+    End Sub
+    Private Sub dgvQuoteDetail_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles dgvQuoteDetail.UserDeletingRow
+        dgvQuoteDetail.CurrentCell = Nothing
+    End Sub
     Private Sub dgvQuoteDetail_DataError(ByVal sender As System.Object, _
                                          ByVal e As System.Windows.Forms.DataGridViewDataErrorEventArgs) _
                                      Handles dgvQuoteDetail.DataError
         MsgBox(e.Exception.Message)
     End Sub
-
+    Private Sub dgvQuoteDetail_NewRowEnteredByUser(ByVal iRowIndex As Integer) Handles dgvQuoteDetail.NewRowEnteredByUser
+        Debug.WriteLine("--------------------------" + iRowIndex.ToString + "--------------------------")
+        With dgvQuoteDetail
+            .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, iRowIndex)
+            .BeginEdit(False)
+        End With
+    End Sub
 End Class
