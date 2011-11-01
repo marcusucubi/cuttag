@@ -1,72 +1,83 @@
 ﻿Imports DCS.DataGrid
 Imports DCS.SharedMethods
 Public Class LookupDataGridView
-	Inherits System.Windows.Forms.DataGridView
-	Protected Overrides Sub OnUserDeletingRow(ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs)
-		MyBase.OnUserDeletingRow(e)
-	End Sub
+    Inherits System.Windows.Forms.DataGridView
+    Private c_bIsNewRow As Boolean = False
+    Public Event NewRowEnteredByUser(ByVal iRowIndex As Integer)
+    'Protected Overrides Sub OnUserDeletingRow(ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs)
+    '    MyBase.OnUserDeletingRow(e)
+    'End Sub
+    Protected Overrides Sub OnRowEnter(ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
+        If e.RowIndex = Me.NewRowIndex Then
+            c_bIsNewRow = True
+        Else
+            c_bIsNewRow = False
+        End If
+        MyBase.OnRowEnter(e)
+    End Sub
+    Protected Overrides Sub OnKeyDown(ByVal e As System.Windows.Forms.KeyEventArgs)
+        MyBase.OnKeyDown(e)
+         If Me.c_bIsNewRow Then
+            RaiseEvent NewRowEnteredByUser(Me.CurrentRow.Index)
+            Me.c_bIsNewRow = False
+        End If
+    End Sub
+    Protected Overrides Sub OnMouseClick(ByVal e As System.Windows.Forms.MouseEventArgs)
+        MyBase.OnMouseClick(e)
+        If e.Button = MouseButtons.Left And Me.c_bIsNewRow Then
+            RaiseEvent NewRowEnteredByUser(Me.CurrentRow.Index)
+            Me.c_bIsNewRow = False
+        End If
+    End Sub
+    '   Protected Overrides Sub OnNewRowNeeded(ByVal e As System.Windows.Forms.DataGridViewRowEventArgs)
+    '       MyBase.OnNewRowNeeded(e)
+    '   End Sub
+    'Protected Overrides Sub OnUserAddedRow(ByVal e As System.Windows.Forms.DataGridViewRowEventArgs)
+    '	MyBase.OnUserAddedRow(e)
+    'End Sub
+    'Protected Overrides Sub OnCellClick(ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
+    '	MyBase.OnCellClick(e)
+    'End Sub
+    '   Protected Overrides Sub OnMouseDown(ByVal e As System.Windows.Forms.MouseEventArgs)
+    '       '		Dim c As DataGridViewCell = Nothing
+    '       'Dim hit As DataGridView.HitTestInfo = Nothing
+    '       'If e.Button = MouseButtons.Left Then
+    '       'hit = Me.HitTest(e.X, e.Y)
+    '       'If hit.Type = DataGridViewHitTestType.ColumnHeader Then MsgBox("hit header")
+    '       '	'			If hit.Type = DataGridViewHitTestType.Cell Then
+    '       '	'	c = Me.Rows(hit.RowIndex).Cells(hit.ColumnIndex)
+    '       '	'	Debug.WriteLine("MouseDown on (" + c.RowIndex.ToString + "," + c.ColumnIndex.ToString + ")")
+    '       '	'	End If
+    '       '	Debug.WriteLine("hit row: " + hit.RowIndex.ToString)
+    '       'End If
 
-	Protected Overrides Sub OnRowEnter(ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
-		'	Debug.WriteLine(Me.RowCount)
-		'	Debug.WriteLine(e.RowIndex)
-		'	Debug.WriteLine(Me.IsCurrentRowDirty.ToString)
-		MyBase.OnRowEnter(e)
-	End Sub
-	Protected Overrides Sub OnNewRowNeeded(ByVal e As System.Windows.Forms.DataGridViewRowEventArgs)
-		MyBase.OnNewRowNeeded(e)
-	End Sub
-	Protected Overrides Sub OnUserAddedRow(ByVal e As System.Windows.Forms.DataGridViewRowEventArgs)
-		MyBase.OnUserAddedRow(e)
-	End Sub
-	Protected Overrides Sub OnCellClick(ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
-		MyBase.OnCellClick(e)
-	End Sub
-	Protected Overrides Sub OnMouseClick(ByVal e As System.Windows.Forms.MouseEventArgs)
-		MyBase.OnMouseClick(e)
-	End Sub
-	Protected Overrides Sub OnMouseDown(ByVal e As System.Windows.Forms.MouseEventArgs)
-		'		Dim c As DataGridViewCell = Nothing
-		'Dim hit As DataGridView.HitTestInfo = Nothing
-		'If e.Button = MouseButtons.Left Then
-		'hit = Me.HitTest(e.X, e.Y)
-		'If hit.Type = DataGridViewHitTestType.ColumnHeader Then MsgBox("hit header")
-		'	'			If hit.Type = DataGridViewHitTestType.Cell Then
-		'	'	c = Me.Rows(hit.RowIndex).Cells(hit.ColumnIndex)
-		'	'	Debug.WriteLine("MouseDown on (" + c.RowIndex.ToString + "," + c.ColumnIndex.ToString + ")")
-		'	'	End If
-		'	Debug.WriteLine("hit row: " + hit.RowIndex.ToString)
-		'End If
+    '       ''		If IsNothing(hit.RowIndex) OrElse Not Me.RowCount - 1 = hit.RowIndex Then
+    '       ''	MyBase.OnMouseDown(e)
+    '       ''	End If
+    '       MyBase.OnMouseDown(e)
+    '   End Sub
+    'Public Overrides Function PreProcessMessage(ByRef msg As System.Windows.Forms.Message) As Boolean
+    '	Return MyBase.PreProcessMessage(msg)
+    'End Function
+    'Public Overrides Function BeginEdit(ByVal selectAll As Boolean) As Boolean
+    '	'only mouse click for some reason
+    '	'Debug.WriteLine("lookup dgv begin edit")
+    '	Return MyBase.BeginEdit(selectAll)
+    'End Function
+    'Protected Overrides Sub OnCellBeginEdit(ByVal e As System.Windows.Forms.DataGridViewCellCancelEventArgs)
+    '	'Debug.WriteLine("lookup dgv begin edit")
+    '	MyBase.OnCellBeginEdit(e)
+    'End Sub
+    'Protected Overrides Sub OnEditingControlShowing(ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs)
+    '	'Debug.WriteLine("lookup dgv EditingControlShowing")
+    '	MyBase.OnEditingControlShowing(e)
 
-		''		If IsNothing(hit.RowIndex) OrElse Not Me.RowCount - 1 = hit.RowIndex Then
-		''	MyBase.OnMouseDown(e)
-		''	End If
-		MyBase.OnMouseDown(e)
-
-	End Sub
-	Public Overrides Function PreProcessMessage(ByRef msg As System.Windows.Forms.Message) As Boolean
-		Return MyBase.PreProcessMessage(msg)
-	End Function
-	Public Overrides Function BeginEdit(ByVal selectAll As Boolean) As Boolean
-		'only mouse click for some reason
-		'Debug.WriteLine("lookup dgv begin edit")
-		Return MyBase.BeginEdit(selectAll)
-	End Function
-	Protected Overrides Sub OnCellBeginEdit(ByVal e As System.Windows.Forms.DataGridViewCellCancelEventArgs)
-		'Debug.WriteLine("lookup dgv begin edit")
-		MyBase.OnCellBeginEdit(e)
-	End Sub
-	Protected Overrides Sub OnEditingControlShowing(ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs)
-		'Debug.WriteLine("lookup dgv EditingControlShowing")
-		MyBase.OnEditingControlShowing(e)
-
-	End Sub
+    'End Sub
     Public Sub New()
-
-		' This call is required by the designer.
+        ' This call is required by the designer.
 		InitializeComponent()
 		' Add any initialization after the InitializeComponent() call.
-
-	End Sub
+    End Sub
 End Class
 
 <DataGridViewColumnDesignTimeVisible(True)>

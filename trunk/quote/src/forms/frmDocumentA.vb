@@ -173,13 +173,13 @@ Public Class frmDocumentA
 	End Sub
 	Public Sub AddItem()
 		Dim gv As LookupDataGridView = Me.WireAndComponentView1.dgvQuoteDetail
-        Dim pProduct As New Product( _
-        "", 0, "", False, _
-        Nothing, Nothing)
-		Dim dDetail As DCS.Quote.Model.BOM.Detail = _Header.NewDetail(pProduct)
-		gv.Focus()
-		gv.CurrentCell = gv(gv.Columns("dgvQuoteDetail_Lookup").Index, gv.RowCount - 1)
-		gv.BeginEdit(False)
+        '      Dim pProduct As New Product( _
+        '      "", 0, "", False, _
+        '      Nothing, Nothing)
+        'Dim dDetail As DCS.Quote.Model.BOM.Detail = _Header.NewDetail(pProduct)
+        gv.Focus()
+        gv.CurrentCell = gv(gv.Columns("dgvQuoteDetail_Lookup").Index, gv.RowCount - 1)
+        gv.BeginEdit(False)
 
 	End Sub
 End Class
