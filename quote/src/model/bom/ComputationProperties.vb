@@ -77,199 +77,199 @@ Namespace Model.BOM
 
 #Region " Twisted Pairs "
 
-        <DescriptionAttribute("Total Twisting Time " + Chr(10) + "(Seconds)"), _
-        DisplayName("Total Twisting time"), _
-        CategoryAttribute("Experimental")> _
-        Public ReadOnly Property TotalTwistingTime As Decimal
-            Get
-                Return (Me.TwistingRuntime + Me.TwistingSetupTime)
-            End Get
-        End Property
+        '<DescriptionAttribute("Total Twisting Time " + Chr(10) + "(Seconds)"), _
+        'DisplayName("Total Twisting time"), _
+        'CategoryAttribute("Experimental")> _
+        'Public ReadOnly Property TotalTwistingTime As Decimal
+        '    Get
+        '        Return (Me.TwistingRuntime + Me.TwistingSetupTime)
+        '    End Get
+        'End Property
 
-        <DescriptionAttribute("(_LengthOfTwistedWiresA * _RunTimeWireRateTW2) + " + Chr(10) + _
-            "(_LengthOfTwistedWiresB * _RunTimeWireRateTW3) + " + Chr(10) + _
-            "(_LengthOfTwistedWiresC * _RunTimeWireRateTW4)" + Chr(10)), _
-        DisplayName("Twisting Runtime"), _
-        CategoryAttribute("Experimental")> _
-        Public ReadOnly Property TwistingRuntime As Decimal
-            Get
-                Return _
-                    (_LengthOfTwistedWiresA * _RunTimeWireRateTW2) + _
-                    (_LengthOfTwistedWiresB * _RunTimeWireRateTW3) + _
-                    (_LengthOfTwistedWiresC * _RunTimeWireRateTW4)
-            End Get
-        End Property
+        '<DescriptionAttribute("(_LengthOfTwistedWiresA * _RunTimeWireRateTW2) + " + Chr(10) + _
+        '    "(_LengthOfTwistedWiresB * _RunTimeWireRateTW3) + " + Chr(10) + _
+        '    "(_LengthOfTwistedWiresC * _RunTimeWireRateTW4)" + Chr(10)), _
+        'DisplayName("Twisting Runtime"), _
+        'CategoryAttribute("Experimental")> _
+        'Public ReadOnly Property TwistingRuntime As Decimal
+        '    Get
+        '        Return _
+        '            (_LengthOfTwistedWiresA * _RunTimeWireRateTW2) + _
+        '            (_LengthOfTwistedWiresB * _RunTimeWireRateTW3) + _
+        '            (_LengthOfTwistedWiresC * _RunTimeWireRateTW4)
+        '    End Get
+        'End Property
 
-        <DescriptionAttribute("((SetupTW2 * NumberOf2Wires) + " + Chr(10) + _
-            "(SetupTW3 * NumberOf3Wires) + " + Chr(10) + _
-            "(SetupTW4 * NumberOf4Wires)) / MinimumOrderQuantity " + Chr(10) + _
-            Chr(10) + "(Seconds)"), _
-        DisplayName("Twisting Setup Time"), _
-        CategoryAttribute("Experimental")> _
-        Public ReadOnly Property TwistingSetupTime As Decimal
-            Get
-                Return _
-                    (_SetupTW2 * _NumberOf2Wires) + _
-                    (_SetupTW3 * _NumberOf3Wires) + _
-                    (_SetupTW4 * _NumberOf4Wires)
-            End Get
-        End Property
+        '<DescriptionAttribute("((SetupTW2 * NumberOf2Wires) + " + Chr(10) + _
+        '    "(SetupTW3 * NumberOf3Wires) + " + Chr(10) + _
+        '    "(SetupTW4 * NumberOf4Wires)) / MinimumOrderQuantity " + Chr(10) + _
+        '    Chr(10) + "(Seconds)"), _
+        'DisplayName("Twisting Setup Time"), _
+        'CategoryAttribute("Experimental")> _
+        'Public ReadOnly Property TwistingSetupTime As Decimal
+        '    Get
+        '        Return _
+        '            (_SetupTW2 * _NumberOf2Wires) + _
+        '            (_SetupTW3 * _NumberOf3Wires) + _
+        '            (_SetupTW4 * _NumberOf4Wires)
+        '    End Get
+        'End Property
 
-        <DescriptionAttribute("Length of Twisted Wires (A)" + Chr(10) + "(Number)"), _
-        DisplayName("Length of Twisted Wires (A)"), _
-        CategoryAttribute("Experimental")> _
-        Public Property LengthOfTwistedWiresA As Decimal
-            Get
-                Return Me._LengthOfTwistedWiresA
-            End Get
-            Set(ByVal value As Decimal)
-                Me._LengthOfTwistedWiresA = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Length of Twisted Wires (A)" + Chr(10) + "(Number)"), _
+        'DisplayName("Length of Twisted Wires (A)"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property LengthOfTwistedWiresA As Decimal
+        '    Get
+        '        Return Me._LengthOfTwistedWiresA
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._LengthOfTwistedWiresA = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Length of Twisted Wires (B)" + Chr(10) + "(Number)"), _
-        DisplayName("Length of Twisted Wires (B)"), _
-        CategoryAttribute("Experimental")> _
-        Public Property LengthOfTwistedWiresB As Decimal
-            Get
-                Return Me._LengthOfTwistedWiresB
-            End Get
-            Set(ByVal value As Decimal)
-                Me._LengthOfTwistedWiresB = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Length of Twisted Wires (B)" + Chr(10) + "(Number)"), _
+        'DisplayName("Length of Twisted Wires (B)"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property LengthOfTwistedWiresB As Decimal
+        '    Get
+        '        Return Me._LengthOfTwistedWiresB
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._LengthOfTwistedWiresB = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Length of Twisted Wires (C)" + Chr(10) + "(Number)"), _
-        DisplayName("Length of Twisted Wires (C)"), _
-        CategoryAttribute("Experimental")> _
-        Public Property LengthOfTwistedWiresC As Decimal
-            Get
-                Return Me._LengthOfTwistedWiresC
-            End Get
-            Set(ByVal value As Decimal)
-                Me._LengthOfTwistedWiresC = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Length of Twisted Wires (C)" + Chr(10) + "(Number)"), _
+        'DisplayName("Length of Twisted Wires (C)"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property LengthOfTwistedWiresC As Decimal
+        '    Get
+        '        Return Me._LengthOfTwistedWiresC
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._LengthOfTwistedWiresC = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Run Time Wire Rate TW2" + Chr(10) + "(Number)"), _
-        DisplayName("Run Time Wire Rate TW2"), _
-        CategoryAttribute("Experimental")> _
-        Public Property RunTimeWireRateTW2 As Decimal
-            Get
-                Return Me._RunTimeWireRateTW2
-            End Get
-            Set(ByVal value As Decimal)
-                Me._RunTimeWireRateTW2 = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Run Time Wire Rate TW2" + Chr(10) + "(Number)"), _
+        'DisplayName("Run Time Wire Rate TW2"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property RunTimeWireRateTW2 As Decimal
+        '    Get
+        '        Return Me._RunTimeWireRateTW2
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._RunTimeWireRateTW2 = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Run Time Wire Rate TW3" + Chr(10) + "(Number)"), _
-        DisplayName("Run Time Wire Rate TW3"), _
-        CategoryAttribute("Experimental")> _
-        Public Property RunTimeWireRateTW3 As Decimal
-            Get
-                Return Me._RunTimeWireRateTW3
-            End Get
-            Set(ByVal value As Decimal)
-                Me._RunTimeWireRateTW3 = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Run Time Wire Rate TW3" + Chr(10) + "(Number)"), _
+        'DisplayName("Run Time Wire Rate TW3"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property RunTimeWireRateTW3 As Decimal
+        '    Get
+        '        Return Me._RunTimeWireRateTW3
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._RunTimeWireRateTW3 = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Run Time Wire Rate TW4" + Chr(10) + "(Number)"), _
-        DisplayName("Run Time Wire Rate TW4"), _
-        CategoryAttribute("Experimental")> _
-        Public Property RunTimeWireRateTW4 As Decimal
-            Get
-                Return Me._RunTimeWireRateTW4
-            End Get
-            Set(ByVal value As Decimal)
-                Me._RunTimeWireRateTW4 = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Run Time Wire Rate TW4" + Chr(10) + "(Number)"), _
+        'DisplayName("Run Time Wire Rate TW4"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property RunTimeWireRateTW4 As Decimal
+        '    Get
+        '        Return Me._RunTimeWireRateTW4
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._RunTimeWireRateTW4 = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Setup TW2" + Chr(10) + "(Number)"), _
-        DisplayName("Setup TW2"), _
-        CategoryAttribute("Experimental")> _
-        Public Property SetupTW2 As Decimal
-            Get
-                Return Me._SetupTW2
-            End Get
-            Set(ByVal value As Decimal)
-                Me._SetupTW2 = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Setup TW2" + Chr(10) + "(Number)"), _
+        'DisplayName("Setup TW2"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property SetupTW2 As Decimal
+        '    Get
+        '        Return Me._SetupTW2
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._SetupTW2 = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Setup TW3" + Chr(10) + "(Number)"), _
-        DisplayName("Setup TW3"), _
-        CategoryAttribute("Experimental")> _
-        Public Property SetupTW3 As Decimal
-            Get
-                Return Me._SetupTW3
-            End Get
-            Set(ByVal value As Decimal)
-                Me._SetupTW3 = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Setup TW3" + Chr(10) + "(Number)"), _
+        'DisplayName("Setup TW3"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property SetupTW3 As Decimal
+        '    Get
+        '        Return Me._SetupTW3
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._SetupTW3 = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Setup TW4" + Chr(10) + "(Number)"), _
-        DisplayName("Setup TW4"), _
-        CategoryAttribute("Experimental")> _
-        Public Property SetupTW4 As Decimal
-            Get
-                Return Me._SetupTW4
-            End Get
-            Set(ByVal value As Decimal)
-                Me._SetupTW4 = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Setup TW4" + Chr(10) + "(Number)"), _
+        'DisplayName("Setup TW4"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property SetupTW4 As Decimal
+        '    Get
+        '        Return Me._SetupTW4
+        '    End Get
+        '    Set(ByVal value As Decimal)
+        '        Me._SetupTW4 = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Number Of 2 Wires" + Chr(10) + "(Number)"), _
-        DisplayName("Number Of 2 Wires"), _
-        CategoryAttribute("Experimental")> _
-        Public Property NumberOf2Wires As Integer
-            Get
-                Return Me._NumberOf2Wires
-            End Get
-            Set(ByVal value As Integer)
-                Me._NumberOf2Wires = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Number Of 2 Wires" + Chr(10) + "(Number)"), _
+        'DisplayName("Number Of 2 Wires"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property NumberOf2Wires As Integer
+        '    Get
+        '        Return Me._NumberOf2Wires
+        '    End Get
+        '    Set(ByVal value As Integer)
+        '        Me._NumberOf2Wires = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Number Of 3 Wires" + Chr(10) + "(Number)"), _
-        DisplayName("Number Of 3 Wires"), _
-        CategoryAttribute("Experimental")> _
-        Public Property NumberOf3Wires As Integer
-            Get
-                Return Me._NumberOf3Wires
-            End Get
-            Set(ByVal value As Integer)
-                Me._NumberOf3Wires = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Number Of 3 Wires" + Chr(10) + "(Number)"), _
+        'DisplayName("Number Of 3 Wires"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property NumberOf3Wires As Integer
+        '    Get
+        '        Return Me._NumberOf3Wires
+        '    End Get
+        '    Set(ByVal value As Integer)
+        '        Me._NumberOf3Wires = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
-        <DescriptionAttribute("Number Of 4 Wires" + Chr(10) + "(Number)"), _
-        DisplayName("Number Of 4 Wires"), _
-        CategoryAttribute("Experimental")> _
-        Public Property NumberOf4Wires As Integer
-            Get
-                Return Me._NumberOf4Wires
-            End Get
-            Set(ByVal value As Integer)
-                Me._NumberOf4Wires = value
-                Me.SendEvents()
-            End Set
-        End Property
+        '<DescriptionAttribute("Number Of 4 Wires" + Chr(10) + "(Number)"), _
+        'DisplayName("Number Of 4 Wires"), _
+        'CategoryAttribute("Experimental")> _
+        'Public Property NumberOf4Wires As Integer
+        '    Get
+        '        Return Me._NumberOf4Wires
+        '    End Get
+        '    Set(ByVal value As Integer)
+        '        Me._NumberOf4Wires = value
+        '        Me.SendEvents()
+        '    End Set
+        'End Property
 
 #End Region
 #Region " Copper "
@@ -503,7 +503,7 @@ Namespace Model.BOM
         Public ReadOnly Property TotalMachineTime As Decimal
             Get
                 Return Math.Round(Me.TotalComponentMachineTime + _
-                    Me.TotalWireMachineTime + TotalTwistingTime)
+                    Me.TotalWireMachineTime + TwistedPairsMachineTime)
             End Get
         End Property
 
