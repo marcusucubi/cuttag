@@ -127,9 +127,9 @@ Namespace Common
         Public ReadOnly Property TotalCost As Decimal
             Get
                 If Product.IsWire Then
-                    Return Math.Round(Me.UnitCost * Me.LengthFeet, 2)
+                    Return Math.Round(Me.UnitCost * Me.LengthFeet, 4)
                 Else
-                    Return Math.Round(Me.UnitCost * Me.Qty, 2)
+                    Return Math.Round(Me.UnitCost * Me.Qty, 4)
                 End If
             End Get
         End Property
