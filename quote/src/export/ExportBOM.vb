@@ -39,6 +39,7 @@
         Next
 
         index = 0
+
         _Writer = New ExcelBOMWriter(_Writer.Path, _Writer.Workbook, "Components")
         For Each detail As Common.Detail In header.Details
             If (detail.Product.IsWire = False) Then
