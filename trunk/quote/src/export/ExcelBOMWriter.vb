@@ -99,20 +99,14 @@ Public Class ExcelBOMWriter
 
     Private Sub SetupPath()
 
-        Dim t As String
-        t = Date.Now.Year.ToString & "-"
-        t += Date.Now.Month.ToString & "-"
-        t += Date.Now.Day.ToString & "-"
-        t += Date.Now.ToShortTimeString
-        t = t.Replace(".", "")
-        t = t.Replace("/", "")
-        t = t.Replace(":", "")
-        t = t.Replace(" ", "")
-        Path = "exportBOM\" + t + ".xls"
+        Dim s As String = System.IO.Path.Combine( _
+            ExportPath.Path, "BOM")
 
-        If Not Directory.Exists("exportBOM") Then
-            Directory.CreateDirectory("exportBOM")
+        If Not Directory.Exists(s) Then
+            Directory.CreateDirectory(s)
         End If
+
+        Path = System.IO.Path.Combine(s, ExportPath.DateFileName + ".xls")
 
     End Sub
 
