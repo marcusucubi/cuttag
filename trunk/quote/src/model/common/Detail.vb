@@ -86,6 +86,17 @@ Namespace Common
             End Set
         End Property
         'dd_Added End
+        'dd_Added Property 11/13/11
+        Public Property MachineTime As Decimal
+            Get
+                Return Product.MachineTime
+            End Get
+            Set(ByVal value As Decimal)
+                Product.MachineTime = value
+                SendEvents()
+            End Set
+        End Property
+        'dd_Added End
 
         Public Property UnitCost As Decimal
             Get

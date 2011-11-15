@@ -6,14 +6,16 @@ Namespace Model.BOM
         Inherits Common.ComponentProperties
 
         Private _QuoteDetail As Detail
-        Private _MachineTime As Decimal
+        'dd_Remmed 11/13/11
+        'Private _MachineTime As Decimal
         Private _MinimumQty As Decimal
         Private _MinimumDollar As Decimal
 
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
-                Me._MachineTime = _QuoteDetail.Product.MachineTime
+                'dd_Remmed 11/13/11
+                'Me._MachineTime = _QuoteDetail.Product.MachineTime
                 Me._MinimumQty = _QuoteDetail.Product.MinimumQty
                 Me._MinimumDollar = _QuoteDetail.Product.MinimumDollar
             End If
@@ -23,18 +25,24 @@ Namespace Model.BOM
         Browsable(False)>
         Public Overloads ReadOnly Property TotalMachineTime() As Decimal
             Get
-                Return (_MachineTime * _QuoteDetail.Qty)
+                Return (_QuoteDetail.MachineTime * _QuoteDetail.Qty)
+                'Return (_MachineTime * _QuoteDetail.Qty)
             End Get
         End Property
 
         <DisplayName("Machine Time")>
         Public Overloads Property MachineTime() As Decimal
             Get
-                Return Me._MachineTime
+                ' Return Me._MachineTime
+                Return _QuoteDetail.MachineTime 'Me._MachineTime
             End Get
             Set(ByVal value As Decimal)
-                If Not (value = _MachineTime) Then
-                    Me._MachineTime = value
+                'dd_Changed 11/13/11
+                'If Not (value = _MachineTime) Then
+                If Not (value = _QuoteDetail.MachineTime) Then
+                    _QuoteDetail.MachineTime = value
+                    'dd_Remmed 11/13/11
+                    'Me._MachineTime = value
                     SendEvents()
                 End If
             End Set

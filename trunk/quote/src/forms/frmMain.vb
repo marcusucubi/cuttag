@@ -435,5 +435,9 @@ Public Class frmMain
 			End If
 		End If
 	End Sub
+
+    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
 

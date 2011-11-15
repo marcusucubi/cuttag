@@ -163,7 +163,7 @@ Public Class CommonSaver
                            detail.Qty, _
                            detail.Product.Code, _
                            detail.SourceID, _
-                           detail.IsWire, "")
+                           detail.IsWire, detail.UOM)
 			Dim cmd As SqlCommand = New SqlCommand( _
 				"SELECT @@IDENTITY", adaptor.Connection)
 			cmd.Transaction = adaptor.Transaction

@@ -29,12 +29,6 @@ Partial Class WireAndComponentView
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.dgvQuoteDetail = New DCS.Quote.LookupDataGridView()
-        Me.dgvQuoteDetail_SequenceNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvQuoteDetail_Lookup = New DCS.Quote.DataGridViewSearchColumn()
-        Me.dgvQuoteDetail_Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvQuoteDetail_UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvQuoteDetail_Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvQuoteDetail_TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,6 +36,13 @@ Partial Class WireAndComponentView
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvQuoteDetail_SequenceNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvQuoteDetail_Lookup = New DCS.Quote.DataGridViewSearchColumn()
+        Me.dgvQuoteDetail_Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvQuoteDetail_UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvQuoteDetail_MachineTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvQuoteDetail_Type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvQuoteDetail_TotalCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvQuoteDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -89,52 +90,12 @@ Partial Class WireAndComponentView
         '
         Me.dgvQuoteDetail.AllowUserToOrderColumns = True
         Me.dgvQuoteDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvQuoteDetail.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dgvQuoteDetail_SequenceNumber, Me.dgvQuoteDetail_Lookup, Me.dgvQuoteDetail_Quantity, Me.dgvQuoteDetail_UnitCost, Me.dgvQuoteDetail_Type, Me.dgvQuoteDetail_TotalCost})
+        Me.dgvQuoteDetail.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dgvQuoteDetail_SequenceNumber, Me.dgvQuoteDetail_Lookup, Me.dgvQuoteDetail_Quantity, Me.dgvQuoteDetail_UnitCost, Me.dgvQuoteDetail_MachineTime, Me.dgvQuoteDetail_Type, Me.dgvQuoteDetail_TotalCost})
         Me.dgvQuoteDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvQuoteDetail.Location = New System.Drawing.Point(0, 64)
         Me.dgvQuoteDetail.Name = "dgvQuoteDetail"
         Me.dgvQuoteDetail.Size = New System.Drawing.Size(545, 117)
         Me.dgvQuoteDetail.TabIndex = 3
-        '
-        'dgvQuoteDetail_SequenceNumber
-        '
-        Me.dgvQuoteDetail_SequenceNumber.DataPropertyName = "SequenceNumber"
-        Me.dgvQuoteDetail_SequenceNumber.HeaderText = "Seq#"
-        Me.dgvQuoteDetail_SequenceNumber.Name = "dgvQuoteDetail_SequenceNumber"
-        Me.dgvQuoteDetail_SequenceNumber.Width = 40
-        '
-        'dgvQuoteDetail_Lookup
-        '
-        Me.dgvQuoteDetail_Lookup.DataPropertyName = "ProductCode"
-        Me.dgvQuoteDetail_Lookup.HeaderText = "PartNumber"
-        Me.dgvQuoteDetail_Lookup.Name = "dgvQuoteDetail_Lookup"
-        Me.dgvQuoteDetail_Lookup.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvQuoteDetail_Lookup.SearchGrid = Nothing
-        Me.dgvQuoteDetail_Lookup.ToolTipText = "F2, Click or Type for lookup"
-        '
-        'dgvQuoteDetail_Quantity
-        '
-        Me.dgvQuoteDetail_Quantity.DataPropertyName = "Qty"
-        Me.dgvQuoteDetail_Quantity.HeaderText = "Quantity"
-        Me.dgvQuoteDetail_Quantity.Name = "dgvQuoteDetail_Quantity"
-        '
-        'dgvQuoteDetail_UnitCost
-        '
-        Me.dgvQuoteDetail_UnitCost.DataPropertyName = "UnitCost"
-        Me.dgvQuoteDetail_UnitCost.HeaderText = "Unit Cost"
-        Me.dgvQuoteDetail_UnitCost.Name = "dgvQuoteDetail_UnitCost"
-        '
-        'dgvQuoteDetail_Type
-        '
-        Me.dgvQuoteDetail_Type.DataPropertyName = "DisplayableProductClass"
-        Me.dgvQuoteDetail_Type.HeaderText = "Type"
-        Me.dgvQuoteDetail_Type.Name = "dgvQuoteDetail_Type"
-        '
-        'dgvQuoteDetail_TotalCost
-        '
-        Me.dgvQuoteDetail_TotalCost.DataPropertyName = "TotalCost"
-        Me.dgvQuoteDetail_TotalCost.HeaderText = "Total Cost"
-        Me.dgvQuoteDetail_TotalCost.Name = "dgvQuoteDetail_TotalCost"
         '
         'DataGridViewTextBoxColumn1
         '
@@ -189,6 +150,52 @@ Partial Class WireAndComponentView
         Me.DataGridViewTextBoxColumn7.ReadOnly = True
         Me.DataGridViewTextBoxColumn7.Visible = False
         '
+        'dgvQuoteDetail_SequenceNumber
+        '
+        Me.dgvQuoteDetail_SequenceNumber.DataPropertyName = "SequenceNumber"
+        Me.dgvQuoteDetail_SequenceNumber.HeaderText = "Seq#"
+        Me.dgvQuoteDetail_SequenceNumber.Name = "dgvQuoteDetail_SequenceNumber"
+        Me.dgvQuoteDetail_SequenceNumber.Width = 40
+        '
+        'dgvQuoteDetail_Lookup
+        '
+        Me.dgvQuoteDetail_Lookup.DataPropertyName = "ProductCode"
+        Me.dgvQuoteDetail_Lookup.HeaderText = "PartNumber"
+        Me.dgvQuoteDetail_Lookup.Name = "dgvQuoteDetail_Lookup"
+        Me.dgvQuoteDetail_Lookup.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvQuoteDetail_Lookup.SearchGrid = Nothing
+        Me.dgvQuoteDetail_Lookup.ToolTipText = "F2, Click or Type for lookup"
+        '
+        'dgvQuoteDetail_Quantity
+        '
+        Me.dgvQuoteDetail_Quantity.DataPropertyName = "Qty"
+        Me.dgvQuoteDetail_Quantity.HeaderText = "Quantity"
+        Me.dgvQuoteDetail_Quantity.Name = "dgvQuoteDetail_Quantity"
+        '
+        'dgvQuoteDetail_UnitCost
+        '
+        Me.dgvQuoteDetail_UnitCost.DataPropertyName = "UnitCost"
+        Me.dgvQuoteDetail_UnitCost.HeaderText = "Unit Cost"
+        Me.dgvQuoteDetail_UnitCost.Name = "dgvQuoteDetail_UnitCost"
+        '
+        'dgvQuoteDetail_MachineTime
+        '
+        Me.dgvQuoteDetail_MachineTime.DataPropertyName = "MachineTime"
+        Me.dgvQuoteDetail_MachineTime.HeaderText = "Time"
+        Me.dgvQuoteDetail_MachineTime.Name = "dgvQuoteDetail_MachineTime"
+        '
+        'dgvQuoteDetail_Type
+        '
+        Me.dgvQuoteDetail_Type.DataPropertyName = "DisplayableProductClass"
+        Me.dgvQuoteDetail_Type.HeaderText = "Type"
+        Me.dgvQuoteDetail_Type.Name = "dgvQuoteDetail_Type"
+        '
+        'dgvQuoteDetail_TotalCost
+        '
+        Me.dgvQuoteDetail_TotalCost.DataPropertyName = "TotalCost"
+        Me.dgvQuoteDetail_TotalCost.HeaderText = "Total Cost"
+        Me.dgvQuoteDetail_TotalCost.Name = "dgvQuoteDetail_TotalCost"
+        '
         'WireAndComponentView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -214,12 +221,13 @@ Partial Class WireAndComponentView
 	Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents dgvQuoteDetail_SequenceNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents dgvQuoteDetail_Lookup As DCS.Quote.DataGridViewSearchColumn
-	Friend WithEvents dgvQuoteDetail_Quantity As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents dgvQuoteDetail_UnitCost As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents dgvQuoteDetail_Type As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents dgvQuoteDetail_TotalCost As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgvQuoteDetail_SequenceNumber As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgvQuoteDetail_Lookup As DCS.Quote.DataGridViewSearchColumn
+    Friend WithEvents dgvQuoteDetail_Quantity As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgvQuoteDetail_UnitCost As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgvQuoteDetail_MachineTime As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgvQuoteDetail_Type As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents dgvQuoteDetail_TotalCost As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class
