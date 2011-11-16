@@ -22,6 +22,7 @@ Partial Class WireAndComponentView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -193,6 +194,9 @@ Partial Class WireAndComponentView
         'dgvQuoteDetail_TotalCost
         '
         Me.dgvQuoteDetail_TotalCost.DataPropertyName = "TotalCost"
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.dgvQuoteDetail_TotalCost.DefaultCellStyle = DataGridViewCellStyle1
         Me.dgvQuoteDetail_TotalCost.HeaderText = "Total Cost"
         Me.dgvQuoteDetail_TotalCost.Name = "dgvQuoteDetail_TotalCost"
         '

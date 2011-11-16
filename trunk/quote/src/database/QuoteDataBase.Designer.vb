@@ -7284,34 +7284,65 @@ Namespace QuoteDataBaseTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyStringValue", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyStringValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDecimalValue", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 4, "PropertyDecimalValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDecimalValue", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 6, "PropertyDecimalValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyIntegerValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyIntegerValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyCatagory", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyCatagory", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDescription", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDescription", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDateValue", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDateValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE       _QuoteProperties"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                QuoteID = @QuoteID, PropertyID "& _ 
-                "= @PropertyID, PropertyName = @PropertyName, PropertyStringValue = @PropertyStri"& _ 
-                "ngValue, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PropertyDecimalValue = @PropertyDecimalValue"& _ 
-                ", PropertyIntegerValue = @PropertyIntegerValue, PropertyCatagory = @PropertyCata"& _ 
-                "gory, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PropertyDescription = @PropertyDescription, Pro"& _ 
-                "pertyDateValue = @PropertyDateValue"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = @Original_id); "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT "& _ 
-                "id, QuoteID, PropertyID, PropertyName, PropertyStringValue, PropertyDecimalValue"& _ 
-                ", PropertyIntegerValue, PropertyCatagory, PropertyDescription, PropertyDateValue"& _ 
-                " FROM _QuoteProperties WHERE (id = @id)"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[_QuoteProperties] SET [QuoteID] = @QuoteID, [PropertyID] = @Propert"& _ 
+                "yID, [PropertyName] = @PropertyName, [PropertyStringValue] = @PropertyStringValu"& _ 
+                "e, [PropertyDecimalValue] = @PropertyDecimalValue, [PropertyIntegerValue] = @Pro"& _ 
+                "pertyIntegerValue, [PropertyCatagory] = @PropertyCatagory, [PropertyDescription]"& _ 
+                " = @PropertyDescription, [PropertyDateValue] = @PropertyDateValue WHERE (([id] ="& _ 
+                " @Original_id) AND ((@IsNull_QuoteID = 1 AND [QuoteID] IS NULL) OR ([QuoteID] = "& _ 
+                "@Original_QuoteID)) AND ((@IsNull_PropertyID = 1 AND [PropertyID] IS NULL) OR (["& _ 
+                "PropertyID] = @Original_PropertyID)) AND ((@IsNull_PropertyName = 1 AND [Propert"& _ 
+                "yName] IS NULL) OR ([PropertyName] = @Original_PropertyName)) AND ((@IsNull_Prop"& _ 
+                "ertyStringValue = 1 AND [PropertyStringValue] IS NULL) OR ([PropertyStringValue]"& _ 
+                " = @Original_PropertyStringValue)) AND ((@IsNull_PropertyDecimalValue = 1 AND [P"& _ 
+                "ropertyDecimalValue] IS NULL) OR ([PropertyDecimalValue] = @Original_PropertyDec"& _ 
+                "imalValue)) AND ((@IsNull_PropertyIntegerValue = 1 AND [PropertyIntegerValue] IS"& _ 
+                " NULL) OR ([PropertyIntegerValue] = @Original_PropertyIntegerValue)) AND ((@IsNu"& _ 
+                "ll_PropertyCatagory = 1 AND [PropertyCatagory] IS NULL) OR ([PropertyCatagory] ="& _ 
+                " @Original_PropertyCatagory)) AND ((@IsNull_PropertyDescription = 1 AND [Propert"& _ 
+                "yDescription] IS NULL) OR ([PropertyDescription] = @Original_PropertyDescription"& _ 
+                ")) AND ((@IsNull_PropertyDateValue = 1 AND [PropertyDateValue] IS NULL) OR ([Pro"& _ 
+                "pertyDateValue] = @Original_PropertyDateValue)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT id, QuoteID, PropertyI"& _ 
+                "D, PropertyName, PropertyStringValue, PropertyDecimalValue, PropertyIntegerValue"& _ 
+                ", PropertyCatagory, PropertyDescription, PropertyDateValue FROM _QuoteProperties"& _ 
+                " WHERE (id = @id)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyName", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyStringValue", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyStringValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDecimalValue", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 4, "PropertyDecimalValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyIntegerValue", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyIntegerValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyCatagory", Global.System.Data.SqlDbType.NVarChar, 30, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyCatagory", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDescription", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDescription", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDateValue", Global.System.Data.SqlDbType.DateTime, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDateValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyStringValue", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyStringValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDecimalValue", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 6, "PropertyDecimalValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyIntegerValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyIntegerValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyCatagory", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyCatagory", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDescription", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDescription", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyDateValue", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDateValue", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_id", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_QuoteID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyName", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyName", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyName", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyStringValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyStringValue", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyStringValue", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyStringValue", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyDecimalValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDecimalValue", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyDecimalValue", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 6, "PropertyDecimalValue", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyIntegerValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyIntegerValue", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyIntegerValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyIntegerValue", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyCatagory", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyCatagory", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyCatagory", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyCatagory", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyDescription", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDescription", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyDescription", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDescription", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PropertyDateValue", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDateValue", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PropertyDateValue", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyDateValue", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@id", Global.System.Data.SqlDbType.[Decimal], 9, Global.System.Data.ParameterDirection.Input, 18, 0, "id", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7333,29 +7364,27 @@ Namespace QuoteDataBaseTableAdapters
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        id, QuoteID, PropertyID, PropertyName, PropertyStringValue, Propert"& _ 
-                "yDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       PropertyDateValue"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            _QuoteProperties"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHER"& _ 
-                "E        (QuoteID = @QuoteID) AND (PropertyID = @PropertyID) AND (PropertyName ="& _ 
-                " @PropteryName)"
+            Me._commandCollection(1).CommandText = "SELECT PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDescrip"& _ 
+                "tion, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, Quote"& _ 
+                "ID, id FROM _QuoteProperties WHERE (QuoteID = @QuoteID) AND (PropertyID = @Prope"& _ 
+                "rtyID) AND (PropertyName = @PropteryName)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropteryName", Global.System.Data.SqlDbType.NVarChar, 255, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        id, QuoteID, PropertyID, PropertyName, PropertyStringValue, Propert"& _ 
-                "yDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       PropertyDateValue"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            _QuoteProperties"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHER"& _ 
-                "E        (QuoteID = @QuoteID)"
+            Me._commandCollection(2).CommandText = "SELECT PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDescrip"& _ 
+                "tion, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, Quote"& _ 
+                "ID, id FROM _QuoteProperties WHERE (QuoteID = @QuoteID)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT        id, QuoteID, PropertyID, PropertyName, PropertyStringValue, Propert"& _ 
-                "yDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  "& _ 
-                "                       PropertyDateValue"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            _QuoteProperties"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHER"& _ 
-                "E        (QuoteID = @QuoteID) AND (PropertyID = @PropertyID)"
+            Me._commandCollection(3).CommandText = "SELECT PropertyCatagory, PropertyDateValue, PropertyDecimalValue, PropertyDescrip"& _ 
+                "tion, PropertyID, PropertyIntegerValue, PropertyName, PropertyStringValue, Quote"& _ 
+                "ID, id FROM _QuoteProperties WHERE (QuoteID = @QuoteID) AND (PropertyID = @Prope"& _ 
+                "rtyID)"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@QuoteID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "QuoteID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PropertyID", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PropertyID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -7635,7 +7664,27 @@ Namespace QuoteDataBaseTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal QuoteID As Global.System.Nullable(Of Integer), ByVal PropertyID As Global.System.Nullable(Of Integer), ByVal PropertyName As String, ByVal PropertyStringValue As String, ByVal PropertyDecimalValue As Global.System.Nullable(Of Decimal), ByVal PropertyIntegerValue As Global.System.Nullable(Of Integer), ByVal PropertyCatagory As String, ByVal PropertyDescription As String, ByVal PropertyDateValue As Global.System.Nullable(Of Date), ByVal Original_id As Decimal, ByVal id As Decimal) As Integer
+        Public Overloads Overridable Function Update( _
+                    ByVal QuoteID As Global.System.Nullable(Of Integer),  _
+                    ByVal PropertyID As Global.System.Nullable(Of Integer),  _
+                    ByVal PropertyName As String,  _
+                    ByVal PropertyStringValue As String,  _
+                    ByVal PropertyDecimalValue As Global.System.Nullable(Of Decimal),  _
+                    ByVal PropertyIntegerValue As Global.System.Nullable(Of Integer),  _
+                    ByVal PropertyCatagory As String,  _
+                    ByVal PropertyDescription As String,  _
+                    ByVal PropertyDateValue As Global.System.Nullable(Of Date),  _
+                    ByVal Original_id As Decimal,  _
+                    ByVal Original_QuoteID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_PropertyID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_PropertyName As String,  _
+                    ByVal Original_PropertyStringValue As String,  _
+                    ByVal Original_PropertyDecimalValue As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_PropertyIntegerValue As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_PropertyCatagory As String,  _
+                    ByVal Original_PropertyDescription As String,  _
+                    ByVal Original_PropertyDateValue As Global.System.Nullable(Of Date),  _
+                    ByVal id As Decimal) As Integer
             If (QuoteID.HasValue = true) Then
                 Me.Adapter.UpdateCommand.Parameters(0).Value = CType(QuoteID.Value,Integer)
             Else
@@ -7682,7 +7731,70 @@ Namespace QuoteDataBaseTableAdapters
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
             Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_id,Decimal)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(id,Decimal)
+            If (Original_QuoteID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_QuoteID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PropertyID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_PropertyID.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PropertyName Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_PropertyName,String)
+            End If
+            If (Original_PropertyStringValue Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_PropertyStringValue,String)
+            End If
+            If (Original_PropertyDecimalValue.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PropertyDecimalValue.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PropertyIntegerValue.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_PropertyIntegerValue.Value,Integer)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PropertyCatagory Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_PropertyCatagory,String)
+            End If
+            If (Original_PropertyDescription Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_PropertyDescription,String)
+            End If
+            If (Original_PropertyDateValue.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_PropertyDateValue.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(28).Value = CType(id,Decimal)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -7696,6 +7808,33 @@ Namespace QuoteDataBaseTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal QuoteID As Global.System.Nullable(Of Integer),  _
+                    ByVal PropertyID As Global.System.Nullable(Of Integer),  _
+                    ByVal PropertyName As String,  _
+                    ByVal PropertyStringValue As String,  _
+                    ByVal PropertyDecimalValue As Global.System.Nullable(Of Decimal),  _
+                    ByVal PropertyIntegerValue As Global.System.Nullable(Of Integer),  _
+                    ByVal PropertyCatagory As String,  _
+                    ByVal PropertyDescription As String,  _
+                    ByVal PropertyDateValue As Global.System.Nullable(Of Date),  _
+                    ByVal Original_id As Decimal,  _
+                    ByVal Original_QuoteID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_PropertyID As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_PropertyName As String,  _
+                    ByVal Original_PropertyStringValue As String,  _
+                    ByVal Original_PropertyDecimalValue As Global.System.Nullable(Of Decimal),  _
+                    ByVal Original_PropertyIntegerValue As Global.System.Nullable(Of Integer),  _
+                    ByVal Original_PropertyCatagory As String,  _
+                    ByVal Original_PropertyDescription As String,  _
+                    ByVal Original_PropertyDateValue As Global.System.Nullable(Of Date)) As Integer
+            Return Me.Update(QuoteID, PropertyID, PropertyName, PropertyStringValue, PropertyDecimalValue, PropertyIntegerValue, PropertyCatagory, PropertyDescription, PropertyDateValue, Original_id, Original_QuoteID, Original_PropertyID, Original_PropertyName, Original_PropertyStringValue, Original_PropertyDecimalValue, Original_PropertyIntegerValue, Original_PropertyCatagory, Original_PropertyDescription, Original_PropertyDateValue, Original_id)
         End Function
     End Class
     

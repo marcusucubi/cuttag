@@ -365,7 +365,7 @@ Namespace Model.BOM
 #Region " Shipping "
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Minimum Order Quantity")> _
+        DisplayName("2 Minimum Order Quantity")> _
         Public Property MinimumOrderQuantity As Integer
             Get
                 Return _MinimumOrderQuantity
@@ -377,7 +377,7 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Functional Quantity"), _
+        DisplayName("5 Functional Quantity"), _
         DescriptionAttribute("If(QuoteType = PRODUCTION) then " + Chr(10) + _
             "     MinimumOrderQuantity" + Chr(10) + _
             "ElseIf(QuoteType = SINGLE_DEFINATE) then " + Chr(10) + _
@@ -399,7 +399,7 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Order Quantity")> _
+        DisplayName("4 Order Quantity")> _
         Public Property OrderQuantity As Integer
             Get
                 Return _OrderQuantity
@@ -411,7 +411,7 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Single Definite Quantity")> _
+        DisplayName("3 Single Definite Quantity")> _
         Public Property SingleDefiniteQuantity As Integer
             Get
                 Return _SingleDefQuantity
@@ -423,7 +423,7 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Shipping Container Cost"), _
+        DisplayName("7 Shipping Container Cost"), _
         DescriptionAttribute("Cost of the Shipping Container" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingContainerCost As Decimal
             Get
@@ -435,7 +435,7 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Shipping Container Cost Per Order"), _
+        DisplayName("8 Shipping Container Cost Per Order"), _
         DescriptionAttribute("ShippingContainerCost / FunctionalQuantity" + Chr(10) + "(Dollars)")> _
         Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
             Get
@@ -447,7 +447,7 @@ Namespace Model.BOM
         End Property
 
         <TypeConverter(GetType(ShippingList)), _
-        DisplayName("Shipping Container"), _
+        DisplayName("6 Shipping Container"), _
         CategoryAttribute(" 9 Shipping"), _
             DescriptionAttribute("Description of the Shipping Container")> _
         Public Property ShippingContainer() As String
@@ -460,7 +460,7 @@ Namespace Model.BOM
             End Set
         End Property
 
-        <DisplayName("Shipping Cost"), _
+        <DisplayName("9 Shipping Cost"), _
         CategoryAttribute(" 9 Shipping"), _
         DescriptionAttribute("Shipping Cost" + Chr(10) + "(Dollars)")> _
         Public Property ShippingCost() As Decimal
@@ -474,7 +474,7 @@ Namespace Model.BOM
         End Property
 
         <CategoryAttribute(" 9 Shipping"), _
-        DisplayName("Quote Type"), _
+        DisplayName("1 Quote Type"), _
         TypeConverter(GetType(QuoteTypeList)), _
         DescriptionAttribute("The type of quote")> _
         Public Property QuoteType As String
@@ -812,8 +812,8 @@ CategoryAttribute(" 2 Wire")> _
 #Region " Total "
 
         <CategoryAttribute("11 Total"), _
-        DisplayName("Manufacturing Markup"), _
-        DescriptionAttribute("2 Manufacturing Markup")> _
+        DisplayName("2 Manufacturing Markup"), _
+        DescriptionAttribute("Manufacturing Markup")> _
         Public Property ManufacturingMarkup As Decimal
             Get
                 Return _ManufacturingMarkup
