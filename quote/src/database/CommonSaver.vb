@@ -51,79 +51,79 @@ Public Class CommonSaver
 		Next
 	End Sub
 
-	Private Shared Sub SaveProperties(ByVal id As Integer, _
-																		ByVal childId As Integer, _
-																		ByVal obj As Object, _
-																		ByVal SaveAll As Boolean)
+    Private Shared Sub SaveProperties(ByVal id As Integer, _
+                    ByVal childId As Integer, _
+                    ByVal obj As Object, _
+                    ByVal SaveAll As Boolean)
 
-		Dim props As PropertyInfo() = obj.GetType.GetProperties
-		Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
+        Dim props As PropertyInfo() = obj.GetType.GetProperties
+        Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
 
-		For Each p As PropertyInfo In props
+        For Each p As PropertyInfo In props
 
-			If SaveAll = False Then
-				If Not p.CanWrite Then
-					Continue For
-				End If
-			End If
+            If SaveAll = False Then
+                If Not p.CanWrite Then
+                    Continue For
+                End If
+            End If
 
-			Dim cat As String = "Misc"
-			With cat
-				Dim oa As CategoryAttribute() = p.GetCustomAttributes(GetType(CategoryAttribute), False)
-				If oa.Length > 0 Then
-					cat = oa(0).Category
-				End If
-			End With
+            Dim cat As String = "Misc"
+            With cat
+                Dim oa As CategoryAttribute() = p.GetCustomAttributes(GetType(CategoryAttribute), False)
+                If oa.Length > 0 Then
+                    cat = oa(0).Category
+                End If
+            End With
 
-			Dim desc As String = ""
-			With desc
-				Dim oa As DescriptionAttribute() = p.GetCustomAttributes(GetType(DescriptionAttribute), False)
-				If oa.Length > 0 Then
-					desc = oa(0).Description
-				End If
-			End With
+            Dim desc As String = ""
+            With desc
+                Dim oa As DescriptionAttribute() = p.GetCustomAttributes(GetType(DescriptionAttribute), False)
+                If oa.Length > 0 Then
+                    desc = oa(0).Description
+                End If
+            End With
 
-			Dim browsable As Boolean = True
-			With browsable
-				Dim oa As BrowsableAttribute() = p.GetCustomAttributes(GetType(BrowsableAttribute), False)
-				If oa.Length > 0 Then
-					browsable = oa(0).Browsable
-				End If
-			End With
-			If Not browsable Then
-				Continue For
-			End If
+            Dim browsable As Boolean = True
+            With browsable
+                Dim oa As BrowsableAttribute() = p.GetCustomAttributes(GetType(BrowsableAttribute), False)
+                If oa.Length > 0 Then
+                    browsable = oa(0).Browsable
+                End If
+            End With
+            If Not browsable Then
+                Continue For
+            End If
 
-			Dim s As String = Nothing
-			Dim i As Integer = Nothing
-			Dim d As Decimal = Nothing
-			Dim o As Object = p.GetValue(obj, Nothing)
+            Dim s As String = Nothing
+            Dim i As Integer = Nothing
+            Dim d As Decimal = Nothing
+            Dim o As Object = p.GetValue(obj, Nothing)
 
-			If TypeOf o Is Integer Then
-				i = CInt(o)
-				adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc, Nothing)
-			End If
-			If TypeOf o Is String Then
-				Dim t As New QuoteDataBase._QuotePropertiesDataTable
-				Dim max = t.PropertyStringValueColumn.MaxLength
-				s = CStr(o)
-				If s.Length > max Then
-					s = s.Substring(0, max - 1)
-				End If
-				adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc, Nothing)
-			End If
-			If TypeOf o Is Decimal Then
-				d = CDec(o)
-				adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat, desc, Nothing)
-			End If
-			If TypeOf o Is DateTime Then
-				Dim dt As DateTime = CDate(o)
-				If dt.Year > 1 Then
-					adaptor.Insert(id, childId, p.Name, Nothing, Nothing, Nothing, cat, desc, dt)
-				End If
-			End If
-		Next
-	End Sub
+            If TypeOf o Is Integer Then
+                i = CInt(o)
+                adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc, Nothing)
+            End If
+            If TypeOf o Is String Then
+                Dim t As New QuoteDataBase._QuotePropertiesDataTable
+                Dim max = t.PropertyStringValueColumn.MaxLength
+                s = CStr(o)
+                If s.Length > max Then
+                    s = s.Substring(0, max - 1)
+                End If
+                adaptor.Insert(id, childId, p.Name, s, Nothing, Nothing, cat, desc, Nothing)
+            End If
+            If TypeOf o Is Decimal Then
+                d = CDec(o)
+                adaptor.Insert(id, childId, p.Name, Nothing, d, Nothing, cat, desc, Nothing)
+            End If
+            If TypeOf o Is DateTime Then
+                Dim dt As DateTime = CDate(o)
+                If dt.Year > 1 Then
+                    adaptor.Insert(id, childId, p.Name, Nothing, Nothing, Nothing, cat, desc, dt)
+                End If
+            End If
+        Next
+    End Sub
 
 	Public Shared Sub DeleteComponents(ByVal id As Integer)
 		Dim adaptor As New _QuoteDetailTableAdapter

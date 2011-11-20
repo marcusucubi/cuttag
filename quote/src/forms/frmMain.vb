@@ -78,6 +78,10 @@ Public Class frmMain
     Private Sub LoadQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteButton.Click
         LoadQuote()
     End Sub
+    'dd_Problem - could catch event from SaveableProperties
+    Private Sub _SaveableProperties_StatusBarPropertyChanged1() Handles _SaveableProperties.StatusBarPropertyChanged
+        Me.UpdateStatusBar()
+    End Sub
 
     Private Sub _SaveableProperties_SavableChange(ByVal subject As Common.SaveableProperties) Handles _SaveableProperties.SavableChange
         EnableButtons()
@@ -195,8 +199,22 @@ Public Class frmMain
         ShowCustomProperties()
         ShowComputationProperties()
     End Sub
-
+    'dd_Problem - Temp workaround - made public because could not bubble event to frmMain
+    Public Sub UpdateStatusBar()
+        Dim sNoneText As String = "None"
+        If Me._ActiveHeader.Header Is Nothing Then
+            Me.sslblPartNumber.Text = sNoneText
+            Me.sslblRFQ.Text = sNoneText
+            Me.sslblQuoteDate.Text = sNoneText
+        Else
+            Me.sslblPartNumber.Text = Me._ActiveHeader.Header.PrimaryProperties.CommonPartNumber
+            Me.sslblRFQ.Text = Me._ActiveHeader.Header.PrimaryProperties.CommonRequestForQuoteNumber
+            Me.sslblQuoteDate.Text = Me._ActiveHeader.Header.PrimaryProperties.CommonCreatedDate.ToShortDateString
+        End If
+    End Sub
     Private Sub EnableButtons()
+        'dd_Added 11/19/11
+        UpdateStatusBar()
         ToolStripTemplate.Enabled = False
         ExportToolStripMenuItem.Enabled = False
         ExportButton.Enabled = False
@@ -409,35 +427,37 @@ Public Class frmMain
 
     End Sub
 
-	Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
-		Me.Close()
-	End Sub
-	Private Sub frmMain_MdiChildActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.MdiChildActivate
-		If IsNothing(Me._ActiveHeader.Header) OrElse Me._ActiveHeader.Header.IsQuote Then
-			EditToolStripMenuItem.Visible = False
-		Else
-			EditToolStripMenuItem.Visible = True
-		End If
-	End Sub
-	Private Sub AddItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddItemToolStripMenuItem.Click
-		If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
-			Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
-			If Not Me._ActiveHeader.Header.IsQuote Then
-				frm.AddItem()
-			End If
-		End If
-	End Sub
-	Private Sub DeleteItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteItemToolStripMenuItem.Click
-		If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
-			Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
-			If Not Me._ActiveHeader.Header.IsQuote Then
-				frm.DeleteItem()
-			End If
-		End If
-	End Sub
+    Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+    Private Sub frmMain_MdiChildActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.MdiChildActivate
+        If IsNothing(Me._ActiveHeader.Header) OrElse Me._ActiveHeader.Header.IsQuote Then
+            EditToolStripMenuItem.Visible = False
+        Else
+            EditToolStripMenuItem.Visible = True
+        End If
+    End Sub
+    Private Sub AddItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddItemToolStripMenuItem.Click
+        If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
+            Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
+            If Not Me._ActiveHeader.Header.IsQuote Then
+                frm.AddItem()
+            End If
+        End If
+    End Sub
+    Private Sub DeleteItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteItemToolStripMenuItem.Click
+        If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
+            Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
+            If Not Me._ActiveHeader.Header.IsQuote Then
+                frm.DeleteItem()
+            End If
+        End If
+    End Sub
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
     End Sub
+
+
 End Class
 

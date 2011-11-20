@@ -14,22 +14,20 @@ Namespace Common
 		Public Property ID As Integer
 		Public Property WeightProperties As New Common.Weights(Me)
         Public Property IsQuote As Boolean
-
         Public Sub New()
             _Details = New DetailCollection(Of Common.Detail)(Me)
         End Sub
-
-		'dd_Added 10/8/11
-		Public ReadOnly Property NextSequenceNumber
-			Get
-				Dim iMax As Integer = 0
-				For Each dDetail As Detail In _Details
-					If dDetail.SequenceNumber > iMax Then iMax = dDetail.SequenceNumber
-				Next
-				iMax += 1
-				Return iMax
-			End Get
-		End Property
+        'dd_Added 10/8/11
+        Public ReadOnly Property NextSequenceNumber
+            Get
+                Dim iMax As Integer = 0
+                For Each dDetail As Detail In _Details
+                    If dDetail.SequenceNumber > iMax Then iMax = dDetail.SequenceNumber
+                Next
+                iMax += 1
+                Return iMax
+            End Get
+        End Property
 		'dd_Added end
 		Public ReadOnly Property ComputationProperties As Common.ComputationProperties
 			Get
@@ -84,6 +82,6 @@ Namespace Common
 
 		Public MustOverride Function NewDetail(ByVal product As Model.Product) As Detail
 
-	End Class
+    End Class
 
 End Namespace

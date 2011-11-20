@@ -37,8 +37,27 @@ Public Class QuoteLoader
 
 			q = New Model.Quote.Header(row.id, customer, rfq, part, templateID, _
 					row.Initials, row.CreatedDate, row.LastModifedDate)
-
-			LoadComponents(q)
+            'dd_Added 11/19/11
+            Dim Initials As String = ""
+            If Not row.IsInitialsNull Then
+                Initials = row.Initials
+            End If
+            Dim createdDate As DateTime
+            If Not row.IsCreatedDateNull Then
+                createdDate = row.CreatedDate
+            End If
+            Dim lastModDate As DateTime
+            If Not row.IsLastModifedDateNull Then
+                lastModDate = row.LastModifedDate
+            End If
+            q.PrimaryProperties.CommonCustomerName = customer
+            q.PrimaryProperties.CommonPartNumber = part
+            q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
+            q.PrimaryProperties.CommonCreatedDate = createdDate
+            q.PrimaryProperties.CommonLastModified = lastModDate
+            q.PrimaryProperties.CommonInitials = Initials
+            'dd_Added End
+            LoadComponents(q)
 
 			Dim o1 = LoadProperties(id, _
 					CommonSaver.COMPUTATION_PROPERTIES_ID, q.ComputationProperties)

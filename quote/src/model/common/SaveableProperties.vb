@@ -7,6 +7,8 @@ Namespace Common
 
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
+        'dd_Added 11/20/11
+        Public Event StatusBarPropertyChanged()
 
         Private _IsDirty As Boolean
 
@@ -54,11 +56,18 @@ Namespace Common
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs("sp"))
             MakeDirty()
         End Sub
+        'dd_Added 11/19/11
+        Protected Sub SendStatusBarEvent()
+            RaiseEvent StatusBarPropertyChanged()
+        End Sub
 
         Public Function Clone() As Object Implements System.ICloneable.Clone
             Return Me.MemberwiseClone
         End Function
-
+        'dd_Problem - Temp workaround - could not bubble event to frmMain
+        Private Sub SaveableProperties_StatusBarPropertyChanged() Handles Me.StatusBarPropertyChanged
+            CType(Application.OpenForms("frmMain"), frmMain).UpdateStatusBar()
+        End Sub
     End Class
 
 End Namespace

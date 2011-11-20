@@ -473,8 +473,7 @@ Public Class DataGridLookupColumn
       'End If
       'end 12/31/02
 
-      'ddddddddd  should check for value = nothing and return "" to avoid exection
-      'next 6 line can be unremmed for testing 
+            'next 6 line can be unremmed for testing 
       'Dim dv As DataView = CType(cm.List, DataView)
       'Dim drv As DataRowView = dv.Item(RowNum)
       'Dim value As Object = drv.Item(m_ForeignKey)
@@ -886,8 +885,8 @@ Public Class DataGridComboBoxColumn
       _isEditing = False
       Invalidate()
     End If
-    _savedValue = Nothing   'dddddddd
-    Debug.WriteLine("ComboBoxLeave")  '''''''''''''''ddddddddddddddddddddd
+        _savedValue = Nothing
+        Debug.WriteLine("ComboBoxLeave")
     _DataGridComboBox.Hide()
   End Sub 'LeaveComboBox
   Protected Overloads Overrides Sub Edit(ByVal [source] As System.Windows.Forms.CurrencyManager, ByVal rowNum As Integer, ByVal bounds As System.Drawing.Rectangle, ByVal [readOnly] As Boolean, ByVal instantText As String, ByVal cellIsVisible As Boolean)
@@ -919,7 +918,7 @@ Public Class DataGridComboBoxColumn
     Me.TextBox.BringToFront()
     Me.TextBox.Focus()
     _DataGridComboBox.Visible = False
-    Debug.WriteLine("ComboBoxCommit")  '''''''''''''''ddddddddddddddddddddd
+        Debug.WriteLine("ComboBoxCommit")
     Return True
   End Function 'Commit
   Protected Overrides Function GetColumnValueAtRow(ByVal [source] As System.Windows.Forms.CurrencyManager, ByVal rowNum As Integer) As Object
