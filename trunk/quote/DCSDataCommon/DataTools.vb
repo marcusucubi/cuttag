@@ -204,7 +204,7 @@ Public Class DCSDataTable
       'Added 2/4/08
       m_bAllowDCSEvents = Value
       'Remmed 1/27/09 - Prevents Setting to False
-      '      m_bAllowDCSEvents = False ''''''''dddddddddddddddddd
+            '      m_bAllowDCSEvents = False 
     End Set
   End Property
   Public Property IsReadOnly() As Boolean '3/30/08
@@ -276,7 +276,7 @@ Public Class DCSDataTable
     End Try
   End Sub
   Public Sub RefreshVirtualColumns(Optional ByVal CurrentRowOnly As Boolean = False)
-    'ddddddddddddddd disabled, use DataGridJoinColumn
+        ' disabled, use DataGridJoinColumn
 		'    GoTo Skip
 		'    Try
 		'      If Not m_CurrencyManager Is Nothing AndAlso m_CurrencyManager.Count > 0 Then
@@ -355,8 +355,7 @@ Public Class DCSDataTable
             dtUH.Rows(0).Delete()
           Next
         End If
-        '''''''''''''''''''''''''''''''ddddddddddddddddd
-        dtUH.Rows.Add(New Object() { _
+                dtUH.Rows.Add(New Object() { _
               row(m_RowGuidCol), Environment.UserName, Now()})
         dtUH.Clear()
       End If
@@ -377,8 +376,7 @@ ExitSub:
           Try
             m_DataAdapter.Update(New DataRow() {e.Row()})
             If m_iUpdateHistoryMax > 0 Then
-              'ddddddddddddddd handle max and deletes
-              UpdateHistory(e.Row)
+                            UpdateHistory(e.Row)
             End If
           Catch ex As Exception
             If m_bDisplayExceptions Then

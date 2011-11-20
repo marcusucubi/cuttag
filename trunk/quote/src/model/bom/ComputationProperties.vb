@@ -29,6 +29,7 @@ Namespace Model.BOM
         Private _CopperPrice As Decimal = 3.57
         Private _MaterialMarkup As Decimal = 1.075
         Private _ComponentSetupTime As Decimal
+
         Private _QuoteType As String = "Production"
 
         Private _NumberOfTwistedPairs As Integer
@@ -51,9 +52,9 @@ Namespace Model.BOM
         Private _SummaryTVMCIncrement As Decimal
         Private _SummaryDirectLabor As Decimal
         Private _SummaryOverhead As Decimal
+        Private _SummaryAdjustmentMultiplyer As Decimal = 0.08
         Private _SummaryCostAdjustment As Decimal
         Private _SummaryProfit As Decimal
-
 
 #End Region
 
@@ -608,7 +609,6 @@ Namespace Model.BOM
                 Me.SendEvents()
             End Set
         End Property
-
 #End Region
 #Region " Time "
         <DescriptionAttribute("(TotalSetupTime + TotalMachineTime)" + _
@@ -749,8 +749,8 @@ CategoryAttribute(" 2 Wire")> _
         'dd_Added 11/14/11 
 #Region " Summary "
         <CategoryAttribute("10 ExecutiveSummary"), _
-        DisplayName("1 Material"), _
-        DescriptionAttribute("Material")> _
+        DisplayName("1 Mat'l"), _
+        DescriptionAttribute("Mat'l")> _
         Public ReadOnly Property SummaryMaterial As String
             Get
                 _SummaryMaterial = TotalMaterialCost
@@ -758,8 +758,8 @@ CategoryAttribute(" 2 Wire")> _
             End Get
         End Property
         <CategoryAttribute("10 ExecutiveSummary"), _
-        DisplayName("2 TVMC-Material"), _
-        DescriptionAttribute("TVMC-Material")> _
+        DisplayName("2 MU"), _
+        DescriptionAttribute("MU")> _
         Public ReadOnly Property SummaryTVMCIncrement As String
             Get
                 _SummaryTVMCIncrement = TotalVariableMaterialCost - TotalMaterialCost
@@ -767,8 +767,8 @@ CategoryAttribute(" 2 Wire")> _
             End Get
         End Property
         <CategoryAttribute("10 ExecutiveSummary"), _
-        DisplayName("3 Direct Labor"), _
-        DescriptionAttribute("Labor Hours * 9.5")> _
+        DisplayName("3 DL"), _
+        DescriptionAttribute("DL * 9.5")> _
         Public ReadOnly Property SummaryDirectLabor As String
             Get
                 _SummaryDirectLabor = AdjustedTotalLaborTimeHours * 9.5
@@ -776,8 +776,8 @@ CategoryAttribute(" 2 Wire")> _
             End Get
         End Property
         <CategoryAttribute("10 ExecutiveSummary"), _
-        DisplayName("4 Overhead"), _
-        DescriptionAttribute("DirectLabor * 1.465")> _
+        DisplayName("4 OH"), _
+        DescriptionAttribute("DL * 1.465")> _
         Public ReadOnly Property SummaryOverhead As String
             Get
                 _SummaryOverhead = _SummaryDirectLabor * 1.465
@@ -785,27 +785,37 @@ CategoryAttribute(" 2 Wire")> _
             End Get
         End Property
         <CategoryAttribute("10 ExecutiveSummary"), _
-        DisplayName("6 Summary Cost Adjustment"), _
-        DescriptionAttribute("Material + (TVMC-Material) + Direct Labor + Overhead) * 0.08")> _
+        DisplayName("5 F/B-Test Board Multiplier"), _
+        DescriptionAttribute("Adjustment Multiplier")> _
+        Public Property SummaryAdjustment As Decimal
+            Get
+                Return _SummaryAdjustmentMultiplyer
+            End Get
+            Set(ByVal value As Decimal)
+                _SummaryAdjustmentMultiplyer = value
+                Me.SendEvents()
+            End Set
+        End Property
+
+        <CategoryAttribute("10 ExecutiveSummary"), _
+        DisplayName("6  F/B-Test Board"), _
+        DescriptionAttribute("Mat'l + MU + DL + OH) * Adjustment Multiplier")> _
         Public ReadOnly Property SummaryCostAdjustment As String
             Get
-                _SummaryCostAdjustment = (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead) * 0.08
+                _SummaryCostAdjustment = (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead) * SummaryAdjustment
                 Return Round(_SummaryCostAdjustment, 2).ToString
             End Get
         End Property
 
         <CategoryAttribute("10 ExecutiveSummary"), _
-        DisplayName("5 Profit"), _
-        DescriptionAttribute("AdjustedTotalUnitCost - (Material + (TVMC-Material) + Direct Labor + Overhead + Adjustment)")> _
+        DisplayName("7 Profit"), _
+        DescriptionAttribute("UnitCost - (Mat'l + MU + DL + OH + F/B-Test Board)")> _
         Public ReadOnly Property SummaryProfit As String
             Get
                 _SummaryProfit = AdjustedTotalUnitCost - (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead + _SummaryCostAdjustment)
                 Return FormatExecutiveSummaryLine(_SummaryProfit)
             End Get
         End Property
-
-
-
 #End Region
         'dd_Added End 
 
@@ -849,7 +859,16 @@ CategoryAttribute(" 2 Wire")> _
 
 #Region " Methods "
         Private Function FormatExecutiveSummaryLine(ByVal Value As Decimal) As String
-            Return Round(Value, 2).ToString + " (" + Round((Value / AdjustedTotalUnitCost * 100), 1).ToString + "%)"
+            Dim retValue As String
+            retValue = Round(Value, 2).ToString + " ("
+            If AdjustedTotalUnitCost = 0 Then
+                retValue += "N/A"
+            Else
+                retValue += Round((Value / AdjustedTotalUnitCost * 100), 1).ToString + "%"
+            End If
+            retValue += ")"
+            '   Return Round(Value, 2).ToString + " (" + Round((Value / AdjustedTotalUnitCost * 100), 1).ToString + "%)"
+            Return retValue
         End Function
         Private Function SumCost(ByVal IsWire As Boolean) As Decimal
             Dim result As Decimal

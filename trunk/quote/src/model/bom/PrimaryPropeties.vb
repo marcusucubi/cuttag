@@ -64,6 +64,8 @@ Namespace Model.BOM
             Set(ByVal value As String)
                 Me.CommonRequestForQuoteNumber = value
                 Me.SendEvents()
+                'dd_Added 11/19/11
+                Me.SendStatusBarEvent()
             End Set
         End Property
 
@@ -77,6 +79,8 @@ Namespace Model.BOM
             Set(ByVal value As String)
                 Me.CommonPartNumber = value
                 Me.SendEvents()
+                'dd_Added 11/19/11
+                Me.SendStatusBarEvent()
             End Set
         End Property
 

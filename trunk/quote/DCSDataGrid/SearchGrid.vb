@@ -380,7 +380,7 @@ Public Class SearchGrid
 		End If
 		Return retValue
 	End Function
-	'ddddddddddd 7/24/04 changed .DataGridTextBox to TextBox
+    ' 7/24/04 changed .DataGridTextBox to TextBox
 	Public Function ShowModal(ByVal ctrlParent As System.Windows.Forms.TextBox, _
 				Optional ByVal e As System.Windows.Forms.KeyPressEventArgs = Nothing) As Object
 		Dim retValue As Object = Nothing
