@@ -925,7 +925,7 @@ WHERE        (QuoteID = @QuoteID)</CommandText>
               <xs:element name="PropertyStringValue" msprop:Generator_ColumnVarNameInTable="columnPropertyStringValue" msprop:Generator_ColumnPropNameInRow="PropertyStringValue" msprop:Generator_ColumnPropNameInTable="PropertyStringValueColumn" msprop:Generator_UserColumnName="PropertyStringValue" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="255" />
+                    <xs:maxLength value="4000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
