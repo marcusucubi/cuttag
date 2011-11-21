@@ -1488,7 +1488,7 @@ Partial Public Class QuoteDataBase
             Me.columnid.ReadOnly = true
             Me.columnid.Unique = true
             Me.columnPropertyName.MaxLength = 255
-            Me.columnPropertyStringValue.MaxLength = 255
+            Me.columnPropertyStringValue.MaxLength = 4000
             Me.columnPropertyCatagory.MaxLength = 30
             Me.columnPropertyDescription.MaxLength = 255
         End Sub

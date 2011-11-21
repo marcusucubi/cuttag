@@ -12,7 +12,8 @@ Namespace Model.BOM
 		Friend Sub New(ByVal header As Header, ByVal product As Product)
 			Me.Header = header
 			Me._Product = product
-			Me._WireProperties = New WireProperties(Me)
+            Me.IsWire = product.IsWire
+            Me._WireProperties = New WireProperties(Me)
 			Me._ComponentProperties = New ComponentProperties(Me)
 			Me._Quantity = 1
             Me.SequenceNumber = Me.Header.NextSequenceNumber
