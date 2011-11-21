@@ -6,7 +6,9 @@ Namespace Model.BOM
 
     Public Class ComputationProperties
         Inherits Common.ComputationProperties
-        'dd_Changed 11/13/11 Added numbers to CategoryAttributes 
+        'dd_Changed 11/13/11 Added numbers to CategoryAttributes
+        '  rearranged sub items 
+        '  turn off alph sub item sorting in grid properties
         Public Sub New(ByVal Header As Object)
             _Header = Header
         End Sub
@@ -55,21 +57,35 @@ Namespace Model.BOM
         Private _SummaryAdjustmentMultiplyer As Decimal = 0.08
         Private _SummaryCostAdjustment As Decimal
         Private _SummaryProfit As Decimal
-
+        Const SortedSpaces1 = "          "
+        Const SortedSpaces2 = "          "
+        Const SortedSpaces3 = "          "
+        Const SortedSpaces4 = "          "
+        Const SortedSpaces5 = "          "
+        Const SortedSpaces6 = "          "
+        Const SortedSpaces7 = "          "
+        Const SortedSpaces8 = "          "
+        Const SortedSpaces9 = "          "
+        Const SortedSpaces10 = "          "
+        Const SortedSpaces11 = "          "
 #End Region
+        '        Public Interface ICustomTypeDescriptor
+
+        '        End Interface
+
 
 #Region "1 Copper "
-        <CategoryAttribute(" 1 Copper"), _
+        <DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)"), _
         DisplayName("Copper Weight"), _
-        DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)")> _
+        CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperWeight As Decimal
             Get
                 Return Me._Header.WeightProperties.Weight
             End Get
         End Property
-        <CategoryAttribute(" 1 Copper"), _
+        <DescriptionAttribute("Percent of Scrap Copper. " + Chr(10) + "(Percent)"), _
         DisplayName("Percent Copper Scrap"), _
-        DescriptionAttribute("Percent of Scrap Copper. " + Chr(10) + "(Percent)")> _
+        CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public Property PercentCopperScrap As Integer
             Get
                 Return Me._PercentCopperScrap
@@ -79,18 +95,18 @@ Namespace Model.BOM
                 Me.SendEvents()
             End Set
         End Property
-        <CategoryAttribute(" 1 Copper"), _
+        <DescriptionAttribute("CopperWeight * (PercentCopperScrap / 100)" + Chr(10) + "(Pounds)"), _
         DisplayName("Copper Scrap Weight"), _
-        DescriptionAttribute("CopperWeight * (PercentCopperScrap / 100)" + Chr(10) + "(Pounds)")> _
+        CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperScrapWeight As Decimal
             Get
                 Dim percent As Decimal = (Me._PercentCopperScrap / 100)
                 Return Math.Round(Me.CopperWeight * percent, 4)
             End Get
         End Property
-        <CategoryAttribute(" 1 Copper"), _
+        <DescriptionAttribute("Copper Price" + Chr(10) + "(Dollars Per Pounds)"), _
         DisplayName("Copper Price"), _
-        DescriptionAttribute("Copper Price" + Chr(10) + "(Dollars Per Pounds)")> _
+        CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public Property CopperPrice As Decimal
             Get
                 Return Me._CopperPrice
@@ -100,10 +116,10 @@ Namespace Model.BOM
                 Me.SendEvents()
             End Set
         End Property
-        <CategoryAttribute(" 1 Copper"), _
+        <DescriptionAttribute("CopperScrapWeight * CopperPrice. " _
+            + Chr(10) + "(Dollars Per Pounds)"), _
         DisplayName("Copper Scrap Cost"), _
-        DescriptionAttribute("CopperScrapWeight * CopperPrice. " _
-            + Chr(10) + "(Dollars Per Pounds)")> _
+        CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperScrapCost As Decimal
             Get
                 Return Math.Round(Me.CopperScrapWeight * Me.CopperPrice, 4)
@@ -114,7 +130,7 @@ Namespace Model.BOM
 #Region "2 Wires "
         <DescriptionAttribute("Number of Wires" + Chr(10) + "(Count)"), _
         DisplayName("Number of Wires"), _
-        CategoryAttribute(" 2 Wire")> _
+        CategoryAttribute(SortedSpaces2 + "Wire")> _
         Public ReadOnly Property NumberOfWires() As Decimal
             Get
                 Return Count(True)
@@ -123,7 +139,7 @@ Namespace Model.BOM
 
         <DescriptionAttribute("Wire Length" + Chr(10) + "(Decimeter)"), _
         DisplayName("Wire Length"), _
-        CategoryAttribute(" 2 Wire")> _
+        CategoryAttribute(SortedSpaces2 + "Wire")> _
         Public ReadOnly Property WireLength() As Decimal
             Get
                 Return SumQty(True)
@@ -132,7 +148,7 @@ Namespace Model.BOM
 
         <DescriptionAttribute("WireLength / 3.048" + Chr(10) + "(Feet)"), _
         DisplayName("Wire Length Feet"), _
-        CategoryAttribute(" 2 Wire")> _
+        CategoryAttribute(SortedSpaces2 + "Wire")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
             Get
                 Return Math.Round(SumQty(True) / 3.048, 4)
@@ -143,7 +159,7 @@ Namespace Model.BOM
 #Region "3 Material Cost "
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
         DisplayName("Component Material Cost"), _
-        CategoryAttribute(" 3 Material Cost")> _
+        CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property ComponentMaterialCost() As Decimal
             Get
                 Return Math.Round(SumCost(False), 4)
@@ -151,7 +167,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
         DisplayName("Wire Material Cost"), _
-        CategoryAttribute(" 3 Material Cost")> _
+        CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property WireMaterialCost() As Decimal
             Get
                 Return Math.Round(SumCost(True), 4)
@@ -159,7 +175,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("ComponentMaterialCost + WireMaterialCost + ShippingContainerCostPerOrder" + Chr(10) + "(Dollar)"), _
         DisplayName("Total Material Cost"), _
-        CategoryAttribute(" 3 Material Cost")> _
+        CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property TotalMaterialCost() As Decimal
             Get
                 Return Math.Round( _
@@ -170,7 +186,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Material Markup"), _
         DisplayName("Material Markup"), _
-        CategoryAttribute(" 3 Material Cost")> _
+        CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public Property MaterialMarkUp As Decimal
             Get
                 Return _MaterialMarkup
@@ -182,7 +198,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("TotalMaterialCost * MaterialMarkup" + Chr(10) + "(Dollars)"), _
         DisplayName("Adjusted Total Material Cost"), _
-        CategoryAttribute(" 3 Material Cost")> _
+        CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property AdjustedTotalMaterialCost As Decimal
             Get
                 Return Math.Round(TotalMaterialCost * Me._MaterialMarkup, 4)
@@ -191,7 +207,7 @@ Namespace Model.BOM
         <DescriptionAttribute("(TotalMaterialCost * MaterialMarkup)" + _
             " + CopperCost + ShippingCost" + Chr(10) + "(Dollar)"), _
         DisplayName("Total Variable Material Cost"), _
-        CategoryAttribute(" 3 Material Cost")> _
+        CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property TotalVariableMaterialCost() As Decimal
             Get
                 Return Math.Round( _
@@ -204,7 +220,7 @@ Namespace Model.BOM
 #Region "4 Twisted Pairs "
         <DescriptionAttribute("Number Of Twisted Pairs " + Chr(10) + "(Number)"), _
         DisplayName("Twisted Pairs"), _
-        CategoryAttribute(" 4 Twisted Wire")> _
+        CategoryAttribute(SortedSpaces4 + "Twisted Wire")> _
         Public Property NumberOfTwistedPairs As Integer
             Get
                 Return _NumberOfTwistedPairs
@@ -216,7 +232,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Twisted Pairs Machine Time " + Chr(10) + "(Number)"), _
         DisplayName("Twisted Pairs Machine Time"), _
-        CategoryAttribute(" 4 Twisted Wire")> _
+        CategoryAttribute(SortedSpaces4 + "Twisted Wire")> _
         Public ReadOnly Property TwistedPairsMachineTime As Decimal
             Get
                 Return (Me._NumberOfTwistedPairs * 300)
@@ -423,7 +439,7 @@ Namespace Model.BOM
 #Region "5 Setup Time "
         <DescriptionAttribute("Number of Components" + Chr(10) + "(Count)"), _
         DisplayName("Number of Components"), _
-        CategoryAttribute(" 5 Setup Time")> _
+        CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public ReadOnly Property NumberOfComponents() As Decimal
             Get
                 Return Count(False)
@@ -431,7 +447,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Component Setup Time" + Chr(10) + "(Seconds)"), _
         DisplayName("Component Setup Time"), _
-        CategoryAttribute(" 5 Setup Time")> _
+        CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public Property ComponentSetupTime() As Integer
             Get
                 Return _ComponentSetupTime
@@ -444,7 +460,7 @@ Namespace Model.BOM
 
         <DescriptionAttribute("Setup time to cut a particular length of wire. (Cut time)" + Chr(10) + "(Seconds Per Cut)"), _
         DisplayName("Wire Setup Time Multiplier"), _
-        CategoryAttribute(" 5 Setup Time")> _
+        CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public Property WireSetupTime As Integer
             Get
                 Return _WireSetupTime
@@ -457,7 +473,7 @@ Namespace Model.BOM
         <DescriptionAttribute("Number of lines in 'CIRCUIT DATA TABLE'" + _
             " in Engineering Print." + Chr(10) + "(Count)"), _
         DisplayName("Number of Cuts"), _
-        CategoryAttribute(" 5 Setup Time")> _
+        CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public Property NumberOfCuts() As Integer
             Get
                 Return _NumberOfCuts
@@ -469,7 +485,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("NumberOfCuts * WireSetupTime" + Chr(10) + "(Seconds)"), _
         DisplayName("Total Wire Setup Time"), _
-        CategoryAttribute(" 5 Setup Time")> _
+        CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public ReadOnly Property TotalWireSetupTime As Decimal
             Get
                 Return Math.Round(Me.NumberOfCuts * Me.WireSetupTime, 4)
@@ -479,7 +495,7 @@ Namespace Model.BOM
             "/ MinimumOrderQuantity" + _
             Chr(10) + "(Seconds)"), _
         DisplayName("Adjusted Total Setup Time"), _
-        CategoryAttribute(" 5 Setup Time")> _
+        CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public ReadOnly Property TotalSetupTime() As Decimal
             Get
                 If Me.MinimumOrderQuantity = 0 Then
@@ -494,7 +510,7 @@ Namespace Model.BOM
 #Region "6 Machine Time "
         <DescriptionAttribute("Sum(ComponentMachineTime) " + Chr(10) + "(Seconds)"), _
         DisplayName("Total Component Run Time"), _
-        CategoryAttribute(" 6 Run Time")> _
+        CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public ReadOnly Property TotalComponentMachineTime As Decimal
             Get
                 Return Math.Round(Me.SumTime(False), 4)
@@ -502,7 +518,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("WireLengthFeet * WireMachineTime " + Chr(10) + "(Seconds)"), _
         DisplayName("Total Wire Run Time"), _
-        CategoryAttribute(" 6 Run Time")> _
+        CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public ReadOnly Property TotalWireMachineTime As Decimal
             Get
                 Return Math.Round(Me.WireLengthFeet * Me.WireMachineTime, 4)
@@ -510,7 +526,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Used with TotalWireMachineTime " + Chr(10) + "(Seconds)"), _
         DisplayName("Wire Run Time Multiplier"), _
-        CategoryAttribute(" 6 Run Time")> _
+        CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public Property WireMachineTime As Decimal
             Get
                 Return Me._WireMachineTime
@@ -523,7 +539,7 @@ Namespace Model.BOM
         <DescriptionAttribute("TotalWireMachineTime + " + _
             "TotalComponentMachineTime + TwistedPairsMachineTime" + Chr(10) + "(Seconds)"), _
         DisplayName("Total Run Time"), _
-        CategoryAttribute(" 6 Run Time")> _
+        CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public ReadOnly Property TotalMachineTime As Decimal
             Get
                 Return Math.Round(Me.TotalComponentMachineTime + _
@@ -536,7 +552,7 @@ Namespace Model.BOM
         <DescriptionAttribute("(TotalSetupTime + TotalMachineTime)" + _
             Chr(10) + "(Seconds)"), _
         DisplayName("Total Labor Time"), _
-        CategoryAttribute(" 7 Time Summary")> _
+        CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public ReadOnly Property TotalLaborTime() As Decimal
             Get
                 Return (Me.TotalSetupTime + Me.TotalMachineTime)
@@ -544,7 +560,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Time Multiplier"),
          DisplayName("Time Multiplier"), _
-         CategoryAttribute(" 7 Time Summary")> _
+         CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public Property TimeMultiplier As Decimal
             Get
                 Return _TimeMultiplier
@@ -556,7 +572,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("TimeMultiplier * TotalLaborTime" + Chr(10) + "(Seconds)"), _
         DisplayName("Adjusted Total Labor Time"), _
-        CategoryAttribute(" 7 Time Summary")> _
+        CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
             Get
                 Return Math.Round(Me._TimeMultiplier * Me.TotalLaborTime, 4)
@@ -565,17 +581,17 @@ Namespace Model.BOM
 
         <DescriptionAttribute("AdjustedTotalLaborTime / (60 * 60)" + Chr(10) + "(Hours)"), _
         DisplayName("Adjusted Total Labor Time Hours"), _
-        CategoryAttribute(" 7 Time Summary")> _
+        CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public ReadOnly Property AdjustedTotalLaborTimeHours() As Decimal
             Get
                 Return Math.Round(CDec(Me.AdjustedTotalLaborTime) / (60 * 60), 4)
             End Get
         End Property
- #End Region
+#End Region
 #Region "8 Labor "
-        <CategoryAttribute(" 8 Labor"), _
+        <DescriptionAttribute("Used to Computer Labor Costs. " + Chr(10) + "(Dollars Per Hour)"), _
         DisplayName("Labor Rate"), _
-        DescriptionAttribute("Used to Computer Labor Costs. " + Chr(10) + "(Dollars Per Hour)")> _
+        CategoryAttribute(SortedSpaces8 + "Labor")> _
         Public Property LaborRate As Decimal
             Get
                 Return _LaborRate
@@ -585,9 +601,9 @@ Namespace Model.BOM
                 Me.SendEvents()
             End Set
         End Property
-        <CategoryAttribute(" 8 Labor"), _
+        <DescriptionAttribute("AdjustedTotalLaborTimeHours * LaborRate" + Chr(10) + "(Dollars)"), _
         DisplayName("Labor Cost"), _
-        DescriptionAttribute("AdjustedTotalLaborTimeHours * LaborRate" + Chr(10) + "(Dollars)")> _
+        CategoryAttribute(SortedSpaces8 + "Labor")> _
         Public ReadOnly Property LaborCost As Decimal
             Get
                 Return Math.Round(AdjustedTotalLaborTimeHours * LaborRate, 4)
@@ -597,7 +613,7 @@ Namespace Model.BOM
 #Region "9 Shipping "
         <DescriptionAttribute("The type of quote"), _
         DisplayName("Quote Type"), _
-        CategoryAttribute(" 9 Shipping"), _
+        CategoryAttribute(SortedSpaces9 + "Shipping"), _
         TypeConverter(GetType(QuoteTypeList))> _
         Public Property QuoteType As String
             Get
@@ -609,7 +625,7 @@ Namespace Model.BOM
             End Set
         End Property
         <DisplayName("Minimum Order Quantity"),
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public Property MinimumOrderQuantity As Integer
             Get
                 Return _MinimumOrderQuantity
@@ -620,7 +636,7 @@ Namespace Model.BOM
             End Set
         End Property
         <DisplayName("Single Definite Quantity"), _
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public Property SingleDefiniteQuantity As Integer
             Get
                 Return _SingleDefQuantity
@@ -631,7 +647,7 @@ Namespace Model.BOM
             End Set
         End Property
         <DisplayName("Order Quantity"), _
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public Property OrderQuantity As Integer
             Get
                 Return _OrderQuantity
@@ -648,7 +664,7 @@ Namespace Model.BOM
             "Else OrderQuantity" + Chr(10) _
             ), _
         DisplayName("Functional Quantity"), _
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public ReadOnly Property FunctionalQuantity As Integer
             Get
                 Dim result As Integer
@@ -664,7 +680,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Description of the Shipping Container"), _
         DisplayName("Shipping Container"), _
-        CategoryAttribute(" 9 Shipping"), _
+        CategoryAttribute(SortedSpaces9 + "Shipping"), _
         TypeConverter(GetType(ShippingList))> _
         Public Property ShippingContainer() As String
             Get
@@ -677,7 +693,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Cost of the Shipping Container" + Chr(10) + "(Dollars)"), _
         DisplayName("Shipping Container Cost"), _
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public ReadOnly Property ShippingContainerCost As Decimal
             Get
                 If (_ShippingBox Is Nothing) Then
@@ -688,7 +704,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("ShippingContainerCost / FunctionalQuantity" + Chr(10) + "(Dollars)"), _
         DisplayName("Shipping Container Cost Per Order"), _
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
             Get
                 If (Me.FunctionalQuantity = 0) Then
@@ -699,7 +715,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Shipping Cost" + Chr(10) + "(Dollars)"), _
         DisplayName("Shipping Cost"), _
-        CategoryAttribute(" 9 Shipping")> _
+        CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public Property ShippingCost() As Decimal
             Get
                 Return _ShippingCost
@@ -714,7 +730,7 @@ Namespace Model.BOM
 #Region "10 Summary "
         <DescriptionAttribute("Mat'l"), _
         DisplayName("Mat'l"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryMaterial As String
             Get
                 _SummaryMaterial = TotalMaterialCost
@@ -723,7 +739,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("MU"), _
         DisplayName("MU"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryTVMCIncrement As String
             Get
                 _SummaryTVMCIncrement = TotalVariableMaterialCost - TotalMaterialCost
@@ -732,7 +748,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("DL * 9.5"), _
         DisplayName("DL"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryDirectLabor As String
             Get
                 _SummaryDirectLabor = AdjustedTotalLaborTimeHours * 9.5
@@ -741,7 +757,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("DL * 1.465"), _
         DisplayName("OH"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryOverhead As String
             Get
                 _SummaryOverhead = _SummaryDirectLabor * 1.465
@@ -750,7 +766,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Adjustment Multiplier"), _
         DisplayName("F/B-Test Board Multiplier"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public Property SummaryAdjustment As Decimal
             Get
                 Return _SummaryAdjustmentMultiplyer
@@ -762,7 +778,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Mat'l + MU + DL + OH) * Adjustment Multiplier"), _
         DisplayName("F/B-Test Board"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryCostAdjustment As String
             Get
                 _SummaryCostAdjustment = (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead) * SummaryAdjustment
@@ -771,7 +787,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("UnitCost - (Mat'l + MU + DL + OH + F/B-Test Board)"), _
         DisplayName("Profit"), _
-        CategoryAttribute("10 ExecutiveSummary")> _
+        CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryProfit As String
             Get
                 _SummaryProfit = AdjustedTotalUnitCost - (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead + _SummaryCostAdjustment)
@@ -784,7 +800,7 @@ Namespace Model.BOM
         <DescriptionAttribute("TotalVariableMaterialCost + LaborCost" _
             + Chr(10) + "(Dollars)"), _
         DisplayName("Total Unit Cost"), _
-        CategoryAttribute("11 Total")> _
+        CategoryAttribute(SortedSpaces11 + "Total")> _
         Public ReadOnly Property TotalUnitCost() As Decimal
             Get
                 Return _
@@ -794,7 +810,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("Manufacturing Markup"), _
         DisplayName("Manufacturing Markup"), _
-        CategoryAttribute("11 Total")> _
+        CategoryAttribute(SortedSpaces11 + "Total")> _
         Public Property ManufacturingMarkup As Decimal
             Get
                 Return _ManufacturingMarkup
@@ -806,7 +822,7 @@ Namespace Model.BOM
         End Property
         <DescriptionAttribute("TotalUnitCost * ManufacturingMarkup" + Chr(10) + "(Dollars)"), _
         DisplayName("Adjusted Total Unit Cost"), _
-        CategoryAttribute("11 Total")> _
+        CategoryAttribute(SortedSpaces11 + "Total")> _
         Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
             Get
                 Return Math.Round(Me._ManufacturingMarkup * Me.TotalUnitCost, 2)
