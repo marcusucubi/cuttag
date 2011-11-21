@@ -57,17 +57,6 @@ Namespace Model.BOM
         Private _SummaryAdjustmentMultiplyer As Decimal = 0.08
         Private _SummaryCostAdjustment As Decimal
         Private _SummaryProfit As Decimal
-        Const SortedSpaces1 = "          "
-        Const SortedSpaces2 = "          "
-        Const SortedSpaces3 = "          "
-        Const SortedSpaces4 = "          "
-        Const SortedSpaces5 = "          "
-        Const SortedSpaces6 = "          "
-        Const SortedSpaces7 = "          "
-        Const SortedSpaces8 = "          "
-        Const SortedSpaces9 = "          "
-        Const SortedSpaces10 = "          "
-        Const SortedSpaces11 = "          "
 #End Region
         '        Public Interface ICustomTypeDescriptor
 

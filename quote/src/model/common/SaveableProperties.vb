@@ -9,6 +9,20 @@ Namespace Common
             Implements INotifyPropertyChanged.PropertyChanged
         'dd_Added 11/20/11
         Public Event StatusBarPropertyChanged()
+#Region "SortedSpaces Consts for alpha sort of property categories"
+        Protected Const SortedSpaces1 = "          "
+        Protected Const SortedSpaces2 = "          "
+        Protected Const SortedSpaces3 = "          "
+        Protected Const SortedSpaces4 = "          "
+        Protected Const SortedSpaces5 = "          "
+        Protected Const SortedSpaces6 = "          "
+        Protected Const SortedSpaces7 = "          "
+        Protected Const SortedSpaces8 = "          "
+        Protected Const SortedSpaces9 = "          "
+        Protected Const SortedSpaces10 = "          "
+        Protected Const SortedSpaces11 = "          "
+#End Region
+        'dd_Added End
 
         Private _IsDirty As Boolean
 
