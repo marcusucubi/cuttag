@@ -32,7 +32,6 @@ Namespace Common
 
         <Browsable(False)> _
         Public Property Subject As Object
-
         <Browsable(False)>
         Public ReadOnly Property Dirty As Boolean
             Get
@@ -78,6 +77,39 @@ Namespace Common
         Public Function Clone() As Object Implements System.ICloneable.Clone
             Return Me.MemberwiseClone
         End Function
+        Protected Function FilterProperties(ByVal Props2Filter As PropertyDescriptorCollection) As PropertyDescriptorCollection
+            Dim props As New PropertyDescriptorCollection(Nothing)
+            Dim i As Integer = 0
+            Dim aFilterTrue As New Model.FilterAttribute(True)
+            Dim aFilterFalse As New Model.FilterAttribute(False)
+            Dim bDoFilter As Boolean = False
+            If ActiveHeader.HideReadOnlyProperties Then
+                For Each prop As PropertyDescriptor In Props2Filter
+                    i += 1
+                    Dim b As Boolean
+                    If prop.Attributes.Contains(aFilterTrue) And Not bDoFilter Then
+                        bDoFilter = True
+                    End If
+                    b = False
+                    If Not bDoFilter Then
+                        props.Add(prop)
+                        b = True
+                    ElseIf Not prop.IsReadOnly Then
+                        b = True
+                        props.Add(prop)
+                    End If
+                    If prop.Attributes.Contains(aFilterFalse) Then
+                        bDoFilter = False
+                    End If
+                    Debug.WriteLine(i.ToString + ":(" + b.ToString + ")" _
+                                    + prop.Category + "|" + prop.DisplayName + "|" + prop.Description)
+                Next
+            Else
+                props = Nothing 'All properites will show
+            End If
+            Return props
+        End Function
+
         'dd_Problem - Temp workaround - could not bubble event to frmMain
         Private Sub SaveableProperties_StatusBarPropertyChanged() Handles Me.StatusBarPropertyChanged
             CType(Application.OpenForms("frmMain"), frmMain).UpdateStatusBar()

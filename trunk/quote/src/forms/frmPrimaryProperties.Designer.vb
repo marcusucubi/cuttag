@@ -30,8 +30,10 @@ Partial Class frmPrimaryProperties
         Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PropertyGrid1.Location = New System.Drawing.Point(0, 0)
         Me.PropertyGrid1.Name = "PropertyGrid1"
+        Me.PropertyGrid1.PropertySort = System.Windows.Forms.PropertySort.Categorized
         Me.PropertyGrid1.Size = New System.Drawing.Size(215, 144)
         Me.PropertyGrid1.TabIndex = 0
+        Me.PropertyGrid1.ToolbarVisible = False
         '
         'frmPrimaryProperties
         '

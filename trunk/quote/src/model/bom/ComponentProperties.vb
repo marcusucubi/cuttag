@@ -4,13 +4,17 @@ Imports System.Reflection
 Namespace Model.BOM
     Public Class ComponentProperties
         Inherits Common.ComponentProperties
+        Implements ICustomTypeDescriptor
 
         Private _QuoteDetail As Detail
         'dd_Remmed 11/13/11
         'Private _MachineTime As Decimal
         Private _MinimumQty As Decimal
         Private _MinimumDollar As Decimal
-
+        'dd_Changed 11/13/11 sorting spaced to CategoryAttributes
+        '  rearranged sub items 
+        '  turn off alph sub item sorting in grid properties
+        'added ICustomTypeDescriptor for filtering out read-only properties on user command
         Public Sub New(ByVal QuoteDetail As Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
@@ -21,7 +25,8 @@ Namespace Model.BOM
             End If
         End Sub
 
-        <DisplayName("Total Machine Time"), _
+        <FilterAttribute(True), _
+        DisplayName("Total Machine Time"), _
         Browsable(False)>
         Public Overloads ReadOnly Property TotalMachineTime() As Decimal
             Get
@@ -134,7 +139,8 @@ Namespace Model.BOM
             End Set
         End Property
 
-        <DisplayName("Unit Cost")> _
+        <FilterAttribute(False), _
+        DisplayName("Unit Cost")> _
         Public Property UnitCost() As Decimal
             Get
                 Return _QuoteDetail.UnitCost
@@ -149,6 +155,48 @@ Namespace Model.BOM
             MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
         End Sub
+        'dd_Added 11/21/11
+#Region "TypeDescriptor Implementation"
+        Public Function GetClassName() As String Implements ICustomTypeDescriptor.GetClassName
+            Return TypeDescriptor.GetClassName(Me, True)
+        End Function
+        Public Function GetAttributes() As AttributeCollection Implements ICustomTypeDescriptor.GetAttributes
+            Return TypeDescriptor.GetAttributes(Me, True)
+        End Function
+        Public Function GetComponentName() As String Implements ICustomTypeDescriptor.GetComponentName
+            Return TypeDescriptor.GetComponentName(Me, True)
+        End Function
+        Public Function GetConverter() As TypeConverter Implements ICustomTypeDescriptor.GetConverter
+            Return TypeDescriptor.GetConverter(Me, True)
+        End Function
+        Public Function GetDefaultEvent() As EventDescriptor Implements ICustomTypeDescriptor.GetDefaultEvent
+            Return TypeDescriptor.GetDefaultEvent(Me, True)
+        End Function
+        Public Function GetDefaultProperty() As PropertyDescriptor Implements ICustomTypeDescriptor.GetDefaultProperty
+            Return TypeDescriptor.GetDefaultProperty(Me, True)
+        End Function
+        Public Function GetEditor(ByVal editorBaseType As Type) As Object Implements ICustomTypeDescriptor.GetEditor
+            Return TypeDescriptor.GetEditor(Me, editorBaseType, True)
+        End Function
+        Public Function GetEvents(ByVal attributes As Attribute()) As EventDescriptorCollection Implements ICustomTypeDescriptor.GetEvents
+            Return TypeDescriptor.GetEvents(Me, attributes, True)
+        End Function
+        Public Function GetEvents() As EventDescriptorCollection Implements ICustomTypeDescriptor.GetEvents
+            Return TypeDescriptor.GetEvents(Me, True)
+        End Function
+        Public Function GetProperties(ByVal attributes As Attribute()) As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
+            Return FilterProperties(TypeDescriptor.GetProperties(Me, attributes, True))
+        End Function
+        Public Function GetProperties() As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
+            Return TypeDescriptor.GetProperties(Me, True)
+        End Function
+        Public Function GetPropertyOwner(ByVal pd As PropertyDescriptor) As Object Implements ICustomTypeDescriptor.GetPropertyOwner
+            Return Me
+        End Function
+#End Region
+        'dd_Added End
+
+
 
     End Class
 End Namespace

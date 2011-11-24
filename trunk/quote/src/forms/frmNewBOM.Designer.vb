@@ -43,7 +43,7 @@ Partial Class frmNewBOM
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(146, 29)
-        Me.TableLayoutPanel1.TabIndex = 0
+        Me.TableLayoutPanel1.TabIndex = 2
         '
         'OK_Button
         '
@@ -71,15 +71,15 @@ Partial Class frmNewBOM
         Me.Label1.Location = New System.Drawing.Point(12, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 1
+        Me.Label1.TabIndex = 0
         Me.Label1.Text = "Initials:"
         '
         'txtInitials
         '
-        Me.txtInitials.Location = New System.Drawing.Point(57, 16)
+        Me.txtInitials.Location = New System.Drawing.Point(57, 18)
         Me.txtInitials.Name = "txtInitials"
         Me.txtInitials.Size = New System.Drawing.Size(145, 20)
-        Me.txtInitials.TabIndex = 2
+        Me.txtInitials.TabIndex = 1
         '
         'frmNewBOM
         '

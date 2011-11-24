@@ -58,7 +58,24 @@ Public Class frmMain
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
         SaveTemplate()
     End Sub
-
+    Private Sub ViewToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ViewToolStripMenuItem.Click
+        Me.ToggleDetailToolStripMenuItem.Visible = Not IsNothing(Me._ActiveHeader.Header)
+    End Sub
+    Private Sub ToggleDetailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToggleDetailToolStripMenuItem.Click
+        If ToggleDetailToolStripMenuItem.Text = "Hide Detail" Then 'User wants to Hide
+            ToggleDetailToolStripMenuItem.Text = "Show Detail"
+            ToggleDetailToolStripMenuItem.ToolTipText = "Show read-only values"
+            ActiveHeader.HideReadOnlyProperties = True
+        Else ' 'User wants to Show read-only properties
+            ToggleDetailToolStripMenuItem.Text = "Hide Detail"
+            ToggleDetailToolStripMenuItem.ToolTipText = "Hide read-only values"
+            ActiveHeader.HideReadOnlyProperties = False
+        End If
+        If Not IsNothing(_Properties) Then Me._Properties.PropertyGrid1.Refresh()
+        If Not IsNothing(_PrimaryProperties) Then Me._PrimaryProperties.PropertyGrid1.Refresh()
+        If Not IsNothing(_OtherProperties) Then Me._OtherProperties.PropertyGrid1.Refresh()
+        If Not IsNothing(_DetailProperties) Then Me._DetailProperties.PropertyGrid1.Refresh()
+    End Sub
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
         SaveTemplate()
     End Sub
@@ -222,6 +239,7 @@ Public Class frmMain
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
+
         Else
             SaveToolStripMenuItem.Enabled = True
             If Me._ActiveHeader.Header.IsQuote Then
@@ -457,7 +475,6 @@ Public Class frmMain
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
     End Sub
-
 
 End Class
 
