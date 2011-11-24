@@ -3,12 +3,13 @@ Imports System.Reflection
 Imports System.Math
 
 Namespace Model.BOM
-
     Public Class ComputationProperties
         Inherits Common.ComputationProperties
-        'dd_Changed 11/13/11 Added numbers to CategoryAttributes
+        Implements ICustomTypeDescriptor
+        'dd_Changed 11/13/11 sorting spaced to CategoryAttributes
         '  rearranged sub items 
         '  turn off alph sub item sorting in grid properties
+        'added ICustomTypeDescriptor for filtering out read-only properties on user command
         Public Sub New(ByVal Header As Object)
             _Header = Header
         End Sub
@@ -58,13 +59,9 @@ Namespace Model.BOM
         Private _SummaryCostAdjustment As Decimal
         Private _SummaryProfit As Decimal
 #End Region
-        '        Public Interface ICustomTypeDescriptor
-
-        '        End Interface
-
-
 #Region "1 Copper "
-        <DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)"), _
+        <FilterAttribute(True), _
+        DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)"), _
         DisplayName("Copper Weight"), _
         CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperWeight As Decimal
@@ -809,7 +806,7 @@ Namespace Model.BOM
                 Me.SendEvents()
             End Set
         End Property
-        <DescriptionAttribute("TotalUnitCost * ManufacturingMarkup" + Chr(10) + "(Dollars)"), _
+        <FilterAttribute(False), DescriptionAttribute("TotalUnitCost * ManufacturingMarkup" + Chr(10) + "(Dollars)"), _
         DisplayName("Adjusted Total Unit Cost"), _
         CategoryAttribute(SortedSpaces11 + "Total")> _
         Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
@@ -830,7 +827,6 @@ Namespace Model.BOM
                 retValue += Round((Value / AdjustedTotalUnitCost * 100), 1).ToString + "%"
             End If
             retValue += ")"
-            '   Return Round(Value, 2).ToString + " (" + Round((Value / AdjustedTotalUnitCost * 100), 1).ToString + "%)"
             Return retValue
         End Function
         Private Function SumCost(ByVal IsWire As Boolean) As Decimal
@@ -872,7 +868,46 @@ Namespace Model.BOM
             Next
             Return result
         End Function
+        'dd_Added 11/21/11
+#Region "TypeDescriptor Implementation"
+        Public Function GetClassName() As String Implements ICustomTypeDescriptor.GetClassName
+            Return TypeDescriptor.GetClassName(Me, True)
+        End Function
+        Public Function GetAttributes() As AttributeCollection Implements ICustomTypeDescriptor.GetAttributes
+            Return TypeDescriptor.GetAttributes(Me, True)
+        End Function
+        Public Function GetComponentName() As String Implements ICustomTypeDescriptor.GetComponentName
+            Return TypeDescriptor.GetComponentName(Me, True)
+        End Function
+        Public Function GetConverter() As TypeConverter Implements ICustomTypeDescriptor.GetConverter
+            Return TypeDescriptor.GetConverter(Me, True)
+        End Function
+        Public Function GetDefaultEvent() As EventDescriptor Implements ICustomTypeDescriptor.GetDefaultEvent
+            Return TypeDescriptor.GetDefaultEvent(Me, True)
+        End Function
+        Public Function GetDefaultProperty() As PropertyDescriptor Implements ICustomTypeDescriptor.GetDefaultProperty
+            Return TypeDescriptor.GetDefaultProperty(Me, True)
+        End Function
+        Public Function GetEditor(ByVal editorBaseType As Type) As Object Implements ICustomTypeDescriptor.GetEditor
+            Return TypeDescriptor.GetEditor(Me, editorBaseType, True)
+        End Function
+        Public Function GetEvents(ByVal attributes As Attribute()) As EventDescriptorCollection Implements ICustomTypeDescriptor.GetEvents
+            Return TypeDescriptor.GetEvents(Me, attributes, True)
+        End Function
+        Public Function GetEvents() As EventDescriptorCollection Implements ICustomTypeDescriptor.GetEvents
+            Return TypeDescriptor.GetEvents(Me, True)
+        End Function
+        Public Function GetProperties(ByVal attributes As Attribute()) As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
+            Return FilterProperties(TypeDescriptor.GetProperties(Me, attributes, True))
+        End Function
+        Public Function GetProperties() As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
+            Return TypeDescriptor.GetProperties(Me, True)
+        End Function
+        Public Function GetPropertyOwner(ByVal pd As PropertyDescriptor) As Object Implements ICustomTypeDescriptor.GetPropertyOwner
+            Return Me
+        End Function
 #End Region
-
+        'dd_Added End
+#End Region
     End Class
 End Namespace

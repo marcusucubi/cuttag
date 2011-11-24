@@ -51,7 +51,8 @@ Public Class frmNoteProperties
     End Sub
 
     Private Sub UpdateProperties()
-        If _Notes IsNot Nothing Then
+        'dd_Changed 11/23//11 added Me.visible
+        If _Notes IsNot Nothing AndAlso Me.Visible Then
             Dim o As Object = _Notes
             If o.GetType().GetProperty("Note") IsNot Nothing Then
                 Me.TextBox1.Text = o.Note

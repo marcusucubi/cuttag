@@ -7,7 +7,8 @@ Public Class ActiveHeader
     Private _Header As Header
 
     Public Shared ReadOnly ActiveHeader As ActiveHeader = New ActiveHeader
-
+    'dd_added 11/21/11
+    Public Shared HideReadOnlyProperties As Boolean
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged
 

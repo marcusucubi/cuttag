@@ -33,7 +33,8 @@ Public Class frmComputationProperties
                 ActiveHeader.ActiveHeader.Header.ComputationProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
-            _Properties = Nothing
+            'dd_Added 11/23/11
+            If Not IsNothing(_Properties) Then _Properties = Nothing
         End If
     End Sub
 
