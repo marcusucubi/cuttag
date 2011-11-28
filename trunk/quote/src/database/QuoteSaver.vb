@@ -70,7 +70,7 @@ Public Class QuoteSaver
             ActiveCustomProperties.ActiveCustomProperties.Properties)
         CommonSaver.SaveComputationProperties(newId, _
             q.ComputationProperties, True)
-        '        CommonSaver.SaveNoteProperties(newId, q.NoteProperties)
+        CommonSaver.SaveNoteProperties(newId, q.NoteProperties) ''''''''''''''dddddddddddddddddddd
         CommonSaver.DeleteComponents(newId)
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()

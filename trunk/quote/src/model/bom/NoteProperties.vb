@@ -41,4 +41,3 @@ Namespace Model.BOM
 
     End Class
 End Namespace
-

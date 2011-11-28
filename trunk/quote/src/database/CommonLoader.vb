@@ -91,7 +91,6 @@ Public Class CommonLoader
 
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-
         For Each p As PropertyInfo In props
 
             Dim table As _QuotePropertiesDataTable = _

@@ -22,6 +22,11 @@ Public Class ObjectGenerator
     Public Property ClassName As String = "GeneratedProperties"
     Public Property BaseTypeName As String
     Public Property InitObject As Object
+    Public ReadOnly Property NameList As List(Of String) ''dd_Added 11/28/11
+        Get
+            Return _NameList
+        End Get
+    End Property
 
     Public Sub Add(ByVal node As PropertyInfo)
         If Not _NameList.Contains(node.Name) Then

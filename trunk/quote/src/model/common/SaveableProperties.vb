@@ -85,24 +85,24 @@ Namespace Common
             Dim bDoFilter As Boolean = False
             If ActiveHeader.HideReadOnlyProperties Then
                 For Each prop As PropertyDescriptor In Props2Filter
-                    i += 1
-                    Dim b As Boolean
+                    '    i += 1
+                    'Dim b As Boolean
                     If prop.Attributes.Contains(aFilterTrue) And Not bDoFilter Then
                         bDoFilter = True
                     End If
-                    b = False
+                    'b = False
                     If Not bDoFilter Then
                         props.Add(prop)
-                        b = True
+                        '    b = True
                     ElseIf Not prop.IsReadOnly Then
-                        b = True
+                        '    b = True
                         props.Add(prop)
                     End If
                     If prop.Attributes.Contains(aFilterFalse) Then
                         bDoFilter = False
                     End If
-                    Debug.WriteLine(i.ToString + ":(" + b.ToString + ")" _
-                                    + prop.Category + "|" + prop.DisplayName + "|" + prop.Description)
+                    ' Debug.WriteLine(i.ToString + ":(" + b.ToString + ")" _
+                    '                 + prop.Category + "|" + prop.DisplayName + "|" + prop.Description)
                 Next
             Else
                 props = Nothing 'All properites will show
