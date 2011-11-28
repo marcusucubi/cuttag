@@ -68,9 +68,9 @@ Public Class QuoteLoader
 			Dim o3 = LoadProperties(id, _
 					CommonSaver.CUSTOM_PROPERTIES_ID, q.CustomProperties)
 			q.SetCustomProperties(o3)
-			'Dim o4 = LoadProperties(id, _
-			'    CommonSaver.NOTE_PROPERTIES_ID, q.NoteProperties)
-			'q.SetNoteProperties(o4)
+            Dim o4 = LoadProperties(id, _
+                CommonSaver.NOTE_PROPERTIES_ID, q.NoteProperties)
+            q.SetNoteProperties(o4)
 
 		End If
 
@@ -158,7 +158,8 @@ Public Class QuoteLoader
               0)
 
 			Dim detail As Detail = q.NewDetail(product)
-			detail.Qty = row.Qty
+            detail.Qty = row.Qty
+            'detail.MachineTime = row.
 			'dd_Added 10/3/11, 10/7/11
 			With detail
 				.IsWire = row.IsWire
@@ -168,10 +169,12 @@ Public Class QuoteLoader
 			End With
 			'dd_Added end
 
-			Dim o1 = LoadProperties(id, row.id, detail.QuoteDetailProperties)
-			detail.UnitCost = o1.UnitCost
-			detail.SetProperties(o1)
-		Next
+            Dim o1 As Object = LoadProperties(id, row.id, detail.QuoteDetailProperties)
+            'dd_Added 11/28/11 - If conditions
+            If Me._PropertyLoader.NameList.Contains("MachineTime") Then detail.MachineTime = o1.MachineTime
+            If Me._PropertyLoader.NameList.Contains("UnitCost") Then detail.UnitCost = o1.UnitCost
+            detail.SetProperties(o1)
+        Next
 	End Sub
 
 	Public Class TempObj
