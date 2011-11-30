@@ -457,7 +457,14 @@ Public Class SearchGrid
 			Me.txtLookup.Left = 0
 			f.StartPosition = FormStartPosition.Manual
 			f.ShowInTaskbar = False
-			Debug.WriteLine(" FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + ctrlParent.FindForm.Top.ToString + " PH " + ctrlParent.FindForm.Height.ToString)
+            'dd_Added 11/29/11 to replace ctrlParent.FindForm with highest level form for this contorol
+            Dim frmTopForm As Windows.Forms.Form = ctrlParent.FindForm
+            Do
+                If frmTopForm.ParentForm Is Nothing Then Exit Do
+                frmTopForm = frmTopForm.ParentForm
+            Loop
+            'dd_Added End
+            Debug.WriteLine("FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + frmTopForm.Top.ToString + " PH " + frmTopForm.Height.ToString)
 			f.Location = ctrlParent.PointToScreen(New Point(0, 0))
 			If m_bUseInputArray Then
 				f.Top -= ctrlParent.Height
@@ -465,27 +472,27 @@ Public Class SearchGrid
 			End If
 			f.Top -= 2
 			f.Left -= 2
-			Debug.WriteLine(" FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + ctrlParent.FindForm.Top.ToString + " PH " + ctrlParent.FindForm.Height.ToString)
-			Dim iOverlapRight As Integer = (f.Left + f.Width) - (ctrlParent.FindForm.Left + ctrlParent.FindForm.Width)
-			If iOverlapRight > 0 Then
-				f.Left = f.Left - iOverlapRight
-				txtLookup.Left = txtLookup.Left + iOverlapRight
-			End If
-			Dim iOverlapLeft As Integer = ctrlParent.FindForm.Left - f.Left
+            Debug.WriteLine("FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + frmTopForm.Top.ToString + " PH " + frmTopForm.Height.ToString)
+            Dim iOverlapRight As Integer = (f.Left + f.Width) - (frmTopForm.Left + frmTopForm.Width)
+            If iOverlapRight > 0 Then
+                f.Left = f.Left - iOverlapRight
+                txtLookup.Left = txtLookup.Left + iOverlapRight
+            End If
+            Dim iOverlapLeft As Integer = frmTopForm.Left - f.Left
 			If iOverlapLeft > 0 Then
 				f.Left = f.Left + iOverlapLeft / 2
 				txtLookup.Left = txtLookup.Left - iOverlapLeft / 2
 			End If
-			Debug.WriteLine(" FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + ctrlParent.FindForm.Top.ToString + " PH " + ctrlParent.FindForm.Height.ToString)
-			If f.Top + f.Height - (ctrlParent.FindForm.Top + ctrlParent.FindForm.Height) > 0 Then
-				f.Top = f.Top - f.Height + txtLookup.Height
-				Me.pnlBottom.Dock = DockStyle.Top
-				Me.pnlTop.Dock = DockStyle.Bottom
-			Else
-				Me.pnlBottom.Dock = DockStyle.Bottom
-				Me.pnlTop.Dock = DockStyle.Top
-			End If
-			Debug.WriteLine(" FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + ctrlParent.FindForm.Top.ToString + " PH " + ctrlParent.FindForm.Height.ToString)
+            Debug.WriteLine("FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + frmTopForm.Top.ToString + " PH " + frmTopForm.Height.ToString)
+            If f.Top + f.Height - (frmTopForm.Top + frmTopForm.Height) > 0 Then
+                f.Top = f.Top - f.Height + txtLookup.Height
+                Me.pnlBottom.Dock = DockStyle.Top
+                Me.pnlTop.Dock = DockStyle.Bottom
+            Else
+                Me.pnlBottom.Dock = DockStyle.Bottom
+                Me.pnlTop.Dock = DockStyle.Top
+            End If
+            Debug.WriteLine("FT " + f.Top.ToString + " FH " + f.Height.ToString + " PT" + frmTopForm.Top.ToString + " PH " + frmTopForm.Height.ToString)
 			'Note: vs2003 seems to have problem tab order for txtLookup
 			'      Therefore tab set to 3 stop and 
 			'      use SendKeys to set focus on txtLookup

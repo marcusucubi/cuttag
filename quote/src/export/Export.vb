@@ -11,6 +11,8 @@
         ExportObject(header.OtherProperties)
         ExportObject(header.PrimaryProperties)
         ExportObject(header.ComputationProperties)
+        'dd_Added 11/28/11
+        ExportObject(header.NoteProperties)
 
         _Excel.Term()
         Return _Excel.Path

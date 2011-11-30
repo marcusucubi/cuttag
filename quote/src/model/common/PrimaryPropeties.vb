@@ -22,6 +22,12 @@ Namespace Common
         Public Property CommonCreatedDate As DateTime = Date.Now
 
         <Browsable(False)> _
+        Public Property CommonDueDate As Date = Date.Today
+
+        <Browsable(False)> _
+        Public Property CommonQuoteDate As Date = Date.Today
+
+        <Browsable(False)> _
         Public Property CommonLastModified As DateTime = Date.Now
 
         <Browsable(False)> _

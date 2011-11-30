@@ -34,9 +34,17 @@ Public Class QuoteLoader
 			If Not row.IsTemplateIDNull Then
 				templateID = row.TemplateID
 			End If
-
-			q = New Model.Quote.Header(row.id, customer, rfq, part, templateID, _
-					row.Initials, row.CreatedDate, row.LastModifedDate)
+            Dim dueDate As Date
+            If Not row.IsDueDateNull Then
+                dueDate = row.DueDate
+            End If
+            Dim quoteDate As Date
+            If Not row.IsQuoteDateNull Then
+                quoteDate = row.QuoteDate
+            End If
+            q = New Model.Quote.Header(row.id, customer, rfq, part, templateID, _
+              row.Initials, row.CreatedDate, row.LastModifedDate, _
+              dueDate, quoteDate)
             'dd_Added 11/19/11
             Dim Initials As String = ""
             If Not row.IsInitialsNull Then
