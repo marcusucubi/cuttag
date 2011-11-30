@@ -27,7 +27,7 @@ Public Class BOMSaver
                 o.CustomerName, o.RequestForQuoteNumber, _
                 o.PartNumber, False, Nothing, _
                 o.CommonInitials, o.CommonCreatedDate, _
-                o.LastModified, o.DueDate, o.QuoteDate, o.CommonID)
+                o.LastModified, o.CommonID)
             adaptor.Connection.Close()
             newId = id
         Else
@@ -35,7 +35,7 @@ Public Class BOMSaver
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
                 o.RequestForQuoteNumber, o.PartNumber, False, 0, _
-                o.CommonInitials, Date.Now, Date.Now, Date.Today, Date.Today)
+                o.CommonInitials, Date.Now, Date.Now)
             Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction

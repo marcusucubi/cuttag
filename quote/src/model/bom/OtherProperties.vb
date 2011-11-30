@@ -13,6 +13,7 @@ Namespace Model.BOM
         Private _Tooling As Decimal
         Private _FormBoardCost As Decimal
         Private _DueDate As DateTime
+        Private _QuoteDate As DateTime
         Private _QuoteType As String = "Production"
         Private _ImportedUnitCost As Decimal
         Private _ImportedCuWeight As Decimal
@@ -31,6 +32,18 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As DateTime)
                 _DueDate = value
+                Me.SendEvents()
+            End Set
+        End Property
+        <CategoryAttribute(SortedSpaces1 + "Date"), _
+        DisplayName("Quote Date"), _
+        DescriptionAttribute("Quote Date to be displayed to the customer")> _
+        Public Property QuoteDate As DateTime
+            Get
+                Return _QuoteDate
+            End Get
+            Set(ByVal value As DateTime)
+                _QuoteDate = value
                 Me.SendEvents()
             End Set
         End Property

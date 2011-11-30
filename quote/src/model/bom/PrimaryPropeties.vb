@@ -35,30 +35,6 @@ Namespace Model.BOM
                 Return Me.CommonLastModified
             End Get
         End Property
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
-        DisplayName("Due Date"), _
-        DescriptionAttribute("Due Date")> _
-        Public Property DueDate As Date
-            Get
-                Return Me.CommonDueDate
-            End Get
-            Set(ByVal value As Date)
-                Me.CommonDueDate = value
-                Me.SendEvents()
-            End Set
-        End Property
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
-        DisplayName("Quote Date"), _
-        DescriptionAttribute("Quote Date")> _
-        Public Property QuoteDate As Date
-            Get
-                Return Me.CommonQuoteDate
-            End Get
-            Set(ByVal value As Date)
-                Me.CommonQuoteDate = value
-                Me.SendEvents()
-            End Set
-        End Property
         <CategoryAttribute(SortedSpaces2 + "Misc"), _
         DisplayName("Quote Number"), _
         DescriptionAttribute("Quote Number")> _
