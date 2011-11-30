@@ -7,7 +7,7 @@ Namespace Model.Quote
         Inherits Common.Header
 
         Public Sub New()
-            Me.New(0, "", "", "", 0, "", Date.Now, Date.Now)
+            Me.New(0, "", "", "", 0, "", Date.Now, Date.Now, Date.Today, Date.Today)
         End Sub
 
         Public Sub New(ByVal id As Long, _
@@ -17,11 +17,13 @@ Namespace Model.Quote
                        ByVal TemplateID As Long, _
                        ByVal Initials As String, _
                        ByVal CreatedDate As DateTime, _
-                       ByVal LastModifiedDate As DateTime)
+                       ByVal LastModifiedDate As DateTime, _
+                       ByVal DueDate As Date, _
+                       ByVal QuoteDate As Date)
 
             Dim p As Quote.PrimaryPropeties = New Quote.PrimaryPropeties(Me, id, _
                 CustomerName, RequestForQuoteNumber, PartNumber, _
-                Initials, CreatedDate, LastModifiedDate)
+                Initials, CreatedDate, LastModifiedDate, DueDate, QuoteDate)
             Me._PrimaryProperties = p
             p.SetTemplateID(TemplateID)
             Me._ComputationProperties = New Common.ComputationProperties

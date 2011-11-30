@@ -14,7 +14,8 @@ Namespace Model.Quote
         Private _Initials As String
         Private _CreatedDate As DateTime
         Private _LastModified As DateTime
-
+        Private _DueDate As Date
+        Private _QuoteDate As Date
         Public Sub New(ByVal QuoteHeader As Header, _
                        ByVal id As Long, _
                        ByVal CustomerName As String, _
@@ -22,7 +23,10 @@ Namespace Model.Quote
                        ByVal PartNumber As String, _
                        ByVal Initials As String, _
                        ByVal CreatedDate As DateTime, _
-                       ByVal LastModified As DateTime)
+                       ByVal LastModified As DateTime, _
+                       ByVal DueDate As Date, _
+                       ByVal QuoteDate As Date
+)
             _QuoteHeader = QuoteHeader
             Me.SetID(id)
             Me._CustomerName = CustomerName
@@ -31,27 +35,50 @@ Namespace Model.Quote
             Me._Initials = Initials
             Me._CreatedDate = CreatedDate
             Me._LastModified = LastModified
+            Me._DueDate = DueDate
+            Me._QuoteDate = QuoteDate
         End Sub
-
-        <CategoryAttribute("Quote"), _
-        DisplayName("CreatedDate"), _
-        DescriptionAttribute("Created Date")> _
+        <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
+         DisplayName("CreatedDate"), _
+         DescriptionAttribute("Created Date")> _
         Public ReadOnly Property CreatedDate As DateTime
             Get
                 Return _CreatedDate
             End Get
         End Property
-
-        <CategoryAttribute("Quote"), _
-        DisplayName("LastModified"), _
-        DescriptionAttribute("Last Modified Date")> _
+        <CategoryAttribute(SortedSpaces1 + "Date"), _
+         DisplayName("LastModified"), _
+            DescriptionAttribute("Last Modified Date")> _
         Public ReadOnly Property LastModified As DateTime
             Get
                 Return _LastModified
             End Get
         End Property
-
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute(SortedSpaces1 + "Date"), _
+        DisplayName("Due Date"), _
+        DescriptionAttribute("Due Date")> _
+        Public ReadOnly Property DueDate As Date
+            Get
+                Return _DueDate
+            End Get
+        End Property
+        <CategoryAttribute(SortedSpaces1 + "Date"), _
+        DisplayName("Quote Date"), _
+        DescriptionAttribute("Quote Date")> _
+        Public ReadOnly Property QuoteDate As Date
+            Get
+                Return _QuoteDate
+            End Get
+        End Property
+        <CategoryAttribute(SortedSpaces2 + "Misc"), _
+        DisplayName("Quote Number"), _
+        DescriptionAttribute("Quote Number")> _
+        Public Overloads ReadOnly Property QuoteNumber As Integer
+            Get
+                Return MyBase.CommonID
+            End Get
+        End Property
+        <CategoryAttribute(SortedSpaces2 + "Misc"), _
         DisplayName("Initials"), _
         DescriptionAttribute("Initials of creator")> _
         Public ReadOnly Property Initials As String
@@ -59,8 +86,7 @@ Namespace Model.Quote
                 Return _Initials
             End Get
         End Property
-
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Customer"), _
         DescriptionAttribute("The customer name")> _
         Public ReadOnly Property CustomerName As String
@@ -68,8 +94,15 @@ Namespace Model.Quote
                 Return _CustomerName
             End Get
         End Property
-
-        <CategoryAttribute("Quote"), _
+        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        DisplayName("Part Number"), _
+        DescriptionAttribute("Part Number")> _
+        Public ReadOnly Property PartNumber As String
+            Get
+                Return _PartNumber
+            End Get
+        End Property
+        <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _
         Public ReadOnly Property RequestForQuoteNumber As String
@@ -78,25 +111,7 @@ Namespace Model.Quote
             End Get
         End Property
 
-        <CategoryAttribute("Quote"), _
-        DisplayName("Part Number"), _
-        DescriptionAttribute("Part Number")> _
-        Public ReadOnly Property PartNumber As String
-            Get
-                Return _PartNumber
-            End Get
-        End Property
-
-        <CategoryAttribute("Quote"), _
-        DisplayName("QuoteNumber"), _
-        DescriptionAttribute("Quote Number")> _
-        Public Overloads ReadOnly Property QuoteNumber As Integer
-            Get
-                Return MyBase.CommonID
-            End Get
-        End Property
-
-        <CategoryAttribute("Quote"), _
+        <FilterAttribute(False), CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("TemplateNumber"), _
         DescriptionAttribute("Created from template")> _
         Public ReadOnly Property TemplateNumber As Integer

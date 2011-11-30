@@ -44,12 +44,22 @@ Public Class BOMLoader
 			If Not row.IsLastModifedDateNull Then
 				lastModDate = row.LastModifedDate
 			End If
-			q.PrimaryProperties.CommonCustomerName = customer
+            Dim dueDate As Date
+            If Not row.IsDueDateNull Then
+                dueDate = row.DueDate
+            End If
+            Dim quoteDate As Date
+            If Not row.IsQuoteDateNull Then
+                quoteDate = row.QuoteDate
+            End If
+            q.PrimaryProperties.CommonCustomerName = customer
 			q.PrimaryProperties.CommonPartNumber = part
 			q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
 			q.PrimaryProperties.CommonCreatedDate = createdDate
-			q.PrimaryProperties.CommonLastModified = lastModDate
-			q.PrimaryProperties.CommonInitials = Initials
+            q.PrimaryProperties.CommonLastModified = lastModDate
+            q.PrimaryProperties.CommonDueDate = dueDate
+            q.PrimaryProperties.CommonQuoteDate = quoteDate
+            q.PrimaryProperties.CommonInitials = Initials
 
 			CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
 			CommonLoader.LoadOtherProperties(id, q.OtherProperties)
