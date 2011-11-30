@@ -420,7 +420,6 @@
     <None Include="src\database\QuoteDataBase.xss">
       <DependentUpon>QuoteDataBase.xsd</DependentUpon>
     </None>
-    <None Include="Spreadsheets\Testdate5.xls" />
     <None Include="src\import\ImportDataSet.xsc">
       <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </None>
