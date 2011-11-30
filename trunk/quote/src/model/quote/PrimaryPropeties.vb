@@ -14,8 +14,6 @@ Namespace Model.Quote
         Private _Initials As String
         Private _CreatedDate As DateTime
         Private _LastModified As DateTime
-        Private _DueDate As Date
-        Private _QuoteDate As Date
         Public Sub New(ByVal QuoteHeader As Header, _
                        ByVal id As Long, _
                        ByVal CustomerName As String, _
@@ -23,9 +21,7 @@ Namespace Model.Quote
                        ByVal PartNumber As String, _
                        ByVal Initials As String, _
                        ByVal CreatedDate As DateTime, _
-                       ByVal LastModified As DateTime, _
-                       ByVal DueDate As Date, _
-                       ByVal QuoteDate As Date
+                       ByVal LastModified As DateTime
 )
             _QuoteHeader = QuoteHeader
             Me.SetID(id)
@@ -35,8 +31,6 @@ Namespace Model.Quote
             Me._Initials = Initials
             Me._CreatedDate = CreatedDate
             Me._LastModified = LastModified
-            Me._DueDate = DueDate
-            Me._QuoteDate = QuoteDate
         End Sub
         <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
          DisplayName("CreatedDate"), _
@@ -52,22 +46,6 @@ Namespace Model.Quote
         Public ReadOnly Property LastModified As DateTime
             Get
                 Return _LastModified
-            End Get
-        End Property
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
-        DisplayName("Due Date"), _
-        DescriptionAttribute("Due Date")> _
-        Public ReadOnly Property DueDate As Date
-            Get
-                Return _DueDate
-            End Get
-        End Property
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
-        DisplayName("Quote Date"), _
-        DescriptionAttribute("Quote Date")> _
-        Public ReadOnly Property QuoteDate As Date
-            Get
-                Return _QuoteDate
             End Get
         End Property
         <CategoryAttribute(SortedSpaces2 + "Misc"), _

@@ -44,14 +44,14 @@ Public Class QuoteSaver
             adaptor.Update( _
                 o.CustomerName, info.RFQ, info.PartNumber, _
                 False, q.ID, o.Initials, q.PrimaryProperties.CommonCreatedDate, _
-                Date.Now, o.DueDate, o.QuoteDate, o.CommonID)
+                Date.Now, o.CommonID)
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
             adaptor.Insert(o.CustomerName, _
                 info.RFQ, info.PartNumber, IsQuote, _
-                q.ID, info.Initials, Date.Now, Date.Now, o.DueDate, o.QuoteDate)
+                q.ID, info.Initials, Date.Now, Date.Now)
             Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
