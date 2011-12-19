@@ -13,48 +13,37 @@ Public Class frmMain
     Private _Output As New frmOutput
     Private WithEvents _ActiveHeader As ActiveHeader
     Private WithEvents _SaveableProperties As Common.SaveableProperties
-
     Public Shared Property frmMain As frmMain
-
     Public Sub New()
         InitializeComponent()
         frmMain = Me
         Me._ActiveHeader = ActiveHeader.ActiveHeader
     End Sub
-
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
         Me._SaveableProperties = ActiveHeader.ActiveHeader.Header
     End Sub
-
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         CreateNewTemplate()
     End Sub
-
     Private Sub menuNewQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles menuNewQuote.Click
         CreateNewTemplate()
     End Sub
-
     Private Sub NewQuoteMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteMenuItem.Click
         CreateNewQuote()
     End Sub
-
     Private Sub NewQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteButton.Click
         CreateNewQuote()
     End Sub
-
     Private Sub PropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PropertiesToolStripMenuItem.Click
         ShowComputationProperties()
     End Sub
-
     Private Sub ComputationalPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComputationalPropertiesToolStripMenuItem.Click
         ShowOtherProperties()
     End Sub
-
     Private Sub PrimaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrimaryToolStripMenuItem.Click
         ShowPrimaryProperties()
     End Sub
-
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
         SaveTemplate()
     End Sub
@@ -79,19 +68,15 @@ Public Class frmMain
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
         SaveTemplate()
     End Sub
-
     Private Sub LoadToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadToolStripMenuItem.Click
         LoadTemplate()
     End Sub
-
     Private Sub LoadButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadButton.Click
         LoadTemplate()
     End Sub
-
     Private Sub LoadQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteItem1.Click
         LoadQuote()
     End Sub
-
     Private Sub LoadQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteButton.Click
         LoadQuote()
     End Sub
@@ -99,65 +84,50 @@ Public Class frmMain
     Private Sub _SaveableProperties_StatusBarPropertyChanged1() Handles _SaveableProperties.StatusBarPropertyChanged
         Me.UpdateStatusBar()
     End Sub
-
     Private Sub _SaveableProperties_SavableChange(ByVal subject As Common.SaveableProperties) Handles _SaveableProperties.SavableChange
         EnableButtons()
     End Sub
-
     Private Sub DetailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DetailToolStripMenuItem.Click
         ShowDetailProperties()
     End Sub
-
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click
         frmQuoteSearch.ShowDialog(Me)
     End Sub
-
     Private Sub SearchTemplateMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchTemplateMenuItem1.Click
         frmBOMSearch.ShowDialog(Me)
     End Sub
-
     Private Sub ToolSearchTemplates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchTemplates.Click
         frmBOMSearch.ShowDialog(Me)
     End Sub
-
     Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
         frmQuoteSearch.ShowDialog(Me)
     End Sub
-
     Private Sub NotesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotesToolStripMenuItem.Click
         ShowNoteProperties()
     End Sub
-
     Private Sub CustomToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomToolStripMenuItem.Click
         ShowCustomProperties()
     End Sub
-
     Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
         DoExport()
     End Sub
-
     Private Sub ExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportButton.Click
         DoExport()
     End Sub
-
     Private Sub BOMExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BOMExportButton.Click
         DoBOMExport()
     End Sub
-
     Private Sub OutputToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutputToolStripMenuItem.Click
         ShowOutput()
     End Sub
-
     Private Sub DoExport()
         Dim frm As New frmExport
         frm.ShowDialog()
     End Sub
-
     Private Sub DoBOMExport()
         Dim export As New ExportBOM
         export.Export(ActiveHeader.ActiveHeader.Header)
     End Sub
-
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
@@ -167,7 +137,6 @@ Public Class frmMain
         End If
         Me.Cursor = Cursors.Default
     End Sub
-
     Private Function CanCreateQuote() As Boolean
         Dim result As Boolean
         If Me._ActiveHeader.Header IsNot Nothing Then
@@ -181,7 +150,6 @@ Public Class frmMain
         End If
         Return result
     End Function
-
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote
@@ -195,7 +163,6 @@ Public Class frmMain
             End If
         End If
     End Sub
-
     Private Sub CreateNewTemplate()
 
         Dim frm As New frmNewBOM
@@ -205,9 +172,10 @@ Public Class frmMain
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
             DisplayViews()
+            Me._PrimaryProperties.Show()
+
         End If
     End Sub
-
     Private Sub DisplayViews()
         ShowDetailProperties()
         ShowPrimaryProperties()
@@ -239,7 +207,6 @@ Public Class frmMain
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
-
         Else
             SaveToolStripMenuItem.Enabled = True
             If Me._ActiveHeader.Header.IsQuote Then
@@ -267,7 +234,6 @@ Public Class frmMain
             NewQuoteButton.Enabled = False
         End If
     End Sub
-
     Private Sub ShowComputationProperties()
         If (_Properties Is Nothing) Then
             _Properties = New frmComputationProperties
@@ -278,7 +244,6 @@ Public Class frmMain
             InitChild(_Properties)
         End If
     End Sub
-
     Private Sub ShowOtherProperties()
         If (_OtherProperties Is Nothing) Then
             _OtherProperties = New frmOtherProperties
@@ -289,7 +254,6 @@ Public Class frmMain
             InitChild(_OtherProperties)
         End If
     End Sub
-
     Private Sub ShowNoteProperties()
         If (_NoteProperties Is Nothing) Then
             _NoteProperties = New frmNoteProperties
@@ -300,7 +264,6 @@ Public Class frmMain
             InitChild(_NoteProperties)
         End If
     End Sub
-
     Private Sub ShowCustomProperties()
         If (_CustomProperties Is Nothing) Then
             _CustomProperties = New frmCustomProperties
@@ -311,7 +274,6 @@ Public Class frmMain
             InitChild(_CustomProperties)
         End If
     End Sub
-
     Private Sub ShowPrimaryProperties()
         If (_PrimaryProperties Is Nothing) Then
             _PrimaryProperties = New frmPrimaryProperties
@@ -322,7 +284,6 @@ Public Class frmMain
             InitChild(_PrimaryProperties)
         End If
     End Sub
-
     Public Sub ShowOutput()
         If (_Output Is Nothing) Then
             _Output = New frmOutput
@@ -335,7 +296,6 @@ Public Class frmMain
             InitChild(_Output, DockState.DockLeft)
         End If
     End Sub
-
     Private Sub ShowDetailProperties()
         If (_DetailProperties Is Nothing) Then
             _DetailProperties = New frmDetailProperties
@@ -347,20 +307,18 @@ Public Class frmMain
             _DetailProperties = New frmDetailProperties
             InitChild(_DetailProperties, DockState.DockBottom)
         End If
-    End Sub
 
+    End Sub
     Private Sub InitChild(ByVal frm As DockContent)
         DockPanel1.SuspendLayout(True)
         frm.Show(DockPanel1, DockState.DockRight)
         DockPanel1.ResumeLayout(True, True)
     End Sub
-
     Private Sub InitChild(ByVal frm As DockContent, ByVal state As DockState)
         DockPanel1.SuspendLayout(True)
         frm.Show(DockPanel1, state)
         DockPanel1.ResumeLayout(True, True)
     End Sub
-
     Private Sub SaveTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
             Dim saver As New BOMSaver
@@ -368,7 +326,6 @@ Public Class frmMain
         End If
         EnableButtons()
     End Sub
-
     Private Sub LoadTemplate()
         Dim r As DialogResult = frmBOMLookup.ShowDialog
         If r = DialogResult.OK Then
@@ -376,7 +333,6 @@ Public Class frmMain
         End If
         EnableButtons()
     End Sub
-
     Public Sub LoadTemplate(ByVal id As Integer)
 
         If IsLoaded(id) Then
@@ -396,24 +352,20 @@ Public Class frmMain
             Me.DisplayViews()
         End If
         EnableButtons()
+        Me._Properties.Show()
     End Sub
-
     Private Sub LoadQuote()
         Dim r As DialogResult = frmQuoteLookup.ShowDialog
         If r = DialogResult.OK Then
             LoadQuote(frmQuoteLookup.QuoteID)
         End If
     End Sub
-
     Public Sub LoadQuote(ByVal id As Integer)
-
         If IsLoaded(id) Then
             Return
         End If
-
         Dim loader As New QuoteLoader
         Dim q As Header
-
         q = loader.Load(id)
         If q.PrimaryProperties.CommonID = 0 Then
             MsgBox("Not Found")
@@ -424,8 +376,8 @@ Public Class frmMain
             Me.DisplayViews()
         End If
         EnableButtons()
+        Me._Properties.Show()
     End Sub
-
     Private Function IsLoaded(ByVal id As String) As Boolean
         Dim result As Boolean
         For Each w As frmDocumentA In Me.MdiChildren
@@ -437,14 +389,12 @@ Public Class frmMain
         Next
         Return result
     End Function
-
     Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click
 
         Dim import As New QuoteImport
         import.DoImport()
 
     End Sub
-
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
@@ -470,10 +420,6 @@ Public Class frmMain
                 frm.DeleteItem()
             End If
         End If
-    End Sub
-
-    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
     End Sub
 
 End Class

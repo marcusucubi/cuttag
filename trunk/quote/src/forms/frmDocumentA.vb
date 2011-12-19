@@ -53,29 +53,34 @@ Public Class frmDocumentA
 		If Me._Header.IsQuote Then
 			Me.panelButtons.Visible = False
 			'dd_Added 9/15/11
-			Me.WireAndComponentView1.dgvQuoteDetail.ReadOnly = True
+            Me.WireAndComponentView1.dgvQuoteDetail.ReadOnly = True
+            Me.WireAndComponentView1.dgvQuoteDetail.AllowUserToAddRows = False
+            Me.WireAndComponentView1.dgvQuoteDetail.AllowUserToDeleteRows = False
 		Else
 			'dd_Added 10/7/11
 			Me.panelButtons.Visible = False
-
-			Dim ds As New QuoteDataBase
-
-
-
-			Dim daComp As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
-			Dim daWire As New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter
+            Dim ds As New QuoteDataBase
+            Dim daWire As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
+            Dim daComp As New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter
 			Dim daSource As New QuoteDataBaseTableAdapters.ItemSourceLookupListTableAdapter
 			Dim daGage As New GageTableAdapter
-			daGage.Fill(ds.Gage)
-			daComp.Fill(ds.WireSource)
-			daWire.Fill(ds.WireComponentSource)
+            Dim daUOM As New QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter
+            daWire.Fill(ds.WireSource)
+            daComp.Fill(ds.WireComponentSource)
 			daSource.Fill(ds.ItemSourceLookupList)
-			Me.WireAndComponentView1.PartLookupDataSource = ds
+            daUOM.Fill(ds._UnitOfMeasure)
+            daGage.Fill(ds.Gage)
+            Me.WireAndComponentView1.PartLookupDataSource = ds
 			Me.WireAndComponentView1.PartLookupDataMember = "ItemSourceLookupList"
 			'end dd_Added
 		End If
-		Me.WireAndComponentView1.DetailCollection = _Header.Details
-		EnableButtons()
+        With Me.WireAndComponentView1
+            .DetailCollection = _Header.Details
+            .dgvQuoteDetail.Focus()
+
+            WireAndComponentView1.SelectDetail()
+        End With
+        EnableButtons()
 	End Sub
 
 	Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click

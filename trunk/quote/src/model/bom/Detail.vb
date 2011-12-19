@@ -17,16 +17,18 @@ Namespace Model.BOM
 			Me._ComponentProperties = New ComponentProperties(Me)
 			Me._Quantity = 1
             Me.SequenceNumber = Me.Header.NextSequenceNumber
-            SetupUOM()
+            Me._UOM = product.UnitOfMeasure 'dd_Added 12/16/11
+            '    SetupUOM()
         End Sub
 
-        Private Sub SetupUOM()
-            If (_Product.IsWire) Then
-                _UOM = "Decimeter"
-            Else
-                _UOM = "Each"
-            End If
-        End Sub
+        'Private Sub SetupUOM()
+        '    If (_Product.IsWire) Then
+        '        _UOM = "Decimeter"
+        '    Else
+        '        _UOM = "Each"
+        '        _UOM = "Test"
+        '    End If
+        'End Sub
 
         <BrowsableAttribute(False)>
         Property Header As Header
@@ -34,7 +36,8 @@ Namespace Model.BOM
         Public Sub UpdateComponentProperties(ByVal pProduct As Product)
             Me._Product = pProduct
             Me._ComponentProperties = New ComponentProperties(Me)
-            SetupUOM()
+            Me._UOM = pProduct.UnitOfMeasure 'dd_Added 12/16/11 
+            ' SetupUOM() 'dd_remmed 12/16/11
         End Sub
 
 		<BrowsableAttribute(False)>

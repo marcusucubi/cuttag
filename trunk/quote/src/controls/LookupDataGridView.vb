@@ -73,11 +73,11 @@ Public Class LookupDataGridView
     '	MyBase.OnEditingControlShowing(e)
 
     'End Sub
-    Public Sub New()
-        ' This call is required by the designer.
-		InitializeComponent()
-		' Add any initialization after the InitializeComponent() call.
-    End Sub
+    '  Public Sub New()
+    '      ' This call is required by the designer.
+    'InitializeComponent()
+    '' Add any initialization after the InitializeComponent() call.
+    '  End Sub
 End Class
 
 <DataGridViewColumnDesignTimeVisible(True)>

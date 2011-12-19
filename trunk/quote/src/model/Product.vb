@@ -16,7 +16,8 @@ Namespace Model
 		Private m_LeadTime As Integer
 		Private m_Vendor As String
 		Private m_MinimumQty As Decimal
-		Private m_MinimumDollar As Decimal
+        Private m_MinimumDollar As Decimal
+        Private m_UnitOfMeasure As String 'dd_Added 12/16/11
 
         Public Sub New( _
                ByVal m_code As String,
@@ -48,12 +49,14 @@ Namespace Model
                 ByVal Gage As String, _
                 ByVal IsWire As Boolean, _
                 ByVal WireRow As QuoteDataBase.WireSourceRow, _
-                ByVal PartRow As QuoteDataBase.WireComponentSourceRow
-                )
+                ByVal PartRow As QuoteDataBase.WireComponentSourceRow, _
+                Optional ByVal UnitOfMeasure As String = ""
+                ) 'dd_Added UOM 12/16/11
             Me.m_code = Code
             Me.m_unitCost = UnitCost
             Me.m_gage = Gage
             Me.m_isWire = IsWire
+            Me.m_UnitOfMeasure = UnitOfMeasure 'dd_Added 12/16/11
             If PartRow IsNot Nothing Then
                 Me.m_Description = PartRow.Description
                 If Not PartRow.IsLeadTimeNull Then
@@ -73,30 +76,30 @@ Namespace Model
                 End If
             End If
         End Sub
-		'dd_Added Set 9/26/11
-		Property Code As String
-			Get
-				Return m_code
-			End Get
-			Set(ByVal Value As String)
-				m_code = Value
-			End Set
-		End Property
-		'dd_Added end
-		ReadOnly Property Gage As String
-			Get
-				Return m_gage
-			End Get
-		End Property
+        'dd_Added Set 9/26/11
+        Property Code As String
+            Get
+                Return m_code
+            End Get
+            Set(ByVal Value As String)
+                m_code = Value
+            End Set
+        End Property
+        'dd_Added end
+        ReadOnly Property Gage As String
+            Get
+                Return m_gage
+            End Get
+        End Property
 
-		Property UnitCost As Decimal
-			Get
-				Return m_unitCost
-			End Get
-			Set(ByVal value As Decimal)
-				m_unitCost = value
-			End Set
-		End Property
+        Property UnitCost As Decimal
+            Get
+                Return m_unitCost
+            End Get
+            Set(ByVal value As Decimal)
+                m_unitCost = value
+            End Set
+        End Property
 
         ReadOnly Property IsWire As Boolean
             Get
@@ -104,61 +107,68 @@ Namespace Model
             End Get
         End Property
 
-		Public Property Description() As String
-			Get
-				Return m_Description
-			End Get
-			Set(ByVal value As String)
-				m_Description = value
-			End Set
-		End Property
+        Public Property Description() As String
+            Get
+                Return m_Description
+            End Get
+            Set(ByVal value As String)
+                m_Description = value
+            End Set
+        End Property
 
-		Public Property LeadTime() As Integer
-			Get
-				Return m_LeadTime
-			End Get
-			Set(ByVal value As Integer)
-				m_LeadTime = value
-			End Set
-		End Property
+        Public Property LeadTime() As Integer
+            Get
+                Return m_LeadTime
+            End Get
+            Set(ByVal value As Integer)
+                m_LeadTime = value
+            End Set
+        End Property
 
-		Public Property Vendor() As String
-			Get
-				Return m_Vendor
-			End Get
-			Set(ByVal value As String)
-				m_Vendor = value
-			End Set
-		End Property
+        Public Property Vendor() As String
+            Get
+                Return m_Vendor
+            End Get
+            Set(ByVal value As String)
+                m_Vendor = value
+            End Set
+        End Property
 
-		Public Property MachineTime() As Decimal
-			Get
-				Return m_machineTime
-			End Get
-			Set(ByVal value As Decimal)
-				m_machineTime = value
-			End Set
-		End Property
+        Public Property MachineTime() As Decimal
+            Get
+                Return m_machineTime
+            End Get
+            Set(ByVal value As Decimal)
+                m_machineTime = value
+            End Set
+        End Property
 
-		Public Property MinimumQty() As Decimal
-			Get
-				Return m_MinimumQty
-			End Get
-			Set(ByVal value As Decimal)
-				m_MinimumQty = value
-			End Set
-		End Property
+        Public Property MinimumQty() As Decimal
+            Get
+                Return m_MinimumQty
+            End Get
+            Set(ByVal value As Decimal)
+                m_MinimumQty = value
+            End Set
+        End Property
 
-		Public Property MinimumDollar() As Decimal
-			Get
-				Return m_MinimumDollar
-			End Get
-			Set(ByVal value As Decimal)
-				m_MinimumDollar = value
-			End Set
-		End Property
-
-	End Class
+        Public Property MinimumDollar() As Decimal
+            Get
+                Return m_MinimumDollar
+            End Get
+            Set(ByVal value As Decimal)
+                m_MinimumDollar = value
+            End Set
+        End Property
+        Public Property UnitOfMeasure() As String 'dd_Added 12/16/11
+            Get
+                Return m_UnitOfMeasure
+            End Get
+            Set(ByVal value As String)
+                m_UnitOfMeasure = value
+            End Set
+        End Property
+    End Class
 
 End Namespace
 
