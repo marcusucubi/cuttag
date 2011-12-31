@@ -37,23 +37,35 @@ Namespace Model.BOM
         <DescriptionAttribute("Length / 3.048")> _
         Public ReadOnly Property LengthFeet As Decimal
             Get
-                Return Math.Round(_QuoteDetail.Qty / 3.048, 4)
+                Return Math.Round(Me._LengthFeet, 4)
             End Get
+        End Property
+        'dd_Changed 12/30/11 added new property and remmed old
+        <DescriptionAttribute("Pounds per 1000 feet"), _
+        CategoryAttribute("Copper Weight")> _
+        Public Property PoundsPer1000Feet As Decimal
+            Get
+                Return Me._CopperWeightPer1000Ft
+            End Get
+            Set(ByVal value As Decimal)
+                Me._CopperWeightPer1000Ft = value
+                SendEvents()
+            End Set
         End Property
 
-        <DescriptionAttribute("Pounds per foot"), _
-        CategoryAttribute("Weight")> _
-        Public ReadOnly Property WeightPerFoot As Decimal
-            Get
-                Return Common.Weights.FindWeight(Me.Gage)
-            End Get
-        End Property
+        '<DescriptionAttribute("Pounds per foot"), _
+        'CategoryAttribute("Weight")> _
+        'Public ReadOnly Property WeightPerFoot As Decimal
+        '    Get
+        '        Return Common.Weights.FindWeight(Me.Gage)
+        '    End Get
+        'End Property
 
         <DescriptionAttribute("WeightPerFoot * Length" + Chr(10) + "(Pounds)"), _
-        CategoryAttribute("Weight")> _
+        CategoryAttribute("Copper Weight")> _
         Public ReadOnly Property TotalWeight As Decimal
             Get
-                Return Math.Round(WeightPerFoot * Me.LengthFeet, 4)
+                Return Math.Round(Me._TotalWeight, 4)
             End Get
         End Property
 
@@ -96,6 +108,8 @@ Namespace Model.BOM
         End Property
 
         Private Overloads Sub SendEvents()
+            Me._LengthFeet = _QuoteDetail.Qty / 3.048
+            Me._TotalWeight = PoundsPer1000Feet / 1000 * Me._LengthFeet
             MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
         End Sub

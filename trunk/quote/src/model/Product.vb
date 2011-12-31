@@ -8,7 +8,8 @@ Namespace Model
 	Public Class Product
 
 		Private m_code As String
-		Private m_gage As String
+        Private m_gage As String
+        Private m_CopperWeightPer1000Ft As Decimal 'dd_Added 12/30/11
 		Private m_unitCost As Decimal
 		Private m_machineTime As Decimal
         Private m_isWire As Boolean
@@ -50,13 +51,17 @@ Namespace Model
                 ByVal IsWire As Boolean, _
                 ByVal WireRow As QuoteDataBase.WireSourceRow, _
                 ByVal PartRow As QuoteDataBase.WireComponentSourceRow, _
-                Optional ByVal UnitOfMeasure As String = ""
+                Optional ByVal UnitOfMeasure As String = "", _
+                Optional ByVal CopperWeightPer1000Ft As Decimal = 0
                 ) 'dd_Added UOM 12/16/11
             Me.m_code = Code
             Me.m_unitCost = UnitCost
             Me.m_gage = Gage
             Me.m_isWire = IsWire
             Me.m_UnitOfMeasure = UnitOfMeasure 'dd_Added 12/16/11
+            If WireRow IsNot Nothing Then
+                Me.m_CopperWeightPer1000Ft = CopperWeightPer1000Ft
+            End If
             If PartRow IsNot Nothing Then
                 Me.m_Description = PartRow.Description
                 If Not PartRow.IsLeadTimeNull Then
@@ -83,6 +88,15 @@ Namespace Model
             End Get
             Set(ByVal Value As String)
                 m_code = Value
+            End Set
+        End Property
+        'dd_Added Set 12/30/11
+        Property CopperWeightPer1000Ft As String
+            Get
+                Return m_CopperWeightPer1000Ft
+            End Get
+            Set(ByVal Value As String)
+                m_CopperWeightPer1000Ft = Value
             End Set
         End Property
         'dd_Added end
