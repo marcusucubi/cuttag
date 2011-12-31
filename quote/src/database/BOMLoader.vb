@@ -89,8 +89,7 @@ Public Class BOMLoader
               "", _
               0, _
               0)
-
-			Dim detail As Common.Detail = q.NewDetail(product)
+            Dim detail As Common.Detail = q.NewDetail(product)
 			detail.Qty = row.Qty
 			'dd_Added 10/3/11, 10/7/11
 			With detail
@@ -99,9 +98,8 @@ Public Class BOMLoader
 				.SequenceNumber = row.SequenceNumber
 			End With
 			'dd_Added end
-
-			CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
-		Next
+            CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
+        Next
 	End Sub
 
 	Public Class TempObj

@@ -9419,7 +9419,7 @@ Namespace QuoteDataBaseTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct"& _ 
@@ -9444,6 +9444,13 @@ Namespace QuoteDataBaseTableAdapters
                 ""
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "dbo.HQ_GetWirePoundsPer1000Ft"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.StoredProcedure
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RETURN_VALUE", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.ReturnValue, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ErrorMessage", Global.System.Data.SqlDbType.NVarChar, 100, Global.System.Data.ParameterDirection.InputOutput, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10077,6 +10084,48 @@ Namespace QuoteDataBaseTableAdapters
                     ByVal Original_OD As Global.System.Nullable(Of Decimal),  _
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal)) As Integer
             Return Me.Update(Original_WireSourceID, OrganizationID, PartNumber, Description, _New, ConductorCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, Color, UOM, MM2_Conductor, OD, QuotePrice, Original_WireSourceID, Original_OrganizationID, Original_PartNumber, Original_Description, Original_New, Original_ConductorCount, Original_IsTwisted, Original_ColorID, Original_WireTypeID, Original_GageID, Original_CopperWtPerFt, Original_CopperFtPerLb, Original_Color, Original_UOM, Original_MM2_Conductor, Original_OD, Original_QuotePrice)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function GetWirePoundsPer1000Ft(ByVal WireSourceID As Global.System.Nullable(Of Global.System.Guid), ByRef ErrorMessage As String) As Object
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
+            If (WireSourceID.HasValue = true) Then
+                command.Parameters(1).Value = CType(WireSourceID.Value,System.Guid)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            If (ErrorMessage Is Nothing) Then
+                command.Parameters(2).Value = Global.System.DBNull.Value
+            Else
+                command.Parameters(2).Value = CType(ErrorMessage,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((command.Parameters(2).Value Is Nothing)  _
+                        OrElse (command.Parameters(2).Value.GetType Is GetType(Global.System.DBNull))) Then
+                ErrorMessage = Nothing
+            Else
+                ErrorMessage = CType(command.Parameters(2).Value,String)
+            End If
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
         End Function
     End Class
     

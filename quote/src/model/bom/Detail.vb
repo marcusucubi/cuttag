@@ -14,7 +14,10 @@ Namespace Model.BOM
 			Me._Product = product
             Me.IsWire = product.IsWire
             Me._WireProperties = New WireProperties(Me)
-			Me._ComponentProperties = New ComponentProperties(Me)
+            'dd_Added 12/18/11
+
+            'dd_Added End
+            Me._ComponentProperties = New ComponentProperties(Me)
 			Me._Quantity = 1
             Me.SequenceNumber = Me.Header.NextSequenceNumber
             Me._UOM = product.UnitOfMeasure 'dd_Added 12/16/11
@@ -36,7 +39,8 @@ Namespace Model.BOM
         Public Sub UpdateComponentProperties(ByVal pProduct As Product)
             Me._Product = pProduct
             Me._ComponentProperties = New ComponentProperties(Me)
-            Me._UOM = pProduct.UnitOfMeasure 'dd_Added 12/16/11 
+            Me._UOM = pProduct.UnitOfMeasure 'dd_Added 12/16/11
+            Me._WireProperties.PoundsPer1000Feet = pProduct.CopperWeightPer1000Ft 'dd_Added Wt 12/30/11
             ' SetupUOM() 'dd_remmed 12/16/11
         End Sub
 
