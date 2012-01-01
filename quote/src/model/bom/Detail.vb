@@ -14,9 +14,6 @@ Namespace Model.BOM
 			Me._Product = product
             Me.IsWire = product.IsWire
             Me._WireProperties = New WireProperties(Me)
-            'dd_Added 12/18/11
-
-            'dd_Added End
             Me._ComponentProperties = New ComponentProperties(Me)
 			Me._Quantity = 1
             Me.SequenceNumber = Me.Header.NextSequenceNumber
