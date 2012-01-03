@@ -9419,712 +9419,755 @@ Namespace QuoteDataBaseTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(3) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct"& _ 
-                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C"& _ 
-                "olor, UOM,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          MM2_Conductor, OD, QuotePrice"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM       "& _ 
-                "     WireSource"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartNumber"
+            Me._commandCollection(0).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct" & _
+                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C" & _
+                "olor, UOM," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                          MM2_Conductor, OD, QuotePrice" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM       " & _
+                "     WireSource" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY PartNumber"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct"& _ 
-                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C"& _ 
-                "olor, UOM,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          MM2_Conductor, OD, QuotePrice"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM       "& _ 
-                "     WireSource"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (PartNumber = @PartNumber)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartNumber"
+            Me._commandCollection(1).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct" & _
+                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C" & _
+                "olor, UOM," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                          MM2_Conductor, OD, QuotePrice" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM       " & _
+                "     WireSource" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (UPPER(REPLACE(PartNumber, '-', '')) = @PartNumber" & _
+                ")"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, 0, 0, "", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct"& _ 
-                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C"& _ 
-                "olor, UOM,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          MM2_Conductor, OD, QuotePrice"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM       "& _ 
-                "     WireSource"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (PartNumber LIKE @PartNumber)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PartNumber"& _ 
-                ""
+            Me._commandCollection(2).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct" & _
+                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C" & _
+                "olor, UOM," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                          MM2_Conductor, OD, QuotePrice" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM       " & _
+                "     WireSource" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (PartNumber = @PartNumber)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY PartNumber"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "dbo.HQ_GetWirePoundsPer1000Ft"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.StoredProcedure
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RETURN_VALUE", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.ReturnValue, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ErrorMessage", Global.System.Data.SqlDbType.NVarChar, 100, Global.System.Data.ParameterDirection.InputOutput, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).CommandText = "SELECT        WireSourceID, OrganizationID, PartNumber, Description, New, Conduct" & _
+                "orCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, C" & _
+                "olor, UOM," & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                          MM2_Conductor, OD, QuotePrice" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM       " & _
+                "     WireSource" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (PartNumber LIKE @PartNumber)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY PartNumber" & _
+                ""
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PartNumber", Global.System.Data.SqlDbType.NVarChar, 20, Global.System.Data.ParameterDirection.Input, 0, 0, "PartNumber", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "dbo.HQ_GetWirePoundsPer1000Ft"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.StoredProcedure
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RETURN_VALUE", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.ReturnValue, 10, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@WireSourceID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ErrorMessage", Global.System.Data.SqlDbType.NVarChar, 100, Global.System.Data.ParameterDirection.InputOutput, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As QuoteDataBase.WireSourceDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
+        Public Overridable Overloads Function Fill(ByVal dataTable As QuoteDataBase.WireSourceDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As QuoteDataBase.WireSourceDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
+        Public Overridable Overloads Function GetData() As QuoteDataBase.WireSourceDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As QuoteDataBase.WireSourceDataTable = New QuoteDataBase.WireSourceDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByPartNumber(ByVal dataTable As QuoteDataBase.WireSourceDataTable, ByVal PartNumber As String) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillByCleanedPartNumber(ByVal dataTable As QuoteDataBase.WireSourceDataTable, ByVal PartNumber As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PartNumber")
             Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber,String)
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber, String)
             End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByPartNumber(ByVal PartNumber As String) As QuoteDataBase.WireSourceDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataByCleanedPartNumber(ByVal PartNumber As String) As QuoteDataBase.WireSourceDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PartNumber")
             Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber,String)
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber, String)
             End If
             Dim dataTable As QuoteDataBase.WireSourceDataTable = New QuoteDataBase.WireSourceDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillLikePartNumber(ByVal dataTable As QuoteDataBase.WireSourceDataTable, ByVal PartNumber As String) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillByPartNumber(ByVal dataTable As QuoteDataBase.WireSourceDataTable, ByVal PartNumber As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PartNumber")
             Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber,String)
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber, String)
             End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataLikePartNumber(ByVal PartNumber As String) As QuoteDataBase.WireSourceDataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataByPartNumber(ByVal PartNumber As String) As QuoteDataBase.WireSourceDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             If (PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PartNumber")
             Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber,String)
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber, String)
             End If
             Dim dataTable As QuoteDataBase.WireSourceDataTable = New QuoteDataBase.WireSourceDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As QuoteDataBase.WireSourceDataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)> _
+        Public Overridable Overloads Function FillLikePartNumber(ByVal dataTable As QuoteDataBase.WireSourceDataTable, ByVal PartNumber As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            If (PartNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PartNumber")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber, String)
+            End If
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)> _
+        Public Overridable Overloads Function GetDataLikePartNumber(ByVal PartNumber As String) As QuoteDataBase.WireSourceDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            If (PartNumber Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PartNumber")
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(PartNumber, String)
+            End If
+            Dim dataTable As QuoteDataBase.WireSourceDataTable = New QuoteDataBase.WireSourceDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataTable As QuoteDataBase.WireSourceDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As QuoteDataBase) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataSet As QuoteDataBase) As Integer
             Return Me.Adapter.Update(dataSet, "WireSource")
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_WireSourceID As System.Guid,  _
-                    ByVal Original_OrganizationID As Integer,  _
-                    ByVal Original_PartNumber As String,  _
-                    ByVal Original_Description As String,  _
-                    ByVal Original_New As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_IsTwisted As Boolean,  _
-                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double),  _
-                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double),  _
-                    ByVal Original_Color As String,  _
-                    ByVal Original_UOM As String,  _
-                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_OD As Global.System.Nullable(Of Decimal),  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)> _
+        Public Overridable Overloads Function Delete( _
+                    ByVal Original_WireSourceID As System.Guid, _
+                    ByVal Original_OrganizationID As Integer, _
+                    ByVal Original_PartNumber As String, _
+                    ByVal Original_Description As String, _
+                    ByVal Original_New As Global.System.Nullable(Of Boolean), _
+                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer), _
+                    ByVal Original_IsTwisted As Boolean, _
+                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double), _
+                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double), _
+                    ByVal Original_Color As String, _
+                    ByVal Original_UOM As String, _
+                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal), _
+                    ByVal Original_OD As Global.System.Nullable(Of Decimal), _
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_WireSourceID,System.Guid)
-            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_OrganizationID,Integer)
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_WireSourceID, System.Guid)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_OrganizationID, Integer)
             If (Original_PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_PartNumber")
             Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_PartNumber,String)
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_PartNumber, String)
             End If
             If (Original_Description Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Description,String)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_Description, String)
             End If
-            If (Original_New.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_New.Value,Boolean)
+            If (Original_New.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_New.Value, Boolean)
             Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (Original_ConductorCount.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_ConductorCount.Value,Integer)
+            If (Original_ConductorCount.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_ConductorCount.Value, Integer)
             Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_IsTwisted,Boolean)
-            If (Original_ColorID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_ColorID.Value,System.Guid)
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_IsTwisted, Boolean)
+            If (Original_ColorID.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_ColorID.Value, System.Guid)
             Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
-            If (Original_WireTypeID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_WireTypeID.Value,System.Guid)
+            If (Original_WireTypeID.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_WireTypeID.Value, System.Guid)
             Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
             End If
-            If (Original_GageID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_GageID.Value,System.Guid)
+            If (Original_GageID.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_GageID.Value, System.Guid)
             Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (Original_CopperWtPerFt.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_CopperWtPerFt.Value,Double)
+            If (Original_CopperWtPerFt.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_CopperWtPerFt.Value, Double)
             Else
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
             End If
-            If (Original_CopperFtPerLb.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_CopperFtPerLb.Value,Double)
+            If (Original_CopperFtPerLb.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_CopperFtPerLb.Value, Double)
             Else
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(19).Value = Global.System.DBNull.Value
             End If
             If (Original_Color Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_Color,String)
+                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_Color, String)
             End If
             If (Original_UOM Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(23).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_UOM,String)
+                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_UOM, String)
             End If
-            If (Original_MM2_Conductor.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_MM2_Conductor.Value,Decimal)
+            If (Original_MM2_Conductor.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_MM2_Conductor.Value, Decimal)
             Else
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
-            If (Original_OD.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_OD.Value,Decimal)
+            If (Original_OD.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(Original_OD.Value, Decimal)
             Else
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(27).Value = Global.System.DBNull.Value
             End If
-            If (Original_QuotePrice.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(Original_QuotePrice.Value,Decimal)
+            If (Original_QuotePrice.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(Original_QuotePrice.Value, Decimal)
             Else
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(29).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
+                Me.Adapter.DeleteCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
+                    Me.Adapter.DeleteCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal WireSourceID As System.Guid,  _
-                    ByVal OrganizationID As Integer,  _
-                    ByVal PartNumber As String,  _
-                    ByVal Description As String,  _
-                    ByVal _New As Global.System.Nullable(Of Boolean),  _
-                    ByVal ConductorCount As Global.System.Nullable(Of Integer),  _
-                    ByVal IsTwisted As Boolean,  _
-                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double),  _
-                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double),  _
-                    ByVal Color As String,  _
-                    ByVal UOM As String,  _
-                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal),  _
-                    ByVal OD As Global.System.Nullable(Of Decimal),  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)> _
+        Public Overridable Overloads Function Insert( _
+                    ByVal WireSourceID As System.Guid, _
+                    ByVal OrganizationID As Integer, _
+                    ByVal PartNumber As String, _
+                    ByVal Description As String, _
+                    ByVal _New As Global.System.Nullable(Of Boolean), _
+                    ByVal ConductorCount As Global.System.Nullable(Of Integer), _
+                    ByVal IsTwisted As Boolean, _
+                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double), _
+                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double), _
+                    ByVal Color As String, _
+                    ByVal UOM As String, _
+                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal), _
+                    ByVal OD As Global.System.Nullable(Of Decimal), _
                     ByVal QuotePrice As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(WireSourceID,System.Guid)
-            Me.Adapter.InsertCommand.Parameters(1).Value = CType(OrganizationID,Integer)
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(WireSourceID, System.Guid)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(OrganizationID, Integer)
             If (PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PartNumber")
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(PartNumber,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(PartNumber, String)
             End If
             If (Description Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Description,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(Description, String)
             End If
-            If (_New.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(_New.Value,Boolean)
+            If (_New.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(_New.Value, Boolean)
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            If (ConductorCount.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ConductorCount.Value,Integer)
+            If (ConductorCount.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(ConductorCount.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(IsTwisted,Boolean)
-            If (ColorID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(ColorID.Value,System.Guid)
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(IsTwisted, Boolean)
+            If (ColorID.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(ColorID.Value, System.Guid)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (WireTypeID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(WireTypeID.Value,System.Guid)
+            If (WireTypeID.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(WireTypeID.Value, System.Guid)
             Else
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            If (GageID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(GageID.Value,System.Guid)
+            If (GageID.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(GageID.Value, System.Guid)
             Else
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
-            If (CopperWtPerFt.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(CopperWtPerFt.Value,Double)
+            If (CopperWtPerFt.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(CopperWtPerFt.Value, Double)
             Else
                 Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (CopperFtPerLb.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(CopperFtPerLb.Value,Double)
+            If (CopperFtPerLb.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(CopperFtPerLb.Value, Double)
             Else
                 Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (Color Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Color,String)
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Color, String)
             End If
             If (UOM Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(UOM,String)
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(UOM, String)
             End If
-            If (MM2_Conductor.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(MM2_Conductor.Value,Decimal)
+            If (MM2_Conductor.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(MM2_Conductor.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
-            If (OD.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(OD.Value,Decimal)
+            If (OD.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(15).Value = CType(OD.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (QuotePrice.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(QuotePrice.Value,Decimal)
+            If (QuotePrice.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(QuotePrice.Value, Decimal)
             Else
                 Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
+                Me.Adapter.InsertCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
+                    Me.Adapter.InsertCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal WireSourceID As System.Guid,  _
-                    ByVal OrganizationID As Integer,  _
-                    ByVal PartNumber As String,  _
-                    ByVal Description As String,  _
-                    ByVal _New As Global.System.Nullable(Of Boolean),  _
-                    ByVal ConductorCount As Global.System.Nullable(Of Integer),  _
-                    ByVal IsTwisted As Boolean,  _
-                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double),  _
-                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double),  _
-                    ByVal Color As String,  _
-                    ByVal UOM As String,  _
-                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal),  _
-                    ByVal OD As Global.System.Nullable(Of Decimal),  _
-                    ByVal QuotePrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_WireSourceID As System.Guid,  _
-                    ByVal Original_OrganizationID As Integer,  _
-                    ByVal Original_PartNumber As String,  _
-                    ByVal Original_Description As String,  _
-                    ByVal Original_New As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_IsTwisted As Boolean,  _
-                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double),  _
-                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double),  _
-                    ByVal Original_Color As String,  _
-                    ByVal Original_UOM As String,  _
-                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_OD As Global.System.Nullable(Of Decimal),  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal WireSourceID As System.Guid, _
+                    ByVal OrganizationID As Integer, _
+                    ByVal PartNumber As String, _
+                    ByVal Description As String, _
+                    ByVal _New As Global.System.Nullable(Of Boolean), _
+                    ByVal ConductorCount As Global.System.Nullable(Of Integer), _
+                    ByVal IsTwisted As Boolean, _
+                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double), _
+                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double), _
+                    ByVal Color As String, _
+                    ByVal UOM As String, _
+                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal), _
+                    ByVal OD As Global.System.Nullable(Of Decimal), _
+                    ByVal QuotePrice As Global.System.Nullable(Of Decimal), _
+                    ByVal Original_WireSourceID As System.Guid, _
+                    ByVal Original_OrganizationID As Integer, _
+                    ByVal Original_PartNumber As String, _
+                    ByVal Original_Description As String, _
+                    ByVal Original_New As Global.System.Nullable(Of Boolean), _
+                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer), _
+                    ByVal Original_IsTwisted As Boolean, _
+                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double), _
+                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double), _
+                    ByVal Original_Color As String, _
+                    ByVal Original_UOM As String, _
+                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal), _
+                    ByVal Original_OD As Global.System.Nullable(Of Decimal), _
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(WireSourceID,System.Guid)
-            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(OrganizationID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(WireSourceID, System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(OrganizationID, Integer)
             If (PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PartNumber")
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(PartNumber,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(PartNumber, String)
             End If
             If (Description Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Description,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Description, String)
             End If
-            If (_New.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(_New.Value,Boolean)
+            If (_New.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(_New.Value, Boolean)
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
-            If (ConductorCount.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ConductorCount.Value,Integer)
+            If (ConductorCount.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(ConductorCount.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(IsTwisted,Boolean)
-            If (ColorID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(ColorID.Value,System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(IsTwisted, Boolean)
+            If (ColorID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(ColorID.Value, System.Guid)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
-            If (WireTypeID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(WireTypeID.Value,System.Guid)
+            If (WireTypeID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(WireTypeID.Value, System.Guid)
             Else
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
-            If (GageID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(GageID.Value,System.Guid)
+            If (GageID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(GageID.Value, System.Guid)
             Else
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             End If
-            If (CopperWtPerFt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(CopperWtPerFt.Value,Double)
+            If (CopperWtPerFt.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(CopperWtPerFt.Value, Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
             End If
-            If (CopperFtPerLb.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(CopperFtPerLb.Value,Double)
+            If (CopperFtPerLb.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(CopperFtPerLb.Value, Double)
             Else
                 Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
             End If
             If (Color Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Color,String)
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Color, String)
             End If
             If (UOM Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(UOM,String)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(UOM, String)
             End If
-            If (MM2_Conductor.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(MM2_Conductor.Value,Decimal)
+            If (MM2_Conductor.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(MM2_Conductor.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
-            If (OD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(OD.Value,Decimal)
+            If (OD.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(OD.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
             End If
-            If (QuotePrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(QuotePrice.Value,Decimal)
+            If (QuotePrice.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(QuotePrice.Value, Decimal)
             Else
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_WireSourceID,System.Guid)
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_OrganizationID,Integer)
+            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_WireSourceID, System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_OrganizationID, Integer)
             If (Original_PartNumber Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_PartNumber")
             Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PartNumber,String)
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PartNumber, String)
             End If
             If (Original_Description Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Description,String)
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_Description, String)
             End If
-            If (Original_New.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_New.Value,Boolean)
+            If (Original_New.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_New.Value, Boolean)
             Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
             End If
-            If (Original_ConductorCount.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_ConductorCount.Value,Integer)
+            If (Original_ConductorCount.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(Original_ConductorCount.Value, Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(25).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_IsTwisted,Boolean)
-            If (Original_ColorID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_ColorID.Value,System.Guid)
+            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_IsTwisted, Boolean)
+            If (Original_ColorID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_ColorID.Value, System.Guid)
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             End If
-            If (Original_WireTypeID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_WireTypeID.Value,System.Guid)
+            If (Original_WireTypeID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_WireTypeID.Value, System.Guid)
             Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
             End If
-            If (Original_GageID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_GageID.Value,System.Guid)
+            If (Original_GageID.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_GageID.Value, System.Guid)
             Else
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
             End If
-            If (Original_CopperWtPerFt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_CopperWtPerFt.Value,Double)
+            If (Original_CopperWtPerFt.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_CopperWtPerFt.Value, Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(34).Value = Global.System.DBNull.Value
             End If
-            If (Original_CopperFtPerLb.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_CopperFtPerLb.Value,Double)
+            If (Original_CopperFtPerLb.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(Original_CopperFtPerLb.Value, Double)
             Else
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(36).Value = Global.System.DBNull.Value
             End If
             If (Original_Color Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(38).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_Color,String)
+                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(Original_Color, String)
             End If
             If (Original_UOM Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(40).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_UOM,String)
+                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(Original_UOM, String)
             End If
-            If (Original_MM2_Conductor.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_MM2_Conductor.Value,Decimal)
+            If (Original_MM2_Conductor.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(Original_MM2_Conductor.Value, Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(42).Value = Global.System.DBNull.Value
             End If
-            If (Original_OD.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_OD.Value,Decimal)
+            If (Original_OD.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(Original_OD.Value, Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(44).Value = Global.System.DBNull.Value
             End If
-            If (Original_QuotePrice.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_QuotePrice.Value,Decimal)
+            If (Original_QuotePrice.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(Original_QuotePrice.Value, Decimal)
             Else
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(46).Value = Global.System.DBNull.Value
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
+                Me.Adapter.UpdateCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
+                    Me.Adapter.UpdateCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal OrganizationID As Integer,  _
-                    ByVal PartNumber As String,  _
-                    ByVal Description As String,  _
-                    ByVal _New As Global.System.Nullable(Of Boolean),  _
-                    ByVal ConductorCount As Global.System.Nullable(Of Integer),  _
-                    ByVal IsTwisted As Boolean,  _
-                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double),  _
-                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double),  _
-                    ByVal Color As String,  _
-                    ByVal UOM As String,  _
-                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal),  _
-                    ByVal OD As Global.System.Nullable(Of Decimal),  _
-                    ByVal QuotePrice As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_WireSourceID As System.Guid,  _
-                    ByVal Original_OrganizationID As Integer,  _
-                    ByVal Original_PartNumber As String,  _
-                    ByVal Original_Description As String,  _
-                    ByVal Original_New As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_IsTwisted As Boolean,  _
-                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid),  _
-                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double),  _
-                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double),  _
-                    ByVal Original_Color As String,  _
-                    ByVal Original_UOM As String,  _
-                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_OD As Global.System.Nullable(Of Decimal),  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)> _
+        Public Overridable Overloads Function Update( _
+                    ByVal OrganizationID As Integer, _
+                    ByVal PartNumber As String, _
+                    ByVal Description As String, _
+                    ByVal _New As Global.System.Nullable(Of Boolean), _
+                    ByVal ConductorCount As Global.System.Nullable(Of Integer), _
+                    ByVal IsTwisted As Boolean, _
+                    ByVal ColorID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal WireTypeID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal GageID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal CopperWtPerFt As Global.System.Nullable(Of Double), _
+                    ByVal CopperFtPerLb As Global.System.Nullable(Of Double), _
+                    ByVal Color As String, _
+                    ByVal UOM As String, _
+                    ByVal MM2_Conductor As Global.System.Nullable(Of Decimal), _
+                    ByVal OD As Global.System.Nullable(Of Decimal), _
+                    ByVal QuotePrice As Global.System.Nullable(Of Decimal), _
+                    ByVal Original_WireSourceID As System.Guid, _
+                    ByVal Original_OrganizationID As Integer, _
+                    ByVal Original_PartNumber As String, _
+                    ByVal Original_Description As String, _
+                    ByVal Original_New As Global.System.Nullable(Of Boolean), _
+                    ByVal Original_ConductorCount As Global.System.Nullable(Of Integer), _
+                    ByVal Original_IsTwisted As Boolean, _
+                    ByVal Original_ColorID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_WireTypeID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_GageID As Global.System.Nullable(Of Global.System.Guid), _
+                    ByVal Original_CopperWtPerFt As Global.System.Nullable(Of Double), _
+                    ByVal Original_CopperFtPerLb As Global.System.Nullable(Of Double), _
+                    ByVal Original_Color As String, _
+                    ByVal Original_UOM As String, _
+                    ByVal Original_MM2_Conductor As Global.System.Nullable(Of Decimal), _
+                    ByVal Original_OD As Global.System.Nullable(Of Decimal), _
                     ByVal Original_QuotePrice As Global.System.Nullable(Of Decimal)) As Integer
             Return Me.Update(Original_WireSourceID, OrganizationID, PartNumber, Description, _New, ConductorCount, IsTwisted, ColorID, WireTypeID, GageID, CopperWtPerFt, CopperFtPerLb, Color, UOM, MM2_Conductor, OD, QuotePrice, Original_WireSourceID, Original_OrganizationID, Original_PartNumber, Original_Description, Original_New, Original_ConductorCount, Original_IsTwisted, Original_ColorID, Original_WireTypeID, Original_GageID, Original_CopperWtPerFt, Original_CopperFtPerLb, Original_Color, Original_UOM, Original_MM2_Conductor, Original_OD, Original_QuotePrice)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function GetWirePoundsPer1000Ft(ByVal WireSourceID As Global.System.Nullable(Of Global.System.Guid), ByRef ErrorMessage As String) As Object
-            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(3)
-            If (WireSourceID.HasValue = true) Then
-                command.Parameters(1).Value = CType(WireSourceID.Value,System.Guid)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")> _
+        Public Overridable Overloads Function GetWirePoundsPer1000Ft(ByVal WireSourceID As Global.System.Nullable(Of Global.System.Guid), ByRef ErrorMessage As String) As Object
+            Dim command As Global.System.Data.SqlClient.SqlCommand = Me.CommandCollection(4)
+            If (WireSourceID.HasValue = True) Then
+                command.Parameters(1).Value = CType(WireSourceID.Value, System.Guid)
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (ErrorMessage Is Nothing) Then
                 command.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                command.Parameters(2).Value = CType(ErrorMessage,String)
+                command.Parameters(2).Value = CType(ErrorMessage, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Object
-            Try 
+            Try
                 returnValue = command.ExecuteScalar
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
-            If ((command.Parameters(2).Value Is Nothing)  _
+            If ((command.Parameters(2).Value Is Nothing) _
                         OrElse (command.Parameters(2).Value.GetType Is GetType(Global.System.DBNull))) Then
                 ErrorMessage = Nothing
             Else
-                ErrorMessage = CType(command.Parameters(2).Value,String)
+                ErrorMessage = CType(command.Parameters(2).Value, String)
             End If
-            If ((returnValue Is Nothing)  _
+            If ((returnValue Is Nothing) _
                         OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
                 Return Nothing
             Else
-                Return CType(returnValue,Object)
+                Return CType(returnValue, Object)
             End If
         End Function
     End Class
