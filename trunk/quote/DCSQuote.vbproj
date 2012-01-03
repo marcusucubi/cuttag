@@ -468,6 +468,7 @@
     <Content Include="lib\Ionic.Zip.dll" />
     <Content Include="lib\NPOI.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="SQL\HQ_GetNextLow_QuoteID.sql" />
     <Content Include="SQL\upgrade.sql" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\truck.jpg" />
