@@ -204,6 +204,7 @@ Public Class QuoteImport
 
         Dim adaptor As New ImportDataSetTableAdapters.QuoteDetailTableAdapter
         Dim table As ImportDataSet.QuoteDetailDataTable
+        Dim errors As New List(Of String)
 
         table = adaptor.GetDataByQuoteID(quotID)
         For i As Integer = 0 To table.Rows.Count - 1
@@ -232,12 +233,71 @@ Public Class QuoteImport
                 "", _
                 0, _
                 0)
-
             Dim detail As New Model.BOM.Detail(header, product)
+
+            If product.IsWire Then
+                LookupWirePart(detailRow, detail, product, errors)
+            End If
+
             detail.Qty = detailRow.Qty
             header.Details.Add(detail)
         Next
+        PrintLookUpErrors(errors)
 
     End Function
+
+    ''' <summary>
+    ''' Looks up the wire and assigns the weight
+    ''' </summary>
+    Private Sub LookupWirePart(ByVal detailRow As ImportDataSet.QuoteDetailRow, _
+                               ByVal detail As Model.BOM.Detail, _
+                               ByVal product As Model.Product, _
+                               ByVal errors As List(Of String))
+
+        Dim adaptor As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
+        Dim table As QuoteDataBase.WireSourceDataTable
+
+        table = adaptor.GetDataByPartNumber(detailRow.PartNumber)
+        If (table.Count = 0) Then
+            Dim partNum As String = detailRow.PartNumber
+            partNum = partNum.Replace("-", " ").ToUpper()
+            table = adaptor.GetDataByCleanedPartNumber(partNum)
+        End If
+
+        If (table.Count > 0) Then
+
+            Dim row As QuoteDataBase.WireSourceRow = table.Rows(0)
+            detail.SourceID = row.WireSourceID
+
+            Dim lookup As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
+            Dim ignore As String = ""
+            product.CopperWeightPer1000Ft = _
+                lookup.GetWirePoundsPer1000Ft(row.WireSourceID, ignore)
+            detail.UpdateComponentProperties(product)
+            If product.CopperWeightPer1000Ft = 0 Then
+                Console.WriteLine("   Zero weight for " + detailRow.PartNumber)
+            End If
+
+        Else
+            errors.Add(detailRow.PartNumber)
+        End If
+
+    End Sub
+
+    Private Sub PrintLookUpErrors(ByVal errors As List(Of String))
+
+        If errors.Count > 0 Then
+            Dim msg As String = "    Warning: "
+            msg += String.Format("{0}", errors.Count)
+            msg += " parts not found "
+            msg += " "
+            For Each s As String In errors
+                msg += "[" + s + "]  "
+            Next
+            Console.WriteLine(msg)
+        End If
+
+    End Sub
+
 
 End Class
