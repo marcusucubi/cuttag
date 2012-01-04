@@ -197,31 +197,24 @@ Public Class QuoteImport
         note.Note = "Imported from " & row.QuoteNumber
 
     End Sub
-
     Private Function GetDetails(ByVal header As Model.BOM.Header, _
                                ByVal quotID As System.Guid) _
                            As Integer
-
         Dim adaptor As New ImportDataSetTableAdapters.QuoteDetailTableAdapter
         Dim table As ImportDataSet.QuoteDetailDataTable
         Dim errors As New List(Of String)
-
         table = adaptor.GetDataByQuoteID(quotID)
         For i As Integer = 0 To table.Rows.Count - 1
-
             Dim detailRow As ImportDataSet.QuoteDetailRow = table.Rows.Item(i)
-
             Dim time As Decimal = 0
             If Not detailRow.IsTimeNull Then
                 time = detailRow.Time
             End If
-
             'detailRow.IsWire
             Dim gage As String = ""
             If (Not detailRow.IsGageNull) Then
                 gage = detailRow.Gage.Trim()
             End If
-
             Dim product As New Model.Product( _
                 detailRow.PartNumber, _
                 gage, _
@@ -234,20 +227,16 @@ Public Class QuoteImport
                 0, _
                 0)
             Dim detail As New Model.BOM.Detail(header, product)
-
             If product.IsWire Then
                 LookupWirePart(detailRow, detail, product, errors)
                 detail.UOM = "Decimeter"
             Else
                 LookupWireComponentPart(detailRow, detail, product)
             End If
-
-
             detail.Qty = detailRow.Qty
             header.Details.Add(detail)
         Next
         PrintLookUpErrors(errors)
-
     End Function
     ''' <summary>
     ''' Looks up the wire component and assign UOM
@@ -262,8 +251,14 @@ Public Class QuoteImport
             Dim partNum As String = detailRow.PartNumber
             partNum = partNum.Replace("-", "").ToUpper()
             table = adaptor.GetDataByCleanedPartNumber(partNum)
+            If (table.Count = 0) Then
+                Dim adtKeyWord As New QuoteDataBaseTableAdapters.WireComponentSourceKeyWordTableAdapter
+                If adtKeyWord.GetSourceIDByCleanedKeyWord(partNum).HasValue Then
+                    Dim gSourceID As Guid = adtKeyWord.GetSourceIDByCleanedKeyWord(partNum)
+                    table = adaptor.GetDataBySourceID(gSourceID)
+                End If
+            End If
         End If
-
         If (table.Count > 0) Then
             Dim sUOM As String = ""
             Dim row As QuoteDataBase.WireComponentSourceRow = table.Rows(0)
@@ -277,10 +272,8 @@ Public Class QuoteImport
             End If
         Else
             Console.WriteLine("   Component not Found " + detailRow.PartNumber)
-
         End If
     End Sub
-
     ''' <summary>
     ''' Looks up the wire and assigns the weight
     ''' </summary>
@@ -288,7 +281,6 @@ Public Class QuoteImport
                                ByVal detail As Model.BOM.Detail, _
                                ByVal product As Model.Product, _
                                ByVal errors As List(Of String))
-
         Dim adaptor As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
         Dim table As QuoteDataBase.WireSourceDataTable
         table = adaptor.GetDataByPartNumber(detailRow.PartNumber)
@@ -296,10 +288,15 @@ Public Class QuoteImport
             Dim partNum As String = detailRow.PartNumber
             partNum = partNum.Replace("-", "").ToUpper()
             table = adaptor.GetDataByCleanedPartNumber(partNum)
+            If (table.Count = 0) Then
+                Dim adtKeyWord As New QuoteDataBaseTableAdapters.WireSourceKeyWordTableAdapter
+                If adtKeyWord.GetSourceIDByCleanedKeyWord(partNum).HasValue Then
+                    Dim gSourceID As Guid = adtKeyWord.GetSourceIDByCleanedKeyWord(partNum)
+                    table = adaptor.GetDataBySourceID(gSourceID)
+                End If
+            End If
         End If
-
         If (table.Count > 0) Then
-
             Dim row As QuoteDataBase.WireSourceRow = table.Rows(0)
             detail.SourceID = row.WireSourceID
             Dim lookup As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
@@ -313,11 +310,8 @@ Public Class QuoteImport
         Else
             errors.Add(detailRow.PartNumber)
         End If
-
     End Sub
-
     Private Sub PrintLookUpErrors(ByVal errors As List(Of String))
-
         If errors.Count > 0 Then
             Dim msg As String = "    Warning: "
             msg += String.Format("{0}", errors.Count)
@@ -328,8 +322,5 @@ Public Class QuoteImport
             Next
             Console.WriteLine(msg)
         End If
-
     End Sub
-
-
 End Class
