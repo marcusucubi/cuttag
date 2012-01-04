@@ -237,7 +237,11 @@ Public Class QuoteImport
 
             If product.IsWire Then
                 LookupWirePart(detailRow, detail, product, errors)
+                detail.UOM = "Decimeter"
+            Else
+                LookupWireComponentPart(detailRow, detail, product)
             End If
+
 
             detail.Qty = detailRow.Qty
             header.Details.Add(detail)
@@ -245,6 +249,37 @@ Public Class QuoteImport
         PrintLookUpErrors(errors)
 
     End Function
+    ''' <summary>
+    ''' Looks up the wire component and assign UOM
+    ''' </summary>
+    Private Sub LookupWireComponentPart(ByVal detailRow As ImportDataSet.QuoteDetailRow, _
+                               ByVal detail As Model.BOM.Detail, _
+                               ByVal product As Model.Product)
+        Dim adaptor As New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter
+        Dim table As QuoteDataBase.WireComponentSourceDataTable
+        table = adaptor.GetDataByPartNumber(detailRow.PartNumber)
+        If (table.Count = 0) Then
+            Dim partNum As String = detailRow.PartNumber
+            partNum = partNum.Replace("-", "").ToUpper()
+            table = adaptor.GetDataByCleanedPartNumber(partNum)
+        End If
+
+        If (table.Count > 0) Then
+            Dim sUOM As String = ""
+            Dim row As QuoteDataBase.WireComponentSourceRow = table.Rows(0)
+            detail.SourceID = row.WireComponentSourceID
+            Dim lookup As New QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter
+            sUOM = lookup.GetUOM_NameByID(row.UnitOfMeasureID)
+            If IsNothing(sUOM) Then
+                Console.WriteLine("   UOM is Null " + detailRow.PartNumber)
+            Else
+                detail.UOM = Trim(sUOM)
+            End If
+        Else
+            Console.WriteLine("   Component not Found " + detailRow.PartNumber)
+
+        End If
+    End Sub
 
     ''' <summary>
     ''' Looks up the wire and assigns the weight
@@ -256,11 +291,10 @@ Public Class QuoteImport
 
         Dim adaptor As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
         Dim table As QuoteDataBase.WireSourceDataTable
-
         table = adaptor.GetDataByPartNumber(detailRow.PartNumber)
         If (table.Count = 0) Then
             Dim partNum As String = detailRow.PartNumber
-            partNum = partNum.Replace("-", " ").ToUpper()
+            partNum = partNum.Replace("-", "").ToUpper()
             table = adaptor.GetDataByCleanedPartNumber(partNum)
         End If
 
@@ -268,7 +302,6 @@ Public Class QuoteImport
 
             Dim row As QuoteDataBase.WireSourceRow = table.Rows(0)
             detail.SourceID = row.WireSourceID
-
             Dim lookup As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
             Dim ignore As String = ""
             product.CopperWeightPer1000Ft = _
@@ -277,7 +310,6 @@ Public Class QuoteImport
             If product.CopperWeightPer1000Ft = 0 Then
                 Console.WriteLine("   Zero weight for " + detailRow.PartNumber)
             End If
-
         Else
             errors.Add(detailRow.PartNumber)
         End If
