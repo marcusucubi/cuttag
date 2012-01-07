@@ -74,8 +74,6 @@ Namespace Model.BOM
             Set(ByVal value As String)
                 Me.CommonPartNumber = value
                 Me.SendEvents()
-                'dd_Added 11/19/11
-                Me.SendStatusBarEvent()
             End Set
         End Property
         <FilterAttribute(False), CategoryAttribute(SortedSpaces3 + "Quote"), _
@@ -88,8 +86,6 @@ Namespace Model.BOM
             Set(ByVal value As String)
                 Me.CommonRequestForQuoteNumber = value
                 Me.SendEvents()
-                'dd_Added 11/19/11
-                Me.SendStatusBarEvent()
             End Set
         End Property
 #Region "TypeDescriptor Implementation"
