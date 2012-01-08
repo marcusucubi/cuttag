@@ -33,35 +33,35 @@
     Public Sub UpdateStatusBar()
         Dim sNoneText As String = "None"
         If Me._ActiveHeader.Header Is Nothing Then
-            Me.sslblPartNumber.Text = sNoneText
-            Me.sslblRFQ.Text = sNoneText
-            Me.sslblQuoteDate.Text = sNoneText
-            Me.sslblIsNew.Text = sNoneText
+            Me._PartNumber.Text = sNoneText
+            Me._RFQ.Text = sNoneText
+            Me._QuoteDate.Text = sNoneText
+            Me._IsNew.Text = sNoneText
         Else
             Dim part As String = Me._ActiveHeader.Header.PrimaryProperties.CommonPartNumber
             If (part = "") Then
                 part = sNoneText
             End If
-            Me.sslblPartNumber.Text = part
+            Me._PartNumber.Text = part
 
             Dim rfc As String = Me._ActiveHeader.Header.PrimaryProperties.CommonRequestForQuoteNumber
             If (rfc = "") Then
                 rfc = sNoneText
             End If
-            Me.sslblRFQ.Text = rfc
+            Me._RFQ.Text = rfc
 
             Dim creaded As String = Me._ActiveHeader.Header.PrimaryProperties.CommonCreatedDate.ToShortDateString
-            Me.sslblQuoteDate.Text = creaded
+            Me._QuoteDate.Text = creaded
 
             If (TypeOf Me._ActiveHeader.Header Is Model.BOM.Header) Then
                 Dim other As Model.BOM.OtherProperties = _ActiveHeader.Header.OtherProperties
                 If (other.IsNew) Then
-                    Me.sslblIsNew.Text = "New"
+                    Me._IsNew.Text = "New"
                 Else
-                    Me.sslblIsNew.Text = "Old"
+                    Me._IsNew.Text = "Old"
                 End If
             Else
-                Me.sslblIsNew.Text = "Quote"
+                Me._IsNew.Text = "Quote"
             End If
         End If
     End Sub
