@@ -105,7 +105,7 @@ Public Class CommonLoader
                 End If
                 If Not row.IsPropertyStringValueNull Then
                     If p.PropertyType.Name = "Boolean" And p.CanWrite Then
-                        If row.PropertyStringValue = "Y" Then
+                        If row.PropertyStringValue = "True" Then
                             p.SetValue(obj, True, Nothing)
                         Else
                             p.SetValue(obj, False, Nothing)

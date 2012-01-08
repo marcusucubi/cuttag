@@ -28,9 +28,6 @@ Namespace Common
         Public Property CommonInitials As String
 
         <Browsable(False)> _
-        Public Property CommonIsNew As Boolean
-
-        <Browsable(False)> _
         Public ReadOnly Property CommonID As Integer
             Get
                 Return _ID

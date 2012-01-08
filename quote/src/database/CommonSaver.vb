@@ -126,9 +126,9 @@ Public Class CommonSaver
             If TypeOf o Is Boolean Then
                 b = CBool(o)
                 If b Then
-                    adaptor.Insert(id, childId, p.Name, "Y", Nothing, Nothing, cat, desc, Nothing)
+                    adaptor.Insert(id, childId, p.Name, "True", Nothing, Nothing, cat, desc, Nothing)
                 Else
-                    adaptor.Insert(id, childId, p.Name, "N", Nothing, Nothing, cat, desc, Nothing)
+                    adaptor.Insert(id, childId, p.Name, "False", Nothing, Nothing, cat, desc, Nothing)
                 End If
             End If
         Next

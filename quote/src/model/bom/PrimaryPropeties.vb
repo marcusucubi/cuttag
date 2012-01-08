@@ -13,7 +13,6 @@ Namespace Model.BOM
             _QuoteHeader = QuoteHeader
             Me.SetID(id)
             CustomerName = "Caterpillar Inc."
-            IsNew = True
         End Sub
 
         <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
@@ -83,18 +82,6 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 Me.CommonRequestForQuoteNumber = value
-                Me.SendEvents()
-            End Set
-        End Property
-        <FilterAttribute(False), CategoryAttribute(SortedSpaces3 + "Quote"), _
-        DisplayName("Is New"), _
-        DescriptionAttribute("Is New")> _
-        Public Property IsNew As Boolean
-            Get
-                Return Me.CommonIsNew
-            End Get
-            Set(ByVal value As Boolean)
-                Me.CommonIsNew = value
                 Me.SendEvents()
             End Set
         End Property

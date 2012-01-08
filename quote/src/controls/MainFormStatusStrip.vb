@@ -1,7 +1,8 @@
 ﻿Public Class MainFormStatusStrip
 
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _Propeties As Common.PrimaryPropeties
+    Private WithEvents _PrimaryPropeties As Common.PrimaryPropeties
+    Private WithEvents _OtherPropeties As Common.OtherProperties
 
     Public Sub New()
         InitializeComponent()
@@ -9,17 +10,23 @@
     End Sub
 
     Private Sub _ActiveHeader_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
-        If (Me._Propeties IsNot ActiveHeader.ActiveHeader.Header) Then
+        If (Me._PrimaryPropeties IsNot ActiveHeader.ActiveHeader.Header) Then
             If ActiveHeader.ActiveHeader.Header Is Nothing Then
-                Me._Propeties = Nothing
+                Me._PrimaryPropeties = Nothing
+                Me._OtherPropeties = Nothing
             Else
-                Me._Propeties = ActiveHeader.ActiveHeader.Header.PrimaryProperties
+                Me._PrimaryPropeties = ActiveHeader.ActiveHeader.Header.PrimaryProperties
+                Me._OtherPropeties = ActiveHeader.ActiveHeader.Header.OtherProperties
             End If
             UpdateStatusBar()
         End If
     End Sub
 
-    Private Sub _Propeties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Propeties.PropertyChanged
+    Private Sub _OtherPropeties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _OtherPropeties.PropertyChanged
+        Me.UpdateStatusBar()
+    End Sub
+
+    Private Sub _Propeties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _PrimaryPropeties.PropertyChanged
         Me.UpdateStatusBar()
     End Sub
 
@@ -46,11 +53,15 @@
             Dim creaded As String = Me._ActiveHeader.Header.PrimaryProperties.CommonCreatedDate.ToShortDateString
             Me.sslblQuoteDate.Text = creaded
 
-            Dim isNew As Boolean = Me._ActiveHeader.Header.PrimaryProperties.CommonIsNew
-            If (isNew) Then
-                Me.sslblIsNew.Text = "New"
+            If (TypeOf Me._ActiveHeader.Header Is Model.BOM.Header) Then
+                Dim other As Model.BOM.OtherProperties = _ActiveHeader.Header.OtherProperties
+                If (other.IsNew) Then
+                    Me.sslblIsNew.Text = "New"
+                Else
+                    Me.sslblIsNew.Text = "Old"
+                End If
             Else
-                Me.sslblIsNew.Text = "Old"
+                Me.sslblIsNew.Text = "Quote"
             End If
         End If
     End Sub
