@@ -1335,7 +1335,7 @@ WHERE        (UPPER(REPLACE(KeyWord, '-', '')) = @KeyWord)</CommandText>
               </xs:element>
               <xs:element name="SourceID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnSourceID" msprop:Generator_ColumnPropNameInRow="SourceID" msprop:Generator_ColumnPropNameInTable="SourceIDColumn" msprop:Generator_UserColumnName="SourceID" type="xs:string" minOccurs="0" />
               <xs:element name="IsWire" msprop:Generator_ColumnVarNameInTable="columnIsWire" msprop:Generator_ColumnPropNameInRow="IsWire" msprop:Generator_ColumnPropNameInTable="IsWireColumn" msprop:Generator_UserColumnName="IsWire" type="xs:boolean" />
-              <xs:element name="UOM" msprop:Generator_ColumnVarNameInTable="columnUOM" msprop:Generator_ColumnPropNameInRow="UOM" msprop:Generator_ColumnPropNameInTable="UOMColumn" msprop:Generator_UserColumnName="UOM" minOccurs="0">
+              <xs:element name="UOM" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="UOM" msprop:Generator_ColumnVarNameInTable="columnUOM" msprop:Generator_ColumnPropNameInTable="UOMColumn" msprop:Generator_UserColumnName="UOM" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
