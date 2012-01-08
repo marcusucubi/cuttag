@@ -103,6 +103,15 @@ Public Class CommonLoader
                         p.SetValue(obj, row.PropertyStringValue, Nothing)
                     End If
                 End If
+                If Not row.IsPropertyStringValueNull Then
+                    If p.PropertyType.Name = "Boolean" And p.CanWrite Then
+                        If row.PropertyStringValue = "Y" Then
+                            p.SetValue(obj, True, Nothing)
+                        Else
+                            p.SetValue(obj, False, Nothing)
+                        End If
+                    End If
+                End If
                 If Not row.IsPropertyIntegerValueNull Then
                     If p.PropertyType.Name = "Int32" And p.CanWrite Then
                         p.SetValue(obj, row.PropertyIntegerValue, Nothing)
