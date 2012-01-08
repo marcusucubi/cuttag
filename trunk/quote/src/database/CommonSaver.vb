@@ -97,6 +97,7 @@ Public Class CommonSaver
             Dim s As String = Nothing
             Dim i As Integer = Nothing
             Dim d As Decimal = Nothing
+            Dim b As Boolean = Nothing
             Dim o As Object = p.GetValue(obj, Nothing)
 
             If TypeOf o Is Integer Then
@@ -120,6 +121,14 @@ Public Class CommonSaver
                 Dim dt As DateTime = CDate(o)
                 If dt.Year > 1 Then
                     adaptor.Insert(id, childId, p.Name, Nothing, Nothing, Nothing, cat, desc, dt)
+                End If
+            End If
+            If TypeOf o Is Boolean Then
+                b = CBool(o)
+                If b Then
+                    adaptor.Insert(id, childId, p.Name, "Y", Nothing, Nothing, cat, desc, Nothing)
+                Else
+                    adaptor.Insert(id, childId, p.Name, "N", Nothing, Nothing, cat, desc, Nothing)
                 End If
             End If
         Next

@@ -26,12 +26,13 @@ Partial Class MainFormStatusStrip
         Me.sslblPartNumber = New System.Windows.Forms.ToolStripStatusLabel()
         Me.sslblRFQ = New System.Windows.Forms.ToolStripStatusLabel()
         Me.sslblQuoteDate = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.sslblIsNew = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.sslblPartNumber, Me.sslblRFQ, Me.sslblQuoteDate})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.sslblPartNumber, Me.sslblRFQ, Me.sslblQuoteDate, Me.sslblIsNew})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 54)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.ShowItemToolTips = True
@@ -62,6 +63,13 @@ Partial Class MainFormStatusStrip
         Me.sslblQuoteDate.Text = "None"
         Me.sslblQuoteDate.ToolTipText = "Active Quote Date"
         '
+        'sslblIsNew
+        '
+        Me.sslblIsNew.Name = "sslblIsNew"
+        Me.sslblIsNew.Size = New System.Drawing.Size(36, 19)
+        Me.sslblIsNew.Text = "None"
+        Me.sslblIsNew.ToolTipText = "Is New"
+        '
         'MainFormStatusStrip
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -79,5 +87,6 @@ Partial Class MainFormStatusStrip
     Friend WithEvents sslblPartNumber As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents sslblRFQ As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents sslblQuoteDate As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents sslblIsNew As System.Windows.Forms.ToolStripStatusLabel
 
 End Class

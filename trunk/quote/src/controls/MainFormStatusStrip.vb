@@ -29,6 +29,7 @@
             Me.sslblPartNumber.Text = sNoneText
             Me.sslblRFQ.Text = sNoneText
             Me.sslblQuoteDate.Text = sNoneText
+            Me.sslblIsNew.Text = sNoneText
         Else
             Dim part As String = Me._ActiveHeader.Header.PrimaryProperties.CommonPartNumber
             If (part = "") Then
@@ -44,6 +45,13 @@
 
             Dim creaded As String = Me._ActiveHeader.Header.PrimaryProperties.CommonCreatedDate.ToShortDateString
             Me.sslblQuoteDate.Text = creaded
+
+            Dim isNew As Boolean = Me._ActiveHeader.Header.PrimaryProperties.CommonIsNew
+            If (isNew) Then
+                Me.sslblIsNew.Text = "New"
+            Else
+                Me.sslblIsNew.Text = "Old"
+            End If
         End If
     End Sub
 
