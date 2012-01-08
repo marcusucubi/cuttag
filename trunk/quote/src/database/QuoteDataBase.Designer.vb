@@ -6459,11 +6459,11 @@ Partial Public Class QuoteDataBase
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property UOM() As String
             Get
-                Try 
+                If Me.IsUOMNull Then
+                    Return Nothing
+                Else
                     Return CType(Me(Me.table_QuoteDetail.UOMColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'UOM' in table '_QuoteDetail' is DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.table_QuoteDetail.UOMColumn) = value
