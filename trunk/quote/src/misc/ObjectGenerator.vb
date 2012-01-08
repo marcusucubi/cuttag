@@ -157,6 +157,9 @@ Public Class ObjectGenerator
             If typeName = "System.String" Then
                 value = ""
             End If
+            If typeName = "System.Boolean" Then
+                value = ""
+            End If
         End If
 
         If snippet Is Nothing Then

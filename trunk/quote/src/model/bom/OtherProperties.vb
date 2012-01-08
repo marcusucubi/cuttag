@@ -18,6 +18,7 @@ Namespace Model.BOM
         Private _ImportedUnitCost As Decimal
         Private _ImportedCuWeight As Decimal
         Private _ImportedLaborMinutes As Decimal
+        Private _IsNew As Boolean = True
 
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
@@ -139,6 +140,19 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _FormBoardCost = value
+                Me.SendEvents()
+            End Set
+        End Property
+        <FilterAttribute(False), _
+        CategoryAttribute(SortedSpaces3 + "Quote"), _
+        DisplayName("Is New"), _
+        DescriptionAttribute("Is New")> _
+        Public Property IsNew As Boolean
+            Get
+                Return _IsNew
+            End Get
+            Set(ByVal value As Boolean)
+                _IsNew = value
                 Me.SendEvents()
             End Set
         End Property
