@@ -22,71 +22,110 @@ Partial Class MainFormStatusStrip
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.sslblPartNumber = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.sslblRFQ = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.sslblQuoteDate = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.sslblIsNew = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.StatusStrip1.SuspendLayout()
+        Me.components = New System.ComponentModel.Container()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me._PartNumber = New System.Windows.Forms.Label()
+        Me._RFQ = New System.Windows.Forms.Label()
+        Me._QuoteDate = New System.Windows.Forms.Label()
+        Me._IsNew = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'StatusStrip1
+        'ToolTip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.sslblPartNumber, Me.sslblRFQ, Me.sslblQuoteDate, Me.sslblIsNew})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 54)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.ShowItemToolTips = True
-        Me.StatusStrip1.Size = New System.Drawing.Size(366, 24)
-        Me.StatusStrip1.TabIndex = 0
+        Me.ToolTip1.ShowAlways = True
         '
-        'sslblPartNumber
+        'FlowLayoutPanel1
         '
-        Me.sslblPartNumber.BorderSides = CType((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right), System.Windows.Forms.ToolStripStatusLabelBorderSides)
-        Me.sslblPartNumber.Name = "sslblPartNumber"
-        Me.sslblPartNumber.Size = New System.Drawing.Size(40, 19)
-        Me.sslblPartNumber.Text = "None"
-        Me.sslblPartNumber.ToolTipText = "Active PartNumber"
+        Me.FlowLayoutPanel1.Controls.Add(Me._PartNumber)
+        Me.FlowLayoutPanel1.Controls.Add(Me._RFQ)
+        Me.FlowLayoutPanel1.Controls.Add(Me._QuoteDate)
+        Me.FlowLayoutPanel1.Controls.Add(Me._IsNew)
+        Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(366, 25)
+        Me.FlowLayoutPanel1.TabIndex = 5
         '
-        'sslblRFQ
+        '_PartNumber
         '
-        Me.sslblRFQ.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.sslblRFQ.Name = "sslblRFQ"
-        Me.sslblRFQ.Size = New System.Drawing.Size(40, 19)
-        Me.sslblRFQ.Text = "None"
-        Me.sslblRFQ.ToolTipText = "Active RFC"
+        Me._PartNumber.AutoSize = True
+        Me._PartNumber.BackColor = System.Drawing.SystemColors.Info
+        Me._PartNumber.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me._PartNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._PartNumber.Location = New System.Drawing.Point(3, 5)
+        Me._PartNumber.MinimumSize = New System.Drawing.Size(0, 15)
+        Me._PartNumber.Name = "_PartNumber"
+        Me._PartNumber.Size = New System.Drawing.Size(39, 15)
+        Me._PartNumber.TabIndex = 0
+        Me._PartNumber.Text = "None"
+        Me._PartNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me._PartNumber, "Active Part Number")
         '
-        'sslblQuoteDate
+        '_RFQ
         '
-        Me.sslblQuoteDate.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right
-        Me.sslblQuoteDate.Name = "sslblQuoteDate"
-        Me.sslblQuoteDate.Size = New System.Drawing.Size(40, 19)
-        Me.sslblQuoteDate.Text = "None"
-        Me.sslblQuoteDate.ToolTipText = "Active Quote Date"
+        Me._RFQ.AutoSize = True
+        Me._RFQ.BackColor = System.Drawing.SystemColors.Info
+        Me._RFQ.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me._RFQ.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._RFQ.Location = New System.Drawing.Point(48, 5)
+        Me._RFQ.MinimumSize = New System.Drawing.Size(0, 15)
+        Me._RFQ.Name = "_RFQ"
+        Me._RFQ.Size = New System.Drawing.Size(39, 15)
+        Me._RFQ.TabIndex = 1
+        Me._RFQ.Text = "None"
+        Me._RFQ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me._RFQ, "Active RFC")
         '
-        'sslblIsNew
+        '_QuoteDate
         '
-        Me.sslblIsNew.Name = "sslblIsNew"
-        Me.sslblIsNew.Size = New System.Drawing.Size(36, 19)
-        Me.sslblIsNew.Text = "None"
-        Me.sslblIsNew.ToolTipText = "Is New"
+        Me._QuoteDate.AutoSize = True
+        Me._QuoteDate.BackColor = System.Drawing.SystemColors.Info
+        Me._QuoteDate.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me._QuoteDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._QuoteDate.Location = New System.Drawing.Point(93, 5)
+        Me._QuoteDate.MinimumSize = New System.Drawing.Size(0, 15)
+        Me._QuoteDate.Name = "_QuoteDate"
+        Me._QuoteDate.Size = New System.Drawing.Size(39, 15)
+        Me._QuoteDate.TabIndex = 2
+        Me._QuoteDate.Text = "None"
+        Me._QuoteDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me._QuoteDate, "Active Quote Date")
+        '
+        '_IsNew
+        '
+        Me._IsNew.AutoSize = True
+        Me._IsNew.BackColor = System.Drawing.SystemColors.Info
+        Me._IsNew.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me._IsNew.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._IsNew.Location = New System.Drawing.Point(138, 5)
+        Me._IsNew.MinimumSize = New System.Drawing.Size(0, 15)
+        Me._IsNew.Name = "_IsNew"
+        Me._IsNew.Size = New System.Drawing.Size(39, 15)
+        Me._IsNew.TabIndex = 3
+        Me._IsNew.Text = "None"
+        Me._IsNew.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me._IsNew, "Is Quote New")
         '
         'MainFormStatusStrip
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Name = "MainFormStatusStrip"
-        Me.Size = New System.Drawing.Size(366, 78)
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
+        Me.Size = New System.Drawing.Size(366, 24)
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
-    Friend WithEvents sslblPartNumber As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents sslblRFQ As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents sslblQuoteDate As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents sslblIsNew As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents _PartNumber As System.Windows.Forms.Label
+    Friend WithEvents _RFQ As System.Windows.Forms.Label
+    Friend WithEvents _QuoteDate As System.Windows.Forms.Label
+    Friend WithEvents _IsNew As System.Windows.Forms.Label
 
 End Class
