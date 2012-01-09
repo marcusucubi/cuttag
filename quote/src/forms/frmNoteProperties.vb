@@ -69,8 +69,12 @@ Public Class frmNoteProperties
         End If
     End Sub
 
+    Private Sub frmNoteProperties_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
+        UpdateProperties()
+    End Sub
+
     Private Sub UpdateProperties()
-        'dd_Changed 11/23//11 added Me.visible
+
         If _Notes IsNot Nothing AndAlso Me.Visible Then
             Dim o As Object = _Notes
 
@@ -103,6 +107,5 @@ Public Class frmNoteProperties
             Me.txtNote2Customer.ReadOnly = True
         End If
     End Sub
-
 
 End Class
