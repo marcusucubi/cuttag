@@ -806,12 +806,12 @@ Namespace Model.BOM
                 Me.SendEvents()
             End Set
         End Property
-        <FilterAttribute(False), DescriptionAttribute("TotalUnitCost * ManufacturingMarkup" + Chr(10) + "(Dollars)"), _
+        <FilterAttribute(False), DescriptionAttribute("(TotalUnitCost * ManufacturingMarkup)+F/B-Test Board" + Chr(10) + "(Dollars)"), _
         DisplayName("Adjusted Total Unit Cost"), _
         CategoryAttribute(SortedSpaces11 + "Total")> _
         Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
             Get
-                Return Math.Round(Me._ManufacturingMarkup * Me.TotalUnitCost, 2)
+                Return Math.Round((Me._ManufacturingMarkup * Me.TotalUnitCost) + Me.SummaryCostAdjustment, 2)
             End Get
         End Property
 
@@ -824,7 +824,7 @@ Namespace Model.BOM
             If AdjustedTotalUnitCost = 0 Then
                 retValue += "N/A"
             Else
-                retValue += Round((Value / AdjustedTotalUnitCost * 100), 1).ToString + "%"
+                retValue += Round((Value / (AdjustedTotalUnitCost - Me.SummaryCostAdjustment) * 100), 1).ToString + "%"
             End If
             retValue += ")"
             Return retValue
