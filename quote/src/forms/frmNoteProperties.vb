@@ -75,7 +75,7 @@ Public Class frmNoteProperties
 
     Private Sub UpdateProperties()
 
-        If _Notes IsNot Nothing AndAlso Me.Visible Then
+        If _Notes IsNot Nothing And Not Me.IsDisposed Then
             Dim o As Object = _Notes
 
             If o.GetType().GetProperty("Note") IsNot Nothing Then
