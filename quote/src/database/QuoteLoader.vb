@@ -17,15 +17,12 @@ Public Class QuoteLoader
 		Dim table As New QuoteDataBase._QuoteDataTable
 		Dim q As New Model.Quote.Header()
 
-		adaptor.FillByByQuoteID(table, CDbl(id))
+        Dim customerObj As BOM.Customer
+
+        adaptor.FillByByQuoteID(table, CDbl(id))
 		If table.Rows.Count > 0 Then
 			Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-
-            Dim customer As String = row.CustomerName
-            Dim customerID As Integer
-            If Not row.IsCustomerIDNull Then
-                customerID = row.CustomerID
-            End If
+            customerObj = Me.LookupCustomer(row)
 
             Dim rfq As String = ""
 			If Not row.IsRequestForQuoteNumberNull Then
@@ -39,7 +36,7 @@ Public Class QuoteLoader
 			If Not row.IsTemplateIDNull Then
 				templateID = row.TemplateID
 			End If
-            q = New Model.Quote.Header(row.id, customer, rfq, part, templateID, _
+            q = New Model.Quote.Header(row.id, customerObj.Name, rfq, part, templateID, _
               row.Initials, row.CreatedDate, row.LastModifedDate)
             'dd_Added 11/19/11
             Dim Initials As String = ""
@@ -54,10 +51,6 @@ Public Class QuoteLoader
             If Not row.IsLastModifedDateNull Then
                 lastModDate = row.LastModifedDate
             End If
-
-            Dim customerObj As New Customer
-            customerObj.SetName(customer)
-            customerObj.SetID(customerID)
 
             q.PrimaryProperties.CommonCustomer = customerObj
             q.PrimaryProperties.CommonPartNumber = part
@@ -87,6 +80,29 @@ Public Class QuoteLoader
 
 		Return q
 	End Function
+
+    Public Function LookupCustomer(row As QuoteDataBase._QuoteRow) As BOM.Customer
+
+        Dim customer As String = row.CustomerName
+        Dim customerID As Integer
+        If row.IsCustomerIDNull Then
+            If Not row.IsCustomerNameNull Then
+                Dim temp As BOM.Customer
+                temp = Model.BOM.Customer.GetByName(row.CustomerName)
+                If (Not temp Is Nothing) Then
+                    customerID = temp.ID
+                End If
+            End If
+        Else
+            customerID = row.CustomerID
+        End If
+
+        Dim customerObj As New Model.BOM.Customer
+        customerObj.SetName(customer)
+        customerObj.SetID(customerID)
+
+        Return customerObj
+    End Function
 
 	Private Function LoadProperties(ByVal id As Integer, _
 																	ByVal childId As Integer, _

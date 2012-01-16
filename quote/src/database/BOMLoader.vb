@@ -22,48 +22,42 @@ Public Class BOMLoader
 		adaptor.FillByByQuoteID(table, id)
 		If table.Rows.Count > 0 Then
 			Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
-			q = New Header(row.id)
-            Dim customer As String = row.CustomerName
-            Dim customerID As Integer
-            If Not row.IsCustomerIDNull Then
-                customerID = row.CustomerID
-            End If
+            q = New Header(row.id)
+
             Dim rfq As String = ""
-			If Not row.IsRequestForQuoteNumberNull Then
-				rfq = row.RequestForQuoteNumber
-			End If
-			Dim part As String = ""
-			If Not row.IsPartNumberNull Then
-				part = row.PartNumber
-			End If
-			Dim Initials As String = ""
-			If Not row.IsInitialsNull Then
-				Initials = row.Initials
-			End If
-			Dim createdDate As DateTime
-			If Not row.IsCreatedDateNull Then
-				createdDate = row.CreatedDate
-			End If
-			Dim lastModDate As DateTime
-			If Not row.IsLastModifedDateNull Then
-				lastModDate = row.LastModifedDate
+            If Not row.IsRequestForQuoteNumberNull Then
+                rfq = row.RequestForQuoteNumber
+            End If
+            Dim part As String = ""
+            If Not row.IsPartNumberNull Then
+                part = row.PartNumber
+            End If
+            Dim Initials As String = ""
+            If Not row.IsInitialsNull Then
+                Initials = row.Initials
+            End If
+            Dim createdDate As DateTime
+            If Not row.IsCreatedDateNull Then
+                createdDate = row.CreatedDate
+            End If
+            Dim lastModDate As DateTime
+            If Not row.IsLastModifedDateNull Then
+                lastModDate = row.LastModifedDate
             End If
 
-            Dim customerObj As New Customer
-            customerObj.SetName(customer)
-            customerObj.SetID(customerID)
+            Dim customerObj As Customer = LookupCustomer(row)
 
             q.PrimaryProperties.CommonCustomer = customerObj
             q.PrimaryProperties.CommonPartNumber = part
-			q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
-			q.PrimaryProperties.CommonCreatedDate = createdDate
+            q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
+            q.PrimaryProperties.CommonCreatedDate = createdDate
             q.PrimaryProperties.CommonLastModified = lastModDate
             q.PrimaryProperties.CommonInitials = Initials
 
-			CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
-			CommonLoader.LoadOtherProperties(id, q.OtherProperties)
-			CommonLoader.LoadNoteProperties(id, q.NoteProperties)
-			LoadComponents(q)
+            CommonLoader.LoadComputationProperties(id, q.ComputationProperties)
+            CommonLoader.LoadOtherProperties(id, q.OtherProperties)
+            CommonLoader.LoadNoteProperties(id, q.NoteProperties)
+            LoadComponents(q)
 		End If
 
 		q.ComputationProperties.ClearDirty()
@@ -76,6 +70,31 @@ Public Class BOMLoader
 
 		Return q
 	End Function
+
+    Public Function LookupCustomer(row As QuoteDataBase._QuoteRow) As Customer
+
+        Dim customer As String = row.CustomerName
+        Dim customerID As Integer
+
+        If row.IsCustomerIDNull Then
+            If Not row.IsCustomerNameNull Then
+                Dim temp As Customer
+                temp = Model.BOM.Customer.GetByName(row.CustomerName)
+                If (Not temp Is Nothing) Then
+                    customerID = temp.ID
+                End If
+            End If
+        Else
+            customerID = row.CustomerID
+        End If
+
+        Dim customerObj As New Customer
+        customerObj.SetName(customer)
+        customerObj.SetID(customerID)
+
+        Return customerObj
+    End Function
+
 
 	Public Shared Sub LoadComponents(ByVal q As Common.Header)
 
