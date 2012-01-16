@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
+Imports DCS.Quote.Model.BOM
 
 Namespace Model.Quote
 
@@ -66,12 +67,14 @@ Namespace Model.Quote
         End Property
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Customer"), _
-        DescriptionAttribute("The customer name")> _
-        Public ReadOnly Property CustomerName As String
+        DescriptionAttribute("The customer"),
+        TypeConverter(GetType(CustomerConverter))> _
+        Public ReadOnly Property Customer As Customer
             Get
-                Return _CustomerName
+                Return Me.CommonCustomer
             End Get
         End Property
+
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _
