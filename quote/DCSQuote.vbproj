@@ -170,6 +170,7 @@
     </Compile>
     <Compile Include="src\import\QuoteImport.vb" />
     <Compile Include="src\misc\ActiveCustomProperties.vb" />
+    <Compile Include="src\misc\CustomerConverter.vb" />
     <Compile Include="src\misc\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -279,6 +280,7 @@
     <Compile Include="src\misc\UOMConverter.vb" />
     <Compile Include="src\model\bom\ComponentProperties.vb" />
     <Compile Include="src\model\bom\ComputationProperties.vb" />
+    <Compile Include="src\model\bom\Customer.vb" />
     <Compile Include="src\model\bom\CustomPropertiesGenerator.vb" />
     <Compile Include="src\model\bom\Detail.vb" />
     <Compile Include="src\misc\FilterAttribute.vb" />
@@ -481,6 +483,7 @@
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
     <Content Include="SQL\HQ_GetNextLow_QuoteID.sql" />
     <Content Include="SQL\upgrade.sql" />
+    <Content Include="SQL\upgrade1.sql" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\truck.jpg" />
     <None Include="Resources\source.jpg" />
