@@ -12,7 +12,6 @@ Namespace Model.BOM
         Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
             _QuoteHeader = QuoteHeader
             Me.SetID(id)
-            'CustomerName = "Caterpillar Inc."
         End Sub
 
         <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
@@ -51,7 +50,7 @@ Namespace Model.BOM
 
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Customer"), _
-        DescriptionAttribute("The customer name"),
+        DescriptionAttribute("The customer"),
         TypeConverter(GetType(CustomerConverter))> _
         Public Property Customer As Customer
             Get
