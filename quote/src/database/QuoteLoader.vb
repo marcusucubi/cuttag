@@ -21,8 +21,13 @@ Public Class QuoteLoader
 		If table.Rows.Count > 0 Then
 			Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
 
-			Dim customer As String = row.CustomerName
-			Dim rfq As String = ""
+            Dim customer As String = row.CustomerName
+            Dim customerID As Integer
+            If Not row.IsCustomerIDNull Then
+                customerID = row.CustomerID
+            End If
+
+            Dim rfq As String = ""
 			If Not row.IsRequestForQuoteNumberNull Then
 				rfq = row.RequestForQuoteNumber
 			End If
@@ -49,7 +54,12 @@ Public Class QuoteLoader
             If Not row.IsLastModifedDateNull Then
                 lastModDate = row.LastModifedDate
             End If
-            q.PrimaryProperties.CommonCustomerName = customer
+
+            Dim customerObj As New Customer
+            customerObj.SetName(customer)
+            customerObj.SetID(customerID)
+
+            q.PrimaryProperties.CommonCustomer = customerObj
             q.PrimaryProperties.CommonPartNumber = part
             q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
             q.PrimaryProperties.CommonCreatedDate = createdDate
