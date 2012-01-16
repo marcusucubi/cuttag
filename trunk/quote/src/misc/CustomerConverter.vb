@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports DCS.Quote.Model.BOM
 
 Public Class CustomerConverter
     Inherits ExpandableObjectConverter
@@ -46,7 +47,7 @@ Public Class CustomerConverter
             Dim parts As String()
             parts = value.ToString().Split(New Char() {"@"c})
 
-            Dim customer As New Customer
+            Dim customer As New Model.BOM.Customer
             If parts.Length > 1 Then
                 Dim id As Integer
                 Integer.TryParse(parts(0), id)
