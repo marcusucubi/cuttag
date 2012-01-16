@@ -12,7 +12,7 @@ Namespace Model.BOM
         Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
             _QuoteHeader = QuoteHeader
             Me.SetID(id)
-            CustomerName = "Caterpillar Inc."
+            'CustomerName = "Caterpillar Inc."
         End Sub
 
         <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
@@ -51,16 +51,18 @@ Namespace Model.BOM
 
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Customer"), _
-        DescriptionAttribute("The customer name")> _
-        Public Property CustomerName As String
+        DescriptionAttribute("The customer name"),
+        TypeConverter(GetType(CustomerConverter))> _
+        Public Property Customer As Customer
             Get
-                Return Me.CommonCustomerName
+                Return Me.CommonCustomer
             End Get
-            Set(ByVal value As String)
-                Me.CommonCustomerName = value
+            Set(ByVal value As Customer)
+                Me.CommonCustomer = value
                 Me.SendEvents()
             End Set
         End Property
+
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _

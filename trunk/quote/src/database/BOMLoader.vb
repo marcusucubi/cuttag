@@ -23,8 +23,12 @@ Public Class BOMLoader
 		If table.Rows.Count > 0 Then
 			Dim row As QuoteDataBase._QuoteRow = table.Rows(0)
 			q = New Header(row.id)
-			Dim customer As String = row.CustomerName
-			Dim rfq As String = ""
+            Dim customer As String = row.CustomerName
+            Dim customerID As Integer
+            If Not row.IsCustomerIDNull Then
+                customerID = row.CustomerID
+            End If
+            Dim rfq As String = ""
 			If Not row.IsRequestForQuoteNumberNull Then
 				rfq = row.RequestForQuoteNumber
 			End If
@@ -43,9 +47,14 @@ Public Class BOMLoader
 			Dim lastModDate As DateTime
 			If Not row.IsLastModifedDateNull Then
 				lastModDate = row.LastModifedDate
-			End If
-            q.PrimaryProperties.CommonCustomerName = customer
-			q.PrimaryProperties.CommonPartNumber = part
+            End If
+
+            Dim customerObj As New Customer
+            customerObj.SetName(customer)
+            customerObj.SetID(customerID)
+
+            q.PrimaryProperties.CommonCustomer = customerObj
+            q.PrimaryProperties.CommonPartNumber = part
 			q.PrimaryProperties.CommonRequestForQuoteNumber = rfq
 			q.PrimaryProperties.CommonCreatedDate = createdDate
             q.PrimaryProperties.CommonLastModified = lastModDate

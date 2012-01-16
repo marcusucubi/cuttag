@@ -42,16 +42,17 @@ Public Class QuoteSaver
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
             adaptor.Update( _
-                o.CustomerName, info.RFQ, info.PartNumber, _
+                o.Customer.Name, info.RFQ, info.PartNumber, _
                 False, q.ID, o.Initials, q.PrimaryProperties.CommonCreatedDate, _
-                Date.Now, o.CommonID)
+                Date.Now, o.Customer.ID, o.CommonID, o.CommonID)
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(o.CustomerName, _
+            adaptor.Insert(o.Customer.Name, _
                 info.RFQ, info.PartNumber, IsQuote, _
-                q.ID, info.Initials, Date.Now, Date.Now)
+                q.ID, info.Initials, Date.Now, Date.Now, _
+                o.Customer.ID)
             Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction

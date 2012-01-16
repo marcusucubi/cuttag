@@ -10,7 +10,7 @@ Namespace Common
         Private _ID As Integer
 
         <Browsable(False)> _
-        Public Property CommonCustomerName As String = ""
+        Public Property CommonCustomer As New Customer
 
         <Browsable(False)> _
         Public Property CommonRequestForQuoteNumber As String = ""

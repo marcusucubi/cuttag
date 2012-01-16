@@ -24,18 +24,19 @@ Public Class BOMSaver
             adaptor.Connection.Open()
             o.CommonLastModified = Date.Now
             Dim test As Integer = adaptor.Update( _
-                o.CustomerName, o.RequestForQuoteNumber, _
+                o.Customer.Name, o.RequestForQuoteNumber, _
                 o.PartNumber, False, Nothing, _
                 o.CommonInitials, o.CommonCreatedDate, _
-                o.LastModified, o.CommonID)
+                o.LastModified, o.Customer.ID, _
+                o.CommonID, o.CommonID)
             adaptor.Connection.Close()
             newId = id
         Else
             adaptor.Connection.Open()
             adaptor.Transaction = adaptor.Connection.BeginTransaction
-            adaptor.Insert(o.CustomerName, _
+            adaptor.Insert(o.Customer.Name, _
                 o.RequestForQuoteNumber, o.PartNumber, False, 0, _
-                o.CommonInitials, Date.Now, Date.Now)
+                o.CommonInitials, Date.Now, Date.Now, o.Customer.ID)
             Dim cmd As SqlCommand = New SqlCommand( _
                 "SELECT @@IDENTITY", adaptor.Connection)
             cmd.Transaction = adaptor.Transaction
