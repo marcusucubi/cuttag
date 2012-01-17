@@ -1,6 +1,7 @@
 ﻿Imports NPOI.SS.UserModel
 Imports System.IO
 Imports NPOI.HSSF.UserModel
+Imports DCS.Quote.Model.BOM
 
 Public Class ExcellWriter
 
@@ -74,18 +75,29 @@ Public Class ExcellWriter
 
         Dim cell2 As Cell
 
-        Dim name As Name = _Workbook.GetName(Prop.DisplayName)
+        Dim row As Row = _Sheet.CreateRow(_Index)
+        Dim cell As Cell = row.CreateCell(0)
+        cell2 = row.CreateCell(1)
+
+        Dim excelName As String
+        If TypeOf Prop.Value Is Customer Then
+            Dim c As Customer = Prop.Value
+            cell.SetCellValue("CustomerName")
+            cell2.SetCellValue(c.Name.Trim())
+            excelName = "CustomerName"
+        Else
+            excelName = Prop.DisplayName
+            cell.SetCellValue(Prop.DisplayName)
+            cell2.SetCellValue(Prop.Value.ToString)
+        End If
+
+        Dim name As Name = _Workbook.GetName(excelName)
         If name Is Nothing Then
             name = _Workbook.CreateName()
             name.NameName = Prop.DisplayName
         End If
         name.RefersToFormula = SHEET_NAME & "!$B$" & (_Index + 1)
-        Dim row As Row = _Sheet.CreateRow(_Index)
-        Dim cell As Cell = row.CreateCell(0)
-        cell.SetCellValue(Prop.DisplayName)
-        cell2 = row.CreateCell(1)
 
-        cell2.SetCellValue(Prop.Value.ToString)
         _Index = _Index + 1
 
     End Sub

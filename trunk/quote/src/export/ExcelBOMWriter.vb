@@ -120,7 +120,11 @@ Public Class ExcelBOMWriter
             Return
         End If
 
-        WriteValue(Prop.DisplayName, Prop.Value)
+        If Prop.Value Is Nothing Then
+            WriteValue(Prop.DisplayName, "")
+        Else
+            WriteValue(Prop.DisplayName, Prop.Value.ToString())
+        End If
     End Sub
 
     Private Sub WriteValue(ByVal name As String, ByVal value As String)
