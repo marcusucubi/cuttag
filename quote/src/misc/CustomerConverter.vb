@@ -4,19 +4,19 @@ Imports DCS.Quote.Model.BOM
 Public Class CustomerConverter
     Inherits ExpandableObjectConverter
 
-    Private values As ArrayList
+    Private _Values As ArrayList
 
     Public Sub New()
         Dim adaptor As New QuoteDataBaseTableAdapters.CustomerTableAdapter()
         Dim table As QuoteDataBase.CustomerDataTable
         table = adaptor.GetData()
-        values = New ArrayList()
+        _Values = New ArrayList()
         For Each row As QuoteDataBase.CustomerRow In table.Rows
             If row.CustomerID > 0 Then
                 Dim c As New Customer
                 c.SetID(row.CustomerID)
                 c.SetName(row.CustomerName.Trim())
-                values.Add(c)
+                _Values.Add(c)
             End If
         Next
     End Sub
@@ -30,7 +30,7 @@ Public Class CustomerConverter
     End Function
 
     Public Overloads Overrides Function GetStandardValues(ByVal context As System.ComponentModel.ITypeDescriptorContext) As System.ComponentModel.TypeConverter.StandardValuesCollection
-        Dim svc As New StandardValuesCollection(values)
+        Dim svc As New StandardValuesCollection(_Values)
         Return svc
     End Function
 
@@ -44,22 +44,7 @@ Public Class CustomerConverter
 
     Public Overloads Overrides Function ConvertFrom(ByVal context As System.ComponentModel.ITypeDescriptorContext, ByVal culture As System.Globalization.CultureInfo, ByVal value As Object) As Object
         If value.GetType() Is GetType(String) Then
-            Dim parts As String()
-            parts = value.ToString().Split(New Char() {"@"c})
-
-            Dim customer As New Model.BOM.Customer
-            If parts.Length > 1 Then
-                Dim id As Integer
-                Integer.TryParse(parts(0), id)
-                Dim name As String = parts(1)
-
-                customer.SetID(id)
-                customer.SetName(name)
-            Else
-                customer.SetName(value.ToString())
-            End If
-
-            Return customer
+            Return Customer.CreateFromString(value)
         Else
             Return MyBase.ConvertFrom(context, culture, value)
         End If

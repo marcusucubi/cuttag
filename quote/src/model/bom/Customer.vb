@@ -1,6 +1,10 @@
 ﻿
 Namespace Model.BOM
 
+    ''' <summary>
+    ''' Represents the customer
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Class Customer
 
         Private _Name As String
@@ -39,7 +43,7 @@ Namespace Model.BOM
             If _ID = 0 Then
                 Return _Name
             End If
-            Return _ID & "@" & _Name
+            Return _ID & " " & _Name
         End Function
 
         Public Shared Function GetByName(name As String) As Customer
@@ -57,6 +61,36 @@ Namespace Model.BOM
             Next
 
             Return Nothing
+        End Function
+
+        Public Shared Function CreateFromString(value As String) As Customer
+
+            Dim index As Integer
+            index = value.IndexOf(" ")
+
+            If index = -1 Then
+                Dim c As New Customer
+                c.SetName(value)
+                Return c
+            End If
+
+            Dim left As String = value.Substring(0, index)
+            Dim right As String = value.Substring(index)
+
+            Dim customer As New Model.BOM.Customer
+            If left.Length > 1 Then
+                Dim id As Integer
+                Integer.TryParse(left, id)
+                Dim name As String = right
+
+                customer.SetID(id)
+                customer.SetName(name)
+            Else
+                customer.SetName(value.ToString())
+            End If
+
+            Return customer
+
         End Function
 
     End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports DCS.Quote.Model.BOM
 
 Public Class PropertyPrinter
 
@@ -22,9 +23,16 @@ Public Class PropertyPrinter
         Handles _Processor.NextPropertyEvent
 
         _Writer.WriteLine("Property")
-        _Writer.WriteLine("  Name : " & Prop.Name)
-        _Writer.WriteLine("  Type : " & Prop.Type.Name)
-        _Writer.WriteLine("  Value : " & Prop.Value)
+        If TypeOf Prop.Value Is Customer Then
+            Dim c As Customer = Prop.Value
+            _Writer.WriteLine("  Name : CustomerName")
+            _Writer.WriteLine("  Type : String")
+            _Writer.WriteLine("  Value : " & c.Name)
+        Else
+            _Writer.WriteLine("  Name : " & Prop.Name)
+            _Writer.WriteLine("  Type : " & Prop.Type.Name)
+            _Writer.WriteLine("  Value : " & Prop.Value)
+        End If
         _Writer.WriteLine("End Property")
     End Sub
 
