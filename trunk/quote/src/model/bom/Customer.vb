@@ -53,8 +53,9 @@ Namespace Model.BOM
             Dim table As QuoteDataBase.CustomerDataTable
             table = adaptor.GetData()
             For Each row As QuoteDataBase.CustomerRow In table.Rows
-                If row.CustomerName.ToLowerInvariant() = name Then
-                    customer.SetName(row.CustomerName)
+                Dim cname As String = row.CustomerName.ToLowerInvariant().Trim()
+                If cname = name.Trim() Then
+                    customer.SetName(row.CustomerName.Trim())
                     customer.SetID(row.CustomerID)
                     Return customer
                 End If
@@ -81,7 +82,7 @@ Namespace Model.BOM
             If left.Length > 0 Then
                 Dim id As Integer
                 Integer.TryParse(left, id)
-                Dim name As String = right
+                Dim name As String = right.Trim()
 
                 customer.SetID(id)
                 customer.SetName(name)
