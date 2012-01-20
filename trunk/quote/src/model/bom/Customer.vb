@@ -78,7 +78,7 @@ Namespace Model.BOM
             Dim right As String = value.Substring(index)
 
             Dim customer As New Model.BOM.Customer
-            If left.Length > 1 Then
+            If left.Length > 0 Then
                 Dim id As Integer
                 Integer.TryParse(left, id)
                 Dim name As String = right
