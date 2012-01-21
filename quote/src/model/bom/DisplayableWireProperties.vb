@@ -5,9 +5,12 @@ Imports DCS.Quote.Model.Quote
 Namespace Model.BOM
 
     Public Class DisplayableWireProperties
-        Implements ICustomTypeDescriptor
+        Implements ICustomTypeDescriptor, INotifyPropertyChanged
 
-        Private _Subject As Model.BOM.WireProperties
+        Public Event PropertyChanged As PropertyChangedEventHandler _
+            Implements INotifyPropertyChanged.PropertyChanged
+
+        Private ReadOnly _Subject As Model.BOM.WireProperties
         Private Const SIZE As Integer = 4
 
         Public Sub New(subject As Model.BOM.WireProperties)
@@ -50,6 +53,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.PoundsPer1000Feet = value
+                SendEvents()
             End Set
         End Property
 
@@ -68,6 +72,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.Quantity = value
+                SendEvents()
             End Set
         End Property
 
@@ -79,6 +84,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.UnitCost = value
+                SendEvents()
             End Set
         End Property
 
@@ -91,6 +97,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _Subject.UnitOfMeasure = value
+                SendEvents()
             End Set
         End Property
 
@@ -132,6 +139,10 @@ Namespace Model.BOM
             Return Me
         End Function
 #End Region
+
+        Friend Sub SendEvents()
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
+        End Sub
 
     End Class
 End Namespace

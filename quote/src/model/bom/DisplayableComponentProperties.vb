@@ -3,7 +3,10 @@ Imports System.Reflection
 
 Namespace Model.BOM
     Public Class DisplayableComponentProperties
-        Implements ICustomTypeDescriptor
+        Implements ICustomTypeDescriptor, INotifyPropertyChanged
+
+        Public Event PropertyChanged As PropertyChangedEventHandler _
+            Implements INotifyPropertyChanged.PropertyChanged
 
         Private Const SIZE As Integer = 4
 
@@ -29,6 +32,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MachineTime = value
+                SendEvents()
             End Set
         End Property
 
@@ -40,6 +44,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MinimumQty = value
+                SendEvents()
             End Set
         End Property
 
@@ -51,6 +56,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MinimumDollar = value
+                SendEvents()
             End Set
         End Property
 
@@ -60,6 +66,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.Quantity = value
+                SendEvents()
             End Set
         End Property
 
@@ -71,6 +78,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _Subject.Description = value
+                SendEvents()
             End Set
         End Property
 
@@ -82,6 +90,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Integer)
                 _Subject.LeadTime = value
+                SendEvents()
             End Set
         End Property
 
@@ -93,6 +102,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _Subject.Vendor = value
+                SendEvents()
             End Set
         End Property
 
@@ -105,6 +115,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _Subject.UnitOfMeasure = value
+                SendEvents()
             End Set
         End Property
 
@@ -116,6 +127,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.UnitCost = value
+                SendEvents()
             End Set
         End Property
 
@@ -157,6 +169,10 @@ Namespace Model.BOM
             Return Me
         End Function
 #End Region
+
+        Friend Sub SendEvents()
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
+        End Sub
 
     End Class
 End Namespace
