@@ -288,6 +288,9 @@
     <Compile Include="src\model\bom\NoteProperties.vb" />
     <Compile Include="src\model\bom\OtherProperties.vb" />
     <Compile Include="src\model\bom\PrimaryPropeties.vb" />
+    <Compile Include="src\model\bom\DisplayableComponentProperties.vb" />
+    <Compile Include="src\model\bom\DisplayableComputationProperties.vb" />
+    <Compile Include="src\model\bom\DisplayableWireProperties.vb" />
     <Compile Include="src\model\bom\WireProperties.vb" />
     <Compile Include="src\model\common\ComponentProperties.vb" />
     <Compile Include="src\model\common\ComputationProperties.vb" />
@@ -502,6 +505,7 @@
       <Name>DCSDataGrid</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>
