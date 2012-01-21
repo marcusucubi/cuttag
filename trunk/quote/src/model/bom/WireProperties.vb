@@ -4,6 +4,14 @@ Imports DCS.Quote.Model.Quote
 
 Namespace Model.BOM
 
+    ''' <summary>
+    ''' Computation properties for wires.
+    ''' </summary>
+    ''' <remarks>
+    ''' This class should contain computation related
+    ''' code.  Any display related code should
+    ''' should be in DisplayableWireProperties.
+    ''' </remarks>
     Public Class WireProperties
         Inherits Common.WireProperties
 

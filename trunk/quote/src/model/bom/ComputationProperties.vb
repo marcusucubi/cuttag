@@ -3,6 +3,15 @@ Imports System.Reflection
 Imports System.Math
 
 Namespace Model.BOM
+
+    ''' <summary>
+    ''' The main computation properties.
+    ''' </summary>
+    ''' <remarks>
+    ''' This class should contain computation related
+    ''' code.  Any display related code should
+    ''' should be in DisplayableComputationProperties.
+    ''' </remarks>
     Public Class ComputationProperties
         Inherits Common.ComputationProperties
 
