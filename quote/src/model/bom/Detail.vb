@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
-Imports DCS.Quote.Model.BOM.UI
 
 Namespace Model.BOM
 

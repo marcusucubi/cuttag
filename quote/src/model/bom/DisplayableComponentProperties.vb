@@ -16,7 +16,11 @@ Namespace Model.BOM
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
-        Private Const SIZE As Integer = 4
+        Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
+
+        Private Sub _Options_Changed() Handles _Options.Changed
+            Me.SendEvents()
+        End Sub
 
         Private _Subject As ComponentProperties
 
@@ -29,14 +33,14 @@ Namespace Model.BOM
         Browsable(False)>
         Public Overloads ReadOnly Property TotalMachineTime As Decimal
             Get
-                Return Math.Round(_Subject.TotalMachineTime, SIZE)
+                Return Math.Round(_Subject.TotalMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
         <DisplayName("Machine Time")>
         Public Overloads Property MachineTime As Decimal
             Get
-                Return Math.Round(_Subject.MachineTime, SIZE)
+                Return Math.Round(_Subject.MachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MachineTime = value
@@ -48,7 +52,7 @@ Namespace Model.BOM
         CategoryAttribute("Vendor")> _
         Public Overloads Property MinimumQty As Decimal
             Get
-                Return Math.Round(_Subject.MinimumQty, SIZE)
+                Return Math.Round(_Subject.MinimumQty, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MinimumQty = value
@@ -60,7 +64,7 @@ Namespace Model.BOM
         CategoryAttribute("Vendor")> _
         Public Overloads Property MinimumDollar As Decimal
             Get
-                Return Math.Round(_Subject.MinimumDollar, SIZE)
+                Return Math.Round(_Subject.MinimumDollar, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MinimumDollar = value
@@ -70,7 +74,7 @@ Namespace Model.BOM
 
         Public Overloads Property Quantity As Decimal
             Get
-                Return Math.Round(_Subject.Quantity, SIZE)
+                Return Math.Round(_Subject.Quantity, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.Quantity = value
@@ -94,7 +98,7 @@ Namespace Model.BOM
         CategoryAttribute("Vendor")> _
         Public Property LeadTime As Integer
             Get
-                Return Math.Round(_Subject.LeadTime, SIZE)
+                Return Math.Round(_Subject.LeadTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Integer)
                 _Subject.LeadTime = value
@@ -131,7 +135,7 @@ Namespace Model.BOM
         DisplayName("Unit Cost")> _
         Public Property UnitCost As Decimal
             Get
-                Return Math.Round(_Subject.UnitCost, SIZE)
+                Return Math.Round(_Subject.UnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.UnitCost = value

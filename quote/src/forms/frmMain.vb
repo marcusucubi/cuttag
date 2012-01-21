@@ -403,5 +403,9 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub OptionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OptionsToolStripMenuItem.Click
+        frmOptions.ShowDialog()
+    End Sub
+
 End Class
 
