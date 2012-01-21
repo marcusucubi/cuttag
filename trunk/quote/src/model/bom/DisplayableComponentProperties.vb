@@ -2,6 +2,14 @@
 Imports System.Reflection
 
 Namespace Model.BOM
+    ''' <summary>
+    ''' Adds display attributes and rounding to ComponentProperties.
+    ''' </summary>
+    ''' <remarks>
+    ''' This class should contain display releated code,
+    ''' and ComponentProperties should contain computation
+    ''' related code.
+    ''' </remarks>
     Public Class DisplayableComponentProperties
         Implements ICustomTypeDescriptor, INotifyPropertyChanged
 
