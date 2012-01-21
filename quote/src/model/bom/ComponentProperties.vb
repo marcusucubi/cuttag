@@ -2,6 +2,14 @@
 Imports System.Reflection
 
 Namespace Model.BOM
+    ''' <summary>
+    ''' Computation properties for componeents.
+    ''' </summary>
+    ''' <remarks>
+    ''' This class should contain computation related
+    ''' code.  Any display related code should
+    ''' should be in DisplayableComponentProperties.
+    ''' </remarks>
     Public Class ComponentProperties
         Inherits Common.ComponentProperties
 
