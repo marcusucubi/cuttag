@@ -13,7 +13,7 @@ Namespace Model.BOM
 
         Public Sub New(ByVal id As Long)
             _PrimaryProperties = New PrimaryPropeties(Me, id)
-            _ComputationProperties = New ComputationProperties(Me)
+            _ComputationProperties = New DisplayableComputationProperties(New ComputationProperties(Me))
             _OtherProperties = New OtherProperties(Me)
             _NoteProperties = New NoteProperties(Me)
             MyBase.AddDependent(_ComputationProperties)

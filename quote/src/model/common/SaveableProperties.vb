@@ -72,7 +72,8 @@ Namespace Common
         Public Function Clone() As Object Implements System.ICloneable.Clone
             Return Me.MemberwiseClone
         End Function
-        Protected Function FilterProperties(ByVal Props2Filter As PropertyDescriptorCollection) As PropertyDescriptorCollection
+
+        Public Function FilterProperties(ByVal Props2Filter As PropertyDescriptorCollection) As PropertyDescriptorCollection
             Dim props As New PropertyDescriptorCollection(Nothing)
             Dim i As Integer = 0
             Dim aFilterTrue As New Model.FilterAttribute(True)

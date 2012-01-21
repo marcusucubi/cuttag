@@ -1,56 +1,46 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
+Imports DCS.Quote.Model.BOM.UI
 
 Namespace Model.BOM
 
-	Public Class Detail
-		Inherits Common.Detail
+    Public Class Detail
+        Inherits Common.Detail
 
-		Private _WireProperties As WireProperties
-		Private _ComponentProperties As ComponentProperties
+        Private _WireProperties As DisplayableWireProperties
+        Private _ComponentProperties As DisplayableComponentProperties
 
-		Friend Sub New(ByVal header As Header, ByVal product As Product)
-			Me.Header = header
-			Me._Product = product
+        Friend Sub New(ByVal header As Header, ByVal product As Product)
+            Me.Header = header
+            Me._Product = product
             Me.IsWire = product.IsWire
-            Me._WireProperties = New WireProperties(Me)
-            Me._ComponentProperties = New ComponentProperties(Me)
-			Me._Quantity = 1
+            Me._WireProperties = New DisplayableWireProperties(New WireProperties(Me))
+            Me._ComponentProperties = New DisplayableComponentProperties(New ComponentProperties(Me))
+            Me._Quantity = 1
             Me.SequenceNumber = Me.Header.NextSequenceNumber
-            Me._UOM = product.UnitOfMeasure 'dd_Added 12/16/11
-            '    SetupUOM()
+            Me._UOM = product.UnitOfMeasure
         End Sub
-
-        'Private Sub SetupUOM()
-        '    If (_Product.IsWire) Then
-        '        _UOM = "Decimeter"
-        '    Else
-        '        _UOM = "Each"
-        '        _UOM = "Test"
-        '    End If
-        'End Sub
 
         <BrowsableAttribute(False)>
         Property Header As Header
 
         Public Sub UpdateComponentProperties(ByVal pProduct As Product)
             Me._Product = pProduct
-            Me._ComponentProperties = New ComponentProperties(Me)
-            Me._UOM = pProduct.UnitOfMeasure 'dd_Added 12/16/11
-            Me._WireProperties.PoundsPer1000Feet = pProduct.CopperWeightPer1000Ft 'dd_Added Wt 12/30/11
-            ' SetupUOM() 'dd_remmed 12/16/11
+            Me._ComponentProperties = New DisplayableComponentProperties(New ComponentProperties(Me))
+            Me._UOM = pProduct.UnitOfMeasure
+            Me._WireProperties.PoundsPer1000Feet = pProduct.CopperWeightPer1000Ft
         End Sub
 
-		<BrowsableAttribute(False)>
-		Public Overrides ReadOnly Property QuoteDetailProperties As Object
-			Get
+        <BrowsableAttribute(False)>
+        Public Overrides ReadOnly Property QuoteDetailProperties As Object
+            Get
                 If Me.IsWire Then
                     Return _WireProperties
                 Else
                     Return _ComponentProperties
                 End If
             End Get
-		End Property
+        End Property
 
-	End Class
+    End Class
 End Namespace
