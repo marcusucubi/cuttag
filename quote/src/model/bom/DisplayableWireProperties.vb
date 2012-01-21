@@ -4,6 +4,14 @@ Imports DCS.Quote.Model.Quote
 
 Namespace Model.BOM
 
+    ''' <summary>
+    ''' Adds display attributes and rounding to WireProperties.
+    ''' </summary>
+    ''' <remarks>
+    ''' This class should contain display releated code,
+    ''' and WireProperties should contain computation
+    ''' related code.
+    ''' </remarks>
     Public Class DisplayableWireProperties
         Implements ICustomTypeDescriptor, INotifyPropertyChanged
 

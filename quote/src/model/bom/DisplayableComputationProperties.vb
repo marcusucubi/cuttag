@@ -3,6 +3,14 @@ Imports System.Reflection
 Imports System.Math
 
 Namespace Model.BOM
+    ''' <summary>
+    ''' Adds display attributes and rounding to ComputationProperties.
+    ''' </summary>
+    ''' <remarks>
+    ''' This class should contain display releated code,
+    ''' and ComputationProperties should contain computation
+    ''' related code.
+    ''' </remarks>
     Public Class DisplayableComputationProperties
         Inherits Common.ComputationProperties
         Implements ICustomTypeDescriptor
