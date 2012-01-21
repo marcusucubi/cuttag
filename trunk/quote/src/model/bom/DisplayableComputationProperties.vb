@@ -33,6 +33,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.PercentCopperScrap = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("CopperWeight * (PercentCopperScrap / 100)" + Chr(10) + "(Pounds)"), _
@@ -52,6 +53,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.CopperPrice = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("CopperScrapWeight * CopperPrice. " _
@@ -128,6 +130,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MaterialMarkUp = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("TotalMaterialCost * MaterialMarkup" + Chr(10) + "(Dollars)"), _
@@ -158,6 +161,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Integer)
                 _Subject.NumberOfTwistedPairs = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("Twisted Pairs Machine Time " + Chr(10) + "(Number)"), _
@@ -188,6 +192,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.ComponentSetupTime = value
+                MyBase.SendEvents()
             End Set
         End Property
 
@@ -200,6 +205,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.WireSetupTime = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("Number of lines in 'CIRCUIT DATA TABLE'" + _
@@ -212,6 +218,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Integer)
                 _Subject.NumberOfCuts = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("NumberOfCuts * WireSetupTime" + Chr(10) + "(Seconds)"), _
@@ -259,6 +266,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 Me._Subject.WireMachineTime = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("TotalWireMachineTime + " + _
@@ -290,6 +298,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 Me._Subject.TimeMultiplier = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("TimeMultiplier * TotalLaborTime" + Chr(10) + "(Seconds)"), _
@@ -320,6 +329,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As Decimal)
                 _Subject.LaborRate = Value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("AdjustedTotalLaborTimeHours * LaborRate" + Chr(10) + "(Dollars)"), _
@@ -342,6 +352,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As String)
                 _Subject.QuoteType = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DisplayName("Minimum Order Quantity"),
@@ -352,6 +363,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As Integer)
                 _Subject.MinimumOrderQuantity = Value
+                MyBase.SendEvents()
             End Set
         End Property
         <DisplayName("Single Definite Quantity"), _
@@ -362,6 +374,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As Integer)
                 _Subject.SingleDefiniteQuantity = Value
+                MyBase.SendEvents()
             End Set
         End Property
         <DisplayName("Order Quantity"), _
@@ -372,6 +385,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As Integer)
                 _Subject.OrderQuantity = Value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("If(QuoteType = PRODUCTION) then " + Chr(10) + _
@@ -397,6 +411,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As String)
                 _Subject.ShippingContainer = Value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("Cost of the Shipping Container" + Chr(10) + "(Dollars)"), _
@@ -424,6 +439,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal Value As Decimal)
                 _Subject.ShippingCost = Value
+                MyBase.SendEvents()
             End Set
         End Property
 #End Region
@@ -469,6 +485,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.SummaryAdjustment = value
+                MyBase.SendEvents()
             End Set
         End Property
         <DescriptionAttribute("Mat'l + MU + DL + OH) * Adjustment Multiplier"), _
@@ -507,6 +524,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _Subject.ManufacturingMarkup = value
+                MyBase.SendEvents()
             End Set
         End Property
         <FilterAttribute(False), DescriptionAttribute("(TotalUnitCost * ManufacturingMarkup)+F/B-Test Board" + Chr(10) + "(Dollars)"), _

@@ -72,6 +72,7 @@ Namespace Model.BOM
             End Get
             Set(ByVal value As Decimal)
                 _QuoteDetail.UnitCost = value
+                Me.SendEvents()
             End Set
         End Property
 
