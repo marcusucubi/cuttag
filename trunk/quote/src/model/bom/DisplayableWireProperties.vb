@@ -15,11 +15,16 @@ Namespace Model.BOM
     Public Class DisplayableWireProperties
         Implements ICustomTypeDescriptor, INotifyPropertyChanged
 
+        Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
+
+        Private Sub _Options_Changed() Handles _Options.Changed
+            Me.SendEvents()
+        End Sub
+
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
         Private ReadOnly _Subject As Model.BOM.WireProperties
-        Private Const SIZE As Integer = 4
 
         Public Sub New(subject As Model.BOM.WireProperties)
             _Subject = subject
@@ -42,14 +47,14 @@ Namespace Model.BOM
         <DescriptionAttribute("Length in Decimeters")> _
         Public ReadOnly Property Length As Decimal
             Get
-                Return Math.Round(_Subject.Length, SIZE)
+                Return Math.Round(_Subject.Length, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
         <DescriptionAttribute("Length / 3.048")> _
         Public ReadOnly Property LengthFeet As Decimal
             Get
-                Return Math.Round(_Subject.LengthFeet, SIZE)
+                Return Math.Round(_Subject.LengthFeet, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
@@ -57,7 +62,7 @@ Namespace Model.BOM
         CategoryAttribute("Copper Weight")> _
         Public Property PoundsPer1000Feet As Decimal
             Get
-                Return Math.Round(_Subject.PoundsPer1000Feet, SIZE)
+                Return Math.Round(_Subject.PoundsPer1000Feet, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.PoundsPer1000Feet = value
@@ -69,14 +74,14 @@ Namespace Model.BOM
         CategoryAttribute("Copper Weight")> _
         Public ReadOnly Property TotalWeight As Decimal
             Get
-                Return Math.Round(_Subject.TotalWeight, SIZE)
+                Return Math.Round(_Subject.TotalWeight, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
         <DescriptionAttribute("Number of Decimeters")> _
         Public Property Quantity As Decimal
             Get
-                Return Math.Round(_Subject.Quantity, SIZE)
+                Return Math.Round(_Subject.Quantity, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.Quantity = value
@@ -88,7 +93,7 @@ Namespace Model.BOM
         DescriptionAttribute("Dollars per Decimeter")> _
         Public Property UnitCost As Decimal
             Get
-                Return Math.Round(_Subject.UnitCost, SIZE)
+                Return Math.Round(_Subject.UnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.UnitCost = value

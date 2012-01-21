@@ -15,8 +15,14 @@ Namespace Model.BOM
         Inherits Common.ComputationProperties
         Implements ICustomTypeDescriptor
 
+        Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
+
         Public Sub New(ByVal subject As ComputationProperties)
             _Subject = subject
+        End Sub
+
+        Private Sub _Options_Changed() Handles _Options.Changed
+            Me.SendEvents()
         End Sub
 
 #Region " Variables "
@@ -29,7 +35,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperWeight As Decimal
             Get
-                Return Math.Round(_Subject.CopperWeight, 4)
+                Return Math.Round(_Subject.CopperWeight, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Percent of Scrap Copper. " + Chr(10) + "(Percent)"), _
@@ -37,7 +43,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public Property PercentCopperScrap As Decimal
             Get
-                Return Math.Round(_Subject.PercentCopperScrap, 4)
+                Return Math.Round(_Subject.PercentCopperScrap, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.PercentCopperScrap = value
@@ -49,7 +55,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperScrapWeight As Decimal
             Get
-                Return Math.Round(_Subject.CopperScrapWeight, 4)
+                Return Math.Round(_Subject.CopperScrapWeight, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Copper Price" + Chr(10) + "(Dollars Per Pounds)"), _
@@ -57,7 +63,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public Property CopperPrice As Decimal
             Get
-                Return Math.Round(_Subject.CopperPrice, 4)
+                Return Math.Round(_Subject.CopperPrice, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.CopperPrice = value
@@ -70,7 +76,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces1 + "Copper")> _
         Public ReadOnly Property CopperScrapCost As Decimal
             Get
-                Return Math.Round(_Subject.CopperScrapCost, 4)
+                Return Math.Round(_Subject.CopperScrapCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
@@ -90,16 +96,16 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces2 + "Wire")> _
         Public ReadOnly Property WireLength() As Decimal
             Get
-                Return Math.Round(_Subject.WireLength, 4)
+                Return Math.Round(_Subject.WireLength, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
-        <DescriptionAttribute("WireLength / 3.048" + Chr(10) + "(Feet)"), _
+        <DescriptionAttribute("WireLength / 3.0Common.GlobalOptions.DecimalPointsToDisplay8" + Chr(10) + "(Feet)"), _
         DisplayName("Wire Length Feet"), _
         CategoryAttribute(SortedSpaces2 + "Wire")> _
         Public ReadOnly Property WireLengthFeet() As Decimal
             Get
-                Return Math.Round(_Subject.WireLengthFeet, 4)
+                Return Math.Round(_Subject.WireLengthFeet, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
@@ -110,7 +116,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property ComponentMaterialCost() As Decimal
             Get
-                Return Math.Round(_Subject.ComponentMaterialCost, 4)
+                Return Math.Round(_Subject.ComponentMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Sum(UnitCost * Quantity)" + Chr(10) + "(Dollar)"), _
@@ -118,7 +124,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property WireMaterialCost() As Decimal
             Get
-                Return Math.Round(_Subject.WireMaterialCost, 4)
+                Return Math.Round(_Subject.WireMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("ComponentMaterialCost + WireMaterialCost + ShippingContainerCostPerOrder" + Chr(10) + "(Dollar)"), _
@@ -126,7 +132,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property TotalMaterialCost() As Decimal
             Get
-                Return Math.Round(_Subject.TotalMaterialCost, 4)
+                Return Math.Round(_Subject.TotalMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Material Markup"), _
@@ -134,7 +140,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public Property MaterialMarkUp As Decimal
             Get
-                Return Math.Round(_Subject.MaterialMarkUp, 4)
+                Return Math.Round(_Subject.MaterialMarkUp, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.MaterialMarkUp = value
@@ -146,7 +152,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property AdjustedTotalMaterialCost As Decimal
             Get
-                Return Math.Round(_Subject.AdjustedTotalMaterialCost, 4)
+                Return Math.Round(_Subject.AdjustedTotalMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("(TotalMaterialCost * MaterialMarkup)" + _
@@ -155,11 +161,11 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces3 + "Material Cost")> _
         Public ReadOnly Property TotalVariableMaterialCost() As Decimal
             Get
-                Return Math.Round(_Subject.TotalVariableMaterialCost, 4)
+                Return Math.Round(_Subject.TotalVariableMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 #End Region
-#Region "4 Twisted Pairs "
+#Region "Common.GlobalOptions.DecimalPointsToDisplay Twisted Pairs "
         <DescriptionAttribute("Number Of Twisted Pairs " + Chr(10) + "(Number)"), _
         DisplayName("Twisted Pairs"), _
         CategoryAttribute(SortedSpaces4 + "Twisted Wire")> _
@@ -177,7 +183,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces4 + "Twisted Wire")> _
         Public ReadOnly Property TwistedPairsMachineTime As Decimal
             Get
-                Return Math.Round(_Subject.TwistedPairsMachineTime, 4)
+                Return Math.Round(_Subject.TwistedPairsMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 #End Region
@@ -196,7 +202,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public Property ComponentSetupTime() As Decimal
             Get
-                Return Math.Round(_Subject.ComponentSetupTime, 4)
+                Return Math.Round(_Subject.ComponentSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.ComponentSetupTime = value
@@ -209,7 +215,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public Property WireSetupTime As Decimal
             Get
-                Return Math.Round(_Subject.WireSetupTime, 4)
+                Return Math.Round(_Subject.WireSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.WireSetupTime = value
@@ -234,7 +240,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public ReadOnly Property TotalWireSetupTime As Decimal
             Get
-                Return Math.Round(_Subject.TotalWireSetupTime, 4)
+                Return Math.Round(_Subject.TotalWireSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("(TotalWireSetupTime + ComponentSetupTime) " + _
@@ -244,7 +250,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces5 + "Setup Time")> _
         Public ReadOnly Property TotalSetupTime() As Decimal
             Get
-                Return Math.Round(_Subject.TotalSetupTime, 4)
+                Return Math.Round(_Subject.TotalSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 #End Region
@@ -254,7 +260,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public ReadOnly Property TotalComponentMachineTime As Decimal
             Get
-                Return Math.Round(_Subject.TotalComponentMachineTime, 4)
+                Return Math.Round(_Subject.TotalComponentMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("WireLengthFeet * WireMachineTime " + Chr(10) + "(Seconds)"), _
@@ -262,7 +268,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public ReadOnly Property TotalWireMachineTime As Decimal
             Get
-                Return Math.Round(_Subject.TotalWireMachineTime, 4)
+                Return Math.Round(_Subject.TotalWireMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Used with TotalWireMachineTime " + Chr(10) + "(Seconds)"), _
@@ -270,7 +276,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public Property WireMachineTime As Decimal
             Get
-                Return Math.Round(_Subject.WireMachineTime, 4)
+                Return Math.Round(_Subject.WireMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 Me._Subject.WireMachineTime = value
@@ -283,7 +289,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces6 + "Run Time")> _
         Public ReadOnly Property TotalMachineTime As Decimal
             Get
-                Return Math.Round(_Subject.TotalMachineTime, 4)
+                Return Math.Round(_Subject.TotalMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 #End Region
@@ -294,7 +300,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public ReadOnly Property TotalLaborTime() As Decimal
             Get
-                Return Math.Round(_Subject.TotalLaborTime, 4)
+                Return Math.Round(_Subject.TotalLaborTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Time Multiplier"),
@@ -302,7 +308,7 @@ Namespace Model.BOM
          CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public Property TimeMultiplier As Decimal
             Get
-                Return Math.Round(_Subject.TimeMultiplier, 4)
+                Return Math.Round(_Subject.TimeMultiplier, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 Me._Subject.TimeMultiplier = value
@@ -314,7 +320,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
             Get
-                Return Math.Round(_Subject.AdjustedTotalLaborTime, 4)
+                Return Math.Round(_Subject.AdjustedTotalLaborTime, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
@@ -323,7 +329,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces7 + "Time Summary")> _
         Public ReadOnly Property AdjustedTotalLaborTimeHours() As Decimal
             Get
-                Return Math.Round(_Subject.AdjustedTotalLaborTimeHours, 4)
+                Return Math.Round(_Subject.AdjustedTotalLaborTimeHours, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 #End Region
@@ -333,7 +339,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces8 + "Labor")> _
         Public Property LaborRate As Decimal
             Get
-                Return Math.Round(_Subject.LaborRate, 4)
+                Return Math.Round(_Subject.LaborRate, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal Value As Decimal)
                 _Subject.LaborRate = Value
@@ -345,7 +351,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces8 + "Labor")> _
         Public ReadOnly Property LaborCost As Decimal
             Get
-                Return Math.Round(_Subject.LaborCost, 4)
+                Return Math.Round(_Subject.LaborCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 #End Region
@@ -427,7 +433,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public ReadOnly Property ShippingContainerCost As Decimal
             Get
-                Return Math.Round(_Subject.ShippingContainerCost, 4)
+                Return Math.Round(_Subject.ShippingContainerCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("ShippingContainerCost / FunctionalQuantity" + Chr(10) + "(Dollars)"), _
@@ -435,7 +441,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
             Get
-                Return Math.Round(_Subject.ShippingContainerCostPerOrder, 4)
+                Return Math.Round(_Subject.ShippingContainerCostPerOrder, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Shipping Cost" + Chr(10) + "(Dollars)"), _
@@ -443,7 +449,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces9 + "Shipping")> _
         Public Property ShippingCost() As Decimal
             Get
-                Return Math.Round(_Subject.ShippingCost, 4)
+                Return Math.Round(_Subject.ShippingCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal Value As Decimal)
                 _Subject.ShippingCost = Value
@@ -476,7 +482,7 @@ Namespace Model.BOM
                 Return _Subject.SummaryDirectLabor
             End Get
         End Property
-        <DescriptionAttribute("DL * 1.465"), _
+        <DescriptionAttribute("DL * 1.Common.GlobalOptions.DecimalPointsToDisplay65"), _
         DisplayName("OH"), _
         CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public ReadOnly Property SummaryOverhead As String
@@ -489,7 +495,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces10 + "ExecutiveSummary")> _
         Public Property SummaryAdjustment As Decimal
             Get
-                Return Math.Round(_Subject.SummaryAdjustment, 4)
+                Return Math.Round(_Subject.SummaryAdjustment, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.SummaryAdjustment = value
@@ -520,7 +526,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces11 + "Total")> _
         Public ReadOnly Property TotalUnitCost() As Decimal
             Get
-                Return Math.Round(_Subject.TotalUnitCost, 4)
+                Return Math.Round(_Subject.TotalUnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
         <DescriptionAttribute("Manufacturing Markup"), _
@@ -528,7 +534,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces11 + "Total")> _
         Public Property ManufacturingMarkup As Decimal
             Get
-                Return Math.Round(_Subject.ManufacturingMarkup, 4)
+                Return Math.Round(_Subject.ManufacturingMarkup, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
             Set(ByVal value As Decimal)
                 _Subject.ManufacturingMarkup = value
@@ -540,7 +546,7 @@ Namespace Model.BOM
         CategoryAttribute(SortedSpaces11 + "Total")> _
         Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
             Get
-                Return Math.Round(_Subject.AdjustedTotalUnitCost, 4)
+                Return Math.Round(_Subject.AdjustedTotalUnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
@@ -584,5 +590,6 @@ Namespace Model.BOM
             Return Me
         End Function
 #End Region
+
     End Class
 End Namespace
