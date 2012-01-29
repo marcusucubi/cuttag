@@ -104,7 +104,7 @@ Public Class QuoteImport
 
         GetDetails(header, row.QuoteID)
 
-        Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
+        Dim comp As Model.BOM.DisplayableComputationProperties = header.ComputationProperties
         _NewUnitCost = comp.AdjustedTotalUnitCost
 
         Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
@@ -163,7 +163,7 @@ Public Class QuoteImport
         other.SetImportedLaborMinutes(row.LaborMinutes)
         _OldUnitCost = row.UnitPrice
 
-        Dim comp As Model.BOM.ComputationProperties = header.ComputationProperties
+        Dim comp As Model.BOM.DisplayableComputationProperties = header.ComputationProperties
         comp.CopperPrice = row.CuPrice
         comp.LaborRate = row.LaborRate
         comp.NumberOfCuts = row.Cuts
