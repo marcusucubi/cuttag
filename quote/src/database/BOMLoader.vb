@@ -73,7 +73,10 @@ Public Class BOMLoader
 
     Public Function LookupCustomer(row As QuoteDataBase._QuoteRow) As Customer
 
-        Dim customer As String = row.CustomerName
+        Dim customer As String = ""
+        If Not row.IsCustomerNameNull Then
+            customer = row.CustomerName
+        End If
         Dim customerID As Integer
 
         If row.IsCustomerIDNull Then
