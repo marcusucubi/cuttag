@@ -30,14 +30,22 @@ Namespace Common
 
         <Browsable(False)> _
         Public Property Subject As Object
-
+        '        <Browsable(False)> _
+        '       Public Property NonDisplayableProperties As Object = Nothing 'dd_Added 2/1/2012
+        'dd_Added 2/8/2012
+        <Browsable(False)>
+        Public ReadOnly Property NonDisplayableProperty(ByVal PropertyName As String) As PropertyInfo
+            Get
+                Return Subject.GetType.GetProperty(PropertyName)
+            End Get
+        End Property
+        'dd_Added End
         <Browsable(False)>
         Public ReadOnly Property Dirty As Boolean
             Get
                 Return _IsDirty
             End Get
         End Property
-
         Public Overridable Sub MakeDirty()
             Me._IsDirty = True
             RaiseEvent SavableChange(Me)
@@ -74,31 +82,25 @@ Namespace Common
         End Function
 
         Public Function FilterProperties(ByVal Props2Filter As PropertyDescriptorCollection) As PropertyDescriptorCollection
+            'If HideReadOnlyProperties then eliminate readonly properties starting with a property containing FilterAttribute(True)
+            ' and ending with FilterAttribute(False)
+            ' allowing all other properties to be included
             Dim props As New PropertyDescriptorCollection(Nothing)
             Dim i As Integer = 0
-            Dim aFilterTrue As New Model.FilterAttribute(True)
-            Dim aFilterFalse As New Model.FilterAttribute(False)
             Dim bDoFilter As Boolean = False
             If ActiveHeader.HideReadOnlyProperties Then
                 For Each prop As PropertyDescriptor In Props2Filter
-                    '    i += 1
-                    'Dim b As Boolean
-                    If prop.Attributes.Contains(aFilterTrue) And Not bDoFilter Then
+                    If prop.Attributes.Contains(New DCS.Quote.Model.FilterAttribute(True)) And Not bDoFilter Then 'Begin filtering with this property
                         bDoFilter = True
                     End If
-                    'b = False
                     If Not bDoFilter Then
-                        props.Add(prop)
-                        '    b = True
+                        props.Add(prop) 'Not filtering, so include property
                     ElseIf Not prop.IsReadOnly Then
-                        '    b = True
-                        props.Add(prop)
+                        props.Add(prop) 'Now filtering readonly properties, but this property is not read only so include property
                     End If
-                    If prop.Attributes.Contains(aFilterFalse) Then
+                    If prop.Attributes.Contains(New DCS.Quote.Model.FilterAttribute(False)) Then 'Stop filtering with this property
                         bDoFilter = False
                     End If
-                    ' Debug.WriteLine(i.ToString + ":(" + b.ToString + ")" _
-                    '                 + prop.Category + "|" + prop.DisplayName + "|" + prop.Description)
                 Next
             Else
                 props = Nothing 'All properites will show

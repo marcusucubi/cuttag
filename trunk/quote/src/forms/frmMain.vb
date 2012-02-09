@@ -177,7 +177,7 @@ Public Class frmMain
         ShowPrimaryProperties()
         ShowOtherProperties()
         ShowNoteProperties()
-        ShowCustomProperties()
+        '        ShowCustomProperties()
         ShowComputationProperties()
     End Sub
     Private Sub EnableButtons()
