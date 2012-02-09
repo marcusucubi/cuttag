@@ -55,12 +55,25 @@ Public Class CommonSaver
                     ByVal childId As Integer, _
                     ByVal obj As Object, _
                     ByVal SaveAll As Boolean)
-
+        'dd_changed 2/1/2012
+        'Dim propsNonDisplayable As PropertyInfo() = Nothing
+        'If IsNothing(obj.GetType().GetProperty("Subject")) Then
+        '    MsgBox("Missing Subject NonDisplayableProperties property - Please report error")
+        'Else
+        '    If Not IsNothing(obj.Subject) Then
+        '        propsNonDisplayable = obj.Subject.GetType.GetProperties
+        '    End If
+        'End If
+        'dd_changed end
         Dim props As PropertyInfo() = obj.GetType.GetProperties
         Dim adaptor As New QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-
-        For Each p As PropertyInfo In props
-
+        Dim pNonDisplayable As PropertyInfo = Nothing
+        For Each p As PropertyInfo In props 'dd_added 2/8/2012
+            'dd_added 2/8/2012
+            If Not IsNothing(obj.GetType().GetProperty("Subject").GetValue(obj, Nothing)) Then
+                pNonDisplayable = obj.Subject.GetType.GetProperty(p.Name)
+            End If
+            'dd_added end
             If SaveAll = False Then
                 If Not p.CanWrite Then
                     Continue For
@@ -98,8 +111,15 @@ Public Class CommonSaver
             Dim i As Integer = Nothing
             Dim d As Decimal = Nothing
             Dim b As Boolean = Nothing
-            Dim o As Object = p.GetValue(obj, Nothing)
 
+            Dim o As Object
+            'dd_changed 2/8/2012
+            If IsNothing(pNonDisplayable) Then
+                o = p.GetValue(obj, Nothing)
+            Else
+                o = pNonDisplayable.GetValue(obj.Subject, Nothing)
+            End If
+            'dd_changed end
             If TypeOf o Is Integer Then
                 i = CInt(o)
                 adaptor.Insert(id, childId, p.Name, Nothing, Nothing, i, cat, desc, Nothing)

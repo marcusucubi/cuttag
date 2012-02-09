@@ -11,10 +11,11 @@ Namespace Model.BOM
     ''' related code.
     ''' </remarks>
     Public Class DisplayableComponentProperties
-        Implements ICustomTypeDescriptor, INotifyPropertyChanged
+        Inherits Common.ComponentProperties
+        Implements ICustomTypeDescriptor ', INotifyPropertyChanged
 
-        Public Event PropertyChanged As PropertyChangedEventHandler _
-            Implements INotifyPropertyChanged.PropertyChanged
+        'Public Event PropertyChanged As PropertyChangedEventHandler _
+        'Implements INotifyPropertyChanged.PropertyChanged
 
         Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
@@ -24,10 +25,12 @@ Namespace Model.BOM
 
         Private _Subject As ComponentProperties
 
-        Public Sub New(subject As ComponentProperties)
+        Public Sub New(ByVal subject As ComponentProperties)
             _Subject = subject
+            MyBase.Subject = subject
+            ' NonDisplayableProperties = subject 'dd_Added 2/1/2012
         End Sub
-
+        'Public Property NonDisplayableProperties As Object = Nothing 'dd_Added 2/1/2012
         <FilterAttribute(True), _
         DisplayName("Total Machine Time"), _
         Browsable(False)>
@@ -182,9 +185,9 @@ Namespace Model.BOM
         End Function
 #End Region
 
-        Friend Sub SendEvents()
-            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
-        End Sub
+        'Friend Sub SendEvents()
+        '    RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
+        'End Sub
 
     End Class
 End Namespace

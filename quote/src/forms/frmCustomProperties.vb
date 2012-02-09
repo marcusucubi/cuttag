@@ -57,10 +57,10 @@ Public Class frmCustomProperties
             If ActiveHeader.ActiveHeader.Header.IsQuote Then
                 o = ActiveHeader.ActiveHeader.Header.CustomProperties
             Else
-                o.Subject = ActiveHeader.ActiveHeader.Header.ComputationProperties
+                o.Subject = ActiveHeader.ActiveHeader.Header.ComputationProperties ''''''''''''''''''dddddddddd
             End If
         Else
-            o.Subject = New Model.BOM.Header().ComputationProperties
+            o.Subject = New Model.BOM.Header().ComputationProperties ''''''''''''''''''ddddddddddddddd
         End If
 
         Me.PropertyGrid2.SelectedObject = o

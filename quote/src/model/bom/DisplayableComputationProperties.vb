@@ -19,6 +19,8 @@ Namespace Model.BOM
 
         Public Sub New(ByVal subject As ComputationProperties)
             _Subject = subject
+            MyBase.Subject = subject '''''''''''''''dddddddd
+            '  MyBase.NonDisplayableProperties = subject 'dd_Added 2/1/2012
         End Sub
 
         Private Sub _Options_Changed() Handles _Options.Changed

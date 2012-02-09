@@ -84,7 +84,7 @@ Partial Class frmOptions
         'Label1
         '
         Me.Label1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+                    Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(3, 0)
         Me.Label1.Name = "Label1"
@@ -97,7 +97,7 @@ Partial Class frmOptions
         '
         Me._DecimalPointsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me._DecimalPointsComboBox.FormattingEnabled = True
-        Me._DecimalPointsComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "10", "28"})
+        Me._DecimalPointsComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6"})
         Me._DecimalPointsComboBox.Location = New System.Drawing.Point(127, 3)
         Me._DecimalPointsComboBox.Name = "_DecimalPointsComboBox"
         Me._DecimalPointsComboBox.Size = New System.Drawing.Size(119, 21)
