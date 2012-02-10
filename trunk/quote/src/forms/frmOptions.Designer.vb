@@ -97,7 +97,7 @@ Partial Class frmOptions
         '
         Me._DecimalPointsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me._DecimalPointsComboBox.FormattingEnabled = True
-        Me._DecimalPointsComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6"})
+        Me._DecimalPointsComboBox.Items.AddRange(New Object() {"0", "1", "2", "3", "4"})
         Me._DecimalPointsComboBox.Location = New System.Drawing.Point(127, 3)
         Me._DecimalPointsComboBox.Name = "_DecimalPointsComboBox"
         Me._DecimalPointsComboBox.Size = New System.Drawing.Size(119, 21)

@@ -30,16 +30,6 @@ Namespace Common
 
         <Browsable(False)> _
         Public Property Subject As Object
-        '        <Browsable(False)> _
-        '       Public Property NonDisplayableProperties As Object = Nothing 'dd_Added 2/1/2012
-        'dd_Added 2/8/2012
-        <Browsable(False)>
-        Public ReadOnly Property NonDisplayableProperty(ByVal PropertyName As String) As PropertyInfo
-            Get
-                Return Subject.GetType.GetProperty(PropertyName)
-            End Get
-        End Property
-        'dd_Added End
         <Browsable(False)>
         Public ReadOnly Property Dirty As Boolean
             Get

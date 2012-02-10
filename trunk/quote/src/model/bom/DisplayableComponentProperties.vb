@@ -12,11 +12,7 @@ Namespace Model.BOM
     ''' </remarks>
     Public Class DisplayableComponentProperties
         Inherits Common.ComponentProperties
-        Implements ICustomTypeDescriptor ', INotifyPropertyChanged
-
-        'Public Event PropertyChanged As PropertyChangedEventHandler _
-        'Implements INotifyPropertyChanged.PropertyChanged
-
+        Implements ICustomTypeDescriptor 
         Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
         Private Sub _Options_Changed() Handles _Options.Changed
@@ -28,9 +24,7 @@ Namespace Model.BOM
         Public Sub New(ByVal subject As ComponentProperties)
             _Subject = subject
             MyBase.Subject = subject
-            ' NonDisplayableProperties = subject 'dd_Added 2/1/2012
         End Sub
-        'Public Property NonDisplayableProperties As Object = Nothing 'dd_Added 2/1/2012
         <FilterAttribute(True), _
         DisplayName("Total Machine Time"), _
         Browsable(False)>
@@ -184,10 +178,5 @@ Namespace Model.BOM
             Return Me
         End Function
 #End Region
-
-        'Friend Sub SendEvents()
-        '    RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
-        'End Sub
-
     End Class
 End Namespace

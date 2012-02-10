@@ -14,7 +14,7 @@ Namespace Model.BOM
     ''' </remarks>
     Public Class DisplayableWireProperties
         Inherits Common.WireProperties
-        Implements ICustomTypeDescriptor, INotifyPropertyChanged
+        Implements ICustomTypeDescriptor
 
         Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
@@ -22,24 +22,12 @@ Namespace Model.BOM
             Me.SendEvents()
         End Sub
 
-        'Public Event PropertyChanged As PropertyChangedEventHandler _
-        ' Implements INotifyPropertyChanged.PropertyChanged
-
         Private ReadOnly _Subject As Model.BOM.WireProperties
 
         Public Sub New(ByVal subject As Model.BOM.WireProperties)
             _Subject = subject
             MyBase.Subject = subject
-            ' NonDisplayableProperties = subject 'dd_Added 2/1/2012
         End Sub
-        'Public Property NonDisplayableProperties As Object = Nothing 'dd_Added 2/1/2012
-        '<Browsable(False)>
-        '   Public ReadOnly Property Subject As WireProperties
-        '      Get
-        '         Return _Subject
-        '    End Get
-        'End Property
-
         <FilterAttribute(True)>
         Public ReadOnly Property Gage As String
             Get
@@ -155,10 +143,6 @@ Namespace Model.BOM
             Return Me
         End Function
 #End Region
-
-        ' Friend Sub SendEvents()
-        '     RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(""))
-        ' End Sub
 
     End Class
 End Namespace
