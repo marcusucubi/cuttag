@@ -9,7 +9,7 @@ Namespace Model
 
 		Private m_code As String
         Private m_gage As String
-        Private m_CopperWeightPer1000Ft As Decimal 'dd_Added 12/30/11
+        Private m_CopperWeightPer1000Ft As Decimal 
 		Private m_unitCost As Decimal
 		Private m_machineTime As Decimal
         Private m_isWire As Boolean
@@ -18,7 +18,7 @@ Namespace Model
 		Private m_Vendor As String
 		Private m_MinimumQty As Decimal
         Private m_MinimumDollar As Decimal
-        Private m_UnitOfMeasure As String 'dd_Added 12/16/11
+        Private m_UnitOfMeasure As String 
 
         Public Sub New( _
                ByVal m_code As String,
@@ -53,12 +53,12 @@ Namespace Model
                 ByVal PartRow As QuoteDataBase.WireComponentSourceRow, _
                 Optional ByVal UnitOfMeasure As String = "", _
                 Optional ByVal CopperWeightPer1000Ft As Decimal = 0
-                ) 'dd_Added UOM 12/16/11
+                ) 
             Me.m_code = Code
             Me.m_unitCost = UnitCost
             Me.m_gage = Gage
             Me.m_isWire = IsWire
-            Me.m_UnitOfMeasure = UnitOfMeasure 'dd_Added 12/16/11
+            Me.m_UnitOfMeasure = UnitOfMeasure 
             If WireRow IsNot Nothing Then
                 Me.m_CopperWeightPer1000Ft = CopperWeightPer1000Ft
             End If
@@ -81,7 +81,7 @@ Namespace Model
                 End If
             End If
         End Sub
-        'dd_Added Set 9/26/11
+        
         Property Code As String
             Get
                 Return m_code
@@ -90,7 +90,7 @@ Namespace Model
                 m_code = Value
             End Set
         End Property
-        'dd_Added Set 12/30/11
+        
         Property CopperWeightPer1000Ft As String
             Get
                 Return m_CopperWeightPer1000Ft
@@ -99,7 +99,7 @@ Namespace Model
                 m_CopperWeightPer1000Ft = Value
             End Set
         End Property
-        'dd_Added end
+        
         ReadOnly Property Gage As String
             Get
                 Return m_gage
@@ -174,7 +174,7 @@ Namespace Model
                 m_MinimumDollar = value
             End Set
         End Property
-        Public Property UnitOfMeasure() As String 'dd_Added 12/16/11
+        Public Property UnitOfMeasure() As String 
             Get
                 Return m_UnitOfMeasure
             End Get
