@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Design
-Imports DCS.Quote.ObjectGenerator
 Imports System.ComponentModel.Design
 Imports DCS.Quote.Common.CustomPropertiesGenerator
 
