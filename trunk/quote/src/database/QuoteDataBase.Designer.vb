@@ -2456,7 +2456,7 @@ Partial Public Class QuoteDataBase
             Me.columnWireComponentSourceID.Unique = true
             Me.columnOrganizationID.AllowDBNull = false
             Me.columnPartNumber.AllowDBNull = false
-            Me.columnPartNumber.MaxLength = 20
+            Me.columnPartNumber.MaxLength = 30
             Me.columnNew.AllowDBNull = false
             Me.columnDescription.AllowDBNull = false
             Me.columnDescription.MaxLength = 80
@@ -2956,7 +2956,7 @@ Partial Public Class QuoteDataBase
             Me.columnWireSourceID.Unique = true
             Me.columnOrganizationID.AllowDBNull = false
             Me.columnPartNumber.AllowDBNull = false
-            Me.columnPartNumber.MaxLength = 20
+            Me.columnPartNumber.MaxLength = 30
             Me.columnDescription.MaxLength = 80
             Me.columnIsTwisted.AllowDBNull = false
             Me.columnColor.MaxLength = 15
@@ -3267,9 +3267,9 @@ Partial Public Class QuoteDataBase
             MyBase.Columns.Add(Me.columnIsWire)
             Me.columnSourceID.ReadOnly = true
             Me.columnKeyword.ReadOnly = true
-            Me.columnKeyword.MaxLength = 25
+            Me.columnKeyword.MaxLength = 30
             Me.columnPartNumber.ReadOnly = true
-            Me.columnPartNumber.MaxLength = 20
+            Me.columnPartNumber.MaxLength = 30
             Me.columnDescription.ReadOnly = true
             Me.columnDescription.MaxLength = 80
             Me.columnIsWire.ReadOnly = true

@@ -1265,7 +1265,7 @@ SELECT CustomerID, CustomerName, Active FROM Customer WHERE (CustomerID = @Custo
               <xs:element name="PartNumber" msprop:Generator_ColumnVarNameInTable="columnPartNumber" msprop:Generator_ColumnPropNameInRow="PartNumber" msprop:Generator_ColumnPropNameInTable="PartNumberColumn" msprop:Generator_UserColumnName="PartNumber">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
+                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -1326,7 +1326,7 @@ SELECT CustomerID, CustomerName, Active FROM Customer WHERE (CustomerID = @Custo
               <xs:element name="PartNumber" msprop:Generator_ColumnVarNameInTable="columnPartNumber" msprop:Generator_ColumnPropNameInRow="PartNumber" msprop:Generator_ColumnPropNameInTable="PartNumberColumn" msprop:Generator_UserColumnName="PartNumber">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
+                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -1372,14 +1372,14 @@ SELECT CustomerID, CustomerName, Active FROM Customer WHERE (CustomerID = @Custo
               <xs:element name="Keyword" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnKeyword" msprop:Generator_ColumnPropNameInRow="Keyword" msprop:Generator_ColumnPropNameInTable="KeywordColumn" msprop:Generator_UserColumnName="Keyword" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="25" />
+                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="PartNumber" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPartNumber" msprop:Generator_ColumnPropNameInRow="PartNumber" msprop:Generator_ColumnPropNameInTable="PartNumberColumn" msprop:Generator_UserColumnName="PartNumber" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
+                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
