@@ -493,6 +493,7 @@
     <Content Include="lib\Ionic.Zip.dll" />
     <Content Include="lib\NPOI.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="SQL\HC_Inf_InsertCustomer.sql" />
     <Content Include="SQL\HQ_GetNextLow_QuoteID.sql" />
     <Content Include="SQL\upgrade.sql" />
     <Content Include="SQL\upgrade1.sql" />
