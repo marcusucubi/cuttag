@@ -27,7 +27,7 @@ Namespace Model.BOM
         Private _TimeMultiplier As Decimal = 1.15
         Private _ManufacturingMarkup As Decimal = 1.25
         Private _LaborRate As Decimal = 21.5
-        Private _WireSetupTime As Integer = 120 '300
+        Private _WireSetupTime As Decimal = 120 '300
         Private _WireMachineTime As Decimal = 25 '30
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 0
@@ -185,20 +185,20 @@ Namespace Model.BOM
                 Return Count(False)
             End Get
         End Property
-        Public Property ComponentSetupTime() As Integer
+        Public Property ComponentSetupTime() As Decimal
             Get
                 Return _ComponentSetupTime
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 _ComponentSetupTime = value
                 Me.SendEvents()
             End Set
         End Property
-        Public Property WireSetupTime As Integer
+        Public Property WireSetupTime As Decimal
             Get
                 Return _WireSetupTime
             End Get
-            Set(ByVal value As Integer)
+            Set(ByVal value As Decimal)
                 _WireSetupTime = value
                 Me.SendEvents()
             End Set
