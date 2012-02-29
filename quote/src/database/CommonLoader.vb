@@ -113,12 +113,6 @@ Public Class CommonLoader
                     End If
                 End If
                 If Not row.IsPropertyIntegerValueNull Then
-                    'dd_Added 2/17/2012 - Deleted code after all user on this version or after
-                    ' WireSetupTime,ComponentSetupTime _QuoteProperties Integer values moved to Decimal value properties for all existing data
-                    If p.PropertyType.Name = "Decimal" And p.CanWrite Then
-                        p.SetValue(obj, CType(row.PropertyIntegerValue, Decimal), Nothing)
-                    End If
-                    'dd_Added 2/17/2012 End
                     If p.PropertyType.Name = "Int32" And p.CanWrite Then
                         p.SetValue(obj, row.PropertyIntegerValue, Nothing)
                     End If
