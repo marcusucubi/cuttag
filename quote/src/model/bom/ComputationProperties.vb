@@ -34,7 +34,7 @@ Namespace Model.BOM
         Private _OrderQuantity As Integer = 0
         Private _SingleDefQuantity As Integer = 0
         Private _PercentCopperScrap As Decimal = 10 '3
-        Private _CopperPrice As Decimal = 3.57
+        Private _CopperPrice As Decimal = 4.09 '3.57
         Private _MaterialMarkup As Decimal = 1.075
         Private _ComponentSetupTime As Decimal
 
