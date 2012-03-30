@@ -24,24 +24,24 @@ Namespace Model.BOM
         Private _ShippingContainerCost As Decimal
         Private _ShippingCost As Decimal
         Private _ShippingBox As String = "NoBox"
-        Private _TimeMultiplier As Decimal = 1.15
-        Private _ManufacturingMarkup As Decimal = 1.25
-        Private _LaborRate As Decimal = 21.5
-        Private _WireSetupTime As Decimal = 120 '300
-        Private _WireMachineTime As Decimal = 25 '30
+        Private _TimeMultiplier As Decimal = 1.15 'Read From DefaultValues
+        Private _ManufacturingMarkup As Decimal = 1.25 'Read From DefaultValues
+        Private _LaborRate As Decimal = 21.5 'Read From DefaultValues
+        Private _WireSetupTime As Decimal = 120 '300 'Read From DefaultValues
+        Private _WireMachineTime As Decimal = 25 '30 'Read From DefaultValues
         Private _NumberOfCuts As Decimal = 0
         Private _MinimumOrderQuantity As Integer = 0
         Private _OrderQuantity As Integer = 0
         Private _SingleDefQuantity As Integer = 0
-        Private _PercentCopperScrap As Decimal = 10 '3
-        Private _CopperPrice As Decimal = 4.09 '3.57
-        Private _MaterialMarkup As Decimal = 1.075
+        Private _PercentCopperScrap As Decimal = 10 '3 'Read From DefaultValues
+        Private _CopperPrice As Decimal = 4.09 '3.57 'Read From DefaultValues
+        Private _MaterialMarkup As Decimal = 1.075 'Read From DefaultValues
         Private _ComponentSetupTime As Decimal
 
         Private _QuoteType As String = "Production"
 
         Private _NumberOfTwistedPairs As Integer
-        Private _TimePerTwistedPairs As Decimal = 300
+        Private _TimePerTwistedPairs As Decimal = 300 'Read From DefaultValues
 
         Private _LengthOfTwistedWiresA As Decimal
         Private _LengthOfTwistedWiresB As Decimal
@@ -60,7 +60,7 @@ Namespace Model.BOM
         Private _SummaryTVMCIncrement As Decimal
         Private _SummaryDirectLabor As Decimal
         Private _SummaryOverhead As Decimal
-        Private _SummaryAdjustmentMultiplyer As Decimal = 0.08
+        Private _SummaryAdjustmentMultiplyer As Decimal = 0.08 'Read From DefaultValues
         Private _SummaryCostAdjustment As Decimal
         Private _SummaryProfit As Decimal
 #End Region
