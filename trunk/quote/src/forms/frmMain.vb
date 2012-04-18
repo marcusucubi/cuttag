@@ -185,12 +185,15 @@ Public Class frmMain
         ExportToolStripMenuItem.Enabled = False
         ExportButton.Enabled = False
         BOMExportButton.Enabled = False
+        TextViewToolStripMenuItem1.Enabled = False
+        TextViewToolStripMenuItem2.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             If Me._ActiveHeader.Header.IsQuote Then
+                TextViewToolStripMenuItem2.Enabled = True
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
                 ToolStripTemplate.Enabled = True
@@ -198,6 +201,7 @@ Public Class frmMain
                 ExportButton.Enabled = True
             Else
                 BOMExportButton.Enabled = True
+                TextViewToolStripMenuItem1.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True
@@ -361,7 +365,15 @@ Public Class frmMain
     End Sub
     Private Function IsLoaded(ByVal id As String) As Boolean
         Dim result As Boolean
-        For Each w As frmDocumentA In Me.MdiChildren
+        For Each child As DockContent In Me.MdiChildren
+
+            If Not (TypeOf child Is frmDocumentA) Then
+                Continue For
+            End If
+
+            Dim w As frmDocumentA
+            w = child
+
             Dim test = w.QuoteHeader.PrimaryProperties.CommonID
             If id = test Then
                 w.Activate()
@@ -405,6 +417,18 @@ Public Class frmMain
 
     Private Sub OptionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OptionsToolStripMenuItem.Click
         frmOptions.ShowDialog()
+    End Sub
+
+    Private Sub TextViewToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles TextViewToolStripMenuItem1.Click
+        Dim frmTextView As New frmTextView(Me._ActiveHeader.Header)
+        frmTextView.MdiParent = Me
+        frmTextView.Show(Me.DockPanel1)
+    End Sub
+
+    Private Sub TextViewToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles TextViewToolStripMenuItem2.Click
+        Dim frmTextView As New frmTextView(Me._ActiveHeader.Header)
+        frmTextView.MdiParent = Me
+        frmTextView.Show(Me.DockPanel1)
     End Sub
 
 End Class

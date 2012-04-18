@@ -17,6 +17,26 @@ Public Class PropertyProxy
         _Info = Info
     End Sub
 
+    Public ReadOnly Property Category As String
+        Get
+            Dim cat As String = "Misc"
+            With cat
+                Dim oa As CategoryAttribute() = _
+                        _Info.GetCustomAttributes(GetType(CategoryAttribute), False)
+                If oa.Length > 0 Then
+                    cat = oa(0).Category
+                End If
+            End With
+
+            Dim s As String = ""
+            s = Replace(cat, " ", "")
+            s = Replace(s, Chr(160), "")
+            s = Replace(s, vbTab, "")
+
+            Return s
+        End Get
+    End Property
+
     Public ReadOnly Property Browsable As Boolean
         Get
             Dim result As Boolean = True
