@@ -34,10 +34,46 @@ Public Class TextGenerator
         s += ConvertToString(True, "", indent, "Other", Me._Header.OtherProperties)
         s += ConvertToString(True, "", indent, "Notes", Me._Header.NoteProperties)
 
-        s += vbCrLf + vbCrLf + "Detials" + vbCrLf + vbCrLf
+        ' -------------
+
+        s += vbCrLf + vbCrLf + "Wires" + vbCrLf + vbCrLf
+
+        Dim wires As New List(Of Detail)
         For Each d As Detail In Me._Header.Details
-            s += ConvertToString(False, indent, indent + indent, d.ProductCode, d)
+            If d.IsWire Then
+                wires.Add(d)
+            End If
         Next
+
+        wires.Sort(Function(d1 As Detail, d2 As Detail)
+                       Return d1.ProductCode.CompareTo(d2.ProductCode)
+                   End Function)
+
+        For Each d As Detail In wires
+            s += ConvertToString2(False, indent, indent + indent, d.ProductCode, d)
+        Next
+
+        ' -------------
+
+        s += vbCrLf + vbCrLf + "Componenets" + vbCrLf + vbCrLf
+
+        Dim parts As New List(Of Detail)
+        For Each d As Detail In Me._Header.Details
+            If Not d.IsWire Then
+                parts.Add(d)
+            End If
+        Next
+
+        parts.Sort(Function(d1 As Detail, d2 As Detail)
+                       Return d1.ProductCode.CompareTo(d2.ProductCode)
+                   End Function)
+
+        For Each d As Detail In parts
+            s += ConvertToString2(False, indent, indent + indent, d.ProductCode, d)
+        Next
+
+        ' -------------
+
 
         _Data = s
 
@@ -68,6 +104,29 @@ Public Class TextGenerator
         s += indent1 + title + vbCrLf
         s += vbCrLf
         s += ConvertToString(displayCategory, indent2, list)
+        Return s
+    End Function
+
+    Function ConvertToString2(displayCategory As Boolean, _
+                              indent1 As String, _
+                              indent2 As String, _
+                              title As String, _
+                              obj As Object) _
+                          As String
+        Dim list As New List(Of PropertyProxy)
+        list = ConvertToList(obj)
+        Dim s As String = ""
+        s += vbCrLf
+
+        s += indent1 + title
+        For i As Integer = 0 To 30 - title.Length
+            s += " "
+        Next
+
+        s += vbCrLf + indent1 + "                               "
+        s += "{"
+        s += ConvertToString2(displayCategory, indent2, list)
+        s += "}"
         Return s
     End Function
 
@@ -114,6 +173,30 @@ Public Class TextGenerator
                 s += "" + n.Value.ToString()
             End If
             s += vbCrLf
+
+        Next
+
+        Return s
+    End Function
+
+    Function ConvertToString2(displayCategory As Boolean, _
+                             indent As String, _
+                             list As List(Of PropertyProxy)) _
+                         As String
+
+        Dim s As String = ""
+        For Each n As PropertyProxy In list
+
+            If Not n.Browsable Then
+                Continue For
+            End If
+
+            s += n.DisplayName
+            s += "="
+            If Not n.Value Is Nothing Then
+                s += n.Value.ToString()
+            End If
+            s += "|"
 
         Next
 

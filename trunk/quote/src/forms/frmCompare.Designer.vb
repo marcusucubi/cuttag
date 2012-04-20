@@ -59,7 +59,7 @@ Partial Class frmCompare
         'ColumnHeader6
         '
         Me.ColumnHeader6.Text = ""
-        Me.ColumnHeader6.Width = 600
+        Me.ColumnHeader6.Width = 1600
         '
         'ListViewDestination
         '
@@ -83,7 +83,7 @@ Partial Class frmCompare
         'ColumnHeader8
         '
         Me.ColumnHeader8.Text = ""
-        Me.ColumnHeader8.Width = 600
+        Me.ColumnHeader8.Width = 1600
         '
         'SplitContainer1
         '
