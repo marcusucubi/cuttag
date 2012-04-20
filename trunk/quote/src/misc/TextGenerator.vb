@@ -29,14 +29,12 @@ Public Class TextGenerator
 
         Dim indent As String = "    "
         Dim s As String = ""
-        s += ConvertToString(True, "", indent, "Primary", Me._Header.PrimaryProperties)
-        s += ConvertToString(True, "", indent, "Computation", Me._Header.ComputationProperties)
-        s += ConvertToString(True, "", indent, "Other", Me._Header.OtherProperties)
-        s += ConvertToString(True, "", indent, "Notes", Me._Header.NoteProperties)
+        s += ConvertToString(False, "", indent, "Primary", Me._Header.PrimaryProperties)
+        s += ConvertToString(False, "", indent, "Computation", Me._Header.ComputationProperties)
+        s += ConvertToString(False, "", indent, "Other", Me._Header.OtherProperties)
+        s += ConvertToString(False, "", indent, "Notes", Me._Header.NoteProperties)
 
         ' -------------
-
-        s += vbCrLf + vbCrLf + "Wires" + vbCrLf + vbCrLf
 
         Dim wires As New List(Of Detail)
         For Each d As Detail In Me._Header.Details
@@ -44,6 +42,8 @@ Public Class TextGenerator
                 wires.Add(d)
             End If
         Next
+
+        s += vbCrLf + vbCrLf + "Wires (" & wires.Count & ")" + vbCrLf + vbCrLf
 
         wires.Sort(Function(d1 As Detail, d2 As Detail)
                        Return d1.ProductCode.CompareTo(d2.ProductCode)
@@ -55,14 +55,14 @@ Public Class TextGenerator
 
         ' -------------
 
-        s += vbCrLf + vbCrLf + "Componenets" + vbCrLf + vbCrLf
-
         Dim parts As New List(Of Detail)
         For Each d As Detail In Me._Header.Details
             If Not d.IsWire Then
                 parts.Add(d)
             End If
         Next
+
+        s += vbCrLf + vbCrLf + "Componenets (" & parts.Count & ")" + vbCrLf + vbCrLf
 
         parts.Sort(Function(d1 As Detail, d2 As Detail)
                        Return d1.ProductCode.CompareTo(d2.ProductCode)

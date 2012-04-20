@@ -71,7 +71,7 @@ Public Class frmCompare
 
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
-                        lviS.BackColor = Drawing.Color.Red
+                        lviS.BackColor = Drawing.Color.LightGreen
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.LightGray
@@ -124,7 +124,7 @@ Public Class frmCompare
 
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
-                        lviS.BackColor = Drawing.Color.Red
+                        lviS.BackColor = Drawing.Color.LightGreen
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.LightGreen
