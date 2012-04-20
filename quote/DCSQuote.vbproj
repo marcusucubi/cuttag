@@ -124,6 +124,12 @@
     <Compile Include="src\export\ExcelBOMWriter.vb" />
     <Compile Include="src\export\ExportBOM.vb" />
     <Compile Include="src\export\ExportPath.vb" />
+    <Compile Include="src\forms\frmCompare.Designer.vb">
+      <DependentUpon>frmCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmCompare.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmDatabaseTest.Designer.vb">
       <DependentUpon>frmDatabaseTest.vb</DependentUpon>
     </Compile>
@@ -289,6 +295,7 @@
     <Compile Include="src\misc\QuoteTypeList.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveHeader.vb" />
+    <Compile Include="src\misc\TextGenerator.vb" />
     <Compile Include="src\misc\UOMConverter.vb" />
     <Compile Include="src\model\bom\ComponentProperties.vb" />
     <Compile Include="src\model\bom\ComputationProperties.vb" />
@@ -346,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
       <DependentUpon>WireAndComponentView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmCompare.resx">
+      <DependentUpon>frmCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmCustomProperties.resx">
       <DependentUpon>frmCustomProperties.vb</DependentUpon>
@@ -524,6 +534,14 @@
     <ProjectReference Include="DCSDataGrid\DCSDataGrid.vbproj">
       <Project>{B3093DDF-04C2-47AB-8E5B-99D151AA1C53}</Project>
       <Name>DCSDataGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="Projects\DiffCalc\DiffCalc.csproj">
+      <Project>{CA9B6FA7-9A52-49E9-9387-22C82B0F8962}</Project>
+      <Name>DiffCalc</Name>
+    </ProjectReference>
+    <ProjectReference Include="Projects\DifferenceEngine\DifferenceEngine.csproj">
+      <Project>{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}</Project>
+      <Name>DifferenceEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

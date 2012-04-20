@@ -187,6 +187,7 @@ Public Class frmMain
         BOMExportButton.Enabled = False
         TextViewToolStripMenuItem1.Enabled = False
         TextViewToolStripMenuItem2.Enabled = False
+        CompareWithToolStripMenuItem.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
@@ -202,6 +203,7 @@ Public Class frmMain
             Else
                 BOMExportButton.Enabled = True
                 TextViewToolStripMenuItem1.Enabled = True
+                CompareWithToolStripMenuItem.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True
@@ -429,6 +431,64 @@ Public Class frmMain
         Dim frmTextView As New frmTextView(Me._ActiveHeader.Header)
         frmTextView.MdiParent = Me
         frmTextView.Show(Me.DockPanel1)
+    End Sub
+
+    Public Class CompareMenuItem
+        Inherits ToolStripMenuItem
+
+        Private _Header As Common.Header
+
+        Public Sub New(name As String, header As Common.Header)
+            MyBase.New(name)
+            _Header = header
+        End Sub
+
+        Public ReadOnly Property Header
+            Get
+                Return _Header
+            End Get
+        End Property
+
+    End Class
+
+    Private Sub CompareWithToolStripMenuItem_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem.DropDownOpening
+
+        ' Remove this item's event handler.
+        Dim menu As ToolStripMenuItem = DirectCast(sender,  _
+            ToolStripMenuItem)
+
+        Dim submenu As ToolStripMenuItem = _
+            DirectCast(menu.DropDownItems(0), ToolStripMenuItem)
+
+        menu.DropDownItems.Clear()
+        For Each d As DockContent In Me.DockPanel1.Documents
+
+            If Not (TypeOf d Is frmDocumentA) Then
+                Continue For
+            End If
+
+            Dim doc As frmDocumentA = d
+
+            If _ActiveHeader.Header Is doc.QuoteHeader Then
+                Continue For
+            End If
+
+            Dim name As String = doc.QuoteHeader.DisplayName
+
+            Dim new_item As New CompareMenuItem(name, doc.QuoteHeader)
+            menu.DropDownItems.Add(new_item)
+            AddHandler new_item.Click, AddressOf CompareWithToolStripMenuItem_Click
+        Next
+
+    End Sub
+
+    Private Sub CompareWithToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
+
+        Dim menu As CompareMenuItem = DirectCast(sender, CompareMenuItem)
+
+        Dim frmCompare As New frmCompare(Me._ActiveHeader.Header, menu.Header)
+        frmCompare.MdiParent = Me
+        frmCompare.Show(Me.DockPanel1)
     End Sub
 
 End Class
