@@ -55,6 +55,7 @@ Partial Class frmCompare
         'ColumnHeader5
         '
         Me.ColumnHeader5.Text = "Number"
+        Me.ColumnHeader5.Width = 1
         '
         'ColumnHeader6
         '
@@ -79,6 +80,7 @@ Partial Class frmCompare
         'ColumnHeader7
         '
         Me.ColumnHeader7.Text = "Number"
+        Me.ColumnHeader7.Width = 1
         '
         'ColumnHeader8
         '
