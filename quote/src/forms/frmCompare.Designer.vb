@@ -43,9 +43,11 @@ Partial Class frmCompare
         Me.ListViewSource.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListViewSource.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListViewSource.FullRowSelect = True
+        Me.ListViewSource.GridLines = True
         Me.ListViewSource.Location = New System.Drawing.Point(0, 0)
+        Me.ListViewSource.MultiSelect = False
         Me.ListViewSource.Name = "ListViewSource"
-        Me.ListViewSource.Size = New System.Drawing.Size(132, 262)
+        Me.ListViewSource.Size = New System.Drawing.Size(312, 337)
         Me.ListViewSource.TabIndex = 0
         Me.ListViewSource.UseCompatibleStateImageBehavior = False
         Me.ListViewSource.View = System.Windows.Forms.View.Details
@@ -65,9 +67,11 @@ Partial Class frmCompare
         Me.ListViewDestination.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListViewDestination.Font = New System.Drawing.Font("Courier New", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListViewDestination.FullRowSelect = True
+        Me.ListViewDestination.GridLines = True
         Me.ListViewDestination.Location = New System.Drawing.Point(0, 0)
+        Me.ListViewDestination.MultiSelect = False
         Me.ListViewDestination.Name = "ListViewDestination"
-        Me.ListViewDestination.Size = New System.Drawing.Size(148, 262)
+        Me.ListViewDestination.Size = New System.Drawing.Size(356, 337)
         Me.ListViewDestination.TabIndex = 1
         Me.ListViewDestination.UseCompatibleStateImageBehavior = False
         Me.ListViewDestination.View = System.Windows.Forms.View.Details
@@ -94,15 +98,15 @@ Partial Class frmCompare
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.ListViewDestination)
-        Me.SplitContainer1.Size = New System.Drawing.Size(284, 262)
-        Me.SplitContainer1.SplitterDistance = 132
+        Me.SplitContainer1.Size = New System.Drawing.Size(672, 337)
+        Me.SplitContainer1.SplitterDistance = 312
         Me.SplitContainer1.TabIndex = 2
         '
         'frmCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(672, 337)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmCompare"
