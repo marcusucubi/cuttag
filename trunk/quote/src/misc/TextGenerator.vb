@@ -43,7 +43,8 @@ Public Class TextGenerator
             End If
         Next
 
-        s += vbCrLf + vbCrLf + "Wires (" & wires.Count & ")" + vbCrLf + vbCrLf
+        s += vbCrLf + "-------------------------------------------------------------------------"
+        s += vbCrLf + "Wires (" & wires.Count & ")" + vbCrLf + vbCrLf
 
         wires.Sort(Function(d1 As Detail, d2 As Detail)
                        Return d1.ProductCode.CompareTo(d2.ProductCode)
@@ -62,7 +63,8 @@ Public Class TextGenerator
             End If
         Next
 
-        s += vbCrLf + vbCrLf + "Componenets (" & parts.Count & ")" + vbCrLf + vbCrLf
+        s += vbCrLf + "-------------------------------------------------------------------------"
+        s += vbCrLf + "Componenets (" & parts.Count & ")" + vbCrLf + vbCrLf
 
         parts.Sort(Function(d1 As Detail, d2 As Detail)
                        Return d1.ProductCode.CompareTo(d2.ProductCode)
