@@ -225,4 +225,8 @@ Public Class frmCompare
 
     End Sub
 
+    Private Sub ListViewDestination_Resize(sender As System.Object, e As System.EventArgs) Handles ListViewDestination.Resize
+        Me.ListViewDestination.Refresh()
+    End Sub
+
 End Class
