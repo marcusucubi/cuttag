@@ -435,6 +435,10 @@ Public Class frmMain
         frmTextView.Show(Me.DockPanel1)
     End Sub
 
+    ''' <summary>
+    ''' Used to display drop down menu for quote compare
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Class CompareMenuItem
         Inherits ToolStripMenuItem
 
@@ -455,40 +459,21 @@ Public Class frmMain
 
     Private Sub CompareWithToolStripMenuItem_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem.DropDownOpening
 
-        ' Remove this item's event handler.
         Dim menu As ToolStripMenuItem = DirectCast(sender,  _
             ToolStripMenuItem)
 
-        Dim submenu As ToolStripMenuItem = _
-            DirectCast(menu.DropDownItems(0), ToolStripMenuItem)
-
-        menu.DropDownItems.Clear()
-        For Each d As DockContent In Me.DockPanel1.Documents
-
-            If Not (TypeOf d Is frmDocumentA) Then
-                Continue For
-            End If
-
-            Dim doc As frmDocumentA = d
-
-            If _ActiveHeader.Header Is doc.QuoteHeader Then
-                Continue For
-            End If
-
-            Dim name As String = doc.QuoteHeader.DisplayName
-
-            Dim new_item As New CompareMenuItem(name, doc.QuoteHeader)
-            menu.DropDownItems.Add(new_item)
-            AddHandler new_item.Click, AddressOf CompareWithToolStripMenuItem_Click
-        Next
-
+        AddMenuItemsForOpenQuotes(menu)
     End Sub
 
     Private Sub CompareWithToolStripMenuItem1_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem1.DropDownOpening
 
-        ' Remove this item's event handler.
         Dim menu As ToolStripMenuItem = DirectCast(sender,  _
             ToolStripMenuItem)
+
+        AddMenuItemsForOpenQuotes(menu)
+    End Sub
+
+    Private Sub AddMenuItemsForOpenQuotes(menu As ToolStripMenuItem)
 
         Dim submenu As ToolStripMenuItem = _
             DirectCast(menu.DropDownItems(0), ToolStripMenuItem)
@@ -519,9 +504,14 @@ Public Class frmMain
 
         Dim menu As CompareMenuItem = DirectCast(sender, CompareMenuItem)
 
+        Me.Cursor = Cursors.WaitCursor
+        My.Application.DoEvents()
+
         Dim frmCompare As New frmCompare(Me._ActiveHeader.Header, menu.Header)
         frmCompare.MdiParent = Me
         frmCompare.Show(Me.DockPanel1)
+
+        Me.Cursor = Cursors.Default
     End Sub
 
 End Class
