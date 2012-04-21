@@ -125,12 +125,6 @@
     <Compile Include="src\export\ExcelBOMWriter.vb" />
     <Compile Include="src\export\ExportBOM.vb" />
     <Compile Include="src\export\ExportPath.vb" />
-    <Compile Include="src\forms\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmCompare.Designer.vb">
       <DependentUpon>frmCompare.vb</DependentUpon>
     </Compile>
@@ -360,9 +354,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
       <DependentUpon>WireAndComponentView.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmCompare.resx">
       <DependentUpon>frmCompare.vb</DependentUpon>
