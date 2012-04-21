@@ -173,55 +173,43 @@ Public Class frmCompare
 
     Private Sub Draw(e As System.Windows.Forms.DrawListViewItemEventArgs)
 
-        Dim backColor As Color = Color.White
-        If Not (e.State And ListViewItemStates.Selected) = 0 Then
-
-            ' Draw the background for a selected item.
-            e.Graphics.FillRectangle(Brushes.LightBlue, e.Bounds)
-            backColor = Color.LightBlue
-
-        Else
-
-            ' Draw the background for an unselected item.
-            backColor = e.Item.BackColor
-
-            Dim b As New SolidBrush(e.Item.BackColor)
-            Dim brush As New LinearGradientBrush(e.Bounds, Me.BackColor, _
-                Color.LightGray, LinearGradientMode.Vertical)
-            Try
-                'e.Graphics.FillRectangle(b, e.Bounds)
-            Finally
-                brush.Dispose()
-            End Try
-
-        End If
-
-        Dim width As Integer = Me.ListViewDestination.Width / 2
+        Dim width As Integer = (Me.ListViewDestination.Width - 25) / 2
 
         Dim left As New Rectangle(e.Bounds.X, e.Bounds.Y, width, e.Bounds.Height)
         Dim right As New Rectangle(e.Bounds.X + (width), e.Bounds.Y, width, e.Bounds.Height)
 
-        Dim text1 As String = e.Item.SubItems(1).Text
+        Dim leftBackColor As Color = Color.White
+        Dim rightBackColor As Color = Color.White
+
+        Dim isSelected As Boolean = False
+
+        If Not (e.State And ListViewItemStates.Selected) = 0 Then
+            leftBackColor = Color.LightBlue
+            rightBackColor = Color.LightBlue
+        Else
+            leftBackColor = e.Item.BackColor
+            rightBackColor = e.Item.SubItems(2).Tag
+        End If
 
         Dim font As New Font(FontFamily.GenericMonospace, 8)
-        Dim point1 As New Point(e.Bounds.X, e.Bounds.Y)
 
-        e.Graphics.FillRectangle(New SolidBrush(backColor), left)
+        Dim text1 As String = e.Item.SubItems(1).Text
+        Dim text2 As String = e.Item.SubItems(2).Text
+
+        Dim point1 As New Point(e.Bounds.X, e.Bounds.Y)
+        Dim point2 As New Point(e.Bounds.X + (width), e.Bounds.Y)
+
+        e.Graphics.FillRectangle(New SolidBrush(leftBackColor), left)
         TextRenderer.DrawText( _
             e.Graphics, text1, font, left, _
-            Color.Black, backColor, TextFormatFlags.Left)
+            Color.Black, leftBackColor, TextFormatFlags.TextBoxControl)
         e.Graphics.DrawRectangle(Drawing.Pens.Black, left)
 
-        If (e.Item.SubItems.Count > 2) Then
-            Dim text2 As String = e.Item.SubItems(2).Text
-            Dim point2 As New Point(e.Bounds.X + (width), e.Bounds.Y)
-            Dim c As Color = e.Item.SubItems(2).Tag
-            e.Graphics.FillRectangle(New SolidBrush(c), right)
-            TextRenderer.DrawText( _
-                e.Graphics, text2, font, right, _
-                Color.Black, c, TextFormatFlags.Left)
-            e.Graphics.DrawRectangle(Drawing.Pens.Black, right)
-        End If
+        e.Graphics.FillRectangle(New SolidBrush(rightBackColor), right)
+        TextRenderer.DrawText( _
+            e.Graphics, text2, font, right, _
+            Color.Black, rightBackColor, TextFormatFlags.Left)
+        e.Graphics.DrawRectangle(Drawing.Pens.Black, right)
 
     End Sub
 
