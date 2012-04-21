@@ -71,6 +71,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
@@ -124,6 +125,12 @@
     <Compile Include="src\export\ExcelBOMWriter.vb" />
     <Compile Include="src\export\ExportBOM.vb" />
     <Compile Include="src\export\ExportPath.vb" />
+    <Compile Include="src\forms\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmCompare.Designer.vb">
       <DependentUpon>frmCompare.vb</DependentUpon>
     </Compile>
@@ -354,6 +361,9 @@
     <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
       <DependentUpon>WireAndComponentView.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmCompare.resx">
       <DependentUpon>frmCompare.vb</DependentUpon>
     </EmbeddedResource>
@@ -534,10 +544,6 @@
     <ProjectReference Include="DCSDataGrid\DCSDataGrid.vbproj">
       <Project>{B3093DDF-04C2-47AB-8E5B-99D151AA1C53}</Project>
       <Name>DCSDataGrid</Name>
-    </ProjectReference>
-    <ProjectReference Include="Projects\DiffCalc\DiffCalc.csproj">
-      <Project>{CA9B6FA7-9A52-49E9-9387-22C82B0F8962}</Project>
-      <Name>DiffCalc</Name>
     </ProjectReference>
     <ProjectReference Include="Projects\DifferenceEngine\DifferenceEngine.csproj">
       <Project>{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}</Project>
