@@ -188,6 +188,7 @@ Public Class frmMain
         TextViewToolStripMenuItem1.Enabled = False
         TextViewToolStripMenuItem2.Enabled = False
         CompareWithToolStripMenuItem.Enabled = False
+        CompareWithToolStripMenuItem1.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             SaveToolStripMenuItem.Enabled = False
@@ -200,6 +201,7 @@ Public Class frmMain
                 ToolStripTemplate.Enabled = True
                 ExportToolStripMenuItem.Enabled = True
                 ExportButton.Enabled = True
+                CompareWithToolStripMenuItem1.Enabled = True
             Else
                 BOMExportButton.Enabled = True
                 TextViewToolStripMenuItem1.Enabled = True
@@ -452,6 +454,37 @@ Public Class frmMain
     End Class
 
     Private Sub CompareWithToolStripMenuItem_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem.DropDownOpening
+
+        ' Remove this item's event handler.
+        Dim menu As ToolStripMenuItem = DirectCast(sender,  _
+            ToolStripMenuItem)
+
+        Dim submenu As ToolStripMenuItem = _
+            DirectCast(menu.DropDownItems(0), ToolStripMenuItem)
+
+        menu.DropDownItems.Clear()
+        For Each d As DockContent In Me.DockPanel1.Documents
+
+            If Not (TypeOf d Is frmDocumentA) Then
+                Continue For
+            End If
+
+            Dim doc As frmDocumentA = d
+
+            If _ActiveHeader.Header Is doc.QuoteHeader Then
+                Continue For
+            End If
+
+            Dim name As String = doc.QuoteHeader.DisplayName
+
+            Dim new_item As New CompareMenuItem(name, doc.QuoteHeader)
+            menu.DropDownItems.Add(new_item)
+            AddHandler new_item.Click, AddressOf CompareWithToolStripMenuItem_Click
+        Next
+
+    End Sub
+
+    Private Sub CompareWithToolStripMenuItem1_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem1.DropDownOpening
 
         ' Remove this item's event handler.
         Dim menu As ToolStripMenuItem = DirectCast(sender,  _
