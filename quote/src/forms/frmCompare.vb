@@ -1,4 +1,6 @@
 ﻿Imports DifferenceEngine
+Imports System.Drawing
+Imports System.Drawing.Drawing2D
 
 Public Class frmCompare
 
@@ -11,10 +13,7 @@ Public Class frmCompare
         _Header1 = q1
         _Header2 = q2
 
-        ' This call is required by the designer.
         InitializeComponent()
-
-        ' Add any initialization after the InitializeComponent() call.
 
         Dim g1 As TextGenerator = New TextGenerator(_Header1)
         Dim g2 As TextGenerator = New TextGenerator(_Header2)
@@ -76,8 +75,10 @@ Public Class frmCompare
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.LightGray
                         lviD.SubItems.Add("")
+                        Dim o As New ListViewItem.ListViewSubItem
+                        o = lviD.SubItems.Add(v.Line)
+                        o.Tag = Drawing.Color.LightGreen
 
-                        ListViewSource.Items.Add(lviS)
                         ListViewDestination.Items.Add(lviD)
                         cnt = cnt + 1
                     Next
@@ -94,8 +95,10 @@ Public Class frmCompare
                         lviD.BackColor = Drawing.Color.White
                         Dim v2 = destination.GetByIndex(drs.DestIndex + i)
                         lviD.SubItems.Add(v2.Line)
+                        Dim o As New ListViewItem.ListViewSubItem
+                        o = lviD.SubItems.Add(v.Line)
+                        o.Tag = Drawing.Color.White
 
-                        ListViewSource.Items.Add(lviS)
                         ListViewDestination.Items.Add(lviD)
                         cnt = cnt + 1
                     Next
@@ -112,8 +115,10 @@ Public Class frmCompare
                         lviD.BackColor = Drawing.Color.LightGreen
                         Dim v = destination.GetByIndex(drs.DestIndex + i)
                         lviD.SubItems.Add(v.Line)
+                        Dim o As New ListViewItem.ListViewSubItem
+                        o = lviD.SubItems.Add("")
+                        o.Tag = Drawing.Color.LightGray
 
-                        ListViewSource.Items.Add(lviS)
                         ListViewDestination.Items.Add(lviD)
                         cnt = cnt + 1
                     Next
@@ -122,16 +127,18 @@ Public Class frmCompare
                 Case DiffResultSpanStatus.Replace
                     For i = 0 To drs.Length - 1
 
+                        Dim v = source.GetByIndex(drs.SourceIndex + i)
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.LightGreen
-                        Dim v = source.GetByIndex(drs.SourceIndex + i)
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.LightGreen
                         Dim v2 = destination.GetByIndex(drs.DestIndex + i)
                         lviD.SubItems.Add(v2.Line)
+                        Dim o As New ListViewItem.ListViewSubItem
+                        o = lviD.SubItems.Add(v.Line)
+                        o.Tag = Drawing.Color.LightGreen
 
-                        ListViewSource.Items.Add(lviS)
                         ListViewDestination.Items.Add(lviD)
                         cnt = cnt + 1
                     Next
@@ -160,37 +167,61 @@ Public Class frmCompare
         Me.Text = s
     End Sub
 
-    Private Sub ListViewSource_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ListViewSource.SelectedIndexChanged
-
-        If _IgnoreSelect Then
-            Return
-        End If
-
-        If (ListViewSource.SelectedItems.Count > 0) Then
-            _IgnoreSelect = True
-            Dim lvi As ListViewItem
-            lvi = ListViewDestination.Items(ListViewSource.SelectedItems(0).Index)
-            lvi.Selected = True
-            lvi.EnsureVisible()
-        End If
-        _IgnoreSelect = False
-
+    Private Sub ListView1_DrawItem(sender As System.Object, e As System.Windows.Forms.DrawListViewItemEventArgs) Handles ListViewDestination.DrawItem
+        Draw(e)
     End Sub
 
-    Private Sub ListViewDestination_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ListViewDestination.SelectedIndexChanged
+    Private Sub Draw(e As System.Windows.Forms.DrawListViewItemEventArgs)
 
-        If _IgnoreSelect Then
-            Return
+        Dim backColor As Color = Color.White
+        If Not (e.State And ListViewItemStates.Selected) = 0 Then
+
+            ' Draw the background for a selected item.
+            e.Graphics.FillRectangle(Brushes.LightBlue, e.Bounds)
+            backColor = Color.LightBlue
+
+        Else
+
+            ' Draw the background for an unselected item.
+            backColor = e.Item.BackColor
+
+            Dim b As New SolidBrush(e.Item.BackColor)
+            Dim brush As New LinearGradientBrush(e.Bounds, Me.BackColor, _
+                Color.LightGray, LinearGradientMode.Vertical)
+            Try
+                'e.Graphics.FillRectangle(b, e.Bounds)
+            Finally
+                brush.Dispose()
+            End Try
+
         End If
 
-        If (ListViewDestination.SelectedItems.Count > 0) Then
-            _IgnoreSelect = True
-            Dim lvi As ListViewItem
-            lvi = ListViewSource.Items(ListViewDestination.SelectedItems(0).Index)
-            lvi.Selected = True
-            lvi.EnsureVisible()
+        Dim width As Integer = Me.ListViewDestination.Width / 2
+
+        Dim left As New Rectangle(e.Bounds.X, e.Bounds.Y, width, e.Bounds.Height)
+        Dim right As New Rectangle(e.Bounds.X + (width), e.Bounds.Y, width, e.Bounds.Height)
+
+        Dim text1 As String = e.Item.SubItems(1).Text
+
+        Dim font As New Font(FontFamily.GenericMonospace, 8)
+        Dim point1 As New Point(e.Bounds.X, e.Bounds.Y)
+
+        e.Graphics.FillRectangle(New SolidBrush(backColor), left)
+        TextRenderer.DrawText( _
+            e.Graphics, text1, font, left, _
+            Color.Black, backColor, TextFormatFlags.Left)
+        e.Graphics.DrawRectangle(Drawing.Pens.Black, left)
+
+        If (e.Item.SubItems.Count > 2) Then
+            Dim text2 As String = e.Item.SubItems(2).Text
+            Dim point2 As New Point(e.Bounds.X + (width), e.Bounds.Y)
+            Dim c As Color = e.Item.SubItems(2).Tag
+            e.Graphics.FillRectangle(New SolidBrush(c), right)
+            TextRenderer.DrawText( _
+                e.Graphics, text2, font, right, _
+                Color.Black, c, TextFormatFlags.Left)
+            e.Graphics.DrawRectangle(Drawing.Pens.Black, right)
         End If
-        _IgnoreSelect = False
 
     End Sub
 
