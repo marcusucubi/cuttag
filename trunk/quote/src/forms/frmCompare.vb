@@ -15,11 +15,21 @@ Public Class frmCompare
 
         InitializeComponent()
 
+        Me.SameButton.Checked = True
+        Me.NewLeftButton.Checked = True
+        Me.NewRightButton.Checked = True
+        Me.ChangedButton.Checked = True
+
+        FillListbox()
+        UpdateText()
+    End Sub
+
+    Sub FillListbox()
+
         Dim g1 As TextGenerator = New TextGenerator(_Header1)
         Dim g2 As TextGenerator = New TextGenerator(_Header2)
         TextDiff(g1.List, g2.List)
 
-        UpdateText()
     End Sub
 
     Public Sub TextDiff(sFile As List(Of String), dFile As List(Of String))
@@ -62,10 +72,22 @@ Public Class frmCompare
         Dim cnt As Integer = 1
         Dim i As Integer = 1
 
+        Dim showSame As Boolean = Me.SameButton.Checked
+        Dim newRight As Boolean = Me.NewLeftButton.Checked
+        Dim newLeft As Boolean = Me.NewRightButton.Checked
+        Dim changed As Boolean = Me.ChangedButton.Checked
+
+        ListViewDestination.Items.Clear()
+
         For Each drs As DiffResultSpan In DiffLines
 
             Select Case drs.Status
                 Case DiffResultSpanStatus.DeleteSource
+
+                    If Not newLeft Then
+                        Exit Select
+                    End If
+
                     For i = 0 To drs.Length - 1
 
                         lviS = New ListViewItem(cnt.ToString("00000"))
@@ -85,6 +107,10 @@ Public Class frmCompare
                     Exit Select
 
                 Case DiffResultSpanStatus.NoChange
+
+                    If Not showSame Then
+                        Exit Select
+                    End If
 
                     For i = 0 To drs.Length - 1
                         lviS = New ListViewItem(cnt.ToString("00000"))
@@ -106,6 +132,11 @@ Public Class frmCompare
                     Exit Select
 
                 Case DiffResultSpanStatus.AddDestination
+
+                    If Not newRight Then
+                        Exit Select
+                    End If
+
                     For i = 0 To drs.Length - 1
 
                         lviS = New ListViewItem(cnt.ToString("00000"))
@@ -125,6 +156,11 @@ Public Class frmCompare
                     Exit Select
 
                 Case DiffResultSpanStatus.Replace
+
+                    If Not changed Then
+                        Exit Select
+                    End If
+
                     For i = 0 To drs.Length - 1
 
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
@@ -215,6 +251,22 @@ Public Class frmCompare
 
     Private Sub ListViewDestination_Resize(sender As System.Object, e As System.EventArgs) Handles ListViewDestination.Resize
         Me.ListViewDestination.Refresh()
+    End Sub
+
+    Private Sub SameButton_Click(sender As System.Object, e As System.EventArgs) Handles SameButton.Click
+        FillListbox()
+    End Sub
+
+    Private Sub NewLeftButton_Click(sender As System.Object, e As System.EventArgs) Handles NewLeftButton.Click
+        FillListbox()
+    End Sub
+
+    Private Sub NewRightButton_Click(sender As System.Object, e As System.EventArgs) Handles NewRightButton.Click
+        FillListbox()
+    End Sub
+
+    Private Sub ChangedButton_Click(sender As System.Object, e As System.EventArgs) Handles ChangedButton.Click
+        FillListbox()
     End Sub
 
 End Class
