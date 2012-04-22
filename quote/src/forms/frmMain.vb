@@ -475,9 +475,6 @@ Public Class frmMain
 
     Private Sub AddMenuItemsForOpenQuotes(menu As ToolStripMenuItem)
 
-        Dim submenu As ToolStripMenuItem = _
-            DirectCast(menu.DropDownItems(0), ToolStripMenuItem)
-
         menu.DropDownItems.Clear()
         For Each d As DockContent In Me.DockPanel1.Documents
 
