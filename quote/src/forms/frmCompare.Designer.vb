@@ -28,13 +28,13 @@ Partial Class frmCompare
         Me.ListViewDestination = New System.Windows.Forms.ListView()
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.SameButton = New System.Windows.Forms.ToolStripButton()
         Me.NewLeftButton = New System.Windows.Forms.ToolStripButton()
-        Me.NewRightButton = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SameButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ChangedButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.NewRightButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -69,16 +69,6 @@ Partial Class frmCompare
         Me.ToolStrip1.TabIndex = 4
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'SameButton
-        '
-        Me.SameButton.CheckOnClick = True
-        Me.SameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.SameButton.Image = CType(resources.GetObject("SameButton.Image"), System.Drawing.Image)
-        Me.SameButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SameButton.Name = "SameButton"
-        Me.SameButton.Size = New System.Drawing.Size(40, 22)
-        Me.SameButton.Text = "Same"
-        '
         'NewLeftButton
         '
         Me.NewLeftButton.CheckOnClick = True
@@ -89,25 +79,25 @@ Partial Class frmCompare
         Me.NewLeftButton.Size = New System.Drawing.Size(69, 22)
         Me.NewLeftButton.Text = "Added Left"
         '
-        'NewRightButton
+        'ToolStripSeparator2
         '
-        Me.NewRightButton.CheckOnClick = True
-        Me.NewRightButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.NewRightButton.Image = CType(resources.GetObject("NewRightButton.Image"), System.Drawing.Image)
-        Me.NewRightButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.NewRightButton.Name = "NewRightButton"
-        Me.NewRightButton.Size = New System.Drawing.Size(77, 22)
-        Me.NewRightButton.Text = "Added Right"
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'SameButton
+        '
+        Me.SameButton.CheckOnClick = True
+        Me.SameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.SameButton.Image = CType(resources.GetObject("SameButton.Image"), System.Drawing.Image)
+        Me.SameButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SameButton.Name = "SameButton"
+        Me.SameButton.Size = New System.Drawing.Size(40, 22)
+        Me.SameButton.Text = "Same"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
         'ChangedButton
         '
@@ -123,6 +113,16 @@ Partial Class frmCompare
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'NewRightButton
+        '
+        Me.NewRightButton.CheckOnClick = True
+        Me.NewRightButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.NewRightButton.Image = CType(resources.GetObject("NewRightButton.Image"), System.Drawing.Image)
+        Me.NewRightButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.NewRightButton.Name = "NewRightButton"
+        Me.NewRightButton.Size = New System.Drawing.Size(77, 22)
+        Me.NewRightButton.Text = "Added Right"
         '
         'frmCompare
         '

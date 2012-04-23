@@ -296,6 +296,7 @@
     <Compile Include="src\misc\QuoteTypeList.vb" />
     <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveHeader.vb" />
+    <Compile Include="src\misc\TextDetailGenerator.vb" />
     <Compile Include="src\misc\TextGenerator.vb" />
     <Compile Include="src\misc\UOMConverter.vb" />
     <Compile Include="src\model\bom\ComponentProperties.vb" />
