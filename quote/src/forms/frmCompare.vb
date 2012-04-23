@@ -23,6 +23,11 @@ Public Class frmCompare
         Me.NewRightButton.Checked = True
         Me.ChangedButton.Checked = True
 
+        Me.NewLeftButton.Text = "Only in " & q1.DisplayName
+        Me.NewRightButton.Text = "Only in " & q2.DisplayName
+        Me.SameButton.Text = "The Same and in Both"
+        Me.ChangedButton.Text = "Differnt in Both"
+
         FillListbox()
         UpdateText()
     End Sub
