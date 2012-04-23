@@ -86,7 +86,10 @@ Public Class TextDetailGenerator
         End If
 
         s += vbCrLf + "-------------------------------------------------------------------------"
-        s += vbCrLf & title & " (" & list.Count & ")" + vbCrLf + vbCrLf
+        s += vbCrLf & title
+        s += vbCrLf & "      " & title & " Count = " & list.Count & ""
+        s += vbCrLf
+        s += vbCrLf + "   Part Number                    Qty"
 
         list.Sort(Function(d1 As Node, d2 As Node)
                       Return d1.ProductCode.CompareTo(d2.ProductCode)
