@@ -105,9 +105,14 @@ Public Class frmCompare
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.LightGreen
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
-                        lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.LightGray
                         lviD.SubItems.Add("")
+
+                        If v.Line.ToString().StartsWith("Sync") Then
+                            Continue For
+                        End If
+
+                        lviS.SubItems.Add(v.Line)
                         Dim o As New ListViewItem.ListViewSubItem
                         o = lviD.SubItems.Add(v.Line)
                         o.Tag = Drawing.Color.LightGreen
@@ -127,15 +132,20 @@ Public Class frmCompare
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.White
+
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
+                        Dim v2 = destination.GetByIndex(drs.DestIndex + i)
 
                         If v.Line.ToString().StartsWith("Sync") Then
                             Continue For
                         End If
 
+                        If v2.Line.ToString().StartsWith("Sync") Then
+                            Continue For
+                        End If
+
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.White
-                        Dim v2 = destination.GetByIndex(drs.DestIndex + i)
                         lviD.SubItems.Add(v2.Line)
                         Dim o As New ListViewItem.ListViewSubItem
                         o = lviD.SubItems.Add(v.Line)
@@ -158,9 +168,14 @@ Public Class frmCompare
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.LightGray
-                        lviS.SubItems.Add("")
                         lviD.BackColor = Drawing.Color.LightGreen
                         Dim v = destination.GetByIndex(drs.DestIndex + i)
+
+                        If v.Line.ToString().StartsWith("Sync") Then
+                            Continue For
+                        End If
+
+                        lviS.SubItems.Add("")
                         lviD.SubItems.Add(v.Line)
                         Dim o As New ListViewItem.ListViewSubItem
                         o = lviD.SubItems.Add("")
