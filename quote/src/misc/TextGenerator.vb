@@ -1,6 +1,7 @@
 ﻿Imports System.Reflection
 Imports DCS.Quote.Common
 Imports System.IO
+Imports System.Globalization
 
 Public Class TextGenerator
 
@@ -140,7 +141,12 @@ Public Class TextGenerator
             Next
 
             If Not n.Value Is Nothing Then
-                s += "" + n.Value.ToString()
+                If IsNumeric(n.Value) Then
+                    Dim d As Double = CType(n.Value, Double)
+                    s += "" + d.ToString("#,#,#.0000")
+                Else
+                    s += "" + n.Value.ToString()
+                End If
             End If
             s += vbCrLf
 
