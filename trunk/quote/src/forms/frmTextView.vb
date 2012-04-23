@@ -17,7 +17,7 @@ Public Class frmTextView
         End If
         UpdateText()
 
-        Dim g As TextGenerator = New TextGenerator(_Header)
+        Dim g As TextGenerator = New TextGenerator(_Header, Nothing)
         Me.TextBox1.Text = g.Data
     End Sub
 

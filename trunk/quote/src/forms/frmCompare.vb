@@ -8,6 +8,9 @@ Public Class frmCompare
     Private _Header2 As Common.Header
     Private _IgnoreSelect As Boolean
 
+    Private _S1 As String
+    Private _S2 As String
+
     Public Sub New(ByVal q1 As Common.Header, ByVal q2 As Common.Header)
 
         _Header1 = q1
@@ -26,9 +29,12 @@ Public Class frmCompare
 
     Sub FillListbox()
 
-        Dim g1 As TextGenerator = New TextGenerator(_Header1)
-        Dim g2 As TextGenerator = New TextGenerator(_Header2)
+        Dim g1 As TextGenerator = New TextGenerator(_Header1, _Header2)
+        Dim g2 As TextGenerator = New TextGenerator(_Header2, _Header1, g1.SyncDictionary, False)
         TextDiff(g1.List, g2.List)
+
+        _S1 = g1.Data
+        _S2 = g2.Data
 
     End Sub
 
@@ -117,6 +123,11 @@ Public Class frmCompare
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.White
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
+
+                        If v.Line.ToString().StartsWith("Sync") Then
+                            Continue For
+                        End If
+
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.White
                         Dim v2 = destination.GetByIndex(drs.DestIndex + i)
