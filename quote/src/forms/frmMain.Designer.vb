@@ -69,7 +69,6 @@ Partial Class frmMain
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TextViewToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CompareWithToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuoteExport = New System.Windows.Forms.ToolStripMenuItem()
@@ -79,7 +78,8 @@ Partial Class frmMain
         Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TextViewToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CompareWithToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HolderToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -92,8 +92,6 @@ Partial Class frmMain
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainFormStatusStrip1 = New DCS.Quote.MainFormStatusStrip()
-        Me.CompareWithToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HolderToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -308,7 +306,7 @@ Partial Class frmMain
         '
         'menuTemplate
         '
-        Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SearchTemplateMenuItem1, Me.ToolStripSeparator2, Me.SaveToolStripMenuItem, Me.ToolStripSeparator6, Me.ImportToolStripMenuItem, Me.TextViewToolStripMenuItem1, Me.CompareWithToolStripMenuItem})
+        Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SearchTemplateMenuItem1, Me.ToolStripSeparator2, Me.SaveToolStripMenuItem, Me.ToolStripSeparator6, Me.ImportToolStripMenuItem, Me.CompareWithToolStripMenuItem})
         Me.menuTemplate.Name = "menuTemplate"
         Me.menuTemplate.Size = New System.Drawing.Size(46, 20)
         Me.menuTemplate.Text = "&BOM"
@@ -363,13 +361,6 @@ Partial Class frmMain
         Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ImportToolStripMenuItem.Text = "Import"
         '
-        'TextViewToolStripMenuItem1
-        '
-        Me.TextViewToolStripMenuItem1.Enabled = False
-        Me.TextViewToolStripMenuItem1.Name = "TextViewToolStripMenuItem1"
-        Me.TextViewToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.TextViewToolStripMenuItem1.Text = "Text View"
-        '
         'CompareWithToolStripMenuItem
         '
         Me.CompareWithToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem})
@@ -381,12 +372,12 @@ Partial Class frmMain
         'HolderToolStripMenuItem
         '
         Me.HolderToolStripMenuItem.Name = "HolderToolStripMenuItem"
-        Me.HolderToolStripMenuItem.Size = New System.Drawing.Size(110, 22)
+        Me.HolderToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.HolderToolStripMenuItem.Text = "Holder"
         '
         'QuoteExport
         '
-        Me.QuoteExport.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewQuoteMenuItem, Me.ToolStripSeparator3, Me.LoadQuoteItem1, Me.SearchToolStripMenuItem, Me.ToolStripSeparator5, Me.ExportToolStripMenuItem, Me.TextViewToolStripMenuItem2, Me.CompareWithToolStripMenuItem1})
+        Me.QuoteExport.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewQuoteMenuItem, Me.ToolStripSeparator3, Me.LoadQuoteItem1, Me.SearchToolStripMenuItem, Me.ToolStripSeparator5, Me.ExportToolStripMenuItem, Me.CompareWithToolStripMenuItem1})
         Me.QuoteExport.Name = "QuoteExport"
         Me.QuoteExport.Size = New System.Drawing.Size(52, 20)
         Me.QuoteExport.Text = "&Quote"
@@ -431,12 +422,19 @@ Partial Class frmMain
         Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExportToolStripMenuItem.Text = "Export"
         '
-        'TextViewToolStripMenuItem2
+        'CompareWithToolStripMenuItem1
         '
-        Me.TextViewToolStripMenuItem2.Enabled = False
-        Me.TextViewToolStripMenuItem2.Name = "TextViewToolStripMenuItem2"
-        Me.TextViewToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
-        Me.TextViewToolStripMenuItem2.Text = "Text View"
+        Me.CompareWithToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem1})
+        Me.CompareWithToolStripMenuItem1.Enabled = False
+        Me.CompareWithToolStripMenuItem1.Name = "CompareWithToolStripMenuItem1"
+        Me.CompareWithToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CompareWithToolStripMenuItem1.Text = "Compare With"
+        '
+        'HolderToolStripMenuItem1
+        '
+        Me.HolderToolStripMenuItem1.Name = "HolderToolStripMenuItem1"
+        Me.HolderToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.HolderToolStripMenuItem1.Text = "Holder"
         '
         'ViewToolStripMenuItem
         '
@@ -517,20 +515,6 @@ Partial Class frmMain
         Me.MainFormStatusStrip1.Size = New System.Drawing.Size(873, 25)
         Me.MainFormStatusStrip1.TabIndex = 19
         '
-        'CompareWithToolStripMenuItem1
-        '
-        Me.CompareWithToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem1})
-        Me.CompareWithToolStripMenuItem1.Enabled = False
-        Me.CompareWithToolStripMenuItem1.Name = "CompareWithToolStripMenuItem1"
-        Me.CompareWithToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.CompareWithToolStripMenuItem1.Text = "Compare With"
-        '
-        'HolderToolStripMenuItem1
-        '
-        Me.HolderToolStripMenuItem1.Name = "HolderToolStripMenuItem1"
-        Me.HolderToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
-        Me.HolderToolStripMenuItem1.Text = "Holder"
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -603,8 +587,6 @@ Partial Class frmMain
     Friend WithEvents MainFormStatusStrip1 As DCS.Quote.MainFormStatusStrip
     Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TextViewToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TextViewToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CompareWithToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HolderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CompareWithToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
