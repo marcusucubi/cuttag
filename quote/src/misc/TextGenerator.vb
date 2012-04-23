@@ -72,17 +72,14 @@ Public Class TextGenerator
 
     Private Sub UpdateContent()
 
-        Dim indent As String = "    "
         Dim s As String = ""
-        s += ConvertToString(False, "", indent, "Primary", Me._Header.PrimaryProperties)
-        s += ConvertToString(False, "", indent, "Computation", Me._Header.ComputationProperties)
-        s += ConvertToString(False, "", indent, "Other", Me._Header.OtherProperties)
-        s += ConvertToString(False, "", indent, "Notes", Me._Header.NoteProperties)
-
+        s += ConvertToString("Primary", Me._Header.PrimaryProperties)
+        s += ConvertToString("Computation", Me._Header.ComputationProperties)
+        s += ConvertToString("Other", Me._Header.OtherProperties)
+        s += ConvertToString("Notes", Me._Header.NoteProperties)
 
         Dim g As New TextDetailGenerator(Me)
         s += g.UpdateContent()
-
 
         Dim strReader As StringReader = New StringReader(s)
         Dim line As String = ""
@@ -93,26 +90,21 @@ Public Class TextGenerator
                 Exit Do
             End If
 
-            Debug.WriteLine(line)
-
             _List.Add(line)
         Loop
 
     End Sub
 
-    Function ConvertToString(displayCategory As Boolean, _
-                             indent1 As String, _
-                             indent2 As String, _
-                             title As String, _
+    Function ConvertToString(title As String, _
                              obj As Object) _
                          As String
         Dim list As New List(Of PropertyProxy)
         list = ConvertToList(obj)
         Dim s As String = ""
         s += vbCrLf
-        s += indent1 + title + vbCrLf
+        s += title + vbCrLf
         s += vbCrLf
-        s += ConvertToString(displayCategory, indent2, list)
+        s += ConvertToString(Me.Indent, list)
         Return s
     End Function
 
@@ -129,8 +121,7 @@ Public Class TextGenerator
         Return list
     End Function
 
-    Function ConvertToString(displayCategory As Boolean, _
-                             indent As String, _
+    Function ConvertToString(indent As String, _
                              list As List(Of PropertyProxy)) _
                          As String
 
@@ -142,13 +133,6 @@ Public Class TextGenerator
             End If
 
             s += indent
-
-            If displayCategory Then
-                s += n.Category
-                For i As Integer = 0 To 20 - n.Category.Length
-                    s += " "
-                Next
-            End If
 
             s += n.DisplayName
             For i As Integer = 0 To 30 - n.DisplayName.Length
