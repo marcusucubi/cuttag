@@ -23,8 +23,8 @@ Public Class frmCompare
         Me.NewRightButton.Checked = False
         Me.ChangedButton.Checked = False
 
-        Me.NewLeftButton.Text = "Only in " & q1.DisplayName
-        Me.NewRightButton.Text = "Only in " & q2.DisplayName
+        Me.NewLeftButton.Text = "Only in " & q2.DisplayName
+        Me.NewRightButton.Text = "Only in " & q1.DisplayName
         Me.SameButton.Text = "Same and in Both"
         Me.ChangedButton.Text = "Different in Both"
 
@@ -221,16 +221,16 @@ Public Class frmCompare
     Private Sub UpdateText()
 
         Dim s As String = ""
-        If _Header1.IsQuote Then
-            s += "Quote " & _Header1.PrimaryProperties.CommonID
-        Else
-            s += "BOM " & _Header1.PrimaryProperties.CommonID
-        End If
-        s += " to "
         If _Header2.IsQuote Then
             s += "Quote " & _Header2.PrimaryProperties.CommonID
         Else
             s += "BOM " & _Header2.PrimaryProperties.CommonID
+        End If
+        s += " to "
+        If _Header1.IsQuote Then
+            s += "Quote " & _Header1.PrimaryProperties.CommonID
+        Else
+            s += "BOM " & _Header1.PrimaryProperties.CommonID
         End If
 
         Me.Text = s
