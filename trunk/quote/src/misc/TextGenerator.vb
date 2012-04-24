@@ -142,7 +142,7 @@ Public Class TextGenerator
 
             If Not n.Value Is Nothing Then
 
-                If n.Type = GetType(Double) Then
+                If n.Type = GetType(Decimal) Then
                     Dim d As Double = CType(n.Value, Double)
                     s += "" + d.ToString("#,#,0.0000")
                 Else
