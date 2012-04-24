@@ -92,7 +92,12 @@ Public Class TextDetailGenerator
         s += vbCrLf + "   Part Number                    Qty"
 
         list.Sort(Function(d1 As Node, d2 As Node)
-                      Return d1.ProductCode.CompareTo(d2.ProductCode)
+                      Dim r As Integer
+                      r = d1.ProductCode.CompareTo(d2.ProductCode)
+                      If r = 0 Then
+                          r = d1.Qty.CompareTo(d2.Qty)
+                      End If
+                      Return r
                   End Function)
 
         For Each d As Node In list
