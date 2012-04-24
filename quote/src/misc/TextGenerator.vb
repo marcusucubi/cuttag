@@ -141,9 +141,10 @@ Public Class TextGenerator
             Next
 
             If Not n.Value Is Nothing Then
-                If IsNumeric(n.Value) Then
+
+                If n.Type = GetType(Double) Then
                     Dim d As Double = CType(n.Value, Double)
-                    s += "" + d.ToString("#,#,#.0000")
+                    s += "" + d.ToString("#,#,0.0000")
                 Else
                     s += "" + n.Value.ToString()
                 End If
