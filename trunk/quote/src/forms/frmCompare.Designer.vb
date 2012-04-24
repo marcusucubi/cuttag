@@ -71,6 +71,7 @@ Partial Class frmCompare
         '
         'NewLeftButton
         '
+        Me.NewLeftButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.NewLeftButton.CheckOnClick = True
         Me.NewLeftButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.NewLeftButton.Image = CType(resources.GetObject("NewLeftButton.Image"), System.Drawing.Image)
@@ -86,6 +87,7 @@ Partial Class frmCompare
         '
         'SameButton
         '
+        Me.SameButton.BackColor = System.Drawing.Color.White
         Me.SameButton.CheckOnClick = True
         Me.SameButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.SameButton.Image = CType(resources.GetObject("SameButton.Image"), System.Drawing.Image)
@@ -101,10 +103,11 @@ Partial Class frmCompare
         '
         'ChangedButton
         '
+        Me.ChangedButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ChangedButton.CheckOnClick = True
         Me.ChangedButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ChangedButton.Image = CType(resources.GetObject("ChangedButton.Image"), System.Drawing.Image)
-        Me.ChangedButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ChangedButton.ImageTransparentColor = System.Drawing.Color.SpringGreen
         Me.ChangedButton.Name = "ChangedButton"
         Me.ChangedButton.Size = New System.Drawing.Size(59, 22)
         Me.ChangedButton.Text = "Changed"
@@ -116,6 +119,7 @@ Partial Class frmCompare
         '
         'NewRightButton
         '
+        Me.NewRightButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.NewRightButton.CheckOnClick = True
         Me.NewRightButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.NewRightButton.Image = CType(resources.GetObject("NewRightButton.Image"), System.Drawing.Image)

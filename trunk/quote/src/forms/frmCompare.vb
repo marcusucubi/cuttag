@@ -18,15 +18,15 @@ Public Class frmCompare
 
         InitializeComponent()
 
-        Me.SameButton.Checked = True
-        Me.NewLeftButton.Checked = True
-        Me.NewRightButton.Checked = True
-        Me.ChangedButton.Checked = True
+        Me.SameButton.Checked = False
+        Me.NewLeftButton.Checked = False
+        Me.NewRightButton.Checked = False
+        Me.ChangedButton.Checked = False
 
         Me.NewLeftButton.Text = "Only in " & q1.DisplayName
         Me.NewRightButton.Text = "Only in " & q2.DisplayName
-        Me.SameButton.Text = "The Same and in Both"
-        Me.ChangedButton.Text = "Differnt in Both"
+        Me.SameButton.Text = "Same and in Both"
+        Me.ChangedButton.Text = "Different in Both"
 
         FillListbox()
         UpdateText()
@@ -83,10 +83,10 @@ Public Class frmCompare
         Dim cnt As Integer = 1
         Dim i As Integer = 1
 
-        Dim showSame As Boolean = Me.SameButton.Checked
-        Dim newRight As Boolean = Me.NewLeftButton.Checked
-        Dim newLeft As Boolean = Me.NewRightButton.Checked
-        Dim changed As Boolean = Me.ChangedButton.Checked
+        Dim showSame As Boolean = Not Me.SameButton.Checked
+        Dim newRight As Boolean = Not Me.NewLeftButton.Checked
+        Dim newLeft As Boolean = Not Me.NewRightButton.Checked
+        Dim changed As Boolean = Not Me.ChangedButton.Checked
 
         ListViewDestination.Items.Clear()
 
@@ -103,7 +103,8 @@ Public Class frmCompare
 
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
-                        lviS.BackColor = Drawing.Color.LightGreen
+                        'lviS.BackColor = Drawing.Color.LightGreen
+                        lviS.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
                         lviD.BackColor = Drawing.Color.LightGray
                         lviD.SubItems.Add("")
@@ -115,7 +116,7 @@ Public Class frmCompare
                         lviS.SubItems.Add(v.Line)
                         Dim o As New ListViewItem.ListViewSubItem
                         o = lviD.SubItems.Add(v.Line)
-                        o.Tag = Drawing.Color.LightGreen
+                        o.Tag = lviS.BackColor
 
                         ListViewDestination.Items.Add(lviD)
                         cnt = cnt + 1
@@ -168,7 +169,8 @@ Public Class frmCompare
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.LightGray
-                        lviD.BackColor = Drawing.Color.LightGreen
+                        'lviD.BackColor = Drawing.Color.LightGreen
+                        lviD.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
                         Dim v = destination.GetByIndex(drs.DestIndex + i)
 
                         If v.Line.ToString().StartsWith("Sync") Then
