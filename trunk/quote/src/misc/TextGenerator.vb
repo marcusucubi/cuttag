@@ -12,11 +12,6 @@ Public Class TextGenerator
     Private _SyncDictionary As Dictionary(Of String, String)
     Private _GenerateGuid As Boolean
 
-    Public Class Node
-        Public Property ProductCode As String
-        Public Property Qty As Double
-    End Class
-
     Public Sub New(q1 As Common.Header, q2 As Common.Header)
         Me.New(q1, q2, New Dictionary(Of String, String), True)
     End Sub
@@ -74,10 +69,10 @@ Public Class TextGenerator
     Private Sub UpdateContent()
 
         Dim s As String = ""
-        s += ConvertToString("Primary", Me._Header.PrimaryProperties)
-        s += ConvertToString("Computation", Me._Header.ComputationProperties)
-        s += ConvertToString("Other", Me._Header.OtherProperties)
-        s += ConvertToString("Notes", Me._Header.NoteProperties)
+        s += ConvertToString("Primary", Me._Header.PrimaryProperties, Me.HeaderToCompare.PrimaryProperties)
+        s += ConvertToString("Computation", Me._Header.ComputationProperties, Me.HeaderToCompare.ComputationProperties)
+        s += ConvertToString("Other", Me._Header.OtherProperties, Me.HeaderToCompare.OtherProperties)
+        s += ConvertToString("Notes", Me._Header.NoteProperties, Me.HeaderToCompare.NoteProperties)
 
         Dim g As New TextDetailGenerator(Me)
         s += g.UpdateContent()
@@ -97,10 +92,11 @@ Public Class TextGenerator
     End Sub
 
     Function ConvertToString(title As String, _
-                             obj As Object) _
+                             obj As Object, _
+                             obj2 As Object) _
                          As String
-        Dim list As New List(Of PropertyProxy)
-        list = ConvertToList(obj)
+        Dim list As New List(Of Node)
+        list = ConvertToList(obj, obj2)
         Dim s As String = ""
         s += vbCrLf
         s += title + vbCrLf
@@ -109,38 +105,79 @@ Public Class TextGenerator
         Return s
     End Function
 
-    Function ConvertToList(obj) As List(Of PropertyProxy)
+    Public Class Node
+        Public Property DisplayName As String
+        Public Property Value As Object
+        Public Property Browsable As Boolean
+        Public Property Type As Type
+    End Class
 
-        Dim list As New List(Of PropertyProxy)
+    Function ConvertToList(obj, obj2) As List(Of Node)
+
+        Dim map As New Dictionary(Of String, Node)
+        Dim list As New List(Of Node)
 
         Dim props As PropertyInfo()
         props = obj.GetType.GetProperties()
         For Each prop As PropertyInfo In props
+
             Dim proxy As New PropertyProxy(prop, obj)
-            list.Add(proxy)
+            Dim n As New Node()
+            n.DisplayName = proxy.DisplayName
+            n.Value = proxy.Value
+            n.Browsable = proxy.Browsable
+            n.Type = proxy.Type
+            list.Add(n)
+
+            If Not map.ContainsKey(proxy.DisplayName) Then
+                map.Add(proxy.DisplayName, n)
+            End If
         Next
+
+        If Not _HeaderToCompare Is Nothing Then
+
+            Dim props2 As PropertyInfo()
+            props2 = obj2.GetType.GetProperties()
+            For Each prop As PropertyInfo In props2
+
+                Dim proxy As New PropertyProxy(prop, obj2)
+                If map.ContainsKey(proxy.DisplayName) Then
+                    Continue For
+                End If
+
+                Dim n As New Node()
+                n.DisplayName = proxy.DisplayName
+                n.Browsable = proxy.Browsable
+                list.Add(n)
+            Next
+        End If
+
+        list.Sort(Function(n1 As Node, n2 As Node)
+                      Return n1.DisplayName.CompareTo(n2.DisplayName)
+                  End Function)
+
         Return list
     End Function
 
     Function ConvertToString(indent As String, _
-                             list As List(Of PropertyProxy)) _
+                             list As List(Of Node)) _
                          As String
 
         Dim s As String = ""
-        For Each n As PropertyProxy In list
+        For Each n As Node In list
 
             If Not n.Browsable Then
                 Continue For
             End If
 
-            s += indent
-
-            s += n.DisplayName
-            For i As Integer = 0 To 30 - n.DisplayName.Length
-                s += " "
-            Next
-
             If Not n.Value Is Nothing Then
+
+                s += indent
+
+                s += n.DisplayName
+                For i As Integer = 0 To 30 - n.DisplayName.Length
+                    s += " "
+                Next
 
                 If n.Type = GetType(Decimal) Then
                     Dim d As Double = CType(n.Value, Double)
@@ -148,8 +185,34 @@ Public Class TextGenerator
                 Else
                     s += "" + n.Value.ToString()
                 End If
+
+                s += vbCrLf
             End If
-            s += vbCrLf
+
+            Dim title As String = n.DisplayName
+            If Not Me._SyncDictionary Is Nothing Then
+
+                Dim key As String
+
+                If Me._SyncDictionary.ContainsKey(title) Then
+
+                    key = Me._SyncDictionary(title)
+
+                    s += "Sync" & key
+                    s += vbCrLf & "Sync22" & key
+                Else
+                    Dim g As System.Guid
+
+                    g = System.Guid.NewGuid()
+                    key = g.ToString()
+                    Me._SyncDictionary(title) = key
+
+                    s += "Sync" & key
+                    s += vbCrLf & "Sync22" & key
+                End If
+
+                s += vbCrLf
+            End If
 
         Next
 
