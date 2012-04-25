@@ -24,6 +24,7 @@ Partial Class frmCompare
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCompare))
         Me.ListViewDestination = New System.Windows.Forms.ListView()
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -35,6 +36,7 @@ Partial Class frmCompare
         Me.ChangedButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.NewRightButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,7 +52,7 @@ Partial Class frmCompare
         Me.ListViewDestination.MultiSelect = False
         Me.ListViewDestination.Name = "ListViewDestination"
         Me.ListViewDestination.OwnerDraw = True
-        Me.ListViewDestination.Size = New System.Drawing.Size(672, 312)
+        Me.ListViewDestination.Size = New System.Drawing.Size(445, 312)
         Me.ListViewDestination.TabIndex = 3
         Me.ListViewDestination.UseCompatibleStateImageBehavior = False
         Me.ListViewDestination.View = System.Windows.Forms.View.Details
@@ -65,7 +67,7 @@ Partial Class frmCompare
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewLeftButton, Me.ToolStripSeparator2, Me.SameButton, Me.ToolStripSeparator1, Me.ChangedButton, Me.ToolStripSeparator3, Me.NewRightButton})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(672, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(445, 25)
         Me.ToolStrip1.TabIndex = 4
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -128,11 +130,14 @@ Partial Class frmCompare
         Me.NewRightButton.Size = New System.Drawing.Size(77, 22)
         Me.NewRightButton.Text = "Added Right"
         '
+        'ToolTip1
+        '
+        '
         'frmCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(672, 337)
+        Me.ClientSize = New System.Drawing.Size(445, 337)
         Me.Controls.Add(Me.ListViewDestination)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -154,6 +159,7 @@ Partial Class frmCompare
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ChangedButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 
 End Class
