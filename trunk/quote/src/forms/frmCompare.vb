@@ -103,7 +103,6 @@ Public Class frmCompare
 
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
-                        'lviS.BackColor = Drawing.Color.LightGreen
                         lviS.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
                         Dim v = source.GetByIndex(drs.SourceIndex + i)
                         lviD.BackColor = Drawing.Color.LightGray
@@ -169,7 +168,6 @@ Public Class frmCompare
                         lviS = New ListViewItem(cnt.ToString("00000"))
                         lviD = New ListViewItem(cnt.ToString("00000"))
                         lviS.BackColor = Drawing.Color.LightGray
-                        'lviD.BackColor = Drawing.Color.LightGreen
                         lviD.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
                         Dim v = destination.GetByIndex(drs.DestIndex + i)
 
@@ -251,14 +249,11 @@ Public Class frmCompare
         Dim rightBackColor As Color = Color.White
 
         Dim isSelected As Boolean = False
-
         If Not (e.State And ListViewItemStates.Selected) = 0 Then
-            leftBackColor = Color.LightBlue
-            rightBackColor = Color.LightBlue
-        Else
-            leftBackColor = e.Item.BackColor
-            rightBackColor = e.Item.SubItems(2).Tag
+            isSelected = True
         End If
+        leftBackColor = e.Item.BackColor
+        rightBackColor = e.Item.SubItems(2).Tag
 
         Dim font As New Font(FontFamily.GenericMonospace, 8)
 
@@ -280,6 +275,14 @@ Public Class frmCompare
             Color.Black, rightBackColor, TextFormatFlags.Left)
         e.Graphics.DrawRectangle(Drawing.Pens.Black, right)
 
+        If isSelected Then
+            Dim pen As New Pen(Drawing.Brushes.Yellow, 2)
+            left.Inflate(-2, -2)
+            right.Inflate(-2, -2)
+            e.Graphics.DrawRectangle(pen, left)
+            e.Graphics.DrawRectangle(pen, right)
+        End If
+
     End Sub
 
     Private Sub ListViewDestination_Resize(sender As System.Object, e As System.EventArgs) Handles ListViewDestination.Resize
@@ -300,6 +303,27 @@ Public Class frmCompare
 
     Private Sub ChangedButton_Click(sender As System.Object, e As System.EventArgs) Handles ChangedButton.Click
         FillListbox()
+    End Sub
+
+    Private Sub ListViewDestination_MouseMove(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles ListViewDestination.MouseMove
+
+        Dim test As ListViewHitTestInfo = Me.ListViewDestination.HitTest(e.Location)
+
+        If Not test.Item Is Nothing Then
+            test.Item.Selected = True
+        End If
+
+    End Sub
+
+    Private Sub ToolTip1_Popup(sender As System.Object, e As System.Windows.Forms.PopupEventArgs) Handles ToolTip1.Popup
+
+        If Me.ListViewDestination.SelectedItems.Count = 0 Then
+            Return
+        End If
+
+        Dim item As ListViewItem = Me.ListViewDestination.SelectedItems(0)
+        'Me.ToolTip1.SetToolTip(Me.ListViewDestination, item.ToolTipText)
+
     End Sub
 
 End Class
