@@ -144,6 +144,8 @@ Public Class frmCompare
                             Continue For
                         End If
 
+                        lviS.ToolTipText = "No change"
+
                         lviS.SubItems.Add(v.Line)
                         lviD.BackColor = Drawing.Color.White
                         lviD.SubItems.Add(v2.Line)
@@ -310,20 +312,20 @@ Public Class frmCompare
         Dim test As ListViewHitTestInfo = Me.ListViewDestination.HitTest(e.Location)
 
         If Not test.Item Is Nothing Then
-            test.Item.Selected = True
+            'test.Item.Selected = True
         End If
 
     End Sub
 
-    Private Sub ToolTip1_Popup(sender As System.Object, e As System.Windows.Forms.PopupEventArgs) Handles ToolTip1.Popup
+    '    Private Sub ToolTip1_Popup(sender As System.Object, e As System.Windows.Forms.PopupEventArgs) Handles ToolTip1.Popup
 
-        If Me.ListViewDestination.SelectedItems.Count = 0 Then
-            Return
-        End If
+    ' If Me.ListViewDestination.SelectedItems.Count = 0 Then
+    '     Return
+    ' End If
 
-        Dim item As ListViewItem = Me.ListViewDestination.SelectedItems(0)
-        'Me.ToolTip1.SetToolTip(Me.ListViewDestination, item.ToolTipText)
+    'Dim item As ListViewItem = Me.ListViewDestination.SelectedItems(0)
+    'Me.ToolTip1.SetToolTip(Me.ListViewDestination, item.ToolTipText)
 
-    End Sub
+    'End Sub
 
 End Class
