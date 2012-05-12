@@ -24,7 +24,6 @@ Partial Class frmCompare
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCompare))
         Me.ListViewDestination = New System.Windows.Forms.ListView()
         Me.ColumnHeader8 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -36,7 +35,6 @@ Partial Class frmCompare
         Me.ChangedButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.NewRightButton = New System.Windows.Forms.ToolStripButton()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,6 +50,7 @@ Partial Class frmCompare
         Me.ListViewDestination.MultiSelect = False
         Me.ListViewDestination.Name = "ListViewDestination"
         Me.ListViewDestination.OwnerDraw = True
+        Me.ListViewDestination.ShowItemToolTips = True
         Me.ListViewDestination.Size = New System.Drawing.Size(445, 312)
         Me.ListViewDestination.TabIndex = 3
         Me.ListViewDestination.UseCompatibleStateImageBehavior = False
@@ -130,9 +129,6 @@ Partial Class frmCompare
         Me.NewRightButton.Size = New System.Drawing.Size(77, 22)
         Me.NewRightButton.Text = "Added Right"
         '
-        'ToolTip1
-        '
-        '
         'frmCompare
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -159,7 +155,6 @@ Partial Class frmCompare
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ChangedButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 
 End Class
