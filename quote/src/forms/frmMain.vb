@@ -388,6 +388,10 @@ Public Class frmMain
         import.DoImport()
 
     End Sub
+    Private Sub ImportPartsListToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ImportPartsListToolStripMenuItem.Click
+        Dim import As New QuoteImport
+        import.DoImportFromPartsList()
+    End Sub
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub

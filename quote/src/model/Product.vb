@@ -53,12 +53,12 @@ Namespace Model
                 ByVal PartRow As QuoteDataBase.WireComponentSourceRow, _
                 Optional ByVal UnitOfMeasure As String = "", _
                 Optional ByVal CopperWeightPer1000Ft As Decimal = 0
-                ) 
+                )
             Me.m_code = Code
             Me.m_unitCost = UnitCost
             Me.m_gage = Gage
             Me.m_isWire = IsWire
-            Me.m_UnitOfMeasure = UnitOfMeasure 
+            Me.m_UnitOfMeasure = UnitOfMeasure
             If WireRow IsNot Nothing Then
                 Me.m_CopperWeightPer1000Ft = CopperWeightPer1000Ft
             End If
@@ -81,7 +81,65 @@ Namespace Model
                 End If
             End If
         End Sub
-        
+        Public Sub New( _
+                 ByVal SourceID As Guid, _
+                 ByVal IsWire As Boolean, _
+                 ByVal PartLookupDataSource As QuoteDataBase
+                 )
+            Dim sGage As String = ""
+            Dim dCost As Decimal = 0
+            Dim sUOM As String = ""
+            Dim drUOM As QuoteDataBase._UnitOfMeasureRow
+            If IsWire Then
+                Dim drSource As QuoteDataBase.WireSourceRow = PartLookupDataSource.WireSource.FindByWireSourceID(SourceID)
+                With drSource
+                    Me.m_code = .PartNumber
+                    Me.m_Description = .Description
+                    sUOM = "Decimeter" 'dd_ToDo 12/31/11 implement and handle wiresource.unitofmeasureid
+                    Dim drGage As QuoteDataBase.GageRow
+                    drGage = PartLookupDataSource.Gage.FindByOrganizationIDGageID(10, .GageID) 'ddFix organizationid
+                    If drGage IsNot Nothing Then sGage = drGage.Gage
+                    If Not drSource.IsQuotePriceNull Then
+                        dCost = .QuotePrice
+                    End If
+                    Dim qWeight As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
+                    Dim sMessage As String = "" 'dd_ToDo 12/31/11 change sp GetWirePoundsPer1000Ft to return how wt computed and present to as wireproperty
+                    Me.m_CopperWeightPer1000Ft = qWeight.GetWirePoundsPer1000Ft(.WireSourceID, sMessage)
+                End With
+            Else
+                Dim drSource As QuoteDataBase.WireComponentSourceRow = PartLookupDataSource.WireComponentSource.FindByWireComponentSourceID(SourceID)
+                With drSource
+                    Me.m_code = .PartNumber
+                    Me.m_Description = .Description
+                    drUOM = PartLookupDataSource._UnitOfMeasure.FindByID(drSource.UnitOfMeasureID)
+                    If drUOM IsNot Nothing Then sUOM = drUOM.Name
+                    If Not drSource.IsQuotePriceNull Then
+                        dCost = .QuotePrice
+                    End If
+                    sGage = ""
+                    If Not .IsMachineTimeNull Then
+                        Me.m_machineTime = .MachineTime
+                    End If
+                    If Not .IsLeadTimeNull Then
+                        Me.m_LeadTime = .LeadTime
+                    End If
+                    If Not .IsVendorNull Then
+                        Me.m_Vendor = .Vendor
+                    End If
+                    If Not .IsMinimumQtyNull Then
+                        Me.m_MinimumQty = .MinimumQty
+                    End If
+                    If Not .IsMinimumDollarNull Then
+                        Me.m_MinimumDollar = .MinimumDollar
+                    End If
+                End With
+            End If
+            Me.m_gage = sGage
+            Me.m_unitCost = dCost
+            Me.m_isWire = IsWire
+            Me.m_UnitOfMeasure = sUOM
+        End Sub
+
         Property Code As String
             Get
                 Return m_code
@@ -90,7 +148,7 @@ Namespace Model
                 m_code = Value
             End Set
         End Property
-        
+
         Property CopperWeightPer1000Ft As String
             Get
                 Return m_CopperWeightPer1000Ft
@@ -99,7 +157,7 @@ Namespace Model
                 m_CopperWeightPer1000Ft = Value
             End Set
         End Property
-        
+
         ReadOnly Property Gage As String
             Get
                 Return m_gage
@@ -174,7 +232,7 @@ Namespace Model
                 m_MinimumDollar = value
             End Set
         End Property
-        Public Property UnitOfMeasure() As String 
+        Public Property UnitOfMeasure() As String
             Get
                 Return m_UnitOfMeasure
             End Get
