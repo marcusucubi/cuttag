@@ -179,6 +179,12 @@
     <Compile Include="src\forms\frmOutput.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\import\frmImportPartsList.Designer.vb">
+      <DependentUpon>frmImportPartsList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\import\frmImportPartsList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\import\ImportDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -430,6 +436,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\import\frmImportPartsList.resx">
+      <DependentUpon>frmImportPartsList.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

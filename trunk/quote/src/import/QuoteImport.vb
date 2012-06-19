@@ -95,6 +95,39 @@ Public Class QuoteImport
 
         Return id
     End Function
+    Public Sub DoImportFromPartsList()
+        Dim frm As New frmImportPartsList
+        Dim result As DialogResult = frm.ShowDialog()
+        Dim sInitials As String = "From WHC"
+        If result = DialogResult.OK Then
+            Dim frmInitials As New frmNewBOM
+            frmInitials.pnlImportSource.Visible = True
+            If frmInitials.ShowDialog = DialogResult.OK Then
+                sInitials += " by " + frmInitials.Initials
+            Else
+                Exit Sub
+            End If
+            frmMain.ShowOutput()
+            Console.WriteLine("----- Importing " & frm.cboPartLookup.SelectedText)
+            Try
+                Dim dr As ImportDataSet.HQ_GetParts4LookupRow = CType(CType(frm.cboPartLookup.SelectedItem, DataRowView).Row, ImportDataSet.HQ_GetParts4LookupRow)
+                Dim gPartID As Guid = frm.cboPartLookup.SelectedValue
+                Dim header As Model.BOM.Header = BuildHeader4PartsList(dr, sInitials, frmInitials.rbComputed.Checked)
+                Dim id As Integer = Save(header)
+                Console.WriteLine("----- Finished")
+                frmMain.LoadTemplate(id)
+            Catch ex As Exception
+                MsgBox("Problem getting Parts List from Wire Harness Control.  Please report the problem: " + ex.Message)
+            End Try
+        End If
+    End Sub
+    Private Function BuildHeader4PartsList(ByVal drPart As ImportDataSet.HQ_GetParts4LookupRow, _
+            ByVal Initials As String, ByVal UseComputedParts As Boolean) As Model.BOM.Header
+        Dim header As New Model.BOM.Header
+        TransferHeader4PartsList(drPart, header, Initials)
+        GetDetails4PartsList(header, drPart.PartID, UseComputedParts)
+        Return header
+    End Function
 
     Private Function BuildHeader(ByVal QuoteNumber As Integer) As Model.BOM.Header
 
@@ -141,7 +174,13 @@ Public Class QuoteImport
 
         Return row
     End Function
-
+    Private Sub TransferHeader4PartsList(ByVal row As ImportDataSet.HQ_GetParts4LookupRow, _
+                           ByVal header As Model.BOM.Header, ByVal Initials As String)
+        Dim primary As Model.BOM.PrimaryPropeties = header.PrimaryProperties
+        primary.Customer = Model.BOM.Customer.GetByID(row.CustomerID)
+        primary.PartNumber = row.Display
+        primary.CommonInitials = Initials
+    End Sub
     Private Sub TransferHeader(ByVal row As ImportDataSet.QuoteHeaderRow, _
                               ByVal header As Model.BOM.Header)
 
@@ -197,6 +236,54 @@ Public Class QuoteImport
         note.Note = "Imported from " & row.QuoteNumber
 
     End Sub
+    Private Function GetDetails4PartsList(ByVal header As Model.BOM.Header, _
+                               ByVal PartID As System.Guid, ByVal UseComputedParts As Boolean) _
+                           As Integer
+        Dim adaptor As New ImportDataSetTableAdapters.HQ_GetPartsListTableAdapter
+        Dim errors As New List(Of String)
+        Dim dsQuoteDataBase As New QuoteDataBase
+        Dim daWire As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
+        Dim daComp As New QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter
+        Dim daGage As New GageTableAdapter
+        Dim daUOM As New QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter
+        With dsQuoteDataBase
+            daWire.Fill(.WireSource)
+            daComp.Fill(.WireComponentSource)
+            daUOM.Fill(._UnitOfMeasure)
+            daGage.Fill(.Gage)
+        End With
+        Dim ignore As String = ""
+        Dim pProduct As Model.Product = Nothing
+        For Each detailRow As ImportDataSet.HQ_GetPartsListRow In adaptor.GetData(PartID, UseComputedParts)
+            If IsNothing(dsQuoteDataBase.WireSource.FindByWireSourceID(detailRow.SourceID)) Then
+                If IsNothing(dsQuoteDataBase.WireComponentSource.FindByWireComponentSourceID(detailRow.SourceID)) _
+                    OrElse dsQuoteDataBase.WireComponentSource.FindByWireComponentSourceID(detailRow.SourceID).PartNumber = "MISSING" Then
+                    Console.WriteLine("   Failure finding component source for " + detailRow.PartNumber)
+                    pProduct = New Model.Product(detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                Else 'It is a component and wirecomponentsource.partnumber <> "MISSING"
+                    pProduct = New Model.Product(detailRow.SourceID, False, dsQuoteDataBase)
+                End If
+            Else 'It is a wire
+                If dsQuoteDataBase.WireSource.FindByWireSourceID(detailRow.SourceID).PartNumber = "MISSING" Then
+                    Console.WriteLine("   Failure finding source for " + detailRow.PartNumber)
+                    pProduct = New Model.Product(detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                Else 'wiresource.partnumber <> "MISSING"
+                    pProduct = New Model.Product(detailRow.SourceID, True, dsQuoteDataBase)
+                End If
+                pProduct.CopperWeightPer1000Ft = _
+                    daWire.GetWirePoundsPer1000Ft(detailRow.SourceID, ignore)
+                'detail.UpdateComponentProperties(pProduct)
+                If pProduct.CopperWeightPer1000Ft = 0 Then
+                    Console.WriteLine("   Zero weight for " + detailRow.PartNumber)
+                End If
+            End If
+            Dim detail As New Model.BOM.Detail(header, pProduct)
+            detail.Qty = detailRow.Qty
+            detail.SourceID = detailRow.SourceID
+            detail.UpdateComponentProperties(pProduct)
+            header.Details.Add(detail)
+        Next
+    End Function
     Private Function GetDetails(ByVal header As Model.BOM.Header, _
                                ByVal quotID As System.Guid) _
                            As Integer
