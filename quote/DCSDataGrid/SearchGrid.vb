@@ -158,8 +158,7 @@ Public Class SearchGrid
 		Me.dg.DataMember = ""
 		Me.dg.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.dg.FlatMode = True
-		Me.dg.HeaderFont = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.dg.HeaderForeColor = System.Drawing.SystemColors.ControlText
+        Me.dg.HeaderForeColor = System.Drawing.SystemColors.ControlText
 		Me.dg.Location = New System.Drawing.Point(1, 1)
 		Me.dg.Name = "dg"
 		Me.dg.ReloadNeeded = False
@@ -173,8 +172,7 @@ Public Class SearchGrid
 		Me.pnlTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.pnlTop.Controls.Add(Me.txtLookup)
 		Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
-		Me.pnlTop.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
+        Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(504, 17)
 		Me.pnlTop.TabIndex = 0
@@ -213,8 +211,7 @@ Public Class SearchGrid
 		'
 		Me.BackColor = System.Drawing.SystemColors.Control
 		Me.Controls.Add(Me.pnlBorder)
-		Me.Font = New System.Drawing.Font("Arial", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Name = "SearchGrid"
+        Me.Name = "SearchGrid"
 		Me.Size = New System.Drawing.Size(504, 200)
 		Me.pnlBorder.ResumeLayout(False)
 		Me.pnlMiddle.ResumeLayout(False)
