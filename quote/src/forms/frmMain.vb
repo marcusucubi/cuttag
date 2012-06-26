@@ -68,6 +68,9 @@ Public Class frmMain
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
         SaveTemplate()
     End Sub
+    Private Sub CopyToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CopyToolStripMenuItem.Click
+        CopyTemplate()
+    End Sub
     Private Sub LoadToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadToolStripMenuItem.Click
         LoadTemplate()
     End Sub
@@ -189,9 +192,11 @@ Public Class frmMain
         CompareWithToolStripMenuItem1.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
+            CopyToolStripMenuItem.Enabled = False
             SaveToolStripMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
+            CopyToolStripMenuItem.Enabled = False
             If Me._ActiveHeader.Header.IsQuote Then
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
@@ -205,9 +210,11 @@ Public Class frmMain
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True
+                    CopyToolStripMenuItem.Enabled = False
                 Else
                     SaveToolButton.Enabled = False
                     SaveToolStripMenuItem.Enabled = False
+                    CopyToolStripMenuItem.Enabled = True
                 End If
             End If
         End If
@@ -311,6 +318,20 @@ Public Class frmMain
         End If
         EnableButtons()
     End Sub
+    Private Sub CopyTemplate()
+        If Not Me._ActiveHeader.Header.IsQuote Then
+            Dim frm As New frmCopyBOM
+            Dim result As DialogResult = frm.ShowDialog()
+            If result.HasFlag(DialogResult.OK) Then
+                SaveTemplate()
+                Dim copy As New BOMCopier
+                Dim id = copy.Copy(Me._ActiveHeader.Header)
+                LoadTemplate(id)
+            End If
+        End If
+        EnableButtons()
+    End Sub
+
     Private Sub LoadTemplate()
         Dim r As DialogResult = frmBOMLookup.ShowDialog
         If r = DialogResult.OK Then
