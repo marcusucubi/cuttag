@@ -1,5 +1,4 @@
-﻿Imports System.ComponentModel
-Imports DCS.Quote.Model.Quote
+﻿Imports DCS.Quote.Model.Quote
 Imports WeifenLuo.WinFormsUI.Docking
 
 Public Class frmMain
@@ -190,10 +189,12 @@ Public Class frmMain
         BOMExportButton.Enabled = False
         CompareWithToolStripMenuItem.Enabled = False
         CompareWithToolStripMenuItem1.Enabled = False
+        SimularToolStripMenuItem.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             CopyToolStripMenuItem.Enabled = False
             SaveToolStripMenuItem.Enabled = False
+            SimularToolStripMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             CopyToolStripMenuItem.Enabled = False
@@ -207,6 +208,7 @@ Public Class frmMain
             Else
                 BOMExportButton.Enabled = True
                 CompareWithToolStripMenuItem.Enabled = True
+                SimularToolStripMenuItem.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True
@@ -518,6 +520,13 @@ Public Class frmMain
         frmCompare.Show(Me.DockPanel1)
 
         Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimularToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SimularToolStripMenuItem.Click
+
+        Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
+        frm.ShowDialog(Me)
+
     End Sub
 
 End Class

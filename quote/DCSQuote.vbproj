@@ -162,6 +162,12 @@
     <Compile Include="src\forms\frmOptions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="src\forms\frmSimilarQuotes.Designer.vb">
+      <DependentUpon>frmSimilarQuotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\forms\frmSimilarQuotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\forms\frmTextView.Designer.vb">
       <DependentUpon>frmTextView.vb</DependentUpon>
     </Compile>
@@ -393,6 +399,9 @@
     <EmbeddedResource Include="src\forms\frmOptions.resx">
       <DependentUpon>frmOptions.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\forms\frmSimilarQuotes.resx">
+      <DependentUpon>frmSimilarQuotes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmTextView.resx">
       <DependentUpon>frmTextView.vb</DependentUpon>
     </EmbeddedResource>
@@ -463,6 +472,8 @@
     <None Include="My Project\DataSources\DCS.Quote.Common.Detail.datasource" />
     <None Include="My Project\DataSources\DCS.Quote.Common.Header.datasource" />
     <None Include="My Project\DataSources\DCS.Quote.Model.EditableQuoteHeader.datasource" />
+    <None Include="My Project\DataSources\DCS.Quote.Model.Product.datasource" />
+    <None Include="My Project\DataSources\frmSimilarBOM.SimilarQuotes.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
