@@ -43,17 +43,7 @@ Partial Class frmMain
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.DockPanel1 = New WeifenLuo.WinFormsUI.Docking.DockPanel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.btnNew = New System.Windows.Forms.ToolStripButton()
-        Me.LoadButton = New System.Windows.Forms.ToolStripButton()
-        Me.ToolSearchTemplates = New System.Windows.Forms.ToolStripButton()
-        Me.SaveToolButton = New System.Windows.Forms.ToolStripButton()
-        Me.BOMExportButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.NewQuoteButton = New System.Windows.Forms.ToolStripButton()
-        Me.LoadQuoteButton = New System.Windows.Forms.ToolStripButton()
-        Me.ToolSearchQuotes = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripTemplate = New System.Windows.Forms.ToolStripButton()
-        Me.ExportButton = New System.Windows.Forms.ToolStripButton()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,28 +53,18 @@ Partial Class frmMain
         Me.menuTemplate = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuNewQuote = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.LoadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SearchTemplateMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CompareWithToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SimularToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportPartsListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuoteExport = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewQuoteMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.LoadQuoteItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CompareWithToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HolderToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToggleDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -97,6 +77,27 @@ Partial Class frmMain
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainFormStatusStrip1 = New DCS.Quote.MainFormStatusStrip()
+        Me.OpenSimilarQuoteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.btnNew = New System.Windows.Forms.ToolStripButton()
+        Me.LoadButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolSearchTemplates = New System.Windows.Forms.ToolStripButton()
+        Me.SaveToolButton = New System.Windows.Forms.ToolStripButton()
+        Me.BOMExportButton = New System.Windows.Forms.ToolStripButton()
+        Me.NewQuoteButton = New System.Windows.Forms.ToolStripButton()
+        Me.LoadQuoteButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolSearchQuotes = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripTemplate = New System.Windows.Forms.ToolStripButton()
+        Me.ExportButton = New System.Windows.Forms.ToolStripButton()
+        Me.LoadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchTemplateMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CompareWithToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoadQuoteItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CompareWithToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HolderToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -167,105 +168,10 @@ Partial Class frmMain
         Me.ToolStrip1.TabIndex = 10
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'btnNew
-        '
-        Me.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.btnNew.Image = CType(resources.GetObject("btnNew.Image"), System.Drawing.Image)
-        Me.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(65, 22)
-        Me.btnNew.Text = "New BOM"
-        '
-        'LoadButton
-        '
-        Me.LoadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.LoadButton.Image = Global.DCS.Quote.My.Resources.Resources.load
-        Me.LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.LoadButton.Name = "LoadButton"
-        Me.LoadButton.Size = New System.Drawing.Size(23, 22)
-        Me.LoadButton.Text = "Load BOM"
-        '
-        'ToolSearchTemplates
-        '
-        Me.ToolSearchTemplates.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolSearchTemplates.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
-        Me.ToolSearchTemplates.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolSearchTemplates.Name = "ToolSearchTemplates"
-        Me.ToolSearchTemplates.Size = New System.Drawing.Size(23, 22)
-        Me.ToolSearchTemplates.Text = "Search BOMs"
-        '
-        'SaveToolButton
-        '
-        Me.SaveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SaveToolButton.Enabled = False
-        Me.SaveToolButton.Image = Global.DCS.Quote.My.Resources.Resources.save
-        Me.SaveToolButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SaveToolButton.Name = "SaveToolButton"
-        Me.SaveToolButton.Size = New System.Drawing.Size(23, 22)
-        Me.SaveToolButton.Text = "Save BOM"
-        '
-        'BOMExportButton
-        '
-        Me.BOMExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BOMExportButton.Enabled = False
-        Me.BOMExportButton.Image = Global.DCS.Quote.My.Resources.Resources.excel
-        Me.BOMExportButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BOMExportButton.Name = "BOMExportButton"
-        Me.BOMExportButton.Size = New System.Drawing.Size(23, 22)
-        Me.BOMExportButton.Text = "Export BOM"
-        '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
-        '
-        'NewQuoteButton
-        '
-        Me.NewQuoteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.NewQuoteButton.Enabled = False
-        Me.NewQuoteButton.Image = CType(resources.GetObject("NewQuoteButton.Image"), System.Drawing.Image)
-        Me.NewQuoteButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.NewQuoteButton.Name = "NewQuoteButton"
-        Me.NewQuoteButton.Size = New System.Drawing.Size(71, 22)
-        Me.NewQuoteButton.Text = "New Quote"
-        '
-        'LoadQuoteButton
-        '
-        Me.LoadQuoteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.LoadQuoteButton.Image = Global.DCS.Quote.My.Resources.Resources.load
-        Me.LoadQuoteButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.LoadQuoteButton.Name = "LoadQuoteButton"
-        Me.LoadQuoteButton.Size = New System.Drawing.Size(23, 22)
-        Me.LoadQuoteButton.Text = "Load Quote"
-        '
-        'ToolSearchQuotes
-        '
-        Me.ToolSearchQuotes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolSearchQuotes.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
-        Me.ToolSearchQuotes.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolSearchQuotes.Name = "ToolSearchQuotes"
-        Me.ToolSearchQuotes.Size = New System.Drawing.Size(23, 22)
-        Me.ToolSearchQuotes.Text = "Search Quotes"
-        '
-        'ToolStripTemplate
-        '
-        Me.ToolStripTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripTemplate.Enabled = False
-        Me.ToolStripTemplate.Image = Global.DCS.Quote.My.Resources.Resources.source
-        Me.ToolStripTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripTemplate.Name = "ToolStripTemplate"
-        Me.ToolStripTemplate.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripTemplate.Text = "Open Source Template"
-        '
-        'ExportButton
-        '
-        Me.ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ExportButton.Enabled = False
-        Me.ExportButton.Image = Global.DCS.Quote.My.Resources.Resources.excel
-        Me.ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ExportButton.Name = "ExportButton"
-        Me.ExportButton.Size = New System.Drawing.Size(23, 22)
-        Me.ExportButton.Text = "Export Quote to Excel"
         '
         'MenuStrip1
         '
@@ -327,59 +233,10 @@ Partial Class frmMain
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(157, 6)
         '
-        'LoadToolStripMenuItem
-        '
-        Me.LoadToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.load
-        Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
-        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.LoadToolStripMenuItem.Text = "Load"
-        '
-        'SearchTemplateMenuItem1
-        '
-        Me.SearchTemplateMenuItem1.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
-        Me.SearchTemplateMenuItem1.Name = "SearchTemplateMenuItem1"
-        Me.SearchTemplateMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.SearchTemplateMenuItem1.Size = New System.Drawing.Size(160, 22)
-        Me.SearchTemplateMenuItem1.Text = "Search"
-        '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(157, 6)
-        '
-        'CopyToolStripMenuItem
-        '
-        Me.CopyToolStripMenuItem.Enabled = False
-        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.CopyToolStripMenuItem.Text = "Copy"
-        '
-        'SaveToolStripMenuItem
-        '
-        Me.SaveToolStripMenuItem.Enabled = False
-        Me.SaveToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.save
-        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.SaveToolStripMenuItem.Text = "Save"
-        '
-        'ToolStripSeparator6
-        '
-        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(157, 6)
-        '
-        'CompareWithToolStripMenuItem
-        '
-        Me.CompareWithToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem})
-        Me.CompareWithToolStripMenuItem.Enabled = False
-        Me.CompareWithToolStripMenuItem.Name = "CompareWithToolStripMenuItem"
-        Me.CompareWithToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.CompareWithToolStripMenuItem.Text = "Compare With"
-        '
-        'HolderToolStripMenuItem
-        '
-        Me.HolderToolStripMenuItem.Name = "HolderToolStripMenuItem"
-        Me.HolderToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.HolderToolStripMenuItem.Text = "Holder"
         '
         'SimularToolStripMenuItem
         '
@@ -387,6 +244,18 @@ Partial Class frmMain
         Me.SimularToolStripMenuItem.Name = "SimularToolStripMenuItem"
         Me.SimularToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.SimularToolStripMenuItem.Text = "Open Similar"
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(157, 6)
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Enabled = False
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
         '
         'ToolStripSeparator8
         '
@@ -407,7 +276,7 @@ Partial Class frmMain
         '
         'QuoteExport
         '
-        Me.QuoteExport.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewQuoteMenuItem, Me.ToolStripSeparator3, Me.LoadQuoteItem1, Me.SearchToolStripMenuItem, Me.ToolStripSeparator5, Me.CompareWithToolStripMenuItem1, Me.ToolStripSeparator9, Me.ExportToolStripMenuItem})
+        Me.QuoteExport.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewQuoteMenuItem, Me.ToolStripSeparator3, Me.LoadQuoteItem1, Me.SearchToolStripMenuItem, Me.ToolStripSeparator5, Me.CompareWithToolStripMenuItem1, Me.OpenSimilarQuoteToolStripMenuItem, Me.ToolStripSeparator9, Me.ExportToolStripMenuItem})
         Me.QuoteExport.Name = "QuoteExport"
         Me.QuoteExport.Size = New System.Drawing.Size(52, 20)
         Me.QuoteExport.Text = "&Quote"
@@ -416,60 +285,23 @@ Partial Class frmMain
         '
         Me.NewQuoteMenuItem.Enabled = False
         Me.NewQuoteMenuItem.Name = "NewQuoteMenuItem"
-        Me.NewQuoteMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.NewQuoteMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.NewQuoteMenuItem.Text = "New"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(148, 6)
-        '
-        'LoadQuoteItem1
-        '
-        Me.LoadQuoteItem1.Image = Global.DCS.Quote.My.Resources.Resources.load
-        Me.LoadQuoteItem1.Name = "LoadQuoteItem1"
-        Me.LoadQuoteItem1.Size = New System.Drawing.Size(151, 22)
-        Me.LoadQuoteItem1.Text = "Load"
-        '
-        'SearchToolStripMenuItem
-        '
-        Me.SearchToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
-        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
-        Me.SearchToolStripMenuItem.Text = "Search"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(149, 6)
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(148, 6)
-        '
-        'CompareWithToolStripMenuItem1
-        '
-        Me.CompareWithToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem1})
-        Me.CompareWithToolStripMenuItem1.Enabled = False
-        Me.CompareWithToolStripMenuItem1.Name = "CompareWithToolStripMenuItem1"
-        Me.CompareWithToolStripMenuItem1.Size = New System.Drawing.Size(151, 22)
-        Me.CompareWithToolStripMenuItem1.Text = "Compare With"
-        '
-        'HolderToolStripMenuItem1
-        '
-        Me.HolderToolStripMenuItem1.Name = "HolderToolStripMenuItem1"
-        Me.HolderToolStripMenuItem1.Size = New System.Drawing.Size(110, 22)
-        Me.HolderToolStripMenuItem1.Text = "Holder"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(149, 6)
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(148, 6)
-        '
-        'ExportToolStripMenuItem
-        '
-        Me.ExportToolStripMenuItem.Enabled = False
-        Me.ExportToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.truck
-        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
-        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
-        Me.ExportToolStripMenuItem.Text = "Export"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(149, 6)
         '
         'ViewToolStripMenuItem
         '
@@ -550,6 +382,184 @@ Partial Class frmMain
         Me.MainFormStatusStrip1.Size = New System.Drawing.Size(873, 25)
         Me.MainFormStatusStrip1.TabIndex = 19
         '
+        'OpenSimilarQuoteToolStripMenuItem
+        '
+        Me.OpenSimilarQuoteToolStripMenuItem.Enabled = False
+        Me.OpenSimilarQuoteToolStripMenuItem.Name = "OpenSimilarQuoteToolStripMenuItem"
+        Me.OpenSimilarQuoteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpenSimilarQuoteToolStripMenuItem.Text = "Open Similar"
+        '
+        'btnNew
+        '
+        Me.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnNew.Image = CType(resources.GetObject("btnNew.Image"), System.Drawing.Image)
+        Me.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnNew.Name = "btnNew"
+        Me.btnNew.Size = New System.Drawing.Size(65, 22)
+        Me.btnNew.Text = "New BOM"
+        '
+        'LoadButton
+        '
+        Me.LoadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.LoadButton.Image = Global.DCS.Quote.My.Resources.Resources.load
+        Me.LoadButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.LoadButton.Name = "LoadButton"
+        Me.LoadButton.Size = New System.Drawing.Size(23, 22)
+        Me.LoadButton.Text = "Load BOM"
+        '
+        'ToolSearchTemplates
+        '
+        Me.ToolSearchTemplates.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolSearchTemplates.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
+        Me.ToolSearchTemplates.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolSearchTemplates.Name = "ToolSearchTemplates"
+        Me.ToolSearchTemplates.Size = New System.Drawing.Size(23, 22)
+        Me.ToolSearchTemplates.Text = "Search BOMs"
+        '
+        'SaveToolButton
+        '
+        Me.SaveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SaveToolButton.Enabled = False
+        Me.SaveToolButton.Image = Global.DCS.Quote.My.Resources.Resources.save
+        Me.SaveToolButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SaveToolButton.Name = "SaveToolButton"
+        Me.SaveToolButton.Size = New System.Drawing.Size(23, 22)
+        Me.SaveToolButton.Text = "Save BOM"
+        '
+        'BOMExportButton
+        '
+        Me.BOMExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BOMExportButton.Enabled = False
+        Me.BOMExportButton.Image = Global.DCS.Quote.My.Resources.Resources.excel
+        Me.BOMExportButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BOMExportButton.Name = "BOMExportButton"
+        Me.BOMExportButton.Size = New System.Drawing.Size(23, 22)
+        Me.BOMExportButton.Text = "Export BOM"
+        '
+        'NewQuoteButton
+        '
+        Me.NewQuoteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.NewQuoteButton.Enabled = False
+        Me.NewQuoteButton.Image = CType(resources.GetObject("NewQuoteButton.Image"), System.Drawing.Image)
+        Me.NewQuoteButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.NewQuoteButton.Name = "NewQuoteButton"
+        Me.NewQuoteButton.Size = New System.Drawing.Size(71, 22)
+        Me.NewQuoteButton.Text = "New Quote"
+        '
+        'LoadQuoteButton
+        '
+        Me.LoadQuoteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.LoadQuoteButton.Image = Global.DCS.Quote.My.Resources.Resources.load
+        Me.LoadQuoteButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.LoadQuoteButton.Name = "LoadQuoteButton"
+        Me.LoadQuoteButton.Size = New System.Drawing.Size(23, 22)
+        Me.LoadQuoteButton.Text = "Load Quote"
+        '
+        'ToolSearchQuotes
+        '
+        Me.ToolSearchQuotes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolSearchQuotes.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
+        Me.ToolSearchQuotes.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolSearchQuotes.Name = "ToolSearchQuotes"
+        Me.ToolSearchQuotes.Size = New System.Drawing.Size(23, 22)
+        Me.ToolSearchQuotes.Text = "Search Quotes"
+        '
+        'ToolStripTemplate
+        '
+        Me.ToolStripTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripTemplate.Enabled = False
+        Me.ToolStripTemplate.Image = Global.DCS.Quote.My.Resources.Resources.source
+        Me.ToolStripTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripTemplate.Name = "ToolStripTemplate"
+        Me.ToolStripTemplate.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripTemplate.Text = "Open Source Template"
+        '
+        'ExportButton
+        '
+        Me.ExportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ExportButton.Enabled = False
+        Me.ExportButton.Image = Global.DCS.Quote.My.Resources.Resources.excel
+        Me.ExportButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ExportButton.Name = "ExportButton"
+        Me.ExportButton.Size = New System.Drawing.Size(23, 22)
+        Me.ExportButton.Text = "Export Quote to Excel"
+        '
+        'LoadToolStripMenuItem
+        '
+        Me.LoadToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.load
+        Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.LoadToolStripMenuItem.Text = "Load"
+        '
+        'SearchTemplateMenuItem1
+        '
+        Me.SearchTemplateMenuItem1.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
+        Me.SearchTemplateMenuItem1.Name = "SearchTemplateMenuItem1"
+        Me.SearchTemplateMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F5
+        Me.SearchTemplateMenuItem1.Size = New System.Drawing.Size(160, 22)
+        Me.SearchTemplateMenuItem1.Text = "Search"
+        '
+        'CompareWithToolStripMenuItem
+        '
+        Me.CompareWithToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem})
+        Me.CompareWithToolStripMenuItem.Enabled = False
+        Me.CompareWithToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.Scales
+        Me.CompareWithToolStripMenuItem.Name = "CompareWithToolStripMenuItem"
+        Me.CompareWithToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.CompareWithToolStripMenuItem.Text = "Compare With"
+        '
+        'HolderToolStripMenuItem
+        '
+        Me.HolderToolStripMenuItem.Name = "HolderToolStripMenuItem"
+        Me.HolderToolStripMenuItem.Size = New System.Drawing.Size(110, 22)
+        Me.HolderToolStripMenuItem.Text = "Holder"
+        '
+        'SaveToolStripMenuItem
+        '
+        Me.SaveToolStripMenuItem.Enabled = False
+        Me.SaveToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.save
+        Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.SaveToolStripMenuItem.Text = "Save"
+        '
+        'LoadQuoteItem1
+        '
+        Me.LoadQuoteItem1.Image = Global.DCS.Quote.My.Resources.Resources.load
+        Me.LoadQuoteItem1.Name = "LoadQuoteItem1"
+        Me.LoadQuoteItem1.Size = New System.Drawing.Size(152, 22)
+        Me.LoadQuoteItem1.Text = "Load"
+        '
+        'SearchToolStripMenuItem
+        '
+        Me.SearchToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
+        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
+        Me.SearchToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SearchToolStripMenuItem.Text = "Search"
+        '
+        'CompareWithToolStripMenuItem1
+        '
+        Me.CompareWithToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HolderToolStripMenuItem1})
+        Me.CompareWithToolStripMenuItem1.Enabled = False
+        Me.CompareWithToolStripMenuItem1.Image = Global.DCS.Quote.My.Resources.Resources.Scales
+        Me.CompareWithToolStripMenuItem1.Name = "CompareWithToolStripMenuItem1"
+        Me.CompareWithToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.CompareWithToolStripMenuItem1.Text = "Compare With"
+        '
+        'HolderToolStripMenuItem1
+        '
+        Me.HolderToolStripMenuItem1.Name = "HolderToolStripMenuItem1"
+        Me.HolderToolStripMenuItem1.Size = New System.Drawing.Size(110, 22)
+        Me.HolderToolStripMenuItem1.Text = "Holder"
+        '
+        'ExportToolStripMenuItem
+        '
+        Me.ExportToolStripMenuItem.Enabled = False
+        Me.ExportToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.truck
+        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExportToolStripMenuItem.Text = "Export"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -612,11 +622,11 @@ Partial Class frmMain
     Friend WithEvents BOMExportButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents OutputToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
-	Friend WithEvents ImportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-	Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-	Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-	Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-	Friend WithEvents AddItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ImportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AddItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DeleteItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToggleDetailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MainFormStatusStrip1 As DCS.Quote.MainFormStatusStrip
@@ -631,5 +641,6 @@ Partial Class frmMain
     Friend WithEvents SimularToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripSeparator9 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents OpenSimilarQuoteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
