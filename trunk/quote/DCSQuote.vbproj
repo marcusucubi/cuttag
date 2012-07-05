@@ -544,6 +544,8 @@
     <Content Include="lib\Ionic.Zip.dll" />
     <Content Include="lib\NPOI.dll" />
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\Scales.png" />
+    <None Include="Resources\similar.jpg" />
     <Content Include="SQL\HC_Inf_InsertCustomer.sql" />
     <Content Include="SQL\HQ_GetNextLow_QuoteID.sql" />
     <Content Include="SQL\HQ_GetWirePoundPer1000Ft.sql" />

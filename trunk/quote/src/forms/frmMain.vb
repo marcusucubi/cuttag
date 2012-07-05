@@ -190,11 +190,13 @@ Public Class frmMain
         CompareWithToolStripMenuItem.Enabled = False
         CompareWithToolStripMenuItem1.Enabled = False
         SimularToolStripMenuItem.Enabled = False
+        OpenSimilarQuoteToolStripMenuItem.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             CopyToolStripMenuItem.Enabled = False
             SaveToolStripMenuItem.Enabled = False
             SimularToolStripMenuItem.Enabled = False
+            OpenSimilarQuoteToolStripMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             CopyToolStripMenuItem.Enabled = False
@@ -205,6 +207,7 @@ Public Class frmMain
                 ExportToolStripMenuItem.Enabled = True
                 ExportButton.Enabled = True
                 CompareWithToolStripMenuItem1.Enabled = True
+                OpenSimilarQuoteToolStripMenuItem.Enabled = True
             Else
                 BOMExportButton.Enabled = True
                 CompareWithToolStripMenuItem.Enabled = True
@@ -523,6 +526,13 @@ Public Class frmMain
     End Sub
 
     Private Sub SimularToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SimularToolStripMenuItem.Click
+
+        Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
+        frm.ShowDialog(Me)
+
+    End Sub
+
+    Private Sub OpenSimilarToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpenSimilarQuoteToolStripMenuItem.Click
 
         Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
         frm.ShowDialog(Me)
