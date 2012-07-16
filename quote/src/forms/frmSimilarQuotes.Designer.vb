@@ -30,6 +30,7 @@ Partial Class frmSimilarQuotes
         Me.SameWiresColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SameComponenetsColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.QuoteType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -42,7 +43,7 @@ Partial Class frmSimilarQuotes
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(284, 15)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(533, 15)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -71,30 +72,30 @@ Partial Class frmSimilarQuotes
         '
         'ListView1
         '
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.QuoteIDColumn, Me.SameWiresColumn, Me.SameComponenetsColumn})
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.QuoteIDColumn, Me.QuoteType, Me.SameWiresColumn, Me.SameComponenetsColumn})
         Me.ListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView1.FullRowSelect = True
         Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(0, 0)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(442, 259)
+        Me.ListView1.Size = New System.Drawing.Size(691, 259)
         Me.ListView1.TabIndex = 1
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
         '
         'QuoteIDColumn
         '
-        Me.QuoteIDColumn.Text = "Quote ID"
+        Me.QuoteIDColumn.Text = "ID"
         '
         'SameWiresColumn
         '
-        Me.SameWiresColumn.Text = "Same Wires"
-        Me.SameWiresColumn.Width = 81
+        Me.SameWiresColumn.Text = "Matching Wires"
+        Me.SameWiresColumn.Width = 103
         '
         'SameComponenetsColumn
         '
-        Me.SameComponenetsColumn.Text = "Same Components"
-        Me.SameComponenetsColumn.Width = 109
+        Me.SameComponenetsColumn.Text = "Matching Components"
+        Me.SameComponenetsColumn.Width = 128
         '
         'Panel1
         '
@@ -102,8 +103,12 @@ Partial Class frmSimilarQuotes
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 259)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(442, 56)
+        Me.Panel1.Size = New System.Drawing.Size(691, 56)
         Me.Panel1.TabIndex = 2
+        '
+        'QuoteType
+        '
+        Me.QuoteType.Text = "Type"
         '
         'frmSimilarQuotes
         '
@@ -111,7 +116,7 @@ Partial Class frmSimilarQuotes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(442, 315)
+        Me.ClientSize = New System.Drawing.Size(691, 315)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -134,5 +139,6 @@ Partial Class frmSimilarQuotes
     Friend WithEvents QuoteIDColumn As System.Windows.Forms.ColumnHeader
     Friend WithEvents SameWiresColumn As System.Windows.Forms.ColumnHeader
     Friend WithEvents SameComponenetsColumn As System.Windows.Forms.ColumnHeader
+    Friend WithEvents QuoteType As System.Windows.Forms.ColumnHeader
 
 End Class

@@ -65,9 +65,19 @@ Public Class frmSimilarQuotes
             i.Name = q.id
             i.Text = "" & q.id
             ListView1.Items.Add(i)
+
+            Dim sType As New ListViewItem.ListViewSubItem
+            If q.AsIsQuote Then
+                sType.Text = "Quote"
+            Else
+                sType.Text = "BOM"
+            End If
+            i.SubItems.Add(sType)
+            
             Dim s1 As New ListViewItem.ListViewSubItem
             s1.Text = q.matchWires
             i.SubItems.Add(s1)
+
             Dim s2 As New ListViewItem.ListViewSubItem
             s2.Text = q.matchParts
             i.SubItems.Add(s2)
