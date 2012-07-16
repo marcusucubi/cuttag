@@ -526,17 +526,23 @@ Public Class frmMain
     End Sub
 
     Private Sub SimularToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SimularToolStripMenuItem.Click
+        Me.Cursor = Cursors.WaitCursor
+        My.Application.DoEvents()
 
         Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
         frm.ShowDialog(Me)
 
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub OpenSimilarToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpenSimilarQuoteToolStripMenuItem.Click
+        Me.Cursor = Cursors.WaitCursor
+        My.Application.DoEvents()
 
         Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
         frm.ShowDialog(Me)
 
+        Me.Cursor = Cursors.Default
     End Sub
 
 End Class
