@@ -132,6 +132,23 @@ Public Class SimilarQuote
         End Get
     End Property
 
+    Public ReadOnly Property MatchPercent As Integer
+        Get
+            Dim total As Decimal
+            total += parts.Count
+            total += wires.Count
+            total *= 2
+
+            Dim totalMatch As Decimal
+            totalMatch += matchParts
+            totalMatch += matchPartsAndQty
+            totalMatch += matchWires
+            totalMatch += matchWiresAndQty
+
+            Return CInt((totalMatch / total) * 100)
+        End Get
+    End Property
+
     Public Sub AddPartOrWire(row As QuoteDataBase._QuoteDetailRow, _
                              target As SimilarQuote)
         If row.IsWire Then

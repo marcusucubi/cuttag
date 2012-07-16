@@ -28,6 +28,7 @@ Partial Class frmSimilarQuotes
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.QuoteIDColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.QuoteType = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.MatchHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SameWiresColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SameComponenetsColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.MatchWiresColumn = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -45,7 +46,7 @@ Partial Class frmSimilarQuotes
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(459, 15)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(556, 15)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -74,13 +75,13 @@ Partial Class frmSimilarQuotes
         '
         'ListView1
         '
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.QuoteIDColumn, Me.QuoteType, Me.SameWiresColumn, Me.SameComponenetsColumn, Me.MatchWiresColumn, Me.MatchComponentsColumn})
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.QuoteIDColumn, Me.QuoteType, Me.MatchHeader, Me.SameWiresColumn, Me.SameComponenetsColumn, Me.MatchWiresColumn, Me.MatchComponentsColumn})
         Me.ListView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView1.FullRowSelect = True
         Me.ListView1.HideSelection = False
         Me.ListView1.Location = New System.Drawing.Point(0, 0)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(617, 259)
+        Me.ListView1.Size = New System.Drawing.Size(714, 259)
         Me.ListView1.TabIndex = 1
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
@@ -93,25 +94,34 @@ Partial Class frmSimilarQuotes
         '
         Me.QuoteType.Text = "Type"
         '
+        'MatchHeader
+        '
+        Me.MatchHeader.Text = "Match"
+        Me.MatchHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'SameWiresColumn
         '
         Me.SameWiresColumn.Text = "Wire Match "
+        Me.SameWiresColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SameWiresColumn.Width = 103
         '
         'SameComponenetsColumn
         '
         Me.SameComponenetsColumn.Text = "Component Match"
+        Me.SameComponenetsColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.SameComponenetsColumn.Width = 128
         '
         'MatchWiresColumn
         '
         Me.MatchWiresColumn.Text = "Wire/Qty Match"
+        Me.MatchWiresColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.MatchWiresColumn.Width = 144
         '
         'MatchComponentsColumn
         '
         Me.MatchComponentsColumn.Text = "Component/Qty Match"
-        Me.MatchComponentsColumn.Width = 115
+        Me.MatchComponentsColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.MatchComponentsColumn.Width = 130
         '
         'Panel1
         '
@@ -119,7 +129,7 @@ Partial Class frmSimilarQuotes
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 259)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(617, 56)
+        Me.Panel1.Size = New System.Drawing.Size(714, 56)
         Me.Panel1.TabIndex = 2
         '
         'frmSimilarQuotes
@@ -128,7 +138,7 @@ Partial Class frmSimilarQuotes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(617, 315)
+        Me.ClientSize = New System.Drawing.Size(714, 315)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.Panel1)
         Me.MaximizeBox = False
@@ -153,5 +163,6 @@ Partial Class frmSimilarQuotes
     Friend WithEvents QuoteType As System.Windows.Forms.ColumnHeader
     Friend WithEvents MatchWiresColumn As System.Windows.Forms.ColumnHeader
     Friend WithEvents MatchComponentsColumn As System.Windows.Forms.ColumnHeader
+    Friend WithEvents MatchHeader As System.Windows.Forms.ColumnHeader
 
 End Class

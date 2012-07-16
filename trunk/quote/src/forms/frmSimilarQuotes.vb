@@ -22,7 +22,7 @@ Public Class frmSimilarQuotes
         Init(targetId)
 
         Cursor = Cursors.Default
-        Sort(3)
+        Sort(2)
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles OK_Button.Click
@@ -74,6 +74,10 @@ Public Class frmSimilarQuotes
             End If
             i.SubItems.Add(sType)
             
+            Dim s0 As New ListViewItem.ListViewSubItem
+            s0.Text = q.MatchPercent
+            i.SubItems.Add(s0)
+
             Dim s1 As New ListViewItem.ListViewSubItem
             s1.Text = q.matchWires
             i.SubItems.Add(s1)
