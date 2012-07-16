@@ -1,5 +1,9 @@
 ﻿Imports System.Collections.ObjectModel
 
+''' <summary>
+''' Loads similar quotes or BOMs
+''' </summary>
+''' <remarks></remarks>
 Public Class SimilarQuoteLoader
 
     Public Shared Function Load(targetId As Integer) As SimilarQuotes
@@ -26,6 +30,7 @@ Public Class SimilarQuoteLoader
         Dim row As QuoteDataBase._QuoteDetailRow
 
         adaptor.Fill(table)
+        'adaptor.FillByQuoteID(table, 10843)
 
         For Each row In table.Rows
 
@@ -111,6 +116,8 @@ Public Class SimilarQuote
     Property id As Integer
     Property matchWires As Integer
     Property matchParts As Integer
+    Property matchWiresAndQty As Integer
+    Property matchPartsAndQty As Integer
 
     Public Sub New(row As QuoteDataBase._QuoteDetailRow, _
                    quoteRow As QuoteDataBase._QuoteRow, _
@@ -130,22 +137,36 @@ Public Class SimilarQuote
         If row.IsWire Then
             Dim wire As New SimilarWire
             wire.partNumber = row.ProductCode
+            wire.Qty = row.Qty
             If Not wires.ContainsKey(wire.partNumber) Then
                 wires.Add(wire.partNumber, wire)
 
                 If target.wires.ContainsKey(wire.partNumber) Then
                     matchWires += 1
+
+                    Dim o As SimilarWire = target.wires(wire.partNumber)
+                    If o.Qty = row.Qty Then
+                        matchWiresAndQty += 1
+                    End If
+
                 End If
             End If
 
         Else
             Dim part As New SimilarPart
             part.partNumber = row.ProductCode
+            part.Qty = row.Qty
             If Not parts.ContainsKey(part.partNumber) Then
                 parts.Add(part.partNumber, part)
 
                 If target.parts.ContainsKey(part.partNumber) Then
                     matchParts += 1
+
+                    Dim o As SimilarPart = target.parts(part.partNumber)
+                    If o.Qty = row.Qty Then
+                        matchPartsAndQty += 1
+                    End If
+
                 End If
             End If
         End If
@@ -157,20 +178,33 @@ Public Class SimilarQuote
         If row.IsWire Then
             Dim wire As New SimilarWire
             wire.partNumber = row.ProductCode
+            wire.Qty = row.Qty
             wires.Add(wire.partNumber, wire)
             If Not target Is Nothing Then
                 If target.wires.ContainsKey(wire.partNumber) Then
-                    matchWires += 1
+
+                    Dim o As SimilarWire = target.wires(wire.partNumber)
+                    If o.Qty = row.Qty Then
+                        matchWiresAndQty += 1
+                    End If
+
                 End If
             End If
         Else
             Dim part As New SimilarPart
             part.partNumber = row.ProductCode
+            part.Qty = row.Qty
             parts.Add(part.partNumber, part)
 
             If Not target Is Nothing Then
                 If target.parts.ContainsKey(part.partNumber) Then
                     matchParts += 1
+
+                    Dim o As SimilarPart = target.parts(part.partNumber)
+                    If o.Qty = row.Qty Then
+                        matchPartsAndQty += 1
+                    End If
+
                 End If
             End If
         End If
@@ -188,9 +222,10 @@ End Class
 ''' <remarks></remarks>
 Public Structure SimilarWire
     Property partNumber As String
+    Property Qty As Decimal
 
     Public Overrides Function ToString() As String
-        Return "" + partNumber
+        Return "" + partNumber + ":" + Qty
     End Function
 End Structure
 
@@ -200,9 +235,10 @@ End Structure
 ''' <remarks></remarks>
 Public Structure SimilarPart
     Property partNumber As String
+    Property Qty As Decimal
 
     Public Overrides Function ToString() As String
-        Return "" + partNumber
+        Return "" + partNumber + ":" + Qty
     End Function
 End Structure
 

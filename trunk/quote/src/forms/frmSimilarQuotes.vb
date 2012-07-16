@@ -22,7 +22,7 @@ Public Class frmSimilarQuotes
         Init(targetId)
 
         Cursor = Cursors.Default
-        Sort(2)
+        Sort(3)
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As EventArgs) Handles OK_Button.Click
@@ -81,6 +81,14 @@ Public Class frmSimilarQuotes
             Dim s2 As New ListViewItem.ListViewSubItem
             s2.Text = q.matchParts
             i.SubItems.Add(s2)
+
+            Dim s3 As New ListViewItem.ListViewSubItem
+            s3.Text = q.matchWiresAndQty
+            i.SubItems.Add(s3)
+
+            Dim s4 As New ListViewItem.ListViewSubItem
+            s4.Text = q.matchPartsAndQty
+            i.SubItems.Add(s4)
         Next
 
     End Sub
