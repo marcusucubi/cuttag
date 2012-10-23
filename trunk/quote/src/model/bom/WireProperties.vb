@@ -38,6 +38,16 @@ Namespace Model.BOM
             End Get
         End Property
 
+        Public Property Description() As String
+            Get
+                Return _QuoteDetail.Product.Description
+            End Get
+            Set(ByVal value As String)
+                _QuoteDetail.Product.Description = value
+                SendEvents()
+            End Set
+        End Property
+
         Public Overridable ReadOnly Property LengthFeet As Decimal
             Get
                 Return _QuoteDetail.Qty / 3.048

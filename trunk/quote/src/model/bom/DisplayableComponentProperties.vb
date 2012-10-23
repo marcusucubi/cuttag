@@ -34,7 +34,8 @@ Namespace Model.BOM
             End Get
         End Property
 
-        <DisplayName("Machine Time")>
+        <DisplayName("Machine Time"), _
+        CategoryAttribute("Detail")> _
         Public Overloads Property MachineTime As Decimal
             Get
                 Return Math.Round(_Subject.MachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
@@ -68,7 +69,7 @@ Namespace Model.BOM
                 SendEvents()
             End Set
         End Property
-
+        <CategoryAttribute("Detail")> _
         Public Overloads Property Quantity As Decimal
             Get
                 Return Math.Round(_Subject.Quantity, Common.GlobalOptions.DecimalPointsToDisplay)
@@ -80,7 +81,7 @@ Namespace Model.BOM
         End Property
 
         <DisplayName("Description"), _
-        CategoryAttribute("Vendor")> _
+        CategoryAttribute("Detail")> _
         Public Property Description As String
             Get
                 Return _Subject.Description
@@ -117,7 +118,7 @@ Namespace Model.BOM
 
         <DisplayName("Unit Of Measure"), _
         TypeConverter(GetType(UOMConverter)), _
-        CategoryAttribute("Vendor")> _
+        CategoryAttribute("Detail")> _
         Public Property UnitOfMeasure As String
             Get
                 Return _Subject.UnitOfMeasure
@@ -129,7 +130,8 @@ Namespace Model.BOM
         End Property
 
         <FilterAttribute(False), _
-        DisplayName("Unit Cost")> _
+        DisplayName("Unit Cost"), _
+        CategoryAttribute("Detail")> _
         Public Property UnitCost As Decimal
             Get
                 Return Math.Round(_Subject.UnitCost, Common.GlobalOptions.DecimalPointsToDisplay)

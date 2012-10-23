@@ -28,21 +28,38 @@ Namespace Model.BOM
             _Subject = subject
             MyBase.Subject = subject
         End Sub
-        <FilterAttribute(True)>
+        <FilterAttribute(True), _
+        CategoryAttribute("Detail")> _
         Public ReadOnly Property Gage As String
             Get
                 Return _Subject.Gage
             End Get
         End Property
 
-        <DescriptionAttribute("Length in Decimeters")> _
+        <DisplayName("Description"), _
+        CategoryAttribute("Detail")> _
+        Public Property Description As String
+            Get
+                Return _Subject.Description
+            End Get
+            Set(ByVal value As String)
+                _Subject.Description = value
+                SendEvents()
+            End Set
+        End Property
+
+        <DescriptionAttribute("Length in Decimeters"), _
+        DisplayName("Length in Decimeters"), _
+        CategoryAttribute("Detail")> _
         Public ReadOnly Property Length As Decimal
             Get
                 Return Math.Round(_Subject.Length, Common.GlobalOptions.DecimalPointsToDisplay)
             End Get
         End Property
 
-        <DescriptionAttribute("Length / 3.048")> _
+        <DescriptionAttribute("Length / 3.048"), _
+        DisplayName("Length in Feet"), _
+        CategoryAttribute("Detail")> _
         Public ReadOnly Property LengthFeet As Decimal
             Get
                 Return Math.Round(_Subject.LengthFeet, Common.GlobalOptions.DecimalPointsToDisplay)
@@ -69,7 +86,9 @@ Namespace Model.BOM
             End Get
         End Property
 
-        <DescriptionAttribute("Number of Decimeters")> _
+        <DescriptionAttribute("Number of Decimeters"), _
+        DisplayName("Quantity"), _
+        CategoryAttribute("Detail")> _
         Public Property Quantity As Decimal
             Get
                 Return Math.Round(_Subject.Quantity, Common.GlobalOptions.DecimalPointsToDisplay)
@@ -81,7 +100,8 @@ Namespace Model.BOM
         End Property
 
         <DisplayName("Unit Cost"), _
-        DescriptionAttribute("Dollars per Decimeter")> _
+        DescriptionAttribute("Dollars per Decimeter"), _
+        CategoryAttribute("Detail")> _
         Public Property UnitCost As Decimal
             Get
                 Return Math.Round(_Subject.UnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
@@ -94,7 +114,8 @@ Namespace Model.BOM
 
         <FilterAttribute(False), _
         DisplayName("Unit Of Measure"), _
-        TypeConverter(GetType(UOMConverter))> _
+        TypeConverter(GetType(UOMConverter)), _
+        CategoryAttribute("Detail")> _
         Public Property UnitOfMeasure As String
             Get
                 Return _Subject.UnitOfMeasure
