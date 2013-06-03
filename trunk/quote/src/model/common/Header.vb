@@ -71,7 +71,7 @@ Namespace Common
 				If IsQuote Then
 					s = "Quote"
 				Else
-                    s = "BOM"
+                    s = "Template"
 				End If
 				If Me.PrimaryProperties.CommonID = 0 Then
 					Return "New " + s

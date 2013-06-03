@@ -97,7 +97,7 @@ Partial Class frmCopyBOM
         Me.Name = "frmCopyBOM"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Copy BOM"
+        Me.Text = "Copy Template"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

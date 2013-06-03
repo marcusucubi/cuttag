@@ -150,10 +150,10 @@ Public Class frmDocumentA
 			If _Header.IsQuote Then
 				Me.Text = "Quote " & Me._PrimaryProperties.CommonID
 			Else
-				Me.Text = "BOM " & Me._PrimaryProperties.CommonID
+                Me.Text = "Template " & Me._PrimaryProperties.CommonID
 			End If
 		Else
-			Me.Text = "New BOM"
+            Me.Text = "New Template"
 		End If
 		If Me._Header.Dirty Then
 			Me.Text = Me.Text + " *"
