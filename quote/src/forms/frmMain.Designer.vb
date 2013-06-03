@@ -174,8 +174,8 @@ Partial Class frmMain
         Me.btnNew.Image = CType(resources.GetObject("btnNew.Image"), System.Drawing.Image)
         Me.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(57, 22)
-        Me.btnNew.Text = "New BOM"
+        Me.btnNew.Size = New System.Drawing.Size(79, 22)
+        Me.btnNew.Text = "New Template"
         '
         'LoadButton
         '
@@ -314,8 +314,8 @@ Partial Class frmMain
         '
         Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SearchTemplateMenuItem1, Me.ToolStripSeparator2, Me.CompareWithToolStripMenuItem, Me.SimularToolStripMenuItem, Me.ToolStripSeparator6, Me.SaveToolStripMenuItem, Me.CopyToolStripMenuItem, Me.ToolStripSeparator8, Me.ImportToolStripMenuItem, Me.ImportPartsListToolStripMenuItem})
         Me.menuTemplate.Name = "menuTemplate"
-        Me.menuTemplate.Size = New System.Drawing.Size(41, 20)
-        Me.menuTemplate.Text = "&BOM"
+        Me.menuTemplate.Size = New System.Drawing.Size(63, 20)
+        Me.menuTemplate.Text = "&Template"
         '
         'menuNewQuote
         '

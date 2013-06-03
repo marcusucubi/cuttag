@@ -24,11 +24,12 @@ Partial Class frmBOMSearch
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnPartNumber = New System.Windows.Forms.RadioButton()
+        Me.btnRFQ = New System.Windows.Forms.RadioButton()
         Me.txtRFQ = New System.Windows.Forms.TextBox()
         Me.txtPartNumber = New System.Windows.Forms.TextBox()
-        Me.btnRFQ = New System.Windows.Forms.RadioButton()
-        Me.btnPartNumber = New System.Windows.Forms.RadioButton()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CustomerNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RequestForQuoteNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -41,12 +42,11 @@ Partial Class frmBOMSearch
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
         Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -63,14 +63,46 @@ Partial Class frmBOMSearch
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filter"
         '
-        'Button1
+        'TableLayoutPanel1
         '
-        Me.Button1.Location = New System.Drawing.Point(264, 19)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 7
-        Me.Button1.Text = "Apply"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.68966!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.31034!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btnPartNumber, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnRFQ, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.txtRFQ, 1, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.txtPartNumber, 1, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 19)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(232, 62)
+        Me.TableLayoutPanel1.TabIndex = 11
+        '
+        'btnPartNumber
+        '
+        Me.btnPartNumber.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.btnPartNumber.AutoSize = True
+        Me.btnPartNumber.Checked = True
+        Me.btnPartNumber.Location = New System.Drawing.Point(3, 7)
+        Me.btnPartNumber.Name = "btnPartNumber"
+        Me.btnPartNumber.Size = New System.Drawing.Size(84, 17)
+        Me.btnPartNumber.TabIndex = 8
+        Me.btnPartNumber.TabStop = True
+        Me.btnPartNumber.Text = "Part Number"
+        Me.btnPartNumber.UseVisualStyleBackColor = True
+        '
+        'btnRFQ
+        '
+        Me.btnRFQ.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.btnRFQ.AutoSize = True
+        Me.btnRFQ.Location = New System.Drawing.Point(3, 38)
+        Me.btnRFQ.Name = "btnRFQ"
+        Me.btnRFQ.Size = New System.Drawing.Size(47, 17)
+        Me.btnRFQ.TabIndex = 9
+        Me.btnRFQ.Text = "RFQ"
+        Me.btnRFQ.UseVisualStyleBackColor = True
         '
         'txtRFQ
         '
@@ -88,29 +120,14 @@ Partial Class frmBOMSearch
         Me.txtPartNumber.Size = New System.Drawing.Size(100, 20)
         Me.txtPartNumber.TabIndex = 6
         '
-        'btnRFQ
+        'Button1
         '
-        Me.btnRFQ.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.btnRFQ.AutoSize = True
-        Me.btnRFQ.Location = New System.Drawing.Point(3, 38)
-        Me.btnRFQ.Name = "btnRFQ"
-        Me.btnRFQ.Size = New System.Drawing.Size(47, 17)
-        Me.btnRFQ.TabIndex = 9
-        Me.btnRFQ.Text = "RFQ"
-        Me.btnRFQ.UseVisualStyleBackColor = True
-        '
-        'btnPartNumber
-        '
-        Me.btnPartNumber.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.btnPartNumber.AutoSize = True
-        Me.btnPartNumber.Checked = True
-        Me.btnPartNumber.Location = New System.Drawing.Point(3, 7)
-        Me.btnPartNumber.Name = "btnPartNumber"
-        Me.btnPartNumber.Size = New System.Drawing.Size(84, 17)
-        Me.btnPartNumber.TabIndex = 8
-        Me.btnPartNumber.TabStop = True
-        Me.btnPartNumber.Text = "Part Number"
-        Me.btnPartNumber.UseVisualStyleBackColor = True
+        Me.Button1.Location = New System.Drawing.Point(264, 19)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 7
+        Me.Button1.Text = "Apply"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
@@ -199,23 +216,6 @@ Partial Class frmBOMSearch
         '
         Me._QuoteTableAdapter.ClearBeforeFill = True
         '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.68966!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.31034!))
-        Me.TableLayoutPanel1.Controls.Add(Me.btnPartNumber, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.btnRFQ, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtRFQ, 1, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.txtPartNumber, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 19)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(232, 62)
-        Me.TableLayoutPanel1.TabIndex = 11
-        '
         'frmBOMSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -226,13 +226,13 @@ Partial Class frmBOMSearch
         Me.MinimizeBox = False
         Me.Name = "frmBOMSearch"
         Me.ShowInTaskbar = False
-        Me.Text = "Search BOMs"
+        Me.Text = "Search Templates"
         Me.GroupBox1.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.QuoteDataBase, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

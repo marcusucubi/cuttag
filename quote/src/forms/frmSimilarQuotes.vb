@@ -70,7 +70,7 @@ Public Class frmSimilarQuotes
             If q.AsIsQuote Then
                 sType.Text = "Quote"
             Else
-                sType.Text = "BOM"
+                sType.Text = "Template"
             End If
             i.SubItems.Add(sType)
             

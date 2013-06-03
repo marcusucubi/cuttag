@@ -224,13 +224,13 @@ Public Class frmCompare
         If _Header2.IsQuote Then
             s += "Quote " & _Header2.PrimaryProperties.CommonID
         Else
-            s += "BOM " & _Header2.PrimaryProperties.CommonID
+            s += "Template " & _Header2.PrimaryProperties.CommonID
         End If
         s += " to "
         If _Header1.IsQuote Then
             s += "Quote " & _Header1.PrimaryProperties.CommonID
         Else
-            s += "BOM " & _Header1.PrimaryProperties.CommonID
+            s += "Template " & _Header1.PrimaryProperties.CommonID
         End If
 
         Me.Text = s

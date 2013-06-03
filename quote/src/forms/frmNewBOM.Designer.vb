@@ -23,8 +23,8 @@ Partial Class frmNewBOM
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
+        Me.OK_Button = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtInitials = New System.Windows.Forms.TextBox()
         Me.pnlImportSource = New System.Windows.Forms.Panel()
@@ -49,16 +49,6 @@ Partial Class frmNewBOM
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(146, 29)
         Me.TableLayoutPanel1.TabIndex = 3
         '
-        'OK_Button
-        '
-        Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.OK_Button.Enabled = False
-        Me.OK_Button.Location = New System.Drawing.Point(3, 3)
-        Me.OK_Button.Name = "OK_Button"
-        Me.OK_Button.Size = New System.Drawing.Size(67, 23)
-        Me.OK_Button.TabIndex = 1
-        Me.OK_Button.Text = "OK"
-        '
         'Cancel_Button
         '
         Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -68,6 +58,16 @@ Partial Class frmNewBOM
         Me.Cancel_Button.Size = New System.Drawing.Size(67, 23)
         Me.Cancel_Button.TabIndex = 0
         Me.Cancel_Button.Text = "Cancel"
+        '
+        'OK_Button
+        '
+        Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.OK_Button.Enabled = False
+        Me.OK_Button.Location = New System.Drawing.Point(3, 3)
+        Me.OK_Button.Name = "OK_Button"
+        Me.OK_Button.Size = New System.Drawing.Size(67, 23)
+        Me.OK_Button.TabIndex = 1
+        Me.OK_Button.Text = "OK"
         '
         'Label1
         '
@@ -134,7 +134,7 @@ Partial Class frmNewBOM
         Me.Name = "frmNewBOM"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "New BOM"
+        Me.Text = "New Template"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.pnlImportSource.ResumeLayout(False)
         Me.pnlImportSource.PerformLayout()
