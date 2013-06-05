@@ -66,8 +66,9 @@ Public Class frmDocumentA
 			Dim daGage As New GageTableAdapter
             Dim daUOM As New QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter
             daWire.Fill(ds.WireSource)
+            '            ds.EnforceConstraints = False
             daComp.Fill(ds.WireComponentSource)
-			daSource.Fill(ds.ItemSourceLookupList)
+            daSource.Fill(ds.ItemSourceLookupList)
             daUOM.Fill(ds._UnitOfMeasure)
             daGage.Fill(ds.Gage)
             Me.WireAndComponentView1.PartLookupDataSource = ds
