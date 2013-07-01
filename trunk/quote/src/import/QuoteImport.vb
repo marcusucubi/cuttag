@@ -13,7 +13,7 @@ Public Class QuoteImport
         Dim frm As New frmImport
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            frmMain.ShowOutput()
+            'frmMain.ShowOutput()
 
             If frm.ImportTest Then
                 ImportTest()
@@ -107,7 +107,7 @@ Public Class QuoteImport
             Else
                 Exit Sub
             End If
-            frmMain.ShowOutput()
+            'frmMain.ShowOutput()
             Console.WriteLine("----- Importing " & frm.cboPartLookup.SelectedText)
             Try
                 Dim dr As ImportDataSet.HQ_GetParts4LookupRow = CType(CType(frm.cboPartLookup.SelectedItem, DataRowView).Row, ImportDataSet.HQ_GetParts4LookupRow)
