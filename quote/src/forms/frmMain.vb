@@ -1,5 +1,6 @@
 ﻿Imports DCS.Quote.Model.Quote
 Imports WeifenLuo.WinFormsUI.Docking
+Imports PluginHost
 
 Public Class frmMain
 
@@ -9,12 +10,14 @@ Public Class frmMain
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
     Private _NoteProperties As New frmNoteProperties
-    Private _Output As New frmOutput
     Private WithEvents _ActiveHeader As ActiveHeader
     Private WithEvents _SaveableProperties As Common.SaveableProperties
     Public Shared Property frmMain As frmMain
     Public Sub New()
         InitializeComponent()
+
+        PluginHost.App.Init(Me, DockPanel1, Me.MenuStrip1)
+
         frmMain = Me
         Me._ActiveHeader = ActiveHeader.ActiveHeader
     End Sub
@@ -114,9 +117,6 @@ Public Class frmMain
     End Sub
     Private Sub BOMExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BOMExportButton.Click
         DoBOMExport()
-    End Sub
-    Private Sub OutputToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutputToolStripMenuItem.Click
-        ShowOutput()
     End Sub
     Private Sub DoExport()
         Dim frm As New frmExport
@@ -279,18 +279,6 @@ Public Class frmMain
         If (_PrimaryProperties.IsHidden Or _PrimaryProperties.IsDisposed) Then
             _PrimaryProperties = New frmPrimaryProperties
             InitChild(_PrimaryProperties)
-        End If
-    End Sub
-    Public Sub ShowOutput()
-        If (_Output Is Nothing) Then
-            _Output = New frmOutput
-            DockPanel1.SuspendLayout(True)
-            _Output.Show(DockPanel1, DockState.DockLeft)
-            DockPanel1.ResumeLayout(True, True)
-        End If
-        If (_Output.IsHidden Or _Output.IsDisposed) Then
-            _Output = New frmOutput
-            InitChild(_Output, DockState.DockLeft)
         End If
     End Sub
     Private Sub ShowDetailProperties()

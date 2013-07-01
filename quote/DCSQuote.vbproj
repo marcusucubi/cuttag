@@ -547,6 +547,10 @@
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
     <None Include="Resources\Scales.png" />
     <None Include="Resources\similar.jpg" />
+    <Content Include="plugins.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SQL\HC_Inf_InsertCustomer.sql" />
     <Content Include="SQL\HQ_GetNextLow_QuoteID.sql" />
     <Content Include="SQL\HQ_GetWirePoundPer1000Ft.sql" />
@@ -573,6 +577,10 @@
     <ProjectReference Include="Projects\DifferenceEngine\DifferenceEngine.csproj">
       <Project>{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}</Project>
       <Name>DifferenceEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="Projects\PluginHost\PluginHost.csproj">
+      <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
+      <Name>PluginHost</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
