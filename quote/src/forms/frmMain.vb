@@ -16,10 +16,11 @@ Public Class frmMain
     Public Sub New()
         InitializeComponent()
 
-        PluginHost.App.Init(Me, DockPanel1, Me.MenuStrip1)
-
         frmMain = Me
         Me._ActiveHeader = ActiveHeader.ActiveHeader
+    End Sub
+    Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+        PluginHost.App.Init(Me, DockPanel1, Me.MenuStrip1)
     End Sub
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
