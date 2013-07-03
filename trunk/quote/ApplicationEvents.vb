@@ -11,9 +11,6 @@ Namespace My
 
             Dim s As String = CuttagDatabaseConnection.ConnectionString
             My.MySettings.Default.SetConnectionString(s)
-
-            ActiveCustomProperties.ActiveCustomProperties.Load()
-
         End Sub
 
         Private Sub MyApplication_UnhandledException(ByVal sender As Object, _
