@@ -93,15 +93,6 @@ Namespace Common
                 _WorkingObject = MyBase.EditValue(context, provider, _WorkingObject)
                 If UseCopy Then
                     Copy(_WorkingObject, _Copy)
-
-                Else
-                    Try
-                        ActiveCustomProperties.ActiveCustomProperties.GenerateCustomProperties()
-                        ActiveCustomProperties.ActiveCustomProperties.Properties.SendEvents()
-                    Catch ex As Exception
-                        MsgBox(ex.Message)
-                        Continue Do
-                    End Try
                 End If
 
                 Exit Do

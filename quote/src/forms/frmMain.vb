@@ -5,7 +5,6 @@ Imports PluginHost
 Public Class frmMain
 
     Private _Properties As New frmComputationProperties
-    Private _CustomProperties As New frmCustomProperties
     Private _OtherProperties As New frmOtherProperties
     Private _PrimaryProperties As New frmPrimaryProperties
     Private _DetailProperties As New frmDetailProperties
@@ -106,9 +105,6 @@ Public Class frmMain
     End Sub
     Private Sub NotesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotesToolStripMenuItem.Click
         ShowNoteProperties()
-    End Sub
-    Private Sub CustomToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomToolStripMenuItem.Click
-        ShowCustomProperties()
     End Sub
     Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
         DoExport()
@@ -260,16 +256,6 @@ Public Class frmMain
         If (_NoteProperties.IsHidden Or _NoteProperties.IsDisposed) Then
             _NoteProperties = New frmNoteProperties
             InitChild(_NoteProperties)
-        End If
-    End Sub
-    Private Sub ShowCustomProperties()
-        If (_CustomProperties Is Nothing) Then
-            _CustomProperties = New frmCustomProperties
-            InitChild(_CustomProperties)
-        End If
-        If (_CustomProperties.IsHidden Or _CustomProperties.IsDisposed) Then
-            _CustomProperties = New frmCustomProperties
-            InitChild(_CustomProperties)
         End If
     End Sub
     Private Sub ShowPrimaryProperties()

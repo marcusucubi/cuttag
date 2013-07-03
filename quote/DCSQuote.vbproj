@@ -207,7 +207,6 @@
       <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="src\import\QuoteImport.vb" />
-    <Compile Include="src\misc\ActiveCustomProperties.vb" />
     <Compile Include="src\misc\CustomerConverter.vb" />
     <Compile Include="src\misc\ObjectGeneratorException.vb" />
     <Compile Include="src\database\QuoteDataBase.Designer.vb">
@@ -227,12 +226,6 @@
     <Compile Include="src\export\Export.vb" />
     <Compile Include="src\export\PropertyProcessor.vb" />
     <Compile Include="src\export\PropertyProxy.vb" />
-    <Compile Include="src\forms\frmCustomProperties.Designer.vb">
-      <DependentUpon>frmCustomProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmCustomProperties.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmExport.Designer.vb">
       <DependentUpon>frmExport.vb</DependentUpon>
     </Compile>
@@ -381,9 +374,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmCompare.resx">
       <DependentUpon>frmCompare.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmCustomProperties.resx">
-      <DependentUpon>frmCustomProperties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmDatabaseTest.resx">
       <DependentUpon>frmDatabaseTest.vb</DependentUpon>

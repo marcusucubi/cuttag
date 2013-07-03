@@ -14,10 +14,6 @@
         ExportObject(header.OtherProperties)
         _Writer.EndIndent()
 
-        _Writer.StartIndent("CustomProperties")
-        ExportObject(ActiveCustomProperties.ActiveCustomProperties.Properties)
-        _Writer.EndIndent()
-
         _Writer.StartIndent("ComputationProperties")
         ExportObject(header.ComputationProperties)
         _Writer.EndIndent()
