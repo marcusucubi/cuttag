@@ -1,5 +1,7 @@
 ﻿Imports System.Windows.Forms
 
+Imports DB
+
 Public Class frmQuoteLookup
 
     Public Shared Property QuoteID As Long

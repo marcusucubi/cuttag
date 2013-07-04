@@ -1,4 +1,7 @@
 ﻿Imports System.ComponentModel
+
+Imports Model.Common
+
 Namespace Common
 	Public Class DetailSortComparer
 		Implements IComparer(Of Detail)

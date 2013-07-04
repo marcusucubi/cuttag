@@ -9,8 +9,9 @@ Namespace My
                                           ByVal e As StartupEventArgs) _
                                         Handles Me.Startup
 
-            Dim s As String = CuttagDatabaseConnection.ConnectionString
+            Dim s As String = ModelIO.CuttagDatabaseConnection.ConnectionString
             My.MySettings.Default.SetConnectionString(s)
+
         End Sub
 
         Private Sub MyApplication_UnhandledException(ByVal sender As Object, _

@@ -22,30 +22,30 @@ Public Class WireAndComponentViewSearchGrid
 			.SearchGridTableStylesAdd(SetUpWireSourceSearchGrid())
 		End With
 	End Sub
-	Private Function SetUpWireSourceSearchGridColumn(ByRef ds As QuoteDataBase) As DataGridTableStyle
-		Dim retValue As DataGridTableStyle = Nothing
-		Dim csl As DCS.DataGridLookupColumn
-		Dim sts As DataGridTableStyle
-		'  WireSourceID SearchGrid Setup
-		csl = New DCS.DataGridLookupColumn(ds.Tables("ItemSourceLookupList"), _
-	 "SourceID", "PartNumber")
-		csl.AllowSearch(ds, "ItemSourceLookupList") = True
-		'   set up search grid
-		sts = SetUpWireSourceSearchGrid()
-		csl.SearchGridTableStylesAdd(sts)
+    Private Function SetUpWireSourceSearchGridColumn(ByRef ds As DB.QuoteDataBase) As DataGridTableStyle
+        Dim retValue As DataGridTableStyle = Nothing
+        Dim csl As DCS.DataGridLookupColumn
+        Dim sts As DataGridTableStyle
+        '  WireSourceID SearchGrid Setup
+        csl = New DCS.DataGridLookupColumn(ds.Tables("ItemSourceLookupList"), _
+        "SourceID", "PartNumber")
+        csl.AllowSearch(ds, "ItemSourceLookupList") = True
+        '   set up search grid
+        sts = SetUpWireSourceSearchGrid()
+        csl.SearchGridTableStylesAdd(sts)
 
-		'sts = New DataGridTableStyle
-		'sts.MappingName = "WireSourceKeyWord"
-		'DGAddColumn(sts, 120, "KeyWord")
-		'csl.SearchGridTableStylesAdd(sts)
-		'csl.Width = 60
-		'csl.MappingName = "WireSourceID"
-		'csl.HeaderText = "WirePN"
+        'sts = New DataGridTableStyle
+        'sts.MappingName = "WireSourceKeyWord"
+        'DGAddColumn(sts, 120, "KeyWord")
+        'csl.SearchGridTableStylesAdd(sts)
+        'csl.Width = 60
+        'csl.MappingName = "WireSourceID"
+        'csl.HeaderText = "WirePN"
 
-		retValue.GridColumnStyles.Add(csl)
-		Return retValue
-		'  end WireSourceID SearchGrid Setup
-	End Function
+        retValue.GridColumnStyles.Add(csl)
+        Return retValue
+        '  end WireSourceID SearchGrid Setup
+    End Function
 	Private Function SetUpWireSourceSearchGrid() As DataGridTableStyle
 		Dim retValue As DataGridTableStyle = New DataGridTableStyle
 		retValue.MappingName = "ItemSourceLookupList"

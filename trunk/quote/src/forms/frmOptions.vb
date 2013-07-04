@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
-Imports DCS.Quote.Common
+
+Imports Model.Common
 
 Public Class frmOptions
 

@@ -1,5 +1,8 @@
 ﻿Imports DCS.DataGrid
 Imports DCS.SharedMethods
+
+Imports DB
+
 Public Class LookupDataGridView
     Inherits System.Windows.Forms.DataGridView
     Private c_bIsNewRow As Boolean = False

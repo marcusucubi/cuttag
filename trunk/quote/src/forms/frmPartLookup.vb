@@ -1,5 +1,8 @@
 ﻿Imports System.Windows.Forms
-Imports DCS.Quote.Model
+
+Imports Model
+
+Imports DB
 
 Public Class frmComponentLookup
 

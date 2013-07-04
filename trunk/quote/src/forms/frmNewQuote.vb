@@ -1,6 +1,8 @@
 ﻿Imports System.Windows.Forms
-Imports DCS.Quote.Model
-Imports DCS.Quote.Model.BOM
+
+Imports Model
+Imports Model.BOM
+Imports ModelIO
 
 Public Class frmNewQuote
 
@@ -8,7 +10,8 @@ Public Class frmNewQuote
     Public Property QuoteInfo As New QuoteSaver.QuoteInfoClass
 
     Private Sub frmNewQuote_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim q As Header = ActiveHeader.ActiveHeader.Header
+        Dim q As Header
+        q = ActiveHeader.ActiveHeader.Header
         Me.txtTemplateNumber.Text = q.PrimaryProperties.CommonID
         Header = q
         Me.txtPartNumber.Text = q.PrimaryProperties.CommonPartNumber

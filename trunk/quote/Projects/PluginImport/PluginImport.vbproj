@@ -93,6 +93,7 @@
       <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ImportMenuItem.vb" />
+    <Compile Include="ImportPartListMenuItem.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

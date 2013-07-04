@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports DCS.Quote.Model.BOM
+Imports Model.BOM
 
 Public Class PropertyPrinter
 

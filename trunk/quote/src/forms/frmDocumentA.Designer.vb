@@ -1,5 +1,5 @@
-﻿Imports DCS.Quote.Model
-Imports DCS.Quote.Model.Quote
+﻿Imports Model
+Imports Model.Quote
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmDocumentA

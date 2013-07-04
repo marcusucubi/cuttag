@@ -73,8 +73,6 @@ Partial Class frmMain
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ImportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportPartsListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QuoteExport = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewQuoteMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
@@ -311,7 +309,7 @@ Partial Class frmMain
         '
         'menuTemplate
         '
-        Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SearchTemplateMenuItem1, Me.ToolStripSeparator2, Me.CompareWithToolStripMenuItem, Me.SimularToolStripMenuItem, Me.ToolStripSeparator6, Me.SaveToolStripMenuItem, Me.CopyToolStripMenuItem, Me.ToolStripSeparator8, Me.ImportToolStripMenuItem, Me.ImportPartsListToolStripMenuItem})
+        Me.menuTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuNewQuote, Me.ToolStripSeparator1, Me.LoadToolStripMenuItem, Me.SearchTemplateMenuItem1, Me.ToolStripSeparator2, Me.CompareWithToolStripMenuItem, Me.SimularToolStripMenuItem, Me.ToolStripSeparator6, Me.SaveToolStripMenuItem, Me.CopyToolStripMenuItem, Me.ToolStripSeparator8})
         Me.menuTemplate.Name = "menuTemplate"
         Me.menuTemplate.Size = New System.Drawing.Size(69, 20)
         Me.menuTemplate.Text = "&Template"
@@ -319,19 +317,19 @@ Partial Class frmMain
         'menuNewQuote
         '
         Me.menuNewQuote.Name = "menuNewQuote"
-        Me.menuNewQuote.Size = New System.Drawing.Size(160, 22)
+        Me.menuNewQuote.Size = New System.Drawing.Size(152, 22)
         Me.menuNewQuote.Text = "New"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(157, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
         '
         'LoadToolStripMenuItem
         '
         Me.LoadToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.load
         Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
-        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.LoadToolStripMenuItem.Text = "Load"
         '
         'SearchTemplateMenuItem1
@@ -339,13 +337,13 @@ Partial Class frmMain
         Me.SearchTemplateMenuItem1.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
         Me.SearchTemplateMenuItem1.Name = "SearchTemplateMenuItem1"
         Me.SearchTemplateMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.SearchTemplateMenuItem1.Size = New System.Drawing.Size(160, 22)
+        Me.SearchTemplateMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.SearchTemplateMenuItem1.Text = "Search"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(157, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
         '
         'CompareWithToolStripMenuItem
         '
@@ -353,7 +351,7 @@ Partial Class frmMain
         Me.CompareWithToolStripMenuItem.Enabled = False
         Me.CompareWithToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.Scales
         Me.CompareWithToolStripMenuItem.Name = "CompareWithToolStripMenuItem"
-        Me.CompareWithToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.CompareWithToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CompareWithToolStripMenuItem.Text = "Compare With"
         '
         'HolderToolStripMenuItem
@@ -366,45 +364,33 @@ Partial Class frmMain
         '
         Me.SimularToolStripMenuItem.Enabled = False
         Me.SimularToolStripMenuItem.Name = "SimularToolStripMenuItem"
-        Me.SimularToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.SimularToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SimularToolStripMenuItem.Text = "Open Similar"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(157, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(149, 6)
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Enabled = False
         Me.SaveToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.save
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'CopyToolStripMenuItem
         '
         Me.CopyToolStripMenuItem.Enabled = False
         Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CopyToolStripMenuItem.Text = "Copy"
         '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
-        Me.ToolStripSeparator8.Size = New System.Drawing.Size(157, 6)
-        '
-        'ImportToolStripMenuItem
-        '
-        Me.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem"
-        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.ImportToolStripMenuItem.Text = "Import (Legacy)"
-        '
-        'ImportPartsListToolStripMenuItem
-        '
-        Me.ImportPartsListToolStripMenuItem.Name = "ImportPartsListToolStripMenuItem"
-        Me.ImportPartsListToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
-        Me.ImportPartsListToolStripMenuItem.Text = "Import Parts List"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(149, 6)
         '
         'QuoteExport
         '
@@ -614,7 +600,6 @@ Partial Class frmMain
     Friend WithEvents CustomToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BOMExportButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ImportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -628,7 +613,6 @@ Partial Class frmMain
     Friend WithEvents HolderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CompareWithToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HolderToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ImportPartsListToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CopyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SimularToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator

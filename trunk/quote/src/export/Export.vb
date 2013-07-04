@@ -1,8 +1,9 @@
-﻿Public Class Export
+﻿
+Public Class Export
 
     Private _Excel As ExcellWriter
 
-    Public Function Export(ByVal header As Common.Header, _
+    Public Function Export(ByVal header As Model.Common.Header, _
                            ByVal templatePath As String) As String
 
         _Excel = New ExcellWriter

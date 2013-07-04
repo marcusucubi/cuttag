@@ -5,18 +5,17 @@ Imports PluginHost
 Imports PluginOutputView
 
 <PluginMenuItem( _
-    Text:="Import (Legacy)", _
+    Text:="Import Parts List", _
     Parent:="Template", _
     MenuSeporatorNumber:=5, _
-    Position:=MenuPosition.Top _
-    )>
-Public Class ImportMenuItem
+    Position:=PluginHost.MenuPosition.Bottom)>
+Public Class ImportPartListMenuItem
     Implements IPluginMenuAction
 
     Public Sub Execute() Implements IPluginMenuAction.Execute
 
         Dim import As New QuoteImport
-        import.DoImport()
+        import.DoImportFromPartsList()
 
     End Sub
 

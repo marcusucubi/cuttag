@@ -1,8 +1,9 @@
-﻿Public Class MainFormStatusStrip
+﻿
+Public Class MainFormStatusStrip
 
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _PrimaryPropeties As Common.PrimaryPropeties
-    Private WithEvents _OtherPropeties As Common.OtherProperties
+    Private WithEvents _PrimaryPropeties As Model.Common.PrimaryPropeties
+    Private WithEvents _OtherPropeties As Model.Common.OtherProperties
 
     Public Sub New()
         InitializeComponent()

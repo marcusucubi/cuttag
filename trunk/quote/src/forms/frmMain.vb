@@ -1,6 +1,10 @@
-﻿Imports DCS.Quote.Model.Quote
+﻿Imports PluginHost
+
 Imports WeifenLuo.WinFormsUI.Docking
-Imports PluginHost
+
+Imports Model
+Imports Model.Quote
+Imports ModelIO
 
 Public Class frmMain
 
@@ -10,17 +14,27 @@ Public Class frmMain
     Private _DetailProperties As New frmDetailProperties
     Private _NoteProperties As New frmNoteProperties
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _SaveableProperties As Common.SaveableProperties
+    Private WithEvents _SaveableProperties As Model.Common.SaveableProperties
     Public Shared Property frmMain As frmMain
+
     Public Sub New()
         InitializeComponent()
 
         frmMain = Me
         Me._ActiveHeader = ActiveHeader.ActiveHeader
     End Sub
+
     Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         PluginHost.App.Init(Me, DockPanel1, Me.MenuStrip1)
+
+        AddHandler Model.ModelEvents.TemplateCreated, AddressOf OnNewQuote
+
     End Sub
+
+    Private Sub OnNewQuote(source As Object, args As ModelEventArgs)
+        Me.LoadTemplate(args.ID)
+    End Sub
+
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
         Me._SaveableProperties = ActiveHeader.ActiveHeader.Header
@@ -85,7 +99,7 @@ Public Class frmMain
     Private Sub LoadQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteButton.Click
         LoadQuote()
     End Sub
-    Private Sub _SaveableProperties_SavableChange(ByVal subject As Common.SaveableProperties) Handles _SaveableProperties.SavableChange
+    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SaveableProperties) Handles _SaveableProperties.SavableChange
         EnableButtons()
     End Sub
     Private Sub DetailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DetailToolStripMenuItem.Click
@@ -151,7 +165,7 @@ Public Class frmMain
 
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            Dim saver As New QuoteSaver
+            Dim saver As New ModelIO.QuoteSaver
             Dim id As Integer = saver.Save(frm.Header, frm.QuoteInfo, True)
             If (id > 0) Then
                 LoadQuote(id)
@@ -326,7 +340,7 @@ Public Class frmMain
         End If
 
         Dim loader As New BOMLoader
-        Dim q As Common.Header
+        Dim q As Model.Common.Header
 
         q = loader.Load(id)
         If q.PrimaryProperties.CommonID = 0 Then
@@ -383,16 +397,6 @@ Public Class frmMain
         Next
         Return result
     End Function
-    Private Sub ImportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImportToolStripMenuItem.Click
-
-        Dim import As New QuoteImport
-        import.DoImport()
-
-    End Sub
-    Private Sub ImportPartsListToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ImportPartsListToolStripMenuItem.Click
-        Dim import As New QuoteImport
-        import.DoImportFromPartsList()
-    End Sub
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
@@ -431,9 +435,9 @@ Public Class frmMain
     Public Class CompareMenuItem
         Inherits ToolStripMenuItem
 
-        Private _Header As Common.Header
+        Private _Header As Model.Common.Header
 
-        Public Sub New(name As String, header As Common.Header)
+        Public Sub New(name As String, header As Model.Common.Header)
             MyBase.New(name)
             _Header = header
         End Sub
@@ -493,7 +497,8 @@ Public Class frmMain
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
 
-        Dim frmCompare As New frmCompare(Me._ActiveHeader.Header, menu.Header)
+        Dim frmCompare As frmCompare
+        frmCompare = New frmCompare(Me._ActiveHeader.Header, menu.Header)
         frmCompare.MdiParent = Me
         frmCompare.Show(Me.DockPanel1)
 
@@ -504,7 +509,8 @@ Public Class frmMain
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
 
-        Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
+        Dim frm As frmSimilarQuotes
+        frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
         frm.ShowDialog(Me)
 
         Me.Cursor = Cursors.Default
@@ -514,7 +520,8 @@ Public Class frmMain
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
 
-        Dim frm As New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
+        Dim frm As frmSimilarQuotes
+        frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
         frm.ShowDialog(Me)
 
         Me.Cursor = Cursors.Default
