@@ -10,7 +10,7 @@ Namespace My
                                         Handles Me.Startup
 
             Dim s As String = ModelIO.CuttagDatabaseConnection.ConnectionString
-            My.MySettings.Default.SetConnectionString(s)
+            DB.My.MySettings.Default.SetConnectionString(s)
 
         End Sub
 
