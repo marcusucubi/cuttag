@@ -3,14 +3,14 @@ Imports System.Transactions
 
 Imports Model.BOM
 Imports DB.QuoteDataBaseTableAdapters
+Imports System.Windows.Forms
 
 Public Class BOMCopier
 
     Public Function Copy(ByVal q As Header) _
                         As Integer
 
-        'frmMain.frmMain.UseWaitCursor = True
-        'My.Application.DoEvents()
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
         'frmMain.frmMain.Focus()
@@ -42,7 +42,7 @@ Public Class BOMCopier
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()
 
-        'frmMain.frmMain.UseWaitCursor = False
+        System.Windows.Forms.Cursor.Current = Cursors.Default
 
         Return newId
     End Function

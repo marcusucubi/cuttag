@@ -5,14 +5,14 @@ Imports Model.BOM
 
 Imports DB
 Imports DB.QuoteDataBaseTableAdapters
+Imports System.Windows.Forms
 
 Public Class BOMSaver
 
     Public Function Save(ByVal q As Header) _
                         As Integer
 
-        '.frmMain.UseWaitCursor = True
-        'My.Application.DoEvents()
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
         'frmMain.frmMain.Focus()
@@ -68,7 +68,7 @@ Public Class BOMSaver
         q.PrimaryProperties.ClearDirty()
         q.ClearDirty()
 
-        'frmMain.frmMain.UseWaitCursor = False
+        System.Windows.Forms.Cursor.Current = Cursors.Default
 
         Return newId
     End Function

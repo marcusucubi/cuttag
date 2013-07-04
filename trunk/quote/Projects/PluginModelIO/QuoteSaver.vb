@@ -8,6 +8,7 @@ Imports Model
 
 Imports DB.QuoteDataBase
 Imports DB.QuoteDataBaseTableAdapters
+Imports System.Windows.Forms
 
 Public Class QuoteSaver
 
@@ -27,8 +28,7 @@ Public Class QuoteSaver
                          ByVal IsQuote As Boolean) _
                         As Integer
 
-        'frmMain.frmMain.UseWaitCursor = True
-        'My.Application.DoEvents()
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
         'frmMain.frmMain.Focus()
@@ -72,12 +72,12 @@ Public Class QuoteSaver
         CommonSaver.SaveOtherProperties(newId, q.OtherProperties, True)
         CommonSaver.SaveComputationProperties(newId, _
             q.ComputationProperties, True)
-        CommonSaver.SaveNoteProperties(newId, q.NoteProperties) ''''''''''''''dddddddddddddddddddd
+        CommonSaver.SaveNoteProperties(newId, q.NoteProperties)
         CommonSaver.DeleteComponents(newId)
         CommonSaver.SaveComponents(q, newId, True)
         adaptor.Connection.Close()
 
-        'frmMain.frmMain.UseWaitCursor = False
+        System.Windows.Forms.Cursor.Current = Cursors.Default
 
         Return newId
     End Function
