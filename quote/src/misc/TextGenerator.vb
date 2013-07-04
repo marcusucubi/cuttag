@@ -1,23 +1,24 @@
-﻿Imports System.Reflection
-Imports DCS.Quote.Common
+﻿Imports System.Globalization
+Imports System.Reflection
 Imports System.IO
-Imports System.Globalization
+
+Imports Model.Common
 
 Public Class TextGenerator
 
-    Private _Header As Common.Header
-    Private _HeaderToCompare As Common.Header
+    Private _Header As Model.Common.Header
+    Private _HeaderToCompare As Model.Common.Header
     Private _Data As String
     Private _List As New List(Of String)
     Private _SyncDictionary As Dictionary(Of String, String)
     Private _GenerateGuid As Boolean
 
-    Public Sub New(q1 As Common.Header, q2 As Common.Header)
+    Public Sub New(q1 As Model.Common.Header, q2 As Model.Common.Header)
         Me.New(q1, q2, New Dictionary(Of String, String), True)
     End Sub
 
-    Public Sub New(q1 As Common.Header, _
-                   q2 As Common.Header, _
+    Public Sub New(q1 As Model.Common.Header, _
+                   q2 As Model.Common.Header, _
                    syncMap As Dictionary(Of String, String), _
                    generateGuid As Boolean)
         _Header = q1
@@ -48,13 +49,13 @@ Public Class TextGenerator
         End Get
     End Property
 
-    Public ReadOnly Property Header As Common.Header
+    Public ReadOnly Property Header As Model.Common.Header
         Get
             Return _Header
         End Get
     End Property
 
-    Public ReadOnly Property HeaderToCompare As Common.Header
+    Public ReadOnly Property HeaderToCompare As Model.Common.Header
         Get
             Return _HeaderToCompare
         End Get

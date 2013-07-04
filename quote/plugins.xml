@@ -2,14 +2,15 @@
 <plugins>
   <debug>
     <!--
-    <plugin path="DebugPlugin.dll" />
     -->
+    <plugin path="DebugPlugin.dll" />
+    <plugin path="PluginImport.dll" />
     <plugin path="PluginOutputView.dll" />
   </debug>
   <release>
     <!--
-    <plugin path="DebugPlugin.dll" />
     -->
+    <plugin path="PluginImport.dll" />
     <plugin path="PluginOutputView.dll" />
   </release>
 </plugins>

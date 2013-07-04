@@ -1,5 +1,7 @@
 ﻿Imports System.Collections.ObjectModel
 
+Imports DB
+
 ''' <summary>
 ''' Loads similar quotes or BOMs
 ''' </summary>

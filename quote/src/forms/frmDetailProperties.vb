@@ -1,5 +1,5 @@
-﻿Imports DCS.Quote.Model
-Imports DCS.Quote.Common
+﻿Imports Model
+Imports Model.Common
 
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -12,7 +12,8 @@ Public Class frmDetailProperties
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
 
-        Dim detail As Detail = ActiveDetail.ActiveDetail.Detail
+        Dim detail As Detail
+        detail = ActiveDetail.ActiveDetail.Detail
         If detail IsNot Nothing Then
             Dim o = detail.QuoteDetailProperties
             If TypeOf o Is BOM.WireProperties Then

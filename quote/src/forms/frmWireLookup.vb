@@ -1,7 +1,8 @@
 ﻿Imports System.Windows.Forms
-Imports DCS.Quote.Model
-Imports DCS.Quote.QuoteDataBase
-Imports DCS.Quote.QuoteDataBaseTableAdapters
+
+Imports Model
+Imports DB.QuoteDataBase
+Imports DB.QuoteDataBaseTableAdapters
 
 Public Class frmWireLookup
 
@@ -15,7 +16,7 @@ Public Class frmWireLookup
 
     Private Sub SelectProduct()
         Dim View As System.Data.DataRowView = Me.ListBox1.SelectedItem
-        Dim row As QuoteDataBase.WireSourceRow = View.Row
+        Dim row As DB.QuoteDataBase.WireSourceRow = View.Row
         Dim num As String = row.PartNumber
         Dim cost As Decimal = 0
         If Not row.IsQuotePriceNull Then
@@ -78,9 +79,9 @@ Public Class frmWireLookup
 
         If (Me.TextBox1.Text.Length > 0) Then
             Dim filter As String = "%" & Me.TextBox1.Text.Trim.ToUpper & "%"
-            table = New QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetDataLikePartNumber(filter)
+            table = New DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetDataLikePartNumber(filter)
         Else
-            table = New QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetData()
+            table = New DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter().GetData()
         End If
         Me.ListBox1.DataSource = table
         Me.ListBox1.DisplayMember = "PartNumber"

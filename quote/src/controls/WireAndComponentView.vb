@@ -1,17 +1,18 @@
-﻿Imports DCS.Quote.QuoteDataBase
+﻿Imports Model
+
+Imports DB.QuoteDataBase
+
 Public Class WireAndComponentView
-    Private WithEvents _DetailCollection As Common.DetailCollection(Of Common.Detail)
+    Private WithEvents _DetailCollection As Model.Common.DetailCollection(Of Model.Common.Detail)
     Private _Sorter As New ListViewColumnSorter
-    'dd_Added 10/4/11
     Private _PartNumberSave As String
-    Private _PartLookupDataSource As QuoteDataBase
+    Private _PartLookupDataSource As DB.QuoteDataBase
     Private _PartLookupDataMember As String
-    'dd_Added end
-    Public Property DetailCollection As Common.DetailCollection(Of Common.Detail)
+    Public Property DetailCollection As Model.Common.DetailCollection(Of Model.Common.Detail)
         Get
             Return _DetailCollection
         End Get
-        Set(ByVal value As Common.DetailCollection(Of Common.Detail))
+        Set(ByVal value As Model.Common.DetailCollection(Of Model.Common.Detail))
             _DetailCollection = value
             Me.dgvQuoteDetail.DataSource = Me._DetailCollection
             With dgvQuoteDetail_Lookup
@@ -94,23 +95,13 @@ Public Class WireAndComponentView
         left.Width = Me.ListView1.Width - (size + 25)
     End Sub
     Public Sub SelectDetail()
-        'dd_Added 9/26/2011
         If dgvQuoteDetail.RowCount > 0 AndAlso Not dgvQuoteDetail.CurrentRow Is Nothing Then
-            Dim i As Common.Detail
+            Dim i As Model.Common.Detail
             i = dgvQuoteDetail.CurrentRow.DataBoundItem
             ActiveDetail.ActiveDetail.Detail = i
         Else
             ActiveDetail.ActiveDetail.Detail = Nothing
         End If
-
-        'ddRemmed
-        'If ListView1.SelectedItems.Count > 0 Then
-        '	ActiveDetail.ActiveDetail.Detail = ListView1.Tag
-        'Else
-        '	ActiveDetail.ActiveDetail.Detail = Nothing
-        'End If
-
-        'dd_Added end
 
     End Sub
     Private Sub Sync()
@@ -173,10 +164,10 @@ Public Class WireAndComponentView
         If e.ColumnIndex = dgvQuoteDetail_Lookup.Index Then
             If Not _PartNumberSave = dgvQuoteDetail.CurrentCell.Value Then
                 'Dim sPartNumber As String = dgvQuoteDetail.CurrentCell.Value
-                Dim drLookup As QuoteDataBase.ItemSourceLookupListRow = CType(dgvQuoteDetail_Lookup.SearchGrid.GetCurrentRow, DCS.Quote.QuoteDataBase.ItemSourceLookupListRow)
+                Dim drLookup As DB.QuoteDataBase.ItemSourceLookupListRow = CType(dgvQuoteDetail_Lookup.SearchGrid.GetCurrentRow, DB.QuoteDataBase.ItemSourceLookupListRow)
                 Dim sPartNumber As String = drLookup.PartNumber
                 Dim gSourceID As Guid = drLookup.SourceID
-                Dim oDetail As DCS.Quote.Model.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, DCS.Quote.Model.BOM.Detail)
+                Dim oDetail As Model.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, Model.BOM.Detail)
                 oDetail.IsWire = drLookup.IsWire
                 oDetail.SourceID = drLookup.SourceID
                 Dim pProduct As New Model.Product(gSourceID, drLookup.IsWire, _PartLookupDataSource)
@@ -221,7 +212,7 @@ Public Class WireAndComponentView
                 End With
             ElseIf _PartNumberSave = "" Then 'must be new row with no search item chosen 
                 '	dgvQuoteDetail.CurrentCell = Nothing
-                'Dim oDetail As DCS.Quote.Model.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, DCS.Quote.Model.BOM.Detail)
+                'Dim oDetail As DCS.Quote.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, DCS.Quote.BOM.Detail)
                 'dgvQuoteDetail.CurrentCell = Nothing
                 'oDetail.Header.Details.Remove(oDetail)
             End If

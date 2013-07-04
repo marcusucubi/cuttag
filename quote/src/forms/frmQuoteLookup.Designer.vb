@@ -27,8 +27,8 @@ Partial Class frmQuoteLookup
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.QuoteDataSet = New DCS.Quote.QuoteDataBase()
-        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.QuoteDataSet = New DB.QuoteDataBase()
+        Me._QuoteTableAdapter = New DB.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -131,9 +131,9 @@ Partial Class frmQuoteLookup
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents QuoteDataSet As DCS.Quote.QuoteDataBase
+    Friend WithEvents QuoteDataSet As DB.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
+    Friend WithEvents _QuoteTableAdapter As DB.QuoteDataBaseTableAdapters._QuoteTableAdapter
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
 

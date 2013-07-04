@@ -1,10 +1,12 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
+Imports DB
+
 Public Class frmNoteProperties
     Inherits DockContent
 
     Private WithEvents _ActiveQuote As ActiveHeader
-    Private WithEvents _Notes As Common.NoteProperties
+    Private WithEvents _Notes As Model.Common.NoteProperties
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _ActiveQuote = ActiveHeader.ActiveHeader

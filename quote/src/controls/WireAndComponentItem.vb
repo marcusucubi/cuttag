@@ -1,22 +1,22 @@
 ﻿Class WireAndComponentItem
     Inherits ListViewItem
 
-    Private WithEvents _Detail As Common.Detail
+    Private WithEvents _Detail As Model.Common.Detail
     Private _ItemType As New ListViewItem.ListViewSubItem
     Private _ItemQuantity As New ListViewItem.ListViewSubItem
     Private _ItemUnitCost As New ListViewItem.ListViewSubItem
     Private _ItemTotalCost As New ListViewItem.ListViewSubItem
 
-    Public Sub New(ByVal o As Common.Detail)
+    Public Sub New(ByVal o As Model.Common.Detail)
         Me._Detail = o
         Init(o)
     End Sub
 
-    Private Sub _Detail_SavableChange(ByVal subject As Common.SaveableProperties) Handles _Detail.SavableChange
+    Private Sub _Detail_SavableChange(ByVal subject As Model.Common.SaveableProperties) Handles _Detail.SavableChange
         Init(_Detail)
     End Sub
 
-    Private Sub Init(ByVal o As Common.Detail)
+    Private Sub Init(ByVal o As Model.Common.Detail)
 
         Dim i As New ListViewItem
         i = Me

@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
-Imports DCS.Quote.Model
-Imports DCS.Quote.Common
+
+Imports Model
+Imports Model.Common
 
 Public Class ActiveDetail
     Implements INotifyPropertyChanged

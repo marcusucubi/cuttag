@@ -1,7 +1,8 @@
 ﻿Imports NPOI.SS.UserModel
 Imports System.IO
 Imports NPOI.HSSF.UserModel
-Imports DCS.Quote.Model.BOM
+
+Imports Model.BOM
 
 Public Class ExcellWriter
 
@@ -80,8 +81,8 @@ Public Class ExcellWriter
         cell2 = row.CreateCell(1)
 
         Dim excelName As String
-        If TypeOf Prop.Value Is Customer Then
-            Dim c As Customer = Prop.Value
+        If TypeOf Prop.Value Is Model.BOM.Customer Then
+            Dim c As Model.BOM.Customer = Prop.Value
             cell.SetCellValue("CustomerName")
             cell2.SetCellValue(c.Name.Trim())
             excelName = "CustomerName"

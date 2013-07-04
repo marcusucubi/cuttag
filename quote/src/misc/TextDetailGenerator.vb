@@ -1,6 +1,7 @@
 ﻿Imports System.Reflection
-Imports DCS.Quote.Common
 Imports System.IO
+
+Imports Model.Common
 
 Public Class TextDetailGenerator
 
@@ -30,7 +31,7 @@ Public Class TextDetailGenerator
     Public Function UpdatePartContent() As String
 
         Dim s As String = ""
-        s = GenerateReport("Components", Function(d As Detail)
+        s = GenerateReport("Components", Function(d As Model.Common.Detail)
                                              Return Not d.IsWire
                                          End Function)
         Return s

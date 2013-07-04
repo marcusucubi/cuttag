@@ -35,8 +35,8 @@ Partial Class frmQuoteSearch
         Me.PartNumberDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IsQuoteDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
-        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.QuoteDataBase = New DB.QuoteDataBase()
+        Me._QuoteTableAdapter = New DB.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Filter.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,9 +210,9 @@ Partial Class frmQuoteSearch
     Friend WithEvents txtRFQ As System.Windows.Forms.TextBox
     Friend WithEvents btnRFQ As System.Windows.Forms.RadioButton
     Friend WithEvents btnPartNumber As System.Windows.Forms.RadioButton
-    Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
+    Friend WithEvents QuoteDataBase As DB.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
+    Friend WithEvents _QuoteTableAdapter As DB.QuoteDataBaseTableAdapters._QuoteTableAdapter
     Friend WithEvents IDDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomerNameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RequestForQuoteNumberDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn

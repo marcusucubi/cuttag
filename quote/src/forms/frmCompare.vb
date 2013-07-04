@@ -4,14 +4,14 @@ Imports System.Drawing.Drawing2D
 
 Public Class frmCompare
 
-    Private _Header1 As Common.Header
-    Private _Header2 As Common.Header
+    Private _Header1 As Model.Common.Header
+    Private _Header2 As Model.Common.Header
     Private _IgnoreSelect As Boolean
 
     Private _S1 As String
     Private _S2 As String
 
-    Public Sub New(ByVal q1 As Common.Header, ByVal q2 As Common.Header)
+    Public Sub New(ByVal q1 As Model.Common.Header, ByVal q2 As Model.Common.Header)
 
         _Header1 = q1
         _Header2 = q2
@@ -34,8 +34,10 @@ Public Class frmCompare
 
     Sub FillListbox()
 
-        Dim g1 As TextGenerator = New TextGenerator(_Header1, _Header2)
-        Dim g2 As TextGenerator = New TextGenerator(_Header2, _Header1, g1.SyncDictionary, False)
+        Dim g1 As TextGenerator
+        Dim g2 As TextGenerator
+        g1 = New TextGenerator(_Header1, _Header2)
+        g2 = New TextGenerator(_Header2, _Header1, g1.SyncDictionary, False)
         TextDiff(g1.List, g2.List)
 
         _S1 = g1.Data

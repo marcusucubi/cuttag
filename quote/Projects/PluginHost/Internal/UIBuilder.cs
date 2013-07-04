@@ -89,7 +89,6 @@ namespace PluginHost.Internal
             ToolStripItemCollection collection)
         {
 
-            //int result = 0;
             List<TopBottom> indexes = BuildMenuIndexArray(collection);
 
             TopBottom tb = new TopBottom();
@@ -127,7 +126,8 @@ namespace PluginHost.Internal
                 {
                     result.Add(current);
                     current = new TopBottom();
-                    current.Top = i;
+                    current.Top = i + 1;
+                    current.Bottom = i + 2;
                 }
             }
 

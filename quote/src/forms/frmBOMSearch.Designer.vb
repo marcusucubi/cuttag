@@ -40,8 +40,8 @@ Partial Class frmBOMSearch
         Me.CreatedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LastModifedDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QuoteBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.QuoteDataBase = New DCS.Quote.QuoteDataBase()
-        Me._QuoteTableAdapter = New DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter()
+        Me.QuoteDataBase = New DB.QuoteDataBase()
+        Me._QuoteTableAdapter = New DB.QuoteDataBaseTableAdapters._QuoteTableAdapter()
         Me.GroupBox1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -237,9 +237,9 @@ Partial Class frmBOMSearch
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents QuoteDataBase As DCS.Quote.QuoteDataBase
+    Friend WithEvents QuoteDataBase As DB.QuoteDataBase
     Friend WithEvents QuoteBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents _QuoteTableAdapter As DCS.Quote.QuoteDataBaseTableAdapters._QuoteTableAdapter
+    Friend WithEvents _QuoteTableAdapter As DB.QuoteDataBaseTableAdapters._QuoteTableAdapter
     Friend WithEvents txtRFQ As System.Windows.Forms.TextBox
     Friend WithEvents btnRFQ As System.Windows.Forms.RadioButton
     Friend WithEvents btnPartNumber As System.Windows.Forms.RadioButton

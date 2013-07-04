@@ -1,12 +1,13 @@
-﻿Imports DCS.Quote.Common
-Imports System.Reflection
+﻿Imports System.Reflection
+
+Imports Model.Common
 
 Public Class frmTextView
 
     Private WithEvents _Header As Header
     Private WithEvents _PrimaryProperties As PrimaryPropeties
 
-    Public Sub New(ByVal q As Common.Header)
+    Public Sub New(ByVal q As Model.Common.Header)
         InitializeComponent()
         If q IsNot Nothing Then
             Me._Header = q
@@ -17,7 +18,8 @@ Public Class frmTextView
         End If
         UpdateText()
 
-        Dim g As TextGenerator = New TextGenerator(_Header, Nothing)
+        Dim g As TextGenerator
+        g = New TextGenerator(_Header, Nothing)
         Me.TextBox1.Text = g.Data
     End Sub
 

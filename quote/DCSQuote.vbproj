@@ -119,10 +119,6 @@
     <Compile Include="src\controls\WireAndComponentViewSearchGrid.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\database\BOMCopier.vb" />
-    <Compile Include="src\database\CommonLoader.vb" />
-    <Compile Include="src\database\CommonSaver.vb" />
-    <Compile Include="src\database\CuttagDatabaseConnection.vb" />
     <Compile Include="src\export\ExcelBOMWriter.vb" />
     <Compile Include="src\export\ExportBOM.vb" />
     <Compile Include="src\export\ExportPath.vb" />
@@ -174,12 +170,6 @@
     <Compile Include="src\forms\frmTextView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\import\frmImport.Designer.vb">
-      <DependentUpon>frmImport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\import\frmImport.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmNoteProperties.Designer.vb">
       <DependentUpon>frmNoteProperties.vb</DependentUpon>
     </Compile>
@@ -192,35 +182,6 @@
     <Compile Include="src\forms\frmOutput.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\import\frmImportPartsList.Designer.vb">
-      <DependentUpon>frmImportPartsList.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\import\frmImportPartsList.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\import\ImportDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="src\import\ImportDataSet.vb">
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="src\import\QuoteImport.vb" />
-    <Compile Include="src\misc\CustomerConverter.vb" />
-    <Compile Include="src\misc\ObjectGeneratorException.vb" />
-    <Compile Include="src\database\QuoteDataBase.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="src\database\QuoteDataBase.vb">
-      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="src\database\QuoteLoader.vb" />
-    <Compile Include="src\database\QuoteSaver.vb" />
-    <Compile Include="src\database\BOMLoader.vb" />
-    <Compile Include="src\database\BOMSaver.vb" />
     <Compile Include="src\export\ExcellWriter.vb" />
     <Compile Include="src\export\PropertyPrinter.vb" />
     <Compile Include="src\export\Export.vb" />
@@ -305,46 +266,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\misc\ActiveDetail.vb" />
-    <Compile Include="src\misc\QuoteTypeList.vb" />
-    <Compile Include="src\misc\ShippingList.vb" />
     <Compile Include="src\misc\ActiveHeader.vb" />
     <Compile Include="src\misc\SimilarQuotes.vb" />
     <Compile Include="src\misc\TextDetailGenerator.vb" />
     <Compile Include="src\misc\TextGenerator.vb" />
-    <Compile Include="src\misc\UOMConverter.vb" />
-    <Compile Include="src\model\bom\ComponentProperties.vb" />
-    <Compile Include="src\model\bom\ComputationProperties.vb" />
-    <Compile Include="src\model\bom\Customer.vb" />
-    <Compile Include="src\model\bom\CustomPropertiesGenerator.vb" />
-    <Compile Include="src\model\bom\Detail.vb" />
-    <Compile Include="src\misc\FilterAttribute.vb" />
-    <Compile Include="src\model\bom\Header.vb" />
-    <Compile Include="src\model\bom\NoteProperties.vb" />
-    <Compile Include="src\model\bom\OtherProperties.vb" />
-    <Compile Include="src\model\bom\PrimaryPropeties.vb" />
-    <Compile Include="src\model\bom\DisplayableComponentProperties.vb" />
-    <Compile Include="src\model\bom\DisplayableComputationProperties.vb" />
-    <Compile Include="src\model\bom\DisplayableWireProperties.vb" />
-    <Compile Include="src\model\bom\WireProperties.vb" />
-    <Compile Include="src\model\common\ComponentProperties.vb" />
-    <Compile Include="src\model\common\ComputationProperties.vb" />
-    <Compile Include="src\model\common\CustomPropertiesGenerator.vb" />
-    <Compile Include="src\model\common\Detail.vb" />
-    <Compile Include="src\model\common\DetailCollection.vb" />
-    <Compile Include="src\model\common\GlobalOptions.vb" />
-    <Compile Include="src\model\common\Header.vb" />
-    <Compile Include="src\model\common\NoteProperties.vb" />
-    <Compile Include="src\model\common\OtherProperties.vb" />
-    <Compile Include="src\model\common\PrimaryPropeties.vb" />
-    <Compile Include="src\model\common\Weights.vb" />
-    <Compile Include="src\model\common\WireProperties.vb" />
-    <Compile Include="src\model\quote\PrimaryPropeties.vb" />
-    <Compile Include="src\misc\ObjectGenerator.vb" />
-    <Compile Include="src\model\common\SaveableProperties.vb" />
-    <Compile Include="src\database\DatabaseException.vb" />
-    <Compile Include="src\model\Shipping.vb" />
-    <Compile Include="src\model\quote\Header.vb" />
-    <Compile Include="src\model\quote\Detail.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -360,7 +285,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="src\model\Product.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="src\controls\MainFormStatusStrip.resx">
@@ -395,9 +319,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmTextView.resx">
       <DependentUpon>frmTextView.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\import\frmImport.resx">
-      <DependentUpon>frmImport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
@@ -447,9 +368,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\import\frmImportPartsList.resx">
-      <DependentUpon>frmImportPartsList.vb</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -475,28 +393,6 @@
     </None>
     <None Include="Spreadsheets\ProductionTemplate.xls">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="src\database\QuoteDataBase.xsc">
-      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
-    </None>
-    <None Include="src\database\QuoteDataBase.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QuoteDataBase.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="src\database\QuoteDataBase.xss">
-      <DependentUpon>QuoteDataBase.xsd</DependentUpon>
-    </None>
-    <None Include="src\import\ImportDataSet.xsc">
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="src\import\ImportDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ImportDataSet.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="src\import\ImportDataSet.xss">
-      <DependentUpon>ImportDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -568,12 +464,31 @@
       <Project>{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}</Project>
       <Name>DifferenceEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="Projects\PluginDB\PluginDB.vbproj">
+      <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
+      <Name>PluginDB</Name>
+    </ProjectReference>
     <ProjectReference Include="Projects\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>
     </ProjectReference>
+    <ProjectReference Include="Projects\PluginModelIO\PluginModelIO.vbproj">
+      <Project>{7973E603-E061-4D17-A51A-FDEBFF5369A9}</Project>
+      <Name>PluginModelIO</Name>
+    </ProjectReference>
+    <ProjectReference Include="Projects\PluginModel\PluginModel.vbproj">
+      <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
+      <Name>PluginModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="Projects\PluginOutputView\PluginOutputView.csproj">
+      <Project>{728E76F6-CEF8-4F92-8FB6-7FA7DB131831}</Project>
+      <Name>PluginOutputView</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\database\" />
+    <Folder Include="src\import\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>

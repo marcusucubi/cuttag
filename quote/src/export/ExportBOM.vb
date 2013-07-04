@@ -2,7 +2,7 @@
 
     Private _Writer As ExcelBOMWriter
 
-    Public Function Export(ByVal header As Common.Header) As String
+    Public Function Export(ByVal header As Model.Common.Header) As String
 
         _Writer = New ExcelBOMWriter("Summary")
 
@@ -20,7 +20,7 @@
 
         _Writer = New ExcelBOMWriter(_Writer.Path, _Writer.Workbook, "Wires")
         Dim index As Integer
-        For Each detail As Common.Detail In header.Details
+        For Each detail As Model.Common.Detail In header.Details
             If (detail.Product.IsWire) Then
                 If index = 0 Then
                     PrintWireColumns(detail)
@@ -37,7 +37,7 @@
         index = 0
 
         _Writer = New ExcelBOMWriter(_Writer.Path, _Writer.Workbook, "Components")
-        For Each detail As Common.Detail In header.Details
+        For Each detail As Model.Common.Detail In header.Details
             If (detail.Product.IsWire = False) Then
                 If index = 0 Then
                     PrintWireColumns(detail)
