@@ -3,8 +3,6 @@ using System.Windows.Forms;
 
 using PluginHost;
 
-using WeifenLuo.WinFormsUI.Docking;
-
 namespace PluginOutputView
 {
     [

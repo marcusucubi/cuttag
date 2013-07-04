@@ -115,16 +115,20 @@ namespace PluginHost.Internal
                 Activator.CreateInstance(t) as IPluginMenuAction;
 
             string parentMenu = "";
+            MenuPosition position = MenuPosition.Bottom;
+            int menuSeporatorNumber = -1;
             PluginMenuItemAttribute[] ppms = (PluginMenuItemAttribute[])
                 t.GetCustomAttributes(typeof(PluginMenuItemAttribute), false);
             if (ppms.Length > 0)
             {
                 PluginMenuItemAttribute ppm = ppms[0];
                 parentMenu = ppm.Parent;
+                position = ppm.Position;
+                menuSeporatorNumber = ppm.MenuSeporatorNumber;
             }
 
             PluginMenuItem pluginItem =
-                new PluginMenuItem(mia.Text, parentMenu, target);
+                new PluginMenuItem(mia.Text, parentMenu, menuSeporatorNumber, position, target);
             return pluginItem;
         }
     }
