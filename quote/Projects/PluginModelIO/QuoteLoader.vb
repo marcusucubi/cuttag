@@ -5,6 +5,7 @@ Imports Model.Quote
 
 Imports DB.QuoteDataBaseTableAdapters
 Imports DB.QuoteDataBase
+Imports System.Windows.Forms
 
 Public Class QuoteLoader
 
@@ -12,8 +13,7 @@ Public Class QuoteLoader
 
     Public Function Load(ByVal id As Long) As Header
 
-        'frmMain.frmMain.UseWaitCursor = True
-        'My.Application.DoEvents()
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         Dim adaptor As New DB.QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim table As New DB.QuoteDataBase._QuoteDataTable
@@ -78,7 +78,7 @@ Public Class QuoteLoader
 
         End If
 
-        'frmMain.frmMain.UseWaitCursor = False
+        System.Windows.Forms.Cursor.Current = Cursors.Default
 
         Return q
     End Function

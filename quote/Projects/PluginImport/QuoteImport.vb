@@ -13,6 +13,8 @@ Public Class QuoteImport
         Dim frm As New frmImport
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
+
+            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
             PluginOutputView.OutputPlugin.ShowOutputView()
 
             If frm.ImportTest Then
@@ -23,6 +25,8 @@ Public Class QuoteImport
                 Dim id As Integer = Import(frm.QuoteNumber)
                 Model.ModelEvents.NotifyTemplateCreated(id)
             End If
+
+            System.Windows.Forms.Cursor.Current = Cursors.Default
 
         End If
 

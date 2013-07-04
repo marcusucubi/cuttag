@@ -17,12 +17,18 @@ Public Class frmImport
     End Sub
 
     Private Sub frmImport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
+
         Dim table As ImportDataSet.QuoteHeaderDataTable
         table = New ImportDataSetTableAdapters.QuoteHeaderTableAdapter().GetData()
         Me.ComboBox1.DataSource = table
         Me.ComboBox1.DisplayMember = "QuoteNumber"
         SelectProduct()
         EnableButtons()
+
+        System.Windows.Forms.Cursor.Current = Cursors.Default
+
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged

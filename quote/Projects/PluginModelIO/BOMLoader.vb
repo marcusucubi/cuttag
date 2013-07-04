@@ -9,13 +9,13 @@ Imports DB
 
 Imports Model.BOM
 Imports Model
+Imports System.Windows.Forms
 
 Public Class BOMLoader
 
     Public Function Load(ByVal id As Long) As Header
 
-        'frmMain.frmMain.UseWaitCursor = True
-        'My.Application.DoEvents()
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         Dim table As New QuoteDataBase._QuoteDataTable
@@ -68,7 +68,7 @@ Public Class BOMLoader
         q.NoteProperties.ClearDirty()
         q.ClearDirty()
 
-        'frmMain.frmMain.UseWaitCursor = False
+        System.Windows.Forms.Cursor.Current = Cursors.Default
 
         Return q
     End Function
@@ -124,13 +124,11 @@ Public Class BOMLoader
               0)
             Dim detail As Model.Common.Detail = q.NewDetail(product)
             detail.Qty = row.Qty
-            'dd_Added 10/3/11, 10/7/11
             With detail
                 .IsWire = row.IsWire
                 If Not row.IsSourceIDNull Then .SourceID = row.SourceID
                 .SequenceNumber = row.SequenceNumber
             End With
-            'dd_Added end
             CommonLoader.LoadProperties(id, row.id, detail.QuoteDetailProperties)
         Next
     End Sub
