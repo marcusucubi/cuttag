@@ -93,6 +93,7 @@
     <Compile Include="CustomerConverter.vb" />
     <Compile Include="DetailSortComparer.vb" />
     <Compile Include="FilterAttribute.vb" />
+    <Compile Include="ModelEvents.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

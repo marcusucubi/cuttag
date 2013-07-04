@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Windows.Forms
+
 Imports DB.QuoteDataBaseTableAdapters
 
 Public Class QuoteImport
@@ -20,8 +21,7 @@ Public Class QuoteImport
                 ImportAll()
             Else
                 Dim id As Integer = Import(frm.QuoteNumber)
-                'frmMain.LoadTemplate(id)
-                Todo.LoadTemplate(id)
+                Model.ModelEvents.NotifyTemplateCreated(id)
             End If
 
         End If
@@ -115,8 +115,7 @@ Public Class QuoteImport
                 Dim header As Model.BOM.Header = BuildHeader4PartsList(dr, sInitials, frmInitials.rbComputed.Checked)
                 Dim id As Integer = Save(header)
                 Console.WriteLine("----- Finished")
-                'frmMain.LoadTemplate(id)
-                Todo.LoadTemplate(id)
+                Model.ModelEvents.NotifyTemplateCreated(id)
             Catch ex As Exception
                 MsgBox("Problem getting Parts List from Wire Harness Control.  Please report the problem: " + ex.Message)
             End Try
@@ -155,12 +154,12 @@ Public Class QuoteImport
 
     Private Function Save(ByVal header As Model.BOM.Header) As Integer
 
-        'Dim BOMSaver As New BOMSaver
-        'Dim id As Integer = BOMSaver.Save(header)
+        Dim BOMSaver As New ModelIO.BOMSaver
+        Dim id As Integer = BOMSaver.Save(header)
 
-        'Console.WriteLine("    New QuoteNumber: " & id)
+        Console.WriteLine("    New QuoteNumber: " & id)
 
-        Return 0 'id
+        Return id
     End Function
 
     Private Function GetHeader(ByVal QuoteNumber As Integer) As ImportDataSet.QuoteHeaderRow
