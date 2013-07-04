@@ -1,5 +1,6 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
+Imports Model
 Imports Model.Common
 
 Public Class frmPrimaryProperties

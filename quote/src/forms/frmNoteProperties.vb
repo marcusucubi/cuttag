@@ -1,6 +1,7 @@
 ﻿Imports WeifenLuo.WinFormsUI.Docking
 
 Imports DB
+Imports Model
 
 Public Class frmNoteProperties
     Inherits DockContent

@@ -98,9 +98,9 @@ Public Class WireAndComponentView
         If dgvQuoteDetail.RowCount > 0 AndAlso Not dgvQuoteDetail.CurrentRow Is Nothing Then
             Dim i As Model.Common.Detail
             i = dgvQuoteDetail.CurrentRow.DataBoundItem
-            ActiveDetail.ActiveDetail.Detail = i
+            Model.ActiveDetail.ActiveDetail.Detail = i
         Else
-            ActiveDetail.ActiveDetail.Detail = Nothing
+            Model.ActiveDetail.ActiveDetail.Detail = Nothing
         End If
 
     End Sub

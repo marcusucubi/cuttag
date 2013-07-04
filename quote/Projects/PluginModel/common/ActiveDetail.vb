@@ -17,7 +17,7 @@ Public Class ActiveDetail
         Get
             Return _Detail
         End Get
-        Friend Set(ByVal value As Detail)
+        Set(ByVal value As Detail)
             If (_Detail IsNot value) Then
                 _Detail = value
                 RaiseEvent PropertyChanged(Me, _

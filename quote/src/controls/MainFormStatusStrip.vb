@@ -1,4 +1,5 @@
-﻿
+﻿Imports Model
+
 Public Class MainFormStatusStrip
 
     Private WithEvents _ActiveHeader As ActiveHeader
