@@ -55,7 +55,7 @@ namespace PluginHost.Internal
             i1.Text = item.Text;
             i1.Click += (sender, e) => { item.Action.Execute(); };
 
-            int index = FindIndex(items);
+            int index = FindIndex(item, items);
             items.Insert(index, i1);
         }
 
@@ -85,20 +85,53 @@ namespace PluginHost.Internal
         }
 
         static private int FindIndex(
+            PluginMenuItem menuItem,
             ToolStripItemCollection collection)
         {
-            int result = 0;
+
+            //int result = 0;
+            List<TopBottom> indexes = BuildMenuIndexArray(collection);
+
+            TopBottom tb = new TopBottom();
+            for (int i = 0; i < indexes.Count; i++)
+            {
+                tb = indexes[i];
+                if (i == menuItem.MenuSeporatorNumber)
+                {
+                    break;
+                }
+            }
+
+            return (menuItem.MenuPosition == MenuPosition.Top) ? tb.Top : tb.Bottom;
+        }
+
+        private struct TopBottom
+        {
+            public int Top;
+            public int Bottom;
+        }
+
+        static private List<TopBottom> BuildMenuIndexArray(
+            ToolStripItemCollection collection)
+        {
+            List<TopBottom> result = new List<TopBottom>();
+
+            TopBottom current = new TopBottom();
 
             for (int i = 0; i < collection.Count; i++)
             {
                 ToolStripItem item = collection[i];
+                current.Bottom = i;
 
                 if (item is ToolStripSeparator)
                 {
-                    result = i - 1;
-                    break;
+                    result.Add(current);
+                    current = new TopBottom();
+                    current.Top = i;
                 }
             }
+
+            result.Add(current);
 
             return result;
         }

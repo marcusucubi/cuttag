@@ -17,5 +17,17 @@ namespace PluginHost
             get;
             set;
         }
+
+        public int MenuSeporatorNumber
+        {
+            get;
+            set;
+        }
+
+        public MenuPosition Position
+        {
+            get;
+            set;
+        }
     }
 }
