@@ -75,28 +75,27 @@ Namespace Common
             'If HideReadOnlyProperties then eliminate readonly properties starting with a property containing FilterAttribute(True)
             ' and ending with FilterAttribute(False)
             ' allowing all other properties to be included
-            '            Dim props As New PropertyDescriptorCollection(Nothing)
-            '            Dim i As Integer = 0
-            '            Dim bDoFilter As Boolean = False
-            '            If ActiveHeader.HideReadOnlyProperties Then
-            ' For Each prop As PropertyDescriptor In Props2Filter
-            ' If prop.Attributes.Contains(New DCS.Quote.Model.FilterAttribute(True)) And Not bDoFilter Then 'Begin filtering with this property
-            'bDoFilter = True
-            'End If
-            'If Not bDoFilter Then
-            ' props.Add(prop) 'Not filtering, so include property
-            ' ElseIf Not prop.IsReadOnly Then
-            ' props.Add(prop) 'Now filtering readonly properties, but this property is not read only so include property
-            ' End If
-            ' If prop.Attributes.Contains(New DCS.Quote.Model.FilterAttribute(False)) Then 'Stop filtering with this property
-            ' bDoFilter = False
-            ' End If
-            ' Next
-            ' Else
-            ' props = Nothing 'All properites will show
-            ' End If
-            'Return props
-            Return Nothing
+            Dim props As New PropertyDescriptorCollection(Nothing)
+            Dim i As Integer = 0
+            Dim bDoFilter As Boolean = False
+            If ActiveHeader.HideReadOnlyProperties Then
+                For Each prop As PropertyDescriptor In Props2Filter
+                    If prop.Attributes.Contains(New Model.FilterAttribute(True)) And Not bDoFilter Then 'Begin filtering with this property
+                        bDoFilter = True
+                    End If
+                    If Not bDoFilter Then
+                        props.Add(prop) 'Not filtering, so include property
+                    ElseIf Not prop.IsReadOnly Then
+                        props.Add(prop) 'Now filtering readonly properties, but this property is not read only so include property
+                    End If
+                    If prop.Attributes.Contains(New Model.FilterAttribute(False)) Then 'Stop filtering with this property
+                        bDoFilter = False
+                    End If
+                Next
+            Else
+                props = Nothing 'All properites will show
+            End If
+            Return props
         End Function
     End Class
 

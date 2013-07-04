@@ -77,6 +77,8 @@
     <Compile Include="bom\OtherProperties.vb" />
     <Compile Include="bom\PrimaryPropeties.vb" />
     <Compile Include="bom\WireProperties.vb" />
+    <Compile Include="common\ActiveDetail.vb" />
+    <Compile Include="common\ActiveHeader.vb" />
     <Compile Include="common\ComponentProperties.vb" />
     <Compile Include="common\ComputationProperties.vb" />
     <Compile Include="common\CustomPropertiesGenerator.vb" />

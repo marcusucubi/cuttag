@@ -14,7 +14,7 @@ Public Class ActiveHeader
         Get
             Return _Header
         End Get
-        Friend Set(ByVal value As Header)
+        Set(ByVal value As Header)
             If (_Header IsNot value) Then
                 _Header = value
                 RaiseEvent PropertyChanged(Me, _

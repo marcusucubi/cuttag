@@ -265,8 +265,6 @@
     <Compile Include="src\forms\frmPartLookup.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\misc\ActiveDetail.vb" />
-    <Compile Include="src\misc\ActiveHeader.vb" />
     <Compile Include="src\misc\SimilarQuotes.vb" />
     <Compile Include="src\misc\TextDetailGenerator.vb" />
     <Compile Include="src\misc\TextGenerator.vb" />
