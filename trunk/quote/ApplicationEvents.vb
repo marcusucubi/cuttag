@@ -9,7 +9,7 @@ Namespace My
                                           ByVal e As StartupEventArgs) _
                                         Handles Me.Startup
 
-            Dim s As String = ModelIO.CuttagDatabaseConnection.ConnectionString
+            Dim s As String = DB.CuttagDatabaseConnection.ConnectionString
             DB.My.MySettings.Default.SetConnectionString(s)
 
         End Sub

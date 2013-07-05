@@ -130,7 +130,7 @@ Public Class ObjectGenerator
         Next
 
         If cr.Errors.Count > 0 Then
-            Throw New DatabaseException()
+            Throw New DB.DatabaseException()
         End If
 
         Return result
