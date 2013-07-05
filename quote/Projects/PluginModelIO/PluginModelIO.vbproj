@@ -71,8 +71,6 @@
     <Compile Include="BOMSaver.vb" />
     <Compile Include="CommonLoader.vb" />
     <Compile Include="CommonSaver.vb" />
-    <Compile Include="CuttagDatabaseConnection.vb" />
-    <Compile Include="DatabaseException.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
