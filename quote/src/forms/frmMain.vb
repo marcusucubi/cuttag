@@ -120,23 +120,6 @@ Public Class frmMain
     Private Sub NotesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotesToolStripMenuItem.Click
         ShowNoteProperties()
     End Sub
-    Private Sub ExportToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportToolStripMenuItem.Click
-        DoExport()
-    End Sub
-    Private Sub ExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportButton.Click
-        DoExport()
-    End Sub
-    Private Sub BOMExportButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BOMExportButton.Click
-        DoBOMExport()
-    End Sub
-    Private Sub DoExport()
-        Dim frm As New frmExport
-        frm.ShowDialog()
-    End Sub
-    Private Sub DoBOMExport()
-        Dim export As New ExportBOM
-        export.Export(ActiveHeader.ActiveHeader.Header)
-    End Sub
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
@@ -195,9 +178,6 @@ Public Class frmMain
     End Sub
     Private Sub EnableButtons()
         ToolStripTemplate.Enabled = False
-        ExportToolStripMenuItem.Enabled = False
-        ExportButton.Enabled = False
-        BOMExportButton.Enabled = False
         CompareWithToolStripMenuItem.Enabled = False
         CompareWithToolStripMenuItem1.Enabled = False
         SimularToolStripMenuItem.Enabled = False
@@ -215,12 +195,9 @@ Public Class frmMain
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
                 ToolStripTemplate.Enabled = True
-                ExportToolStripMenuItem.Enabled = True
-                ExportButton.Enabled = True
                 CompareWithToolStripMenuItem1.Enabled = True
                 OpenSimilarQuoteToolStripMenuItem.Enabled = True
             Else
-                BOMExportButton.Enabled = True
                 CompareWithToolStripMenuItem.Enabled = True
                 SimularToolStripMenuItem.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
