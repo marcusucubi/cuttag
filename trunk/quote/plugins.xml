@@ -12,6 +12,7 @@
     <!--
     -->
     <plugin path="PluginImport.dll" />
+    <plugin path="PluginExport.dll" />
     <plugin path="PluginOutputView.dll" />
   </release>
 </plugins>
