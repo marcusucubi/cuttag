@@ -7,8 +7,8 @@ Imports PluginOutputView
 <PluginMenuItem( _
     Text:="Import (Legacy)", _
     Parent:="Template", _
-    MenuSeporatorNumber:=5, _
-    Position:=MenuPosition.Top _
+    Anchor:="Import", _
+    MenuPosition:=MenuPosition.Below
     )>
 Public Class ImportMenuItem
     Implements IPluginMenuAction

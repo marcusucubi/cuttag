@@ -56,6 +56,15 @@ namespace PluginHost.Internal
             i1.Click += (sender, e) => { item.Action.Execute(); };
 
             int index = FindIndex(item, items);
+
+            if (item.MenuPosition == MenuPosition.Below)
+            {
+                if (index < items.Count)
+                {
+                    index++;
+                }
+            }
+
             items.Insert(index, i1);
         }
 
@@ -88,20 +97,30 @@ namespace PluginHost.Internal
             PluginMenuItem menuItem,
             ToolStripItemCollection collection)
         {
-
+            int result = 0;
             List<TopBottom> indexes = BuildMenuIndexArray(collection);
 
-            TopBottom tb = new TopBottom();
-            for (int i = 0; i < indexes.Count; i++)
+            foreach (ToolStripItem item in collection)
             {
-                tb = indexes[i];
-                if (i == menuItem.MenuSeporatorNumber)
+                if (item.Name == menuItem.Anchor)
                 {
+                    result = collection.IndexOf(item);
+                    break;
+                }
+
+                if (item.Tag == null)
+                {
+                    continue;
+                }
+
+                if (item.Tag.ToString() == menuItem.Anchor)
+                {
+                    result = collection.IndexOf(item);
                     break;
                 }
             }
 
-            return (menuItem.MenuPosition == MenuPosition.Top) ? tb.Top : tb.Bottom;
+            return result;
         }
 
         private struct TopBottom
