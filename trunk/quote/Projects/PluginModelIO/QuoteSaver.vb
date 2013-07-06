@@ -2,13 +2,13 @@
 Imports System.Reflection
 Imports System.Data.OleDb
 Imports System.Transactions
+Imports System.Windows.Forms
 
 Imports Model.Quote
 Imports Model
 
 Imports DB.QuoteDataBase
 Imports DB.QuoteDataBaseTableAdapters
-Imports System.Windows.Forms
 
 Public Class QuoteSaver
 
@@ -31,7 +31,7 @@ Public Class QuoteSaver
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
-        'frmMain.frmMain.Focus()
+        PluginHost.App.MainForm.Focus()
 
         Dim o As Model.BOM.PrimaryPropeties = q.PrimaryProperties
 
