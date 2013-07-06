@@ -165,12 +165,6 @@
     <Compile Include="src\forms\frmNoteProperties.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmOutput.Designer.vb">
-      <DependentUpon>frmOutput.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmOutput.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </Compile>
@@ -299,9 +293,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNoteProperties.resx">
       <DependentUpon>frmNoteProperties.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmOutput.resx">
-      <DependentUpon>frmOutput.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>
