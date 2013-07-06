@@ -119,9 +119,6 @@
     <Compile Include="src\controls\WireAndComponentViewSearchGrid.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\export\ExcelBOMWriter.vb" />
-    <Compile Include="src\export\ExportBOM.vb" />
-    <Compile Include="src\export\ExportPath.vb" />
     <Compile Include="src\forms\frmCopyBOM.Designer.vb">
       <DependentUpon>frmCopyBOM.vb</DependentUpon>
     </Compile>
@@ -180,17 +177,6 @@
       <DependentUpon>frmOutput.vb</DependentUpon>
     </Compile>
     <Compile Include="src\forms\frmOutput.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\export\ExcellWriter.vb" />
-    <Compile Include="src\export\PropertyPrinter.vb" />
-    <Compile Include="src\export\Export.vb" />
-    <Compile Include="src\export\PropertyProcessor.vb" />
-    <Compile Include="src\export\PropertyProxy.vb" />
-    <Compile Include="src\forms\frmExport.Designer.vb">
-      <DependentUpon>frmExport.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmExport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
@@ -266,8 +252,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\misc\SimilarQuotes.vb" />
-    <Compile Include="src\misc\TextDetailGenerator.vb" />
-    <Compile Include="src\misc\TextGenerator.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -302,9 +286,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmDocumentA.resx">
       <DependentUpon>frmDocumentA.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmExport.resx">
-      <DependentUpon>frmExport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -455,6 +436,10 @@
       <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
       <Name>PluginDB</Name>
     </ProjectReference>
+    <ProjectReference Include="Projects\PluginExport\PluginExport.vbproj">
+      <Project>{FF0D83A2-DB65-4697-8555-2E1F5461A34C}</Project>
+      <Name>PluginExport</Name>
+    </ProjectReference>
     <ProjectReference Include="Projects\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>
@@ -472,7 +457,9 @@
       <Name>PluginOutputView</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\export\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -2,6 +2,8 @@
 Imports System.Drawing
 Imports System.Drawing.Drawing2D
 
+Imports PluginExport
+
 Public Class frmCompare
 
     Private _Header1 As Model.Common.Header

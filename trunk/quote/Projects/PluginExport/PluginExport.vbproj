@@ -99,6 +99,8 @@
     <Compile Include="PropertyPrinter.vb" />
     <Compile Include="PropertyProcessor.vb" />
     <Compile Include="PropertyProxy.vb" />
+    <Compile Include="TextDetailGenerator.vb" />
+    <Compile Include="TextGenerator.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmExport.resx">
