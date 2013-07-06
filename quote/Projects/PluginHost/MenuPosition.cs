@@ -4,7 +4,7 @@ namespace PluginHost
 {
     public enum MenuPosition
     {
-        Top = -1,
-        Bottom = -100
+        Above = 1,
+        Below = -1
     }
 }
