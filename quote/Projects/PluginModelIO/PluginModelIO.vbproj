@@ -115,6 +115,10 @@
       <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
       <Name>PluginDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PluginHost\PluginHost.csproj">
+      <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
+      <Name>PluginHost</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginModel\PluginModel.vbproj">
       <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
       <Name>PluginModel</Name>
