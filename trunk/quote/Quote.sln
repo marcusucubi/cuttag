@@ -29,6 +29,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginModelIO", "Projects\P
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginImport", "Projects\PluginImport\PluginImport.vbproj", "{BF61B213-FE92-4AEC-A88A-4890B9A99FA4}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginExport", "Projects\PluginExport\PluginExport.vbproj", "{FF0D83A2-DB65-4697-8555-2E1F5461A34C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,16 @@ Global
 		{BF61B213-FE92-4AEC-A88A-4890B9A99FA4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BF61B213-FE92-4AEC-A88A-4890B9A99FA4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BF61B213-FE92-4AEC-A88A-4890B9A99FA4}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,5 +185,6 @@ Global
 		{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF} = {8B21018A-1DFA-4F82-AFBC-69B5FD2852E8}
 		{7973E603-E061-4D17-A51A-FDEBFF5369A9} = {8B21018A-1DFA-4F82-AFBC-69B5FD2852E8}
 		{BF61B213-FE92-4AEC-A88A-4890B9A99FA4} = {8B21018A-1DFA-4F82-AFBC-69B5FD2852E8}
+		{FF0D83A2-DB65-4697-8555-2E1F5461A34C} = {8B21018A-1DFA-4F82-AFBC-69B5FD2852E8}
 	EndGlobalSection
 EndGlobal

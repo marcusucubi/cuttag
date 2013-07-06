@@ -54,6 +54,19 @@ namespace PluginHost.Internal
             var i1 = new ToolStripMenuItem();
             i1.Text = item.Text;
             i1.Click += (sender, e) => { item.Action.Execute(); };
+            item.ToolStripItem = i1;
+
+            IPluginMenuInit init = item.Action as IPluginMenuInit;
+            if (init != null)
+            {
+                init.Init(i1);
+            }
+
+            if (item.Image != null)
+            {
+                i1.Image = item.Image;
+                i1.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+            }
 
             int index = FindIndex(item, items);
 

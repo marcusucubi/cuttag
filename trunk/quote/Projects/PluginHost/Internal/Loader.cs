@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Xml;
-
-using PluginHost;
-
-using WeifenLuo.WinFormsUI.Docking;
+using System.Drawing;
 
 namespace PluginHost.Internal
 {
@@ -127,10 +123,17 @@ namespace PluginHost.Internal
                 position = ppm.MenuPosition;
             }
 
+            Image image = null;
+            HasIcon hasIcon = target as HasIcon;
+            if (hasIcon != null)
+            {
+                image = hasIcon.GetImage();
+            }
+
             PluginMenuItem pluginItem =
                 new PluginMenuItem(
                     mia.Text, parentMenu, 
-                    anchor, position, target);
+                    anchor, image, position, target);
             return pluginItem;
         }
     }
