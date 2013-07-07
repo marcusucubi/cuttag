@@ -110,31 +110,33 @@ namespace PluginHost.Internal
             IPluginMenuAction target =
                 Activator.CreateInstance(t) as IPluginMenuAction;
 
-            string parentMenu = "";
-            string anchor = "";
-            MenuPosition position = MenuPosition.Below;
+            PluginMenuItem.BuildData data = new PluginMenuItem.BuildData();
+
+            if (target is IPluginMenuAction)
+            {
+                data.Action = (IPluginMenuAction)target;
+            }
+
             PluginMenuItemAttribute[] ppms = (PluginMenuItemAttribute[])
                 t.GetCustomAttributes(typeof(PluginMenuItemAttribute), false);
             if (ppms.Length > 0)
             {
                 PluginMenuItemAttribute ppm = ppms[0];
-                parentMenu = ppm.Parent;
-                anchor = ppm.Anchor;
-                position = ppm.MenuPosition;
+                data.MenuName = ppm.Parent;
+                data.MenuAnchor = ppm.MenuAnchor;
+                data.ButtonAnchor = ppm.ButtonAnchor;
+                data.MenuPosition = ppm.MenuPosition;
             }
 
-            Image image = null;
             HasIcon hasIcon = target as HasIcon;
             if (hasIcon != null)
             {
-                image = hasIcon.GetImage();
+                data.Image = hasIcon.GetImage();
             }
 
-            PluginMenuItem pluginItem =
-                new PluginMenuItem(
-                    mia.Text, parentMenu, 
-                    anchor, image, position, target);
-            return pluginItem;
+            data.Text = mia.Text;
+
+            return new PluginMenuItem(data);
         }
     }
 }

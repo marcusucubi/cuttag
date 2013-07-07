@@ -1,19 +1,21 @@
-﻿Imports PluginHost
-Imports Model
+﻿Imports System.Windows.Forms
 
-Imports System.Windows.Forms
+Imports PluginHost
+Imports Model
 
 <PluginMenuItem( _
     Text:="Export", _
     Parent:="Quote", _
-    Anchor:="QuoteSep3", _
-    MenuPosition:=MenuPosition.Below
+    MenuAnchor:="QuoteSep4", _
+    ButtonAnchor:="QuoteSeparator1", _
+    MenuPosition:=MenuPosition.Above
     )>
 Public Class ExportQuoteMenuItem
     Implements IPluginMenuAction, IPluginMenuInit, HasIcon
 
     Private WithEvents m_Watch As Model.ActiveHeader
     Private m_ToolStripItem As ToolStripItem
+    Private m_Button As ToolStripButton
 
     Public Sub Execute() Implements IPluginMenuAction.Execute
 
@@ -22,11 +24,18 @@ Public Class ExportQuoteMenuItem
 
     End Sub
 
-    Public Sub Init(item As ToolStripItem) Implements IPluginMenuInit.Init
+    Public Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
 
         m_Watch = Model.ActiveHeader.ActiveHeader
-        m_ToolStripItem = item
-        item.Enabled = False
+        m_ToolStripItem = menu
+        menu.Enabled = False
+
+    End Sub
+
+    Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
+
+        m_Button = button
+        button.Enabled = False
 
     End Sub
 
@@ -34,8 +43,10 @@ Public Class ExportQuoteMenuItem
 
         If (TypeOf ActiveHeader.ActiveHeader.Header Is Model.Quote.Header) Then
             m_ToolStripItem.Enabled = True
+            m_Button.Enabled = True
         Else
             m_ToolStripItem.Enabled = False
+            m_Button.Enabled = False
         End If
 
     End Sub

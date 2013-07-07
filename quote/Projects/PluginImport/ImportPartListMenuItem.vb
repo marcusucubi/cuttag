@@ -7,7 +7,7 @@ Imports PluginOutputView
 <PluginMenuItem( _
     Text:="Import Parts List", _
     Parent:="Template", _
-    Anchor:="Import", _
+    MenuAnchor:="Import", _
     MenuPosition:=MenuPosition.Below)>
 Public Class ImportPartListMenuItem
     Implements IPluginMenuAction
