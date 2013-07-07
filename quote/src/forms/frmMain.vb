@@ -5,6 +5,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 Imports Model
 Imports Model.Quote
 Imports ModelIO
+Imports Doc
 
 Public Class frmMain
 
@@ -173,13 +174,10 @@ Public Class frmMain
         ShowPrimaryProperties()
         ShowOtherProperties()
         ShowNoteProperties()
-        '        ShowCustomProperties()
         ShowComputationProperties()
     End Sub
     Private Sub EnableButtons()
         ToolStripTemplate.Enabled = False
-        CompareWithToolStripMenuItem.Enabled = False
-        CompareWithToolStripMenuItem1.Enabled = False
         SimularToolStripMenuItem.Enabled = False
         OpenSimilarQuoteToolStripMenuItem.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
@@ -195,10 +193,8 @@ Public Class frmMain
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
                 ToolStripTemplate.Enabled = True
-                CompareWithToolStripMenuItem1.Enabled = True
                 OpenSimilarQuoteToolStripMenuItem.Enabled = True
             Else
-                CompareWithToolStripMenuItem.Enabled = True
                 SimularToolStripMenuItem.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
@@ -386,7 +382,7 @@ Public Class frmMain
     End Sub
     Private Sub AddItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddItemToolStripMenuItem.Click
         If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
-            Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
+            Dim frm As frmDocumentA = Me.ActiveMdiChild
             If Not Me._ActiveHeader.Header.IsQuote Then
                 frm.AddItem()
             End If
@@ -394,7 +390,7 @@ Public Class frmMain
     End Sub
     Private Sub DeleteItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteItemToolStripMenuItem.Click
         If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
-            Dim frm As DCS.Quote.frmDocumentA = Me.ActiveMdiChild
+            Dim frm As frmDocumentA = Me.ActiveMdiChild
             If Not Me._ActiveHeader.Header.IsQuote Then
                 frm.DeleteItem()
             End If
@@ -426,61 +422,6 @@ Public Class frmMain
         End Property
 
     End Class
-
-    Private Sub CompareWithToolStripMenuItem_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem.DropDownOpening
-
-        Dim menu As ToolStripMenuItem = DirectCast(sender,  _
-            ToolStripMenuItem)
-
-        AddMenuItemsForOpenQuotes(menu)
-    End Sub
-
-    Private Sub CompareWithToolStripMenuItem1_Drop(sender As System.Object, e As System.EventArgs) Handles CompareWithToolStripMenuItem1.DropDownOpening
-
-        Dim menu As ToolStripMenuItem = DirectCast(sender,  _
-            ToolStripMenuItem)
-
-        AddMenuItemsForOpenQuotes(menu)
-    End Sub
-
-    Private Sub AddMenuItemsForOpenQuotes(menu As ToolStripMenuItem)
-
-        menu.DropDownItems.Clear()
-        For Each d As DockContent In Me.DockPanel1.Documents
-
-            If Not (TypeOf d Is frmDocumentA) Then
-                Continue For
-            End If
-
-            Dim doc As frmDocumentA = d
-
-            If _ActiveHeader.Header Is doc.QuoteHeader Then
-                Continue For
-            End If
-
-            Dim name As String = doc.QuoteHeader.DisplayName
-
-            Dim new_item As New CompareMenuItem(name, doc.QuoteHeader)
-            menu.DropDownItems.Add(new_item)
-            AddHandler new_item.Click, AddressOf CompareWithToolStripMenuItem_Click
-        Next
-
-    End Sub
-
-    Private Sub CompareWithToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-
-        Dim menu As CompareMenuItem = DirectCast(sender, CompareMenuItem)
-
-        Me.Cursor = Cursors.WaitCursor
-        My.Application.DoEvents()
-
-        Dim frmCompare As frmCompare
-        frmCompare = New frmCompare(Me._ActiveHeader.Header, menu.Header)
-        frmCompare.MdiParent = Me
-        frmCompare.Show(Me.DockPanel1)
-
-        Me.Cursor = Cursors.Default
-    End Sub
 
     Private Sub SimularToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SimularToolStripMenuItem.Click
         Me.Cursor = Cursors.WaitCursor

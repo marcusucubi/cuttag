@@ -89,26 +89,10 @@
     <Compile Include="Settings.vb" />
     <Compile Include="src\controls\DetailSortComparer.vb" />
     <Compile Include="src\controls\ListViewColumnSorter.vb" />
-    <Compile Include="src\controls\LookupDataGridView.Designer.vb">
-      <DependentUpon>LookupDataGridView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\controls\LookupDataGridView.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="src\controls\MainFormStatusStrip.Designer.vb">
       <DependentUpon>MainFormStatusStrip.vb</DependentUpon>
     </Compile>
     <Compile Include="src\controls\MainFormStatusStrip.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="src\controls\WireAndComponentItem.vb" />
-    <Compile Include="src\controls\WireAndComponentView.Designer.vb">
-      <DependentUpon>WireAndComponentView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\controls\WireAndComponentView.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="src\controls\WireAndComponentViewSearchGrid.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\forms\frmCopyBOM.Designer.vb">
@@ -117,22 +101,10 @@
     <Compile Include="src\forms\frmCopyBOM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmCompare.Designer.vb">
-      <DependentUpon>frmCompare.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmCompare.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmDatabaseTest.Designer.vb">
       <DependentUpon>frmDatabaseTest.vb</DependentUpon>
     </Compile>
     <Compile Include="src\forms\frmDatabaseTest.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmDocumentA.Designer.vb">
-      <DependentUpon>frmDocumentA.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmDocumentA.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmMain.Designer.vb">
@@ -225,18 +197,6 @@
     <Compile Include="src\forms\frmBOMSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmWireLookup.Designer.vb">
-      <DependentUpon>frmWireLookup.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmWireLookup.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmPartLookup.Designer.vb">
-      <DependentUpon>frmPartLookup.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmPartLookup.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\misc\SimilarQuotes.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -258,20 +218,11 @@
     <EmbeddedResource Include="src\controls\MainFormStatusStrip.resx">
       <DependentUpon>MainFormStatusStrip.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\controls\WireAndComponentView.resx">
-      <DependentUpon>WireAndComponentView.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmCopyBOM.resx">
       <DependentUpon>frmCopyBOM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmCompare.resx">
-      <DependentUpon>frmCompare.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmDatabaseTest.resx">
       <DependentUpon>frmDatabaseTest.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmDocumentA.resx">
-      <DependentUpon>frmDocumentA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -312,17 +263,11 @@
     <EmbeddedResource Include="src\forms\frmOtherProperties.resx">
       <DependentUpon>frmOtherProperties.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmPartLookup.resx">
-      <DependentUpon>frmPartLookup.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmComputationProperties.resx">
       <DependentUpon>frmComputationProperties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmBOMSearch.resx">
       <DependentUpon>frmBOMSearch.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmWireLookup.resx">
-      <DependentUpon>frmWireLookup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -416,6 +361,10 @@
     <ProjectReference Include="Projects\PluginDB\PluginDB.vbproj">
       <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
       <Name>PluginDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="Projects\PluginDoc\PluginDoc.vbproj">
+      <Project>{E5EAFA0C-96C1-437A-B21E-31C25A4DEE28}</Project>
+      <Name>PluginDoc</Name>
     </ProjectReference>
     <ProjectReference Include="Projects\PluginExport\PluginExport.vbproj">
       <Project>{FF0D83A2-DB65-4697-8555-2E1F5461A34C}</Project>

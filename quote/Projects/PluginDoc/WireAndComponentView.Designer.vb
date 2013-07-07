@@ -29,7 +29,7 @@ Partial Class WireAndComponentView
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.dgvQuoteDetail = New DCS.Quote.LookupDataGridView()
+        Me.dgvQuoteDetail = New LookupDataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -38,7 +38,7 @@ Partial Class WireAndComponentView
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvQuoteDetail_SequenceNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvQuoteDetail_Lookup = New DCS.Quote.DataGridViewSearchColumn()
+        Me.dgvQuoteDetail_Lookup = New DataGridViewSearchColumn()
         Me.dgvQuoteDetail_Quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvQuoteDetail_UnitCost = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UnitOfMeasure = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -229,7 +229,7 @@ Partial Class WireAndComponentView
 	Friend WithEvents ColumnHeader3 As System.Windows.Forms.ColumnHeader
 	Friend WithEvents ColumnHeader4 As System.Windows.Forms.ColumnHeader
 	Friend WithEvents ColumnHeader5 As System.Windows.Forms.ColumnHeader
-	Friend WithEvents dgvQuoteDetail As DCS.Quote.LookupDataGridView
+    Friend WithEvents dgvQuoteDetail As LookupDataGridView
 	Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -238,7 +238,7 @@ Partial Class WireAndComponentView
 	Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dgvQuoteDetail_SequenceNumber As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgvQuoteDetail_Lookup As DCS.Quote.DataGridViewSearchColumn
+    Friend WithEvents dgvQuoteDetail_Lookup As DataGridViewSearchColumn
     Friend WithEvents dgvQuoteDetail_Quantity As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents dgvQuoteDetail_UnitCost As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UnitOfMeasure As System.Windows.Forms.DataGridViewTextBoxColumn
