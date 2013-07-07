@@ -1,8 +1,8 @@
-﻿Imports DifferenceEngine
-Imports System.Drawing
+﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 
 Imports PluginExport
+Imports DifferenceEngine
 
 Public Class frmCompare
 

@@ -30,7 +30,7 @@ Partial Class frmDocumentA
 		Me.btnDelete = New System.Windows.Forms.Button()
 		Me.bntAddWire = New System.Windows.Forms.Button()
 		Me.btnAddComponent = New System.Windows.Forms.Button()
-		Me.WireAndComponentView1 = New DCS.Quote.WireAndComponentView()
+        Me.WireAndComponentView1 = New WireAndComponentView()
 		Me.panelButtons.SuspendLayout()
 		Me.SuspendLayout()
 		'
@@ -111,7 +111,7 @@ Partial Class frmDocumentA
 	Friend WithEvents panelButtons As System.Windows.Forms.Panel
 	Friend WithEvents bntAddWire As System.Windows.Forms.Button
 	Friend WithEvents btnAddComponent As System.Windows.Forms.Button
-	Friend WithEvents WireAndComponentView1 As DCS.Quote.WireAndComponentView
+    Friend WithEvents WireAndComponentView1 As WireAndComponentView
 	Friend WithEvents btnDelete As System.Windows.Forms.Button
 	Friend WithEvents btnAdd As System.Windows.Forms.Button
 End Class

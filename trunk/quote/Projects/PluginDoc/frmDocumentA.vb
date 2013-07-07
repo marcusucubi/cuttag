@@ -88,18 +88,20 @@ Public Class frmDocumentA
     End Sub
 
     Private Sub btnAddComponent_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddComponent.Click
-        Dim result As DialogResult = frmComponentLookup.ShowDialog(Me)
+        Dim frm As New frmComponentLookup()
+        Dim result As DialogResult = frm.ShowDialog(Me)
         If result = DialogResult.OK Then
             Dim detail As Detail
-            detail = _Header.NewDetail(frmComponentLookup.Product)
+            detail = _Header.NewDetail(frm.Product)
         End If
     End Sub
 
     Private Sub bntAddWire_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bntAddWire.Click
-        Dim result As DialogResult = frmWireLookup.ShowDialog(Me)
+        Dim frm As New frmWireLookup()
+        Dim result As DialogResult = frm.ShowDialog(Me)
         If result = DialogResult.OK Then
             Dim detail As Detail
-            detail = _Header.NewDetail(frmWireLookup.Product)   'product=property set by lookup
+            detail = _Header.NewDetail(frm.Product)
         End If
     End Sub
 
