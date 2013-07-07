@@ -5,6 +5,8 @@ namespace PluginHost
 {
     public interface IPluginMenuInit
     {
-        void Init(ToolStripItem item);
+        void InitMenu(ToolStripItem menu);
+
+        void InitButton(ToolStripButton button);
     }
 }

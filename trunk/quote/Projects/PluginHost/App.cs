@@ -38,7 +38,8 @@ namespace PluginHost
         public static void Init(
             Form mainForm, 
             DockPanel dockPanel,
-            MenuStrip menu)
+            MenuStrip menu,
+            ToolStrip toolStrip)
         {
             s_MainForm = mainForm;
             s_DockPanel = dockPanel;
@@ -46,7 +47,7 @@ namespace PluginHost
 
             PluginCollection col = Loader.Load();
 
-            UIBuilder.BuildUI(col, menu);
+            UIBuilder.BuildUI(col, menu, toolStrip);
         }
 
     }

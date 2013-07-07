@@ -25,7 +25,7 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        PluginHost.App.Init(Me, DockPanel1, Me.MenuStrip1)
+        PluginHost.App.Init(Me, DockPanel1, Me.MenuStrip1, Me.ToolStrip1)
 
         AddHandler Model.ModelEvents.TemplateCreated, AddressOf OnNewQuote
 

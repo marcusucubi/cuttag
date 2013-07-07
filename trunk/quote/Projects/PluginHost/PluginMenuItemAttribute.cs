@@ -18,7 +18,13 @@ namespace PluginHost
             set;
         }
 
-        public string Anchor
+        public string MenuAnchor
+        {
+            get;
+            set;
+        }
+
+        public string ButtonAnchor
         {
             get;
             set;

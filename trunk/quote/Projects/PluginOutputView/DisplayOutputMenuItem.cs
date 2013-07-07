@@ -9,7 +9,7 @@ namespace PluginOutputView
     PluginMenuItem( 
         Text = "Output",  
         Parent = "View", 
-        Anchor = "ViewSep1", 
+        MenuAnchor = "ViewSep1", 
         MenuPosition=MenuPosition.Above
         )
     ]

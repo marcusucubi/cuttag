@@ -9,18 +9,21 @@ namespace PluginHost.Internal
     {
         static private void BuildUI(
             PluginProxy plugin,
-            MenuStrip menu)
+            MenuStrip menu,
+            ToolStrip toolStrip)
         {
             AssignMenuItems(plugin, menu);
+            AssignButtonItems(plugin, toolStrip);
         }
 
         static internal void BuildUI(
             PluginCollection collection,
-            MenuStrip menu)
+            MenuStrip menu,
+            ToolStrip toolStrip)
         {
             foreach (PluginProxy plugin in collection)
             {
-                BuildUI(plugin, menu);
+                BuildUI(plugin, menu, toolStrip);
             }
         }
 
@@ -47,6 +50,56 @@ namespace PluginHost.Internal
 
         }
 
+        static private void AssignButtonItems(
+            PluginProxy plugin,
+            ToolStrip toolStrip)
+        {
+            foreach (PluginMenuItem item in plugin.PluginMenuItems)
+            {
+                if (item.ButtonAnchor == null)
+                {
+                    continue;
+                }
+
+                AddToolItem(item, toolStrip);
+            }
+        }
+
+        private static void AddToolItem(
+            PluginMenuItem item,
+            ToolStrip toolStrip)
+        {
+            var i1 = new ToolStripButton();
+            i1.Text = item.Text;
+            i1.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            i1.Click += (sender, e) => { item.Action.Execute(); };
+            item.ToolStripButton = i1;
+
+            IPluginMenuInit init = item.Action as IPluginMenuInit;
+            if (init != null)
+            {
+                init.InitButton(i1);
+            }
+
+            if (item.Image != null)
+            {
+                i1.Image = item.Image;
+                i1.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            }
+
+            int index = FindIndex(item, toolStrip.Items, item.ButtonAnchor);
+
+            if (item.MenuPosition == MenuPosition.Below)
+            {
+                if (index < toolStrip.Items.Count)
+                {
+                    index++;
+                }
+            }
+
+            toolStrip.Items.Insert(index, i1);
+        }
+
         private static void AddMenuItem(
             PluginMenuItem item,
             ToolStripItemCollection items)
@@ -59,7 +112,7 @@ namespace PluginHost.Internal
             IPluginMenuInit init = item.Action as IPluginMenuInit;
             if (init != null)
             {
-                init.Init(i1);
+                init.InitMenu(i1);
             }
 
             if (item.Image != null)
@@ -68,7 +121,7 @@ namespace PluginHost.Internal
                 i1.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }
 
-            int index = FindIndex(item, items);
+            int index = FindIndex(item, items, item.MenuAnchor);
 
             if (item.MenuPosition == MenuPosition.Below)
             {
@@ -108,14 +161,15 @@ namespace PluginHost.Internal
 
         static private int FindIndex(
             PluginMenuItem menuItem,
-            ToolStripItemCollection collection)
+            ToolStripItemCollection collection,
+            string anchor)
         {
             int result = 0;
             List<TopBottom> indexes = BuildMenuIndexArray(collection);
 
             foreach (ToolStripItem item in collection)
             {
-                if (item.Name == menuItem.Anchor)
+                if (item.Name == anchor)
                 {
                     result = collection.IndexOf(item);
                     break;
@@ -126,7 +180,7 @@ namespace PluginHost.Internal
                     continue;
                 }
 
-                if (item.Tag.ToString() == menuItem.Anchor)
+                if (item.Tag.ToString() == anchor)
                 {
                     result = collection.IndexOf(item);
                     break;
