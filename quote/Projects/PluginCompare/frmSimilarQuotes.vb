@@ -17,7 +17,6 @@ Public Class frmSimilarQuotes
         InitializeComponent()
 
         Cursor = Cursors.WaitCursor
-        My.Application.DoEvents()
 
         Init(targetId)
 
@@ -31,12 +30,16 @@ Public Class frmSimilarQuotes
     End Sub
 
     Private Sub OpenAndClose()
+
         Dim i As ListViewItem = ListView1.SelectedItems(0)
         Dim id As Integer = CInt(i.Text)
-        Cursor = Cursors.WaitCursor
-        My.Application.DoEvents()
-        frmMain.frmMain.LoadTemplate(id)
-        Cursor = Cursors.Default
+
+        System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
+
+        Model.ModelEvents.NotifyTemplateCreated(id)
+
+        System.Windows.Forms.Cursor.Current = Cursors.Default
+
         Close()
     End Sub
 

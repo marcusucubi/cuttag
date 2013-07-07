@@ -178,14 +178,10 @@ Public Class frmMain
     End Sub
     Private Sub EnableButtons()
         ToolStripTemplate.Enabled = False
-        SimularToolStripMenuItem.Enabled = False
-        OpenSimilarQuoteToolStripMenuItem.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
             SaveToolButton.Enabled = False
             CopyToolStripMenuItem.Enabled = False
             SaveToolStripMenuItem.Enabled = False
-            SimularToolStripMenuItem.Enabled = False
-            OpenSimilarQuoteToolStripMenuItem.Enabled = False
         Else
             SaveToolStripMenuItem.Enabled = True
             CopyToolStripMenuItem.Enabled = False
@@ -193,9 +189,7 @@ Public Class frmMain
                 SaveToolButton.Enabled = False
                 SaveToolStripMenuItem.Enabled = False
                 ToolStripTemplate.Enabled = True
-                OpenSimilarQuoteToolStripMenuItem.Enabled = True
             Else
-                SimularToolStripMenuItem.Enabled = True
                 If Me._ActiveHeader.Header.Dirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True
@@ -399,50 +393,6 @@ Public Class frmMain
 
     Private Sub OptionsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OptionsToolStripMenuItem.Click
         frmOptions.ShowDialog()
-    End Sub
-
-    ''' <summary>
-    ''' Used to display drop down menu for quote compare
-    ''' </summary>
-    ''' <remarks></remarks>
-    Public Class CompareMenuItem
-        Inherits ToolStripMenuItem
-
-        Private _Header As Model.Common.Header
-
-        Public Sub New(name As String, header As Model.Common.Header)
-            MyBase.New(name)
-            _Header = header
-        End Sub
-
-        Public ReadOnly Property Header
-            Get
-                Return _Header
-            End Get
-        End Property
-
-    End Class
-
-    Private Sub SimularToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SimularToolStripMenuItem.Click
-        Me.Cursor = Cursors.WaitCursor
-        My.Application.DoEvents()
-
-        Dim frm As frmSimilarQuotes
-        frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
-        frm.ShowDialog(Me)
-
-        Me.Cursor = Cursors.Default
-    End Sub
-
-    Private Sub OpenSimilarToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles OpenSimilarQuoteToolStripMenuItem.Click
-        Me.Cursor = Cursors.WaitCursor
-        My.Application.DoEvents()
-
-        Dim frm As frmSimilarQuotes
-        frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
-        frm.ShowDialog(Me)
-
-        Me.Cursor = Cursors.Default
     End Sub
 
 End Class
