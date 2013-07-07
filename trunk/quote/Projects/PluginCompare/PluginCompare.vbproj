@@ -80,7 +80,16 @@
     <Compile Include="CompareTemplateMenuItem.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frmSimilarQuotes.Designer.vb">
+      <DependentUpon>frmSimilarQuotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSimilarQuotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListViewColumnSorter.vb" />
     <Compile Include="QuoteCompareWithMenuItem.vb" />
+    <Compile Include="QuoteFindSimilarMenuItem.vb" />
+    <Compile Include="SimilarQuotes.vb" />
     <Compile Include="TemplateCompareWithMenuItem.vb" />
     <Compile Include="frmCompare.Designer.vb">
       <DependentUpon>frmCompare.vb</DependentUpon>
@@ -109,6 +118,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TemplateFindSimilarMenuItem.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmCompare.resx">
@@ -116,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmComputationProperties.resx">
       <DependentUpon>frmComputationProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSimilarQuotes.resx">
+      <DependentUpon>frmSimilarQuotes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -139,6 +152,10 @@
     <ProjectReference Include="..\DifferenceEngine\DifferenceEngine.csproj">
       <Project>{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}</Project>
       <Name>DifferenceEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
+      <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
+      <Name>PluginDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginDoc\PluginDoc.vbproj">
       <Project>{E5EAFA0C-96C1-437A-B21E-31C25A4DEE28}</Project>
