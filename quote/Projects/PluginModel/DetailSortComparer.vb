@@ -20,6 +20,10 @@ Namespace Common
             Dim retValue As Integer = 0
             If IsNumeric(x) And IsNumeric(y) Then
                 retValue = CType(x, Double).CompareTo(CType(y, Double))
+            ElseIf x Is Nothing Then
+                retValue = 0
+            ElseIf y Is Nothing Then
+                retValue = 0
             Else
                 retValue = x.ToString.CompareTo(y.ToString)
             End If
