@@ -7,15 +7,6 @@ namespace PluginHost.Internal
 {
     static class UIBuilder
     {
-        static private void BuildUI(
-            PluginProxy plugin,
-            MenuStrip menu,
-            ToolStrip toolStrip)
-        {
-            AssignMenuItems(plugin, menu);
-            AssignButtonItems(plugin, toolStrip);
-        }
-
         static internal void BuildUI(
             PluginCollection collection,
             MenuStrip menu,
@@ -24,6 +15,24 @@ namespace PluginHost.Internal
             foreach (PluginProxy plugin in collection)
             {
                 BuildUI(plugin, menu, toolStrip);
+            }
+        }
+
+        static private void BuildUI(
+            PluginProxy plugin,
+            MenuStrip menu,
+            ToolStrip toolStrip)
+        {
+            DoInit(plugin);
+            AssignMenuItems(plugin, menu);
+            AssignButtonItems(plugin, toolStrip);
+        }
+
+        static private void DoInit(PluginProxy plugin)
+        {
+            foreach (IPluginInit init in plugin.Plugins)
+            {
+                init.Init();
             }
         }
 

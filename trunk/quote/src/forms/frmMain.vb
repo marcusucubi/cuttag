@@ -9,11 +9,6 @@ Imports Doc
 
 Public Class frmMain
 
-    Private _Properties As New frmComputationProperties
-    Private _OtherProperties As New frmOtherProperties
-    Private _PrimaryProperties As New frmPrimaryProperties
-    Private _DetailProperties As New frmDetailProperties
-    Private _NoteProperties As New frmNoteProperties
     Private WithEvents _ActiveHeader As ActiveHeader
     Private WithEvents _SaveableProperties As Model.Common.SaveableProperties
     Public Shared Property frmMain As frmMain
@@ -52,35 +47,8 @@ Public Class frmMain
     Private Sub NewQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteButton.Click
         CreateNewQuote()
     End Sub
-    Private Sub PropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PropertiesToolStripMenuItem.Click
-        ShowComputationProperties()
-    End Sub
-    Private Sub ComputationalPropertiesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComputationalPropertiesToolStripMenuItem.Click
-        ShowOtherProperties()
-    End Sub
-    Private Sub PrimaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrimaryToolStripMenuItem.Click
-        ShowPrimaryProperties()
-    End Sub
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
         SaveTemplate()
-    End Sub
-    Private Sub ViewToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ViewToolStripMenuItem.Click
-        Me.ToggleDetailToolStripMenuItem.Visible = Not IsNothing(Me._ActiveHeader.Header)
-    End Sub
-    Private Sub ToggleDetailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToggleDetailToolStripMenuItem.Click
-        If ToggleDetailToolStripMenuItem.Text = "Hide Detail" Then 'User wants to Hide
-            ToggleDetailToolStripMenuItem.Text = "Show Detail"
-            ToggleDetailToolStripMenuItem.ToolTipText = "Show read-only values"
-            ActiveHeader.HideReadOnlyProperties = True
-        Else ' 'User wants to Show read-only properties
-            ToggleDetailToolStripMenuItem.Text = "Hide Detail"
-            ToggleDetailToolStripMenuItem.ToolTipText = "Hide read-only values"
-            ActiveHeader.HideReadOnlyProperties = False
-        End If
-        If Not IsNothing(_Properties) Then Me._Properties.PropertyGrid1.Refresh()
-        If Not IsNothing(_PrimaryProperties) Then Me._PrimaryProperties.PropertyGrid1.Refresh()
-        If Not IsNothing(_OtherProperties) Then Me._OtherProperties.PropertyGrid1.Refresh()
-        If Not IsNothing(_DetailProperties) Then Me._DetailProperties.PropertyGrid1.Refresh()
     End Sub
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
         SaveTemplate()
@@ -103,9 +71,6 @@ Public Class frmMain
     Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SaveableProperties) Handles _SaveableProperties.SavableChange
         EnableButtons()
     End Sub
-    Private Sub DetailToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DetailToolStripMenuItem.Click
-        ShowDetailProperties()
-    End Sub
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click
         frmQuoteSearch.ShowDialog(Me)
     End Sub
@@ -117,9 +82,6 @@ Public Class frmMain
     End Sub
     Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
         frmQuoteSearch.ShowDialog(Me)
-    End Sub
-    Private Sub NotesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotesToolStripMenuItem.Click
-        ShowNoteProperties()
     End Sub
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
         Me.Cursor = Cursors.WaitCursor
@@ -164,17 +126,8 @@ Public Class frmMain
             Dim ChildForm As New frmDocumentA(frm.Initials, frm.Initials)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
-            DisplayViews()
-            Me._PrimaryProperties.Show()
 
         End If
-    End Sub
-    Private Sub DisplayViews()
-        ShowDetailProperties()
-        ShowPrimaryProperties()
-        ShowOtherProperties()
-        ShowNoteProperties()
-        ShowComputationProperties()
     End Sub
     Private Sub EnableButtons()
         ToolStripTemplate.Enabled = False
@@ -209,69 +162,6 @@ Public Class frmMain
             NewQuoteButton.Enabled = False
         End If
     End Sub
-    Private Sub ShowComputationProperties()
-        If (_Properties Is Nothing) Then
-            _Properties = New frmComputationProperties
-            InitChild(_Properties)
-        End If
-        If (_Properties.IsHidden Or _Properties.IsDisposed) Then
-            _Properties = New frmComputationProperties
-            InitChild(_Properties)
-        End If
-    End Sub
-    Private Sub ShowOtherProperties()
-        If (_OtherProperties Is Nothing) Then
-            _OtherProperties = New frmOtherProperties
-            InitChild(_OtherProperties)
-        End If
-        If (_OtherProperties.IsHidden Or _OtherProperties.IsDisposed) Then
-            _OtherProperties = New frmOtherProperties
-            InitChild(_OtherProperties)
-        End If
-    End Sub
-    Private Sub ShowNoteProperties()
-        If (_NoteProperties Is Nothing) Then
-            _NoteProperties = New frmNoteProperties
-            InitChild(_NoteProperties)
-        End If
-        If (_NoteProperties.IsHidden Or _NoteProperties.IsDisposed) Then
-            _NoteProperties = New frmNoteProperties
-            InitChild(_NoteProperties)
-        End If
-    End Sub
-    Private Sub ShowPrimaryProperties()
-        If (_PrimaryProperties Is Nothing) Then
-            _PrimaryProperties = New frmPrimaryProperties
-            InitChild(_PrimaryProperties)
-        End If
-        If (_PrimaryProperties.IsHidden Or _PrimaryProperties.IsDisposed) Then
-            _PrimaryProperties = New frmPrimaryProperties
-            InitChild(_PrimaryProperties)
-        End If
-    End Sub
-    Private Sub ShowDetailProperties()
-        If (_DetailProperties Is Nothing) Then
-            _DetailProperties = New frmDetailProperties
-            DockPanel1.SuspendLayout(True)
-            _DetailProperties.Show(DockPanel1, DockState.DockBottom)
-            DockPanel1.ResumeLayout(True, True)
-        End If
-        If (_DetailProperties.IsHidden Or _DetailProperties.IsDisposed) Then
-            _DetailProperties = New frmDetailProperties
-            InitChild(_DetailProperties, DockState.DockBottom)
-        End If
-
-    End Sub
-    Private Sub InitChild(ByVal frm As DockContent)
-        DockPanel1.SuspendLayout(True)
-        frm.Show(DockPanel1, DockState.DockRight)
-        DockPanel1.ResumeLayout(True, True)
-    End Sub
-    Private Sub InitChild(ByVal frm As DockContent, ByVal state As DockState)
-        DockPanel1.SuspendLayout(True)
-        frm.Show(DockPanel1, state)
-        DockPanel1.ResumeLayout(True, True)
-    End Sub
     Private Sub SaveTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
             Dim saver As New BOMSaver
@@ -300,6 +190,7 @@ Public Class frmMain
         End If
         EnableButtons()
     End Sub
+
     Public Sub LoadTemplate(ByVal id As Integer)
 
         If IsLoaded(id) Then
@@ -316,17 +207,18 @@ Public Class frmMain
             Dim ChildForm As New frmDocumentA(q)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
-            Me.DisplayViews()
         End If
+        Model.ModelEvents.NotifyTemplateViewed()
         EnableButtons()
-        Me._Properties.Show()
     End Sub
+
     Private Sub LoadQuote()
         Dim r As DialogResult = frmQuoteLookup.ShowDialog
         If r = DialogResult.OK Then
             LoadQuote(frmQuoteLookup.QuoteID)
         End If
     End Sub
+
     Public Sub LoadQuote(ByVal id As Integer)
         If IsLoaded(id) Then
             Return
@@ -340,11 +232,11 @@ Public Class frmMain
             Dim ChildForm As New frmDocumentA(q)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
-            Me.DisplayViews()
         End If
+        Model.ModelEvents.NotifyQuoteViewed()
         EnableButtons()
-        Me._Properties.Show()
     End Sub
+
     Private Function IsLoaded(ByVal id As String) As Boolean
         Dim result As Boolean
         For Each child As DockContent In Me.MdiChildren
@@ -364,9 +256,11 @@ Public Class frmMain
         Next
         Return result
     End Function
+
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
+
     Private Sub frmMain_MdiChildActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.MdiChildActivate
         If IsNothing(Me._ActiveHeader.Header) OrElse Me._ActiveHeader.Header.IsQuote Then
             EditToolStripMenuItem.Visible = False
@@ -374,6 +268,7 @@ Public Class frmMain
             EditToolStripMenuItem.Visible = True
         End If
     End Sub
+
     Private Sub AddItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddItemToolStripMenuItem.Click
         If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
             Dim frm As frmDocumentA = Me.ActiveMdiChild
@@ -382,6 +277,7 @@ Public Class frmMain
             End If
         End If
     End Sub
+
     Private Sub DeleteItemToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteItemToolStripMenuItem.Click
         If Me.ActiveMdiChild.GetType.Name = "frmDocumentA" Then
             Dim frm As frmDocumentA = Me.ActiveMdiChild

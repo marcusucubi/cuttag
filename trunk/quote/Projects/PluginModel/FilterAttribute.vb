@@ -1,14 +1,5 @@
 ﻿
-''' <summary>
-''' Custom Property Attribute used to filter properties for display in property grid.
-''' </summary>
-''' <remarks>
-''' Including FilterAttribute(True) -> Begin filtering with this property
-''' Including FilterAttribute(False) -> Stop filtering with this property
-''' Currently used by SaveableProperties.FilterAttributes
-''' </remarks>
-
-NotInheritable Class FilterAttribute
+Public NotInheritable Class FilterAttribute
     Inherits Attribute
 
     Private _DoFilterAttribute As Boolean

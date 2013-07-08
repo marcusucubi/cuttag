@@ -7,9 +7,10 @@ Public Class ActiveHeader
 
     Private _Header As Header
     Public Shared ReadOnly ActiveHeader As ActiveHeader = New ActiveHeader
-    Public Shared HideReadOnlyProperties As Boolean
+
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged
+
     Public Property Header As Header
         Get
             Return _Header
@@ -22,5 +23,6 @@ Public Class ActiveHeader
             End If
         End Set
     End Property
+
 End Class
 
