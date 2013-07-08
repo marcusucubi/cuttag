@@ -101,12 +101,6 @@
     <Compile Include="src\forms\frmCopyBOM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmDatabaseTest.Designer.vb">
-      <DependentUpon>frmDatabaseTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmDatabaseTest.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
@@ -117,12 +111,6 @@
       <DependentUpon>frmOptions.vb</DependentUpon>
     </Compile>
     <Compile Include="src\forms\frmOptions.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmTextView.Designer.vb">
-      <DependentUpon>frmTextView.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmTextView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
@@ -184,17 +172,11 @@
     <EmbeddedResource Include="src\forms\frmCopyBOM.resx">
       <DependentUpon>frmCopyBOM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmDatabaseTest.resx">
-      <DependentUpon>frmDatabaseTest.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmOptions.resx">
       <DependentUpon>frmOptions.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmTextView.resx">
-      <DependentUpon>frmTextView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
