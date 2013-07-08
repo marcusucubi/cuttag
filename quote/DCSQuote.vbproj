@@ -257,13 +257,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="lib\WeifenLuo.WinFormsUI.Docking.dll" />
-    <None Include="Resources\Scales.png" />
     <None Include="Resources\similar.jpg" />
     <Content Include="plugins.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Resources\excel.png" />
     <None Include="Resources\truck.jpg" />
     <None Include="Resources\source.jpg" />
     <None Include="Resources\search_icon.png" />
