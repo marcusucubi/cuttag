@@ -19,12 +19,12 @@ Public Class ViewController
 
     Public Sub OpenAll()
         Dim t
-        t = Me.PrimaryProperties
-        t = Me.OtherProperties
-        t = Me.NoteProperties
-        t = Me.ComputationProperties
-
         t = Me.DetailProperties
+
+        t = Me.PrimaryProperties
+        t = Me.NoteProperties
+        t = Me.OtherProperties
+        t = Me.ComputationProperties
     End Sub
 
     Public ReadOnly Property ComputationProperties() As frmComputationProperties
@@ -46,10 +46,14 @@ Public Class ViewController
     Public ReadOnly Property DetailProperties() As frmDetailProperties
         Get
             If (m_DetailProperties Is Nothing) Then
-                m_DetailProperties = New frmDetailProperties
-                InitChild(m_DetailProperties, DockState.DockBottom)
-            End If
 
+                m_DetailProperties = New frmDetailProperties
+
+                PluginHost.App.DockPanel.SuspendLayout(True)
+                InitChild(m_DetailProperties, DockState.DockBottom)
+                PluginHost.App.DockPanel.ResumeLayout(True, True)
+
+            End If
 
             If (m_DetailProperties.IsHidden Or m_DetailProperties.IsDisposed) Then
                 m_DetailProperties = New frmDetailProperties

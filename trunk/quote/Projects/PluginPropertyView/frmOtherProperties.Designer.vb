@@ -22,7 +22,7 @@ Partial Class frmOtherProperties
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PropertyGrid1 = New System.Windows.Forms.PropertyGrid()
+        Me.PropertyGrid1 = New CustomPropertyGrid()
         Me.SuspendLayout()
         '
         'PropertyGrid1
@@ -51,5 +51,5 @@ Partial Class frmOtherProperties
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents PropertyGrid1 As System.Windows.Forms.PropertyGrid
+    Friend WithEvents PropertyGrid1 As CustomPropertyGrid
 End Class
