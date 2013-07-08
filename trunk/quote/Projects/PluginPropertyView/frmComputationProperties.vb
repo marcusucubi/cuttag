@@ -17,6 +17,7 @@ Public Class frmComputationProperties
                                                  ByVal e As PropertyChangedEventArgs) _
                                                  Handles _Properties.PropertyChanged
         Me.PropertyGrid1.Refresh()
+        UpdateButton()
     End Sub
 
     Private Sub frmProperties_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
@@ -27,6 +28,7 @@ Public Class frmComputationProperties
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
+        UpdateButton()
     End Sub
 
     Private Sub UpdateProperties()
@@ -37,7 +39,7 @@ Public Class frmComputationProperties
                 ActiveHeader.ActiveHeader.Header.ComputationProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
-            'dd_Added 11/23/11
+
             If Not IsNothing(_Properties) Then _Properties = Nothing
         End If
     End Sub
@@ -45,6 +47,14 @@ Public Class frmComputationProperties
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
         _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As System.Object, e As System.EventArgs) Handles FilterButton.Click
+        DisplaySettings.Instance.HideReadOnlyProperties = Not DisplaySettings.Instance.HideReadOnlyProperties
+    End Sub
+
+    Private Sub UpdateButton()
+        Me.FilterButton.Checked = DisplaySettings.Instance.HideReadOnlyProperties
     End Sub
 
 End Class
