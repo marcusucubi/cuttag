@@ -7,7 +7,6 @@ Namespace BOM
 
     Public Class PrimaryPropeties
         Inherits Common.PrimaryPropeties
-        Implements ICustomTypeDescriptor
 
         Private _QuoteHeader As Header
 
@@ -88,46 +87,6 @@ Namespace BOM
                 Me.SendEvents()
             End Set
         End Property
-#Region "TypeDescriptor Implementation"
-        Public Function GetClassName() As String Implements ICustomTypeDescriptor.GetClassName
-            Return TypeDescriptor.GetClassName(Me, True)
-        End Function
-        Public Function GetAttributes() As AttributeCollection Implements ICustomTypeDescriptor.GetAttributes
-            Return TypeDescriptor.GetAttributes(Me, True)
-        End Function
-        Public Function GetComponentName() As String Implements ICustomTypeDescriptor.GetComponentName
-            Return TypeDescriptor.GetComponentName(Me, True)
-        End Function
-        Public Function GetConverter() As TypeConverter Implements ICustomTypeDescriptor.GetConverter
-            Return TypeDescriptor.GetConverter(Me, True)
-        End Function
-        Public Function GetDefaultEvent() As EventDescriptor Implements ICustomTypeDescriptor.GetDefaultEvent
-            Return TypeDescriptor.GetDefaultEvent(Me, True)
-        End Function
-        Public Function GetDefaultProperty() As PropertyDescriptor Implements ICustomTypeDescriptor.GetDefaultProperty
-            Return TypeDescriptor.GetDefaultProperty(Me, True)
-        End Function
-        Public Function GetEditor(ByVal editorBaseType As Type) As Object Implements ICustomTypeDescriptor.GetEditor
-            Return TypeDescriptor.GetEditor(Me, editorBaseType, True)
-        End Function
-        Public Function GetEvents(ByVal attributes As Attribute()) As EventDescriptorCollection Implements ICustomTypeDescriptor.GetEvents
-            Return TypeDescriptor.GetEvents(Me, attributes, True)
-        End Function
-        Public Function GetEvents() As EventDescriptorCollection Implements ICustomTypeDescriptor.GetEvents
-            Return TypeDescriptor.GetEvents(Me, True)
-        End Function
-        Public Function GetProperties(ByVal attributes As Attribute()) As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
-            Return FilterProperties(TypeDescriptor.GetProperties(Me, attributes, True))
-        End Function
-        Public Function GetProperties() As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
-            Return TypeDescriptor.GetProperties(Me, True)
-        End Function
-        Public Function GetPropertyOwner(ByVal pd As PropertyDescriptor) As Object Implements ICustomTypeDescriptor.GetPropertyOwner
-            Return Me
-        End Function
-#End Region
-
-
 
     End Class
 End Namespace

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HasIcon.cs" />
+    <Compile Include="IPluginInit.cs" />
     <Compile Include="IPluginMenuInit.cs" />
     <Compile Include="MenuPosition.cs" />
     <Compile Include="NDepend\Attributes\CannotDecreaseVisibilityAttribute.cs" />

@@ -125,12 +125,6 @@
     <Compile Include="src\forms\frmTextView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmNoteProperties.Designer.vb">
-      <DependentUpon>frmNoteProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmNoteProperties.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmNewQuote.Designer.vb">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </Compile>
@@ -155,34 +149,10 @@
     <Compile Include="src\forms\frmBOMLookup.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmDetailProperties.Designer.vb">
-      <DependentUpon>frmDetailProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmDetailProperties.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="src\forms\frmQuoteLookup.Designer.vb">
       <DependentUpon>frmQuoteLookup.vb</DependentUpon>
     </Compile>
     <Compile Include="src\forms\frmQuoteLookup.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmPrimaryProperties.Designer.vb">
-      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmPrimaryProperties.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmOtherProperties.Designer.vb">
-      <DependentUpon>frmOtherProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmOtherProperties.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\forms\frmComputationProperties.Designer.vb">
-      <DependentUpon>frmComputationProperties.vb</DependentUpon>
-    </Compile>
-    <Compile Include="src\forms\frmComputationProperties.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmBOMSearch.Designer.vb">
@@ -191,7 +161,6 @@
     <Compile Include="src\forms\frmBOMSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\misc\SimilarQuotes.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -233,29 +202,14 @@
     <EmbeddedResource Include="src\forms\frmNewBOM.resx">
       <DependentUpon>frmNewBOM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmNoteProperties.resx">
-      <DependentUpon>frmNoteProperties.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmBOMLookup.resx">
       <DependentUpon>frmBOMLookup.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmDetailProperties.resx">
-      <DependentUpon>frmDetailProperties.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmPrimaryProperties.resx">
-      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteLookup.resx">
       <DependentUpon>frmQuoteLookup.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmOtherProperties.resx">
-      <DependentUpon>frmOtherProperties.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmComputationProperties.resx">
-      <DependentUpon>frmComputationProperties.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmBOMSearch.resx">
       <DependentUpon>frmBOMSearch.vb</DependentUpon>
@@ -378,7 +332,9 @@
       <Name>PluginOutputView</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\misc\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>

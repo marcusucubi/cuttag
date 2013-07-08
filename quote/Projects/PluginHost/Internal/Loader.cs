@@ -75,7 +75,8 @@ namespace PluginHost.Internal
             Assembly a = Assembly.LoadFile(localFullName);
 
             List<PluginMenuItem> items = FindMenuItems(a);
-            PluginProxy plugin = new PluginProxy(items);
+            List<IPluginInit> inits = FindInits(a);
+            PluginProxy plugin = new PluginProxy(items, inits);
             collection.Add(plugin);
         }
 
@@ -92,6 +93,27 @@ namespace PluginHost.Internal
                 {
                     result.Add(item);
                 }
+            }
+
+            return result;
+        }
+
+        static private List<IPluginInit> FindInits(Assembly a)
+        {
+            List<IPluginInit> result = new List<IPluginInit>();
+
+            Type[] types = a.GetTypes();
+            foreach (Type t in types)
+            {
+                if (!typeof(IPluginInit).IsAssignableFrom(t))
+                {
+                    continue;
+                }
+
+                IPluginInit target =
+                    Activator.CreateInstance(t) as IPluginInit;
+
+                result.Add(target);
             }
 
             return result;
@@ -138,5 +160,6 @@ namespace PluginHost.Internal
 
             return new PluginMenuItem(data);
         }
+
     }
 }

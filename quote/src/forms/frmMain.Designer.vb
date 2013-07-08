@@ -79,13 +79,6 @@ Partial Class frmMain
         Me.QuoteSep3 = New System.Windows.Forms.ToolStripSeparator()
         Me.QuoteSep4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToggleDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ComputationalPropertiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PrimaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NotesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CustomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewSep1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainFormStatusStrip1 = New DCS.Quote.MainFormStatusStrip()
@@ -366,19 +359,19 @@ Partial Class frmMain
         '
         Me.NewQuoteMenuItem.Enabled = False
         Me.NewQuoteMenuItem.Name = "NewQuoteMenuItem"
-        Me.NewQuoteMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NewQuoteMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.NewQuoteMenuItem.Text = "New"
         '
         'QuoteSep1
         '
         Me.QuoteSep1.Name = "QuoteSep1"
-        Me.QuoteSep1.Size = New System.Drawing.Size(149, 6)
+        Me.QuoteSep1.Size = New System.Drawing.Size(125, 6)
         '
         'LoadQuoteItem1
         '
         Me.LoadQuoteItem1.Image = Global.DCS.Quote.My.Resources.Resources.load
         Me.LoadQuoteItem1.Name = "LoadQuoteItem1"
-        Me.LoadQuoteItem1.Size = New System.Drawing.Size(152, 22)
+        Me.LoadQuoteItem1.Size = New System.Drawing.Size(128, 22)
         Me.LoadQuoteItem1.Text = "Load"
         '
         'SearchToolStripMenuItem
@@ -386,87 +379,41 @@ Partial Class frmMain
         Me.SearchToolStripMenuItem.Image = Global.DCS.Quote.My.Resources.Resources.search_icon
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
         Me.SearchToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F6
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.SearchToolStripMenuItem.Text = "Search"
         '
         'QuoteSep2
         '
         Me.QuoteSep2.Name = "QuoteSep2"
-        Me.QuoteSep2.Size = New System.Drawing.Size(149, 6)
+        Me.QuoteSep2.Size = New System.Drawing.Size(125, 6)
         '
         'QuoteSep3
         '
         Me.QuoteSep3.Name = "QuoteSep3"
-        Me.QuoteSep3.Size = New System.Drawing.Size(149, 6)
+        Me.QuoteSep3.Size = New System.Drawing.Size(125, 6)
         '
         'QuoteSep4
         '
         Me.QuoteSep4.Name = "QuoteSep4"
-        Me.QuoteSep4.Size = New System.Drawing.Size(149, 6)
+        Me.QuoteSep4.Size = New System.Drawing.Size(125, 6)
         '
         'ViewToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToggleDetailToolStripMenuItem, Me.PropertiesToolStripMenuItem, Me.ComputationalPropertiesToolStripMenuItem, Me.PrimaryToolStripMenuItem, Me.DetailToolStripMenuItem, Me.NotesToolStripMenuItem, Me.CustomToolStripMenuItem, Me.ViewSep1, Me.OptionsToolStripMenuItem})
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSep1, Me.OptionsToolStripMenuItem})
         Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
         Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.ViewToolStripMenuItem.Text = "&View"
         '
-        'ToggleDetailToolStripMenuItem
-        '
-        Me.ToggleDetailToolStripMenuItem.Name = "ToggleDetailToolStripMenuItem"
-        Me.ToggleDetailToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11
-        Me.ToggleDetailToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.ToggleDetailToolStripMenuItem.Text = "Hide Detail"
-        Me.ToggleDetailToolStripMenuItem.ToolTipText = "Hide read-only values"
-        '
-        'PropertiesToolStripMenuItem
-        '
-        Me.PropertiesToolStripMenuItem.Name = "PropertiesToolStripMenuItem"
-        Me.PropertiesToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12
-        Me.PropertiesToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.PropertiesToolStripMenuItem.Text = "Costs"
-        '
-        'ComputationalPropertiesToolStripMenuItem
-        '
-        Me.ComputationalPropertiesToolStripMenuItem.Name = "ComputationalPropertiesToolStripMenuItem"
-        Me.ComputationalPropertiesToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.ComputationalPropertiesToolStripMenuItem.Text = "Other"
-        '
-        'PrimaryToolStripMenuItem
-        '
-        Me.PrimaryToolStripMenuItem.Name = "PrimaryToolStripMenuItem"
-        Me.PrimaryToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.PrimaryToolStripMenuItem.Text = "Primary"
-        '
-        'DetailToolStripMenuItem
-        '
-        Me.DetailToolStripMenuItem.Name = "DetailToolStripMenuItem"
-        Me.DetailToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.DetailToolStripMenuItem.Text = "Properties"
-        '
-        'NotesToolStripMenuItem
-        '
-        Me.NotesToolStripMenuItem.Name = "NotesToolStripMenuItem"
-        Me.NotesToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.NotesToolStripMenuItem.Text = "Notes"
-        '
-        'CustomToolStripMenuItem
-        '
-        Me.CustomToolStripMenuItem.Name = "CustomToolStripMenuItem"
-        Me.CustomToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.CustomToolStripMenuItem.Text = "Custom"
-        Me.CustomToolStripMenuItem.Visible = False
-        '
         'ViewSep1
         '
         Me.ViewSep1.Name = "ViewSep1"
-        Me.ViewSep1.Size = New System.Drawing.Size(154, 6)
+        Me.ViewSep1.Size = New System.Drawing.Size(149, 6)
         Me.ViewSep1.Tag = "Sep1"
         '
         'OptionsToolStripMenuItem
         '
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OptionsToolStripMenuItem.Text = "Options..."
         '
         'MainFormStatusStrip1
@@ -510,9 +457,6 @@ Partial Class frmMain
     Friend WithEvents menuTemplate As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuNewQuote As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ComputationalPropertiesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PrimaryToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TemplateSep1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveToolButton As System.Windows.Forms.ToolStripButton
@@ -524,7 +468,6 @@ Partial Class frmMain
     Friend WithEvents QuoteSep1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents NewQuoteButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents LoadQuoteButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents DetailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SearchTemplateMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TemplateSep2 As System.Windows.Forms.ToolStripSeparator
@@ -532,15 +475,12 @@ Partial Class frmMain
     Friend WithEvents ToolSearchQuotes As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripTemplate As System.Windows.Forms.ToolStripButton
     Friend WithEvents QuoteSep2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents NotesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CustomToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TemplateSep3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AddItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DeleteItemToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToggleDetailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MainFormStatusStrip1 As DCS.Quote.MainFormStatusStrip
     Friend WithEvents ViewSep1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

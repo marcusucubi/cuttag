@@ -6,16 +6,18 @@
     -->
     <plugin path="PluginImport.dll" />
     <plugin path="PluginExport.dll" />
-    <plugin path="PluginOutputView.dll" />
     <plugin path="PluginCompare.dll" />
+    <plugin path="PluginPropertyView.dll" />
+    <plugin path="PluginOutputView.dll" />
   </debug>
   <release>
     <!--
     -->
     <plugin path="PluginImport.dll" />
     <plugin path="PluginExport.dll" />
-    <plugin path="PluginOutputView.dll" />
     <plugin path="PluginCompare.dll" />
+    <plugin path="PluginPropertyView.dll" />
+    <plugin path="PluginOutputView.dll" />
   </release>
 </plugins>
 

@@ -1,4 +1,5 @@
-﻿Imports System.ComponentModel
+﻿Imports System.Windows.Forms
+Imports System.ComponentModel
 
 Imports WeifenLuo.WinFormsUI.Docking
 
@@ -10,10 +11,11 @@ Public Class frmComputationProperties
 
     Private WithEvents _ActiveQuote As ActiveHeader
     Private WithEvents _Properties As Model.Common.ComputationProperties
+    Private WithEvents _Settings As DisplaySettings = DisplaySettings.Instance
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, _
                                                  ByVal e As PropertyChangedEventArgs) _
-                                             Handles _Properties.PropertyChanged
+                                                 Handles _Properties.PropertyChanged
         Me.PropertyGrid1.Refresh()
     End Sub
 

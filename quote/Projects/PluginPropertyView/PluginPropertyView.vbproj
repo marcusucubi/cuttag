@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{31F83BBE-46CA-4596-AA8A-F4E6F5040E1C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PluginPropertyView</RootNamespace>
+    <AssemblyName>PluginPropertyView</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DocumentationFile>PluginPropertyView.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>PluginPropertyView.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.15095, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomPropertyGrid.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DisplayPrimaryMenuItem.vb" />
+    <Compile Include="DisplayCostsMenuItem.vb" />
+    <Compile Include="DisplayDetailMenuItem.vb" />
+    <Compile Include="DisplayNoteMenuItem.vb" />
+    <Compile Include="DisplayOtherMenuItem.vb" />
+    <Compile Include="DisplaySettings.vb" />
+    <Compile Include="frmComputationProperties.Designer.vb">
+      <DependentUpon>frmComputationProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmComputationProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailProperties.Designer.vb">
+      <DependentUpon>frmDetailProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteProperties.Designer.vb">
+      <DependentUpon>frmNoteProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoteProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOtherProperties.Designer.vb">
+      <DependentUpon>frmOtherProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmOtherProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrimaryProperties.Designer.vb">
+      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrimaryProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelperMenuItem.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="DisplayReadonlyProperties.vb" />
+    <Compile Include="ObjectWrapper.vb" />
+    <Compile Include="Plugin.vb" />
+    <Compile Include="ViewController.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmComputationProperties.resx">
+      <DependentUpon>frmComputationProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailProperties.resx">
+      <DependentUpon>frmDetailProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteProperties.resx">
+      <DependentUpon>frmNoteProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOtherProperties.resx">
+      <DependentUpon>frmOtherProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrimaryProperties.resx">
+      <DependentUpon>frmPrimaryProperties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
+      <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
+      <Name>PluginDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginHost\PluginHost.csproj">
+      <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
+      <Name>PluginHost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginModel\PluginModel.vbproj">
+      <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
+      <Name>PluginModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\Real-One-icon.png" />
+    <None Include="Resources\dollar.png" />
+    <None Include="Resources\details.png" />
+    <None Include="Resources\other_icon.png" />
+    <None Include="Resources\notes.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
