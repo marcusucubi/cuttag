@@ -22,11 +22,10 @@ Partial Class frmComputationProperties
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmComputationProperties))
         Me.ToolStripContainer1 = New System.Windows.Forms.ToolStripContainer()
+        Me.PropertyGrid1 = New PluginPropertyView.CustomPropertyGrid()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.FilterButton = New System.Windows.Forms.ToolStripButton()
-        Me.PropertyGrid1 = New PluginPropertyView.CustomPropertyGrid()
         Me.ToolStripContainer1.ContentPanel.SuspendLayout()
         Me.ToolStripContainer1.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainer1.SuspendLayout()
@@ -51,26 +50,6 @@ Partial Class frmComputationProperties
         '
         Me.ToolStripContainer1.TopToolStripPanel.Controls.Add(Me.ToolStrip1)
         '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FilterButton})
-        Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(71, 25)
-        Me.ToolStrip1.TabIndex = 0
-        '
-        'FilterButton
-        '
-        Me.FilterButton.CheckOnClick = True
-        Me.FilterButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.FilterButton.Image = CType(resources.GetObject("FilterButton.Image"), System.Drawing.Image)
-        Me.FilterButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.FilterButton.Name = "FilterButton"
-        Me.FilterButton.Size = New System.Drawing.Size(37, 22)
-        Me.FilterButton.Text = "Filter"
-        '
         'PropertyGrid1
         '
         Me.PropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -80,6 +59,26 @@ Partial Class frmComputationProperties
         Me.PropertyGrid1.Size = New System.Drawing.Size(284, 156)
         Me.PropertyGrid1.TabIndex = 1
         Me.PropertyGrid1.ToolbarVisible = False
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FilterButton})
+        Me.ToolStrip1.Location = New System.Drawing.Point(3, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(57, 25)
+        Me.ToolStrip1.TabIndex = 0
+        '
+        'FilterButton
+        '
+        Me.FilterButton.CheckOnClick = True
+        Me.FilterButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.FilterButton.Image = Global.PluginPropertyView.My.Resources.Resources.filter
+        Me.FilterButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.FilterButton.Name = "FilterButton"
+        Me.FilterButton.Size = New System.Drawing.Size(23, 22)
+        Me.FilterButton.Text = "Filter"
         '
         'frmComputationProperties
         '

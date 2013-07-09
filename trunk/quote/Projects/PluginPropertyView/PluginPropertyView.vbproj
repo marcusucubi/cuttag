@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\WeifenLuo.WinFormsUI.Docking.dll" />
+    <None Include="Resources\filter.png" />
     <None Include="Resources\Real-One-icon.png" />
     <None Include="Resources\dollar.png" />
     <None Include="Resources\details.png" />

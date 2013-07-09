@@ -20,10 +20,14 @@ Public Class CustomPropertyGrid
     End Property
 
     Private Sub _Settings_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles _Settings.PropertyChanged
-        Dim t As Object
-        t = MyBase.SelectedObject
-        MyBase.SelectedObject = Nothing
-        MyBase.SelectedObject = t
+
+        If Not MyBase.SelectedObject Is Nothing Then
+            Dim t As Object
+            t = MyBase.SelectedObject
+            MyBase.SelectedObject = Nothing
+            MyBase.SelectedObject = t
+        End If
+
     End Sub
 
 End Class
