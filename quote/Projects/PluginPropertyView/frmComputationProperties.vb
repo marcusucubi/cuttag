@@ -57,4 +57,8 @@ Public Class frmComputationProperties
         Me.FilterButton.Checked = DisplaySettings.Instance.HideReadOnlyProperties
     End Sub
 
+    Private Sub _Settings_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles _Settings.PropertyChanged
+        UpdateButton()
+    End Sub
+
 End Class
