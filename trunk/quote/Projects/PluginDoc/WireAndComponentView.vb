@@ -167,7 +167,7 @@ Public Class WireAndComponentView
                 Dim drLookup As DB.QuoteDataBase.ItemSourceLookupListRow = CType(dgvQuoteDetail_Lookup.SearchGrid.GetCurrentRow, DB.QuoteDataBase.ItemSourceLookupListRow)
                 Dim sPartNumber As String = drLookup.PartNumber
                 Dim gSourceID As Guid = drLookup.SourceID
-                Dim oDetail As Model.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, Model.BOM.Detail)
+                Dim oDetail As Model.Template.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, Model.Template.Detail)
                 oDetail.IsWire = drLookup.IsWire
                 oDetail.SourceID = drLookup.SourceID
                 Dim pProduct As New Model.Product(gSourceID, drLookup.IsWire, _PartLookupDataSource)

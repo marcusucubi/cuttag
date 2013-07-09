@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel
 
-Namespace BOM
+Namespace Template
 
     Public Class NoteProperties
         Inherits Common.NoteProperties

@@ -4,7 +4,7 @@ Imports System.Math
 
 Imports Model
 
-Namespace BOM
+Namespace Template
     ''' <summary>
     ''' Adds display attributes and rounding to ComputationProperties.
     ''' </summary>

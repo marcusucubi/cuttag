@@ -44,7 +44,7 @@ Public Class frmDocumentA
             Me._Header = q
             Me._PrimaryProperties = q.PrimaryProperties
         Else
-            Me._Header = New Model.BOM.Header
+            Me._Header = New Model.Template.Header
             Me._PrimaryProperties = _Header.PrimaryProperties
         End If
         _DetailCollection = _Header.Details

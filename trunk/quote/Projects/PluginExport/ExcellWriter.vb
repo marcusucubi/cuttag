@@ -2,7 +2,7 @@
 Imports System.IO
 Imports NPOI.HSSF.UserModel
 
-Imports Model.BOM
+Imports Model.Template
 
 Public Class ExcellWriter
 
@@ -81,8 +81,8 @@ Public Class ExcellWriter
         cell2 = row.CreateCell(1)
 
         Dim excelName As String
-        If TypeOf Prop.Value Is Model.BOM.Customer Then
-            Dim c As Model.BOM.Customer = Prop.Value
+        If TypeOf Prop.Value Is Model.Template.Customer Then
+            Dim c As Model.Template.Customer = Prop.Value
             cell.SetCellValue("CustomerName")
             cell2.SetCellValue(c.Name.Trim())
             excelName = "CustomerName"

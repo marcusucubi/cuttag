@@ -3,7 +3,7 @@ Imports System.Reflection
 
 Imports Model
 
-Namespace BOM
+Namespace Template
 
     Public Class PrimaryPropeties
         Inherits Common.PrimaryPropeties

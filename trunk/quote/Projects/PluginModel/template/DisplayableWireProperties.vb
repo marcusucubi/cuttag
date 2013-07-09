@@ -4,7 +4,7 @@ Imports System.Reflection
 Imports Model
 Imports Model.Quote
 
-Namespace BOM
+Namespace Template
 
     ''' <summary>
     ''' Adds display attributes and rounding to WireProperties.
@@ -23,9 +23,9 @@ Namespace BOM
             Me.SendEvents()
         End Sub
 
-        Private ReadOnly _Subject As BOM.WireProperties
+        Private ReadOnly _Subject As Template.WireProperties
 
-        Public Sub New(ByVal subject As BOM.WireProperties)
+        Public Sub New(ByVal subject As Template.WireProperties)
             _Subject = subject
             MyBase.Subject = subject
         End Sub

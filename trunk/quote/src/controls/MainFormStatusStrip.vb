@@ -55,8 +55,8 @@ Public Class MainFormStatusStrip
             Dim creaded As String = Me._ActiveHeader.Header.PrimaryProperties.CommonCreatedDate.ToShortDateString
             Me._QuoteDate.Text = creaded
 
-            If (TypeOf Me._ActiveHeader.Header Is Model.BOM.Header) Then
-                Dim other As Model.BOM.OtherProperties = _ActiveHeader.Header.OtherProperties
+            If (TypeOf Me._ActiveHeader.Header Is Model.Template.Header) Then
+                Dim other As Model.Template.OtherProperties = _ActiveHeader.Header.OtherProperties
                 If (other.IsNew) Then
                     Me._IsNew.Text = "New"
                 Else

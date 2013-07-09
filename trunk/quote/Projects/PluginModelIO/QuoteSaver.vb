@@ -18,12 +18,12 @@ Public Class QuoteSaver
         Public Property Initials As String
     End Class
 
-    Public Function Save(ByVal q As Model.BOM.Header, _
+    Public Function Save(ByVal q As Model.Template.Header, _
                          ByVal info As QuoteInfoClass) As Integer
         Return Save(q, info, False)
     End Function
 
-    Public Function Save(ByVal q As Model.BOM.Header, _
+    Public Function Save(ByVal q As Model.Template.Header, _
                          ByVal info As QuoteInfoClass, _
                          ByVal IsQuote As Boolean) _
                         As Integer
@@ -33,7 +33,7 @@ Public Class QuoteSaver
         ' Ensure the properies are updated
         PluginHost.App.MainForm.Focus()
 
-        Dim o As Model.BOM.PrimaryPropeties = q.PrimaryProperties
+        Dim o As Model.Template.PrimaryPropeties = q.PrimaryProperties
 
         Dim newId As Integer
         Dim id As Integer = o.CommonID

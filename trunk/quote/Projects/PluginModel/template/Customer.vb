@@ -1,6 +1,6 @@
 ﻿Imports DB
 
-Namespace BOM
+Namespace Template
 
     ''' <summary>
     ''' Represents the customer
@@ -96,7 +96,7 @@ Namespace BOM
             Dim left As String = value.Substring(0, index)
             Dim right As String = value.Substring(index)
 
-            Dim customer As New BOM.Customer
+            Dim customer As New Template.Customer
             If left.Length > 0 Then
                 Dim id As Integer
                 Integer.TryParse(left, id)

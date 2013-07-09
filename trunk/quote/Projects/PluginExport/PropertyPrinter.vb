@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports Model.BOM
+Imports Model.Template
 
 Public Class PropertyPrinter
 

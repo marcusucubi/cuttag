@@ -168,7 +168,7 @@ Public Class CommonSaver
         Next
     End Sub
 
-    Public Shared Sub SaveComponents(ByVal q As Model.BOM.Header, _
+    Public Shared Sub SaveComponents(ByVal q As Model.Template.Header, _
                      ByVal quoteId As Integer, _
                      ByVal SaveAll As Boolean)
 

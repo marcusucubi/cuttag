@@ -65,18 +65,6 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bom\ComponentProperties.vb" />
-    <Compile Include="bom\ComputationProperties.vb" />
-    <Compile Include="bom\Customer.vb" />
-    <Compile Include="bom\Detail.vb" />
-    <Compile Include="bom\DisplayableComponentProperties.vb" />
-    <Compile Include="bom\DisplayableComputationProperties.vb" />
-    <Compile Include="bom\DisplayableWireProperties.vb" />
-    <Compile Include="bom\Header.vb" />
-    <Compile Include="bom\NoteProperties.vb" />
-    <Compile Include="bom\OtherProperties.vb" />
-    <Compile Include="bom\PrimaryPropeties.vb" />
-    <Compile Include="bom\WireProperties.vb" />
     <Compile Include="ActiveDetail.vb" />
     <Compile Include="ActiveHeader.vb" />
     <Compile Include="common\ComponentProperties.vb" />
@@ -118,6 +106,18 @@
     <Compile Include="quote\PrimaryPropeties.vb" />
     <Compile Include="Shipping.vb" />
     <Compile Include="ShippingList.vb" />
+    <Compile Include="template\ComponentProperties.vb" />
+    <Compile Include="template\ComputationProperties.vb" />
+    <Compile Include="template\Customer.vb" />
+    <Compile Include="template\Detail.vb" />
+    <Compile Include="template\DisplayableComponentProperties.vb" />
+    <Compile Include="template\DisplayableComputationProperties.vb" />
+    <Compile Include="template\DisplayableWireProperties.vb" />
+    <Compile Include="template\Header.vb" />
+    <Compile Include="template\NoteProperties.vb" />
+    <Compile Include="template\OtherProperties.vb" />
+    <Compile Include="template\PrimaryPropeties.vb" />
+    <Compile Include="template\WireProperties.vb" />
     <Compile Include="UOMConverter.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +145,9 @@
       <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
       <Name>PluginDB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bom\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

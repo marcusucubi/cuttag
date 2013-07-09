@@ -54,7 +54,7 @@
         Dim w As NPOI.SS.UserModel.Workbook = _Writer.Workbook
         Dim sheet As NPOI.SS.UserModel.Sheet = w.CreateSheet("Notes")
         Dim cell As NPOI.SS.UserModel.Cell = sheet.CreateRow(0).CreateCell(0)
-        Dim notes As Model.BOM.NoteProperties = header.NoteProperties
+        Dim notes As Model.Template.NoteProperties = header.NoteProperties
         cell.SetCellValue(notes.Note)
         cell.Sheet.SetColumnWidth(0, 1000 * 1000)
         cell.Row.Height = 1000 * 5

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Transactions
 
-Imports Model.BOM
+Imports Model.Template
 Imports DB.QuoteDataBaseTableAdapters
 Imports System.Windows.Forms
 

@@ -3,7 +3,7 @@ Imports System.Reflection
 
 Imports Model
 
-Namespace BOM
+Namespace Template
     ''' <summary>
     ''' Adds display attributes and rounding to ComponentProperties.
     ''' </summary>

@@ -3,7 +3,7 @@
 Imports WeifenLuo.WinFormsUI.Docking
 
 Imports Model
-Imports Model.BOM
+Imports Model.Template
 
 Public Class frmComputationProperties
     Inherits DockContent

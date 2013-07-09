@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Imports Model.BOM
+Imports Model.Template
 Imports Model
 
 Namespace Quote

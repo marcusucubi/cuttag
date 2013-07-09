@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Namespace BOM
+Namespace Template
     ''' <summary>
     ''' Computation properties for componeents.
     ''' </summary>
@@ -13,11 +13,11 @@ Namespace BOM
     Public Class ComponentProperties
         Inherits Common.ComponentProperties
 
-        Private _QuoteDetail As BOM.Detail
+        Private _QuoteDetail As Template.Detail
         Private _MinimumQty As Decimal
         Private _MinimumDollar As Decimal
 
-        Public Sub New(ByVal QuoteDetail As BOM.Detail)
+        Public Sub New(ByVal QuoteDetail As Template.Detail)
             _QuoteDetail = QuoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
                 Me._MinimumQty = _QuoteDetail.Product.MinimumQty

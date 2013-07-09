@@ -19,7 +19,7 @@ Public Class QuoteLoader
         Dim table As New DB.QuoteDataBase._QuoteDataTable
         Dim q As New Header()
 
-        Dim customerObj As Model.BOM.Customer
+        Dim customerObj As Model.Template.Customer
 
         adaptor.FillByByQuoteID(table, CDbl(id))
         If table.Rows.Count > 0 Then
@@ -83,14 +83,14 @@ Public Class QuoteLoader
         Return q
     End Function
 
-    Public Function LookupCustomer(row As DB.QuoteDataBase._QuoteRow) As Model.BOM.Customer
+    Public Function LookupCustomer(row As DB.QuoteDataBase._QuoteRow) As Model.Template.Customer
 
         Dim customer As String = row.CustomerName
         Dim customerID As Integer
         If row.IsCustomerIDNull Then
             If Not row.IsCustomerNameNull Then
-                Dim temp As Model.BOM.Customer
-                temp = Model.BOM.Customer.GetByName(row.CustomerName)
+                Dim temp As Model.Template.Customer
+                temp = Model.Template.Customer.GetByName(row.CustomerName)
                 If (Not temp Is Nothing) Then
                     customerID = temp.ID
                 End If
@@ -99,7 +99,7 @@ Public Class QuoteLoader
             customerID = row.CustomerID
         End If
 
-        Dim customerObj As New Model.BOM.Customer
+        Dim customerObj As New Model.Template.Customer
         customerObj.SetName(customer)
         customerObj.SetID(customerID)
 
