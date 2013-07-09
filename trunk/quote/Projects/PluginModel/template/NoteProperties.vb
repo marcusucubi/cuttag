@@ -12,6 +12,7 @@ Namespace Template
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
         End Sub
+
         <DisplayName("Note-Internal"), _
          CategoryAttribute("Notes")> _
         Public Property Note As String
@@ -25,6 +26,7 @@ Namespace Template
                 End If
             End Set
         End Property
+
         <DisplayName("Note-To Customer"), _
          CategoryAttribute("Notes")> _
         Public Property Note2Customer As String

@@ -56,7 +56,8 @@ Namespace Template
             End If
         End Sub
 
-        Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _Details.ListChanged
+        Private Sub _col_ListChanged(ByVal sender As Object, ByVal e As ListChangedEventArgs) _
+            Handles _Details.ListChanged
             SendEvents()
         End Sub
 

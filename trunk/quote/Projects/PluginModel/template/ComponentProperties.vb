@@ -33,7 +33,7 @@ Namespace Template
 
         Public Overloads Property MachineTime() As Decimal
             Get
-                Return _QuoteDetail.MachineTime 'Me._MachineTime
+                Return _QuoteDetail.MachineTime
             End Get
             Set(ByVal value As Decimal)
                 If Not (value = _QuoteDetail.MachineTime) Then
