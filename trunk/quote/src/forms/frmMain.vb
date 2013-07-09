@@ -75,10 +75,10 @@ Public Class frmMain
         frmQuoteSearch.ShowDialog(Me)
     End Sub
     Private Sub SearchTemplateMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchTemplateMenuItem1.Click
-        frmBOMSearch.ShowDialog(Me)
+        frmTemplateSearch.ShowDialog(Me)
     End Sub
     Private Sub ToolSearchTemplates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchTemplates.Click
-        frmBOMSearch.ShowDialog(Me)
+        frmTemplateSearch.ShowDialog(Me)
     End Sub
     Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
         frmQuoteSearch.ShowDialog(Me)
@@ -121,7 +121,7 @@ Public Class frmMain
 
     Private Sub CreateNewTemplate()
 
-        Dim frm As New frmNewBOM
+        Dim frm As New frmNewTemplate
         Dim result As DialogResult = frm.ShowDialog()
 
         If result = DialogResult.OK Then
@@ -177,7 +177,7 @@ Public Class frmMain
 
     Private Sub CopyTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
-            Dim frm As New frmCopyBOM
+            Dim frm As New frmCopyTemplate
             Dim result As DialogResult = frm.ShowDialog()
             If result.HasFlag(DialogResult.OK) Then
                 SaveTemplate()
@@ -190,9 +190,9 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadTemplate()
-        Dim r As DialogResult = frmBOMLookup.ShowDialog
+        Dim r As DialogResult = frmTemplateLookup.ShowDialog
         If r = DialogResult.OK Then
-            LoadTemplate(frmBOMLookup.QuoteID)
+            LoadTemplate(frmTemplateLookup.QuoteID)
         End If
         EnableButtons()
     End Sub

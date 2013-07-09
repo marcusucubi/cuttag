@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 
-Public Class frmNewBOM
+Public Class frmCopyTemplate
 
     Public Property Initials As String
 
