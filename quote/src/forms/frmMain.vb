@@ -118,17 +118,21 @@ Public Class frmMain
             End If
         End If
     End Sub
+
     Private Sub CreateNewTemplate()
 
         Dim frm As New frmNewBOM
         Dim result As DialogResult = frm.ShowDialog()
+
         If result = DialogResult.OK Then
             Dim ChildForm As New frmDocumentA(frm.Initials, frm.Initials)
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
-
         End If
+
+        Model.ModelEvents.NotifyTemplateViewed()
     End Sub
+
     Private Sub EnableButtons()
         ToolStripTemplate.Enabled = False
         If Me._ActiveHeader.Header Is Nothing Then
@@ -162,6 +166,7 @@ Public Class frmMain
             NewQuoteButton.Enabled = False
         End If
     End Sub
+
     Private Sub SaveTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
             Dim saver As New BOMSaver
@@ -169,6 +174,7 @@ Public Class frmMain
         End If
         EnableButtons()
     End Sub
+
     Private Sub CopyTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
             Dim frm As New frmCopyBOM
