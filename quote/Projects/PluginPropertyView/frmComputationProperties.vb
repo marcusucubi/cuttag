@@ -55,6 +55,14 @@ Public Class frmComputationProperties
 
     Private Sub UpdateButton()
         Me.FilterButton.Checked = DisplaySettings.Instance.HideReadOnlyProperties
+
+        If Not DisplaySettings.Instance.HideReadOnlyProperties Then
+            FilterButton.Text = "Hide Detail"
+            FilterButton.ToolTipText = "Hide read-only values"
+        Else
+            FilterButton.Text = "Show Detail"
+            FilterButton.ToolTipText = "Show read-only values"
+        End If
     End Sub
 
     Private Sub _Settings_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles _Settings.PropertyChanged
