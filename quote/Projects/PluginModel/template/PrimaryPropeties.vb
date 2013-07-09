@@ -32,6 +32,7 @@ Namespace Template
                 Return Me.CommonLastModified
             End Get
         End Property
+
         <CategoryAttribute(SortedSpaces2 + "Misc"), _
         DisplayName("Quote Number"), _
         DescriptionAttribute("Quote Number")> _
@@ -40,6 +41,7 @@ Namespace Template
                 Return MyBase.CommonID
             End Get
         End Property
+
         <CategoryAttribute(SortedSpaces2 + "Misc"), _
         DisplayName("Initials"), _
         DescriptionAttribute("Initials of creator")> _
@@ -75,6 +77,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         <FilterAttribute(False), CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _

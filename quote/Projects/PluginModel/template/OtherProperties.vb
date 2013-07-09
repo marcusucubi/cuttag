@@ -7,6 +7,7 @@ Namespace Template
 
     Public Class OtherProperties
         Inherits Common.OtherProperties
+
         Private _QuoteHeader As Header
         Private _LeadTimeInitial As Integer
         Private _LeadTimeStandard As Integer
@@ -24,6 +25,7 @@ Namespace Template
         Public Sub New(ByVal QuoteHeader As Header)
             _QuoteHeader = QuoteHeader
         End Sub
+
         <FilterAttribute(True), _
         CategoryAttribute(SortedSpaces1 + "Date"), _
         DisplayName("Due Date"), _
@@ -37,6 +39,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         <CategoryAttribute(SortedSpaces1 + "Date"), _
         DisplayName("Quote Date"), _
         DescriptionAttribute("Quote Date to be displayed to the customer")> _
@@ -49,6 +52,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         Public Sub SetImportedUnitCost(ByVal value As Decimal)
             _ImportedUnitCost = value
         End Sub
@@ -83,6 +87,7 @@ Namespace Template
                 Return _ImportedUnitCost
             End Get
         End Property
+
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Estimated Annual Units"), _
         DescriptionAttribute("Estimated Annual Units")> _
@@ -107,6 +112,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Standard Lead Time"), _
         DescriptionAttribute("Minimum number of days between the purchase order and delivery")> _
@@ -119,6 +125,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         <CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Tooling"), _
         DescriptionAttribute("Tooling Cost")> _
@@ -131,6 +138,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         <FilterAttribute(False), _
         CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Form Board Cost"), _
@@ -144,6 +152,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         <FilterAttribute(False), _
         CategoryAttribute(SortedSpaces3 + "Quote"), _
         DisplayName("Is New"), _

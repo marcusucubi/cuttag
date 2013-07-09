@@ -9,25 +9,17 @@ Namespace Common
         Protected _ComputationProperties As Common.ComputationProperties
         Protected _CustomProperties As New Common.SaveableProperties
         Protected _NoteProperties As New Common.NoteProperties
+
         Protected WithEvents _Details As DetailCollection(Of Common.Detail)
+
         Public Property ID As Integer
         Public Property WeightProperties As New Common.Weights(Me)
         Public Property IsQuote As Boolean
+
         Public Sub New()
             _Details = New DetailCollection(Of Common.Detail)(Me)
         End Sub
-        'dd_Added 10/8/11
-        Public ReadOnly Property NextSequenceNumber
-            Get
-                Dim iMax As Integer = 0
-                For Each dDetail As Detail In _Details
-                    If dDetail.SequenceNumber > iMax Then iMax = dDetail.SequenceNumber
-                Next
-                iMax += 1
-                Return iMax
-            End Get
-        End Property
-        'dd_Added end
+
         Public ReadOnly Property ComputationProperties As Common.ComputationProperties
             Get
                 Return _ComputationProperties
@@ -61,6 +53,17 @@ Namespace Common
         Public ReadOnly Property Details As DetailCollection(Of Common.Detail)
             Get
                 Return _Details
+            End Get
+        End Property
+
+        Public ReadOnly Property NextSequenceNumber
+            Get
+                Dim iMax As Integer = 0
+                For Each dDetail As Detail In _Details
+                    If dDetail.SequenceNumber > iMax Then iMax = dDetail.SequenceNumber
+                Next
+                iMax += 1
+                Return iMax
             End Get
         End Property
 
