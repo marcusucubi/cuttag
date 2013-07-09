@@ -95,10 +95,10 @@
     <Compile Include="src\controls\MainFormStatusStrip.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="src\forms\frmCopyBOM.Designer.vb">
-      <DependentUpon>frmCopyBOM.vb</DependentUpon>
+    <Compile Include="src\forms\frmCopyTemplate.Designer.vb">
+      <DependentUpon>frmCopyTemplate.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmCopyBOM.vb">
+    <Compile Include="src\forms\frmCopyTemplate.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmMain.Designer.vb">
@@ -119,10 +119,10 @@
     <Compile Include="src\forms\frmNewQuote.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmNewBOM.Designer.vb">
-      <DependentUpon>frmNewBOM.vb</DependentUpon>
+    <Compile Include="src\forms\frmNewTemplate.Designer.vb">
+      <DependentUpon>frmNewTemplate.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmNewBOM.vb">
+    <Compile Include="src\forms\frmNewTemplate.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmQuoteSearch.Designer.vb">
@@ -131,10 +131,10 @@
     <Compile Include="src\forms\frmQuoteSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmBOMLookup.Designer.vb">
-      <DependentUpon>frmBOMLookup.vb</DependentUpon>
+    <Compile Include="src\forms\frmTemplateLookup.Designer.vb">
+      <DependentUpon>frmTemplateLookup.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmBOMLookup.vb">
+    <Compile Include="src\forms\frmTemplateLookup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\forms\frmQuoteLookup.Designer.vb">
@@ -143,10 +143,10 @@
     <Compile Include="src\forms\frmQuoteLookup.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\forms\frmBOMSearch.Designer.vb">
-      <DependentUpon>frmBOMSearch.vb</DependentUpon>
+    <Compile Include="src\forms\frmTemplateSearch.Designer.vb">
+      <DependentUpon>frmTemplateSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="src\forms\frmBOMSearch.vb">
+    <Compile Include="src\forms\frmTemplateSearch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="src\controls\MainFormStatusStrip.resx">
       <DependentUpon>MainFormStatusStrip.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmCopyBOM.resx">
-      <DependentUpon>frmCopyBOM.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmCopyTemplate.resx">
+      <DependentUpon>frmCopyTemplate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
@@ -181,20 +181,20 @@
     <EmbeddedResource Include="src\forms\frmNewQuote.resx">
       <DependentUpon>frmNewQuote.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmNewBOM.resx">
-      <DependentUpon>frmNewBOM.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmNewTemplate.resx">
+      <DependentUpon>frmNewTemplate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteSearch.resx">
       <DependentUpon>frmQuoteSearch.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmBOMLookup.resx">
-      <DependentUpon>frmBOMLookup.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmTemplateLookup.resx">
+      <DependentUpon>frmTemplateLookup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\forms\frmQuoteLookup.resx">
       <DependentUpon>frmQuoteLookup.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\forms\frmBOMSearch.resx">
-      <DependentUpon>frmBOMSearch.vb</DependentUpon>
+    <EmbeddedResource Include="src\forms\frmTemplateSearch.resx">
+      <DependentUpon>frmTemplateSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

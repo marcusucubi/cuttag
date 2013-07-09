@@ -2,7 +2,7 @@
 
 Imports DB
 
-Public Class frmBOMLookup
+Public Class frmTemplateLookup
 
     Public Shared Property QuoteID As Long
 
