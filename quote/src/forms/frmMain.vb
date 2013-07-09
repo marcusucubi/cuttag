@@ -4,7 +4,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 
 Imports Model
 Imports Model.Quote
-Imports ModelIO
+Imports Model.IO
 Imports Doc
 
 Public Class frmMain
@@ -111,7 +111,7 @@ Public Class frmMain
 
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            Dim saver As New ModelIO.QuoteSaver
+            Dim saver As New Model.IO.QuoteSaver
             Dim id As Integer = saver.Save(frm.Header, frm.QuoteInfo, True)
             If (id > 0) Then
                 LoadQuote(id)

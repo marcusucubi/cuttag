@@ -17,21 +17,16 @@ Public Class DisplayReadonlyProperties
     Private m_ToolStripItem As ToolStripItem
     Private m_Button As ToolStripButton
     Private m_Window As DockContent
+    Private WithEvents _Settings As DisplaySettings = DisplaySettings.Instance
 
     Public Sub Execute() Implements IPluginMenuAction.Execute
 
         If Not DisplaySettings.Instance.HideReadOnlyProperties Then
-
-            m_ToolStripItem.Text = "Show Detail"
-            m_ToolStripItem.ToolTipText = "Show read-only values"
-
             DisplaySettings.Instance.HideReadOnlyProperties = True
         Else
-            m_ToolStripItem.Text = "Hide Detail"
-            m_ToolStripItem.ToolTipText = "Hide read-only values"
-
             DisplaySettings.Instance.HideReadOnlyProperties = False
         End If
+        UpdateMenu()
 
     End Sub
 
@@ -45,6 +40,7 @@ Public Class DisplayReadonlyProperties
         m_ToolStripItem = menu
         Dim menuItem As ToolStripMenuItem = menu
         menuItem.ShortcutKeys = Keys.F11
+        UpdateMenu()
     End Sub
 
     Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
@@ -56,6 +52,22 @@ Public Class DisplayReadonlyProperties
         PluginHost.App.DockPanel.SuspendLayout(True)
         frm.Show(PluginHost.App.DockPanel, state)
         PluginHost.App.DockPanel.ResumeLayout(True, True)
+    End Sub
+
+    Private Sub UpdateMenu()
+
+        If Not DisplaySettings.Instance.HideReadOnlyProperties Then
+            m_ToolStripItem.Text = "Hide Detail"
+            m_ToolStripItem.ToolTipText = "Hide read-only values"
+        Else
+            m_ToolStripItem.Text = "Show Detail"
+            m_ToolStripItem.ToolTipText = "Show read-only values"
+        End If
+
+    End Sub
+
+    Private Sub _Settings_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles _Settings.PropertyChanged
+        UpdateMenu()
     End Sub
 
 End Class
