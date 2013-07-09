@@ -17,6 +17,7 @@ Namespace Quote
         Private _Initials As String
         Private _CreatedDate As DateTime
         Private _LastModified As DateTime
+
         Public Sub New(ByVal QuoteHeader As Header, _
                        ByVal id As Long, _
                        ByVal CustomerName As String, _
@@ -35,7 +36,8 @@ Namespace Quote
             Me._CreatedDate = CreatedDate
             Me._LastModified = LastModified
         End Sub
-        <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
+
+        <FilterAttribute(True), CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
          DisplayName("CreatedDate"), _
          DescriptionAttribute("Created Date")> _
         Public ReadOnly Property CreatedDate As DateTime
@@ -43,7 +45,8 @@ Namespace Quote
                 Return _CreatedDate
             End Get
         End Property
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
+
+        <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
          DisplayName("LastModified"), _
             DescriptionAttribute("Last Modified Date")> _
         Public ReadOnly Property LastModified As DateTime
@@ -51,7 +54,8 @@ Namespace Quote
                 Return _LastModified
             End Get
         End Property
-        <CategoryAttribute(SortedSpaces2 + "Misc"), _
+
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Misc"), _
         DisplayName("Quote Number"), _
         DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
@@ -59,7 +63,8 @@ Namespace Quote
                 Return MyBase.CommonID
             End Get
         End Property
-        <CategoryAttribute(SortedSpaces2 + "Misc"), _
+
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Misc"), _
         DisplayName("Initials"), _
         DescriptionAttribute("Initials of creator")> _
         Public ReadOnly Property Initials As String
@@ -67,7 +72,8 @@ Namespace Quote
                 Return _Initials
             End Get
         End Property
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Customer"), _
         DescriptionAttribute("The customer"),
         TypeConverter(GetType(CustomerConverter))> _
@@ -77,7 +83,7 @@ Namespace Quote
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _
         Public ReadOnly Property PartNumber As String
@@ -85,7 +91,8 @@ Namespace Quote
                 Return _PartNumber
             End Get
         End Property
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _
         Public ReadOnly Property RequestForQuoteNumber As String
@@ -94,7 +101,7 @@ Namespace Quote
             End Get
         End Property
 
-        <FilterAttribute(False), CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <FilterAttribute(False), CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("TemplateNumber"), _
         DescriptionAttribute("Created from template")> _
         Public ReadOnly Property TemplateNumber As Integer

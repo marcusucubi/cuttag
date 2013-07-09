@@ -8,20 +8,6 @@ Namespace Common
         Public Event PropertyChanged As PropertyChangedEventHandler _
             Implements INotifyPropertyChanged.PropertyChanged
 
-#Region "SortedSpaces Consts for alpha sort of property categories"
-        Protected Const SortedSpaces1 = "          "
-        Protected Const SortedSpaces2 = "          "
-        Protected Const SortedSpaces3 = "          "
-        Protected Const SortedSpaces4 = "          "
-        Protected Const SortedSpaces5 = "          "
-        Protected Const SortedSpaces6 = "          "
-        Protected Const SortedSpaces7 = "          "
-        Protected Const SortedSpaces8 = "          "
-        Protected Const SortedSpaces9 = "          "
-        Protected Const SortedSpaces10 = "          "
-        Protected Const SortedSpaces11 = "          "
-#End Region
-
         Private _IsDirty As Boolean
 
         Public Delegate Sub SavableChangeHandler(ByVal subject As SaveableProperties)
