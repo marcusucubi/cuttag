@@ -7,6 +7,7 @@ Public NotInheritable Class FilterAttribute
     Sub New(ByVal DoFilter As Boolean)
         _DoFilterAttribute = DoFilter
     End Sub
+
     Public Property FilterAttribute As Boolean
         Get
             Return _DoFilterAttribute
@@ -15,6 +16,7 @@ Public NotInheritable Class FilterAttribute
             _DoFilterAttribute = value
         End Set
     End Property
+
     Public Property FilterAttributeValue As Boolean
         Get
             Return _DoFilterAttribute
