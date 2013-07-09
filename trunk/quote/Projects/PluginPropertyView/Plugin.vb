@@ -15,4 +15,8 @@
         ViewController.Instance.OpenAll()
     End Sub
 
+    Private Sub m_Events_TemplateCreated(source As Object, args As Model.ModelEventArgs) Handles m_Events.TemplateCreated
+        ViewController.Instance.OpenAll()
+    End Sub
+
 End Class
