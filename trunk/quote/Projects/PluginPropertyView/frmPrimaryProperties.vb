@@ -46,6 +46,13 @@ Public Class frmPrimaryProperties
 
     Private Sub UpdateButton()
         Me.ToolStripButton1.Checked = DisplaySettings.Instance.HideReadOnlyProperties
+        If Not DisplaySettings.Instance.HideReadOnlyProperties Then
+            ToolStripButton1.Text = "Hide Detail"
+            ToolStripButton1.ToolTipText = "Hide read-only values"
+        Else
+            ToolStripButton1.Text = "Show Detail"
+            ToolStripButton1.ToolTipText = "Show read-only values"
+        End If
     End Sub
 
     Private Sub _Settings_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles _Settings.PropertyChanged
