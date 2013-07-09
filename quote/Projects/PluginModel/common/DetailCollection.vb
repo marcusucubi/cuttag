@@ -21,7 +21,7 @@ Namespace Common
         Protected Overrides Function AddNewCore() As Object
             Dim p As New Product("", 0, "", False, Nothing, Nothing) '("100", 2, "10", 1, True, "test", 0, "", 0, 0)
             'Dim p As New Product("", 1, "10", False, Nothing, Nothing)
-            Dim o As Object = New Model.BOM.Detail(_Header, p) 'ddAdded
+            Dim o As Object = New Model.Template.Detail(_Header, p) 'ddAdded
             ' Return New Quote.BOM.Detail(_Header, p) 'ddRemmed
             Add(o) 'ddAdded
             Return o 'ddAdded

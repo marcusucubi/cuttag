@@ -58,7 +58,7 @@ Public Class QuoteImport
 
             If row.Processed = 0 Then
 
-                Dim header As New Model.BOM.Header
+                Dim header As New Model.Template.Header
                 header = BuildHeader(row.QuoteNumber)
                 Save(header)
 
@@ -81,7 +81,7 @@ Public Class QuoteImport
 
     Private Sub ImportTest(ByVal QuoteNumber As Integer)
 
-        Dim header As New Model.BOM.Header
+        Dim header As New Model.Template.Header
         header = BuildHeader(QuoteNumber)
 
     End Sub
@@ -90,7 +90,7 @@ Public Class QuoteImport
 
         Console.WriteLine("----- Importing " & QuoteNumber)
 
-        Dim header As New Model.BOM.Header
+        Dim header As New Model.Template.Header
         header = BuildHeader(QuoteNumber)
         Dim id As Integer = Save(header)
 
@@ -116,7 +116,7 @@ Public Class QuoteImport
             Try
                 Dim dr As ImportDataSet.HQ_GetParts4LookupRow = CType(CType(frm.cboPartLookup.SelectedItem, DataRowView).Row, ImportDataSet.HQ_GetParts4LookupRow)
                 Dim gPartID As Guid = frm.cboPartLookup.SelectedValue
-                Dim header As Model.BOM.Header = BuildHeader4PartsList(dr, sInitials, frmInitials.rbComputed.Checked)
+                Dim header As Model.Template.Header = BuildHeader4PartsList(dr, sInitials, frmInitials.rbComputed.Checked)
                 Dim id As Integer = Save(header)
                 Console.WriteLine("----- Finished")
                 Model.ModelEvents.NotifyTemplateCreated(id)
@@ -126,22 +126,22 @@ Public Class QuoteImport
         End If
     End Sub
     Private Function BuildHeader4PartsList(ByVal drPart As ImportDataSet.HQ_GetParts4LookupRow, _
-            ByVal Initials As String, ByVal UseComputedParts As Boolean) As Model.BOM.Header
-        Dim header As New Model.BOM.Header
+            ByVal Initials As String, ByVal UseComputedParts As Boolean) As Model.Template.Header
+        Dim header As New Model.Template.Header
         TransferHeader4PartsList(drPart, header, Initials)
         GetDetails4PartsList(header, drPart.PartID, UseComputedParts)
         Return header
     End Function
 
-    Private Function BuildHeader(ByVal QuoteNumber As Integer) As Model.BOM.Header
+    Private Function BuildHeader(ByVal QuoteNumber As Integer) As Model.Template.Header
 
         Dim row As ImportDataSet.QuoteHeaderRow = GetHeader(QuoteNumber)
-        Dim header As New Model.BOM.Header
+        Dim header As New Model.Template.Header
         TransferHeader(row, header)
 
         GetDetails(header, row.QuoteID)
 
-        Dim comp As Model.BOM.DisplayableComputationProperties = header.ComputationProperties
+        Dim comp As Model.Template.DisplayableComputationProperties = header.ComputationProperties
         _NewUnitCost = comp.AdjustedTotalUnitCost
 
         Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
@@ -156,7 +156,7 @@ Public Class QuoteImport
         Return header
     End Function
 
-    Private Function Save(ByVal header As Model.BOM.Header) As Integer
+    Private Function Save(ByVal header As Model.Template.Header) As Integer
 
         Dim BOMSaver As New Model.IO.BOMSaver
         Dim id As Integer = BOMSaver.Save(header)
@@ -179,23 +179,23 @@ Public Class QuoteImport
         Return row
     End Function
     Private Sub TransferHeader4PartsList(ByVal row As ImportDataSet.HQ_GetParts4LookupRow, _
-                           ByVal header As Model.BOM.Header, ByVal Initials As String)
-        Dim primary As Model.BOM.PrimaryPropeties = header.PrimaryProperties
-        primary.Customer = Model.BOM.Customer.GetByID(row.CustomerID)
+                           ByVal header As Model.Template.Header, ByVal Initials As String)
+        Dim primary As Model.Template.PrimaryPropeties = header.PrimaryProperties
+        primary.Customer = Model.Template.Customer.GetByID(row.CustomerID)
         primary.PartNumber = row.Display
         primary.CommonInitials = Initials
     End Sub
     Private Sub TransferHeader(ByVal row As ImportDataSet.QuoteHeaderRow, _
-                              ByVal header As Model.BOM.Header)
+                              ByVal header As Model.Template.Header)
 
         Dim customer As String = row.ContactName
 
-        Dim primary As Model.BOM.PrimaryPropeties = header.PrimaryProperties
+        Dim primary As Model.Template.PrimaryPropeties = header.PrimaryProperties
         primary.PartNumber = row.PartNumber
         primary.RequestForQuoteNumber = row.RFQ
         primary.CommonInitials = "Import: " & row.CreatedBy
 
-        Dim other As Model.BOM.OtherProperties = header.OtherProperties
+        Dim other As Model.Template.OtherProperties = header.OtherProperties
         other.EstimatedAnnualUnits = row.EAU
         other.FormBoardCost = row.FormBoardCost
         other.LeadTimeInitial = row.LeadTimeInitial
@@ -206,7 +206,7 @@ Public Class QuoteImport
         other.SetImportedLaborMinutes(row.LaborMinutes)
         _OldUnitCost = row.UnitPrice
 
-        Dim comp As Model.BOM.DisplayableComputationProperties = header.ComputationProperties
+        Dim comp As Model.Template.DisplayableComputationProperties = header.ComputationProperties
         comp.CopperPrice = row.CuPrice
         comp.LaborRate = row.LaborRate
         comp.NumberOfCuts = row.Cuts
@@ -236,11 +236,11 @@ Public Class QuoteImport
             comp.MaterialMarkUp = row.MaterialMarkup
         End If
 
-        Dim note As Model.BOM.NoteProperties = header.NoteProperties
+        Dim note As Model.Template.NoteProperties = header.NoteProperties
         note.Note = "Imported from " & row.QuoteNumber
 
     End Sub
-    Private Function GetDetails4PartsList(ByVal header As Model.BOM.Header, _
+    Private Function GetDetails4PartsList(ByVal header As Model.Template.Header, _
                                ByVal PartID As System.Guid, ByVal UseComputedParts As Boolean) _
                            As Integer
         Dim adaptor As New ImportDataSetTableAdapters.HQ_GetPartsListTableAdapter
@@ -281,7 +281,7 @@ Public Class QuoteImport
                     Console.WriteLine("   Zero weight for " + detailRow.PartNumber)
                 End If
             End If
-            Dim detail As New Model.BOM.Detail(header, pProduct)
+            Dim detail As New Model.Template.Detail(header, pProduct)
             detail.Qty = detailRow.Qty
             detail.SourceID = detailRow.SourceID
             detail.UpdateComponentProperties(pProduct)
@@ -289,7 +289,7 @@ Public Class QuoteImport
         Next
         Return 0
     End Function
-    Private Function GetDetails(ByVal header As Model.BOM.Header, _
+    Private Function GetDetails(ByVal header As Model.Template.Header, _
                                ByVal quotID As System.Guid) _
                            As Integer
         Dim adaptor As New ImportDataSetTableAdapters.QuoteDetailTableAdapter
@@ -318,7 +318,7 @@ Public Class QuoteImport
                 "", _
                 0, _
                 0)
-            Dim detail As New Model.BOM.Detail(header, product)
+            Dim detail As New Model.Template.Detail(header, product)
             If product.IsWire Then
                 LookupWirePart(detailRow, detail, product, errors)
                 detail.UOM = "Decimeter"
@@ -335,7 +335,7 @@ Public Class QuoteImport
     ''' Looks up the wire component and assign UOM
     ''' </summary>
     Private Sub LookupWireComponentPart(ByVal detailRow As ImportDataSet.QuoteDetailRow, _
-                                        ByVal detail As Model.BOM.Detail, _
+                                        ByVal detail As Model.Template.Detail, _
                                         ByVal product As Model.Product)
         Dim adaptor As New DB.QuoteDataBaseTableAdapters.WireComponentSourceTableAdapter
         Dim table As DB.QuoteDataBase.WireComponentSourceDataTable
@@ -371,7 +371,7 @@ Public Class QuoteImport
     ''' Looks up the wire and assigns the weight
     ''' </summary>
     Private Sub LookupWirePart(ByVal detailRow As ImportDataSet.QuoteDetailRow, _
-                               ByVal detail As Model.BOM.Detail, _
+                               ByVal detail As Model.Template.Detail, _
                                ByVal product As Model.Product, _
                                ByVal errors As List(Of String))
         Dim adaptor As New DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter

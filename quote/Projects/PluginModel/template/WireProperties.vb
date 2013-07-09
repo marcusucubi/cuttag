@@ -3,7 +3,7 @@ Imports System.Reflection
 
 Imports Model.Quote
 
-Namespace BOM
+Namespace Template
 
     ''' <summary>
     ''' Computation properties for wires.

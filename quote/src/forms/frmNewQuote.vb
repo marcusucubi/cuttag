@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 
 Imports Model
-Imports Model.BOM
+Imports Model.Template
 Imports Model.IO
 
 Public Class frmNewQuote

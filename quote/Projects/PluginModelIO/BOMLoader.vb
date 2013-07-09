@@ -7,7 +7,7 @@ Imports DB.QuoteDataBaseTableAdapters
 Imports DB.QuoteDataBase
 Imports DB
 
-Imports Model.BOM
+Imports Model.Template
 Imports Model
 Imports System.Windows.Forms
 
@@ -84,7 +84,7 @@ Public Class BOMLoader
         If row.IsCustomerIDNull Then
             If Not row.IsCustomerNameNull Then
                 Dim temp As Customer
-                temp = Model.BOM.Customer.GetByName(row.CustomerName)
+                temp = Model.Template.Customer.GetByName(row.CustomerName)
                 If (Not temp Is Nothing) Then
                     customerID = temp.ID
                 End If

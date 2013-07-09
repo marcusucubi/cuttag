@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 
 Imports DB
-Imports Model.BOM
+Imports Model.Template
 
 Public Class CustomerConverter
     Inherits ExpandableObjectConverter

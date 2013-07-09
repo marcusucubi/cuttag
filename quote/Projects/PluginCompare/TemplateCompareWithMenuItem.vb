@@ -46,7 +46,7 @@ Public Class TemplateCompareWithMenuItem
 
     Private Sub m_Watch_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles m_Watch.PropertyChanged
 
-        If (TypeOf ActiveHeader.ActiveHeader.Header Is Model.BOM.Header) Then
+        If (TypeOf ActiveHeader.ActiveHeader.Header Is Model.Template.Header) Then
             m_Menu.Enabled = True
         Else
             m_Menu.Enabled = False

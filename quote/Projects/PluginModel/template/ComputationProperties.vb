@@ -2,7 +2,7 @@
 Imports System.Reflection
 Imports System.Math
 
-Namespace BOM
+Namespace Template
 
     ''' <summary>
     ''' The main computation properties.

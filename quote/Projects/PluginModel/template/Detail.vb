@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Reflection
 
-Namespace BOM
+Namespace Template
 
     Public Class Detail
         Inherits Common.Detail

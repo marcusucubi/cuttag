@@ -2,7 +2,7 @@
 Imports System.Reflection
 
 Imports Model.Quote
-Imports Model.BOM
+Imports Model.Template
 Imports Model
 
 Namespace Common
