@@ -27,7 +27,7 @@ Namespace Template
         End Sub
 
         <FilterAttribute(True), _
-        CategoryAttribute(SortedSpaces1 + "Date"), _
+        CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
         DisplayName("Due Date"), _
         DescriptionAttribute("Date the quote is to be given to the customer")> _
         Public Property DueDate As DateTime
@@ -40,7 +40,7 @@ Namespace Template
             End Set
         End Property
 
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
+        <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
         DisplayName("Quote Date"), _
         DescriptionAttribute("Quote Date to be displayed to the customer")> _
         Public Property QuoteDate As DateTime
@@ -57,7 +57,7 @@ Namespace Template
             _ImportedUnitCost = value
         End Sub
 
-        <CategoryAttribute(SortedSpaces2 + "Import"), _
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Import"), _
         DisplayName("ImportedCuWeight"), _
         DescriptionAttribute("Imported CuWeight")> _
         Public ReadOnly Property ImportedCuWeight As Decimal
@@ -70,7 +70,7 @@ Namespace Template
             _ImportedCuWeight = value
         End Sub
 
-        <CategoryAttribute(SortedSpaces2 + "Import"), _
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Import"), _
         DisplayName("ImportedLaborMinutes"), _
         DescriptionAttribute("Imported Labor Minutes")> _
         Public ReadOnly Property ImportedLaborMinutes As Decimal
@@ -79,7 +79,7 @@ Namespace Template
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces2 + "Import"), _
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Import"), _
         DisplayName("ImportedUnitCost"), _
         DescriptionAttribute("Imported Unit Cost")> _
         Public ReadOnly Property ImportedUnitCost As Decimal
@@ -88,7 +88,7 @@ Namespace Template
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Estimated Annual Units"), _
         DescriptionAttribute("Estimated Annual Units")> _
         Public Property EstimatedAnnualUnits As Integer
@@ -100,7 +100,8 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Initial Lead Time"), _
         DescriptionAttribute("Minimum number of days between the first purchase order and delivery")> _
         Public Property LeadTimeInitial As Integer
@@ -113,7 +114,7 @@ Namespace Template
             End Set
         End Property
 
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Standard Lead Time"), _
         DescriptionAttribute("Minimum number of days between the purchase order and delivery")> _
         Public Property LeadTimeStandard As Integer
@@ -126,7 +127,7 @@ Namespace Template
             End Set
         End Property
 
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Tooling"), _
         DescriptionAttribute("Tooling Cost")> _
         Public Property Tooling As Decimal
@@ -140,7 +141,7 @@ Namespace Template
         End Property
 
         <FilterAttribute(False), _
-        CategoryAttribute(SortedSpaces3 + "Quote"), _
+        CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Form Board Cost"), _
         DescriptionAttribute("Form Board Cost")> _
         Public Property FormBoardCost As Decimal
@@ -154,7 +155,7 @@ Namespace Template
         End Property
 
         <FilterAttribute(False), _
-        CategoryAttribute(SortedSpaces3 + "Quote"), _
+        CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Is New"), _
         DescriptionAttribute("Is New")> _
         Public Property IsNew As Boolean
@@ -166,6 +167,7 @@ Namespace Template
                 Me.SendEvents()
             End Set
         End Property
+
         Public Sub SetImportedLaborMinutes(ByVal value As Decimal)
             _ImportedLaborMinutes = value
         End Sub

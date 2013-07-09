@@ -116,6 +116,7 @@
     <Compile Include="template\NoteProperties.vb" />
     <Compile Include="template\OtherProperties.vb" />
     <Compile Include="template\PrimaryPropeties.vb" />
+    <Compile Include="template\Spaces.vb" />
     <Compile Include="template\WireProperties.vb" />
     <Compile Include="UOMConverter.vb" />
   </ItemGroup>

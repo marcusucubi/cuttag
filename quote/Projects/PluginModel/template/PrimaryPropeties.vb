@@ -15,7 +15,7 @@ Namespace Template
             Me.SetID(id)
         End Sub
 
-        <FilterAttribute(True), CategoryAttribute(SortedSpaces1 + "Date"), _
+        <FilterAttribute(True), CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
         DisplayName("CreatedDate"), _
         DescriptionAttribute("Created Date")> _
         Public ReadOnly Property CreatedDate As DateTime
@@ -24,7 +24,7 @@ Namespace Template
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces1 + "Date"), _
+        <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
         DisplayName("LastModified"), _
         DescriptionAttribute("Last Modified Date")> _
         Public ReadOnly Property LastModified As DateTime
@@ -33,7 +33,7 @@ Namespace Template
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces2 + "Misc"), _
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Misc"), _
         DisplayName("Quote Number"), _
         DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
@@ -42,7 +42,7 @@ Namespace Template
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces2 + "Misc"), _
+        <CategoryAttribute(Spaces.SortedSpaces2 + "Misc"), _
         DisplayName("Initials"), _
         DescriptionAttribute("Initials of creator")> _
         Public ReadOnly Property Initials As String
@@ -51,7 +51,7 @@ Namespace Template
             End Get
         End Property
 
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Customer"), _
         DescriptionAttribute("The customer"),
         TypeConverter(GetType(CustomerConverter))> _
@@ -65,7 +65,7 @@ Namespace Template
             End Set
         End Property
 
-        <CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("Part Number"), _
         DescriptionAttribute("Part Number")> _
         Public Property PartNumber As String
@@ -78,7 +78,7 @@ Namespace Template
             End Set
         End Property
 
-        <FilterAttribute(False), CategoryAttribute(SortedSpaces3 + "Quote"), _
+        <FilterAttribute(False), CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _
         Public Property RequestForQuoteNumber As String
