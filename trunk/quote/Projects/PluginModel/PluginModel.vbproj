@@ -69,7 +69,6 @@
     <Compile Include="ActiveHeader.vb" />
     <Compile Include="common\ComponentProperties.vb" />
     <Compile Include="common\ComputationProperties.vb" />
-    <Compile Include="common\CustomPropertiesGenerator.vb" />
     <Compile Include="common\Detail.vb" />
     <Compile Include="common\DetailCollection.vb" />
     <Compile Include="common\GlobalOptions.vb" />

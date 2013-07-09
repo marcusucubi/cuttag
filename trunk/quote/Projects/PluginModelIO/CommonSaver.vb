@@ -7,7 +7,6 @@ Imports Model.Common
 
 Imports DB.QuoteDataBase
 Imports DB.QuoteDataBaseTableAdapters
-Imports Model.Common.CustomPropertiesGenerator
 
 Public Class CommonSaver
 
@@ -36,20 +35,6 @@ Public Class CommonSaver
                      ByVal obj As Object, _
                      ByVal SaveAll As Boolean)
         SaveProperties(id, COMPUTATION_PROPERTIES_ID, obj, SaveAll)
-    End Sub
-
-    Public Shared Sub SaveCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
-
-        DeleteCustomProperties()
-
-        Dim adaptor As New DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-
-        For Each p As PropInfo In gen.Properties
-            Dim desc As String = ""
-            Dim cat As String = ""
-            adaptor.Insert(CUSTOM_PROPERTIES_ID, CUSTOM_PROPERTIES_ID, _
-              p.Name, p.Expression, Nothing, Nothing, cat, desc, Nothing)
-        Next
     End Sub
 
     Private Shared Sub SaveProperties(ByVal id As Integer, _

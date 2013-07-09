@@ -4,7 +4,6 @@ Imports System.Data.OleDb
 Imports System.Transactions
 
 Imports Model.Common
-Imports Model.Common.CustomPropertiesGenerator
 
 Imports DB.QuoteDataBase
 Imports DB.QuoteDataBaseTableAdapters
@@ -138,26 +137,6 @@ Public Class CommonLoader
                     End If
                 End If
             End If
-        Next
-    End Sub
-
-    Public Shared Sub LoadCustomPropertiesGenerator(ByVal gen As CustomPropertiesGenerator)
-
-        Dim adaptor As New DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter
-
-        Dim table As DB.QuoteDataBase._QuotePropertiesDataTable
-        table = adaptor.GetDataByQuoteID(CommonSaver.CUSTOM_PROPERTIES_ID)
-        gen.Properties.Clear()
-
-        For Each row As DB.QuoteDataBase._QuotePropertiesRow In table.Rows
-            Dim prop As New PropInfo
-            If Not row.IsPropertyStringValueNull Then
-                prop.Expression = row.PropertyStringValue
-            End If
-            If Not row.IsPropertyNameNull Then
-                prop.Name = row.PropertyName
-            End If
-            gen.Properties.Add(prop)
         Next
     End Sub
 
