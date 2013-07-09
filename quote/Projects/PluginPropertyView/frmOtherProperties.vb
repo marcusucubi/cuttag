@@ -8,6 +8,7 @@ Public Class frmOtherProperties
 
     Private WithEvents _ActiveQuote As ActiveHeader
     Private WithEvents _NonQuoteProperties As OtherProperties
+    Private WithEvents _Settings As DisplaySettings = DisplaySettings.Instance
 
     Private Sub _QuoteProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _NonQuoteProperties.PropertyChanged
         Me.PropertyGrid1.Refresh()
@@ -21,6 +22,7 @@ Public Class frmOtherProperties
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
+        UpdateButton()
     End Sub
 
     Private Sub UpdateProperties()
@@ -38,6 +40,18 @@ Public Class frmOtherProperties
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
         _ActiveQuote = ActiveHeader.ActiveHeader
         UpdateProperties()
+    End Sub
+
+    Private Sub ToolStripButton1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripButton1.Click
+        DisplaySettings.Instance.HideReadOnlyProperties = Not DisplaySettings.Instance.HideReadOnlyProperties
+    End Sub
+
+    Private Sub _Settings_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles _Settings.PropertyChanged
+        UpdateButton()
+    End Sub
+
+    Private Sub UpdateButton()
+        Me.ToolStripButton1.Checked = DisplaySettings.Instance.HideReadOnlyProperties
     End Sub
 
 End Class
