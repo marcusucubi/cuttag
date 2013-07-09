@@ -9,7 +9,7 @@
     </SchemaVersion>
     <ProjectGuid>{7973E603-E061-4D17-A51A-FDEBFF5369A9}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ModelIO</RootNamespace>
+    <RootNamespace>Model.IO</RootNamespace>
     <AssemblyName>PluginModelIO</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>

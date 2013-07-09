@@ -2,7 +2,7 @@
 
 Imports Model
 Imports Model.BOM
-Imports ModelIO
+Imports Model.IO
 
 Public Class frmNewQuote
 
