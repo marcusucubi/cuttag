@@ -13,7 +13,7 @@ Public Class BOMCopier
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
-        'frmMain.frmMain.Focus()
+        PluginHost.App.MainForm.Focus()
 
         Dim o As PrimaryPropeties = q.PrimaryProperties
 
