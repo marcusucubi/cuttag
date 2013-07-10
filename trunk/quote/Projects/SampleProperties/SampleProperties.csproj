@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentPropertiesFactory.cs" />
     <Compile Include="ComputationProperiesFactory.cs" />
     <Compile Include="OtherProperiesFactory.cs" />
+    <Compile Include="SampleComponentProperties.cs" />
     <Compile Include="SampleComputationProperties.cs" />
     <Compile Include="SampleOtherProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

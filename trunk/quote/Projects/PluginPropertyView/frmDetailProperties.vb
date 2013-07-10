@@ -7,7 +7,7 @@ Public Class frmDetailProperties
     Inherits DockContent
 
     Private WithEvents _WireProperties As Template.DisplayableWireProperties
-    Private WithEvents _ComponentProperties As Template.DisplayableComponentProperties
+    Private WithEvents _ComponentProperties As Template.ComponentProperties
     Private WithEvents _Active As ActiveDetail
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged

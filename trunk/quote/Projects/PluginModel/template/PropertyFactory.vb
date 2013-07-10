@@ -63,6 +63,31 @@ Namespace Template
             Return result
         End Function
 
+        Public Function CreateComponentProperties(detail As Template.Detail) _
+                                                  As SaveableProperties
+
+            Dim result As SaveableProperties = Nothing
+
+            If App.RegisteredClasses.ContainsKey(GetType(IComponentPropertiesFactory)) Then
+
+                Dim v = App.RegisteredClasses(GetType(IComponentPropertiesFactory))
+
+                If (Not v Is Nothing) Then
+
+                    Dim o As IComponentPropertiesFactory = Activator.CreateInstance(v)
+
+                    result = o.CreateComponentProperties(detail)
+                End If
+
+            End If
+
+            If result Is Nothing Then
+                result = New DisplayableComponentProperties(New DefaultComponentProperties(detail))
+            End If
+
+            Return result
+        End Function
+
     End Class
 
 End Namespace

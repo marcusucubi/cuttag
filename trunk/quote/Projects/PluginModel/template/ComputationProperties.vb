@@ -1,6 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports System.Reflection
-Imports System.Math
 
 Namespace Template
 
