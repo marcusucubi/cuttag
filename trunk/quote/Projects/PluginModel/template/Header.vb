@@ -17,16 +17,8 @@ Namespace Template
 
             _PrimaryProperties = New PrimaryPropeties(Me, id)
 
-            _OtherProperties = Common.PropertyFactory.Instance.Create(Of Model.Template.OtherProperties)(Me, id)
-            If _OtherProperties Is Nothing Then
-                _OtherProperties = New DefaultOtherProperties(Me)
-            End If
-
-            _ComputationProperties = Common.PropertyFactory.Instance.Create(Of Model.Template.ComputationProperties)(Me, id)
-            If _ComputationProperties Is Nothing Then
-                _ComputationProperties = New DisplayableComputationProperties(New DefaultComputationProperties(Me))
-            End If
-
+            _OtherProperties = PropertyFactory.Instance.CreateOtherProperties(Me, id)
+            _ComputationProperties = PropertyFactory.Instance.CreateComputationProperties(Me, id)
             _NoteProperties = New NoteProperties(Me)
             MyBase.AddDependent(_ComputationProperties)
             MyBase.AddDependent(_OtherProperties)

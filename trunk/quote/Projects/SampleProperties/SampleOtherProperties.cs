@@ -8,13 +8,12 @@ using Model.Template;
 
 namespace SampleProperties
 {
-    [Register(Key=typeof(Model.Template.OtherProperties))]
-    public class SamplePrimaryProperties : Model.Template.OtherProperties
+    public class SampleOtherProperties : Model.Template.OtherProperties
     {
         private string m_Note;
         private DateTime m_DueDate;
 
-        public SamplePrimaryProperties(Header header)
+        public SampleOtherProperties(Header header)
             : base(header)
         {
             
