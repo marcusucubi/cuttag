@@ -1,14 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
 
+using Model;
 using Model.Template;
 
 using PluginHost;
-using System.ComponentModel;
-using Model;
 
 namespace SampleProperties
 {
-    [Register(Key = typeof(Model.Template.ComputationProperties))]
     public class SampleComputationProperties : Model.Template.ComputationProperties 
     {
         private Header _Header;

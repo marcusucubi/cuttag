@@ -81,7 +81,9 @@
     <Compile Include="common\WireProperties.vb" />
     <Compile Include="CustomerConverter.vb" />
     <Compile Include="DetailSortComparer.vb" />
-    <Compile Include="common\PropertyFactory.vb" />
+    <Compile Include="template\IComputationProperiesFactory.vb" />
+    <Compile Include="template\IOtherProperiesFactory.vb" />
+    <Compile Include="template\PropertyFactory.vb" />
     <Compile Include="FilterAttribute.vb" />
     <Compile Include="ModelEvents.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
