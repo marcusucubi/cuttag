@@ -195,7 +195,7 @@ Public Class QuoteImport
         primary.RequestForQuoteNumber = row.RFQ
         primary.CommonInitials = "Import: " & row.CreatedBy
 
-        Dim other As Model.Template.OtherProperties = header.OtherProperties
+        Dim other As Model.Template.DefaultOtherProperties = header.OtherProperties
         other.EstimatedAnnualUnits = row.EAU
         other.FormBoardCost = row.FormBoardCost
         other.LeadTimeInitial = row.LeadTimeInitial

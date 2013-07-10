@@ -15,6 +15,13 @@ namespace PluginHost
         private static Form s_MainForm; 
         private static DockPanel s_DockPanel;
         private static MenuStrip s_Menu;
+        private static Dictionary<Type, Type> s_RegisteredClasses = new Dictionary<Type, Type>();
+
+        [CannotDecreaseVisibility]
+        public static Dictionary<Type, Type> RegisteredClasses
+        {
+            get { return s_RegisteredClasses; }
+        }
 
         [CannotDecreaseVisibility]
         public static MenuStrip Menu

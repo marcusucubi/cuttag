@@ -74,6 +74,7 @@ namespace PluginHost.Internal
 
             Assembly a = Assembly.LoadFile(localFullName);
 
+            FindRegisteredClasses(a);
             List<PluginMenuItem> items = FindMenuItems(a);
             List<IPluginInit> inits = FindInits(a);
             PluginProxy plugin = new PluginProxy(items, inits);
@@ -96,6 +97,25 @@ namespace PluginHost.Internal
             }
 
             return result;
+        }
+
+        static private void FindRegisteredClasses(Assembly a)
+        {
+            Type[] types = a.GetTypes();
+            foreach (Type t in types)
+            {
+                RegisterAttribute[] mias = (RegisterAttribute[])
+                    t.GetCustomAttributes(typeof(RegisterAttribute), false);
+                if (mias.Length == 0)
+                {
+                    continue;
+                }
+
+                RegisterAttribute r = mias[0];
+
+                App.RegisteredClasses.Add(r.Key, t);
+            }
+
         }
 
         static private List<IPluginInit> FindInits(Assembly a)

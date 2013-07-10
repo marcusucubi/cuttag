@@ -56,14 +56,16 @@ Public Class MainFormStatusStrip
             Me._QuoteDate.Text = creaded
 
             If (TypeOf Me._ActiveHeader.Header Is Model.Template.Header) Then
-                Dim other As Model.Template.OtherProperties = _ActiveHeader.Header.OtherProperties
-                If (other.IsNew) Then
-                    Me._IsNew.Text = "New"
+                If (TypeOf _ActiveHeader.Header.OtherProperties Is Model.Template.DefaultOtherProperties) Then
+                    Dim other As Model.Template.DefaultOtherProperties = _ActiveHeader.Header.OtherProperties
+                    If (other.IsNew) Then
+                        Me._IsNew.Text = "New"
+                    Else
+                        Me._IsNew.Text = "Old"
+                    End If
                 Else
-                    Me._IsNew.Text = "Old"
+                    Me._IsNew.Text = "Quote"
                 End If
-            Else
-                Me._IsNew.Text = "Quote"
             End If
         End If
     End Sub

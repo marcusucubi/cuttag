@@ -18,7 +18,7 @@ Namespace Template
 
         Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
-        Public Sub New(ByVal subject As ComputationProperties)
+        Public Sub New(ByVal subject As DefaultComputationProperties)
             _Subject = subject
             MyBase.Subject = subject
         End Sub
@@ -28,7 +28,7 @@ Namespace Template
         End Sub
 
 #Region " Variables "
-        Private _Subject As ComputationProperties
+        Private _Subject As DefaultComputationProperties
 #End Region
 #Region "1 Copper "
         <FilterAttribute(True), _
