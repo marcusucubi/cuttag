@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</ProjectGuid>
+    <ProjectGuid>{D75A9F8C-8B5A-40B1-9CAE-A57D3A291007}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PluginHost</RootNamespace>
-    <AssemblyName>PluginHost</AssemblyName>
+    <RootNamespace>SampleProperties</RootNamespace>
+    <AssemblyName>SampleProperties</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,49 +34,26 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking">
-      <HintPath>..\quote\lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HasIcon.cs" />
-    <Compile Include="IPluginInit.cs" />
-    <Compile Include="IPluginMenuInit.cs" />
-    <Compile Include="MenuPosition.cs" />
-    <Compile Include="NDepend\Attributes\CannotDecreaseVisibilityAttribute.cs" />
-    <Compile Include="IPluginMenuAction.cs" />
-    <Compile Include="App.cs" />
-    <Compile Include="Internal\PluginProxy.cs" />
-    <Compile Include="Internal\Loader.cs" />
-    <Compile Include="Internal\UIBuilder.cs" />
-    <Compile Include="Internal\Logger.cs" />
-    <Compile Include="PluginMenuItemAttribute.cs" />
-    <Compile Include="Internal\PluginCollection.cs" />
-    <Compile Include="Internal\PluginMenuItem.cs" />
+    <Compile Include="SampleComputationProperties.cs" />
+    <Compile Include="SamplePrimaryProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RegisterAttribute.cs" />
-    <Compile Include="ResourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lib\WeifenLuo.WinFormsUI.Docking.dll" />
-    <None Include="Resources\excel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\PluginHost\PluginHost.csproj">
+      <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
+      <Name>PluginHost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginModel\PluginModel.vbproj">
+      <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
+      <Name>PluginModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@ Imports Model
 
 Namespace Template
 
-    Public Class PrimaryPropeties
+    Public NotInheritable Class PrimaryPropeties
         Inherits Common.PrimaryPropeties
 
         Private _QuoteHeader As Header

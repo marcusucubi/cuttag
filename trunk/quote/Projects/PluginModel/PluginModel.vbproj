@@ -81,6 +81,7 @@
     <Compile Include="common\WireProperties.vb" />
     <Compile Include="CustomerConverter.vb" />
     <Compile Include="DetailSortComparer.vb" />
+    <Compile Include="common\PropertyFactory.vb" />
     <Compile Include="FilterAttribute.vb" />
     <Compile Include="ModelEvents.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -108,6 +109,8 @@
     <Compile Include="template\ComponentProperties.vb" />
     <Compile Include="template\ComputationProperties.vb" />
     <Compile Include="template\Customer.vb" />
+    <Compile Include="template\DefaultComputationProperties.vb" />
+    <Compile Include="template\DefaultOtherProperties.vb" />
     <Compile Include="template\Detail.vb" />
     <Compile Include="template\DisplayableComponentProperties.vb" />
     <Compile Include="template\DisplayableComputationProperties.vb" />
@@ -144,6 +147,10 @@
     <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
       <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
       <Name>PluginDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginHost\PluginHost.csproj">
+      <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
+      <Name>PluginHost</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
