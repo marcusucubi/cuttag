@@ -20,9 +20,9 @@ Namespace Template
             Me.SendEvents()
         End Sub
 
-        Private _Subject As ComponentProperties
+        Private _Subject As DefaultComponentProperties
 
-        Public Sub New(ByVal subject As ComponentProperties)
+        Public Sub New(ByVal subject As DefaultComponentProperties)
             _Subject = subject
             MyBase.Subject = subject
         End Sub
