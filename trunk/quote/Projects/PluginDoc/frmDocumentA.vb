@@ -124,7 +124,7 @@ Public Class frmDocumentA
             If r = MsgBoxResult.Cancel Then
                 e.Cancel = True
             ElseIf r = MsgBoxResult.Yes Then
-                Dim saver As New Model.IO.BOMSaver
+                Dim saver As New Model.IO.TemplateSaver
                 saver.Save(QuoteHeader)
             End If
         End If
