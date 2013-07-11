@@ -66,9 +66,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOMCopier.vb" />
-    <Compile Include="BOMLoader.vb" />
-    <Compile Include="BOMSaver.vb" />
+    <Compile Include="TemplateCopier.vb" />
+    <Compile Include="TemplateLoader.vb" />
+    <Compile Include="TemplateSaver.vb" />
     <Compile Include="CommonLoader.vb" />
     <Compile Include="CommonSaver.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

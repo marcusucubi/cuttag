@@ -158,7 +158,7 @@ Public Class QuoteImport
 
     Private Function Save(ByVal header As Model.Template.Header) As Integer
 
-        Dim BOMSaver As New Model.IO.BOMSaver
+        Dim BOMSaver As New Model.IO.TemplateSaver
         Dim id As Integer = BOMSaver.Save(header)
 
         Console.WriteLine("    New QuoteNumber: " & id)

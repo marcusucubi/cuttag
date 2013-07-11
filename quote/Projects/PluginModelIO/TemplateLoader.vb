@@ -11,7 +11,7 @@ Imports Model.Template
 Imports Model
 Imports System.Windows.Forms
 
-Public Class BOMLoader
+Public Class TemplateLoader
 
     Public Function Load(ByVal id As Long) As Header
 

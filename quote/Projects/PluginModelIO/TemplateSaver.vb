@@ -7,7 +7,7 @@ Imports DB
 Imports DB.QuoteDataBaseTableAdapters
 Imports System.Windows.Forms
 
-Public Class BOMSaver
+Public Class TemplateSaver
 
     Public Function Save(ByVal q As Header) _
                         As Integer

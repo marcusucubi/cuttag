@@ -5,7 +5,7 @@ Imports Model.Template
 Imports DB.QuoteDataBaseTableAdapters
 Imports System.Windows.Forms
 
-Public Class BOMCopier
+Public Class TemplateCopier
 
     Public Function Copy(ByVal q As Header) _
                         As Integer
