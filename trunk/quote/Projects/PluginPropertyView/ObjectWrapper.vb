@@ -46,6 +46,11 @@ Public Class ObjectWrapper
     End Function
 
     Public Function GetProperties(ByVal attributes As Attribute()) As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
+
+        If m_Target.GetType().FullName.ToLower().Contains("generated") Then
+            Return TypeDescriptor.GetProperties(m_Target, attributes, True)
+        End If
+
         Return FilterProperties2(TypeDescriptor.GetProperties(m_Target, attributes, True))
     End Function
 
@@ -59,35 +64,19 @@ Public Class ObjectWrapper
 
     Public Function FilterProperties2(ByVal Props2Filter As PropertyDescriptorCollection) As PropertyDescriptorCollection
 
-        ' If HideReadOnlyProperties then eliminate readonly properties starting 
-        ' with a property containing FilterAttribute(True)
-        ' and ending with FilterAttribute(False)
-        ' allowing all other properties to be included
         Dim props As New PropertyDescriptorCollection(Nothing)
-        Dim i As Integer = 0
-        Dim bDoFilter As Boolean = False
 
         If DisplaySettings.Instance.HideReadOnlyProperties Then
 
             For Each prop As PropertyDescriptor In Props2Filter
 
-                If prop.Attributes.Contains(New Model.FilterAttribute(True)) And Not bDoFilter Then 'Begin filtering with this property
-                    bDoFilter = True
-                End If
-
-                If Not bDoFilter Then
-                    props.Add(prop) 'Not filtering, so include property
-                ElseIf Not prop.IsReadOnly Then
-                    props.Add(prop) 'Now filtering readonly properties, but this property is not read only so include property
-                End If
-
-                If prop.Attributes.Contains(New Model.FilterAttribute(False)) Then 'Stop filtering with this property
-                    bDoFilter = False
+                If Not prop.IsReadOnly Then
+                    props.Add(prop)
                 End If
 
             Next
         Else
-            props = Props2Filter 'All properites will show
+            props = Props2Filter
         End If
 
         Return props
