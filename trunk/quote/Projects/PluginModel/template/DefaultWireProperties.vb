@@ -5,21 +5,13 @@ Imports Model.Quote
 
 Namespace Template
 
-    ''' <summary>
-    ''' Computation properties for wires.
-    ''' </summary>
-    ''' <remarks>
-    ''' This class should contain computation related
-    ''' code.  Any display related code should
-    ''' should be in DisplayableWireProperties.
-    ''' </remarks>
     Public Class DefaultWireProperties
         Inherits Template.WireProperties
 
         Private _CopperWeightPer1000Ft As Decimal
-        Private WithEvents _QuoteDetail As Detail
+        Private WithEvents _QuoteDetail As Model.Template.Detail
 
-        Public Sub New(ByVal QuoteDetail As Detail)
+        Public Sub New(ByVal QuoteDetail As Model.Template.Detail)
             MyBase.New(QuoteDetail)
             _QuoteDetail = QuoteDetail
         End Sub
@@ -105,7 +97,7 @@ Namespace Template
             End Set
         End Property
 
-        Private Overloads Sub SendEvents()
+        Protected Overloads Sub SendEvents()
             MyBase.SendEvents()
             Me._QuoteDetail.Header.ComputationProperties.SendEvents()
         End Sub

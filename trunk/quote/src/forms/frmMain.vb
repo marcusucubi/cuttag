@@ -169,7 +169,7 @@ Public Class frmMain
 
     Private Sub SaveTemplate()
         If Not Me._ActiveHeader.Header.IsQuote Then
-            Dim saver As New BOMSaver
+            Dim saver As New TemplateSaver
             saver.Save(Me._ActiveHeader.Header)
         End If
         EnableButtons()
@@ -181,7 +181,7 @@ Public Class frmMain
             Dim result As DialogResult = frm.ShowDialog()
             If result.HasFlag(DialogResult.OK) Then
                 SaveTemplate()
-                Dim copy As New BOMCopier
+                Dim copy As New TemplateCopier
                 Dim id = copy.Copy(Me._ActiveHeader.Header)
                 LoadTemplate(id)
             End If
@@ -203,7 +203,7 @@ Public Class frmMain
             Return
         End If
 
-        Dim loader As New BOMLoader
+        Dim loader As New TemplateLoader
         Dim q As Model.Common.Header
 
         q = loader.Load(id)

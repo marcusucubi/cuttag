@@ -9,6 +9,7 @@
     <!--
     <plugin path="SampleProperties.dll" />
     -->
+    <plugin path="DekalbProperties.dll" />
   </debug>
   <release>
     <!--

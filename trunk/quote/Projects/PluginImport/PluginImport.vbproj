@@ -152,6 +152,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DekalbProperties\DekalbProperties.vbproj">
+      <Project>{BF18B4F1-0B84-470A-B6CF-00931F2677D4}</Project>
+      <Name>DekalbProperties</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
       <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
       <Name>PluginDB</Name>
