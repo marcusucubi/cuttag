@@ -23,9 +23,9 @@ Namespace Template
             Me.SendEvents()
         End Sub
 
-        Private ReadOnly _Subject As Template.WireProperties
+        Private ReadOnly _Subject As Template.DefaultWireProperties
 
-        Public Sub New(ByVal subject As Template.WireProperties)
+        Public Sub New(ByVal subject As Template.DefaultWireProperties)
             _Subject = subject
             MyBase.Subject = subject
         End Sub

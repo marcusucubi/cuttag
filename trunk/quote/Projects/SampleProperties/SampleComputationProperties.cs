@@ -11,8 +11,6 @@ namespace SampleProperties
     public class SampleComputationProperties : Model.Template.ComputationProperties 
     {
         private Header _Header;
-        private Decimal _ShippingContainerCost;
-        private Decimal _ShippingCost;
         private string _ShippingBox = "NoBox";
 
         public SampleComputationProperties(Header header)

@@ -88,6 +88,31 @@ Namespace Template
             Return result
         End Function
 
+        Public Function CreateWireProperties(detail As Template.Detail) _
+                                             As SaveableProperties
+
+            Dim result As SaveableProperties = Nothing
+
+            If App.RegisteredClasses.ContainsKey(GetType(IWireProperiesFactory)) Then
+
+                Dim v = App.RegisteredClasses(GetType(IWireProperiesFactory))
+
+                If (Not v Is Nothing) Then
+
+                    Dim o As IWireProperiesFactory = Activator.CreateInstance(v)
+
+                    result = o.CreateWireProperties(detail)
+                End If
+
+            End If
+
+            If result Is Nothing Then
+                result = New DisplayableWireProperties(New DefaultWireProperties(detail))
+            End If
+
+            Return result
+        End Function
+
     End Class
 
 End Namespace

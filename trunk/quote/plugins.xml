@@ -7,8 +7,8 @@
     <plugin path="PluginPropertyView.dll" />
     <plugin path="PluginOutputView.dll" />
     <!--
-    -->
     <plugin path="SampleProperties.dll" />
+    -->
   </debug>
   <release>
     <!--
