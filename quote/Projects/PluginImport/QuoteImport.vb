@@ -141,7 +141,7 @@ Public Class QuoteImport
 
         GetDetails(header, row.QuoteID)
 
-        Dim comp As Model.Template.DisplayableComputationProperties = header.ComputationProperties
+        Dim comp As DekalbProperties.DekalbComputationProperties = header.ComputationProperties
         _NewUnitCost = comp.AdjustedTotalUnitCost
 
         Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
@@ -195,7 +195,7 @@ Public Class QuoteImport
         primary.RequestForQuoteNumber = row.RFQ
         primary.CommonInitials = "Import: " & row.CreatedBy
 
-        Dim other As Model.Template.DefaultOtherProperties = header.OtherProperties
+        Dim other As DekalbProperties.DekalbOtherProperties = header.OtherProperties
         other.EstimatedAnnualUnits = row.EAU
         other.FormBoardCost = row.FormBoardCost
         other.LeadTimeInitial = row.LeadTimeInitial
@@ -206,7 +206,7 @@ Public Class QuoteImport
         other.SetImportedLaborMinutes(row.LaborMinutes)
         _OldUnitCost = row.UnitPrice
 
-        Dim comp As Model.Template.DisplayableComputationProperties = header.ComputationProperties
+        Dim comp As DekalbProperties.DisplayableComputationProperties = header.ComputationProperties
         comp.CopperPrice = row.CuPrice
         comp.LaborRate = row.LaborRate
         comp.NumberOfCuts = row.Cuts

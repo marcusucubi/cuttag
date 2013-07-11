@@ -13,7 +13,6 @@ Namespace Common
         Protected WithEvents _Details As DetailCollection(Of Common.Detail)
 
         Public Property ID As Integer
-        Public Property WeightProperties As New Common.Weights(Me)
         Public Property IsQuote As Boolean
 
         Public Sub New()

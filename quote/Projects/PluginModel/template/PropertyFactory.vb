@@ -58,7 +58,7 @@ Namespace Template
             End If
 
             If result Is Nothing Then
-                result = New DisplayableComputationProperties(New DefaultComputationProperties(header))
+                result = New DefaultComputationProperties(header)
             End If
 
             Return result
@@ -83,7 +83,7 @@ Namespace Template
             End If
 
             If result Is Nothing Then
-                result = New DisplayableComponentProperties(New DefaultComponentProperties(detail))
+                result = New DefaultComponentProperties(detail)
             End If
 
             Return result
@@ -108,7 +108,7 @@ Namespace Template
             End If
 
             If result Is Nothing Then
-                result = New DisplayableWireProperties(New DefaultWireProperties(detail))
+                result = New DefaultWireProperties(detail)
             End If
 
             Return result

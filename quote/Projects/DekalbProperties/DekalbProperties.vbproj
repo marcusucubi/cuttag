@@ -7,10 +7,10 @@
     </ProductVersion>
     <SchemaVersion>
     </SchemaVersion>
-    <ProjectGuid>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</ProjectGuid>
+    <ProjectGuid>{BF18B4F1-0B84-470A-B6CF-00931F2677D4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Model</RootNamespace>
-    <AssemblyName>PluginModel</AssemblyName>
+    <RootNamespace>DekalbProperties</RootNamespace>
+    <AssemblyName>DekalbProperties</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -21,7 +21,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>..\..\bin\Debug\</OutputPath>
-    <DocumentationFile>PluginModel.xml</DocumentationFile>
+    <DocumentationFile>DekalbProperties.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>PluginModel.xml</DocumentationFile>
+    <DocumentationFile>DekalbProperties.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -48,7 +48,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,30 +64,15 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveDetail.vb" />
-    <Compile Include="ActiveHeader.vb" />
-    <Compile Include="common\ComponentProperties.vb" />
-    <Compile Include="common\ComputationProperties.vb" />
-    <Compile Include="common\Detail.vb" />
-    <Compile Include="common\DetailCollection.vb" />
-    <Compile Include="common\GlobalOptions.vb" />
-    <Compile Include="common\Header.vb" />
-    <Compile Include="common\NoteProperties.vb" />
-    <Compile Include="common\OtherProperties.vb" />
-    <Compile Include="common\PrimaryPropeties.vb" />
-    <Compile Include="common\SaveableProperties.vb" />
-    <Compile Include="common\WireProperties.vb" />
-    <Compile Include="CustomerConverter.vb" />
-    <Compile Include="DetailSortComparer.vb" />
-    <Compile Include="template\DefaultComponentProperties.vb" />
-    <Compile Include="template\DefaultWireProperties.vb" />
-    <Compile Include="template\ext\IComponentPropertiesFactory.vb" />
-    <Compile Include="template\ext\IComputationProperiesFactory.vb" />
-    <Compile Include="template\ext\IOtherProperiesFactory.vb" />
-    <Compile Include="template\ext\IWireProperiesFactory.vb" />
-    <Compile Include="template\PropertyFactory.vb" />
-    <Compile Include="FilterAttribute.vb" />
-    <Compile Include="ModelEvents.vb" />
+    <Compile Include="ComponentPropertiesFactory.vb" />
+    <Compile Include="ComputationProperiesFactory.vb" />
+    <Compile Include="DekalbComponentProperties.vb" />
+    <Compile Include="DekalbComputationProperties.vb" />
+    <Compile Include="DekalbOtherProperties.vb" />
+    <Compile Include="DekalbWireProperties.vb" />
+    <Compile Include="DisplayableComponentProperties.vb" />
+    <Compile Include="DisplayableComputationProperties.vb" />
+    <Compile Include="DisplayableWireProperties.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -104,26 +88,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Product.vb" />
-    <Compile Include="QuoteTypeList.vb" />
-    <Compile Include="quote\Detail.vb" />
-    <Compile Include="quote\Header.vb" />
-    <Compile Include="quote\PrimaryPropeties.vb" />
-    <Compile Include="Shipping.vb" />
-    <Compile Include="ShippingList.vb" />
-    <Compile Include="template\ComponentProperties.vb" />
-    <Compile Include="template\ComputationProperties.vb" />
-    <Compile Include="template\Customer.vb" />
-    <Compile Include="template\DefaultComputationProperties.vb" />
-    <Compile Include="template\DefaultOtherProperties.vb" />
-    <Compile Include="template\Detail.vb" />
-    <Compile Include="template\Header.vb" />
-    <Compile Include="template\NoteProperties.vb" />
-    <Compile Include="template\OtherProperties.vb" />
-    <Compile Include="template\PrimaryPropeties.vb" />
-    <Compile Include="template\Spaces.vb" />
-    <Compile Include="template\WireProperties.vb" />
-    <Compile Include="UOMConverter.vb" />
+    <Compile Include="OtherProperiesFactory.vb" />
+    <Compile Include="Weights.vb" />
+    <Compile Include="WirePropertiesFactory.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -134,7 +101,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -146,16 +112,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
-      <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
-      <Name>PluginDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PluginModel\PluginModel.vbproj">
+      <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
+      <Name>PluginModel</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

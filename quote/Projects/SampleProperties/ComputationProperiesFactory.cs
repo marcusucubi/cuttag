@@ -7,9 +7,6 @@ namespace SampleProperties
     [Register(Key = typeof(Model.Template.Ext.IComputationProperiesFactory))]
     public class ComputationProperiesFactory : Model.Template.Ext.IComputationProperiesFactory
     {
-        public ComputationProperiesFactory()
-        {
-        }
 
         public Model.Common.SaveableProperties CreateComputationProperties(
             Header header, int id)
