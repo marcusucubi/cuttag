@@ -6,10 +6,12 @@ namespace SampleProperties
     public class SampleWireProperties : WireProperties
     {
         private string m_ProductCode;
+        private Detail m_Detail;
 
         public SampleWireProperties(Detail detail)
             : base(detail)
         {
+            m_Detail = detail;
         }
 
         public string Sample
@@ -23,8 +25,15 @@ namespace SampleProperties
             set
             {
                 m_ProductCode = value;
-                base.MakeDirty();
+                SendEvents();
             }
         }
+
+        public new void SendEvents()
+        {
+            base.SendEvents();
+            m_Detail.Header.ComputationProperties.SendEvents();
+        }
+
     }
 }
