@@ -6,8 +6,8 @@ Imports WeifenLuo.WinFormsUI.Docking
 Public Class frmDetailProperties
     Inherits DockContent
 
-    Private WithEvents _WireProperties As Template.DisplayableWireProperties
-    Private WithEvents _ComponentProperties As Template.ComponentProperties
+    Private WithEvents _WireProperties As Common.WireProperties
+    Private WithEvents _ComponentProperties As Common.ComponentProperties
     Private WithEvents _Active As ActiveDetail
 
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
@@ -20,7 +20,7 @@ Public Class frmDetailProperties
                 _WireProperties = detail.QuoteDetailProperties
                 _ComponentProperties = Nothing
             End If
-            If TypeOf o Is Template.DisplayableComponentProperties Then
+            If TypeOf o Is Template.ComponentProperties Then
                 _ComponentProperties = detail.QuoteDetailProperties
                 _WireProperties = Nothing
             End If
