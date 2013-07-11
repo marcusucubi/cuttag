@@ -4,8 +4,8 @@ using PluginHost;
 
 namespace SampleProperties
 {
-    [Register(Key = typeof(Model.Template.IWireProperiesFactory))]
-    public class WirePropertiesFactory : Model.Template.IWireProperiesFactory 
+    [Register(Key = typeof(Model.Template.Ext.IWireProperiesFactory))]
+    public class WirePropertiesFactory : Model.Template.Ext.IWireProperiesFactory 
     {
         public SaveableProperties CreateWireProperties(Model.Template.Detail detail)
         {

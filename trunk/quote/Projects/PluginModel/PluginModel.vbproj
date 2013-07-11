@@ -83,10 +83,10 @@
     <Compile Include="DetailSortComparer.vb" />
     <Compile Include="template\DefaultComponentProperties.vb" />
     <Compile Include="template\DefaultWireProperties.vb" />
-    <Compile Include="template\IComponentPropertiesFactory.vb" />
-    <Compile Include="template\IComputationProperiesFactory.vb" />
-    <Compile Include="template\IOtherProperiesFactory.vb" />
-    <Compile Include="template\IWireProperiesFactory.vb" />
+    <Compile Include="template\ext\IComponentPropertiesFactory.vb" />
+    <Compile Include="template\ext\IComputationProperiesFactory.vb" />
+    <Compile Include="template\ext\IOtherProperiesFactory.vb" />
+    <Compile Include="template\ext\IWireProperiesFactory.vb" />
     <Compile Include="template\PropertyFactory.vb" />
     <Compile Include="FilterAttribute.vb" />
     <Compile Include="ModelEvents.vb" />

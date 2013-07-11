@@ -1,5 +1,6 @@
 ﻿Imports PluginHost
 Imports Model.Common
+Imports Model.Template.Ext
 
 Namespace Template
 

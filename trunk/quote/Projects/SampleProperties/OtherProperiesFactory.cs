@@ -4,8 +4,8 @@ using PluginHost;
 
 namespace SampleProperties
 {
-    [Register(Key = typeof(Model.Template.IOtherProperiesFactory))]
-    public class OtherProperiesFactory : Model.Template.IOtherProperiesFactory
+    [Register(Key = typeof(Model.Template.Ext.IOtherProperiesFactory))]
+    public class OtherProperiesFactory : Model.Template.Ext.IOtherProperiesFactory
     {
         public OtherProperiesFactory()
         {
