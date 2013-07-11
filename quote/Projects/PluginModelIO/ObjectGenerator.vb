@@ -23,7 +23,7 @@ Public Class ObjectGenerator
     Public Property ClassName As String = "GeneratedProperties"
     Public Property BaseTypeName As String
     Public Property InitObject As Object
-    Public ReadOnly Property NameList As List(Of String) ''dd_Added 11/28/11
+    Public ReadOnly Property NameList As List(Of String)
         Get
             Return _NameList
         End Get
@@ -39,7 +39,7 @@ Public Class ObjectGenerator
     Public Function Generate() As Object
 
         Dim compileUnit As New CodeCompileUnit()
-        Dim samples As New CodeNamespace("DCS.Quote.Properties")
+        Dim samples As New CodeNamespace("Model.Generated")
 
         samples.Imports.Add(New CodeNamespaceImport("System"))
         samples.Imports.Add(New CodeNamespaceImport("PluginModel.Common"))

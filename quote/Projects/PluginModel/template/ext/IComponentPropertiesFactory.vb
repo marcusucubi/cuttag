@@ -1,6 +1,6 @@
 ﻿Imports Model.Template
 
-Namespace Template
+Namespace Template.Ext
 
     Public Interface IComponentPropertiesFactory
 
