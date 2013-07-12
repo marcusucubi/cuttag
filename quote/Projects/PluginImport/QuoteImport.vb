@@ -141,7 +141,7 @@ Public Class QuoteImport
 
         GetDetails(header, row.QuoteID)
 
-        Dim comp As DekalbProperties.DekalbComputationProperties = header.ComputationProperties
+        Dim comp As DekalbProperties.DisplayableComputationProperties = header.ComputationProperties
         _NewUnitCost = comp.AdjustedTotalUnitCost
 
         Console.WriteLine("    Old UnitCost: " & Math.Round(_OldUnitCost, 2))
