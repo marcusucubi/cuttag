@@ -59,12 +59,5 @@ namespace PluginHost.Properties {
                 resourceCulture = value;
             }
         }
-        
-        public static System.Drawing.Bitmap excel {
-            get {
-                object obj = ResourceManager.GetObject("excel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

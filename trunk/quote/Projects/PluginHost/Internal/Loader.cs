@@ -77,7 +77,7 @@ namespace PluginHost.Internal
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show("Error loading " + fileName);
+                System.Windows.Forms.MessageBox.Show("Error loading " + fileName + "\r\n" + e.Message);
             }
         }
 
