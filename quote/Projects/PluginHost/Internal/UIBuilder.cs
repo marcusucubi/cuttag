@@ -40,7 +40,11 @@ namespace PluginHost.Internal
             PluginProxy plugin,
             MenuStrip menuStrip)
         {
-            foreach (PluginMenuItem item in plugin.PluginMenuItems)
+            List<PluginMenuItem> sortedItems = new List<PluginMenuItem>();
+            sortedItems.AddRange(plugin.PluginMenuItems);
+            sortedItems.Sort();
+
+            foreach (PluginMenuItem item in sortedItems)
             {
 
                 if (item.MenuName.Length > 0)

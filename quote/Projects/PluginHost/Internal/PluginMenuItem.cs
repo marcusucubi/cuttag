@@ -8,7 +8,7 @@ using PluginHost;
 
 namespace PluginHost.Internal
 {
-    internal sealed class PluginMenuItem 
+    internal sealed class PluginMenuItem : IComparable<PluginMenuItem>
     {
         internal sealed class BuildData
         {
@@ -73,5 +73,9 @@ namespace PluginHost.Internal
             set;
         }
 
+        public int CompareTo(PluginMenuItem other)
+        {
+            return other.Text.CompareTo(this.Text);
+        }
     }
 }
