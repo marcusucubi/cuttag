@@ -15,6 +15,7 @@ namespace PluginHost
         private static Form s_MainForm; 
         private static DockPanel s_DockPanel;
         private static MenuStrip s_Menu;
+        private static UserControl s_StatusStrip;
         private static Dictionary<Type, Type> s_RegisteredClasses = new Dictionary<Type, Type>();
 
         [CannotDecreaseVisibility]
@@ -42,14 +43,22 @@ namespace PluginHost
         }
 
         [CannotDecreaseVisibility]
+        public static UserControl StatusStrip
+        {
+            get { return s_StatusStrip; }
+        }
+
+        [CannotDecreaseVisibility]
         public static void Init(
             Form mainForm, 
             DockPanel dockPanel,
             MenuStrip menu,
-            ToolStrip toolStrip)
+            ToolStrip toolStrip,
+            UserControl statusStrip)
         {
             s_MainForm = mainForm;
             s_DockPanel = dockPanel;
+            s_StatusStrip = statusStrip;
             s_Menu = menu;
 
             PluginCollection col = Loader.Load();
