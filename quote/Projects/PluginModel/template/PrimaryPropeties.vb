@@ -15,7 +15,7 @@ Namespace Template
             Me.SetID(id)
         End Sub
 
-        <FilterAttribute(True), CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
+        <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
         DisplayName("CreatedDate"), _
         DescriptionAttribute("Created Date")> _
         Public ReadOnly Property CreatedDate As DateTime
@@ -78,7 +78,7 @@ Namespace Template
             End Set
         End Property
 
-        <FilterAttribute(False), CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("RFQ"), _
         DescriptionAttribute("Request For Quote")> _
         Public Property RequestForQuoteNumber As String

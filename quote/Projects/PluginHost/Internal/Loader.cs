@@ -72,13 +72,20 @@ namespace PluginHost.Internal
 
             Logger.Log("Loading plugin " + fullPath);
 
-            Assembly a = Assembly.LoadFile(localFullName);
+            try
+            {
+                Assembly a = Assembly.LoadFile(localFullName);
 
-            FindRegisteredClasses(a);
-            List<PluginMenuItem> items = FindMenuItems(a);
-            List<IPluginInit> inits = FindInits(a);
-            PluginProxy plugin = new PluginProxy(items, inits);
-            collection.Add(plugin);
+                FindRegisteredClasses(a);
+                List<PluginMenuItem> items = FindMenuItems(a);
+                List<IPluginInit> inits = FindInits(a);
+                PluginProxy plugin = new PluginProxy(items, inits);
+                collection.Add(plugin);
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Error loading " + fileName);
+            }
         }
 
         static private List<PluginMenuItem> FindMenuItems(Assembly a)

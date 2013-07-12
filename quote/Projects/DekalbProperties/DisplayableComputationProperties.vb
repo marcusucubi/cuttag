@@ -30,8 +30,7 @@ Public Class DisplayableComputationProperties
     Private _Subject As DekalbComputationProperties
 #End Region
 #Region "1 Copper "
-    <FilterAttribute(True), _
-    DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)"), _
+    <DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)"), _
     DisplayName("Copper Weight"), _
     CategoryAttribute(Spaces.SortedSpaces1 + "Copper")> _
     Public ReadOnly Property CopperWeight As Decimal
@@ -601,7 +600,7 @@ Public Class DisplayableComputationProperties
         End Set
     End Property
 
-    <FilterAttribute(False), DescriptionAttribute("(TotalUnitCost * ManufacturingMarkup)+F/B-Test Board" + Chr(10) + "(Dollars)"), _
+    <DescriptionAttribute("(TotalUnitCost * ManufacturingMarkup)+F/B-Test Board" + Chr(10) + "(Dollars)"), _
     DisplayName("Adjusted Total Unit Cost"), _
     CategoryAttribute(Spaces.SortedSpaces11 + "Total")> _
     Public ReadOnly Property AdjustedTotalUnitCost() As Decimal

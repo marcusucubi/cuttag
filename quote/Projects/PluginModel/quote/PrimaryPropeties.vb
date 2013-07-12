@@ -37,7 +37,7 @@ Namespace Quote
             Me._LastModified = LastModified
         End Sub
 
-        <FilterAttribute(True), CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
+        <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
          DisplayName("CreatedDate"), _
          DescriptionAttribute("Created Date")> _
         Public ReadOnly Property CreatedDate As DateTime
@@ -101,7 +101,7 @@ Namespace Quote
             End Get
         End Property
 
-        <FilterAttribute(False), CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
+        <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
         DisplayName("TemplateNumber"), _
         DescriptionAttribute("Created from template")> _
         Public ReadOnly Property TemplateNumber As Integer

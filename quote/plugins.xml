@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <plugins>
+  
   <debug>
     <plugin path="PluginImport.dll" />
     <plugin path="PluginExport.dll" />
@@ -11,6 +12,7 @@
     -->
     <plugin path="DekalbProperties.dll" />
   </debug>
+  
   <release>
     <!--
     -->
@@ -19,6 +21,10 @@
     <plugin path="PluginCompare.dll" />
     <plugin path="PluginPropertyView.dll" />
     <plugin path="PluginOutputView.dll" />
+    <!--
+    <plugin path="SampleProperties.dll" />
+    -->
+    <plugin path="DekalbProperties.dll" />
   </release>
 </plugins>
 
