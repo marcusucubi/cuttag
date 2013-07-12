@@ -7,9 +7,7 @@ Imports Doc
 
 <PluginMenuItem( _
     Text:="Compare With", _
-    Parent:="Template", _
-    MenuAnchor:="TemplateSep2", _
-    MenuPosition:=MenuPosition.Below
+    Parent:="Template" _
     )>
 Public Class TemplateCompareWithMenuItem
     Implements IPluginMenuAction, IPluginMenuInit

@@ -7,9 +7,7 @@ Imports Model
 
 <PluginMenuItem( _
     Text:="Hide Details", _
-    Parent:="View", _
-    MenuAnchor:="ViewSep1", _
-    MenuPosition:=MenuPosition.Above
+    Parent:="View" _
     )>
 Public Class DisplayReadonlyProperties
     Implements IPluginMenuAction, IPluginMenuInit

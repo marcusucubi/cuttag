@@ -6,9 +6,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 
 <PluginMenuItem( _
     Text:="Primary", _
-    Parent:="View", _
-    MenuAnchor:="ViewSep1", _
-    MenuPosition:=MenuPosition.Above
+    Parent:="View" _
     )>
 Public Class DisplayPrimaryMenuItem
     Implements IPluginMenuAction

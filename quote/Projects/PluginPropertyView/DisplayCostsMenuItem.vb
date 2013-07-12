@@ -7,9 +7,7 @@ Imports WeifenLuo.WinFormsUI.Docking
 
 <PluginMenuItem( _
     Text:="Costs", _
-    Parent:="View", _
-    MenuAnchor:="ViewSep1", _
-    MenuPosition:=MenuPosition.Above
+    Parent:="View" _
     )>
 Public Class DisplayCostsMenuItem
     Implements IPluginMenuAction, IPluginMenuInit, HasIcon

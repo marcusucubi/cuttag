@@ -37,20 +37,13 @@ namespace PluginHost.Internal
 
             string fullPath = Path.GetFullPath("plugins.xml");
 
-            Logger.Log("Opening " + fullPath);
+            Console.WriteLine("Opening " + fullPath);
 
             FileStream stream = File.OpenRead(fullPath);
             doc.Load(stream);
 
             string select;
-            if (IsDebugging())
-            {
-                select = "/plugins/debug/*";
-            }
-            else
-            {
-                select = "/plugins/release/*";
-            }
+            select = "/plugins/*";
 
             XmlNodeList nodes = doc.SelectNodes(select);
             foreach (XmlNode node in nodes)
@@ -70,7 +63,7 @@ namespace PluginHost.Internal
             string fileName = Path.GetFileName(path);
             string localFullName = Path.GetFullPath(fileName);
 
-            Logger.Log("Loading plugin " + fullPath);
+            Console.WriteLine("Loading plugin " + fullPath);
 
             try
             {
@@ -79,7 +72,7 @@ namespace PluginHost.Internal
                 FindRegisteredClasses(a);
                 List<PluginMenuItem> items = FindMenuItems(a);
                 List<IPluginInit> inits = FindInits(a);
-                PluginProxy plugin = new PluginProxy(items, inits);
+                PluginProxy plugin = new PluginProxy(items, inits, a);
                 collection.Add(plugin);
             }
             catch (Exception e)
@@ -172,9 +165,7 @@ namespace PluginHost.Internal
             {
                 PluginMenuItemAttribute ppm = ppms[0];
                 data.MenuName = ppm.Parent;
-                data.MenuAnchor = ppm.MenuAnchor;
-                data.ButtonAnchor = ppm.ButtonAnchor;
-                data.MenuPosition = ppm.MenuPosition;
+                data.ShowInToolbar = ppm.ShowInToolbar;
             }
 
             HasIcon hasIcon = target as HasIcon;

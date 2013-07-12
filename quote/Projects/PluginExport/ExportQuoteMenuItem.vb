@@ -4,11 +4,9 @@ Imports PluginHost
 Imports Model
 
 <PluginMenuItem( _
-    Text:="Export", _
+    Text:="Export Quote", _
     Parent:="Quote", _
-    MenuAnchor:="QuoteSep4", _
-    ButtonAnchor:="QuoteSeparator1", _
-    MenuPosition:=MenuPosition.Above
+    ShowInToolbar:=True _
     )>
 Public Class ExportQuoteMenuItem
     Implements IPluginMenuAction, IPluginMenuInit, HasIcon
