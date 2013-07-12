@@ -48,14 +48,12 @@
     <Compile Include="HasIcon.cs" />
     <Compile Include="IPluginInit.cs" />
     <Compile Include="IPluginMenuInit.cs" />
-    <Compile Include="MenuPosition.cs" />
     <Compile Include="NDepend\Attributes\CannotDecreaseVisibilityAttribute.cs" />
     <Compile Include="IPluginMenuAction.cs" />
     <Compile Include="App.cs" />
     <Compile Include="Internal\PluginProxy.cs" />
     <Compile Include="Internal\Loader.cs" />
     <Compile Include="Internal\UIBuilder.cs" />
-    <Compile Include="Internal\Logger.cs" />
     <Compile Include="PluginMenuItemAttribute.cs" />
     <Compile Include="Internal\PluginCollection.cs" />
     <Compile Include="Internal\PluginMenuItem.cs" />

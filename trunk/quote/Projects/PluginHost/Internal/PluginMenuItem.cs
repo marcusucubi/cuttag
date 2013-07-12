@@ -14,24 +14,15 @@ namespace PluginHost.Internal
         {
             internal string Text;
             internal string MenuName;
-            internal string MenuAnchor;
-            internal string ButtonAnchor;
+            internal bool ShowInToolbar;
             internal Image Image;
-            internal MenuPosition MenuPosition;
             internal IPluginMenuAction Action;
-
-            public BuildData()
-            {
-                MenuPosition = MenuPosition.Below;
-            }
         }
 
         private readonly string m_Text;
         private readonly string m_MenuName;
-        private readonly string m_MenuAnchor;
-        private readonly string m_ButtonAnchor;
         private readonly Image m_Image;
-        private readonly MenuPosition m_MenuPosition;
+        private readonly bool m_ShowInToolbar;
         private readonly IPluginMenuAction m_Action;
 
         internal PluginMenuItem(BuildData data)
@@ -40,11 +31,9 @@ namespace PluginHost.Internal
 
             m_Text = data.Text;
             m_MenuName = data.MenuName;
-            m_MenuAnchor = data.MenuAnchor;
-            m_ButtonAnchor = data.ButtonAnchor;
             m_Image = data.Image;
             m_Action = data.Action;
-            m_MenuPosition = data.MenuPosition;
+            m_ShowInToolbar = data.ShowInToolbar;
         }
 
         internal string Text
@@ -57,14 +46,9 @@ namespace PluginHost.Internal
             get { return m_MenuName; }
         }
 
-        internal string MenuAnchor
+        internal bool ShowInToolbar
         {
-            get { return m_MenuAnchor; }
-        }
-
-        internal string ButtonAnchor
-        {
-            get { return m_ButtonAnchor; }
+            get { return m_ShowInToolbar; }
         }
 
         internal Image Image
@@ -75,11 +59,6 @@ namespace PluginHost.Internal
         internal IPluginMenuAction Action
         {
             get { return m_Action; }
-        }
-
-        internal MenuPosition MenuPosition
-        {
-            get { return m_MenuPosition; }
         }
 
         internal ToolStripItem ToolStripItem

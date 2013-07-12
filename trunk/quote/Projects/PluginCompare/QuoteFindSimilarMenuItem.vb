@@ -8,9 +8,7 @@ Imports Doc
 
 <PluginMenuItem( _
     Text:="Open Similar", _
-    Parent:="Quote", _
-    MenuAnchor:="QuoteSep2", _
-    MenuPosition:=MenuPosition.Below
+    Parent:="Quote" _
     )>
 Public Class QuoteFindSimilarMenuItem
     Implements IPluginMenuAction, IPluginMenuInit

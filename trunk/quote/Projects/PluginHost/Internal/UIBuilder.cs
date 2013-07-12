@@ -43,17 +43,16 @@ namespace PluginHost.Internal
             foreach (PluginMenuItem item in plugin.PluginMenuItems)
             {
 
-                ToolStripItemCollection parent = menuStrip.Items;
                 if (item.MenuName.Length > 0)
                 {
                     string name = item.MenuName;
                     ToolStripMenuItem menuItem = FindParentMenu(menuStrip, name);
 
-                    AddMenuItem(item, menuItem.DropDownItems);
+                    AddMenuItem(plugin, item, menuItem.DropDownItems);
                 }
                 else
                 {
-                    AddMenuItem(item, menuStrip.Items);
+                    AddMenuItem(plugin, item, menuStrip.Items);
                 }
             }
 
@@ -65,18 +64,17 @@ namespace PluginHost.Internal
         {
             foreach (PluginMenuItem item in plugin.PluginMenuItems)
             {
-                if (item.ButtonAnchor == null)
+                if (item.ShowInToolbar)
                 {
-                    continue;
+                    AddToolItem(item, toolStrip, plugin);
                 }
-
-                AddToolItem(item, toolStrip);
             }
         }
 
         private static void AddToolItem(
             PluginMenuItem item,
-            ToolStrip toolStrip)
+            ToolStrip toolStrip,
+            PluginProxy plugin)
         {
             var i1 = new ToolStripButton();
             i1.Text = item.Text;
@@ -96,23 +94,22 @@ namespace PluginHost.Internal
                 i1.DisplayStyle = ToolStripItemDisplayStyle.Image;
             }
 
-            int index = FindIndex(item, toolStrip.Items, item.ButtonAnchor);
+            int index = FindIndex(item, toolStrip.Items, plugin);
 
-            if (item.MenuPosition == MenuPosition.Below)
+            if (index < toolStrip.Items.Count)
             {
-                if (index < toolStrip.Items.Count)
-                {
-                    index++;
-                }
+                index++;
             }
 
             toolStrip.Items.Insert(index, i1);
         }
 
         private static void AddMenuItem(
+            PluginProxy plugin,
             PluginMenuItem item,
             ToolStripItemCollection items)
         {
+
             var i1 = new ToolStripMenuItem();
             i1.Text = item.Text;
             i1.Click += (sender, e) => { item.Action.Execute(); };
@@ -130,14 +127,11 @@ namespace PluginHost.Internal
                 i1.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }
 
-            int index = FindIndex(item, items, item.MenuAnchor);
+            int index = FindIndex(item, items, plugin);
 
-            if (item.MenuPosition == MenuPosition.Below)
+            if (index < items.Count)
             {
-                if (index < items.Count)
-                {
-                    index++;
-                }
+                index++;
             }
 
             items.Insert(index, i1);
@@ -171,62 +165,26 @@ namespace PluginHost.Internal
         static private int FindIndex(
             PluginMenuItem menuItem,
             ToolStripItemCollection collection,
-            string anchor)
+            PluginProxy plugin)
         {
-            int result = 0;
-            List<TopBottom> indexes = BuildMenuIndexArray(collection);
+            int result = -1;
 
             foreach (ToolStripItem item in collection)
             {
-                if (item.Name == anchor)
-                {
-                    result = collection.IndexOf(item);
-                    break;
-                }
-
-                if (item.Tag == null)
-                {
-                    continue;
-                }
-
-                if (item.Tag.ToString() == anchor)
+                if (item.Name == plugin.Assembly.GetName().Name)
                 {
                     result = collection.IndexOf(item);
                     break;
                 }
             }
 
-            return result;
-        }
-
-        private struct TopBottom
-        {
-            public int Top;
-            public int Bottom;
-        }
-
-        static private List<TopBottom> BuildMenuIndexArray(
-            ToolStripItemCollection collection)
-        {
-            List<TopBottom> result = new List<TopBottom>();
-
-            TopBottom current = new TopBottom();
-
-            for (int i = 0; i < collection.Count; i++)
+            if (result == -1)
             {
-                ToolStripItem item = collection[i];
-                current.Bottom = i;
-
-                if (item is ToolStripSeparator)
-                {
-                    result.Add(current);
-                    current = new TopBottom();
-                    current.Top = i + 1;
-                    current.Bottom = i + 2;
-                }
+                var sep = new ToolStripSeparator();
+                sep.Name = plugin.Assembly.GetName().Name;
+                collection.Add(sep);
+                result = collection.IndexOf(sep);
             }
-
-            result.Add(current);
 
             return result;
         }

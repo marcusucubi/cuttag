@@ -9,9 +9,7 @@ namespace PluginOutputView
     [
     PluginMenuItem( 
         Text = "Output",  
-        Parent = "View", 
-        MenuAnchor = "ViewSep1", 
-        MenuPosition=MenuPosition.Above
+        Parent = "View"
         )
     ]
     public class DisplayOutputMenuItem : IPluginMenuAction, HasIcon

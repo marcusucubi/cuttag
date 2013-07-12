@@ -8,9 +8,7 @@ Imports Doc
 
 <PluginMenuItem( _
     Text:="Compare With", _
-    Parent:="Quote", _
-    MenuAnchor:="QuoteSep2", _
-    MenuPosition:=MenuPosition.Below
+    Parent:="Quote" _
     )>
 Public Class QuoteCompareWithMenuItem
     Implements IPluginMenuAction, IPluginMenuInit

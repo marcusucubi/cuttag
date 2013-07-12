@@ -18,23 +18,10 @@ namespace PluginHost
             set;
         }
 
-        public string MenuAnchor
+        public bool ShowInToolbar
         {
             get;
             set;
         }
-
-        public string ButtonAnchor
-        {
-            get;
-            set;
-        }
-
-        public MenuPosition MenuPosition
-        {
-            get;
-            set;
-        }
-
-   }
+    }
 }

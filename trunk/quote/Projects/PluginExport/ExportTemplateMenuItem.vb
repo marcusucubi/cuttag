@@ -4,11 +4,9 @@ Imports PluginHost
 Imports System.Windows.Forms
 
 <PluginMenuItem( _
-    Text:="Export", _
+    Text:="Export Template", _
     Parent:="Template", _
-    MenuAnchor:="TemplateSep5", _
-    ButtonAnchor:="TemplateSeparator1", _
-    MenuPosition:=MenuPosition.Above
+    ShowInToolbar:=True
     )>
 Public Class ExportTemplateMenuItem
     Implements IPluginMenuAction, IPluginMenuInit, HasIcon
