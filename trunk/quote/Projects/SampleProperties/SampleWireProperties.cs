@@ -3,7 +3,8 @@ using Model.Template;
 
 namespace SampleProperties
 {
-    public class SampleWireProperties : WireProperties
+    public class SampleWireProperties 
+        : Model.Template.WireProperties
     {
         private string m_ProductCode;
         private Detail m_Detail;

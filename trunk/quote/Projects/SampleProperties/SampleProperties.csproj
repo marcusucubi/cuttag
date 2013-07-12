@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ComponentPropertiesFactory.cs" />
     <Compile Include="ComputationProperiesFactory.cs" />
+    <Compile Include="DisplayableWireProperties.cs" />
     <Compile Include="OtherProperiesFactory.cs" />
     <Compile Include="SampleComponentProperties.cs" />
     <Compile Include="SampleComputationProperties.cs" />

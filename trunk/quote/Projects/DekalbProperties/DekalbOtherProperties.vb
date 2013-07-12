@@ -26,8 +26,7 @@ Public NotInheritable Class DekalbOtherProperties
         _QuoteHeader = QuoteHeader
     End Sub
 
-    <FilterAttribute(True), _
-    CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
+    <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
     DisplayName("Due Date"), _
     DescriptionAttribute("Date the quote is to be given to the customer")> _
     Public Property DueDate As DateTime
@@ -140,8 +139,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Set
     End Property
 
-    <FilterAttribute(False), _
-    CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
+    <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
     DisplayName("Form Board Cost"), _
     DescriptionAttribute("Form Board Cost")> _
     Public Property FormBoardCost As Decimal
@@ -154,8 +152,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Set
     End Property
 
-    <FilterAttribute(False), _
-    CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
+    <CategoryAttribute(Spaces.SortedSpaces3 + "Quote"), _
     DisplayName("Is New"), _
     DescriptionAttribute("Is New")> _
     Public Property IsNew As Boolean

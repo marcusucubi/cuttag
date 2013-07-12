@@ -9,7 +9,7 @@ namespace SampleProperties
     {
         public SaveableProperties CreateWireProperties(Model.Template.Detail detail)
         {
-            return new SampleWireProperties(detail);
+            return new DisplayableWireProperties(new SampleWireProperties(detail));
         }
     }
 }

@@ -19,8 +19,7 @@ Public Class DisplayableWireProperties
         _Subject = subject
         MyBase.Subject = subject
     End Sub
-    <FilterAttribute(True), _
-    CategoryAttribute("Detail")> _
+    <CategoryAttribute("Detail")> _
     Public ReadOnly Property Gage As String
         Get
             Return _Subject.Gage
@@ -103,8 +102,7 @@ Public Class DisplayableWireProperties
         End Set
     End Property
 
-    <FilterAttribute(False), _
-    DisplayName("Unit Of Measure"), _
+    <DisplayName("Unit Of Measure"), _
     TypeConverter(GetType(UOMConverter)), _
     CategoryAttribute("Detail")> _
     Public Property UnitOfMeasure As String
