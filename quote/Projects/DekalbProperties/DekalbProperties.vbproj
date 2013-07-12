@@ -48,6 +48,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -89,6 +90,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="OtherProperiesFactory.vb" />
+    <Compile Include="Plugin.vb" />
+    <Compile Include="StatusBarUpdater.vb" />
     <Compile Include="Weights.vb" />
     <Compile Include="WirePropertiesFactory.vb" />
   </ItemGroup>

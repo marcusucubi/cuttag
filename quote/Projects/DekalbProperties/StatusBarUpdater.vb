@@ -1,14 +1,27 @@
 ﻿Imports Model
 
-Public Class MainFormStatusStrip
+Imports System.Windows.Forms
+
+Public Class StatusBarUpdater
 
     Private WithEvents _ActiveHeader As ActiveHeader
     Private WithEvents _PrimaryPropeties As Model.Common.PrimaryPropeties
     Private WithEvents _OtherPropeties As Model.Common.OtherProperties
 
-    Public Sub New()
-        InitializeComponent()
+    Friend _IsNew As System.Windows.Forms.Label
+
+    Public Sub Init()
+
         Me._ActiveHeader = ActiveHeader.ActiveHeader
+
+        Dim controls As Control()
+        controls = PluginHost.App.StatusStrip.Controls.Find("_IsNew", True)
+        If (controls.Length > 0) Then
+            _IsNew = controls(0)
+        End If
+
+        Debug.Assert(Not _IsNew Is Nothing)
+
     End Sub
 
     Private Sub _ActiveHeader_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
@@ -38,27 +51,26 @@ Public Class MainFormStatusStrip
 
         If Me._ActiveHeader.Header Is Nothing Then
 
-            Me._PartNumber.Text = sNoneText
-            Me._RFQ.Text = sNoneText
-            Me._QuoteDate.Text = sNoneText
             Me._IsNew.Text = sNoneText
         Else
 
-            Dim part As String = Me._ActiveHeader.Header.PrimaryProperties.CommonPartNumber
-            If (part = "") Then
-                part = sNoneText
+            If (TypeOf Me._ActiveHeader.Header Is Model.Template.Header) Then
+
+                If (TypeOf _ActiveHeader.Header.OtherProperties Is DekalbOtherProperties) Then
+
+                    Dim other As DekalbOtherProperties = _
+                        _ActiveHeader.Header.OtherProperties
+
+                    If (other.IsNew) Then
+                        Me._IsNew.Text = "New"
+                    Else
+                        Me._IsNew.Text = "Old"
+                    End If
+
+                Else
+                    Me._IsNew.Text = "Quote"
+                End If
             End If
-            Me._PartNumber.Text = part
-
-            Dim rfc As String = Me._ActiveHeader.Header.PrimaryProperties.CommonRequestForQuoteNumber
-            If (rfc = "") Then
-                rfc = sNoneText
-            End If
-            Me._RFQ.Text = rfc
-
-            Dim creaded As String = Me._ActiveHeader.Header.PrimaryProperties.CommonCreatedDate.ToShortDateString
-            Me._QuoteDate.Text = creaded
-
         End If
     End Sub
 
