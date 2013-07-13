@@ -23,6 +23,7 @@ namespace SampleProperties
 
         private decimal _ComponentSetupTime;
         private decimal _WireSetupTime;
+        private decimal _WireMachineTime;
         private int _NumberOfCuts;
 
         public SampleComputationProperties(Header header)
@@ -296,6 +297,58 @@ namespace SampleProperties
         }
 
 #endregion
+
+#region Wires
+
+        public decimal NumberOfWires
+        {
+            get { return Count(true); }
+        }
+
+        public decimal WireLength
+        {
+            get { return SumQty(true); }
+        }
+
+        public decimal WireLengthFeet
+        {
+            get { return SumQty(true) / (decimal)3.048; }
+        }
+
+#endregion
+
+#region MachineTime
+
+        public decimal TotalComponentMachineTime
+        {
+            get { return SumTime(false); }
+        }
+
+        public decimal TotalWireMachineTime
+        {
+            get { return WireLengthFeet * WireMachineTime; }
+        }
+
+        public decimal WireMachineTime 
+        {
+            get { return _WireMachineTime; }
+            set 
+            {
+                _WireMachineTime = value;
+                SendEvents();
+            }
+        }
+
+        public decimal TotalMachineTime 
+        {
+            get 
+            {
+                return TotalComponentMachineTime + TotalWireMachineTime;
+            }
+        }
+
+#endregion
+
 
     }
 }

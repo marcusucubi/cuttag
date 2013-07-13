@@ -275,7 +275,57 @@ namespace SampleProperties
         CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
         public decimal TotalSetupTime
         {
-            get { return Math.Round(_Subject.TotalSetupTime, 
+            get 
+            {
+                decimal c = (TotalWireSetupTime + ComponentSetupTime)
+                    / OrderQuantity;
+                return Math.Round(c, Model.Common.GlobalOptions.DecimalPointsToDisplay); 
+            }
+        }
+
+#endregion
+
+#region MachineTime
+
+        [DescriptionAttribute("Sum(ComponentMachineTime) \n(Seconds)"), 
+        DisplayName("Total Component Run Time"), 
+        CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")]
+        public decimal TotalComponentMachineTime
+        {
+            get { return Math.Round(_Subject.TotalComponentMachineTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+        }
+
+        [DescriptionAttribute("WireLengthFeet * WireMachineTime \n(Seconds)"),
+        DisplayName("Total Wire Run Time"), 
+        CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")]
+        public decimal TotalWireMachineTime 
+        {
+            get { return Math.Round(_Subject.TotalWireMachineTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+        }
+
+        [DescriptionAttribute("Used with TotalWireMachineTime \n(Seconds)"), 
+        DisplayName("Wire Run Time Multiplier"), 
+        CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")]
+        public decimal WireMachineTime
+        {
+            get { return Math.Round(_Subject.WireMachineTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            set
+            {
+                _Subject.WireMachineTime = value;
+                SendEvents();
+            }
+        }
+
+        [DescriptionAttribute("TotalWireMachineTime + " + 
+            "TotalComponentMachineTime + TwistedPairsMachineTime \n(Seconds)"), 
+        DisplayName("Total Run Time"), 
+        CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")]
+        public decimal TotalMachineTime 
+        {
+            get { return Math.Round(_Subject.TotalMachineTime, 
                 Model.Common.GlobalOptions.DecimalPointsToDisplay); }
         }
 
