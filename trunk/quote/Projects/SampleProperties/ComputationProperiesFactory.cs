@@ -11,7 +11,7 @@ namespace SampleProperties
         public Model.Common.SaveableProperties CreateComputationProperties(
             Header header, int id)
         {
-            return new SampleComputationProperties(header);
+            return new DisplayableComputationProperties(new SampleComputationProperties(header));
         }
 
     }
