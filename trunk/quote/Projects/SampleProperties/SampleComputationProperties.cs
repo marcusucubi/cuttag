@@ -21,6 +21,10 @@ namespace SampleProperties
 
         private decimal _MaterialMarkup;
 
+        private decimal _ComponentSetupTime;
+        private decimal _WireSetupTime;
+        private int _NumberOfCuts;
+
         public SampleComputationProperties(Header header)
             : base(header)
         {
@@ -234,6 +238,64 @@ namespace SampleProperties
     }
 
     #endregion
+
+#region SetupTime
+
+        public decimal NumberOfComponents
+        {
+            get { return Count(false); }
+        }
+
+        public decimal ComponentSetupTime
+        {
+            get { return _ComponentSetupTime; }
+            set
+            {
+                _ComponentSetupTime = value;
+                SendEvents();
+            }
+        }
+
+        public decimal WireSetupTime
+        {
+            get { return _WireSetupTime; }
+            set
+            {
+                _WireSetupTime = value;
+                SendEvents();
+            }
+        }
+
+        public int NumberOfCuts
+        {
+            get { return _NumberOfCuts; }
+            set
+            {
+                _NumberOfCuts = value;
+                SendEvents();
+            }
+        }
+
+        public decimal TotalWireSetupTime
+        {
+            get { return NumberOfCuts * WireSetupTime; }
+        }
+
+        public decimal TotalSetupTime
+        {
+            get
+            {
+                if (this.OrderQuantity == 0) 
+                {
+                    return 0;
+                }
+                return 
+                    (TotalWireSetupTime + ComponentSetupTime) 
+                    / this.OrderQuantity;
+            }
+        }
+
+#endregion
 
     }
 }
