@@ -15,7 +15,8 @@ namespace PluginHost
         private static Form s_MainForm; 
         private static DockPanel s_DockPanel;
         private static MenuStrip s_Menu;
-        private static UserControl s_StatusStrip;
+        private static FlowLayoutPanel s_StatusStripPanel;
+        private static ToolTip s_StatusStripToolTip;
         private static Dictionary<Type, Type> s_RegisteredClasses = new Dictionary<Type, Type>();
 
         [CannotDecreaseVisibility]
@@ -43,9 +44,15 @@ namespace PluginHost
         }
 
         [CannotDecreaseVisibility]
-        public static UserControl StatusStrip
+        public static FlowLayoutPanel StatusStripPanel
         {
-            get { return s_StatusStrip; }
+            get { return s_StatusStripPanel; }
+        }
+
+        [CannotDecreaseVisibility]
+        public static ToolTip StatusStripToolTip
+        {
+            get { return s_StatusStripToolTip; }
         }
 
         [CannotDecreaseVisibility]
@@ -54,11 +61,13 @@ namespace PluginHost
             DockPanel dockPanel,
             MenuStrip menu,
             ToolStrip toolStrip,
-            UserControl statusStrip)
+            FlowLayoutPanel statusStripPanel,
+            ToolTip statusStripToolTip)
         {
             s_MainForm = mainForm;
             s_DockPanel = dockPanel;
-            s_StatusStrip = statusStrip;
+            s_StatusStripPanel = statusStripPanel;
+            s_StatusStripToolTip = statusStripToolTip;
             s_Menu = menu;
 
             PluginCollection col = Loader.Load();

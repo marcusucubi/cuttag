@@ -24,30 +24,16 @@ Partial Class MainFormStatusStrip
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me._PartNumber = New System.Windows.Forms.Label()
         Me._RFQ = New System.Windows.Forms.Label()
         Me._QuoteDate = New System.Windows.Forms.Label()
-        Me._IsNew = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolTip1
         '
         Me.ToolTip1.ShowAlways = True
-        '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Controls.Add(Me._PartNumber)
-        Me.FlowLayoutPanel1.Controls.Add(Me._RFQ)
-        Me.FlowLayoutPanel1.Controls.Add(Me._QuoteDate)
-        Me.FlowLayoutPanel1.Controls.Add(Me._IsNew)
-        Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(366, 25)
-        Me.FlowLayoutPanel1.TabIndex = 5
         '
         '_PartNumber
         '
@@ -94,20 +80,17 @@ Partial Class MainFormStatusStrip
         Me._QuoteDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.ToolTip1.SetToolTip(Me._QuoteDate, "Active Quote Date")
         '
-        '_IsNew
+        'FlowLayoutPanel1
         '
-        Me._IsNew.AutoSize = True
-        Me._IsNew.BackColor = System.Drawing.SystemColors.Info
-        Me._IsNew.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me._IsNew.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me._IsNew.Location = New System.Drawing.Point(138, 5)
-        Me._IsNew.MinimumSize = New System.Drawing.Size(0, 15)
-        Me._IsNew.Name = "_IsNew"
-        Me._IsNew.Size = New System.Drawing.Size(39, 15)
-        Me._IsNew.TabIndex = 3
-        Me._IsNew.Text = "None"
-        Me._IsNew.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ToolTip1.SetToolTip(Me._IsNew, "Is Quote New")
+        Me.FlowLayoutPanel1.Controls.Add(Me._PartNumber)
+        Me.FlowLayoutPanel1.Controls.Add(Me._RFQ)
+        Me.FlowLayoutPanel1.Controls.Add(Me._QuoteDate)
+        Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(366, 25)
+        Me.FlowLayoutPanel1.TabIndex = 5
         '
         'MainFormStatusStrip
         '
@@ -126,6 +109,5 @@ Partial Class MainFormStatusStrip
     Friend WithEvents _PartNumber As System.Windows.Forms.Label
     Friend WithEvents _RFQ As System.Windows.Forms.Label
     Friend WithEvents _QuoteDate As System.Windows.Forms.Label
-    Friend WithEvents _IsNew As System.Windows.Forms.Label
 
 End Class

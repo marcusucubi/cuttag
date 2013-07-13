@@ -41,7 +41,6 @@ Public Class MainFormStatusStrip
             Me._PartNumber.Text = sNoneText
             Me._RFQ.Text = sNoneText
             Me._QuoteDate.Text = sNoneText
-            Me._IsNew.Text = sNoneText
         Else
 
             Dim part As String = Me._ActiveHeader.Header.PrimaryProperties.CommonPartNumber
