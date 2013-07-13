@@ -13,25 +13,227 @@ namespace SampleProperties
         private Header _Header;
         private string _ShippingBox = "NoBox";
 
+        private decimal _CopperPrice = new decimal(4.09);
+        private decimal _PercentCopperScrap = 10;
+
+        private decimal _ShippingCost;
+        private int _OrderQuantity;
+
+        private decimal _MaterialMarkup;
+
         public SampleComputationProperties(Header header)
             : base(header)
         {
             _Header = header;
        }
 
-        [DescriptionAttribute("Description of the Shipping Container"), 
-        DisplayName("Shipping Container"), 
-        CategoryAttribute("Shipping"), 
-        TypeConverter(typeof(ShippingList))]
+#region Shipping
+
+        public int OrderQuantity 
+        {
+            get { return _OrderQuantity; }
+            set
+            {
+                _OrderQuantity = value;
+                SendEvents();
+            }
+        }
+
         public string ShippingContainer
         {
             get { return _ShippingBox; }
-            set 
+            set
             {
                 _ShippingBox = value;
                 SendEvents();
             }
         }
+
+        public decimal ShippingContainerCost 
+        {
+            get 
+            {
+                if (_ShippingBox == null) 
+                {
+                    return 0;
+                }
+                return Shipping.Shipping.Lookup(_ShippingBox);
+            }
+        }
+
+        public decimal ShippingContainerCostPerOrder 
+        {
+            get 
+            {
+                if (this.OrderQuantity == 0)
+                {
+                    return ShippingContainerCost;
+                }
+
+                return ShippingContainerCost / this.OrderQuantity;
+            }
+        }
+
+        public decimal ShippingCost
+        {
+            get { return _ShippingCost; }
+            set
+            {
+                _ShippingCost = value;
+                SendEvents();
+            }
+        }
+
+        #endregion
+
+#region Copper
+
+        public decimal CopperWeight
+        {
+            get { return Weights.CalcWeight(_Header); }
+        }
+
+        public decimal PercentCopperScrap
+        {
+            get { return _PercentCopperScrap; }
+            set
+            {
+                _PercentCopperScrap = value;
+                SendEvents();
+            }
+        }
+
+        public decimal CopperScrapWeight
+        {
+            get 
+            {
+                decimal percent = (_PercentCopperScrap / 100);
+                return CopperWeight * percent;
+            }
+        }
+
+        public decimal CopperPrice
+        {
+            get { return _CopperPrice; }
+            set
+            {
+                _CopperPrice = value;
+                SendEvents();
+            }
+        }
+
+        public decimal CopperScrapCost
+        {
+            get { return CopperScrapWeight * CopperPrice; }
+        }
+
+        #endregion
+
+#region MaterialCost
+
+    public decimal ComponentMaterialCost
+    {
+        get { return SumCost(false); }
+    }
+
+    public decimal WireMaterialCost
+    {
+        get { return SumCost(true); }
+    }
+
+    public decimal TotalMaterialCost
+    {
+        //get { return ComponentMaterialCost + WireMaterialCost + ShippingContainerCostPerOrder; }
+        get { return ShippingContainerCostPerOrder; }
+    }
+
+    public decimal MaterialMarkUp 
+    {
+        get { return _MaterialMarkup; }
+        set
+        {
+            _MaterialMarkup = value;
+            SendEvents();
+        }
+    }
+
+    public decimal AdjustedTotalMaterialCost 
+    {
+        get { return TotalMaterialCost * _MaterialMarkup; }
+    }
+
+    public decimal TotalVariableMaterialCost
+    {
+        get 
+        { 
+            return 
+                (TotalMaterialCost * _MaterialMarkup) + 
+                 CopperScrapCost + 
+                 ShippingCost;
+        }
+    }
+
+    #endregion
+
+#region Methods
+
+    private decimal SumCost(bool IsWire)
+    {
+        decimal result = 0;
+        foreach(Model.Template.Detail detail in _Header.Details)
+        {
+            if (detail.Product.IsWire == IsWire)
+            {
+                result += detail.TotalCost;
+            }
+        }
+
+        return result;
+    }
+
+    private decimal SumTime(bool IsWire)
+    {
+        decimal result = 0;
+        foreach(Model.Template.Detail detail in _Header.Details)
+        {
+            if (detail.Product.IsWire == IsWire)
+            {
+                result += 0; // detail.QuoteDetailProperties.TotalMachineTime;
+            }
+        }
+
+        return result;
+    }
+
+    private decimal SumQty(bool IsWire)
+    {
+        decimal result = 0;
+        foreach(Model.Template.Detail detail in _Header.Details)
+        {
+            if (detail.Product.IsWire == IsWire)
+            {
+                result += detail.Qty;
+            }
+        }
+
+        return result;
+    }
+
+    private decimal Count(bool IsWire)
+    {
+        int result = 0;
+        foreach(Model.Template.Detail detail in _Header.Details)
+        {
+            if (detail.Product.IsWire == IsWire)
+            {
+                result += 1;
+            }
+        }
+
+        return result;
+    }
+
+    #endregion
 
     }
 }
