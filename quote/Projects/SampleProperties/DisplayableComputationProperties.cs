@@ -208,5 +208,78 @@ namespace SampleProperties
 
 #endregion
 
+#region SetupTime
+
+        [DescriptionAttribute("Number of Components \n(Count)"), 
+        DisplayName("Number of Components"), 
+        CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
+        public decimal NumberOfComponents
+        {
+            get { return _Subject.NumberOfComponents; }
+        }
+
+        [DescriptionAttribute("Component Setup Time \n(Seconds)"), 
+        DisplayName("Component Setup Time"), 
+        CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
+        public decimal ComponentSetupTime
+        {
+            get { return Math.Round(_Subject.ComponentSetupTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            set 
+            {
+                _Subject.ComponentSetupTime = value;
+                base.SendEvents();
+            }
+        }
+
+        [DescriptionAttribute("Setup time to cut a particular length of wire. (Cut time) \n(Seconds Per Cut)"), 
+        DisplayName("Wire Setup Time Multiplier"), 
+        CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
+        public decimal WireSetupTime
+        {
+            get { return Math.Round(_Subject.WireSetupTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            set
+            {
+                _Subject.WireSetupTime = value;
+                SendEvents();
+            }
+        }
+
+        [DescriptionAttribute("Number of lines in 'CIRCUIT DATA TABLE'" + 
+            " in Engineering Print. \n(Count)"), 
+        DisplayName("Number of Cuts"), 
+        CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
+        public int NumberOfCuts
+        {
+            get { return _Subject.NumberOfCuts; }
+            set
+            {
+                _Subject.NumberOfCuts = value;
+                SendEvents();
+            }
+        }
+
+        [DescriptionAttribute("NumberOfCuts * WireSetupTime \n(Seconds)"), 
+        DisplayName("Total Wire Setup Time"), 
+        CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
+        public decimal TotalWireSetupTime 
+        {
+            get { return Math.Round(_Subject.TotalWireSetupTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+        }
+
+        [DescriptionAttribute("(TotalWireSetupTime + ComponentSetupTime) " + 
+            "/ MinimumOrderQuantity \n(Seconds)"), 
+        DisplayName("Adjusted Total Setup Time"), 
+        CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")]
+        public decimal TotalSetupTime
+        {
+            get { return Math.Round(_Subject.TotalSetupTime, 
+                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+        }
+
+#endregion
+
     }
 }
