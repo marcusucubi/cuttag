@@ -15,6 +15,7 @@ namespace SampleWindow
 
         public void UpdateTree(TreeView treeView1)
         {
+            treeView1.Nodes.Clear();
             TreeNode root = new TreeNode("Costs");
             treeView1.Nodes.Add(root);
 
