@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Model;
+
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace SampleProperties
@@ -9,5 +11,6 @@ namespace SampleProperties
         public void Init() 
         {
         }
+
     }
 }

@@ -87,6 +87,7 @@
     <Compile Include="template\ext\IComputationProperiesFactory.vb" />
     <Compile Include="template\ext\IOtherProperiesFactory.vb" />
     <Compile Include="template\ext\IWireProperiesFactory.vb" />
+    <Compile Include="template\IComputationWrapper.vb" />
     <Compile Include="template\PropertyFactory.vb" />
     <Compile Include="ModelEvents.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

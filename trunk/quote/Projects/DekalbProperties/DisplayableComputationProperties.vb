@@ -14,6 +14,7 @@ Imports Model
 ''' </remarks>
 Public Class DisplayableComputationProperties
     Inherits Common.ComputationProperties
+    Implements Template.IComputationWrapper
 
     Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
@@ -25,6 +26,10 @@ Public Class DisplayableComputationProperties
     Private Sub _Options_Changed() Handles _Options.Changed
         Me.SendEvents()
     End Sub
+
+    Public Function GetComputationProperties() As Model.Template.ComputationProperties Implements Model.Template.IComputationWrapper.GetComputationProperties
+        Return _Subject
+    End Function
 
 #Region " Variables "
     Private _Subject As DekalbComputationProperties
