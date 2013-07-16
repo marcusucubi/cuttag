@@ -8,6 +8,8 @@
   <plugin path="PluginPropertyView.dll" />
   <plugin path="PluginOutputView.dll" />
   <!--
+  Note: Only one properties plugin should be used.
+  
   <plugin path="CostAnalysisWindow.dll" />
   <plugin path="SampleProperties.dll" />
   -->
