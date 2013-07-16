@@ -8,9 +8,10 @@
   <plugin path="PluginPropertyView.dll" />
   <plugin path="PluginOutputView.dll" />
   <!--
+  <plugin path="CostAnalysisWindow.dll" />
   <plugin path="SampleProperties.dll" />
   -->
   <plugin path="DekalbProperties.dll" />
-  
+
 </plugins>
 
