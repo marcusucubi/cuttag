@@ -7,7 +7,7 @@ using Model;
 namespace SampleProperties
 {
     public class DisplayableComputationProperties 
-        : Model.Common.ComputationProperties
+        : Model.Common.ComputationProperties, Model.Template.IComputationWrapper 
     {
 
         private Model.Common.GlobalOptions _Options = Model.Common.GlobalOptions.Instance;
@@ -23,6 +23,11 @@ namespace SampleProperties
         private void _Options_Changed()
         {
             SendEvents();
+        }
+
+        public Model.Template.ComputationProperties GetComputationProperties()
+        {
+            return _Subject;
         }
 
 #region Shipping
