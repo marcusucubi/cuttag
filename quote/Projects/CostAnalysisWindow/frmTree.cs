@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+
 using CostAnalysisWindow;
+
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Ast;
+
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace CostAnalysisWindow
@@ -38,7 +42,7 @@ namespace CostAnalysisWindow
             UIUpdater2 updater2 = new UIUpdater2(analyzer2.Nodes);
             updater2.UpdateTree(this.treeView1);
             
-            _Helper.Init();
+            _Helper.Init2();
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
@@ -66,11 +70,9 @@ namespace CostAnalysisWindow
         {
             try
             {
-                DebuggerTextOutput output = _Helper.DebuggerTextOutput;
-                
-                if (output.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
+                if (_Helper.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
                 {
-                    StringWriter w = output.Dictionary[propNode.Property.GetMethod.ToString()];
+                    StringWriter w = _Helper.Dictionary[propNode.Property.GetMethod.ToString()];
                     return w.ToString();
                 }
             }

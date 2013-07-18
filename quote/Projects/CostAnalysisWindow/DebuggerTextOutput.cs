@@ -52,7 +52,6 @@ namespace CostAnalysisWindow
             if (activeWriter != null && _Intent > 0)
             {
                 activeWriter.Write(ch);
-                System.Diagnostics.Debug.WriteLine(ch);
             }
         }
         
@@ -63,7 +62,6 @@ namespace CostAnalysisWindow
             if (activeWriter != null && _Intent > 0)
             {
                 activeWriter.Write(text);
-                System.Diagnostics.Debug.WriteLine(text);
             }
         }
         
@@ -79,8 +77,6 @@ namespace CostAnalysisWindow
         
         public void WriteDefinition(string text, object definition, bool isLocal)
         {
-            System.Diagnostics.Debug.WriteLine(definition.GetType().Name + " - " + definition.ToString());
-            
             MethodDefinition m = (definition as MethodDefinition);
             if (m != null)
             {
@@ -97,7 +93,6 @@ namespace CostAnalysisWindow
             if (activeWriter != null && _Intent > 0)
             {
                 activeWriter.Write(text);
-                System.Diagnostics.Debug.WriteLine(text);
             }
         }
         
