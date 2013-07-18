@@ -34,7 +34,7 @@ namespace CostAnalysisWindow
         private void InitChild(DockContent frm)
         {
             PluginHost.App.DockPanel.SuspendLayout(true);
-            frm.Show(PluginHost.App.DockPanel, DockState.DockRight);
+            frm.Show(PluginHost.App.DockPanel, DockState.DockLeftAutoHide);
             PluginHost.App.DockPanel.ResumeLayout(true, true);
         }
 
