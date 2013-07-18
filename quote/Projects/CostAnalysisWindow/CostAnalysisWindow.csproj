@@ -31,14 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dile, Version=0.2.11.3208, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\SampleWindow\Lib\Dile.dll</HintPath>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Lib\Mono.Cecil.dll</HintPath>
     </Reference>
-    <Reference Include="Dile.Debug, Version=0.2.9.3197, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\SampleWindow\Lib\Dile.Debug.dll</HintPath>
+    <Reference Include="PluginHost">
+      <HintPath>..\..\bin\Debug\PluginHost.dll</HintPath>
     </Reference>
-    <Reference Include="Dile.XmlSerializers, Version=0.2.8.3197, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\SampleWindow\Lib\Dile.XmlSerializers.dll</HintPath>
+    <Reference Include="PluginModel">
+      <HintPath>..\..\bin\Debug\PluginModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -63,10 +63,10 @@
     </Compile>
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyAnalyzer.cs" />
-    <Compile Include="PropertyNode.cs" />
-    <Compile Include="PropertyNodeCollection.cs" />
-    <Compile Include="UIUpdater.cs" />
+    <Compile Include="PropertyAnalyzer2.cs" />
+    <Compile Include="PropertyNode2.cs" />
+    <Compile Include="PropertyNodeCollection2.cs" />
+    <Compile Include="UIUpdater2.cs" />
     <Compile Include="ViewController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,20 +75,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lib\Dile.Debug.dll" />
-    <Content Include="Lib\Dile.dll" />
-    <Content Include="Lib\Dile.XmlSerializers.dll" />
     <Content Include="Lib\WeifenLuo.WinFormsUI.Docking.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginHost\PluginHost.csproj">
-      <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
-      <Name>PluginHost</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PluginModel\PluginModel.vbproj">
-      <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
-      <Name>PluginModel</Name>
-    </ProjectReference>
+    <None Include="Lib\Mono.Cecil.dll" />
+    <None Include="Lib\Mono.Cecil.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

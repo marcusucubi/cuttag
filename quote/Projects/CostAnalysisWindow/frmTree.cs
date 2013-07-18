@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
-using Dile.Disassemble;
-using Dile.Disassemble.ILCodes;
-using Dile.Metadata;
+using Mono.Cecil.Cil;
+
+using CostAnalysisWindow;
 
 using WeifenLuo.WinFormsUI.Docking;
-using SampleWindow;
 
 namespace SampleProperties
 {
@@ -31,11 +30,10 @@ namespace SampleProperties
         {
             System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
 
-            PropertyAnalyzer analyzer = new PropertyAnalyzer();
-            analyzer.Init();
-
-            UIUpdater updater = new UIUpdater(analyzer.Nodes);
-            updater.UpdateTree(this.treeView1);
+            PropertyAnalyzer2 analyzer2 = new PropertyAnalyzer2();
+            analyzer2.Init();
+            UIUpdater2 updater2 = new UIUpdater2(analyzer2.Nodes);
+            updater2.UpdateTree(this.treeView1);
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
@@ -50,7 +48,7 @@ namespace SampleProperties
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            PropertyNode propNode = e.Node.Tag as PropertyNode;
+            PropertyNode2 propNode = e.Node.Tag as PropertyNode2;
             if (propNode == null)
             {
                 return;
@@ -64,9 +62,9 @@ namespace SampleProperties
             else
             {
                 string text = "";
-                foreach (CodeLine line in propNode.CodeLines)
+                foreach (Instruction line in propNode.Property.GetMethod.Body.Instructions)
                 {
-                    text += line.Text;
+                    text += line.ToString();
                     text += "\r\n";
                 }
 

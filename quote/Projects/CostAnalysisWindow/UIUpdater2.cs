@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace SampleWindow
+namespace CostAnalysisWindow
 {
-    class UIUpdater
+    class UIUpdater2
     {
-        private readonly PropertyNodeCollection m_Nodes = new PropertyNodeCollection();
+        private readonly PropertyNodeCollection2 m_Nodes = new PropertyNodeCollection2();
 
-        public UIUpdater(PropertyNodeCollection nodes)
+        public UIUpdater2(PropertyNodeCollection2 nodes)
         {
             m_Nodes = nodes;
         }
@@ -19,16 +19,11 @@ namespace SampleWindow
             TreeNode root = new TreeNode("Costs");
             treeView1.Nodes.Add(root);
 
-            //TreeNode orphanNode = new TreeNode("Other Properties");
-            //root.Nodes.Add(orphanNode);
-
             m_Nodes.Sort();
-            foreach (PropertyNode n in m_Nodes)
+            foreach (PropertyNode2 n in m_Nodes)
             {
                 if (n.DependingProperties.Count > 0)
                 {
-                    //TreeNode propNode = new TreeNode(n.Property.Name);
-                    //orphanNode.Nodes.Add(propNode);
                 }
                 else if (n.DependentProperties.Count > 0)
                 {
@@ -36,15 +31,13 @@ namespace SampleWindow
                 }
                 else
                 {
-                    //TreeNode propNode = new TreeNode(n.Property.Name);
-                    //orphanNode.Nodes.Add(propNode);
                 }
             }
         }
 
         public void AddNodeToTree(
             TreeNode parent,
-            PropertyNode node)
+            PropertyNode2 node)
         {
             TreeNode propNode = new TreeNode(node.Property.Name);
             propNode.Tag = node;
@@ -64,7 +57,7 @@ namespace SampleWindow
 
             parent.Nodes.Add(propNode);
 
-            foreach (PropertyNode n in node.DependentProperties)
+            foreach (PropertyNode2 n in node.DependentProperties)
             {
                 if (n == node)
                 {

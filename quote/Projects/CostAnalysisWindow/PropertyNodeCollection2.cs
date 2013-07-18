@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Dile.Disassemble;
+using Mono.Cecil;
 
-namespace SampleWindow
+namespace CostAnalysisWindow
 {
-    public class PropertyNodeCollection : List<PropertyNode>
+    public class PropertyNodeCollection2 : List<PropertyNode2>
     {
-        public PropertyNode Find(Property property)
+        public PropertyNode2 Find(PropertyDefinition property)
         {
-            foreach (PropertyNode n in this)
+            foreach (PropertyNode2 n in this)
             {
                 if (property.Name == n.Property.Name)
                 {
@@ -20,16 +20,16 @@ namespace SampleWindow
             return null;
         }
 
-        public PropertyNode Find(string property)
+        public PropertyNode2 Find(string property)
         {
-            foreach (PropertyNode n in this)
+            foreach (PropertyNode2 n in this)
             {
                 if (property == n.Property.Name)
                 {
                     return n;
                 }
 
-                if (property == n.Getter)
+                if (n.Getter != null && property == n.Getter.Name)
                 {
                     return n;
                 }
@@ -38,15 +38,15 @@ namespace SampleWindow
             return null;
         }
 
-        public PropertyNodeCollection FindNodeWithDependent(string property)
+        public PropertyNodeCollection2 FindNodeWithDependent(string property)
         {
-            PropertyNodeCollection result = new PropertyNodeCollection();
+            PropertyNodeCollection2 result = new PropertyNodeCollection2();
 
-            foreach (PropertyNode n in this)
+            foreach (PropertyNode2 n in this)
             {
                 bool found = false;
 
-                foreach (PropertyNode child in n.DependentProperties)
+                foreach (PropertyNode2 child in n.DependentProperties)
                 {
                     if (child.Property.Name == property)
                     {
@@ -65,11 +65,11 @@ namespace SampleWindow
             return result;
         }
 
-        public PropertyNodeCollection FindNodePrimaryProperty(string property)
+        public PropertyNodeCollection2 FindNodePrimaryProperty(string property)
         {
-            PropertyNodeCollection result = new PropertyNodeCollection();
+            PropertyNodeCollection2 result = new PropertyNodeCollection2();
 
-            foreach (PropertyNode child in this)
+            foreach (PropertyNode2 child in this)
             {
                 if (child.PrimaryFieldDefinition == null)
                 {
@@ -84,7 +84,5 @@ namespace SampleWindow
 
             return result;
         }
-
     }
-
 }
