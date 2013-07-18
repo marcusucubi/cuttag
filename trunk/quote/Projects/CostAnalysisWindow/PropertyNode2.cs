@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Dile.Disassemble;
-using Dile.Disassemble.ILCodes;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
 
-namespace SampleWindow
+namespace CostAnalysisWindow
 {
-    public class PropertyNode : IComparable<PropertyNode>
+    public class PropertyNode2 : IComparable<PropertyNode2>
     {
-        private readonly List<PropertyNode> m_DependentProperties = new List<PropertyNode>();
-        private readonly List<PropertyNode> m_DependingProperties = new List<PropertyNode>();
+        private readonly List<PropertyNode2> m_DependentProperties = new List<PropertyNode2>();
+        private readonly List<PropertyNode2> m_DependingProperties = new List<PropertyNode2>();
         private readonly List<FieldDefinition> m_FieldDefs = new List<FieldDefinition>();
-        private readonly List<CodeLine> m_CodeLines = new List<CodeLine>();
-        private readonly string m_Getter;
-        private readonly Property m_Property;
+        private readonly MethodDefinition m_Getter;
+        private readonly PropertyDefinition m_Property;
         private readonly bool m_ReadonlyProperty;
 
-        public PropertyNode(
-            Property property, 
-            string getter,
+        public PropertyNode2(
+            PropertyDefinition property, 
+            MethodDefinition getter,
             bool readonlyProperty)
         {
             m_Getter = getter;
@@ -26,12 +25,12 @@ namespace SampleWindow
             m_ReadonlyProperty = readonlyProperty;
         }
 
-        public string Getter
+        public MethodDefinition Getter
         {
             get { return m_Getter; }
         }
 
-        public Property Property
+        public PropertyDefinition Property
         {
             get { return m_Property; }
         }
@@ -41,12 +40,12 @@ namespace SampleWindow
             get { return m_ReadonlyProperty; }
         }
 
-        public List<PropertyNode> DependentProperties
+        public List<PropertyNode2> DependentProperties
         {
             get { return m_DependentProperties; }
         }
 
-        public List<PropertyNode> DependingProperties
+        public List<PropertyNode2> DependingProperties
         {
             get { return m_DependingProperties; }
         }
@@ -54,11 +53,6 @@ namespace SampleWindow
         public List<FieldDefinition> FieldDefs
         {
             get { return m_FieldDefs; }
-        }
-
-        public List<CodeLine> CodeLines
-        {
-            get { return m_CodeLines; }
         }
 
         public FieldDefinition PrimaryFieldDefinition
@@ -79,7 +73,7 @@ namespace SampleWindow
             }
         }
 
-        public int CompareTo(PropertyNode other)
+        public int CompareTo(PropertyNode2 other)
         {
             return this.Property.Name.CompareTo(other.Property.Name);
         }
@@ -89,5 +83,4 @@ namespace SampleWindow
             return this.Property.Name;
         }
     }
-
 }
