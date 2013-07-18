@@ -174,7 +174,7 @@ namespace CostAnalysisWindow
             return props;
         }
         
-        private static Model.Common.SaveableProperties BuildComputationProperties()
+        public static Model.Common.SaveableProperties BuildComputationProperties()
         {
             Model.Template.Header header = new Model.Template.Header();
             Model.Common.SaveableProperties computationProperties =
@@ -190,7 +190,7 @@ namespace CostAnalysisWindow
             return computationProperties;
         }
         
-        private static TypeDefinition LoadTypeDef(
+        public static TypeDefinition LoadTypeDef(
             Type t,
             ModuleDefinition module)
         {

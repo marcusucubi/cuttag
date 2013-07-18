@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.Decompiler">
+      <HintPath>..\..\..\cuttag29\Projects\CostAnalysisWindow\Lib\ICSharpCode.Decompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>..\..\..\cuttag29\Projects\CostAnalysisWindow\Lib\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory.CSharp">
+      <HintPath>..\..\..\cuttag29\Projects\CostAnalysisWindow\Lib\ICSharpCode.NRefactory.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory.VB">
+      <HintPath>..\..\..\cuttag29\Projects\CostAnalysisWindow\Lib\ICSharpCode.NRefactory.VB.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Lib\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -55,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalcTreeMenuItem.cs" />
+    <Compile Include="DebuggerTextOutput.cs" />
+    <Compile Include="DecompileHelper.cs" />
     <Compile Include="frmTree.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +92,10 @@
     <Content Include="Lib\WeifenLuo.WinFormsUI.Docking.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Lib\ICSharpCode.Decompiler.dll" />
+    <None Include="Lib\ICSharpCode.NRefactory.CSharp.dll" />
+    <None Include="Lib\ICSharpCode.NRefactory.dll" />
+    <None Include="Lib\ICSharpCode.NRefactory.VB.dll" />
     <None Include="Lib\Mono.Cecil.dll" />
     <None Include="Lib\Mono.Cecil.pdb" />
   </ItemGroup>

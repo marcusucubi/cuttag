@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
-
-using Mono.Cecil.Cil;
-
 using CostAnalysisWindow;
-
+using ICSharpCode.Decompiler;
+using ICSharpCode.Decompiler.Ast;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace SampleProperties
+namespace CostAnalysisWindow
 {
     public partial class frmTree : DockContent
     {
+        private DecompileHelper _Helper = new DecompileHelper();
+        
         public frmTree()
         {
             InitializeComponent();
@@ -34,6 +37,8 @@ namespace SampleProperties
             analyzer2.Init();
             UIUpdater2 updater2 = new UIUpdater2(analyzer2.Nodes);
             updater2.UpdateTree(this.treeView1);
+            
+            _Helper.Init();
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
@@ -54,23 +59,28 @@ namespace SampleProperties
                 return;
             }
 
-            if (!propNode.ReadonlyProperty &&
-                propNode.PrimaryFieldDefinition != null)
+            this.textBox1.Text = Decompile(propNode);
+        }
+        
+        private string Decompile(PropertyNode2 propNode)
+        {
+            try
             {
-                this.textBox1.Text = propNode.PrimaryFieldDefinition.Name;
-            }
-            else
-            {
-                string text = "";
-                foreach (Instruction line in propNode.Property.GetMethod.Body.Instructions)
+                DebuggerTextOutput output = _Helper.DebuggerTextOutput;
+                
+                if (output.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
                 {
-                    text += line.ToString();
-                    text += "\r\n";
+                    StringWriter w = output.Dictionary[propNode.Property.GetMethod.ToString()];
+                    return w.ToString();
                 }
-
-                this.textBox1.Text = text;
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return e.Message;
+            }
+            
+            return "";
         }
 
     }

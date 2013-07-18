@@ -1,7 +1,7 @@
 ﻿using System;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace SampleProperties
+namespace CostAnalysisWindow
 {
     public class ViewController
     {
