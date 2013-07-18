@@ -3,9 +3,8 @@ using System.Collections.Specialized;
 using System.Configuration;
 
 using PluginHost;
-using SampleProperties;
 
-namespace DebugPlugin
+namespace CostAnalysisWindow
 {
     [
     PluginMenuItem(Text = "Cost Analysis", Parent = "View"),
