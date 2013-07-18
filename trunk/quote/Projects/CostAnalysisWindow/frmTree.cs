@@ -60,6 +60,7 @@ namespace CostAnalysisWindow
             PropertyNode2 propNode = e.Node.Tag as PropertyNode2;
             if (propNode == null)
             {
+                this.textBox1.Text = "";
                 return;
             }
 
