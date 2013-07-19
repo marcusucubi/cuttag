@@ -42,7 +42,7 @@ namespace CostAnalysisWindow
             UIUpdater2 updater2 = new UIUpdater2(analyzer2.Nodes);
             updater2.UpdateTree(this.treeView1);
             
-            _Helper.Init2();
+            _Helper.Init3();
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
@@ -60,11 +60,11 @@ namespace CostAnalysisWindow
             PropertyNode2 propNode = e.Node.Tag as PropertyNode2;
             if (propNode == null)
             {
-                this.textBox1.Text = "";
+                this.richTextBox1.Text = "";
                 return;
             }
 
-            this.textBox1.Text = Decompile(propNode);
+            this.richTextBox1.Text = Decompile(propNode);
         }
         
         private string Decompile(PropertyNode2 propNode)
