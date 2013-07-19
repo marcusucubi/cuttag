@@ -78,6 +78,7 @@ namespace CostAnalysisWindow
             TypeDefinition type = 
                 PropertyAnalyzer2.LoadTypeDef(computationPropertiesType, module);
                 
+            _Dictionary.Clear();
             foreach(PropertyDefinition p in type.Properties)
             {
                 MethodDefinition m = p.GetMethod;
