@@ -182,7 +182,7 @@ Public Class DisplayableComputationProperties
 
 #End Region
 
-#Region "Common.GlobalOptions.DecimalPointsToDisplay Twisted Pairs "
+#Region "4 Twisted Pairs "
 
     <DescriptionAttribute("Number Of Twisted Pairs " + Chr(10) + "(Number)"), _
     DisplayName("Twisted Pairs"), _
