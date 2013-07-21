@@ -57,7 +57,7 @@ namespace CostAnalysisWindow
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            PropertyNode2 propNode = e.Node.Tag as PropertyNode2;
+            PropertyElement propNode = e.Node.Tag as PropertyElement;
             if (propNode == null)
             {
                 this.richTextBox1.Text = "";
@@ -67,7 +67,7 @@ namespace CostAnalysisWindow
             this.richTextBox1.Text = Decompile(propNode);
         }
         
-        private string Decompile(PropertyNode2 propNode)
+        private string Decompile(PropertyElement propNode)
         {
             try
             {

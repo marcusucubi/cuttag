@@ -1,15 +1,20 @@
 ﻿using System;
+
 using System.Collections.Generic;
 
 using Mono.Cecil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Elements
 {
-    public class PropertyNodeCollection2 : List<PropertyNode2>
+    public class ElementCollection : List<PropertyElement>
     {
-        public PropertyNode2 Find(PropertyDefinition property)
+        public ElementCollection()
         {
-            foreach (PropertyNode2 n in this)
+        }
+        
+        public PropertyElement Find(PropertyDefinition property)
+        {
+            foreach (PropertyElement n in this)
             {
                 if (property.Name == n.Property.Name)
                 {
@@ -20,9 +25,9 @@ namespace CostAnalysisWindow
             return null;
         }
 
-        public PropertyNode2 Find(string property)
+        public PropertyElement Find(string property)
         {
-            foreach (PropertyNode2 n in this)
+            foreach (PropertyElement n in this)
             {
                 if (property == n.Property.Name)
                 {
@@ -38,15 +43,15 @@ namespace CostAnalysisWindow
             return null;
         }
 
-        public PropertyNodeCollection2 FindNodeWithDependent(string property)
+        public ElementCollection FindNodeWithDependent(string property)
         {
-            PropertyNodeCollection2 result = new PropertyNodeCollection2();
+            ElementCollection result = new ElementCollection();
 
-            foreach (PropertyNode2 n in this)
+            foreach (PropertyElement n in this)
             {
                 bool found = false;
 
-                foreach (PropertyNode2 child in n.DependentProperties)
+                foreach (PropertyElement child in n.NodesBelow)
                 {
                     if (child.Property.Name == property)
                     {
@@ -65,11 +70,11 @@ namespace CostAnalysisWindow
             return result;
         }
 
-        public PropertyNodeCollection2 FindNodePrimaryProperty(string property)
+        public ElementCollection FindNodePrimaryProperty(string property)
         {
-            PropertyNodeCollection2 result = new PropertyNodeCollection2();
+            ElementCollection result = new ElementCollection();
 
-            foreach (PropertyNode2 child in this)
+            foreach (PropertyElement child in this)
             {
                 if (child.PrimaryFieldDefinition == null)
                 {

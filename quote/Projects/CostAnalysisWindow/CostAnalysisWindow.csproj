@@ -70,23 +70,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalcTreeMenuItem.cs" />
-    <Compile Include="DebuggerTextOutput.cs" />
-    <Compile Include="DecompilationOptions.cs" />
-    <Compile Include="DecompileHelper.cs" />
+    <Compile Include="Decomplie\DebuggerTextOutput.cs" />
+    <Compile Include="Decomplie\DecompilationOptions.cs" />
+    <Compile Include="Decomplie\DecompileHelper.cs" />
+    <Compile Include="Decomplie\ILSpyEnvironmentProvider.cs" />
+    <Compile Include="Decomplie\VBTextOutputFormatter.cs" />
+    <Compile Include="Elements\CodeElement.cs" />
+    <Compile Include="Elements\ElementBuilder.cs" />
+    <Compile Include="Elements\ElementCollection.cs" />
+    <Compile Include="Elements\FieldCollection.cs" />
+    <Compile Include="Elements\FieldElement.cs" />
+    <Compile Include="Elements\PropertyElement.cs" />
     <Compile Include="frmTree.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTree.Designer.cs">
       <DependentUpon>frmTree.cs</DependentUpon>
     </Compile>
-    <Compile Include="ILSpyEnvironmentProvider.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyAnalyzer2.cs" />
-    <Compile Include="PropertyNode2.cs" />
-    <Compile Include="PropertyNodeCollection2.cs" />
     <Compile Include="UIUpdater2.cs" />
-    <Compile Include="VBTextOutputFormatter.cs" />
     <Compile Include="ViewController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +109,10 @@
     <None Include="Lib\ICSharpCode.NRefactory.VB.dll" />
     <None Include="Lib\Mono.Cecil.dll" />
     <None Include="Lib\Mono.Cecil.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Elements" />
+    <Folder Include="Decomplie" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
