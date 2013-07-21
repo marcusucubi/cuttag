@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using ICSharpCode.Decompiler;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
@@ -49,6 +49,34 @@ namespace CostAnalysisWindow.Elements
                     propNode.NodesAbove.Add(childNode);
                 }
             }
+            
+            CleanupFields();
+        }
+        
+        private void CleanupFields()
+        {
+            foreach(PropertyElement prop in m_Collection)
+            {
+                CleanupFields(prop);
+            }
+        }
+        
+        private void CleanupFields(PropertyElement prop)
+        {
+            FieldCollection orphanedFields = new FieldCollection();
+            
+            FieldCollection usedFields = prop.FieldsInNodesBellow;
+            foreach(FieldElement element in prop.FieldDefs)
+            {
+                if (!usedFields.Contains(element))
+                {
+                    if (!prop.OrphanedFieldDefs.Contains(element))
+                    {
+                        prop.OrphanedFieldDefs.Add(element);
+                    }
+                }
+            }
+            
         }
         
         private List<PropertyDefinition> LoadProperties()
@@ -74,7 +102,6 @@ namespace CostAnalysisWindow.Elements
                 m_Collection.Add(node);
             }
         }
-        
         
         private void PopulateNodesBelowUsingMethodCalls(
             PropertyDefinition property,

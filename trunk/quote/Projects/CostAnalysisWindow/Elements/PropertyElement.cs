@@ -6,11 +6,12 @@ using CostAnalysisWindow.Elements;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Elements
 {
-    public class PropertyElement : CodeElement
+    public class PropertyElement : CodeElement, IEquatable<PropertyElement>
     {
         private readonly FieldCollection m_FieldDefs = new FieldCollection();
+        private readonly FieldCollection m_OrphanedFieldDefs = new FieldCollection();
         private readonly PropertyDefinition m_Property;
 
         public PropertyElement(PropertyDefinition property)
@@ -43,9 +44,9 @@ namespace CostAnalysisWindow
             get { return m_FieldDefs; }
         }
 
-        public FieldDefinition FieldReturned
+        public FieldCollection OrphanedFieldDefs
         {
-            get; set;
+            get { return m_OrphanedFieldDefs; }
         }
         
         public FieldElement PrimaryFieldDefinition
@@ -60,10 +61,34 @@ namespace CostAnalysisWindow
                 return m_FieldDefs[0];
             }
         }
+        
+        public FieldCollection FieldsInNodesBellow
+        {
+            get
+            {
+                FieldCollection result = new FieldCollection();
+                
+                foreach(PropertyElement prop in this.NodesBelow)
+                {
+                    foreach(FieldElement field in prop.FieldDefs)
+                    {
+                        result.Add(field);
+                    }
+                }
+                
+                return result;
+            }
+        }
 
+        public bool Equals(PropertyElement other)
+        {
+            return (this.Name == other.Name);
+        }
+        
         public override string ToString()
         {
             return this.Property.Name;
         }
+        
     }
 }

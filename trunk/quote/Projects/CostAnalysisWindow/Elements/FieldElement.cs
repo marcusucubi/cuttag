@@ -3,7 +3,7 @@ using Mono.Cecil;
 
 namespace CostAnalysisWindow.Elements
 {
-    public class FieldElement : CodeElement
+    public class FieldElement : CodeElement, IEquatable<FieldElement>
     {
         private readonly FieldDefinition m_Field;
         
@@ -21,5 +21,16 @@ namespace CostAnalysisWindow.Elements
         {
             get { return m_Field; }
         }
+        
+        public bool Equals(FieldElement other)
+        {
+            return (m_Field.Name == other.Name);
+        }
+        
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }

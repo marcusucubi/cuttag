@@ -8,10 +8,6 @@ namespace CostAnalysisWindow.Elements
 {
     public class ElementCollection : List<PropertyElement>
     {
-        public ElementCollection()
-        {
-        }
-        
         public PropertyElement Find(PropertyDefinition property)
         {
             foreach (PropertyElement n in this)
@@ -88,6 +84,25 @@ namespace CostAnalysisWindow.Elements
             }
 
             return result;
+        }
+        
+        public ElementCollection TopLevelElements
+        {
+            get
+            {
+                ElementCollection result = new ElementCollection();
+    
+                foreach (PropertyElement child in this)
+                {
+                    
+                    if (child.NodesAbove.Count == 0)
+                    {
+                        result.Add(child);
+                    }
+                }
+    
+                return result;
+            }
         }
     }
 }

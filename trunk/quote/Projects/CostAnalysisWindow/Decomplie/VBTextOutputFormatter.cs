@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.ILAst;
 using ICSharpCode.NRefactory.VB;
 using ICSharpCode.NRefactory.VB.Ast;
+
 using Mono.Cecil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Decompile
 {
 	/// <summary>
 	/// Description of VBTextOutputFormatter.

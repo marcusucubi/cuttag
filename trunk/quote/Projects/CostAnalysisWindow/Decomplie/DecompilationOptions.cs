@@ -2,7 +2,7 @@
 using System.Threading;
 using ICSharpCode.Decompiler;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Decompile
 {
 	public class DecompilationOptions
 	{

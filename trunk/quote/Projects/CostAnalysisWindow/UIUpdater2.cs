@@ -76,11 +76,11 @@ namespace CostAnalysisWindow
             TreeNode parent,
             PropertyElement node)
         {
-            foreach(FieldElement element in node.FieldDefs)
+            foreach(FieldElement element in node.OrphanedFieldDefs)
             {
                 TreeNode propNode = new TreeNode(element.Name);
                 propNode.Tag = element;
-                propNode.ImageIndex = 3;
+                propNode.ImageIndex = 5;
                 
                 parent.Nodes.Add(propNode);
             }
