@@ -4,8 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-using CostAnalysisWindow;
-
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Ast;
 
@@ -13,6 +11,10 @@ using Mono.Cecil;
 using Mono.Cecil.Cil;
 
 using WeifenLuo.WinFormsUI.Docking;
+
+using CostAnalysisWindow;
+using CostAnalysisWindow.Decompile;
+using CostAnalysisWindow.Elements;
 
 namespace CostAnalysisWindow
 {

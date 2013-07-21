@@ -6,7 +6,7 @@ using ICSharpCode.Decompiler;
 
 using Mono.Cecil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Decompile
 {
     sealed class DebuggerTextOutput : ITextOutput
     {

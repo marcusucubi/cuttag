@@ -6,10 +6,11 @@ using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Ast;
 using ICSharpCode.Decompiler.Ast.Transforms;
 using ICSharpCode.Decompiler.Disassembler;
+
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Decompile
 {
     class DecompileHelper
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Elements
 {
     public abstract class CodeElement : IComparable<CodeElement>
     {

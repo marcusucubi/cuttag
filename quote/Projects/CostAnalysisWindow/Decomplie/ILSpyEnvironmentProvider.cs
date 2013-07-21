@@ -6,9 +6,10 @@ using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Ast;
 using ICSharpCode.NRefactory.TypeSystem;
 using ICSharpCode.NRefactory.VB.Visitors;
+
 using Mono.Cecil;
 
-namespace CostAnalysisWindow
+namespace CostAnalysisWindow.Decompile
 {
 	public class ILSpyEnvironmentProvider : IEnvironmentProvider
 	{
