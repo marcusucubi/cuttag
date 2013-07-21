@@ -50,6 +50,8 @@
             this.imageList1.Images.SetKeyName(3, "1373928484_Circle_Blue.png");
             this.imageList1.Images.SetKeyName(4, "Property.png");
             this.imageList1.Images.SetKeyName(5, "Property2.png");
+            this.imageList1.Images.SetKeyName(6, "office-icon-excel-fx.png");
+            this.imageList1.Images.SetKeyName(7, "input_text-20.png");
             // 
             // splitContainer1
             // 

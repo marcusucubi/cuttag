@@ -48,11 +48,11 @@ namespace CostAnalysisWindow
 
             if (!node.ReadonlyProperty)
             {
-                propNode.ImageIndex = 3;
+                propNode.ImageIndex = 7;
             }
             else if (node.NodesBelow.Count == 0)
             {
-                propNode.ImageIndex = 1;
+                propNode.ImageIndex = 6;
             }
             else
             {
