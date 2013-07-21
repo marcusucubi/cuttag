@@ -9,15 +9,15 @@ namespace CostAnalysisWindow.Elements
     public class ElementBuilder
     {
         private readonly TypeDefinition m_Target;
-        private readonly ElementCollection m_Collection;
+        private readonly PropertyCollection m_Collection;
         
         public ElementBuilder(TypeDefinition target)
         {
             m_Target = target;
-            m_Collection = new ElementCollection();
+            m_Collection = new PropertyCollection();
         }
         
-        public ElementCollection Elements
+        public PropertyCollection Elements
         {
             get { return m_Collection; }
         }
@@ -40,7 +40,7 @@ namespace CostAnalysisWindow.Elements
 
             foreach (PropertyElement propNode in m_Collection)
             {
-                ElementCollection col =
+                PropertyCollection col =
                     m_Collection.FindNodeWithDependent(
                         propNode.Property.Name);
 
@@ -158,7 +158,7 @@ namespace CostAnalysisWindow.Elements
                 }
                 
                 bool found = false;
-                ElementCollection col = m_Collection.FindNodePrimaryProperty(fieldRef.Name);
+                PropertyCollection col = m_Collection.FindNodePrimaryProperty(fieldRef.Name);
                 foreach (PropertyElement n in col) 
                 {
                     if (n.Property.Name == propertyNode.Property.Name)
@@ -192,7 +192,7 @@ namespace CostAnalysisWindow.Elements
                 {
                     continue;
                 }
-                ElementCollection primaryNodeCollection = 
+                PropertyCollection primaryNodeCollection = 
                     m_Collection.FindNodePrimaryProperty(fieldRef.Name);
                 foreach (PropertyElement primaryNode in primaryNodeCollection)
                 {

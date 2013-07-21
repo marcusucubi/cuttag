@@ -8,9 +8,9 @@ namespace CostAnalysisWindow
 {
     public class PropertyAnalyzer2
     {
-        private ElementCollection m_Nodes = new ElementCollection();
+        private PropertyCollection m_Nodes = new PropertyCollection();
 
-        public ElementCollection Nodes
+        public PropertyCollection Nodes
         {
             get { return m_Nodes; }
         }

@@ -77,7 +77,7 @@
     <Compile Include="Decomplie\VBTextOutputFormatter.cs" />
     <Compile Include="Elements\CodeElement.cs" />
     <Compile Include="Elements\ElementBuilder.cs" />
-    <Compile Include="Elements\ElementCollection.cs" />
+    <Compile Include="Elements\PropertyCollection.cs" />
     <Compile Include="Elements\FieldCollection.cs" />
     <Compile Include="Elements\FieldElement.cs" />
     <Compile Include="Elements\PropertyElement.cs" />
