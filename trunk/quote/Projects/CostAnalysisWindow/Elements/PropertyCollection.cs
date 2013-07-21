@@ -6,7 +6,7 @@ using Mono.Cecil;
 
 namespace CostAnalysisWindow.Elements
 {
-    public class ElementCollection : List<PropertyElement>
+    public class PropertyCollection : List<PropertyElement>
     {
         public PropertyElement Find(PropertyDefinition property)
         {
@@ -39,9 +39,9 @@ namespace CostAnalysisWindow.Elements
             return null;
         }
 
-        public ElementCollection FindNodeWithDependent(string property)
+        public PropertyCollection FindNodeWithDependent(string property)
         {
-            ElementCollection result = new ElementCollection();
+            PropertyCollection result = new PropertyCollection();
 
             foreach (PropertyElement n in this)
             {
@@ -66,9 +66,9 @@ namespace CostAnalysisWindow.Elements
             return result;
         }
 
-        public ElementCollection FindNodePrimaryProperty(string property)
+        public PropertyCollection FindNodePrimaryProperty(string property)
         {
-            ElementCollection result = new ElementCollection();
+            PropertyCollection result = new PropertyCollection();
 
             foreach (PropertyElement child in this)
             {
@@ -86,23 +86,5 @@ namespace CostAnalysisWindow.Elements
             return result;
         }
         
-        public ElementCollection TopLevelElements
-        {
-            get
-            {
-                ElementCollection result = new ElementCollection();
-    
-                foreach (PropertyElement child in this)
-                {
-                    
-                    if (child.NodesAbove.Count == 0)
-                    {
-                        result.Add(child);
-                    }
-                }
-    
-                return result;
-            }
-        }
     }
 }

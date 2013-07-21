@@ -8,9 +8,9 @@ namespace CostAnalysisWindow
 {
     class UIUpdater2
     {
-        private readonly ElementCollection m_Nodes = new ElementCollection();
+        private readonly PropertyCollection m_Nodes = new PropertyCollection();
 
-        public UIUpdater2(ElementCollection nodes)
+        public UIUpdater2(PropertyCollection nodes)
         {
             m_Nodes = nodes;
         }
