@@ -58,13 +58,7 @@ Public NotInheritable Class DekalbComputationProperties
     Private _NumberOf3Wires As Integer
     Private _NumberOf4Wires As Integer
 
-    Private _SummaryMaterial As Decimal
-    Private _SummaryTVMCIncrement As Decimal
-    Private _SummaryDirectLabor As Decimal
-    Private _SummaryOverhead As Decimal
     Private _SummaryAdjustmentMultiplyer As Decimal = 0.08 'Read From DefaultValues
-    Private _SummaryCostAdjustment As Decimal
-    Private _SummaryProfit As Decimal
 #End Region
 #Region "1 Copper "
     Public ReadOnly Property CopperWeight As Decimal
@@ -386,28 +380,25 @@ Public NotInheritable Class DekalbComputationProperties
     End Property
 #End Region
 #Region "10 Summary "
-    Public ReadOnly Property SummaryMaterial As String
+    Public ReadOnly Property SummaryMaterial As Decimal
         Get
-            _SummaryMaterial = TotalMaterialCost
-            Return FormatExecutiveSummaryLine(_SummaryMaterial)
+            Return TotalMaterialCost
         End Get
     End Property
-    Public ReadOnly Property SummaryTVMCIncrement As String
+    Public ReadOnly Property SummaryTVMCIncrement As Decimal
         Get
-            _SummaryTVMCIncrement = TotalVariableMaterialCost - TotalMaterialCost
-            Return FormatExecutiveSummaryLine(_SummaryTVMCIncrement)
+            Dim result As Decimal = TotalVariableMaterialCost - TotalMaterialCost
+            Return (result)
         End Get
     End Property
-    Public ReadOnly Property SummaryDirectLabor As String
+    Public ReadOnly Property SummaryDirectLabor As Decimal
         Get
-            _SummaryDirectLabor = AdjustedTotalLaborTimeHours * 9.5
-            Return FormatExecutiveSummaryLine(_SummaryDirectLabor)
+            Return AdjustedTotalLaborTimeHours * 9.5
         End Get
     End Property
-    Public ReadOnly Property SummaryOverhead As String
+    Public ReadOnly Property SummaryOverhead As Decimal
         Get
-            _SummaryOverhead = _SummaryDirectLabor * 1.465
-            Return FormatExecutiveSummaryLine(_SummaryOverhead)
+            Return SummaryDirectLabor * 1.465
         End Get
     End Property
     Public Property SummaryAdjustment As Decimal
@@ -419,16 +410,30 @@ Public NotInheritable Class DekalbComputationProperties
             Me.SendEvents()
         End Set
     End Property
-    Public ReadOnly Property SummaryCostAdjustment As String
+    Public ReadOnly Property SummaryCostAdjustment As Decimal
         Get
-            _SummaryCostAdjustment = (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead) * SummaryAdjustment
-            Return Round(_SummaryCostAdjustment, 2).ToString
+            Dim result As Decimal = 
+                (
+                SummaryMaterial + 
+                SummaryTVMCIncrement + 
+                SummaryDirectLabor + 
+                SummaryOverhead
+                ) * SummaryAdjustment
+            Return result
         End Get
     End Property
-    Public ReadOnly Property SummaryProfit As String
+    Public ReadOnly Property SummaryProfit As Decimal
         Get
-            _SummaryProfit = AdjustedTotalUnitCost - (_SummaryMaterial + _SummaryTVMCIncrement + _SummaryDirectLabor + _SummaryOverhead + _SummaryCostAdjustment)
-            Return FormatExecutiveSummaryLine(_SummaryProfit)
+            Dim result As Decimal = 
+                AdjustedTotalUnitCost - 
+                (
+                SummaryMaterial + 
+                SummaryTVMCIncrement + 
+                SummaryDirectLabor + 
+                SummaryOverhead + 
+                SummaryCostAdjustment
+                )
+            Return result
         End Get
     End Property
 #End Region
@@ -458,17 +463,6 @@ Public NotInheritable Class DekalbComputationProperties
 #End Region
 
 #Region " Methods "
-    Private Function FormatExecutiveSummaryLine(ByVal Value As Decimal) As String
-        Dim retValue As String
-        retValue = Round(Value, 2).ToString + " ("
-        If AdjustedTotalUnitCost = 0 Then
-            retValue += "N/A"
-        Else
-            retValue += Round((Value / (AdjustedTotalUnitCost - Me.SummaryCostAdjustment) * 100), 1).ToString + "%"
-        End If
-        retValue += ")"
-        Return retValue
-    End Function
     Private Function SumCost(ByVal IsWire As Boolean) As Decimal
         Dim result As Decimal
         For Each detail As Model.Template.Detail In _Header.Details

@@ -516,7 +516,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryMaterial As String
         Get
-            Return _Subject.SummaryMaterial
+            Return FormatExecutiveSummaryLine(_Subject.SummaryMaterial)
         End Get
     End Property
 
@@ -525,7 +525,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryTVMCIncrement As String
         Get
-            Return _Subject.SummaryTVMCIncrement
+            Return FormatExecutiveSummaryLine(_Subject.SummaryTVMCIncrement)
         End Get
     End Property
 
@@ -534,7 +534,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryDirectLabor As String
         Get
-            Return _Subject.SummaryDirectLabor
+            Return FormatExecutiveSummaryLine(_Subject.SummaryDirectLabor)
         End Get
     End Property
 
@@ -543,7 +543,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryOverhead As String
         Get
-            Return _Subject.SummaryOverhead
+            Return FormatExecutiveSummaryLine(_Subject.SummaryOverhead)
         End Get
     End Property
 
@@ -565,7 +565,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryCostAdjustment As String
         Get
-            Return _Subject.SummaryCostAdjustment
+            Return Round(_Subject.SummaryCostAdjustment, 2).ToString
         End Get
     End Property
 
@@ -574,7 +574,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryProfit As String
         Get
-            Return _Subject.SummaryProfit
+            Return FormatExecutiveSummaryLine(_Subject.SummaryProfit)
         End Get
     End Property
 
@@ -615,5 +615,17 @@ Public Class DisplayableComputationProperties
     End Property
 
 #End Region
+
+    Private Function FormatExecutiveSummaryLine(ByVal Value As Decimal) As String
+        Dim retValue As String
+        retValue = Round(Value, 2).ToString + " ("
+        If AdjustedTotalUnitCost = 0 Then
+            retValue += "N/A"
+        Else
+            retValue += Round((Value / (AdjustedTotalUnitCost - Me.SummaryCostAdjustment) * 100), 1).ToString + "%"
+        End If
+        retValue += ")"
+        Return retValue
+    End Function
 
 End Class
