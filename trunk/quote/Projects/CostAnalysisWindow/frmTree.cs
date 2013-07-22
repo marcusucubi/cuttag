@@ -18,7 +18,7 @@ using CostAnalysisWindow.Elements;
 
 namespace CostAnalysisWindow
 {
-    public partial class frmTree : DockContent
+    public partial class frmTree : Form
     {
         private DecompileHelper _Helper = new DecompileHelper();
         
