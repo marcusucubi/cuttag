@@ -538,7 +538,7 @@ Public Class DisplayableComputationProperties
         End Get
     End Property
 
-    <DescriptionAttribute("DL * 1.Common.GlobalOptions.DecimalPointsToDisplay65"), _
+    <DescriptionAttribute("DL * 1.465"), _
     DisplayName("OH"), _
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public ReadOnly Property SummaryOverhead As String
