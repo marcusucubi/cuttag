@@ -32,7 +32,7 @@ namespace CostAnalysisWindow
 
         private void ActiveHeader_PropertyChanged(object source, EventArgs args)
         {
-            Display();
+            //Display();
         }
 
         private void Display()
