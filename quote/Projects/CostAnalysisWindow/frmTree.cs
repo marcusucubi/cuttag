@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
-
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.Ast;
-
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-using WeifenLuo.WinFormsUI.Docking;
 
 using CostAnalysisWindow;
 using CostAnalysisWindow.Decompile;
 using CostAnalysisWindow.Elements;
+using ICSharpCode.Decompiler;
+using ICSharpCode.Decompiler.Ast;
+using Model.Template;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace CostAnalysisWindow
 {
-    public partial class frmTree : Form
+    public partial class frmTree : DockContent
     {
         private DecompileHelper _Helper = new DecompileHelper();
+        private  Model.Common.Header _Header;
+        private UIUpdater2 _Updater;
         
         public frmTree()
         {
@@ -28,35 +29,65 @@ namespace CostAnalysisWindow
 
             Model.ActiveHeader.ActiveHeader.PropertyChanged += ActiveHeader_PropertyChanged;
             Display();
+            _Updater.DisplayValues(treeView1);
+            WatchProperties();
         }
 
         private void ActiveHeader_PropertyChanged(object source, EventArgs args)
         {
-            //Display();
+            if (_Updater != null)
+            {
+                _Updater.DisplayValues(treeView1);
+            }
+            
+            WatchProperties();
         }
 
+        void FrmTreeFormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_Header != null)
+            {
+                _Header.ComputationProperties.PropertyChanged -= Header_PropertyChanged;
+                _Header = null;
+            }
+        }
+        
+        void WatchProperties()
+        {
+            if (_Header != null)
+            {
+                _Header.ComputationProperties.PropertyChanged -= Header_PropertyChanged;
+            }
+
+            _Header = Model.ActiveHeader.ActiveHeader.Header;
+            if (_Header != null) 
+            {
+                _Header.ComputationProperties.PropertyChanged += Header_PropertyChanged;
+            }
+        }
+
+        private void Header_PropertyChanged(object source, EventArgs args)
+        {
+            if (_Updater != null)
+            {
+                _Updater.DisplayValues(treeView1);
+            }
+        }
+        
         private void Display()
         {
             System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
 
             PropertyAnalyzer2 analyzer2 = new PropertyAnalyzer2();
             analyzer2.Init();
-            UIUpdater2 updater2 = new UIUpdater2(analyzer2.Nodes);
-            updater2.UpdateTree(this.treeView1);
+            _Updater = new UIUpdater2(analyzer2.Nodes);
+            _Updater.UpdateTree(this.treeView1);
             
             _Helper.Init3();
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-        }
-
-        private void treeView1_NodeMouseClick_1(object sender, TreeNodeMouseClickEventArgs e)
-        {
-        }
-
+        
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             PropertyElement propNode = e.Node.Tag as PropertyElement;

@@ -1,4 +1,5 @@
 ﻿using System;
+
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace CostAnalysisWindow
@@ -18,26 +19,24 @@ namespace CostAnalysisWindow
 
         public void ShowTree()
         {
-            m_Tree = new frmTree();
-            m_Tree.Show();
-//            if (m_Tree == null)
-//            {
-//                m_Tree = new frmTree();
-//                InitChild(m_Tree);
-//            }
-//
-//            if (m_Tree.IsHidden || m_Tree.IsDisposed) 
-//            {
-//                m_Tree = new frmTree();
-//                InitChild(m_Tree);
-//            }
+            if (m_Tree == null)
+            {
+                m_Tree = new frmTree();
+                InitChild(m_Tree);
+            }
+
+            if (m_Tree.IsHidden || m_Tree.IsDisposed) 
+            {
+                m_Tree = new frmTree();
+                InitChild(m_Tree);
+            }
         }
         
         private void InitChild(DockContent frm)
         {
-//            PluginHost.App.DockPanel.SuspendLayout(true);
-//            frm.Show(PluginHost.App.DockPanel, DockState.DockLeft);
-//            PluginHost.App.DockPanel.ResumeLayout(true, true);
+            PluginHost.App.DockPanel.SuspendLayout(true);
+            frm.Show(PluginHost.App.DockPanel, DockState.DockLeft);
+            PluginHost.App.DockPanel.ResumeLayout(true, true);
         }
 
     }
