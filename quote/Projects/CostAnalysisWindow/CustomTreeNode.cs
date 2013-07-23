@@ -10,7 +10,7 @@ namespace CostAnalysisWindow
         private CodeElement m_CodeElement;
         
         public CustomTreeNode(string text)
-            : base("")
+            : base("1234567890" + text)
         {
             UpdateImage();
         }

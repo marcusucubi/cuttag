@@ -131,7 +131,7 @@ namespace CostAnalysisWindow
             string text = "Costs";
             string numValue = "";
             CustomTreeNode node = e.Node as CustomTreeNode;
-            if (node != null)
+            if (node != null && node.CodeElement != null)
             {
                 text = node.CodeElement.Name;
                 
