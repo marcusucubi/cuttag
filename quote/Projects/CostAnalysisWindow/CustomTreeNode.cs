@@ -10,7 +10,7 @@ namespace CostAnalysisWindow
         private CodeElement m_CodeElement;
         
         public CustomTreeNode(string text)
-            : base(text)
+            : base("")
         {
             UpdateImage();
         }
@@ -21,13 +21,16 @@ namespace CostAnalysisWindow
             set { m_CodeElement = value; UpdateImage(); }
         }
         
-        public void ResetText()
+        public decimal PropertyValue
         {
-            PropertyElement prop = m_CodeElement as PropertyElement;
-            if (prop != null)
-            {
-                this.Text = prop.Name;
-            }
+            get;
+            set;
+        }
+        
+        public bool PropertyAttached
+        {
+            get;
+            set;
         }
         
         public void UpdateImage()
