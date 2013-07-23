@@ -120,39 +120,13 @@ namespace CostAnalysisWindow
             return "";
         }
 
-        
         void TreeView1DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
-            if (e.Bounds.Left == -1)
-            {
-                return;
-            }
-            
-            string text = "Costs";
-            string numValue = "";
             CustomTreeNode node = e.Node as CustomTreeNode;
-            if (node != null && node.CodeElement != null)
+            if (node != null)
             {
-                text = node.CodeElement.Name;
-                
-                if (node.PropertyAttached)
-                {
-                    numValue = node.PropertyValue.ToString("#,##0.0000");
-                }
+                node.OnDraw(sender, e);
             }
-            
-            Font numFont = new Font(FontFamily.GenericMonospace, 10);
-            e.Graphics.DrawString(
-                numValue, numFont, Brushes.DarkBlue,
-                e.Bounds.Left + 2, 
-                e.Bounds.Top + 1);
-            
-            Font textFont = new Font(FontFamily.GenericSerif, 10);
-            SizeF numSize = e.Graphics.MeasureString(numValue, numFont, new SizeF(100, 100));
-            e.Graphics.DrawString(
-                text, textFont, Brushes.Black, 
-                e.Bounds.Left + numSize.Width + 2, 
-                e.Bounds.Top + 1);
         }
     }
 }

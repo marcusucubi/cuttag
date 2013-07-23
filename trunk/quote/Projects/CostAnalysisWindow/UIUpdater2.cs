@@ -21,7 +21,7 @@ namespace CostAnalysisWindow
         public void UpdateTree(TreeView treeView1)
         {
             treeView1.Nodes.Clear();
-            CustomTreeNode root = new CustomTreeNode("Costs");
+            CustomTreeNode root = new CustomTreeNode("Costs", null);
             treeView1.Nodes.Add(root);
 
             m_Nodes.Sort();
@@ -44,7 +44,7 @@ namespace CostAnalysisWindow
             CustomTreeNode parent,
             PropertyElement node)
         {
-            CustomTreeNode propNode = new CustomTreeNode(node.Property.Name);
+            CustomTreeNode propNode = new CustomTreeNode(node.Property.Name, null);
             propNode.CodeElement = node;
             
             AddFieldsToTree(propNode, node);
@@ -68,7 +68,7 @@ namespace CostAnalysisWindow
         {
             foreach(FieldElement element in node.OrphanedFieldDefs)
             {
-                CustomTreeNode propNode = new CustomTreeNode(element.Name);
+                CustomTreeNode propNode = new CustomTreeNode(element.Name, null);
                 propNode.CodeElement = element;
                 
                 parent.Nodes.Add(propNode);
@@ -83,10 +83,10 @@ namespace CostAnalysisWindow
                 return;
             }
             
+            List<CustomTreeNode> nodes = GetAllNodes(treeView1);
+            
             Model.Template.Header header =
                 Model.ActiveHeader.ActiveHeader.Header as Model.Template.Header;
-            
-            List<CustomTreeNode> nodes = GetAllNodes(treeView1);
             
             if (header != null)
             {
@@ -96,10 +96,24 @@ namespace CostAnalysisWindow
                     UpdateNodes(nodes, wrapper);
                 }
             }
+            else
+            {
+                ClearNodes(nodes);
+            }
             
             treeView1.Invalidate();
         }
 
+        void ClearNodes(
+            List<CustomTreeNode> nodes)
+        {
+            foreach (CustomTreeNode treeNode in nodes) 
+            {
+                treeNode.PropertyValue = 0;
+                treeNode.PropertyAttached = false;
+            }
+        }
+        
         void UpdateNodes(
             List<CustomTreeNode> nodes, 
             IComputationWrapper wrapper)
