@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 using CostAnalysisWindow.Elements;
@@ -9,8 +11,8 @@ namespace CostAnalysisWindow
     {
         private CodeElement m_CodeElement;
         
-        public CustomTreeNode(string text)
-            : base("1234567890" + text)
+        public CustomTreeNode(string text, INotifyPropertyChanged subject)
+            : base(text + "                            ")
         {
             UpdateImage();
         }
@@ -24,14 +26,15 @@ namespace CostAnalysisWindow
         public decimal PropertyValue
         {
             get;
-            set;
+            set; 
         }
         
         public bool PropertyAttached
         {
             get;
-            set;
+            set; 
         }
+        
         
         public void UpdateImage()
         {
@@ -62,5 +65,59 @@ namespace CostAnalysisWindow
             }
         }
         
+        private string NumValue
+        {
+            get 
+            {
+                string result = "";
+                if (this.CodeElement != null)
+                {
+                    if (this.PropertyAttached)
+                    {
+                        result = this.PropertyValue.ToString("#,##0.0000");
+                    }
+                }
+                
+                return result;
+            }
+        }
+        
+        private string TextValue
+        {
+            get 
+            {
+                string result = "Costs";
+                if (this.CodeElement != null)
+                {
+                    result = this.CodeElement.Name;
+                }
+                
+                return result;
+            }
+        }
+        
+        public void OnDraw(object sender, DrawTreeNodeEventArgs e)
+        {
+            if (e.Bounds.Left == -1)
+            {
+                return;
+            }
+            
+            string text = this.TextValue;
+            string numValue = this.NumValue;
+            
+            Font numFont = new Font(FontFamily.GenericMonospace, 10);
+            e.Graphics.DrawString(
+                numValue, numFont, Brushes.DarkBlue,
+                e.Bounds.Left + 2, 
+                e.Bounds.Top + 1);
+            
+            Font textFont = new Font(FontFamily.GenericSerif, 10);
+            SizeF numSize = e.Graphics.MeasureString(numValue, numFont, new SizeF(100, 100));
+            e.Graphics.DrawString(
+                text, textFont, Brushes.Black, 
+                e.Bounds.Left + numSize.Width + 2, 
+                e.Bounds.Top + 1);
+        }
     }
 }
