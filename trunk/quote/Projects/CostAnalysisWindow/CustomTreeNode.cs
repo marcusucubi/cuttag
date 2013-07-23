@@ -75,7 +75,7 @@ namespace CostAnalysisWindow
                     {
                         result = this.PropertyValue.ToString("#,##0.0000");
                         
-                        int padSize = (10 - result.Length);
+                        int padSize = (Math.Max(0, 10 - result.Length));
                         string padding = "          ".Substring(0, padSize);
                         
                         result = padding + result;
