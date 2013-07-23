@@ -21,7 +21,7 @@ namespace CostAnalysisWindow
         public void UpdateTree(TreeView treeView1)
         {
             treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode("Costs");
+            CustomTreeNode root = new CustomTreeNode("Costs");
             treeView1.Nodes.Add(root);
 
             m_Nodes.Sort();
@@ -41,26 +41,13 @@ namespace CostAnalysisWindow
         }
 
         public void AddNodeToTree(
-            TreeNode parent,
+            CustomTreeNode parent,
             PropertyElement node)
         {
-            TreeNode propNode = new TreeNode(node.Property.Name);
-            propNode.Tag = node;
+            CustomTreeNode propNode = new CustomTreeNode(node.Property.Name);
+            propNode.CodeElement = node;
             
             AddFieldsToTree(propNode, node);
-
-            if (!node.ReadonlyProperty)
-            {
-                propNode.ImageIndex = 7;
-            }
-            else if (node.NodesBelow.Count == 0)
-            {
-                propNode.ImageIndex = 6;
-            }
-            else
-            {
-                propNode.ImageIndex = 2;
-            }
 
             parent.Nodes.Add(propNode);
 
@@ -76,14 +63,13 @@ namespace CostAnalysisWindow
         }
 
         public void AddFieldsToTree(
-            TreeNode parent,
+            CustomTreeNode parent,
             PropertyElement node)
         {
             foreach(FieldElement element in node.OrphanedFieldDefs)
             {
-                TreeNode propNode = new TreeNode(element.Name);
-                propNode.Tag = element;
-                propNode.ImageIndex = 5;
+                CustomTreeNode propNode = new CustomTreeNode(element.Name);
+                propNode.CodeElement = element;
                 
                 parent.Nodes.Add(propNode);
             }
@@ -100,48 +86,73 @@ namespace CostAnalysisWindow
             Model.Template.Header header =
                 Model.ActiveHeader.ActiveHeader.Header as Model.Template.Header;
             
+            List<CustomTreeNode> nodes = GetAllNodes(treeView1);
+            treeView1.SuspendLayout();
+            
             if (header != null)
             {
-                List<TreeNode> nodes = GetAllNodes(treeView1);
-                treeView1.SuspendLayout();
-            
                 IComputationWrapper wrapper = header.ComputationProperties as IComputationWrapper;
                 if (wrapper != null)
                 {
                     UpdateNodes(nodes, wrapper);
                 }
-                
-                treeView1.ResumeLayout();
             }
+            else
+            {
+                ClearNodes(treeView1);
+            }
+            
+            treeView1.ResumeLayout();
             
         }
 
-        void UpdateNodes(List<TreeNode> nodes, IComputationWrapper wrapper)
+        void ClearNodes(TreeView treeView1)
+        {
+            List<CustomTreeNode> nodes = GetAllNodes(treeView1);
+            foreach(CustomTreeNode node in nodes)
+            {
+                node.ResetText();
+            }
+        }
+
+        void UpdateNodes(
+            List<CustomTreeNode> nodes, 
+            IComputationWrapper wrapper)
         {
             ComputationProperties comp = wrapper.GetComputationProperties();
             Type type = comp.GetType();
             PropertyInfo[] props = type.GetProperties();
-            foreach (PropertyInfo prop in props) {
-                foreach (TreeNode treeNode in nodes) {
+            foreach (PropertyInfo prop in props) 
+            {
+                foreach (CustomTreeNode treeNode in nodes) 
+                {
                     UpdateNode(comp, prop, treeNode);
                 }
             }
         }
 
-        void UpdateNode(ComputationProperties comp, PropertyInfo prop, TreeNode treeNode)
+        void UpdateNode(
+            ComputationProperties comp, 
+            PropertyInfo prop, 
+            CustomTreeNode treeNode)
         {
-            PropertyElement element = treeNode.Tag as PropertyElement;
-            if (element != null) {
-                if (element.Property.Name == prop.Name) {
+            PropertyElement element = treeNode.CodeElement as PropertyElement;
+            if (element != null) 
+            {
+                if (element.Property.Name == prop.Name) 
+                {
                     MethodInfo m = prop.GetGetMethod();
-                    object value = m.Invoke(comp, new object[] {
-                                                
-                                            });
-                    if (value is decimal) {
+                    
+                    object value = m.Invoke(comp, new object[] {});
+                    
+                    if (value is decimal) 
+                    {
                         decimal d = (decimal)value;
                         treeNode.Text = d.ToString("#,##0.0000") + " " + prop.Name;
                     }
-                    if (value is int) {
+                    
+                    if (value is int) 
+                    {
                         int i = (int)value;
                         treeNode.Text = i.ToString("#,##0.0000") + " " + prop.Name;
                     }
@@ -149,15 +160,15 @@ namespace CostAnalysisWindow
             }
         }
         
-        List<TreeNode> GetAllNodes(TreeView treeView1)
+        List<CustomTreeNode> GetAllNodes(TreeView treeView1)
         {
-            List<TreeNode> result = new List<TreeNode>();
+            List<CustomTreeNode> result = new List<CustomTreeNode>();
             
             foreach(TreeNode child in treeView1.Nodes)
             {
-                result.Add(child);
+                result.Add(child as CustomTreeNode);
                 
-                List<TreeNode> grandChildren = GetChildNodes(child);
+                List<CustomTreeNode> grandChildren = GetChildNodes(child as CustomTreeNode);
                 
                 result.AddRange(grandChildren);
             }
@@ -165,15 +176,15 @@ namespace CostAnalysisWindow
             return result;
         }
 
-        List<TreeNode> GetChildNodes(TreeNode node)
+        List<CustomTreeNode> GetChildNodes(CustomTreeNode node)
         {
-            List<TreeNode> result = new List<TreeNode>();
+            List<CustomTreeNode> result = new List<CustomTreeNode>();
             
             foreach(TreeNode child in node.Nodes)
             {
-                result.Add(child);
+                result.Add(child as CustomTreeNode);
                 
-                List<TreeNode> grandChildren = GetChildNodes(child);
+                List<CustomTreeNode> grandChildren = GetChildNodes(child as CustomTreeNode);
                 
                 result.AddRange(grandChildren);
             }
