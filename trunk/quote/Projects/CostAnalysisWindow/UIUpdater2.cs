@@ -87,7 +87,6 @@ namespace CostAnalysisWindow
                 Model.ActiveHeader.ActiveHeader.Header as Model.Template.Header;
             
             List<CustomTreeNode> nodes = GetAllNodes(treeView1);
-            treeView1.SuspendLayout();
             
             if (header != null)
             {
@@ -97,22 +96,8 @@ namespace CostAnalysisWindow
                     UpdateNodes(nodes, wrapper);
                 }
             }
-            else
-            {
-                ClearNodes(treeView1);
-            }
             
-            treeView1.ResumeLayout();
-            
-        }
-
-        void ClearNodes(TreeView treeView1)
-        {
-            List<CustomTreeNode> nodes = GetAllNodes(treeView1);
-            foreach(CustomTreeNode node in nodes)
-            {
-                node.ResetText();
-            }
+            treeView1.Invalidate();
         }
 
         void UpdateNodes(
@@ -148,13 +133,15 @@ namespace CostAnalysisWindow
                     if (value is decimal) 
                     {
                         decimal d = (decimal)value;
-                        treeNode.Text = d.ToString("#,##0.0000") + " " + prop.Name;
+                        treeNode.PropertyValue = d;
+                        treeNode.PropertyAttached = true;
                     }
                     
                     if (value is int) 
                     {
                         int i = (int)value;
-                        treeNode.Text = i.ToString("#,##0.0000") + " " + prop.Name;
+                        treeNode.PropertyValue = new decimal(i);
+                        treeNode.PropertyAttached = true;
                     }
                 }
             }
