@@ -35,7 +35,6 @@ namespace CostAnalysisWindow
             set; 
         }
         
-        
         public void UpdateImage()
         {
             if (m_CodeElement == null)
@@ -75,6 +74,11 @@ namespace CostAnalysisWindow
                     if (this.PropertyAttached)
                     {
                         result = this.PropertyValue.ToString("#,##0.0000");
+                        
+                        int padSize = (10 - result.Length);
+                        string padding = "          ".Substring(0, padSize);
+                        
+                        result = padding + result;
                     }
                 }
                 
@@ -118,6 +122,13 @@ namespace CostAnalysisWindow
                 text, textFont, Brushes.Black, 
                 e.Bounds.Left + numSize.Width + 2, 
                 e.Bounds.Top + 1);
+            
+            e.Graphics.DrawLine(
+                Pens.Black, 
+                e.Bounds.Left,
+                (e.Bounds.Top + numSize.Height) - 1,
+                e.Bounds.Left + numSize.Width, 
+                (e.Bounds.Top + numSize.Height) - 1);
         }
     }
 }
