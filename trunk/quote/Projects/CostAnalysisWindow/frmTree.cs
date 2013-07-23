@@ -20,7 +20,7 @@ namespace CostAnalysisWindow
     public partial class frmTree : DockContent
     {
         private DecompileHelper _Helper = new DecompileHelper();
-        private  Model.Common.Header _Header;
+        private Model.Common.Header _Header;
         private UIUpdater2 _Updater;
         
         public frmTree()
@@ -90,7 +90,8 @@ namespace CostAnalysisWindow
         
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            PropertyElement propNode = e.Node.Tag as PropertyElement;
+            CustomTreeNode node = e.Node as CustomTreeNode;
+            PropertyElement propNode = node.CodeElement as PropertyElement;
             if (propNode == null)
             {
                 this.richTextBox1.Text = "";

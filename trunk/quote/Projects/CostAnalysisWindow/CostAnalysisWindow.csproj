@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalcTreeMenuItem.cs" />
+    <Compile Include="CustomTreeNode.cs" />
     <Compile Include="Decomplie\DebuggerTextOutput.cs" />
     <Compile Include="Decomplie\DecompilationOptions.cs" />
     <Compile Include="Decomplie\DecompileHelper.cs" />
