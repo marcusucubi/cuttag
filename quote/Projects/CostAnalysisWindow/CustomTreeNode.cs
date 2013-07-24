@@ -73,9 +73,9 @@ namespace CostAnalysisWindow
                 {
                     if (this.PropertyAttached)
                     {
-                        result = this.PropertyValue.ToString("#,##0.0000");
+                        result = this.PropertyValue.ToString("###,###,##0.0");
                         
-                        int padSize = (Math.Max(0, 10 - result.Length));
+                        int padSize = (Math.Max(0, 12 - result.Length));
                         string padding = "          ".Substring(0, padSize);
                         
                         result = padding + result;
@@ -117,7 +117,7 @@ namespace CostAnalysisWindow
                 e.Bounds.Top + 1);
             
             Font textFont = new Font(FontFamily.GenericSerif, 10);
-            SizeF numSize = e.Graphics.MeasureString(numValue, numFont, new SizeF(100, 100));
+            SizeF numSize = e.Graphics.MeasureString(numValue, numFont, new SizeF(140, 100));
             e.Graphics.DrawString(
                 text, textFont, Brushes.Black, 
                 e.Bounds.Left + numSize.Width + 2, 
