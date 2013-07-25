@@ -10,9 +10,9 @@
   <!--
   Note: Only one properties plugin should be used.
   
-  <plugin path="CostAnalysisWindow.dll" />
   <plugin path="SampleProperties.dll" />
   -->
+  <plugin path="CostAnalysisWindow.dll" />
   <plugin path="DekalbProperties.dll" />
 
 </plugins>
