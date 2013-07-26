@@ -4,7 +4,7 @@ using ICSharpCode.Decompiler;
 
 namespace CostAnalysisWindow.Decompile
 {
-	public class DecompilationOptions
+	public class DeCompilerOptions
 	{
 		/// <summary>
 		/// Gets whether a full decompilation (all members recursively) is desired.

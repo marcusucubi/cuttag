@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 using CostAnalysisWindow.Elements;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -10,9 +12,9 @@ namespace CostAnalysisWindow
     {
         private PropertyCollection m_Nodes = new PropertyCollection();
 
-        public PropertyCollection Nodes
+        public ReadOnlyCollection<PropertyElement> Nodes
         {
-            get { return m_Nodes; }
+            get { return new ReadOnlyCollection<PropertyElement>(m_Nodes); }
         }
         
         public void Init()
@@ -51,7 +53,7 @@ namespace CostAnalysisWindow
         }
         
         public static TypeDefinition LoadTypeDef(
-            Type t,
+            Type findType,
             ModuleDefinition module)
         {
             TypeDefinition result = null;
@@ -63,7 +65,7 @@ namespace CostAnalysisWindow
                     continue;
                 }
         
-                if (type.FullName != t.FullName)
+                if (type.FullName != findType.FullName)
                 {
                     continue;
                 }
