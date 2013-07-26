@@ -87,7 +87,6 @@
     <Compile Include="FormTree.Designer.cs">
       <DependentUpon>FormTree.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyAnalyzer2.cs" />
     <Compile Include="UIUpdater2.cs" />

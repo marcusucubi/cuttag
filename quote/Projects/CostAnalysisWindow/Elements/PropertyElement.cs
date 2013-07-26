@@ -10,8 +10,8 @@ namespace CostAnalysisWindow.Elements
 {
     public class PropertyElement : CodeElement, IEquatable<PropertyElement>
     {
-        private readonly FieldCollection m_FieldDefs = new FieldCollection();
-        private readonly FieldCollection m_OrphanedFieldDefs = new FieldCollection();
+        private readonly FieldCollection m_Fields = new FieldCollection();
+        private readonly FieldCollection m_OrphanedFields = new FieldCollection();
         private readonly PropertyDefinition m_Property;
 
         public PropertyElement(PropertyDefinition property)
@@ -34,31 +34,31 @@ namespace CostAnalysisWindow.Elements
             get { return m_Property; }
         }
 
-        public bool ReadonlyProperty
+        public bool IsReadOnly
         {
             get { return (m_Property.SetMethod == null); }
         }
 
-        public FieldCollection FieldDefs
+        public FieldCollection Fields
         {
-            get { return m_FieldDefs; }
+            get { return m_Fields; }
         }
 
-        public FieldCollection OrphanedFieldDefs
+        public FieldCollection OrphanedFields
         {
-            get { return m_OrphanedFieldDefs; }
+            get { return m_OrphanedFields; }
         }
         
         public FieldElement PrimaryFieldDefinition
         {
             get
             {
-                if (m_FieldDefs.Count != 1)
+                if (m_Fields.Count != 1)
                 {
                     return null;
                 }
 
-                return m_FieldDefs[0];
+                return m_Fields[0];
             }
         }
         
@@ -70,7 +70,7 @@ namespace CostAnalysisWindow.Elements
                 
                 foreach(PropertyElement prop in this.NodesBelow)
                 {
-                    foreach(FieldElement field in prop.FieldDefs)
+                    foreach(FieldElement field in prop.Fields)
                     {
                         result.Add(field);
                     }

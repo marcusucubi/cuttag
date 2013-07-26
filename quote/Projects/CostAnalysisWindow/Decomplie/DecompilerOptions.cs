@@ -4,13 +4,13 @@ using ICSharpCode.Decompiler;
 
 namespace CostAnalysisWindow.Decompile
 {
-	public class DeCompilerOptions
+	public class DisassembleOptions
 	{
 		/// <summary>
 		/// Gets whether a full decompilation (all members recursively) is desired.
 		/// If this option is false, language bindings are allowed to show the only headers of the decompiled element's children.
 		/// </summary>
-		public bool FullDecompilation { get; set; }
+		public bool FullDisassemble { get; set; }
 		
 		/// <summary>
 		/// Gets/Sets the directory into which the project is saved.
@@ -29,7 +29,7 @@ namespace CostAnalysisWindow.Decompile
 		/// <summary>
 		/// Gets the settings for the decompiler.
 		/// </summary>
-		public DecompilerSettings DecompilerSettings { get; set; }
+		public DecompilerSettings DisassembleSettings { get; set; }
 
 	}
 }

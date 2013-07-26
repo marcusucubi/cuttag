@@ -2,12 +2,13 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
-
 using CostAnalysisWindow.Elements;
 
 namespace CostAnalysisWindow
 {
+    [Serializable]
     public class CustomTreeNode : TreeNode
     {
         private CodeElement m_CodeElement;
@@ -16,6 +17,13 @@ namespace CostAnalysisWindow
             : base(text + "                            ")
         {
             UpdateImage();
+        }
+        
+        protected CustomTreeNode(
+            SerializationInfo info, 
+            StreamingContext context)
+            : base(info, context)
+        {
         }
         
         public CodeElement CodeElement 
@@ -50,7 +58,7 @@ namespace CostAnalysisWindow
             }
             else
             {
-                if (!prop.ReadonlyProperty)
+                if (!prop.IsReadOnly)
                 {
                     ImageIndex = 7;
                 }
