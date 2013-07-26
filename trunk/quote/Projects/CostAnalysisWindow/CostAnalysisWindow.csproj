@@ -71,8 +71,7 @@
   <ItemGroup>
     <Compile Include="CalcTreeMenuItem.cs" />
     <Compile Include="CustomTreeNode.cs" />
-    <Compile Include="Decomplie\DebuggerTextOutput.cs" />
-    <Compile Include="Decomplie\DecompilationOptions.cs" />
+    <Compile Include="Decomplie\DecompilerOptions.cs" />
     <Compile Include="Decomplie\DecompileHelper.cs" />
     <Compile Include="Decomplie\ILSpyEnvironmentProvider.cs" />
     <Compile Include="Decomplie\VBTextOutputFormatter.cs" />
@@ -82,11 +81,11 @@
     <Compile Include="Elements\FieldCollection.cs" />
     <Compile Include="Elements\FieldElement.cs" />
     <Compile Include="Elements\PropertyElement.cs" />
-    <Compile Include="frmTree.cs">
+    <Compile Include="FormTree.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTree.Designer.cs">
-      <DependentUpon>frmTree.cs</DependentUpon>
+    <Compile Include="FormTree.Designer.cs">
+      <DependentUpon>FormTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,8 +94,8 @@
     <Compile Include="ViewController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmTree.resx">
-      <DependentUpon>frmTree.cs</DependentUpon>
+    <EmbeddedResource Include="FormTree.resx">
+      <DependentUpon>FormTree.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -17,13 +17,13 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace CostAnalysisWindow
 {
-    public partial class frmTree : DockContent
+    public partial class FormTree : DockContent
     {
         private DecompileHelper _Helper = new DecompileHelper();
         private Model.Common.Header _Header;
         private UIUpdater2 _Updater;
         
-        public frmTree()
+        public FormTree()
         {
             InitializeComponent();
 
@@ -103,18 +103,10 @@ namespace CostAnalysisWindow
         
         private string Decompile(PropertyElement propNode)
         {
-            try
+            if (_Helper.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
             {
-                if (_Helper.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
-                {
-                    StringWriter w = _Helper.Dictionary[propNode.Property.GetMethod.ToString()];
-                    return w.ToString();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return e.Message;
+                StringWriter w = _Helper.Dictionary[propNode.Property.GetMethod.ToString()];
+                return w.ToString();
             }
             
             return "";

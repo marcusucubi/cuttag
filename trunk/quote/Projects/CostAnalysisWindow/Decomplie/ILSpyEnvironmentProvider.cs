@@ -19,8 +19,6 @@ namespace CostAnalysisWindow.Decompile
 			}
 		}
 
-		readonly CecilLoader loader = new CecilLoader(false);
-		
 		public string GetTypeNameForAttribute(ICSharpCode.NRefactory.CSharp.Attribute attribute)
 		{
 			return attribute.Type.Annotations
@@ -31,18 +29,6 @@ namespace CostAnalysisWindow.Decompile
 		
 		public IType ResolveType(ICSharpCode.NRefactory.VB.Ast.AstType type, ICSharpCode.NRefactory.VB.Ast.TypeDeclaration entity = null)
 		{
-			/*
-			var annotation = type.Annotation<TypeReference>();
-			if (annotation == null )
-				return null;
-			
-			IEntity current = null;
-			if (entity != null) {
-				var typeInfo = entity.Annotation<TypeReference>();
-				current = loader.ReadTypeReference(typeInfo).Resolve(context).GetDefinition();
-			}
-			
-			return loader.ReadTypeReference(annotation, entity: current).Resolve(context);*/
 			return SpecialType.UnknownType;
 		}
 		

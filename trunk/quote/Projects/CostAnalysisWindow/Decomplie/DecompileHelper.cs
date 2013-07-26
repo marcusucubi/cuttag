@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Ast;
 using ICSharpCode.Decompiler.Ast.Transforms;
 using ICSharpCode.Decompiler.Disassembler;
-
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
@@ -14,55 +13,12 @@ namespace CostAnalysisWindow.Decompile
 {
     class DecompileHelper
     {
-        //Predicate<IAstTransform> transformAbortCondition = null;
-        
         private Dictionary<string, StringWriter> _Dictionary = 
             new Dictionary<string, StringWriter>();
                 
         public Dictionary<string, StringWriter> Dictionary
         {
             get { return _Dictionary; }
-        }
-        
-        public void Init2()
-        {
-            Model.Common.SaveableProperties computationProperties = 
-                PropertyAnalyzer2.BuildComputationProperties();
-
-            Type computationPropertiesType = computationProperties.GetType();
-            
-            ModuleDefinition module = 
-                Mono.Cecil.ModuleDefinition.ReadModule(
-                    computationPropertiesType.Assembly.Location);
-            
-            TypeDefinition type = 
-                PropertyAnalyzer2.LoadTypeDef(computationPropertiesType, module);
-                
-            foreach(PropertyDefinition p in type.Properties)
-            {
-                MethodDefinition m = p.GetMethod;
-                
-                DecompilerContext context = new DecompilerContext(type.Module);
-                
-                context.CurrentMethod = m;
-                context.Settings.ExpressionTrees = true;
-                context.Settings.FullyQualifyAmbiguousTypeNames = false;
-                context.Settings.CSharpFormattingOptions.IndentBlocks = true;
-                context.Settings.IntroduceIncrementAndDecrement = true;
-                
-                AstBuilder astBuilder = new AstBuilder(context);
-                
-                astBuilder.AddType(type);
-                
-                StringWriter stringWriter = new StringWriter();
-                PlainTextOutput plain = new PlainTextOutput(stringWriter);
-                DebuggerTextOutput output = new DebuggerTextOutput(plain);
-                
-                _Dictionary = output.Dictionary; 
-                
-                astBuilder.GenerateCode(output);
-                
-            }
         }
         
         public void Init3()
@@ -82,33 +38,10 @@ namespace CostAnalysisWindow.Decompile
             _Dictionary.Clear();
             foreach(PropertyDefinition p in type.Properties)
             {
-                MethodDefinition m = p.GetMethod;
-                
-//                DecompilerContext context = new DecompilerContext(type.Module);
-//                
-//                context.CurrentMethod = m;
-//                context.Settings.ExpressionTrees = true;
-//                context.Settings.FullyQualifyAmbiguousTypeNames = false;
-//                context.Settings.CSharpFormattingOptions.IndentBlocks = true;
-//                context.Settings.IntroduceIncrementAndDecrement = true;
-//                
-//                AstBuilder astBuilder = new AstBuilder(context);
-//                
-//                astBuilder.AddType(type);
-//                
-//                StringWriter stringWriter = new StringWriter();
-//                PlainTextOutput plain = new PlainTextOutput(stringWriter);
-//                DebuggerTextOutput output = new DebuggerTextOutput(plain);
-//                
-//                _Dictionary = output.Dictionary; 
-//                
-//                astBuilder.GenerateCode(output);
-                
-                
-                StringWriter stringWriter = new StringWriter();
+                StringWriter stringWriter = new StringWriter(CultureInfo.CurrentCulture);
                 PlainTextOutput plain = new PlainTextOutput(stringWriter);
 
-                DecompilationOptions options = new DecompilationOptions();
+                DeCompilerOptions options = new DeCompilerOptions();
                 DecompilerSettings settings = new DecompilerSettings();
                 options.DecompilerSettings = settings;
                 
@@ -118,10 +51,10 @@ namespace CostAnalysisWindow.Decompile
             }
         }
         
-        public void DecompileProperty(
+        public static void DecompileProperty(
             PropertyDefinition property, 
             ITextOutput output, 
-            DecompilationOptions options)
+            DeCompilerOptions options)
         {
             AstBuilder codeDomBuilder = CreateAstBuilder(
                 options, currentType: property.DeclaringType, 
@@ -129,11 +62,11 @@ namespace CostAnalysisWindow.Decompile
                 isSingleMember: true);
             codeDomBuilder.AddProperty(property);
             
-            RunTransformsAndGenerateCode(codeDomBuilder, output, options);
+            RunTransformsAndGenerateCode(codeDomBuilder, output);
         }
         
-        AstBuilder CreateAstBuilder(
-            DecompilationOptions options, 
+        static AstBuilder CreateAstBuilder(
+            DeCompilerOptions options, 
             ModuleDefinition currentModule = null, 
             TypeDefinition currentType = null, 
             MethodDefinition currentMethod = null,
@@ -161,15 +94,10 @@ namespace CostAnalysisWindow.Decompile
                 });
         }
         
-        void RunTransformsAndGenerateCode(
+        static void RunTransformsAndGenerateCode(
             AstBuilder astBuilder, 
-            ITextOutput output, 
-            DecompilationOptions options)
+            ITextOutput output)
         {
-            //astBuilder.RunTransformations(transformAbortCondition);
-            //astBuilder.GenerateCode(output);
-            
-            
             var csharpUnit = astBuilder.CompilationUnit;
             csharpUnit.AcceptVisitor(new ICSharpCode.NRefactory.CSharp.InsertParenthesesVisitor() { InsertParenthesesForReadability = true });
             var unit = csharpUnit.AcceptVisitor(

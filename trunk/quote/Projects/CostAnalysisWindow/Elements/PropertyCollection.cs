@@ -1,6 +1,6 @@
 ﻿using System;
-
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using Mono.Cecil;
 
@@ -8,6 +8,16 @@ namespace CostAnalysisWindow.Elements
 {
     public class PropertyCollection : List<PropertyElement>
     {
+        
+        public PropertyCollection()
+        {
+        }
+        
+        public PropertyCollection(ReadOnlyCollection<PropertyElement> nodes)
+            : base(nodes)
+        {
+        }
+        
         public PropertyElement Find(PropertyDefinition property)
         {
             foreach (PropertyElement n in this)

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows.Forms;
 
 using CostAnalysisWindow.Elements;
-
 using Model.Template;
 
 namespace CostAnalysisWindow
@@ -13,15 +13,15 @@ namespace CostAnalysisWindow
     {
         private readonly PropertyCollection m_Nodes = new PropertyCollection();
 
-        public UIUpdater2(PropertyCollection nodes)
+        public UIUpdater2(ReadOnlyCollection<PropertyElement> nodes)
         {
-            m_Nodes = nodes;
+            m_Nodes = new PropertyCollection(nodes);
         }
 
         public void UpdateTree(TreeView treeView1)
         {
             treeView1.Nodes.Clear();
-            CustomTreeNode root = new CustomTreeNode("Costs", null);
+            CustomTreeNode root = new CustomTreeNode("Costs");
             treeView1.Nodes.Add(root);
 
             m_Nodes.Sort();
@@ -44,7 +44,7 @@ namespace CostAnalysisWindow
             CustomTreeNode parent,
             PropertyElement node)
         {
-            CustomTreeNode propNode = new CustomTreeNode(node.Property.Name, null);
+            CustomTreeNode propNode = new CustomTreeNode(node.Property.Name);
             propNode.CodeElement = node;
             
             AddFieldsToTree(propNode, node);
@@ -62,13 +62,13 @@ namespace CostAnalysisWindow
             }
         }
 
-        public void AddFieldsToTree(
+        public static void AddFieldsToTree(
             CustomTreeNode parent,
             PropertyElement node)
         {
             foreach(FieldElement element in node.OrphanedFieldDefs)
             {
-                CustomTreeNode propNode = new CustomTreeNode(element.Name, null);
+                CustomTreeNode propNode = new CustomTreeNode(element.Name);
                 propNode.CodeElement = element;
                 
                 parent.Nodes.Add(propNode);
@@ -104,7 +104,7 @@ namespace CostAnalysisWindow
             treeView1.Invalidate();
         }
 
-        void ClearNodes(
+        static void ClearNodes(
             List<CustomTreeNode> nodes)
         {
             foreach (CustomTreeNode treeNode in nodes) 
@@ -114,7 +114,7 @@ namespace CostAnalysisWindow
             }
         }
         
-        void UpdateNodes(
+        static void UpdateNodes(
             List<CustomTreeNode> nodes, 
             IComputationWrapper wrapper)
         {
@@ -130,7 +130,7 @@ namespace CostAnalysisWindow
             }
         }
 
-        void UpdateNode(
+        static void UpdateNode(
             ComputationProperties comp, 
             PropertyInfo prop, 
             CustomTreeNode treeNode)
@@ -167,9 +167,11 @@ namespace CostAnalysisWindow
             
             foreach(TreeNode child in treeView1.Nodes)
             {
-                result.Add(child as CustomTreeNode);
+                CustomTreeNode treeNode = child as CustomTreeNode;
                 
-                List<CustomTreeNode> grandChildren = GetChildNodes(child as CustomTreeNode);
+                result.Add(treeNode);
+                
+                List<CustomTreeNode> grandChildren = GetChildNodes(treeNode);
                 
                 result.AddRange(grandChildren);
             }
@@ -183,9 +185,11 @@ namespace CostAnalysisWindow
             
             foreach(TreeNode child in node.Nodes)
             {
-                result.Add(child as CustomTreeNode);
+                CustomTreeNode treeNode = child as CustomTreeNode;
                 
-                List<CustomTreeNode> grandChildren = GetChildNodes(child as CustomTreeNode);
+                result.Add(treeNode);
+                
+                List<CustomTreeNode> grandChildren = GetChildNodes(treeNode);
                 
                 result.AddRange(grandChildren);
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 using CostAnalysisWindow.Elements;
@@ -11,7 +12,7 @@ namespace CostAnalysisWindow
     {
         private CodeElement m_CodeElement;
         
-        public CustomTreeNode(string text, INotifyPropertyChanged subject)
+        public CustomTreeNode(string text)
             : base(text + "                            ")
         {
             UpdateImage();
@@ -73,7 +74,8 @@ namespace CostAnalysisWindow
                 {
                     if (this.PropertyAttached)
                     {
-                        result = this.PropertyValue.ToString("###,###,##0.0");
+                        result = this.PropertyValue.ToString(
+                            "###,###,##0.0", CultureInfo.CurrentCulture);
                         
                         int padSize = (Math.Max(0, 12 - result.Length));
                         string padding = "          ".Substring(0, padSize);
