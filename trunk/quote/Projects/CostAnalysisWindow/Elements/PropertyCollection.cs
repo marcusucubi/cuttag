@@ -6,7 +6,7 @@ using Mono.Cecil;
 
 namespace CostAnalysisWindow.Elements
 {
-    public class PropertyCollection : List<PropertyElement>
+    public class PropertyCollection : Collection<PropertyElement>
     {
         
         public PropertyCollection()
@@ -18,7 +18,7 @@ namespace CostAnalysisWindow.Elements
         {
         }
         
-        public PropertyElement Find(PropertyDefinition property)
+        public PropertyElement Find(MemberReference property)
         {
             foreach (PropertyElement n in this)
             {

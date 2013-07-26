@@ -41,9 +41,9 @@ namespace CostAnalysisWindow.Decompile
                 StringWriter stringWriter = new StringWriter(CultureInfo.CurrentCulture);
                 PlainTextOutput plain = new PlainTextOutput(stringWriter);
 
-                DeCompilerOptions options = new DeCompilerOptions();
+                DisassembleOptions options = new DisassembleOptions();
                 DecompilerSettings settings = new DecompilerSettings();
-                options.DecompilerSettings = settings;
+                options.DisassembleSettings = settings;
                 
                 DecompileProperty(p, plain, options);
                 
@@ -54,7 +54,7 @@ namespace CostAnalysisWindow.Decompile
         public static void DecompileProperty(
             PropertyDefinition property, 
             ITextOutput output, 
-            DeCompilerOptions options)
+            DisassembleOptions options)
         {
             AstBuilder codeDomBuilder = CreateAstBuilder(
                 options, currentType: property.DeclaringType, 
@@ -66,7 +66,7 @@ namespace CostAnalysisWindow.Decompile
         }
         
         static AstBuilder CreateAstBuilder(
-            DeCompilerOptions options, 
+            DisassembleOptions options, 
             ModuleDefinition currentModule = null, 
             TypeDefinition currentType = null, 
             MethodDefinition currentMethod = null,
@@ -77,7 +77,7 @@ namespace CostAnalysisWindow.Decompile
                 currentModule = currentType.Module;
             }
             
-            DecompilerSettings settings = options.DecompilerSettings;
+            DecompilerSettings settings = options.DisassembleSettings;
             
             if (isSingleMember) 
             {

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Linq;
 
 using CostAnalysisWindow.Elements;
+
 using Model.Template;
 
 namespace CostAnalysisWindow
@@ -23,9 +25,10 @@ namespace CostAnalysisWindow
             treeView1.Nodes.Clear();
             CustomTreeNode root = new CustomTreeNode("Costs");
             treeView1.Nodes.Add(root);
+            
+            IEnumerable<PropertyElement> query = m_Nodes.OrderBy(element => element.Name);
 
-            m_Nodes.Sort();
-            foreach (PropertyElement n in m_Nodes)
+            foreach (PropertyElement n in query)
             {
                 if (n.NodesAbove.Count > 0)
                 {
@@ -38,6 +41,7 @@ namespace CostAnalysisWindow
                 {
                 }
             }
+            
         }
 
         public void AddNodeToTree(
@@ -51,7 +55,10 @@ namespace CostAnalysisWindow
 
             parent.Nodes.Add(propNode);
 
-            foreach (PropertyElement n in node.NodesBelow)
+            IEnumerable<CodeElement> query = 
+                node.NodesBelow.OrderBy(element => element.Name);
+            
+            foreach (PropertyElement n in query)
             {
                 if (n == node)
                 {
@@ -66,7 +73,7 @@ namespace CostAnalysisWindow
             CustomTreeNode parent,
             PropertyElement node)
         {
-            foreach(FieldElement element in node.OrphanedFieldDefs)
+            foreach(FieldElement element in node.OrphanedFields)
             {
                 CustomTreeNode propNode = new CustomTreeNode(element.Name);
                 propNode.CodeElement = element;

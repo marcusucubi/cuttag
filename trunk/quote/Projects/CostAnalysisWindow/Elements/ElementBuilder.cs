@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using ICSharpCode.Decompiler;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
@@ -26,8 +28,6 @@ namespace CostAnalysisWindow.Elements
         {
             List<PropertyDefinition> props = LoadProperties();
             PopulateNodes(props);
-            
-            m_Collection.Sort();
             
             foreach (PropertyDefinition p in props)
             {
@@ -61,18 +61,16 @@ namespace CostAnalysisWindow.Elements
             }
         }
         
-        private void CleanupFields(PropertyElement prop)
+        private static void CleanupFields(PropertyElement prop)
         {
-            FieldCollection orphanedFields = new FieldCollection();
-            
             FieldCollection usedFields = prop.FieldsInNodesBellow;
-            foreach(FieldElement element in prop.FieldDefs)
+            foreach(FieldElement element in prop.Fields)
             {
                 if (!usedFields.Contains(element))
                 {
-                    if (!prop.OrphanedFieldDefs.Contains(element))
+                    if (!prop.OrphanedFields.Contains(element))
                     {
-                        prop.OrphanedFieldDefs.Add(element);
+                        prop.OrphanedFields.Add(element);
                     }
                 }
             }
@@ -95,9 +93,6 @@ namespace CostAnalysisWindow.Elements
         {
             foreach (PropertyDefinition p in props)
             {
-                MethodDefinition def = p.GetMethod;
-                bool isReadonly = ( p.SetMethod == null );
-
                 PropertyElement node = new PropertyElement(p);
                 m_Collection.Add(node);
             }
@@ -149,9 +144,10 @@ namespace CostAnalysisWindow.Elements
                     continue;
                 }
                 
-                bool isSystem = (fieldRef.FieldType.FullName.IndexOf("System") != -1);
-                bool isInt = (fieldRef.FieldType.FullName.IndexOf("int") != -1);
-                bool isString = (fieldRef.FieldType.FullName.IndexOf("string") != -1);
+                string name = fieldRef.FieldType.FullName;
+                bool isSystem = (name.Contains("System"));
+                bool isInt = (name.Contains("int"));
+                bool isString = (name.Contains("string"));
                 if (!isSystem && !isInt && !isString)
                 {
                     continue;
@@ -171,10 +167,10 @@ namespace CostAnalysisWindow.Elements
                     continue;
                 }
                 
-                if (propertyNode.FieldDefs.Find(fieldRef) == null)
+                if (propertyNode.Fields.Find(fieldRef) == null)
                 {
                     FieldElement fieldElement = new FieldElement(fieldRef);
-                    propertyNode.FieldDefs.Add(fieldElement);
+                    propertyNode.Fields.Add(fieldElement);
                 }
             }
         }
