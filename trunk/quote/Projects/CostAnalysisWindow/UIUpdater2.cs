@@ -73,7 +73,7 @@ namespace CostAnalysisWindow
             CustomTreeNode parent,
             PropertyElement node)
         {
-            foreach(FieldElement element in node.OrphanedFields)
+            foreach (FieldElement element in node.OrphanedFields) 
             {
                 CustomTreeNode propNode = new CustomTreeNode(element.Name);
                 propNode.CodeElement = element;
@@ -149,7 +149,7 @@ namespace CostAnalysisWindow
                 {
                     MethodInfo m = prop.GetGetMethod();
                     
-                    object value = m.Invoke(comp, new object[] {});
+                    object value = m.Invoke(comp, new object[] { });
                     
                     if (value is decimal) 
                     {
@@ -172,7 +172,7 @@ namespace CostAnalysisWindow
         {
             List<CustomTreeNode> result = new List<CustomTreeNode>();
             
-            foreach(TreeNode child in treeView1.Nodes)
+            foreach (TreeNode child in treeView1.Nodes)
             {
                 CustomTreeNode treeNode = child as CustomTreeNode;
                 
@@ -190,7 +190,7 @@ namespace CostAnalysisWindow
         {
             List<CustomTreeNode> result = new List<CustomTreeNode>();
             
-            foreach(TreeNode child in node.Nodes)
+            foreach (TreeNode child in node.Nodes)
             {
                 CustomTreeNode treeNode = child as CustomTreeNode;
                 

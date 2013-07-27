@@ -67,12 +67,12 @@ namespace CostAnalysisWindow.Elements
             return !(left == right);
         }
 
-        public static bool operator <(CodeElement element1, CodeElement element2){
+        public static bool operator <(CodeElement element1, CodeElement element2) {
 
             return element1.CompareTo(element2) > 0;
         }
 
-        public static bool operator >(CodeElement element1, CodeElement element2){
+        public static bool operator >(CodeElement element1, CodeElement element2) {
 
             return element1.CompareTo(element2) < 0;
         }
