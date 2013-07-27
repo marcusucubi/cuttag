@@ -28,7 +28,11 @@
         
         public CodeElement CodeElement 
         { 
-            get { return this.codeElement; }
+            get 
+            { 
+                return this.codeElement; 
+            }
+            
             set 
             { 
                 this.codeElement = value; 

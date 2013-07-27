@@ -30,6 +30,5 @@
         /// Gets the settings for the decompiler.
         /// </summary>
         public DecompilerSettings DisassembleSettings { get; set; }
-
     }
 }

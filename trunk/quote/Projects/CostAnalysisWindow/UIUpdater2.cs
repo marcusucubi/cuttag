@@ -31,7 +31,6 @@
                 
                 parent.Nodes.Add(propNode);
             }
-
         }
         
         public void UpdateTree(TreeView treeView1)
@@ -55,7 +54,6 @@
                 {
                 }
             }
-            
         }
 
         public void AddNodeToTree(
@@ -203,6 +201,5 @@
             
             return result;
         }
-        
     }
 }

@@ -37,22 +37,28 @@
             return !(left == right);
         }
 
-        public static bool operator <(CodeElement element1, CodeElement element2) {
-
+        public static bool operator <(CodeElement element1, CodeElement element2) 
+        {
             return element1.CompareTo(element2) > 0;
         }
 
-        public static bool operator >(CodeElement element1, CodeElement element2) {
-
+        public static bool operator >(CodeElement element1, CodeElement element2) 
+        {
             return element1.CompareTo(element2) < 0;
         }
         
         public static bool operator ==(CodeElement left, CodeElement right)
         {
             if (ReferenceEquals(left, right))
+            {
                 return true;
+            }
+            
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+            {
                 return false;
+            }
+            
             return left.Equals(right);
         }
         
@@ -76,6 +82,5 @@
         {
             return this.Name.GetHashCode();
         }
-        
     }
 }

@@ -13,8 +13,10 @@
     
     public class ILSpyEnvironmentProvider : IEnvironmentProvider
     {
-        public string RootNamespace {
-            get {
+        public string RootNamespace 
+        {
+            get 
+            {
                 return string.Empty;
             }
         }
@@ -38,19 +40,35 @@
         {
             var annotation = type.Annotation<TypeReference>();
             if (annotation == null)
+            {
                 return TypeKind.Unknown;
+            }
             
             var definition = annotation.ResolveOrThrow();
             if (definition.IsClass)
+            {
                 return TypeKind.Class;
+            }
+            
             if (definition.IsInterface)
+            {
                 return TypeKind.Interface;
+            }
+            
             if (definition.IsEnum)
+            {
                 return TypeKind.Enum;
+            }
+            
             if (definition.IsFunctionPointer)
+            {
                 return TypeKind.Delegate;
+            }
+            
             if (definition.IsValueType)
+            {
                 return TypeKind.Struct;
+            }
             
             return TypeKind.Unknown;
         }
@@ -60,14 +78,19 @@
             var annotation = expression.Annotations.OfType<TypeInformation>().FirstOrDefault();
             
             if (annotation == null)
+            {
                 return TypeCode.Object;
+            }
             
             var definition = annotation.InferredType.Resolve();
             
             if (definition == null)
+            {
                 return TypeCode.Object;
+            }
             
-            switch (definition.FullName) {
+            switch (definition.FullName) 
+            {
                 case "System.String":
                     return TypeCode.String;
                 default:
@@ -80,35 +103,47 @@
         public bool? IsReferenceType(ICSharpCode.NRefactory.CSharp.Expression expression)
         {
             if (expression is ICSharpCode.NRefactory.CSharp.NullReferenceExpression)
+            {
                 return true;
+            }
             
             var annotation = expression.Annotations.OfType<TypeInformation>().FirstOrDefault();
             
             if (annotation == null)
+            {
                 return null;
+            }
             
             var definition = annotation.InferredType.Resolve();
             
             if (definition == null)
+            {
                 return null;
+            }
             
             return !definition.IsValueType;
         }
         
         public IEnumerable<ICSharpCode.NRefactory.VB.Ast.InterfaceMemberSpecifier> CreateMemberSpecifiersForInterfaces(IEnumerable<ICSharpCode.NRefactory.VB.Ast.AstType> interfaces)
         {
-            foreach (var type in interfaces) {
+            foreach (var type in interfaces) 
+            {
                 var def = type.Annotation<TypeReference>().Resolve();
-                if (def == null) continue;
-                foreach (var method in def.Methods.Where(m => !m.Name.StartsWith("get_") && !m.Name.StartsWith("set_"))) {
+                if (def == null) 
+                {
+                    continue;
+                }
+                
+                foreach (var method in def.Methods.Where(m => !m.Name.StartsWith("get_") && !m.Name.StartsWith("set_"))) 
+                {
                     yield return new ICSharpCode.NRefactory.VB.Ast.InterfaceMemberSpecifier((ICSharpCode.NRefactory.VB.Ast.AstType)type.Clone(), method.Name);
                 }
                 
-                foreach (var property in def.Properties) {
+                foreach (var property in def.Properties) 
+                {
                     yield return new ICSharpCode.NRefactory.VB.Ast.InterfaceMemberSpecifier((ICSharpCode.NRefactory.VB.Ast.AstType)type.Clone(), property.Name);
                 }
             }
         }
-        
     }
 }

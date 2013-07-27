@@ -89,7 +89,8 @@
             }
            
             return new AstBuilder(
-                new DecompilerContext(currentModule) {
+                new DecompilerContext(currentModule) 
+                {
                     CancellationToken = options.CancellationToken,
                     CurrentType = currentType,
                     CurrentMethod = currentMethod,
@@ -108,8 +109,6 @@
             var outputFormatter = new VBTextOutputFormatter(output);
             var formattingPolicy = new ICSharpCode.NRefactory.VB.VBFormattingOptions();
             unit.AcceptVisitor(new ICSharpCode.NRefactory.VB.OutputVisitor(outputFormatter, formattingPolicy), null);
-            
         }
-        
     }
 }

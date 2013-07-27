@@ -8,7 +8,6 @@
 
     public class PropertyCollection : Collection<PropertyElement>
     {
-        
         public PropertyCollection()
         {
         }
@@ -70,7 +69,6 @@
                 {
                     result.Add(n);
                 }
-
             }
 
             return result;
@@ -95,6 +93,5 @@
 
             return result;
         }
-        
     }
 }
