@@ -1,9 +1,9 @@
-﻿using System;
-
-using WeifenLuo.WinFormsUI.Docking;
-
-namespace CostAnalysisWindow
+﻿namespace CostAnalysisWindow
 {
+    using System;
+    
+    using WeifenLuo.WinFormsUI.Docking;
+    
     public class ViewController : IDisposable
     {
         private static ViewController instance = new ViewController();
@@ -32,13 +32,6 @@ namespace CostAnalysisWindow
             }
         }
         
-        private static void InitChild(DockContent frm)
-        {
-            PluginHost.App.DockPanel.SuspendLayout(true);
-            frm.Show(PluginHost.App.DockPanel, DockState.DockLeft);
-            PluginHost.App.DockPanel.ResumeLayout(true, true);
-        }
-
         public void Dispose()
         {
             this.Dispose(true);
@@ -51,5 +44,12 @@ namespace CostAnalysisWindow
             this.tree = null;
         }
         
+        private static void InitChild(DockContent frm)
+        {
+            PluginHost.App.DockPanel.SuspendLayout(true);
+            frm.Show(PluginHost.App.DockPanel, DockState.DockLeft);
+            PluginHost.App.DockPanel.ResumeLayout(true, true);
+        }
+
     }
 }

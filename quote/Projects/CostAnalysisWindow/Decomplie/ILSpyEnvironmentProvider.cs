@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.Ast;
-using ICSharpCode.NRefactory.TypeSystem;
-using ICSharpCode.NRefactory.VB.Visitors;
-
-using Mono.Cecil;
-
-namespace CostAnalysisWindow.Decompile
+﻿namespace CostAnalysisWindow.Decompile
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    
+    using ICSharpCode.Decompiler;
+    using ICSharpCode.Decompiler.Ast;
+    using ICSharpCode.NRefactory.TypeSystem;
+    using ICSharpCode.NRefactory.VB.Visitors;
+    
+    using Mono.Cecil;
+    
     public class ILSpyEnvironmentProvider : IEnvironmentProvider
     {
         public string RootNamespace {

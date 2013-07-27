@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading;
-using ICSharpCode.Decompiler;
-
-namespace CostAnalysisWindow.Decompile
+﻿namespace CostAnalysisWindow.Decompile
 {
+    using System;
+    using System.Threading;
+    using ICSharpCode.Decompiler;
+
     public class DisassembleOptions
     {
         /// <summary>

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-using CostAnalysisWindow.Elements;
-
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-namespace CostAnalysisWindow
+﻿namespace CostAnalysisWindow
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    
+    using CostAnalysisWindow.Elements;
+    
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+    
     public class PropertyAnalyzer2
     {
         private PropertyCollection nodes = new PropertyCollection();
@@ -16,25 +16,6 @@ namespace CostAnalysisWindow
         public ReadOnlyCollection<PropertyElement> Nodes
         {
             get { return new ReadOnlyCollection<PropertyElement>(this.nodes); }
-        }
-        
-        public void Init()
-        {
-            Model.Common.SaveableProperties computationProperties = 
-                BuildComputationProperties();
-
-            Type computationPropertiesType = computationProperties.GetType();
-            
-            ModuleDefinition module = 
-                Mono.Cecil.ModuleDefinition.ReadModule(
-                    computationPropertiesType.Assembly.Location);
-            
-            TypeDefinition typeDefinition = 
-                LoadTypeDef(computationPropertiesType, module);
-            
-            ElementBuilder builder = new Elements.ElementBuilder(typeDefinition);
-            builder.Build();
-            this.nodes = builder.Elements;
         }
         
         public static Model.Common.SaveableProperties BuildComputationProperties()
@@ -77,5 +58,24 @@ namespace CostAnalysisWindow
             return result;
         }
 
+        public void Init()
+        {
+            Model.Common.SaveableProperties computationProperties = 
+                BuildComputationProperties();
+
+            Type computationPropertiesType = computationProperties.GetType();
+            
+            ModuleDefinition module = 
+                Mono.Cecil.ModuleDefinition.ReadModule(
+                    computationPropertiesType.Assembly.Location);
+            
+            TypeDefinition typeDefinition = 
+                LoadTypeDef(computationPropertiesType, module);
+            
+            ElementBuilder builder = new Elements.ElementBuilder(typeDefinition);
+            builder.Build();
+            this.nodes = builder.Elements;
+        }
+        
     }
 }

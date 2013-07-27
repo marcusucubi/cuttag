@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using ICSharpCode.Decompiler;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-namespace CostAnalysisWindow.Elements
+﻿namespace CostAnalysisWindow.Elements
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    
+    using ICSharpCode.Decompiler;
+    
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+
     public class ElementBuilder
     {
         private readonly TypeDefinition target;
@@ -53,14 +55,6 @@ namespace CostAnalysisWindow.Elements
             CleanupFields();
         }
         
-        private void CleanupFields()
-        {
-            foreach (PropertyElement prop in this.collection)
-            {
-                CleanupFields(prop);
-            }
-        }
-        
         private static void CleanupFields(PropertyElement prop)
         {
             FieldCollection usedFields = prop.FieldsInNodesBellow;
@@ -75,6 +69,14 @@ namespace CostAnalysisWindow.Elements
                 }
             }
             
+        }
+        
+        private void CleanupFields()
+        {
+            foreach (PropertyElement prop in this.collection)
+            {
+                CleanupFields(prop);
+            }
         }
         
         private List<PropertyDefinition> LoadProperties()

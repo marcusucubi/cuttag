@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.Ast;
-using ICSharpCode.Decompiler.Ast.Transforms;
-using ICSharpCode.Decompiler.Disassembler;
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-namespace CostAnalysisWindow.Decompile
+﻿namespace CostAnalysisWindow.Decompile
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    
+    using ICSharpCode.Decompiler;
+    using ICSharpCode.Decompiler.Ast;
+    using ICSharpCode.Decompiler.Ast.Transforms;
+    using ICSharpCode.Decompiler.Disassembler;
+    
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+    
     class DecompileHelper
     {
         private Dictionary<string, StringWriter> codeDictionary = 
@@ -19,6 +21,21 @@ namespace CostAnalysisWindow.Decompile
         public Dictionary<string, StringWriter> CodeDictionary
         {
             get { return this.codeDictionary; }
+        }
+        
+        public static void DecompileProperty(
+            PropertyDefinition property, 
+            ITextOutput output, 
+            DisassembleOptions options)
+        {
+            AstBuilder codeDomBuilder = CreateAstBuilder(
+                options, 
+                currentType: property.DeclaringType,
+                currentMethod: property.GetMethod, 
+                singleMember: true);
+            codeDomBuilder.AddProperty(property);
+            
+            RunTransformsAndGenerateCode(codeDomBuilder, output);
         }
         
         public void Init3()
@@ -49,21 +66,6 @@ namespace CostAnalysisWindow.Decompile
                 
                 this.codeDictionary.Add(p.GetMethod.ToString(), stringWriter);
             }
-        }
-        
-        public static void DecompileProperty(
-            PropertyDefinition property, 
-            ITextOutput output, 
-            DisassembleOptions options)
-        {
-            AstBuilder codeDomBuilder = CreateAstBuilder(
-                options, 
-                currentType: property.DeclaringType,
-                currentMethod: property.GetMethod, 
-                singleMember: true);
-            codeDomBuilder.AddProperty(property);
-            
-            RunTransformsAndGenerateCode(codeDomBuilder, output);
         }
         
         static AstBuilder CreateAstBuilder(

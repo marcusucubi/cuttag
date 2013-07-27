@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Windows.Forms;
-using System.Linq;
-
-using CostAnalysisWindow.Elements;
-
-using Model.Template;
-
-namespace CostAnalysisWindow
+﻿namespace CostAnalysisWindow
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Reflection;
+    using System.Windows.Forms;
+    
+    using CostAnalysisWindow.Elements;
+    
+    using Model.Template;
+
     class UIUpdater2
     {
         private readonly PropertyCollection nodes = new PropertyCollection();
@@ -20,6 +20,20 @@ namespace CostAnalysisWindow
             this.nodes = new PropertyCollection(nodes);
         }
 
+        public static void AddFieldsToTree(
+            CustomTreeNode parent,
+            PropertyElement node)
+        {
+            foreach (FieldElement element in node.OrphanedFields) 
+            {
+                CustomTreeNode propNode = new CustomTreeNode(element.Name);
+                propNode.CodeElement = element;
+                
+                parent.Nodes.Add(propNode);
+            }
+
+        }
+        
         public void UpdateTree(TreeView treeView1)
         {
             treeView1.Nodes.Clear();
@@ -69,20 +83,6 @@ namespace CostAnalysisWindow
             }
         }
 
-        public static void AddFieldsToTree(
-            CustomTreeNode parent,
-            PropertyElement node)
-        {
-            foreach (FieldElement element in node.OrphanedFields) 
-            {
-                CustomTreeNode propNode = new CustomTreeNode(element.Name);
-                propNode.CodeElement = element;
-                
-                parent.Nodes.Add(propNode);
-            }
-
-        }
-        
         public void DisplayValues(TreeView treeView1)
         {
             if (treeView1.IsDisposed)
