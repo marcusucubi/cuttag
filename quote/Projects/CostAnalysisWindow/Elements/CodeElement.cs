@@ -10,8 +10,8 @@ namespace CostAnalysisWindow.Elements
 {
     public abstract class CodeElement : IComparable<CodeElement>
     {
-        private readonly Collection<CodeElement> m_NodesBelow = new Collection<CodeElement>();
-        private readonly Collection<CodeElement> m_NodesAbove = new Collection<CodeElement>();
+        private readonly Collection<CodeElement> nodesBelow = new Collection<CodeElement>();
+        private readonly Collection<CodeElement> nodesAbove = new Collection<CodeElement>();
         
         protected CodeElement()
         {
@@ -24,12 +24,12 @@ namespace CostAnalysisWindow.Elements
         
         public Collection<CodeElement> NodesBelow
         {
-            get { return this.m_NodesBelow; }
+            get { return this.nodesBelow; }
         }
 
         public Collection<CodeElement> NodesAbove
         {
-            get { return this.m_NodesAbove; }
+            get { return this.nodesAbove; }
         }
 
         public int CompareTo(CodeElement other)

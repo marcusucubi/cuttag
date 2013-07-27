@@ -6,29 +6,29 @@ namespace CostAnalysisWindow
 {
     public class ViewController : IDisposable
     {
-        private static ViewController m_Instance = new ViewController();
+        private static ViewController instance = new ViewController();
 
-        private FormTree m_Tree;
+        private FormTree tree;
 
         private ViewController() { }
 
         public static ViewController Instance
         {
-            get { return m_Instance; }
+            get { return instance; }
         }
 
         public void ShowTree()
         {
-            if (this.m_Tree == null)
+            if (this.tree == null)
             {
-                this.m_Tree = new FormTree();
-                InitChild(this.m_Tree);
+                this.tree = new FormTree();
+                InitChild(this.tree);
             }
 
-            if (this.m_Tree.IsHidden || this.m_Tree.IsDisposed) 
+            if (this.tree.IsHidden || this.tree.IsDisposed) 
             {
-                this.m_Tree = new FormTree();
-                InitChild(this.m_Tree);
+                this.tree = new FormTree();
+                InitChild(this.tree);
             }
         }
         
@@ -47,8 +47,8 @@ namespace CostAnalysisWindow
         
         protected virtual void Dispose(bool native)
         {
-            this.m_Tree.Close();
-            this.m_Tree = null;
+            this.tree.Close();
+            this.tree = null;
         }
         
     }

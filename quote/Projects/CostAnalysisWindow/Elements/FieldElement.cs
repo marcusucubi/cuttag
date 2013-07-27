@@ -5,26 +5,26 @@ namespace CostAnalysisWindow.Elements
 {
     public class FieldElement : CodeElement, IEquatable<FieldElement>
     {
-        private readonly FieldDefinition m_Field;
+        private readonly FieldDefinition field;
         
         public FieldElement(FieldDefinition field)
         {
-            this.m_Field = field;
+            this.field = field;
         }
         
         public override string Name 
         {
-            get { return this.m_Field.Name; }
+            get { return this.field.Name; }
         }
         
         public FieldDefinition Field
         {
-            get { return this.m_Field; }
+            get { return this.field; }
         }
         
         public bool Equals(FieldElement other)
         {
-            return (this.m_Field.Name == other.Name);
+            return (this.field.Name == other.Name);
         }
         
         public override string ToString()

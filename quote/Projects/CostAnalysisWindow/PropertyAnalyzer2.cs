@@ -11,11 +11,11 @@ namespace CostAnalysisWindow
 {
     public class PropertyAnalyzer2
     {
-        private PropertyCollection m_Nodes = new PropertyCollection();
+        private PropertyCollection nodes = new PropertyCollection();
 
         public ReadOnlyCollection<PropertyElement> Nodes
         {
-            get { return new ReadOnlyCollection<PropertyElement>(this.m_Nodes); }
+            get { return new ReadOnlyCollection<PropertyElement>(this.nodes); }
         }
         
         public void Init()
@@ -34,7 +34,7 @@ namespace CostAnalysisWindow
             
             ElementBuilder builder = new Elements.ElementBuilder(typeDefinition);
             builder.Build();
-            this.m_Nodes = builder.Elements;
+            this.nodes = builder.Elements;
         }
         
         public static Model.Common.SaveableProperties BuildComputationProperties()

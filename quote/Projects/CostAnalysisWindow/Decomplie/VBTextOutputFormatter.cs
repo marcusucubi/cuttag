@@ -186,9 +186,9 @@ namespace CostAnalysisWindow.Decompile
             this.output.WriteLine();
         }
         
-        public void WriteComment(bool isDocumentation, string content)
+        public void WriteComment(bool hasDocumentation, string content)
         {
-            if (isDocumentation)
+            if (hasDocumentation)
             {
                 this.output.Write("'''");
             }

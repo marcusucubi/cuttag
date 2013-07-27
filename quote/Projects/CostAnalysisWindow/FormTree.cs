@@ -8,20 +8,24 @@ using System.Windows.Forms;
 using CostAnalysisWindow;
 using CostAnalysisWindow.Decompile;
 using CostAnalysisWindow.Elements;
+
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.Ast;
+
 using Model.Template;
+
 using Mono.Cecil;
 using Mono.Cecil.Cil;
+
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace CostAnalysisWindow
 {
     public partial class FormTree : DockContent
     {
-        private DecompileHelper _Helper = new DecompileHelper();
-        private Model.Common.Header _Header;
-        private UIUpdater2 _Updater;
+        private DecompileHelper helper = new DecompileHelper();
+        private Model.Common.Header header;
+        private UIUpdater2 updater;
         
         public FormTree()
         {
@@ -29,15 +33,15 @@ namespace CostAnalysisWindow
 
             Model.ActiveHeader.ActiveHeader.PropertyChanged += this.ActiveHeader_PropertyChanged;
             this.Display();
-            this._Updater.DisplayValues(this.treeView1);
+            this.updater.DisplayValues(this.treeView1);
             this.WatchProperties();
         }
 
         private void ActiveHeader_PropertyChanged(object source, EventArgs args)
         {
-            if (this._Updater != null)
+            if (this.updater != null)
             {
-                this._Updater.DisplayValues(this.treeView1);
+                this.updater.DisplayValues(this.treeView1);
             }
             
             this.WatchProperties();
@@ -45,32 +49,32 @@ namespace CostAnalysisWindow
 
         void FrmTreeFormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this._Header != null)
+            if (this.header != null)
             {
-                this._Header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
-                this._Header = null;
+                this.header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
+                this.header = null;
             }
         }
         
         void WatchProperties()
         {
-            if (this._Header != null)
+            if (this.header != null)
             {
-                this._Header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
+                this.header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
             }
 
-            this._Header = Model.ActiveHeader.ActiveHeader.Header;
-            if (this._Header != null) 
+            this.header = Model.ActiveHeader.ActiveHeader.Header;
+            if (this.header != null) 
             {
-                this._Header.ComputationProperties.PropertyChanged += this.Header_PropertyChanged;
+                this.header.ComputationProperties.PropertyChanged += this.Header_PropertyChanged;
             }
         }
 
         private void Header_PropertyChanged(object source, EventArgs args)
         {
-            if (this._Updater != null)
+            if (this.updater != null)
             {
-                this._Updater.DisplayValues(this.treeView1);
+                this.updater.DisplayValues(this.treeView1);
             }
         }
         
@@ -80,15 +84,15 @@ namespace CostAnalysisWindow
 
             PropertyAnalyzer2 analyzer2 = new PropertyAnalyzer2();
             analyzer2.Init();
-            this._Updater = new UIUpdater2(analyzer2.Nodes);
-            this._Updater.UpdateTree(this.treeView1);
+            this.updater = new UIUpdater2(analyzer2.Nodes);
+            this.updater.UpdateTree(this.treeView1);
             
-            this._Helper.Init3();
+            this.helper.Init3();
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
         
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             CustomTreeNode node = e.Node as CustomTreeNode;
             PropertyElement propNode = node.CodeElement as PropertyElement;
@@ -103,9 +107,9 @@ namespace CostAnalysisWindow
         
         private string Decompile(PropertyElement propNode)
         {
-            if (this._Helper.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
+            if (this.helper.CodeDictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
             {
-                StringWriter w = this._Helper.Dictionary[propNode.Property.GetMethod.ToString()];
+                StringWriter w = this.helper.CodeDictionary[propNode.Property.GetMethod.ToString()];
                 return w.ToString();
             }
             
