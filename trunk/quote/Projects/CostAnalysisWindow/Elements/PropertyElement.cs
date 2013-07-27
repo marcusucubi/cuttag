@@ -10,55 +10,55 @@ namespace CostAnalysisWindow.Elements
 {
     public class PropertyElement : CodeElement, IEquatable<PropertyElement>
     {
-        private readonly FieldCollection m_Fields = new FieldCollection();
-        private readonly FieldCollection m_OrphanedFields = new FieldCollection();
-        private readonly PropertyDefinition m_Property;
+        private readonly FieldCollection fields = new FieldCollection();
+        private readonly FieldCollection orphanedFields = new FieldCollection();
+        private readonly PropertyDefinition property;
 
         public PropertyElement(PropertyDefinition property)
         {
-            this.m_Property = property;
+            this.property = property;
         }
         
         public override string Name
         {
-            get { return this.m_Property.Name; }
+            get { return this.property.Name; }
         }
 
         public MethodDefinition Getter
         {
-            get { return this.m_Property.GetMethod; }
+            get { return this.property.GetMethod; }
         }
 
         public PropertyDefinition Property
         {
-            get { return this.m_Property; }
+            get { return this.property; }
         }
 
         public bool IsReadOnly
         {
-            get { return (this.m_Property.SetMethod == null); }
+            get { return (this.property.SetMethod == null); }
         }
 
         public FieldCollection Fields
         {
-            get { return this.m_Fields; }
+            get { return this.fields; }
         }
 
         public FieldCollection OrphanedFields
         {
-            get { return this.m_OrphanedFields; }
+            get { return this.orphanedFields; }
         }
         
         public FieldElement PrimaryFieldDefinition
         {
             get
             {
-                if (this.m_Fields.Count != 1)
+                if (this.fields.Count != 1)
                 {
                     return null;
                 }
 
-                return this.m_Fields[0];
+                return this.fields[0];
             }
         }
         

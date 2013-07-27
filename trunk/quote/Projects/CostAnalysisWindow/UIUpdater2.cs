@@ -13,11 +13,11 @@ namespace CostAnalysisWindow
 {
     class UIUpdater2
     {
-        private readonly PropertyCollection m_Nodes = new PropertyCollection();
+        private readonly PropertyCollection nodes = new PropertyCollection();
 
         public UIUpdater2(ReadOnlyCollection<PropertyElement> nodes)
         {
-            this.m_Nodes = new PropertyCollection(nodes);
+            this.nodes = new PropertyCollection(nodes);
         }
 
         public void UpdateTree(TreeView treeView1)
@@ -26,7 +26,7 @@ namespace CostAnalysisWindow
             CustomTreeNode root = new CustomTreeNode("Costs");
             treeView1.Nodes.Add(root);
             
-            IEnumerable<PropertyElement> query = this.m_Nodes.OrderBy(element => element.Name);
+            IEnumerable<PropertyElement> query = this.nodes.OrderBy(element => element.Name);
 
             foreach (PropertyElement n in query)
             {

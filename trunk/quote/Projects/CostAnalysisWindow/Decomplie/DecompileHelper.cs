@@ -13,12 +13,12 @@ namespace CostAnalysisWindow.Decompile
 {
     class DecompileHelper
     {
-        private Dictionary<string, StringWriter> _Dictionary = 
+        private Dictionary<string, StringWriter> codeDictionary = 
             new Dictionary<string, StringWriter>();
                 
-        public Dictionary<string, StringWriter> Dictionary
+        public Dictionary<string, StringWriter> CodeDictionary
         {
-            get { return this._Dictionary; }
+            get { return this.codeDictionary; }
         }
         
         public void Init3()
@@ -35,7 +35,7 @@ namespace CostAnalysisWindow.Decompile
             TypeDefinition type = 
                 PropertyAnalyzer2.LoadTypeDef(computationPropertiesType, module);
                 
-            this._Dictionary.Clear();
+            this.codeDictionary.Clear();
             foreach (PropertyDefinition p in type.Properties)
             {
                 StringWriter stringWriter = new StringWriter(CultureInfo.CurrentCulture);
@@ -47,7 +47,7 @@ namespace CostAnalysisWindow.Decompile
                 
                 DecompileProperty(p, plain, options);
                 
-                this._Dictionary.Add(p.GetMethod.ToString(), stringWriter);
+                this.codeDictionary.Add(p.GetMethod.ToString(), stringWriter);
             }
         }
         
@@ -60,7 +60,7 @@ namespace CostAnalysisWindow.Decompile
                 options, 
                 currentType: property.DeclaringType,
                 currentMethod: property.GetMethod, 
-                isSingleMember: true);
+                singleMember: true);
             codeDomBuilder.AddProperty(property);
             
             RunTransformsAndGenerateCode(codeDomBuilder, output);
@@ -71,7 +71,7 @@ namespace CostAnalysisWindow.Decompile
             ModuleDefinition currentModule = null, 
             TypeDefinition currentType = null, 
             MethodDefinition currentMethod = null,
-            bool isSingleMember = true)
+            bool singleMember = true)
         {
             if (currentModule == null)
             {
@@ -80,7 +80,7 @@ namespace CostAnalysisWindow.Decompile
             
             DecompilerSettings settings = options.DisassembleSettings;
             
-            if (isSingleMember) 
+            if (singleMember) 
             {
                 settings = settings.Clone();
                 settings.UsingDeclarations = false;

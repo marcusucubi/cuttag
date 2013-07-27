@@ -10,18 +10,18 @@ namespace CostAnalysisWindow.Elements
 {
     public class ElementBuilder
     {
-        private readonly TypeDefinition m_Target;
-        private readonly PropertyCollection m_Collection;
+        private readonly TypeDefinition target;
+        private readonly PropertyCollection collection;
         
         public ElementBuilder(TypeDefinition target)
         {
-            this.m_Target = target;
-            this.m_Collection = new PropertyCollection();
+            this.target = target;
+            this.collection = new PropertyCollection();
         }
         
         public PropertyCollection Elements
         {
-            get { return this.m_Collection; }
+            get { return this.collection; }
         }
         
         public void Build()
@@ -31,17 +31,17 @@ namespace CostAnalysisWindow.Elements
             
             foreach (PropertyDefinition p in props)
             {
-                PropertyElement cursor = this.m_Collection.Find(p);
+                PropertyElement cursor = this.collection.Find(p);
                 
                 this.PopulateNodesBelowUsingMethodCalls(p, cursor);
                 this.PopulateFields(p, cursor);
                 this.PopulateNodesBelowUsingFields(p, cursor);
             }
 
-            foreach (PropertyElement propNode in this.m_Collection)
+            foreach (PropertyElement propNode in this.collection)
             {
                 PropertyCollection col =
-                    this.m_Collection.FindNodeWithDependent(
+                    this.collection.FindNodeWithDependent(
                         propNode.Property.Name);
 
                 foreach (PropertyElement childNode in col)
@@ -55,7 +55,7 @@ namespace CostAnalysisWindow.Elements
         
         private void CleanupFields()
         {
-            foreach (PropertyElement prop in this.m_Collection)
+            foreach (PropertyElement prop in this.collection)
             {
                 CleanupFields(prop);
             }
@@ -80,7 +80,7 @@ namespace CostAnalysisWindow.Elements
         private List<PropertyDefinition> LoadProperties()
         {
             List<PropertyDefinition> props = new List<PropertyDefinition>();
-            foreach (PropertyDefinition p in this.m_Target.Properties)
+            foreach (PropertyDefinition p in this.target.Properties)
             {
                 props.Add(p);
             }
@@ -94,7 +94,7 @@ namespace CostAnalysisWindow.Elements
             foreach (PropertyDefinition p in props)
             {
                 PropertyElement node = new PropertyElement(p);
-                this.m_Collection.Add(node);
+                this.collection.Add(node);
             }
         }
         
@@ -112,7 +112,7 @@ namespace CostAnalysisWindow.Elements
                     continue;
                 }
                 
-                PropertyElement other = this.m_Collection.Find(methodRef.Name);
+                PropertyElement other = this.collection.Find(methodRef.Name);
                 if (other == null)
                 {
                     continue;
@@ -145,16 +145,16 @@ namespace CostAnalysisWindow.Elements
                 }
                 
                 string name = fieldRef.FieldType.FullName;
-                bool isSystem = (name.Contains("System"));
-                bool isInt = (name.Contains("int"));
-                bool isString = (name.Contains("string"));
-                if (!isSystem && !isInt && !isString)
+                bool hasSystem = (name.Contains("System"));
+                bool hasInt = (name.Contains("int"));
+                bool hasString = (name.Contains("string"));
+                if (!hasSystem && !hasInt && !hasString)
                 {
                     continue;
                 }
                 
                 bool found = false;
-                PropertyCollection col = this.m_Collection.FindNodePrimaryProperty(fieldRef.Name);
+                PropertyCollection col = this.collection.FindNodePrimaryProperty(fieldRef.Name);
                 foreach (PropertyElement n in col) 
                 {
                     if (n.Property.Name == propertyNode.Property.Name)
@@ -190,7 +190,7 @@ namespace CostAnalysisWindow.Elements
                 }
                 
                 PropertyCollection primaryNodeCollection = 
-                    this.m_Collection.FindNodePrimaryProperty(fieldRef.Name);
+                    this.collection.FindNodePrimaryProperty(fieldRef.Name);
                 foreach (PropertyElement primaryNode in primaryNodeCollection)
                 {
                     propertyNode.NodesBelow.Add(primaryNode);

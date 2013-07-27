@@ -11,7 +11,7 @@ namespace CostAnalysisWindow
     [Serializable]
     public class CustomTreeNode : TreeNode
     {
-        private CodeElement m_CodeElement;
+        private CodeElement codeElement;
         
         public CustomTreeNode(string text)
             : base(text + "                            ")
@@ -28,10 +28,10 @@ namespace CostAnalysisWindow
         
         public CodeElement CodeElement 
         { 
-            get { return this.m_CodeElement; }
+            get { return this.codeElement; }
             set 
             { 
-                this.m_CodeElement = value; 
+                this.codeElement = value; 
                 this.UpdateImage(); 
             }
         }
@@ -50,12 +50,12 @@ namespace CostAnalysisWindow
         
         public void UpdateImage()
         {
-            if (this.m_CodeElement == null)
+            if (this.codeElement == null)
             {
                 this.ImageIndex = 1;
             }
             
-            PropertyElement prop = this.m_CodeElement as PropertyElement;
+            PropertyElement prop = this.codeElement as PropertyElement;
             if (prop == null)
             {
                 this.ImageIndex = 5;
