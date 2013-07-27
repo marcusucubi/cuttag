@@ -47,7 +47,7 @@
             this.WatchProperties();
         }
 
-        void FrmTreeFormClosing(object sender, FormClosingEventArgs e)
+        private void FrmTreeFormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.header != null)
             {
@@ -56,7 +56,7 @@
             }
         }
         
-        void WatchProperties()
+        private void WatchProperties()
         {
             if (this.header != null)
             {
@@ -116,7 +116,7 @@
             return string.Empty;
         }
 
-        void TreeView1DrawNode(object sender, DrawTreeNodeEventArgs e)
+        private void TreeView1DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
             CustomTreeNode node = e.Node as CustomTreeNode;
             if (node != null)

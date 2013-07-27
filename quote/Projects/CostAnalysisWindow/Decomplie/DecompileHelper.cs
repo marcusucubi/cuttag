@@ -13,7 +13,7 @@
     using Mono.Cecil;
     using Mono.Cecil.Cil;
     
-    class DecompileHelper
+    internal class DecompileHelper
     {
         private Dictionary<string, StringWriter> codeDictionary = 
             new Dictionary<string, StringWriter>();
@@ -68,7 +68,7 @@
             }
         }
         
-        static AstBuilder CreateAstBuilder(
+        private static AstBuilder CreateAstBuilder(
             DisassembleOptions options, 
             ModuleDefinition currentModule = null, 
             TypeDefinition currentType = null, 
@@ -97,7 +97,7 @@
                 });
         }
         
-        static void RunTransformsAndGenerateCode(
+        private static void RunTransformsAndGenerateCode(
             AstBuilder astBuilder, 
             ITextOutput output)
         {

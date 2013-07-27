@@ -11,7 +11,7 @@
     
     using Model.Template;
 
-    class UIUpdater2
+    internal class UIUpdater2
     {
         private readonly PropertyCollection nodes = new PropertyCollection();
 
@@ -111,7 +111,7 @@
             treeView1.Invalidate();
         }
 
-        static void ClearNodes(
+        private static void ClearNodes(
             List<CustomTreeNode> nodes)
         {
             foreach (CustomTreeNode treeNode in nodes) 
@@ -121,7 +121,7 @@
             }
         }
         
-        static void UpdateNodes(
+        private static void UpdateNodes(
             List<CustomTreeNode> nodes, 
             IComputationWrapper wrapper)
         {
@@ -137,7 +137,7 @@
             }
         }
 
-        static void UpdateNode(
+        private static void UpdateNode(
             ComputationProperties comp, 
             PropertyInfo prop, 
             CustomTreeNode treeNode)
@@ -168,7 +168,7 @@
             }
         }
         
-        List<CustomTreeNode> GetAllNodes(TreeView treeView1)
+        private List<CustomTreeNode> GetAllNodes(TreeView treeView1)
         {
             List<CustomTreeNode> result = new List<CustomTreeNode>();
             
@@ -186,7 +186,7 @@
             return result;
         }
 
-        List<CustomTreeNode> GetChildNodes(CustomTreeNode node)
+        private List<CustomTreeNode> GetChildNodes(CustomTreeNode node)
         {
             List<CustomTreeNode> result = new List<CustomTreeNode>();
             

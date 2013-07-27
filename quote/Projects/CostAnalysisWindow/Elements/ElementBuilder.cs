@@ -108,7 +108,7 @@
 
             foreach (Instruction line in def.Body.Instructions)
             {
-                MethodReference methodRef = (line.Operand as MethodReference);
+                MethodReference methodRef = line.Operand as MethodReference;
                 if (methodRef == null)
                 {
                     continue;
@@ -140,16 +140,16 @@
             
             foreach (Instruction line in def.Body.Instructions)
             {
-                FieldDefinition fieldRef = (line.Operand as FieldDefinition);
+                FieldDefinition fieldRef = line.Operand as FieldDefinition;
                 if (fieldRef == null)
                 {
                     continue;
                 }
                 
                 string name = fieldRef.FieldType.FullName;
-                bool hasSystem = (name.Contains("System"));
-                bool hasInt = (name.Contains("int"));
-                bool hasString = (name.Contains("string"));
+                bool hasSystem = name.Contains("System");
+                bool hasInt = name.Contains("int");
+                bool hasString = name.Contains("string");
                 if (!hasSystem && !hasInt && !hasString)
                 {
                     continue;
@@ -185,7 +185,7 @@
 
             foreach (Instruction line in def.Body.Instructions)
             {
-                FieldDefinition fieldRef = (line.Operand as FieldDefinition);
+                FieldDefinition fieldRef = line.Operand as FieldDefinition;
                 if (fieldRef == null)
                 {
                     continue;

@@ -24,7 +24,7 @@
         
         public bool Equals(FieldElement other)
         {
-            return (this.field.Name == other.Name);
+            return this.field.Name == other.Name;
         }
         
         public override string ToString()

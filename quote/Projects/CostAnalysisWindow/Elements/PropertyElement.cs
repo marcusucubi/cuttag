@@ -36,7 +36,7 @@
 
         public bool IsReadOnly
         {
-            get { return (this.property.SetMethod == null); }
+            get { return this.property.SetMethod == null; }
         }
 
         public FieldCollection Fields
@@ -82,7 +82,7 @@
 
         public bool Equals(PropertyElement other)
         {
-            return (this.Name == other.Name);
+            return this.Name == other.Name;
         }
         
         public override string ToString()
