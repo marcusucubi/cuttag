@@ -15,8 +15,8 @@
     /// </summary>
     public class VBTextOutputFormatter : IOutputFormatter
     {
-        readonly ITextOutput output;
-        readonly Stack<AstNode> nodeStack = new Stack<AstNode>();
+        private readonly ITextOutput output;
+        private readonly Stack<AstNode> nodeStack = new Stack<AstNode>();
         
         public VBTextOutputFormatter(ITextOutput output)
         {
@@ -146,7 +146,7 @@
                 node is TypeDeclaration;
         }
         
-        MemberReference GetCurrentMemberReference()
+        private MemberReference GetCurrentMemberReference()
         {
             AstNode node = this.nodeStack.Peek();
             MemberReference memberRef = node.Annotation<MemberReference>();
@@ -156,7 +156,7 @@
             return memberRef;
         }
 
-        object GetCurrentLocalReference()
+        private object GetCurrentLocalReference()
         {
             AstNode node = this.nodeStack.Peek();
             ILVariable variable = node.Annotation<ILVariable>();
@@ -170,7 +170,7 @@
             return null;
         }
 
-        object GetCurrentLocalDefinition()
+        private object GetCurrentLocalDefinition()
         {
             AstNode node = this.nodeStack.Peek();
             var parameterDef = node.Annotation<ParameterDefinition>();
@@ -200,7 +200,7 @@
             return null;
         }
         
-        object GetCurrentDefinition()
+        private object GetCurrentDefinition()
         {
             if (this.nodeStack == null || this.nodeStack.Count == 0)
             {

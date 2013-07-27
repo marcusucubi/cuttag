@@ -60,7 +60,7 @@
                         result = this.PropertyValue.ToString(
                             "###,###,##0.0", CultureInfo.CurrentCulture);
                         
-                        int padSize = (Math.Max(0, 12 - result.Length));
+                        int padSize = Math.Max(0, 12 - result.Length);
                         string padding = "          ".Substring(0, padSize);
                         
                         result = padding + result;
