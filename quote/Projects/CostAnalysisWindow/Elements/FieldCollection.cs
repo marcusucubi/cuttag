@@ -8,7 +8,6 @@
 
     public class FieldCollection : Collection<FieldElement>
     {
-        
         public FieldElement Find(MemberReference field)
         {
             foreach (FieldElement n in this)
@@ -21,6 +20,5 @@
 
             return null;
         }
-        
     }
 }

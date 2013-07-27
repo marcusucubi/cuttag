@@ -76,6 +76,5 @@
             builder.Build();
             this.nodes = builder.Elements;
         }
-        
     }
 }

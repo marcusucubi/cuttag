@@ -21,7 +21,10 @@
         public VBTextOutputFormatter(ITextOutput output)
         {
             if (output == null)
+            {
                 throw new ArgumentNullException("output");
+            }
+            
             this.output = output;
         }
         
@@ -150,9 +153,14 @@
         {
             AstNode node = this.nodeStack.Peek();
             MemberReference memberRef = node.Annotation<MemberReference>();
-            if (memberRef == null && node.Role == AstNode.Roles.TargetExpression && (node.Parent is InvocationExpression || node.Parent is ObjectCreationExpression)) {
+            if (memberRef == null && 
+                node.Role == AstNode.Roles.TargetExpression && 
+                (node.Parent is InvocationExpression || 
+                 node.Parent is ObjectCreationExpression))
+            {
                 memberRef = node.Parent.Annotation<MemberReference>();
             }
+            
             return memberRef;
         }
 
@@ -160,13 +168,16 @@
         {
             AstNode node = this.nodeStack.Peek();
             ILVariable variable = node.Annotation<ILVariable>();
-            if (variable != null) {
+            if (variable != null) 
+            {
                 if (variable.OriginalParameter != null)
                 {
                     return variable.OriginalParameter;
                 }
+                
                 return variable;
             }
+            
             return null;
         }
 
@@ -191,10 +202,6 @@
                     
                     return variable;
                 } 
-                else 
-                {
-
-                }
             }
 
             return null;
@@ -221,6 +228,5 @@
 
             return null;
         }
-        
     }
 }

@@ -68,7 +68,6 @@
                     }
                 }
             }
-            
         }
         
         private void CleanupFields()
@@ -164,6 +163,7 @@
                         found = true;
                     }
                 }
+                
                 if (found)
                 {
                     continue;
@@ -199,6 +199,5 @@
                 }
             }
         }
-        
     }
 }

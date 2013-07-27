@@ -10,7 +10,9 @@
 
         private FormTree tree;
 
-        private ViewController() { }
+        private ViewController() 
+        { 
+        }
 
         public static ViewController Instance
         {
@@ -50,6 +52,5 @@
             frm.Show(PluginHost.App.DockPanel, DockState.DockLeft);
             PluginHost.App.DockPanel.ResumeLayout(true, true);
         }
-
     }
 }
