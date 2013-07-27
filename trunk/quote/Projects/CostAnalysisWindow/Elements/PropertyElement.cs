@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-using CostAnalysisWindow.Elements;
-
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-namespace CostAnalysisWindow.Elements
+﻿namespace CostAnalysisWindow.Elements
 {
+    using System;
+    using System.Collections.Generic;
+    
+    using CostAnalysisWindow.Elements;
+    
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+
     public class PropertyElement : CodeElement, IEquatable<PropertyElement>
     {
         private readonly FieldCollection fields = new FieldCollection();

@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Reflection;
-using System.Windows.Forms;
-
-using CostAnalysisWindow;
-using CostAnalysisWindow.Decompile;
-using CostAnalysisWindow.Elements;
-
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.Ast;
-
-using Model.Template;
-
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-using WeifenLuo.WinFormsUI.Docking;
-
-namespace CostAnalysisWindow
+﻿namespace CostAnalysisWindow
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Reflection;
+    using System.Windows.Forms;
+    
+    using CostAnalysisWindow;
+    using CostAnalysisWindow.Decompile;
+    using CostAnalysisWindow.Elements;
+    
+    using ICSharpCode.Decompiler;
+    using ICSharpCode.Decompiler.Ast;
+    
+    using Model.Template;
+    
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+    
+    using WeifenLuo.WinFormsUI.Docking;
+
     public partial class FormTree : DockContent
     {
         private DecompileHelper helper = new DecompileHelper();

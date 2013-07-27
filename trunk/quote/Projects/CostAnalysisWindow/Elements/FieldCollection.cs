@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-using Mono.Cecil;
-
-namespace CostAnalysisWindow.Elements
+﻿namespace CostAnalysisWindow.Elements
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    
+    using Mono.Cecil;
+
     public class FieldCollection : Collection<FieldElement>
     {
         

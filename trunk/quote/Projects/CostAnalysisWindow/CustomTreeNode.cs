@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Globalization;
-using System.Runtime.Serialization;
-using System.Windows.Forms;
-using CostAnalysisWindow.Elements;
-
-namespace CostAnalysisWindow
+﻿namespace CostAnalysisWindow
 {
+    using System;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Windows.Forms;
+    using CostAnalysisWindow.Elements;
+
     [Serializable]
     public class CustomTreeNode : TreeNode
     {
@@ -48,35 +48,6 @@ namespace CostAnalysisWindow
             set; 
         }
         
-        public void UpdateImage()
-        {
-            if (this.codeElement == null)
-            {
-                this.ImageIndex = 1;
-            }
-            
-            PropertyElement prop = this.codeElement as PropertyElement;
-            if (prop == null)
-            {
-                this.ImageIndex = 5;
-            }
-            else
-            {
-                if (!prop.IsReadOnly)
-                {
-                    this.ImageIndex = 7;
-                }
-                else if (prop.NodesBelow.Count == 0)
-                {
-                    this.ImageIndex = 6;
-                }
-                else
-                {
-                    this.ImageIndex = 2;
-                }
-            }
-        }
-        
         private string NumValue
         {
             get 
@@ -111,6 +82,35 @@ namespace CostAnalysisWindow
                 }
                 
                 return result;
+            }
+        }
+        
+        public void UpdateImage()
+        {
+            if (this.codeElement == null)
+            {
+                this.ImageIndex = 1;
+            }
+            
+            PropertyElement prop = this.codeElement as PropertyElement;
+            if (prop == null)
+            {
+                this.ImageIndex = 5;
+            }
+            else
+            {
+                if (!prop.IsReadOnly)
+                {
+                    this.ImageIndex = 7;
+                }
+                else if (prop.NodesBelow.Count == 0)
+                {
+                    this.ImageIndex = 6;
+                }
+                else
+                {
+                    this.ImageIndex = 2;
+                }
             }
         }
         

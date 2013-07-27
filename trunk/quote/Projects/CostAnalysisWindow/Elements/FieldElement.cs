@@ -1,8 +1,8 @@
-﻿using System;
-using Mono.Cecil;
-
-namespace CostAnalysisWindow.Elements
+﻿namespace CostAnalysisWindow.Elements
 {
+    using System;
+    using Mono.Cecil;
+
     public class FieldElement : CodeElement, IEquatable<FieldElement>
     {
         private readonly FieldDefinition field;

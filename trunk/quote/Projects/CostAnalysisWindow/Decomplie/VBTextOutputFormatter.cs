@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-using ICSharpCode.Decompiler;
-using ICSharpCode.Decompiler.ILAst;
-using ICSharpCode.NRefactory.VB;
-using ICSharpCode.NRefactory.VB.Ast;
-
-using Mono.Cecil;
-
-namespace CostAnalysisWindow.Decompile
+﻿namespace CostAnalysisWindow.Decompile
 {
+    using System;
+    using System.Collections.Generic;
+    
+    using ICSharpCode.Decompiler;
+    using ICSharpCode.Decompiler.ILAst;
+    using ICSharpCode.NRefactory.VB;
+    using ICSharpCode.NRefactory.VB.Ast;
+    
+    using Mono.Cecil;
+    
     /// <summary>
     /// Description of VBTextOutputFormatter.
     /// </summary>
@@ -71,6 +71,81 @@ namespace CostAnalysisWindow.Decompile
             this.output.Write(identifier);
         }
 
+        public void WriteKeyword(string keyword)
+        {
+            this.output.Write(keyword);
+        }
+        
+        public void WriteToken(string token)
+        {
+            // Attach member reference to token only if there's no identifier in the current node.
+            MemberReference memberRef = this.GetCurrentMemberReference();
+            if (memberRef != null && this.nodeStack.Peek().GetChildByRole(AstNode.Roles.Identifier).IsNull)
+            {
+                this.output.WriteReference(token, memberRef);
+            }
+            else
+            {
+                this.output.Write(token);
+            }
+        }
+        
+        public void Space()
+        {
+            this.output.Write(' ');
+        }
+        
+        public void Indent()
+        {
+            this.output.Indent();
+        }
+        
+        public void Unindent()
+        {
+            this.output.Unindent();
+        }
+        
+        public void NewLine()
+        {
+            this.output.WriteLine();
+        }
+        
+        public void WriteComment(bool hasDocumentation, string content)
+        {
+            if (hasDocumentation)
+            {
+                this.output.Write("'''");
+            }
+            else
+            {
+                this.output.Write("'");
+            }
+            
+            this.output.WriteLine(content);
+        }
+        
+        public void MarkFoldStart()
+        {
+            this.output.MarkFoldStart();
+        }
+        
+        public void MarkFoldEnd()
+        {
+            this.output.MarkFoldEnd();
+        }
+        
+        private static bool IsDefinition(AstNode node)
+        {
+            return
+                node is FieldDeclaration ||
+                node is ConstructorDeclaration ||
+                node is EventDeclaration ||
+                node is DelegateDeclaration ||
+                node is OperatorDeclaration ||
+                node is MemberDeclaration ||
+                node is TypeDeclaration;
+        }
+        
         MemberReference GetCurrentMemberReference()
         {
             AstNode node = this.nodeStack.Peek();
@@ -147,79 +222,5 @@ namespace CostAnalysisWindow.Decompile
             return null;
         }
         
-        public void WriteKeyword(string keyword)
-        {
-            this.output.Write(keyword);
-        }
-        
-        public void WriteToken(string token)
-        {
-            // Attach member reference to token only if there's no identifier in the current node.
-            MemberReference memberRef = this.GetCurrentMemberReference();
-            if (memberRef != null && this.nodeStack.Peek().GetChildByRole(AstNode.Roles.Identifier).IsNull)
-            {
-                this.output.WriteReference(token, memberRef);
-            }
-            else
-            {
-                this.output.Write(token);
-            }
-        }
-        
-        public void Space()
-        {
-            this.output.Write(' ');
-        }
-        
-        public void Indent()
-        {
-            this.output.Indent();
-        }
-        
-        public void Unindent()
-        {
-            this.output.Unindent();
-        }
-        
-        public void NewLine()
-        {
-            this.output.WriteLine();
-        }
-        
-        public void WriteComment(bool hasDocumentation, string content)
-        {
-            if (hasDocumentation)
-            {
-                this.output.Write("'''");
-            }
-            else
-            {
-                this.output.Write("'");
-            }
-            
-            this.output.WriteLine(content);
-        }
-        
-        public void MarkFoldStart()
-        {
-            this.output.MarkFoldStart();
-        }
-        
-        public void MarkFoldEnd()
-        {
-            this.output.MarkFoldEnd();
-        }
-        
-        private static bool IsDefinition(AstNode node)
-        {
-            return
-                node is FieldDeclaration ||
-                node is ConstructorDeclaration ||
-                node is EventDeclaration ||
-                node is DelegateDeclaration ||
-                node is OperatorDeclaration ||
-                node is MemberDeclaration ||
-                node is TypeDeclaration;
-        }
     }
 }
