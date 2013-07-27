@@ -25,52 +25,52 @@ namespace CostAnalysisWindow
         
         public FormTree()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            Model.ActiveHeader.ActiveHeader.PropertyChanged += ActiveHeader_PropertyChanged;
-            Display();
-            _Updater.DisplayValues(treeView1);
-            WatchProperties();
+            Model.ActiveHeader.ActiveHeader.PropertyChanged += this.ActiveHeader_PropertyChanged;
+            this.Display();
+            this._Updater.DisplayValues(this.treeView1);
+            this.WatchProperties();
         }
 
         private void ActiveHeader_PropertyChanged(object source, EventArgs args)
         {
-            if (_Updater != null)
+            if (this._Updater != null)
             {
-                _Updater.DisplayValues(treeView1);
+                this._Updater.DisplayValues(this.treeView1);
             }
             
-            WatchProperties();
+            this.WatchProperties();
         }
 
         void FrmTreeFormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_Header != null)
+            if (this._Header != null)
             {
-                _Header.ComputationProperties.PropertyChanged -= Header_PropertyChanged;
-                _Header = null;
+                this._Header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
+                this._Header = null;
             }
         }
         
         void WatchProperties()
         {
-            if (_Header != null)
+            if (this._Header != null)
             {
-                _Header.ComputationProperties.PropertyChanged -= Header_PropertyChanged;
+                this._Header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
             }
 
-            _Header = Model.ActiveHeader.ActiveHeader.Header;
-            if (_Header != null) 
+            this._Header = Model.ActiveHeader.ActiveHeader.Header;
+            if (this._Header != null) 
             {
-                _Header.ComputationProperties.PropertyChanged += Header_PropertyChanged;
+                this._Header.ComputationProperties.PropertyChanged += this.Header_PropertyChanged;
             }
         }
 
         private void Header_PropertyChanged(object source, EventArgs args)
         {
-            if (_Updater != null)
+            if (this._Updater != null)
             {
-                _Updater.DisplayValues(treeView1);
+                this._Updater.DisplayValues(this.treeView1);
             }
         }
         
@@ -80,10 +80,10 @@ namespace CostAnalysisWindow
 
             PropertyAnalyzer2 analyzer2 = new PropertyAnalyzer2();
             analyzer2.Init();
-            _Updater = new UIUpdater2(analyzer2.Nodes);
-            _Updater.UpdateTree(this.treeView1);
+            this._Updater = new UIUpdater2(analyzer2.Nodes);
+            this._Updater.UpdateTree(this.treeView1);
             
-            _Helper.Init3();
+            this._Helper.Init3();
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;
         }
@@ -94,22 +94,22 @@ namespace CostAnalysisWindow
             PropertyElement propNode = node.CodeElement as PropertyElement;
             if (propNode == null)
             {
-                this.richTextBox1.Text = "";
+                this.richTextBox1.Text = string.Empty;
                 return;
             }
 
-            this.richTextBox1.Text = Decompile(propNode);
+            this.richTextBox1.Text = this.Decompile(propNode);
         }
         
         private string Decompile(PropertyElement propNode)
         {
-            if (_Helper.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
+            if (this._Helper.Dictionary.ContainsKey(propNode.Property.GetMethod.ToString()))
             {
-                StringWriter w = _Helper.Dictionary[propNode.Property.GetMethod.ToString()];
+                StringWriter w = this._Helper.Dictionary[propNode.Property.GetMethod.ToString()];
                 return w.ToString();
             }
             
-            return "";
+            return string.Empty;
         }
 
         void TreeView1DrawNode(object sender, DrawTreeNodeEventArgs e)

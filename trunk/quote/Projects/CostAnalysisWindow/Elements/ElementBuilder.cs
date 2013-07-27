@@ -15,33 +15,33 @@ namespace CostAnalysisWindow.Elements
         
         public ElementBuilder(TypeDefinition target)
         {
-            m_Target = target;
-            m_Collection = new PropertyCollection();
+            this.m_Target = target;
+            this.m_Collection = new PropertyCollection();
         }
         
         public PropertyCollection Elements
         {
-            get { return m_Collection; }
+            get { return this.m_Collection; }
         }
         
         public void Build()
         {
-            List<PropertyDefinition> props = LoadProperties();
-            PopulateNodes(props);
+            List<PropertyDefinition> props = this.LoadProperties();
+            this.PopulateNodes(props);
             
             foreach (PropertyDefinition p in props)
             {
-                PropertyElement cursor = m_Collection.Find(p);
+                PropertyElement cursor = this.m_Collection.Find(p);
                 
-                PopulateNodesBelowUsingMethodCalls(p, cursor);
-                PopulateFields(p, cursor);
-                PopulateNodesBelowUsingFields(p, cursor);
+                this.PopulateNodesBelowUsingMethodCalls(p, cursor);
+                this.PopulateFields(p, cursor);
+                this.PopulateNodesBelowUsingFields(p, cursor);
             }
 
-            foreach (PropertyElement propNode in m_Collection)
+            foreach (PropertyElement propNode in this.m_Collection)
             {
                 PropertyCollection col =
-                    m_Collection.FindNodeWithDependent(
+                    this.m_Collection.FindNodeWithDependent(
                         propNode.Property.Name);
 
                 foreach (PropertyElement childNode in col)
@@ -55,7 +55,7 @@ namespace CostAnalysisWindow.Elements
         
         private void CleanupFields()
         {
-            foreach(PropertyElement prop in m_Collection)
+            foreach(PropertyElement prop in this.m_Collection)
             {
                 CleanupFields(prop);
             }
@@ -80,7 +80,7 @@ namespace CostAnalysisWindow.Elements
         private List<PropertyDefinition> LoadProperties()
         {
             List<PropertyDefinition> props = new List<PropertyDefinition>();
-            foreach (PropertyDefinition p in m_Target.Properties)
+            foreach (PropertyDefinition p in this.m_Target.Properties)
             {
                 props.Add(p);
             }
@@ -94,7 +94,7 @@ namespace CostAnalysisWindow.Elements
             foreach (PropertyDefinition p in props)
             {
                 PropertyElement node = new PropertyElement(p);
-                m_Collection.Add(node);
+                this.m_Collection.Add(node);
             }
         }
         
@@ -112,7 +112,7 @@ namespace CostAnalysisWindow.Elements
                     continue;
                 }
                 
-                PropertyElement other = m_Collection.Find(methodRef.Name);
+                PropertyElement other = this.m_Collection.Find(methodRef.Name);
                 if (other == null)
                 {
                     continue;
@@ -154,7 +154,7 @@ namespace CostAnalysisWindow.Elements
                 }
                 
                 bool found = false;
-                PropertyCollection col = m_Collection.FindNodePrimaryProperty(fieldRef.Name);
+                PropertyCollection col = this.m_Collection.FindNodePrimaryProperty(fieldRef.Name);
                 foreach (PropertyElement n in col) 
                 {
                     if (n.Property.Name == propertyNode.Property.Name)
@@ -188,8 +188,9 @@ namespace CostAnalysisWindow.Elements
                 {
                     continue;
                 }
+                
                 PropertyCollection primaryNodeCollection = 
-                    m_Collection.FindNodePrimaryProperty(fieldRef.Name);
+                    this.m_Collection.FindNodePrimaryProperty(fieldRef.Name);
                 foreach (PropertyElement primaryNode in primaryNodeCollection)
                 {
                     propertyNode.NodesBelow.Add(primaryNode);

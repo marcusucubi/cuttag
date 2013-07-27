@@ -18,7 +18,7 @@ namespace CostAnalysisWindow.Decompile
                 
         public Dictionary<string, StringWriter> Dictionary
         {
-            get { return _Dictionary; }
+            get { return this._Dictionary; }
         }
         
         public void Init3()
@@ -35,7 +35,7 @@ namespace CostAnalysisWindow.Decompile
             TypeDefinition type = 
                 PropertyAnalyzer2.LoadTypeDef(computationPropertiesType, module);
                 
-            _Dictionary.Clear();
+            this._Dictionary.Clear();
             foreach(PropertyDefinition p in type.Properties)
             {
                 StringWriter stringWriter = new StringWriter(CultureInfo.CurrentCulture);
@@ -47,7 +47,7 @@ namespace CostAnalysisWindow.Decompile
                 
                 DecompileProperty(p, plain, options);
                 
-                _Dictionary.Add(p.GetMethod.ToString(), stringWriter);
+                this._Dictionary.Add(p.GetMethod.ToString(), stringWriter);
             }
         }
         
@@ -57,7 +57,8 @@ namespace CostAnalysisWindow.Decompile
             DisassembleOptions options)
         {
             AstBuilder codeDomBuilder = CreateAstBuilder(
-                options, currentType: property.DeclaringType, 
+                options, 
+                currentType: property.DeclaringType,
                 currentMethod: property.GetMethod, 
                 isSingleMember: true);
             codeDomBuilder.AddProperty(property);
@@ -101,8 +102,7 @@ namespace CostAnalysisWindow.Decompile
             var csharpUnit = astBuilder.CompilationUnit;
             csharpUnit.AcceptVisitor(new ICSharpCode.NRefactory.CSharp.InsertParenthesesVisitor() { InsertParenthesesForReadability = true });
             var unit = csharpUnit.AcceptVisitor(
-                new ICSharpCode.NRefactory.VB.Visitors.CSharpToVBConverterVisitor(
-                    new ILSpyEnvironmentProvider()), null);
+                new ICSharpCode.NRefactory.VB.Visitors.CSharpToVBConverterVisitor(new ILSpyEnvironmentProvider()), null);
             var outputFormatter = new VBTextOutputFormatter(output);
             var formattingPolicy = new ICSharpCode.NRefactory.VB.VBFormattingOptions();
             unit.AcceptVisitor(new ICSharpCode.NRefactory.VB.OutputVisitor(outputFormatter, formattingPolicy), null);

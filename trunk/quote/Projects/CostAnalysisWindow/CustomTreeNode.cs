@@ -16,7 +16,7 @@ namespace CostAnalysisWindow
         public CustomTreeNode(string text)
             : base(text + "                            ")
         {
-            UpdateImage();
+            this.UpdateImage();
         }
         
         protected CustomTreeNode(
@@ -28,8 +28,12 @@ namespace CostAnalysisWindow
         
         public CodeElement CodeElement 
         { 
-            get { return m_CodeElement; }
-            set { m_CodeElement = value; UpdateImage(); }
+            get { return this.m_CodeElement; }
+            set 
+            { 
+                this.m_CodeElement = value; 
+                this.UpdateImage(); 
+            }
         }
         
         public decimal PropertyValue
@@ -46,29 +50,29 @@ namespace CostAnalysisWindow
         
         public void UpdateImage()
         {
-            if (m_CodeElement == null)
+            if (this.m_CodeElement == null)
             {
-                ImageIndex = 1;
+                this.ImageIndex = 1;
             }
             
-            PropertyElement prop = m_CodeElement as PropertyElement;
+            PropertyElement prop = this.m_CodeElement as PropertyElement;
             if (prop == null)
             {
-                ImageIndex = 5;
+                this.ImageIndex = 5;
             }
             else
             {
                 if (!prop.IsReadOnly)
                 {
-                    ImageIndex = 7;
+                    this.ImageIndex = 7;
                 }
                 else if (prop.NodesBelow.Count == 0)
                 {
-                    ImageIndex = 6;
+                    this.ImageIndex = 6;
                 }
                 else
                 {
-                    ImageIndex = 2;
+                    this.ImageIndex = 2;
                 }
             }
         }
@@ -77,7 +81,7 @@ namespace CostAnalysisWindow
         {
             get 
             {
-                string result = "";
+                string result = string.Empty;
                 if (this.CodeElement != null)
                 {
                     if (this.PropertyAttached)
@@ -122,14 +126,18 @@ namespace CostAnalysisWindow
             
             Font numFont = new Font(FontFamily.GenericMonospace, 10);
             e.Graphics.DrawString(
-                numValue, numFont, Brushes.DarkBlue,
+                numValue, 
+                numFont, 
+                Brushes.DarkBlue,
                 e.Bounds.Left + 2, 
                 e.Bounds.Top + 1);
             
             Font textFont = new Font(FontFamily.GenericSerif, 10);
             SizeF numSize = e.Graphics.MeasureString(numValue, numFont, new SizeF(140, 100));
             e.Graphics.DrawString(
-                text, textFont, Brushes.Black, 
+                text, 
+                textFont, 
+                Brushes.Black,
                 e.Bounds.Left + numSize.Width + 2, 
                 e.Bounds.Top + 1);
             

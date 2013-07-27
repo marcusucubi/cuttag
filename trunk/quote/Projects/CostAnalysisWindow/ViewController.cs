@@ -19,16 +19,16 @@ namespace CostAnalysisWindow
 
         public void ShowTree()
         {
-            if (m_Tree == null)
+            if (this.m_Tree == null)
             {
-                m_Tree = new FormTree();
-                InitChild(m_Tree);
+                this.m_Tree = new FormTree();
+                InitChild(this.m_Tree);
             }
 
-            if (m_Tree.IsHidden || m_Tree.IsDisposed) 
+            if (this.m_Tree.IsHidden || this.m_Tree.IsDisposed) 
             {
-                m_Tree = new FormTree();
-                InitChild(m_Tree);
+                this.m_Tree = new FormTree();
+                InitChild(this.m_Tree);
             }
         }
         
@@ -41,14 +41,14 @@ namespace CostAnalysisWindow
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
         
         protected virtual void Dispose(bool native)
         {
-            m_Tree.Close();
-            m_Tree = null;
+            this.m_Tree.Close();
+            this.m_Tree = null;
         }
         
     }

@@ -15,7 +15,7 @@ namespace CostAnalysisWindow.Decompile
     {
         public string RootNamespace {
             get {
-                return "";
+                return string.Empty;
             }
         }
 
@@ -77,7 +77,7 @@ namespace CostAnalysisWindow.Decompile
             return TypeCode.Object;
         }
         
-        public Nullable<bool> IsReferenceType(ICSharpCode.NRefactory.CSharp.Expression expression)
+        public bool? IsReferenceType(ICSharpCode.NRefactory.CSharp.Expression expression)
         {
             if (expression is ICSharpCode.NRefactory.CSharp.NullReferenceExpression)
                 return true;
