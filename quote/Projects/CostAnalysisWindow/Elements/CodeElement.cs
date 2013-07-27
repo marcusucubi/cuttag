@@ -24,12 +24,12 @@ namespace CostAnalysisWindow.Elements
         
         public Collection<CodeElement> NodesBelow
         {
-            get { return m_NodesBelow; }
+            get { return this.m_NodesBelow; }
         }
 
         public Collection<CodeElement> NodesAbove
         {
-            get { return m_NodesAbove; }
+            get { return this.m_NodesAbove; }
         }
 
         public int CompareTo(CodeElement other)
@@ -37,7 +37,6 @@ namespace CostAnalysisWindow.Elements
             return string.Compare(this.Name, other.Name, true, CultureInfo.CurrentCulture);
         }
         
-        #region Equals and GetHashCode implementation
         public override bool Equals(object obj)
         {
             CodeElement other = obj as CodeElement;
@@ -67,7 +66,6 @@ namespace CostAnalysisWindow.Elements
         {
             return !(left == right);
         }
-        #endregion
 
         public static bool operator <(CodeElement element1, CodeElement element2){
 

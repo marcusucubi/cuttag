@@ -17,7 +17,7 @@ namespace CostAnalysisWindow
 
         public UIUpdater2(ReadOnlyCollection<PropertyElement> nodes)
         {
-            m_Nodes = new PropertyCollection(nodes);
+            this.m_Nodes = new PropertyCollection(nodes);
         }
 
         public void UpdateTree(TreeView treeView1)
@@ -26,7 +26,7 @@ namespace CostAnalysisWindow
             CustomTreeNode root = new CustomTreeNode("Costs");
             treeView1.Nodes.Add(root);
             
-            IEnumerable<PropertyElement> query = m_Nodes.OrderBy(element => element.Name);
+            IEnumerable<PropertyElement> query = this.m_Nodes.OrderBy(element => element.Name);
 
             foreach (PropertyElement n in query)
             {
@@ -35,7 +35,7 @@ namespace CostAnalysisWindow
                 }
                 else if (n.NodesBelow.Count > 0)
                 {
-                    AddNodeToTree(root, n);
+                    this.AddNodeToTree(root, n);
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace CostAnalysisWindow
                     continue;
                 }
 
-                AddNodeToTree(propNode, n);
+                this.AddNodeToTree(propNode, n);
             }
         }
 
@@ -90,7 +90,7 @@ namespace CostAnalysisWindow
                 return;
             }
             
-            List<CustomTreeNode> nodes = GetAllNodes(treeView1);
+            List<CustomTreeNode> nodes = this.GetAllNodes(treeView1);
             
             Model.Template.Header header =
                 Model.ActiveHeader.ActiveHeader.Header as Model.Template.Header;
@@ -178,7 +178,7 @@ namespace CostAnalysisWindow
                 
                 result.Add(treeNode);
                 
-                List<CustomTreeNode> grandChildren = GetChildNodes(treeNode);
+                List<CustomTreeNode> grandChildren = this.GetChildNodes(treeNode);
                 
                 result.AddRange(grandChildren);
             }
@@ -196,7 +196,7 @@ namespace CostAnalysisWindow
                 
                 result.Add(treeNode);
                 
-                List<CustomTreeNode> grandChildren = GetChildNodes(treeNode);
+                List<CustomTreeNode> grandChildren = this.GetChildNodes(treeNode);
                 
                 result.AddRange(grandChildren);
             }

@@ -16,49 +16,49 @@ namespace CostAnalysisWindow.Elements
 
         public PropertyElement(PropertyDefinition property)
         {
-            m_Property = property;
+            this.m_Property = property;
         }
         
         public override string Name
         {
-            get { return m_Property.Name; }
+            get { return this.m_Property.Name; }
         }
 
         public MethodDefinition Getter
         {
-            get { return m_Property.GetMethod; }
+            get { return this.m_Property.GetMethod; }
         }
 
         public PropertyDefinition Property
         {
-            get { return m_Property; }
+            get { return this.m_Property; }
         }
 
         public bool IsReadOnly
         {
-            get { return (m_Property.SetMethod == null); }
+            get { return (this.m_Property.SetMethod == null); }
         }
 
         public FieldCollection Fields
         {
-            get { return m_Fields; }
+            get { return this.m_Fields; }
         }
 
         public FieldCollection OrphanedFields
         {
-            get { return m_OrphanedFields; }
+            get { return this.m_OrphanedFields; }
         }
         
         public FieldElement PrimaryFieldDefinition
         {
             get
             {
-                if (m_Fields.Count != 1)
+                if (this.m_Fields.Count != 1)
                 {
                     return null;
                 }
 
-                return m_Fields[0];
+                return this.m_Fields[0];
             }
         }
         

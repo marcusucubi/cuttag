@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using CostAnalysisWindow.Elements;
+
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
@@ -14,7 +15,7 @@ namespace CostAnalysisWindow
 
         public ReadOnlyCollection<PropertyElement> Nodes
         {
-            get { return new ReadOnlyCollection<PropertyElement>(m_Nodes); }
+            get { return new ReadOnlyCollection<PropertyElement>(this.m_Nodes); }
         }
         
         public void Init()
@@ -33,7 +34,7 @@ namespace CostAnalysisWindow
             
             ElementBuilder builder = new Elements.ElementBuilder(typeDefinition);
             builder.Build();
-            m_Nodes = builder.Elements;
+            this.m_Nodes = builder.Elements;
         }
         
         public static Model.Common.SaveableProperties BuildComputationProperties()

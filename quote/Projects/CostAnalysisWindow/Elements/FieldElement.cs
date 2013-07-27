@@ -9,27 +9,27 @@ namespace CostAnalysisWindow.Elements
         
         public FieldElement(FieldDefinition field)
         {
-            m_Field = field;
+            this.m_Field = field;
         }
         
         public override string Name 
         {
-            get { return m_Field.Name; }
+            get { return this.m_Field.Name; }
         }
         
         public FieldDefinition Field
         {
-            get { return m_Field; }
+            get { return this.m_Field; }
         }
         
         public bool Equals(FieldElement other)
         {
-            return (m_Field.Name == other.Name);
+            return (this.m_Field.Name == other.Name);
         }
         
         public override string ToString()
         {
-            return Name;
+            return this.Name;
         }
 
     }
