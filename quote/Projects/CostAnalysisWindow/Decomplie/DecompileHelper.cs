@@ -36,7 +36,7 @@ namespace CostAnalysisWindow.Decompile
                 PropertyAnalyzer2.LoadTypeDef(computationPropertiesType, module);
                 
             this._Dictionary.Clear();
-            foreach(PropertyDefinition p in type.Properties)
+            foreach (PropertyDefinition p in type.Properties)
             {
                 StringWriter stringWriter = new StringWriter(CultureInfo.CurrentCulture);
                 PlainTextOutput plain = new PlainTextOutput(stringWriter);

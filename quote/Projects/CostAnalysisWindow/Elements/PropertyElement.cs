@@ -68,9 +68,9 @@ namespace CostAnalysisWindow.Elements
             {
                 FieldCollection result = new FieldCollection();
                 
-                foreach(PropertyElement prop in this.NodesBelow)
+                foreach (PropertyElement prop in this.NodesBelow)
                 {
-                    foreach(FieldElement field in prop.Fields)
+                    foreach (FieldElement field in prop.Fields)
                     {
                         result.Add(field);
                     }

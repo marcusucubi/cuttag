@@ -55,7 +55,7 @@ namespace CostAnalysisWindow.Elements
         
         private void CleanupFields()
         {
-            foreach(PropertyElement prop in this.m_Collection)
+            foreach (PropertyElement prop in this.m_Collection)
             {
                 CleanupFields(prop);
             }
@@ -64,7 +64,7 @@ namespace CostAnalysisWindow.Elements
         private static void CleanupFields(PropertyElement prop)
         {
             FieldCollection usedFields = prop.FieldsInNodesBellow;
-            foreach(FieldElement element in prop.Fields)
+            foreach (FieldElement element in prop.Fields)
             {
                 if (!usedFields.Contains(element))
                 {

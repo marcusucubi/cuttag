@@ -217,7 +217,7 @@ namespace CostAnalysisWindow.Decompile
                 node is ConstructorDeclaration ||
                 node is EventDeclaration ||
                 node is DelegateDeclaration ||
-                node is OperatorDeclaration||
+                node is OperatorDeclaration ||
                 node is MemberDeclaration ||
                 node is TypeDeclaration;
         }

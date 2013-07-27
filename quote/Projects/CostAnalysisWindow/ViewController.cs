@@ -10,7 +10,7 @@ namespace CostAnalysisWindow
 
         private FormTree m_Tree;
 
-        private ViewController() {}
+        private ViewController() { }
 
         public static ViewController Instance
         {
