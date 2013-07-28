@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PluginHost
+namespace Host
 {
-    public interface IPluginInit
+    public interface IInit
     {
         void Init();
     }

@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
-
-using PluginHost;
 using System.Drawing;
+
+using Host;
 
 namespace PluginOutputView
 {
     [
-    PluginMenuItem( 
+    MenuItem( 
         Text = "Output",  
         Parent = "View"
         )
     ]
-    public class DisplayOutputMenuItem : IPluginMenuAction, IHasIcon
+    public class DisplayOutputMenuItem : IMenuAction, IHasIcon
     {
         public void Execute()
         {

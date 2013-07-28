@@ -1,18 +1,18 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 
-Imports PluginHost
+Imports Host
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Costs", _
     Parent:="View" _
     )>
 Public Class DisplayCostsMenuItem
-    Implements IPluginMenuAction, IPluginMenuInit, IHasIcon
+    Implements IMenuAction, IMenuInit, IHasIcon
 
-    Public Overridable Sub Execute() Implements IPluginMenuAction.Execute
+    Public Overridable Sub Execute() Implements IMenuAction.Execute
         Dim t = ViewController.Instance.ComputationProperties
     End Sub
 
@@ -22,12 +22,12 @@ Public Class DisplayCostsMenuItem
         End Get
     End Property
 
-    Public Overridable Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
+    Public Overridable Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
         Dim menuItem As ToolStripMenuItem = menu
         menuItem.ShortcutKeys = Keys.F12
     End Sub
 
-    Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
+    Public Sub InitButton(button As ToolStripButton) Implements IMenuInit.InitButton
         button.Enabled = False
     End Sub
 

@@ -1,9 +1,9 @@
 ﻿Public Class Plugin
-    Implements PluginHost.IPluginInit
+    Implements Host.IInit
 
     Private WithEvents m_Events As Model.ModelEvents
 
-    Public Sub Init() Implements PluginHost.IPluginInit.Init
+    Public Sub Init() Implements Host.IInit.Init
         m_Events = Model.ModelEvents.ActiveEvents
     End Sub
 

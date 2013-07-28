@@ -48,9 +48,9 @@
         
         private static void InitChild(DockContent frm)
         {
-            PluginHost.App.DockPanel.SuspendLayout(true);
-            frm.Show(PluginHost.App.DockPanel, DockState.DockLeft);
-            PluginHost.App.DockPanel.ResumeLayout(true, true);
+            Host.App.DockPanel.SuspendLayout(true);
+            frm.Show(Host.App.DockPanel, DockState.DockLeft);
+            Host.App.DockPanel.ResumeLayout(true, true);
         }
     }
 }

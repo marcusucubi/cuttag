@@ -1,11 +1,10 @@
-﻿Imports PluginHost
-
-Imports WeifenLuo.WinFormsUI.Docking
+﻿Imports WeifenLuo.WinFormsUI.Docking
 
 Imports Model
 Imports Model.Quote
 Imports Model.IO
 Imports Doc
+Imports Host
 
 Public Class frmMain
 
@@ -21,7 +20,7 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        PluginHost.App.Init( _
+        Host.App.Init( _
             Me, DockPanel1, Me.MenuStrip1, _
             Me.ToolStrip1, Me.MainFormStatusStrip1.FlowLayoutPanel1, _
             Me.MainFormStatusStrip1.ToolTip1)

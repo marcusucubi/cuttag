@@ -1,10 +1,10 @@
 ﻿using System;
 using NDepend.Attributes;
 
-namespace PluginHost
+namespace Host
 {
     [AttributeUsageAttribute(AttributeTargets.Class), CannotDecreaseVisibility]
-    sealed public class PluginMenuItemAttribute : Attribute
+    sealed public class MenuItemAttribute : Attribute
     {
         public string Text
         {
@@ -18,7 +18,7 @@ namespace PluginHost
             set;
         }
 
-        public bool ShowInToolbar
+        public bool ShowInToolBar
         {
             get;
             set;

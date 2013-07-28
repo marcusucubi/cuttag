@@ -1,17 +1,17 @@
 ﻿Imports System
 Imports System.Windows.Forms
 
-Imports PluginHost
+Imports Host
 Imports PluginOutputView
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Import Parts List", _
     Parent:="Template" _
     )>
 Public Class ImportPartListMenuItem
-    Implements IPluginMenuAction
+    Implements IMenuAction
 
-    Public Sub Execute() Implements IPluginMenuAction.Execute
+    Public Sub Execute() Implements IMenuAction.Execute
 
         Dim import As New QuoteImport
         import.DoImportFromPartsList()

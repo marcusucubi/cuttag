@@ -1,17 +1,17 @@
 ﻿Imports System.Drawing
 
-Imports PluginHost
+Imports Host
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Notes", _
     Parent:="View" _
     )>
 Public Class DisplayNoteMenuItem
-    Implements IPluginMenuAction, IHasIcon
+    Implements IMenuAction, IHasIcon
 
-    Public Overridable Sub Execute() Implements IPluginMenuAction.Execute
+    Public Overridable Sub Execute() Implements IMenuAction.Execute
         Dim t = ViewController.Instance.NoteProperties
     End Sub
 

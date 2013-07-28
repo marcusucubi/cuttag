@@ -1,7 +1,7 @@
 ﻿Public Class Plugin
-    Implements PluginHost.IPluginInit
+    Implements Host.IInit
 
-    Public Sub Init() Implements PluginHost.IPluginInit.Init
+    Public Sub Init() Implements Host.IInit.Init
 
         Dim s As New StatusBarUpdater
         s.Init()

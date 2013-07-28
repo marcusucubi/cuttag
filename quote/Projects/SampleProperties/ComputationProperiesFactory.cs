@@ -1,6 +1,6 @@
 ﻿using System;
 using Model.Template;
-using PluginHost;
+using Host;
 
 namespace SampleProperties 
 {

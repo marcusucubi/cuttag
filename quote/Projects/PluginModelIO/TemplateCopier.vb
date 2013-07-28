@@ -13,7 +13,7 @@ Public Class TemplateCopier
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
-        PluginHost.App.MainForm.Focus()
+        Host.App.MainForm.Focus()
 
         Dim o As PrimaryPropeties = q.PrimaryProperties
 

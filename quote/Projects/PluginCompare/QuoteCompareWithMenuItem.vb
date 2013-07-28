@@ -2,26 +2,26 @@
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-Imports PluginHost
+Imports Host
 Imports Model
 Imports Doc
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Compare With", _
     Parent:="Quote" _
     )>
 Public Class QuoteCompareWithMenuItem
-    Implements IPluginMenuAction, IPluginMenuInit
+    Implements IMenuAction, IMenuInit
 
     Private WithEvents m_Watch As Model.ActiveHeader
     Private WithEvents m_Menu As ToolStripMenuItem
     Private m_Button As ToolStripButton
 
-    Public Sub Execute() Implements IPluginMenuAction.Execute
+    Public Sub Execute() Implements IMenuAction.Execute
 
     End Sub
 
-    Public Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
+    Public Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
 
         m_Watch = Model.ActiveHeader.ActiveHeader
         m_Menu = menu
@@ -36,7 +36,7 @@ Public Class QuoteCompareWithMenuItem
 
     End Sub
 
-    Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
+    Public Sub InitButton(button As ToolStripButton) Implements IMenuInit.InitButton
 
         m_Button = button
         button.Enabled = False
@@ -62,7 +62,7 @@ Public Class QuoteCompareWithMenuItem
 
     Private Sub AddMenuItemsForOpenQuotes(menu As ToolStripMenuItem)
         menu.DropDownItems.Clear()
-        For Each d As DockContent In PluginHost.App.DockPanel.Documents
+        For Each d As DockContent In Host.App.DockPanel.Documents
 
             If Not (TypeOf d Is frmDocumentA) Then
                 Continue For
@@ -90,8 +90,8 @@ Public Class QuoteCompareWithMenuItem
 
         Dim frmCompare As frmCompare
         frmCompare = New frmCompare(Model.ActiveHeader.ActiveHeader.Header, menu.Header)
-        frmCompare.MdiParent = PluginHost.App.MainForm
-        frmCompare.Show(PluginHost.App.DockPanel)
+        frmCompare.MdiParent = Host.App.MainForm
+        frmCompare.Show(Host.App.DockPanel)
 
         System.Windows.Forms.Cursor.Current = Cursors.Default
     End Sub

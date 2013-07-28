@@ -2,15 +2,15 @@
 using System.Collections.Specialized;
 using System.Configuration;
 
-using PluginHost;
+using Host;
 using PluginOutputView;
 
 namespace DebugPlugin
 {
     [
-    PluginMenuItem(Text = "Configuration Settings", Parent = "Debug"),
+    MenuItem(Text = "Configuration Settings", Parent = "Debug"),
     ]
-    public class PrintConfigurationMenuItem : IPluginMenuAction
+    public class PrintConfigurationMenuItem : IMenuAction
     {
         public void Execute()
         {

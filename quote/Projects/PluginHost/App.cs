@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
 
-using PluginHost.Internal;
+using Host.Internal;
 using NDepend.Attributes;
 
-namespace PluginHost
+namespace Host
 {
     [CannotDecreaseVisibility]
     public static class App

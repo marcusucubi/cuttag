@@ -4,7 +4,7 @@ using System.Resources;
 using System.Threading;
 using System.Globalization;
 
-namespace PluginHost
+namespace Host
 {
     public class ResourceHelper
     {

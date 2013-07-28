@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace PluginHost
+namespace Host
 {
     public interface IHasIcon
     {

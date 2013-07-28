@@ -1,6 +1,7 @@
-﻿Imports PluginHost
-Imports Model.Common
+﻿Imports Model.Common
 Imports Model.Template.Ext
+
+Imports Host
 
 Namespace Template
 

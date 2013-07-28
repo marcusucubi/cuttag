@@ -4,12 +4,12 @@
     using System.Collections.Specialized;
     using System.Configuration;
     
-    using PluginHost;
+    using Host;
 
     [
-    PluginMenuItem(Text = "Cost Analysis", Parent = "View"),
+    MenuItem(Text = "Cost Analysis", Parent = "View"),
     ]
-    public class PrintConfigurationMenuItem : IPluginMenuAction
+    public class PrintConfigurationMenuItem : IMenuAction
     {
         public void Execute()
         {
