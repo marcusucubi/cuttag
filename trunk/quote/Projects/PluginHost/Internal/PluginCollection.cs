@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    sealed class PluginCollection : List<PluginProxy>
+    internal sealed class PluginCollection : List<PluginProxy>
     {
     }
 }

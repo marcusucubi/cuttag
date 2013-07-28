@@ -19,8 +19,6 @@
 
         internal PluginMenuItem(BuildData data)
         {
-            System.Diagnostics.Debug.Assert(data.MenuName != null);
-
             this.text = data.Text;
             this.menuName = data.MenuName;
             this.image = data.Image;
@@ -60,11 +58,11 @@
         
         internal sealed class BuildData
         {
-            internal string Text;
-            internal string MenuName;
-            internal bool ShowInToolbar;
-            internal Image Image;
-            internal IMenuAction Action;
+            internal string Text { get; set; }
+            internal string MenuName { get; set; }
+            internal bool ShowInToolbar { get; set; }
+            internal Image Image { get; set; }
+            internal IMenuAction Action { get; set; }
         }
     }
 }

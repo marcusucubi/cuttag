@@ -6,7 +6,7 @@
     
     using Host;
 
-    sealed class PluginProxy
+    internal sealed class PluginProxy
     {
         private readonly List<PluginMenuItem> pluginMenuItems = new List<PluginMenuItem>();
         private readonly List<IInit> plugins = new List<IInit>();
