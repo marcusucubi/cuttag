@@ -12,6 +12,8 @@
     <AssemblyName>PluginHost</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SourceAnalysisOverrideSettingsFile>C:\sandbox\workspaces\cuttag32\Projects\PluginHost\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,7 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HasIcon.cs" />
+    <Compile Include="IHasIcon.cs" />
     <Compile Include="IPluginInit.cs" />
     <Compile Include="IPluginMenuInit.cs" />
     <Compile Include="NDepend\Attributes\CannotDecreaseVisibilityAttribute.cs" />

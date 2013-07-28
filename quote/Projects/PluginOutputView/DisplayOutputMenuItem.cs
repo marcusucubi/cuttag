@@ -12,16 +12,19 @@ namespace PluginOutputView
         Parent = "View"
         )
     ]
-    public class DisplayOutputMenuItem : IPluginMenuAction, HasIcon
+    public class DisplayOutputMenuItem : IPluginMenuAction, IHasIcon
     {
         public void Execute()
         {
             OutputPlugin.ShowOutputView();
         }
 
-        public Image GetImage()
+        public Image Image
         {
-            return GetImageByName("console");
+            get
+            {
+                return GetImageByName("console");
+            }
         }
 
         public static Bitmap GetImageByName(string imageName)

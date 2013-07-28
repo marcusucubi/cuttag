@@ -10,15 +10,17 @@ Imports WeifenLuo.WinFormsUI.Docking
     Parent:="View" _
     )>
 Public Class DisplayCostsMenuItem
-    Implements IPluginMenuAction, IPluginMenuInit, HasIcon
+    Implements IPluginMenuAction, IPluginMenuInit, IHasIcon
 
     Public Overridable Sub Execute() Implements IPluginMenuAction.Execute
         Dim t = ViewController.Instance.ComputationProperties
     End Sub
 
-    Public Function GetImage() As Image Implements HasIcon.GetImage
-        Return My.Resources.dollar
-    End Function
+    Public ReadOnly Property Image As Image Implements IHasIcon.Image
+        Get
+            Return My.Resources.dollar
+        End Get
+    End Property
 
     Public Overridable Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
         Dim menuItem As ToolStripMenuItem = menu

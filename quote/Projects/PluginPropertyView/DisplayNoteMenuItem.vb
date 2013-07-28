@@ -9,15 +9,17 @@ Imports WeifenLuo.WinFormsUI.Docking
     Parent:="View" _
     )>
 Public Class DisplayNoteMenuItem
-    Implements IPluginMenuAction, HasIcon
+    Implements IPluginMenuAction, IHasIcon
 
     Public Overridable Sub Execute() Implements IPluginMenuAction.Execute
         Dim t = ViewController.Instance.NoteProperties
     End Sub
 
-    Public Function GetImage() As Image Implements HasIcon.GetImage
-        Return My.Resources.notes
-    End Function
+    Public ReadOnly Property Image As Image Implements IHasIcon.Image
+        Get
+            Return My.Resources.notes
+        End Get
+    End property
 
 End Class
 

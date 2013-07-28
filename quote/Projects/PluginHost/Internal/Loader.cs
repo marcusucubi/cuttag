@@ -168,10 +168,10 @@ namespace PluginHost.Internal
                 data.ShowInToolbar = ppm.ShowInToolbar;
             }
 
-            HasIcon hasIcon = target as HasIcon;
+            IHasIcon hasIcon = target as IHasIcon;
             if (hasIcon != null)
             {
-                data.Image = hasIcon.GetImage();
+                data.Image = hasIcon.Image;
             }
 
             data.Text = mia.Text;
