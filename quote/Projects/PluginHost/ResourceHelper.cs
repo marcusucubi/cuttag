@@ -31,6 +31,5 @@
 
             return rm.GetObject(name);
         }
-
     }
 }

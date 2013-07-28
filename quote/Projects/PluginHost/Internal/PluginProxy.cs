@@ -36,6 +36,5 @@
         {
             get { return this.assembly; }
         }
-
     }
 }
