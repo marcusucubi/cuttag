@@ -12,47 +12,47 @@ namespace PluginHost
     [CannotDecreaseVisibility]
     public static class App
     {
-        private static Form s_MainForm; 
-        private static DockPanel s_DockPanel;
-        private static MenuStrip s_Menu;
-        private static FlowLayoutPanel s_StatusStripPanel;
-        private static ToolTip s_StatusStripToolTip;
-        private static Dictionary<Type, Type> s_RegisteredClasses = new Dictionary<Type, Type>();
+        private static Form mainForm; 
+        private static DockPanel dockPanel;
+        private static MenuStrip menu;
+        private static FlowLayoutPanel statusStripPanel;
+        private static ToolTip statusStripToolTip;
+        private static Dictionary<Type, Type> registeredClasses = new Dictionary<Type, Type>();
 
         [CannotDecreaseVisibility]
         public static Dictionary<Type, Type> RegisteredClasses
         {
-            get { return s_RegisteredClasses; }
+            get { return registeredClasses; }
         }
 
         [CannotDecreaseVisibility]
         public static MenuStrip Menu
         {
-            get { return s_Menu; }
+            get { return menu; }
         }
 
         [CannotDecreaseVisibility]
         public static DockPanel DockPanel
         {
-            get { return s_DockPanel; }
+            get { return dockPanel; }
         }
 
         [CannotDecreaseVisibility]
         public static Form MainForm
         {
-            get { return s_MainForm; }
+            get { return mainForm; }
         }
 
         [CannotDecreaseVisibility]
         public static FlowLayoutPanel StatusStripPanel
         {
-            get { return s_StatusStripPanel; }
+            get { return statusStripPanel; }
         }
 
         [CannotDecreaseVisibility]
         public static ToolTip StatusStripToolTip
         {
-            get { return s_StatusStripToolTip; }
+            get { return statusStripToolTip; }
         }
 
         [CannotDecreaseVisibility]
@@ -64,11 +64,11 @@ namespace PluginHost
             FlowLayoutPanel statusStripPanel,
             ToolTip statusStripToolTip)
         {
-            s_MainForm = mainForm;
-            s_DockPanel = dockPanel;
-            s_StatusStripPanel = statusStripPanel;
-            s_StatusStripToolTip = statusStripToolTip;
-            s_Menu = menu;
+            App.mainForm = mainForm;
+            App.dockPanel = dockPanel;
+            App.statusStripPanel = statusStripPanel;
+            App.statusStripToolTip = statusStripToolTip;
+            App.menu = menu;
 
             PluginCollection col = Loader.Load();
 
