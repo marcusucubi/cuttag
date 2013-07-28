@@ -1,8 +1,8 @@
-﻿using System;
-using System.Drawing;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+    using System.Drawing;
+
     public interface IHasIcon
     {
         Image Image

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Reflection;
-using System.Resources;
-using System.Threading;
-using System.Globalization;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Resources;
+    using System.Threading;
+
     public static class ResourceHelper
     {
         public static T GetResource<T>(
@@ -28,10 +28,6 @@ namespace Host
         {
             var rm = new ResourceManager(
                 "PluginExport.Properties.Resources", assembly);
-
-            //var rm = new System.Resources.ResourceManager(
-            //    "PluginHost.resources", 
-            //    Assembly.GetExecutingAssembly());
 
             return rm.GetObject(name);
         }

@@ -1,8 +1,8 @@
-﻿using System;
-using NDepend.Attributes;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+    using NDepend.Attributes;
+
     [CannotDecreaseVisibility]
     public interface IMenuAction
     {

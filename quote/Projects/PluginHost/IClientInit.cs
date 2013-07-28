@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+
     public interface IInit
     {
         void Init();

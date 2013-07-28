@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using System.Windows.Forms;
-using System.Drawing;
-using Host;
-
-namespace Host.Internal
+﻿namespace Host.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Globalization;
+    using System.Text;
+    using System.Windows.Forms;
+    
+    using Host;
+
     internal sealed class PluginMenuItem : IComparable<PluginMenuItem>
     {
-        internal sealed class BuildData
-        {
-            internal string Text;
-            internal string MenuName;
-            internal bool ShowInToolbar;
-            internal Image Image;
-            internal IMenuAction Action;
-        }
-
         private readonly string text;
         private readonly string menuName;
         private readonly Image image;
@@ -64,6 +56,15 @@ namespace Host.Internal
         public int CompareTo(PluginMenuItem other)
         {
             return string.Compare(other.Text, this.Text, true, CultureInfo.CurrentCulture);
+        }
+        
+        internal sealed class BuildData
+        {
+            internal string Text;
+            internal string MenuName;
+            internal bool ShowInToolbar;
+            internal Image Image;
+            internal IMenuAction Action;
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.Xml;
-using System.Drawing;
-
-namespace Host.Internal
+﻿namespace Host.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
+    using System.Reflection;
+    using System.Windows.Forms;
+    using System.Xml;
+    
     static class Loader
     {
-        static internal PluginCollection Load()
+        internal static PluginCollection Load()
         {
             PluginCollection result = new PluginCollection();
 
@@ -25,7 +25,7 @@ namespace Host.Internal
             return result;
         }
 
-        static private List<string> LoadPaths()
+        private static List<string> LoadPaths()
         {
             List<string> paths = new List<string>();
 
@@ -51,7 +51,7 @@ namespace Host.Internal
             return paths;
         }
 
-        static private void ProcessPlugin(
+        private static void ProcessPlugin(
             PluginCollection collection,
             string path)
         {
@@ -85,7 +85,7 @@ namespace Host.Internal
             }
         }
 
-        static private List<PluginMenuItem> FindMenuItems(Assembly a)
+        private static List<PluginMenuItem> FindMenuItems(Assembly a)
         {
             List<PluginMenuItem> result = new List<PluginMenuItem>();
 
@@ -103,7 +103,7 @@ namespace Host.Internal
             return result;
         }
 
-        static private void FindRegisteredClasses(Assembly a)
+        private static void FindRegisteredClasses(Assembly a)
         {
             Type[] types = a.GetTypes();
             foreach (Type t in types)
@@ -122,7 +122,7 @@ namespace Host.Internal
 
         }
 
-        static private List<IInit> FindInits(Assembly a)
+        private static List<IInit> FindInits(Assembly a)
         {
             List<IInit> result = new List<IInit>();
 

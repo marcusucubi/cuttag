@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-
-using Host;
-
-namespace Host.Internal
+﻿namespace Host.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    
+    using Host;
+
     sealed class PluginProxy
     {
         private readonly List<PluginMenuItem> pluginMenuItems = new List<PluginMenuItem>();
