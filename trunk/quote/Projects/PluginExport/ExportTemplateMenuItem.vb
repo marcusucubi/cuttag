@@ -1,7 +1,7 @@
-﻿Imports Model
-Imports PluginHost
-
+﻿Imports System.Drawing
 Imports System.Windows.Forms
+Imports Model
+Imports PluginHost
 
 <PluginMenuItem( _
     Text:="Export Template", _
@@ -9,7 +9,7 @@ Imports System.Windows.Forms
     ShowInToolbar:=True
     )>
 Public Class ExportTemplateMenuItem
-    Implements IPluginMenuAction, IPluginMenuInit, HasIcon
+    Implements IPluginMenuAction, IPluginMenuInit, IHasIcon
 
     Private WithEvents m_Watch As Model.ActiveHeader
     Private m_ToolStripItem As ToolStripItem
@@ -48,9 +48,11 @@ Public Class ExportTemplateMenuItem
         End If
 
     End Sub
-
-    Public Function GetImage() As System.Drawing.Image Implements HasIcon.GetImage
-        Return My.Resources.excel
-    End Function
+    
+    Public ReadOnly property Image As Image Implements IHasIcon.Image
+        Get
+            Return My.Resources.excel
+        End Get
+    End property
 
 End Class
