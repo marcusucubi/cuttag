@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics;
+using System.Windows.Forms;
 using System.Xml;
 using System.Drawing;
 
@@ -70,9 +71,17 @@ namespace Host.Internal
                 PluginProxy plugin = new PluginProxy(items, inits, a);
                 collection.Add(plugin);
             }
-            catch (Exception e)
+            catch (System.IO.IOException e)
             {
-                System.Windows.Forms.MessageBox.Show("Error loading " + fileName + "\r\n" + e.Message);
+                string text = "Error loading " + fileName + "\r\n" + e.Message;
+                System.Windows.Forms.MessageBox.Show(
+                    text, 
+                    string.Empty, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.None, 
+                    MessageBoxDefaultButton.Button1, 
+                    (MessageBoxOptions)0, 
+                    false);
             }
         }
 
