@@ -75,6 +75,5 @@
 
             UIBuilder.BuildUI(col, menu, toolStrip);
         }
-
     }
 }

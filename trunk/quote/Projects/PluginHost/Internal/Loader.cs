@@ -119,7 +119,6 @@
 
                 App.RegisteredClasses.Add(r.Key, t);
             }
-
         }
 
         private static List<IInit> FindInits(Assembly a)
@@ -181,6 +180,5 @@
 
             return new PluginMenuItem(data);
         }
-
     }
 }

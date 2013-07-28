@@ -47,7 +47,6 @@
 
             foreach (PluginMenuItem item in sortedItems)
             {
-
                 if (item.MenuName.Length > 0)
                 {
                     string name = item.MenuName;
@@ -60,7 +59,6 @@
                     AddMenuItem(plugin, item, menuStrip.Items);
                 }
             }
-
         }
 
         private static void AssignButtonItems(
@@ -113,7 +111,6 @@
             PluginMenuItem item,
             ToolStripItemCollection items)
         {
-
             var i1 = new ToolStripMenuItem();
             i1.Text = item.Text;
             i1.Click += (sender, e) => { item.Action.Execute(); };
@@ -191,6 +188,5 @@
 
             return result;
         }
-
     }
 }

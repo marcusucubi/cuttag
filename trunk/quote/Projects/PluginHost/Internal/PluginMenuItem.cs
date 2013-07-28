@@ -59,9 +59,13 @@
         internal sealed class BuildData
         {
             internal string Text { get; set; }
+            
             internal string MenuName { get; set; }
+            
             internal bool ShowInToolbar { get; set; }
+            
             internal Image Image { get; set; }
+            
             internal IMenuAction Action { get; set; }
         }
     }
