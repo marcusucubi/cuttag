@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace NDepend.Attributes
+﻿namespace NDepend.Attributes
 {
+    using System;
+
     /**
      * Used with NDepend code analysis tool
      */
-    sealed internal class CannotDecreaseVisibilityAttribute : Attribute
+    internal sealed class CannotDecreaseVisibilityAttribute : Attribute
     {
     }
 }

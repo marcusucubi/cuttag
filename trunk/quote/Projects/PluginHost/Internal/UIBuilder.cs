@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
-using System.Windows.Forms;
-
-namespace Host.Internal
+﻿namespace Host.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Windows.Forms;
+
     static class UIBuilder
     {
-        static internal void BuildUI(
+        internal static void BuildUI(
             PluginCollection collection,
             MenuStrip menu,
             ToolStrip toolStrip)
@@ -19,7 +19,7 @@ namespace Host.Internal
             }
         }
 
-        static private void BuildUI(
+        private static void BuildUI(
             PluginProxy plugin,
             MenuStrip menu,
             ToolStrip toolStrip)
@@ -29,7 +29,7 @@ namespace Host.Internal
             AssignButtonItems(plugin, toolStrip);
         }
 
-        static private void DoInit(PluginProxy plugin)
+        private static void DoInit(PluginProxy plugin)
         {
             foreach (IInit init in plugin.Plugins)
             {
@@ -37,7 +37,7 @@ namespace Host.Internal
             }
         }
 
-        static private void AssignMenuItems(
+        private static void AssignMenuItems(
             PluginProxy plugin,
             MenuStrip menuStrip)
         {
@@ -63,7 +63,7 @@ namespace Host.Internal
 
         }
 
-        static private void AssignButtonItems(
+        private static void AssignButtonItems(
             PluginProxy plugin,
             ToolStrip toolStrip)
         {
@@ -166,7 +166,7 @@ namespace Host.Internal
             return menuItem;
         }
 
-        static private int FindIndex(
+        private static int FindIndex(
             ToolStripItemCollection collection,
             PluginProxy plugin)
         {

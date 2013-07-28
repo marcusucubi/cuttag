@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
-using WeifenLuo.WinFormsUI.Docking;
-
-using Host.Internal;
-using NDepend.Attributes;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows.Forms;
+    
+    using Host.Internal;
+    
+    using NDepend.Attributes;
+
+    using WeifenLuo.WinFormsUI.Docking;
+    
     [CannotDecreaseVisibility]
     public static class App
     {

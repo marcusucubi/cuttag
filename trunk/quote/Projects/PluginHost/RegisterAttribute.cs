@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class RegisterAttribute : Attribute
     {

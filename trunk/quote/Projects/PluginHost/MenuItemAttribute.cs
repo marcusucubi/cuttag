@@ -1,10 +1,10 @@
-﻿using System;
-using NDepend.Attributes;
-
-namespace Host
+﻿namespace Host
 {
+    using System;
+    using NDepend.Attributes;
+    
     [AttributeUsageAttribute(AttributeTargets.Class), CannotDecreaseVisibility]
-    sealed public class MenuItemAttribute : Attribute
+    public sealed class MenuItemAttribute : Attribute
     {
         public string Text
         {
