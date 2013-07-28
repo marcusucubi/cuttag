@@ -8,33 +8,33 @@ namespace PluginHost.Internal
 {
     sealed class PluginProxy
     {
-        private readonly List<PluginMenuItem> m_PluginMenuItems = new List<PluginMenuItem>();
-        private readonly List<IPluginInit> m_Plugins = new List<IPluginInit>();
-        private readonly Assembly _Assembly;
+        private readonly List<PluginMenuItem> pluginMenuItems = new List<PluginMenuItem>();
+        private readonly List<IPluginInit> plugins = new List<IPluginInit>();
+        private readonly Assembly assembly;
 
         internal PluginProxy(
             List<PluginMenuItem> pluginMenuItems,
             List<IPluginInit> plugins,
             Assembly assembly)
         {
-            m_PluginMenuItems = pluginMenuItems;
-            m_Plugins = plugins;
-            _Assembly = assembly;
+            this.pluginMenuItems = pluginMenuItems;
+            this.plugins = plugins;
+            this.assembly = assembly;
         }
 
         internal PluginMenuItem[] PluginMenuItems 
         {
-            get { return m_PluginMenuItems.ToArray(); }
+            get { return this.pluginMenuItems.ToArray(); }
         }
 
         internal IPluginInit[] Plugins
         {
-            get { return m_Plugins.ToArray(); }
+            get { return this.plugins.ToArray(); }
         }
 
         internal Assembly Assembly
         {
-            get { return _Assembly; }
+            get { return this.assembly; }
         }
 
     }
