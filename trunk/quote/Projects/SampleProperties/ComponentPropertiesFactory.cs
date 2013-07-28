@@ -1,6 +1,7 @@
 ﻿using System;
+
 using Model.Common;
-using PluginHost;
+using Host;
 
 namespace SampleProperties
 {

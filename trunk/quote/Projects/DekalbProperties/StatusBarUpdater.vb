@@ -31,10 +31,10 @@ Public Class StatusBarUpdater
         Me._IsNew.Text = "None"
         Me._IsNew.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 
-        PluginHost.App.StatusStripPanel.SuspendLayout()
-        PluginHost.App.StatusStripPanel.Controls.Add(Me._IsNew)
-        PluginHost.App.StatusStripToolTip.SetToolTip(Me._IsNew, "Is Quote New")
-        PluginHost.App.StatusStripPanel.ResumeLayout()
+        Host.App.StatusStripPanel.SuspendLayout()
+        Host.App.StatusStripPanel.Controls.Add(Me._IsNew)
+        Host.App.StatusStripToolTip.SetToolTip(Me._IsNew, "Is Quote New")
+        Host.App.StatusStripPanel.ResumeLayout()
 
     End Sub
 

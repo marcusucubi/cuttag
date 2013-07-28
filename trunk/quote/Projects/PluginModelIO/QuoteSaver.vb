@@ -31,7 +31,7 @@ Public Class QuoteSaver
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         ' Ensure the properies are updated
-        PluginHost.App.MainForm.Focus()
+        Host.App.MainForm.Focus()
 
         Dim o As Model.Template.PrimaryPropeties = q.PrimaryProperties
 

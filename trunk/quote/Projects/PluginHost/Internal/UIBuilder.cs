@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace PluginHost.Internal
+namespace Host.Internal
 {
     static class UIBuilder
     {
@@ -30,7 +30,7 @@ namespace PluginHost.Internal
 
         static private void DoInit(PluginProxy plugin)
         {
-            foreach (IPluginInit init in plugin.Plugins)
+            foreach (IInit init in plugin.Plugins)
             {
                 init.Init();
             }
@@ -86,7 +86,7 @@ namespace PluginHost.Internal
             i1.Click += (sender, e) => { item.Action.Execute(); };
             item.ToolStripButton = i1;
 
-            IPluginMenuInit init = item.Action as IPluginMenuInit;
+            IMenuInit init = item.Action as IMenuInit;
             if (init != null)
             {
                 init.InitButton(i1);
@@ -119,7 +119,7 @@ namespace PluginHost.Internal
             i1.Click += (sender, e) => { item.Action.Execute(); };
             item.ToolStripItem = i1;
 
-            IPluginMenuInit init = item.Action as IPluginMenuInit;
+            IMenuInit init = item.Action as IMenuInit;
             if (init != null)
             {
                 init.InitMenu(i1);

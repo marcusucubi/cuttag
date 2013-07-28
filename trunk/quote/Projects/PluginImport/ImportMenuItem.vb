@@ -1,17 +1,17 @@
 ﻿Imports System
 Imports System.Windows.Forms
 
-Imports PluginHost
+Imports Host
 Imports PluginOutputView
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Import (Legacy)", _
     Parent:="Template" _
     )>
 Public Class ImportMenuItem
-    Implements IPluginMenuAction
+    Implements IMenuAction
 
-    Public Sub Execute() Implements IPluginMenuAction.Execute
+    Public Sub Execute() Implements IMenuAction.Execute
 
         Dim import As New QuoteImport
         import.DoImport()

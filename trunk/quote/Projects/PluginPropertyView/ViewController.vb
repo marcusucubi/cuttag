@@ -49,9 +49,9 @@ Public Class ViewController
 
                 m_DetailProperties = New frmDetailProperties
 
-                PluginHost.App.DockPanel.SuspendLayout(True)
+                Host.App.DockPanel.SuspendLayout(True)
                 InitChild(m_DetailProperties, DockState.DockBottom)
-                PluginHost.App.DockPanel.ResumeLayout(True, True)
+                Host.App.DockPanel.ResumeLayout(True, True)
 
             End If
 
@@ -113,15 +113,15 @@ Public Class ViewController
     End Property
 
     Private Sub InitChild(ByVal frm As DockContent)
-        PluginHost.App.DockPanel.SuspendLayout(True)
-        frm.Show(PluginHost.App.DockPanel, DockState.DockRight)
-        PluginHost.App.DockPanel.ResumeLayout(True, True)
+        Host.App.DockPanel.SuspendLayout(True)
+        frm.Show(Host.App.DockPanel, DockState.DockRight)
+        Host.App.DockPanel.ResumeLayout(True, True)
     End Sub
 
     Private Sub InitChild(ByVal frm As DockContent, state As DockState)
-        PluginHost.App.DockPanel.SuspendLayout(True)
-        frm.Show(PluginHost.App.DockPanel, state)
-        PluginHost.App.DockPanel.ResumeLayout(True, True)
+        Host.App.DockPanel.SuspendLayout(True)
+        frm.Show(Host.App.DockPanel, state)
+        Host.App.DockPanel.ResumeLayout(True, True)
     End Sub
 
 End Class

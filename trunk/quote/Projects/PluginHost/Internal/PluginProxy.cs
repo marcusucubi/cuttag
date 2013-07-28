@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-using PluginHost;
+using Host;
 
-namespace PluginHost.Internal
+namespace Host.Internal
 {
     sealed class PluginProxy
     {
         private readonly List<PluginMenuItem> pluginMenuItems = new List<PluginMenuItem>();
-        private readonly List<IPluginInit> plugins = new List<IPluginInit>();
+        private readonly List<IInit> plugins = new List<IInit>();
         private readonly Assembly assembly;
 
         internal PluginProxy(
             List<PluginMenuItem> pluginMenuItems,
-            List<IPluginInit> plugins,
+            List<IInit> plugins,
             Assembly assembly)
         {
             this.pluginMenuItems = pluginMenuItems;
@@ -27,7 +27,7 @@ namespace PluginHost.Internal
             get { return this.pluginMenuItems.ToArray(); }
         }
 
-        internal IPluginInit[] Plugins
+        internal IInit[] Plugins
         {
             get { return this.plugins.ToArray(); }
         }

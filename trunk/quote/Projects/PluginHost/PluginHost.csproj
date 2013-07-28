@@ -8,7 +8,7 @@
     <ProjectGuid>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PluginHost</RootNamespace>
+    <RootNamespace>Host</RootNamespace>
     <AssemblyName>PluginHost</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,15 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IHasIcon.cs" />
-    <Compile Include="IPluginInit.cs" />
-    <Compile Include="IPluginMenuInit.cs" />
+    <Compile Include="IClientInit.cs" />
+    <Compile Include="IMenuInit.cs" />
     <Compile Include="NDepend\Attributes\CannotDecreaseVisibilityAttribute.cs" />
-    <Compile Include="IPluginMenuAction.cs" />
+    <Compile Include="IMenuAction.cs" />
     <Compile Include="App.cs" />
     <Compile Include="Internal\PluginProxy.cs" />
     <Compile Include="Internal\Loader.cs" />
     <Compile Include="Internal\UIBuilder.cs" />
-    <Compile Include="PluginMenuItemAttribute.cs" />
+    <Compile Include="MenuItemAttribute.cs" />
     <Compile Include="Internal\PluginCollection.cs" />
     <Compile Include="Internal\PluginMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

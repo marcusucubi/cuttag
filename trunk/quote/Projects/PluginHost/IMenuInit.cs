@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PluginHost
+namespace Host
 {
-    public interface IPluginMenuInit
+    public interface IMenuInit
     {
         void InitMenu(ToolStripItem menu);
 

@@ -4,9 +4,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-using PluginHost;
+using Host;
 
-namespace PluginHost.Internal
+namespace Host.Internal
 {
     internal sealed class PluginMenuItem : IComparable<PluginMenuItem>
     {
@@ -16,14 +16,14 @@ namespace PluginHost.Internal
             internal string MenuName;
             internal bool ShowInToolbar;
             internal Image Image;
-            internal IPluginMenuAction Action;
+            internal IMenuAction Action;
         }
 
         private readonly string text;
         private readonly string menuName;
         private readonly Image image;
         private readonly bool showInToolbar;
-        private readonly IPluginMenuAction action;
+        private readonly IMenuAction action;
 
         internal PluginMenuItem(BuildData data)
         {
@@ -56,7 +56,7 @@ namespace PluginHost.Internal
             get { return this.image; }
         }
 
-        internal IPluginMenuAction Action
+        internal IMenuAction Action
         {
             get { return this.action; }
         }

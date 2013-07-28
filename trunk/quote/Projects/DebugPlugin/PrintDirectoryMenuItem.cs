@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Configuration;
 using System.Collections.Specialized;
-
-using PluginHost;
-using PluginOutputView;
 using System.IO;
+
+using Host;
+using PluginOutputView;
 
 namespace DebugPlugin
 {
     [
-    PluginMenuItem(Text = "Current Directory", Parent = "Debug"), 
+    MenuItem(Text = "Current Directory", Parent = "Debug"), 
     ]
-    public class PrintDirectoryMenuItem : IPluginMenuAction
+    public class PrintDirectoryMenuItem : IMenuAction
     {
         public void Execute()
         {

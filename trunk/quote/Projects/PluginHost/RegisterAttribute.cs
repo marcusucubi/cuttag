@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PluginHost
+namespace Host
 {
-    public class RegisterAttribute : Attribute
+    public sealed class RegisterAttribute : Attribute
     {
         public Type Key
         {

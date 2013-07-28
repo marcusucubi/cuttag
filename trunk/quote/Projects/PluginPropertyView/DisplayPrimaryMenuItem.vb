@@ -1,17 +1,17 @@
 ﻿Imports System.Drawing
 
-Imports PluginHost
+Imports Host
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Primary", _
     Parent:="View" _
     )>
 Public Class DisplayPrimaryMenuItem
-    Implements IPluginMenuAction
+    Implements IMenuAction
 
-    Public Overridable Sub Execute() Implements IPluginMenuAction.Execute
+    Public Overridable Sub Execute() Implements IMenuAction.Execute
         Dim t = ViewController.Instance.PrimaryProperties
     End Sub
 

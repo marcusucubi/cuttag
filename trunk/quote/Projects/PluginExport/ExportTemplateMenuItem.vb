@@ -1,28 +1,29 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
-Imports Model
-Imports PluginHost
 
-<PluginMenuItem( _
+Imports Model
+Imports Host
+
+<MenuItem( _
     Text:="Export Template", _
     Parent:="Template", _
     ShowInToolbar:=True
     )>
 Public Class ExportTemplateMenuItem
-    Implements IPluginMenuAction, IPluginMenuInit, IHasIcon
+    Implements IMenuAction, IMenuInit, IHasIcon
 
     Private WithEvents m_Watch As Model.ActiveHeader
     Private m_ToolStripItem As ToolStripItem
     Private m_Button As ToolStripButton
 
-    Public Sub Execute() Implements IPluginMenuAction.Execute
+    Public Sub Execute() Implements IMenuAction.Execute
 
         Dim export As New ExportBOM
         export.Export(ActiveHeader.ActiveHeader.Header)
 
     End Sub
 
-    Public Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
+    Public Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
 
         m_Watch = Model.ActiveHeader.ActiveHeader
         m_ToolStripItem = menu
@@ -30,7 +31,7 @@ Public Class ExportTemplateMenuItem
 
     End Sub
 
-    Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
+    Public Sub InitButton(button As ToolStripButton) Implements IMenuInit.InitButton
 
         m_Button = button
         m_Button.Enabled = False

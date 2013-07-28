@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PluginHost;
 using System.Configuration;
+
 using PluginOutputView;
+using Host;
 
 namespace DebugPlugin
 {
     [
-    PluginMenuItem(Text = "Connection Information", Parent = "Debug"),
+    MenuItem(Text = "Connection Information", Parent = "Debug"),
     ]
-    public class PrintConnectionInfoMenuItem : IPluginMenuAction
+    public class PrintConnectionInfoMenuItem : IMenuAction
     {
 
         public void Execute()

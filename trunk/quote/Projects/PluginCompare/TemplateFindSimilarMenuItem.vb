@@ -2,32 +2,32 @@
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-Imports PluginHost
+Imports Host
 Imports Model
 Imports Doc
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Open Similar", _
     Parent:="Template" _
     )>
 Public Class TemplateFindSimilarMenuItem
-    Implements IPluginMenuAction, IPluginMenuInit
+    Implements IMenuAction, IMenuInit
 
     Private WithEvents m_Watch As Model.ActiveHeader
     Private WithEvents m_Menu As ToolStripMenuItem
     Private m_Button As ToolStripButton
 
-    Public Sub Execute() Implements IPluginMenuAction.Execute
+    Public Sub Execute() Implements IMenuAction.Execute
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         Dim frm As frmSimilarQuotes
         frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
-        frm.ShowDialog(PluginHost.App.MainForm)
+        frm.ShowDialog(Host.App.MainForm)
 
         System.Windows.Forms.Cursor.Current = Cursors.Default
     End Sub
 
-    Public Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
+    Public Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
 
         m_Watch = Model.ActiveHeader.ActiveHeader
         m_Menu = menu
@@ -35,7 +35,7 @@ Public Class TemplateFindSimilarMenuItem
 
     End Sub
 
-    Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
+    Public Sub InitButton(button As ToolStripButton) Implements IMenuInit.InitButton
 
         m_Button = button
         button.Enabled = False

@@ -1,4 +1,4 @@
-﻿Imports PluginHost
+﻿Imports Host
 
 <Register(Key:=GetType(Model.Template.Ext.IComputationProperiesFactory))>
 Public Class ComputationProperiesFactory

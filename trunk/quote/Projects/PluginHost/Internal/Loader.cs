@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Drawing;
 
-namespace PluginHost.Internal
+namespace Host.Internal
 {
     static class Loader
     {
@@ -22,11 +22,6 @@ namespace PluginHost.Internal
             }
 
             return result;
-        }
-
-        static private bool IsDebugging()
-        {
-            return Debugger.IsAttached;
         }
 
         static private List<string> LoadPaths()
@@ -71,7 +66,7 @@ namespace PluginHost.Internal
 
                 FindRegisteredClasses(a);
                 List<PluginMenuItem> items = FindMenuItems(a);
-                List<IPluginInit> inits = FindInits(a);
+                List<IInit> inits = FindInits(a);
                 PluginProxy plugin = new PluginProxy(items, inits, a);
                 collection.Add(plugin);
             }
@@ -118,20 +113,19 @@ namespace PluginHost.Internal
 
         }
 
-        static private List<IPluginInit> FindInits(Assembly a)
+        static private List<IInit> FindInits(Assembly a)
         {
-            List<IPluginInit> result = new List<IPluginInit>();
+            List<IInit> result = new List<IInit>();
 
             Type[] types = a.GetTypes();
             foreach (Type t in types)
             {
-                if (!typeof(IPluginInit).IsAssignableFrom(t))
+                if (!typeof(IInit).IsAssignableFrom(t))
                 {
                     continue;
                 }
 
-                IPluginInit target =
-                    Activator.CreateInstance(t) as IPluginInit;
+                IInit target = Activator.CreateInstance(t) as IInit;
 
                 result.Add(target);
             }
@@ -141,31 +135,31 @@ namespace PluginHost.Internal
 
         private static PluginMenuItem BuildMenuItem(Type t)
         {
-            PluginMenuItemAttribute[] mias = (PluginMenuItemAttribute[])
-                t.GetCustomAttributes(typeof(PluginMenuItemAttribute), false);
+            MenuItemAttribute[] mias = (MenuItemAttribute[])
+                t.GetCustomAttributes(typeof(MenuItemAttribute), false);
             if (mias.Length == 0)
             {
                 return null;
             }
 
-            PluginMenuItemAttribute mia = mias[0];
-            IPluginMenuAction target =
-                Activator.CreateInstance(t) as IPluginMenuAction;
+            MenuItemAttribute mia = mias[0];
+            IMenuAction target =
+                Activator.CreateInstance(t) as IMenuAction;
 
             PluginMenuItem.BuildData data = new PluginMenuItem.BuildData();
 
-            if (target is IPluginMenuAction)
+            if (target is IMenuAction)
             {
-                data.Action = (IPluginMenuAction)target;
+                data.Action = (IMenuAction)target;
             }
 
-            PluginMenuItemAttribute[] ppms = (PluginMenuItemAttribute[])
-                t.GetCustomAttributes(typeof(PluginMenuItemAttribute), false);
+            MenuItemAttribute[] ppms = (MenuItemAttribute[])
+                t.GetCustomAttributes(typeof(MenuItemAttribute), false);
             if (ppms.Length > 0)
             {
-                PluginMenuItemAttribute ppm = ppms[0];
+                MenuItemAttribute ppm = ppms[0];
                 data.MenuName = ppm.Parent;
-                data.ShowInToolbar = ppm.ShowInToolbar;
+                data.ShowInToolbar = ppm.ShowInToolBar;
             }
 
             IHasIcon hasIcon = target as IHasIcon;

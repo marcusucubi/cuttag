@@ -2,22 +2,22 @@
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-Imports PluginHost
+Imports Host
 Imports Model
 
-<PluginMenuItem( _
+<MenuItem( _
     Text:="Hide Details", _
     Parent:="View" _
     )>
 Public Class DisplayReadonlyProperties
-    Implements IPluginMenuAction, IPluginMenuInit
+    Implements IMenuAction, IMenuInit
 
     Private m_ToolStripItem As ToolStripItem
     Private m_Button As ToolStripButton
     Private m_Window As DockContent
     Private WithEvents _Settings As DisplaySettings = DisplaySettings.Instance
 
-    Public Sub Execute() Implements IPluginMenuAction.Execute
+    Public Sub Execute() Implements IMenuAction.Execute
 
         If Not DisplaySettings.Instance.HideReadOnlyProperties Then
             DisplaySettings.Instance.HideReadOnlyProperties = True
@@ -29,27 +29,27 @@ Public Class DisplayReadonlyProperties
     End Sub
 
     Private Sub InitChild(ByVal frm As DockContent)
-        PluginHost.App.DockPanel.SuspendLayout(True)
-        frm.Show(PluginHost.App.DockPanel, DockState.DockRight)
-        PluginHost.App.DockPanel.ResumeLayout(True, True)
+        Host.App.DockPanel.SuspendLayout(True)
+        frm.Show(Host.App.DockPanel, DockState.DockRight)
+        Host.App.DockPanel.ResumeLayout(True, True)
     End Sub
 
-    Public Overridable Sub InitMenu(menu As ToolStripItem) Implements IPluginMenuInit.InitMenu
+    Public Overridable Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
         m_ToolStripItem = menu
         Dim menuItem As ToolStripMenuItem = menu
         menuItem.ShortcutKeys = Keys.F11
         UpdateMenu()
     End Sub
 
-    Public Sub InitButton(button As ToolStripButton) Implements IPluginMenuInit.InitButton
+    Public Sub InitButton(button As ToolStripButton) Implements IMenuInit.InitButton
         m_Button = button
         button.Enabled = False
     End Sub
 
     Private Sub InitChild(ByVal frm As DockContent, ByVal state As DockState)
-        PluginHost.App.DockPanel.SuspendLayout(True)
-        frm.Show(PluginHost.App.DockPanel, state)
-        PluginHost.App.DockPanel.ResumeLayout(True, True)
+        Host.App.DockPanel.SuspendLayout(True)
+        frm.Show(Host.App.DockPanel, state)
+        Host.App.DockPanel.ResumeLayout(True, True)
     End Sub
 
     Private Sub UpdateMenu()

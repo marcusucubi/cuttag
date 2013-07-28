@@ -1,10 +1,10 @@
 ﻿using System;
 using NDepend.Attributes;
 
-namespace PluginHost
+namespace Host
 {
     [CannotDecreaseVisibility]
-    public interface IPluginMenuAction
+    public interface IMenuAction
     {
         void Execute();
     }
