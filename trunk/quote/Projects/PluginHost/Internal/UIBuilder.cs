@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -84,7 +85,6 @@ namespace Host.Internal
             i1.Text = item.Text;
             i1.DisplayStyle = ToolStripItemDisplayStyle.Text;
             i1.Click += (sender, e) => { item.Action.Execute(); };
-            item.ToolStripButton = i1;
 
             IMenuInit init = item.Action as IMenuInit;
             if (init != null)
@@ -98,7 +98,7 @@ namespace Host.Internal
                 i1.DisplayStyle = ToolStripItemDisplayStyle.Image;
             }
 
-            int index = FindIndex(item, toolStrip.Items, plugin);
+            int index = FindIndex(toolStrip.Items, plugin);
 
             if (index < toolStrip.Items.Count)
             {
@@ -117,7 +117,6 @@ namespace Host.Internal
             var i1 = new ToolStripMenuItem();
             i1.Text = item.Text;
             i1.Click += (sender, e) => { item.Action.Execute(); };
-            item.ToolStripItem = i1;
 
             IMenuInit init = item.Action as IMenuInit;
             if (init != null)
@@ -131,7 +130,7 @@ namespace Host.Internal
                 i1.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }
 
-            int index = FindIndex(item, items, plugin);
+            int index = FindIndex(items, plugin);
 
             if (index < items.Count)
             {
@@ -149,7 +148,8 @@ namespace Host.Internal
 
             foreach (ToolStripItem tsi in menuStrip.Items)
             {
-                if (tsi.Text.TrimStart('&').ToLower() == name.ToLower())
+                if (tsi.Text.TrimStart('&').ToLower(CultureInfo.CurrentCulture) == 
+                    name.ToLower(CultureInfo.CurrentCulture))
                 {
                     ToolStripMenuItem temp = tsi as ToolStripMenuItem;
                     menuItem = temp;
@@ -167,7 +167,6 @@ namespace Host.Internal
         }
 
         static private int FindIndex(
-            PluginMenuItem menuItem,
             ToolStripItemCollection collection,
             PluginProxy plugin)
         {

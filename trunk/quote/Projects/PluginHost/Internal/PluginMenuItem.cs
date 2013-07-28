@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
-
 using Host;
 
 namespace Host.Internal
@@ -61,21 +61,9 @@ namespace Host.Internal
             get { return this.action; }
         }
 
-        internal ToolStripItem ToolStripItem
-        {
-            get;
-            set;
-        }
-
-        internal ToolStripButton ToolStripButton
-        {
-            get;
-            set;
-        }
-
         public int CompareTo(PluginMenuItem other)
         {
-            return other.Text.CompareTo(this.Text);
+            return string.Compare(other.Text, this.Text, true, CultureInfo.CurrentCulture);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Host
 {
-    public class ResourceHelper
+    public static class ResourceHelper
     {
         public static T GetResource<T>(
             Assembly assembly,
