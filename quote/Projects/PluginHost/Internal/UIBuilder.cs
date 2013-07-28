@@ -6,7 +6,7 @@
     using System.Reflection;
     using System.Windows.Forms;
 
-    static class UIBuilder
+    internal static class UIBuilder
     {
         internal static void BuildUI(
             PluginCollection collection,

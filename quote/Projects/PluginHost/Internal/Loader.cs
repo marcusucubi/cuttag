@@ -9,7 +9,7 @@
     using System.Windows.Forms;
     using System.Xml;
     
-    static class Loader
+    internal static class Loader
     {
         internal static PluginCollection Load()
         {
