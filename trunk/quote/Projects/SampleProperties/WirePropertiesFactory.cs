@@ -5,8 +5,8 @@ using Host;
 
 namespace SampleProperties
 {
-    [Register(Key = typeof(Model.Template.Ext.IWireProperiesFactory))]
-    public class WirePropertiesFactory : Model.Template.Ext.IWireProperiesFactory 
+    [Register(Key = typeof(Model.Template.Ext.IWirePropertiesFactory))]
+    public class WirePropertiesFactory : Model.Template.Ext.IWirePropertiesFactory 
     {
         public SaveableProperties CreateWireProperties(Model.Template.Detail detail)
         {

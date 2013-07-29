@@ -2,7 +2,7 @@
 
 Namespace Template.Ext
 
-    Public Interface IOtherProperiesFactory
+    Public Interface IOtherPropertiesFactory
 
         Function CreateOtherProperties(header As Header, _
                                        id As Integer) _

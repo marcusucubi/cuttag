@@ -30,7 +30,7 @@ Public Class frmMain
     End Sub
 
     Private Sub OnNewQuote(source As Object, args As ModelEventArgs)
-        Me.LoadTemplate(args.ID)
+        Me.LoadTemplate(args.Id)
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged

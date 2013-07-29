@@ -1,15 +1,16 @@
 ﻿using System;
-using Model.Template;
+
 using Host;
+using Model.Template.Ext;
 
 namespace SampleProperties 
 {
-    [Register(Key = typeof(Model.Template.Ext.IComputationProperiesFactory))]
-    public class ComputationProperiesFactory : Model.Template.Ext.IComputationProperiesFactory
+    [Register(Key = typeof(Model.Template.Ext.IComputationPropertiesFactory))]
+    public class ComputationProperiesFactory : IComputationPropertiesFactory
     {
 
         public Model.Common.SaveableProperties CreateComputationProperties(
-            Header header, int id)
+            Model.Template.Header header, int id)
         {
             return new DisplayableComputationProperties(new SampleComputationProperties(header));
         }
