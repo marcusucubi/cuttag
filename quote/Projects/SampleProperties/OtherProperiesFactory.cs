@@ -5,8 +5,8 @@ using Host;
 
 namespace SampleProperties
 {
-    [Register(Key = typeof(Model.Template.Ext.IOtherProperiesFactory))]
-    public class OtherProperiesFactory : Model.Template.Ext.IOtherProperiesFactory
+    [Register(Key = typeof(Model.Template.Ext.IOtherPropertiesFactory))]
+    public class OtherProperiesFactory : Model.Template.Ext.IOtherPropertiesFactory
     {
         public OtherProperiesFactory()
         {

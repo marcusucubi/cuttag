@@ -1,11 +1,13 @@
 ﻿Imports System.ComponentModel
+Imports System.Globalization
+
 Namespace Common
     Public Class DetailSortComparer
         Implements IComparer(Of Detail)
         Private _PropDesc As PropertyDescriptor = Nothing
         Private _Direction As ListSortDirection = ListSortDirection.Ascending
-        Public Sub New(ByVal propDesc As PropertyDescriptor, ByVal direction As ListSortDirection)
-            Me._PropDesc = propDesc
+        Public Sub New(ByVal propDescriptor As PropertyDescriptor, ByVal direction As ListSortDirection)
+            Me._PropDesc = propDescriptor
             Me._Direction = direction
         End Sub
         Public Function Compare(ByVal x As Detail, ByVal y As Detail) As Integer Implements IComparer(Of Detail).Compare
@@ -16,7 +18,7 @@ Namespace Common
             Return retValue
         End Function
 
-        Private Function CompareValues(ByVal x As Object, ByVal y As Object, ByVal direction As ListSortDirection) As Integer
+        Private Shared Function CompareValues(ByVal x As Object, ByVal y As Object, ByVal direction As ListSortDirection) As Integer
             Dim retValue As Integer = 0
             If IsNumeric(x) And IsNumeric(y) Then
                 retValue = CType(x, Double).CompareTo(CType(y, Double))
@@ -25,7 +27,7 @@ Namespace Common
             ElseIf y Is Nothing Then
                 retValue = 0
             Else
-                retValue = x.ToString.CompareTo(y.ToString)
+                retValue = String.Compare(x.ToString(), y.ToString(), True, CultureInfo.CurrentCulture)
             End If
             If direction = ListSortDirection.Descending Then
                 retValue *= -1

@@ -1,13 +1,14 @@
 ﻿Imports Host
+Imports Model.Template.Ext
 
-<Register(Key:=GetType(Model.Template.Ext.IOtherProperiesFactory))>
+<Register(Key:=GetType(Model.Template.Ext.IOtherPropertiesFactory))>
 Public Class OtherProperiesFactory
-    Implements Model.Template.Ext.IOtherProperiesFactory
+    Implements IOtherPropertiesFactory
 
     Public Function CreateOtherProperties(header As Model.Template.Header, _
                                           id As Integer) As  _
                                       Model.Common.SaveableProperties _
-                                      Implements Model.Template.Ext.IOtherProperiesFactory.CreateOtherProperties
+                                      Implements IOtherPropertiesFactory.CreateOtherProperties
         Return New DekalbOtherProperties(header)
     End Function
 

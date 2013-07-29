@@ -6,7 +6,14 @@ Public Class ActiveHeader
     Implements INotifyPropertyChanged
 
     Private _Header As Header
-    Public Shared ReadOnly ActiveHeader As ActiveHeader = New ActiveHeader
+
+    Private Shared ReadOnly _ActiveHeader As ActiveHeader = New ActiveHeader
+
+    Public Shared ReadOnly Property ActiveHeader As ActiveHeader 
+        Get
+            Return _ActiveHeader
+        End Get
+    End Property
 
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged

@@ -2,7 +2,7 @@
 
 Namespace Template.Ext
 
-    Public Interface IWireProperiesFactory
+    Public Interface IWirePropertiesFactory
 
         Function CreateWireProperties(detail As Detail) _
                                       As Common.SaveableProperties

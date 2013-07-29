@@ -80,13 +80,14 @@
     <Compile Include="common\WireProperties.vb" />
     <Compile Include="CustomerConverter.vb" />
     <Compile Include="DetailSortComparer.vb" />
+    <Compile Include="ProductBuildData.vb" />
     <Compile Include="template\DefaultComponentProperties.vb" />
     <Compile Include="template\DefaultWireProperties.vb" />
     <Compile Include="template\DisplayableComponenetProperties.vb" />
     <Compile Include="template\ext\IComponentPropertiesFactory.vb" />
-    <Compile Include="template\ext\IComputationProperiesFactory.vb" />
-    <Compile Include="template\ext\IOtherProperiesFactory.vb" />
-    <Compile Include="template\ext\IWireProperiesFactory.vb" />
+    <Compile Include="template\ext\IComputationPropertiesFactory.vb" />
+    <Compile Include="template\ext\IOtherPropertiesFactory.vb" />
+    <Compile Include="template\ext\IWirePropertiesFactory.vb" />
     <Compile Include="template\IComputationWrapper.vb" />
     <Compile Include="template\PropertyFactory.vb" />
     <Compile Include="ModelEvents.vb" />

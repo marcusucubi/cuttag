@@ -21,12 +21,12 @@ Namespace Template
 
             Dim result As SaveableProperties = Nothing
 
-            If App.RegisteredClasses.ContainsKey(GetType(IOtherProperiesFactory)) Then
+            If App.RegisteredClasses.ContainsKey(GetType(IOtherPropertiesFactory)) Then
 
-                Dim v = App.RegisteredClasses(GetType(IOtherProperiesFactory))
+                Dim v = App.RegisteredClasses(GetType(IOtherPropertiesFactory))
                 If (Not v Is Nothing) Then
 
-                    Dim o As IOtherProperiesFactory = Activator.CreateInstance(v)
+                    Dim o As IOtherPropertiesFactory = Activator.CreateInstance(v)
                     result = o.CreateOtherProperties(header, id)
                 End If
 
@@ -45,13 +45,13 @@ Namespace Template
 
             Dim result As SaveableProperties = Nothing
 
-            If App.RegisteredClasses.ContainsKey(GetType(IComputationProperiesFactory)) Then
+            If App.RegisteredClasses.ContainsKey(GetType(IComputationPropertiesFactory)) Then
 
-                Dim v = App.RegisteredClasses(GetType(IComputationProperiesFactory))
+                Dim v = App.RegisteredClasses(GetType(IComputationPropertiesFactory))
 
                 If (Not v Is Nothing) Then
 
-                    Dim o As IComputationProperiesFactory = Activator.CreateInstance(v)
+                    Dim o As IComputationPropertiesFactory = Activator.CreateInstance(v)
 
                     result = o.CreateComputationProperties(header, id)
                 End If
@@ -95,13 +95,13 @@ Namespace Template
 
             Dim result As SaveableProperties = Nothing
 
-            If App.RegisteredClasses.ContainsKey(GetType(IWireProperiesFactory)) Then
+            If App.RegisteredClasses.ContainsKey(GetType(IWirePropertiesFactory)) Then
 
-                Dim v = App.RegisteredClasses(GetType(IWireProperiesFactory))
+                Dim v = App.RegisteredClasses(GetType(IWirePropertiesFactory))
 
                 If (Not v Is Nothing) Then
 
-                    Dim o As IWireProperiesFactory = Activator.CreateInstance(v)
+                    Dim o As IWirePropertiesFactory = Activator.CreateInstance(v)
 
                     result = o.CreateWireProperties(detail)
                 End If

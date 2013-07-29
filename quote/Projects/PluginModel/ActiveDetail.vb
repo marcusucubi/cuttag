@@ -7,8 +7,14 @@ Public Class ActiveDetail
     Implements INotifyPropertyChanged
 
     Private _Detail As Detail
-
-    Public Shared ReadOnly ActiveDetail As ActiveDetail = New ActiveDetail
+    
+    private Shared ReadOnly _ActiveDetail As ActiveDetail = New ActiveDetail
+    
+    Public Shared ReadOnly Property ActiveDetail
+        Get 
+            Return _ActiveDetail
+        End Get
+    End Property
 
     Public Event PropertyChanged As PropertyChangedEventHandler _
         Implements INotifyPropertyChanged.PropertyChanged

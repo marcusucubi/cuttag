@@ -2,7 +2,7 @@
 
 Namespace Template.Ext
 
-    Public Interface IComputationProperiesFactory
+    Public Interface IComputationPropertiesFactory
 
         Function CreateComputationProperties(header As Header, _
                                              id As Integer) _
