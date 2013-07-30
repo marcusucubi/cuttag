@@ -1,4 +1,5 @@
-﻿Imports DB
+﻿Imports System.Globalization
+Imports DB
 
 Namespace Template
 
@@ -46,12 +47,14 @@ Namespace Template
             End If
             Return _ID & " " & _Name
         End Function
-        Public Shared Function GetByID(id As Integer) As Customer
+        
+        Public Shared Function GetById(id As Integer) As Customer
 
             Dim customer As New Customer
             Dim adaptor As New QuoteDataBaseTableAdapters.CustomerTableAdapter
             Dim table As QuoteDataBase.CustomerDataTable
             table = adaptor.GetData()
+            
             For Each row As QuoteDataBase.CustomerRow In table.Rows
                 If row.CustomerID = id Then
                     customer.SetID(row.CustomerID)
@@ -62,7 +65,6 @@ Namespace Template
 
             Return Nothing
         End Function
-
 
         Public Shared Function GetByName(name As String) As Customer
 

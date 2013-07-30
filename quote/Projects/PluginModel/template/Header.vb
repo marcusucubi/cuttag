@@ -15,7 +15,7 @@ Namespace Template
 
         Public Sub New(ByVal id As Long)
 
-            MyBase.SetPrimaryProperties(New PrimaryPropeties(Me, id))
+            MyBase.SetPrimaryProperties(New PrimaryProperties(Me, id))
 
             MyBase.SetOtherProperties(PropertyFactory.CreateOtherProperties(Me, id))
             MyBase.SetComputationProperties(PropertyFactory.CreateComputationProperties(Me, id))

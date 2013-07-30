@@ -89,7 +89,7 @@ Public Class frmMain
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
         If Me._ActiveHeader.Header.IsQuote Then
-            Dim h As Model.Quote.PrimaryPropeties = Me._ActiveHeader.Header.PrimaryProperties
+            Dim h As Model.Quote.PrimaryProperties = Me._ActiveHeader.Header.PrimaryProperties
             LoadTemplate(h.TemplateNumber)
         End If
         Me.Cursor = Cursors.Default

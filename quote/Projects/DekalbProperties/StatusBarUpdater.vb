@@ -5,7 +5,7 @@ Imports System.Windows.Forms
 Public Class StatusBarUpdater
 
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _PrimaryPropeties As Model.Common.PrimaryPropeties
+    Private WithEvents _PrimaryPropeties As Model.Common.PrimaryProperties
     Private WithEvents _OtherPropeties As Model.Common.OtherProperties
 
     Friend _IsNew As System.Windows.Forms.Label

@@ -7,7 +7,7 @@ Public Class frmPrimaryProperties
     Inherits DockContent
 
     Private WithEvents _ActiveQuote As ActiveHeader
-    Private WithEvents _Properties As PrimaryPropeties
+    Private WithEvents _Properties As PrimaryProperties
     Private WithEvents _Settings As DisplaySettings = DisplaySettings.Instance
 
     Private Sub _PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Properties.PropertyChanged

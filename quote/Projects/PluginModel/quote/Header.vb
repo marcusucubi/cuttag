@@ -7,23 +7,22 @@ Namespace Quote
         Inherits Common.Header
 
         Public Sub New()
-            Me.New(0, "", "", "", 0, "", Date.Now, Date.Now)
+            Me.New(0, "", "", 0, "", Date.Now, Date.Now)
         End Sub
 
         Public Sub New(ByVal id As Long, _
-                       ByVal customerName As String, _
                        ByVal requestForQuoteNumber As String, _
                        ByVal partNumber As String, _
-                       ByVal templateID As Long, _
+                       ByVal templateId As Long, _
                        ByVal initials As String, _
                        ByVal createdDate As DateTime, _
                        ByVal lastModifiedDate As DateTime)
 
-            Dim p As Quote.PrimaryPropeties = New Quote.PrimaryPropeties(Me, id, _
-                customerName, requestForQuoteNumber, partNumber, _
+            Dim p As Quote.PrimaryProperties = New Quote.PrimaryProperties(id, _
+                requestForQuoteNumber, partNumber, _
                 initials, createdDate, lastModifiedDate)
             MyBase.SetPrimaryProperties(p)
-            p.SetTemplateID(TemplateID)
+            p.SetTemplateID(templateId)
             MyBase.SetComputationProperties(New Common.ComputationProperties)
             MyBase.SetOtherProperties(New Common.OtherProperties)
             MyBase.ID = id

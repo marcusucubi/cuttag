@@ -4,7 +4,7 @@ Namespace Common
     Public MustInherit Class Header
         Inherits SaveableProperties
 
-        Private _PrimaryProperties As Common.PrimaryPropeties
+        Private _PrimaryProperties As Common.PrimaryProperties
         Private _OtherProperties As Common.OtherProperties
         Private _ComputationProperties As Common.ComputationProperties
         Private _CustomProperties As New Common.SaveableProperties
@@ -31,7 +31,7 @@ Namespace Common
             End Get
         End Property
 
-        Public ReadOnly Property PrimaryProperties As Common.PrimaryPropeties
+        Public ReadOnly Property PrimaryProperties As Common.PrimaryProperties
             Get
                 Return _PrimaryProperties
             End Get

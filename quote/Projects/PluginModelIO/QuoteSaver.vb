@@ -33,7 +33,7 @@ Public Class QuoteSaver
         ' Ensure the properies are updated
         Host.App.MainForm.Focus()
 
-        Dim o As Model.Template.PrimaryPropeties = q.PrimaryProperties
+        Dim o As Model.Template.PrimaryProperties = q.PrimaryProperties
 
         Dim newId As Integer
         Dim id As Integer = o.CommonId
