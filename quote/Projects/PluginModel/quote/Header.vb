@@ -11,44 +11,28 @@ Namespace Quote
         End Sub
 
         Public Sub New(ByVal id As Long, _
-                       ByVal CustomerName As String, _
-                       ByVal RequestForQuoteNumber As String, _
-                       ByVal PartNumber As String, _
-                       ByVal TemplateID As Long, _
-                       ByVal Initials As String, _
-                       ByVal CreatedDate As DateTime, _
-                       ByVal LastModifiedDate As DateTime)
+                       ByVal customerName As String, _
+                       ByVal requestForQuoteNumber As String, _
+                       ByVal partNumber As String, _
+                       ByVal templateID As Long, _
+                       ByVal initials As String, _
+                       ByVal createdDate As DateTime, _
+                       ByVal lastModifiedDate As DateTime)
 
             Dim p As Quote.PrimaryPropeties = New Quote.PrimaryPropeties(Me, id, _
-                CustomerName, RequestForQuoteNumber, PartNumber, _
-                Initials, CreatedDate, LastModifiedDate)
-            Me._PrimaryProperties = p
+                customerName, requestForQuoteNumber, partNumber, _
+                initials, createdDate, lastModifiedDate)
+            MyBase.SetPrimaryProperties(p)
             p.SetTemplateID(TemplateID)
-            Me._ComputationProperties = New Common.ComputationProperties
-            Me._OtherProperties = New Common.OtherProperties
+            MyBase.SetComputationProperties(New Common.ComputationProperties)
+            MyBase.SetOtherProperties(New Common.OtherProperties)
             MyBase.ID = id
             MyBase.IsQuote = True
         End Sub
 
-        Public Sub SetComputationProperties(ByVal o As Object)
-            Me._ComputationProperties = o
-        End Sub
-
-        Public Sub SetOtherProperties(ByVal o As Object)
-            Me._OtherProperties = o
-        End Sub
-
-        Public Sub SetCustomProperties(ByVal o As Object)
-            Me._CustomProperties = o
-        End Sub
-
-        Public Sub SetNoteProperties(ByVal o As Object)
-            Me._NoteProperties = o
-        End Sub
-
         Public Shadows ReadOnly Property ID As Integer
             Get
-                Return PrimaryProperties.CommonID
+                Return PrimaryProperties.CommonId
             End Get
         End Property
 
@@ -58,5 +42,25 @@ Namespace Quote
             Return oo
         End Function
 
+        Public Sub SetPublicPrimaryProperties(ByVal value As Object)
+            MyBase.SetPrimaryProperties(value)
+        End Sub
+        
+        Public Sub SetPublicComputationProperties(ByVal value As Object)
+            MyBase.SetComputationProperties(value)
+        End Sub
+
+        Public Sub SetPublicOtherProperties(ByVal value As Object)
+            MyBase.SetOtherProperties(value)
+        End Sub
+
+        Public Sub SetPublicCustomProperties(ByVal value As Object)
+            MyBase.SetCustomProperties(value)
+        End Sub
+
+        Public Sub SetPublicNoteProperties(ByVal value As Object)
+            MyBase.SetNoteProperties(value)
+        End Sub
+        
     End Class
 End Namespace

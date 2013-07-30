@@ -21,7 +21,7 @@ Public Class TemplateFindSimilarMenuItem
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         Dim frm As frmSimilarQuotes
-        frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonID)
+        frm = New frmSimilarQuotes(ActiveHeader.ActiveHeader.Header.PrimaryProperties.CommonId)
         frm.ShowDialog(Host.App.MainForm)
 
         System.Windows.Forms.Cursor.Current = Cursors.Default

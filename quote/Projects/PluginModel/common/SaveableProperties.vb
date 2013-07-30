@@ -2,15 +2,16 @@
 Imports System.Reflection
 
 Namespace Common
+    
+    Public Delegate Sub SavableChangeHandler(ByVal sender As SaveableProperties)
+
     Public Class SaveableProperties
         Implements INotifyPropertyChanged, ICloneable
 
         Public Event PropertyChanged As PropertyChangedEventHandler _
-            Implements INotifyPropertyChanged.PropertyChanged
+        Implements INotifyPropertyChanged.PropertyChanged
 
         Private _IsDirty As Boolean
-
-        Public Delegate Sub SavableChangeHandler(ByVal subject As SaveableProperties)
 
         Public Event SavableChange As SavableChangeHandler
 

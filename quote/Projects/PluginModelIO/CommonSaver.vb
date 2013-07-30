@@ -158,7 +158,7 @@ Public Class CommonSaver
                      ByVal SaveAll As Boolean)
 
         Dim adaptor As New _QuoteDetailTableAdapter
-        Dim oldId As Integer = q.PrimaryProperties.CommonID
+        Dim oldId As Integer = q.PrimaryProperties.CommonId
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(oldId)
         For Each detail As Model.Common.Detail In q.Details
             adaptor.Connection.Open()

@@ -39,8 +39,8 @@ Public Class QuoteLoader
                 templateID = row.TemplateID
             End If
             q = New Header(row.id, customerObj.Name, rfq, part, templateID, _
-              row.Initials, row.CreatedDate, row.LastModifedDate)
-            'dd_Added 11/19/11
+                row.Initials, row.CreatedDate, row.LastModifedDate)
+            
             Dim Initials As String = ""
             If Not row.IsInitialsNull Then
                 Initials = row.Initials
@@ -60,21 +60,20 @@ Public Class QuoteLoader
             q.PrimaryProperties.CommonCreatedDate = createdDate
             q.PrimaryProperties.CommonLastModified = lastModDate
             q.PrimaryProperties.CommonInitials = Initials
-            'dd_Added End
             LoadComponents(q)
 
             Dim o1 = LoadProperties(id, _
               CommonSaver.COMPUTATION_PROPERTIES_ID, q.ComputationProperties)
-            q.SetComputationProperties(o1)
+            q.SetPublicComputationProperties(o1)
             Dim o2 = LoadProperties(id, _
               CommonSaver.OTHER_PROPERTIES_ID, q.OtherProperties)
-            q.SetOtherProperties(o2)
+            q.SetPublicOtherProperties(o2)
             Dim o3 = LoadProperties(id, _
               CommonSaver.CUSTOM_PROPERTIES_ID, q.CustomProperties)
-            q.SetCustomProperties(o3)
+            q.SetPublicCustomProperties(o3)
             Dim o4 = LoadProperties(id, _
                 CommonSaver.NOTE_PROPERTIES_ID, q.NoteProperties)
-            q.SetNoteProperties(o4)
+            q.SetPublicNoteProperties(o4)
 
         End If
 
@@ -165,7 +164,7 @@ Public Class QuoteLoader
         Dim partAdaptor As New WireComponentSourceTableAdapter
         Dim wireAdaptor As New WireSourceTableAdapter
         Dim gageAdaptor As New GageTableAdapter
-        Dim id As Integer = q.PrimaryProperties.CommonID
+        Dim id As Integer = q.PrimaryProperties.CommonId
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 

@@ -18,23 +18,23 @@ Namespace Quote
         Private _CreatedDate As DateTime
         Private _LastModified As DateTime
 
-        Public Sub New(ByVal QuoteHeader As Header, _
+        Public Sub New(ByVal quoteHeader As Header, _
                        ByVal id As Long, _
-                       ByVal CustomerName As String, _
-                       ByVal RequestForQuoteNumber As String, _
-                       ByVal PartNumber As String, _
-                       ByVal Initials As String, _
-                       ByVal CreatedDate As DateTime, _
-                       ByVal LastModified As DateTime
+                       ByVal customerName As String, _
+                       ByVal requestForQuoteNumber As String, _
+                       ByVal partNumber As String, _
+                       ByVal initials As String, _
+                       ByVal createdDate As DateTime, _
+                       ByVal lastModified As DateTime
 )
-            _QuoteHeader = QuoteHeader
-            Me.SetID(id)
-            Me._CustomerName = CustomerName
-            Me._RequestForQuoteNumber = RequestForQuoteNumber
-            Me._PartNumber = PartNumber
-            Me._Initials = Initials
-            Me._CreatedDate = CreatedDate
-            Me._LastModified = LastModified
+            _QuoteHeader = quoteHeader
+            Me.SetId(id)
+            Me._CustomerName = customerName
+            Me._RequestForQuoteNumber = requestForQuoteNumber
+            Me._PartNumber = partNumber
+            Me._Initials = initials
+            Me._CreatedDate = createdDate
+            Me._LastModified = lastModified
         End Sub
 
         <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
@@ -60,7 +60,7 @@ Namespace Quote
         DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
             Get
-                Return MyBase.CommonID
+                Return MyBase.CommonId
             End Get
         End Property
 
@@ -110,7 +110,7 @@ Namespace Quote
             End Get
         End Property
 
-        Public Sub SetTemplateID(ByVal id As Long)
+        Public Sub SetTemplateId(ByVal id As Long)
             Me._TemplateID = id
         End Sub
 

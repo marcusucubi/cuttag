@@ -31,7 +31,7 @@ Public Class CommonLoader
         Dim partAdaptor As New WireComponentSourceTableAdapter
         Dim wireAdaptor As New WireSourceTableAdapter
         Dim gageAdaptor As New GageTableAdapter
-        Dim id As Integer = q.PrimaryProperties.CommonID
+        Dim id As Integer = q.PrimaryProperties.CommonId
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 

@@ -7,15 +7,7 @@ Namespace Template
 
     Public Class PropertyFactory
 
-        Private Shared s_Instance As New PropertyFactory
-
-        Public Shared ReadOnly Property Instance As PropertyFactory
-            Get
-                Return s_Instance
-            End Get
-        End Property
-
-        Public Function CreateOtherProperties(header As Header, _
+        Public Shared Function CreateOtherProperties(header As Header, _
                                               id As Integer) _
                                               As SaveableProperties
 
@@ -39,7 +31,7 @@ Namespace Template
             Return result
         End Function
 
-        Public Function CreateComputationProperties(header As Header, _
+        Public Shared Function CreateComputationProperties(header As Header, _
                                                     id As Integer) _
                                                     As SaveableProperties
 
@@ -65,7 +57,7 @@ Namespace Template
             Return result
         End Function
 
-        Public Function CreateComponentProperties(detail As Template.Detail) _
+        Public Shared Function CreateComponentProperties(detail As Template.Detail) _
                                                   As SaveableProperties
 
             Dim result As SaveableProperties = Nothing
@@ -90,7 +82,7 @@ Namespace Template
             Return result
         End Function
 
-        Public Function CreateWireProperties(detail As Template.Detail) _
+        Public Shared Function CreateWireProperties(detail As Template.Detail) _
                                              As SaveableProperties
 
             Dim result As SaveableProperties = Nothing

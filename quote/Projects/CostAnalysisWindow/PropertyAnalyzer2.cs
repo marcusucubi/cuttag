@@ -22,7 +22,7 @@
         {
             Model.Template.Header header = new Model.Template.Header();
             Model.Common.SaveableProperties computationProperties =
-                Model.Template.PropertyFactory.Instance.CreateComputationProperties(header, 1);
+                Model.Template.PropertyFactory.CreateComputationProperties(header, 1);
             Model.Template.IComputationWrapper wrapper =
                 computationProperties as Model.Template.IComputationWrapper;
 

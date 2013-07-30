@@ -12,7 +12,7 @@ Namespace Template
 
         Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
             _QuoteHeader = QuoteHeader
-            Me.SetID(id)
+            Me.SetId(id)
         End Sub
 
         <CategoryAttribute(Spaces.SortedSpaces1 + "Date"), _
@@ -38,7 +38,7 @@ Namespace Template
         DescriptionAttribute("Quote Number")> _
         Public Overloads ReadOnly Property QuoteNumber As Integer
             Get
-                Return MyBase.CommonID
+                Return MyBase.CommonId
             End Get
         End Property
 

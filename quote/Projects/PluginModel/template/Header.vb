@@ -15,15 +15,16 @@ Namespace Template
 
         Public Sub New(ByVal id As Long)
 
-            _PrimaryProperties = New PrimaryPropeties(Me, id)
+            MyBase.SetPrimaryProperties(New PrimaryPropeties(Me, id))
 
-            _OtherProperties = PropertyFactory.Instance.CreateOtherProperties(Me, id)
-            _ComputationProperties = PropertyFactory.Instance.CreateComputationProperties(Me, id)
-            _NoteProperties = New NoteProperties(Me)
-            MyBase.AddDependent(_ComputationProperties)
-            MyBase.AddDependent(_OtherProperties)
-            MyBase.AddDependent(_PrimaryProperties)
-            MyBase.AddDependent(_NoteProperties)
+            MyBase.SetOtherProperties(PropertyFactory.CreateOtherProperties(Me, id))
+            MyBase.SetComputationProperties(PropertyFactory.CreateComputationProperties(Me, id))
+            MyBase.SetNoteProperties(New NoteProperties(Me))
+            
+            MyBase.AddDependent(MyBase.ComputationProperties)
+            MyBase.AddDependent(MyBase.OtherProperties)
+            MyBase.AddDependent(MyBase.PrimaryProperties)
+            MyBase.AddDependent(MyBase.NoteProperties)
         End Sub
 
         Public Overloads ReadOnly Property IsQuote As Boolean
@@ -34,7 +35,7 @@ Namespace Template
 
         Public Overloads ReadOnly Property ID As Integer
             Get
-                Return PrimaryProperties.CommonID
+                Return PrimaryProperties.CommonId
             End Get
         End Property
 

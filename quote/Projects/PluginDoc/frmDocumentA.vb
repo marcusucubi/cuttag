@@ -153,11 +153,11 @@ Public Class frmDocumentA
     End Sub
 
     Private Sub UpdateText()
-        If Me._PrimaryProperties.CommonID > 0 Then
+        If Me._PrimaryProperties.CommonId > 0 Then
             If _Header.IsQuote Then
-                Me.Text = "Quote " & Me._PrimaryProperties.CommonID
+                Me.Text = "Quote " & Me._PrimaryProperties.CommonId
             Else
-                Me.Text = "Template " & Me._PrimaryProperties.CommonID
+                Me.Text = "Template " & Me._PrimaryProperties.CommonId
             End If
         Else
             Me.Text = "New Template"
