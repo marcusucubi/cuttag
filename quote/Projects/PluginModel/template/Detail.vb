@@ -29,7 +29,7 @@ Namespace Template
             Me._UOM = pProduct.UnitOfMeasure
             If TypeOf Me._WireProperties Is DefaultWireProperties Then
                 Dim w As DefaultWireProperties = Me._WireProperties
-                w.PoundsPer1000Feet = pProduct.CopperWeightPer1000Ft
+                w.PoundsPer1000Feet = pProduct.CopperWeightPer1000Feet
             End If
         End Sub
 

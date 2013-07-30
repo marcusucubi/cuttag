@@ -6,7 +6,7 @@ Public Class ShippingList : Inherits System.ComponentModel.StringConverter
         System.ComponentModel.ITypeDescriptorContext) _
         As System.ComponentModel.TypeConverter.StandardValuesCollection
 
-        Return New StandardValuesCollection(Shipping.Shipping.Descriptions)
+        Return New StandardValuesCollection(Shipping.Descriptions)
     End Function
 
     Public Overloads Overrides Function _

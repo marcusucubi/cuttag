@@ -334,9 +334,9 @@ Public NotInheritable Class DekalbComputationProperties
     Public ReadOnly Property FunctionalQuantity As Integer
         Get
             Dim result As Integer
-            If _QuoteType = QuoteTypeList.PRODUCTION Then
+            If _QuoteType = QuoteTypeList.Production Then
                 result = Me._MinimumOrderQuantity
-            ElseIf _QuoteType = QuoteTypeList.SINGLE_DEFINATE Then
+            ElseIf _QuoteType = QuoteTypeList.SingleDefinate Then
                 result = Me._SingleDefQuantity
             Else
                 result = Me._OrderQuantity
@@ -358,7 +358,7 @@ Public NotInheritable Class DekalbComputationProperties
             If (_ShippingBox Is Nothing) Then
                 Return 0
             End If
-            Return Shipping.Shipping.Lookup(Me._ShippingBox)
+            Return Shipping.Lookup(Me._ShippingBox)
         End Get
     End Property
     Public ReadOnly Property ShippingContainerCostPerOrder As Decimal

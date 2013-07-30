@@ -62,7 +62,7 @@ namespace SampleProperties
                 {
                     return 0;
                 }
-                return Shipping.Shipping.Lookup(_ShippingBox);
+                return Shipping.Lookup(_ShippingBox);
             }
         }
 

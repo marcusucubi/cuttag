@@ -2,10 +2,10 @@
 
 Public Class QuoteTypeList : Inherits System.ComponentModel.StringConverter
 
-    Public Shared PRODUCTION As String = "Production"
-    Public Shared PILOT As String = "Pilot"
-    Public Shared PROVE As String = "Prove"
-    Public Shared SINGLE_DEFINATE As String = "Single Definate"
+    Public Const Production As String = "Production"
+    Public Const Pilot As String = "Pilot"
+    Public Const Prove As String = "Prove"
+    Public Const SingleDefinate As String = "Single Definate"
 
     Public Overloads Overrides Function _
         GetStandardValues(ByVal context As  _
@@ -14,10 +14,10 @@ Public Class QuoteTypeList : Inherits System.ComponentModel.StringConverter
 
         Dim l As New List(Of String)
         l.AddRange(New String() {
-            PRODUCTION, _
-            PILOT, _
-            PROVE, _
-            SINGLE_DEFINATE
+            Production, _
+            Pilot, _
+            Prove, _
+            SingleDefinate
         })
         Return New StandardValuesCollection(l)
     End Function

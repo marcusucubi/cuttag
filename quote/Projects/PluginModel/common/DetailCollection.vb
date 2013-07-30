@@ -18,7 +18,8 @@ Namespace Common
         Private _SortProperty As PropertyDescriptor = Nothing
 
         Protected Overrides Function AddNewCore() As Object
-            Dim p As New Product("", 0, "", False, Nothing, Nothing)
+            
+            Dim p As New Product()
             Dim o As Object = New Model.Template.Detail(_Header, p)
             Add(o)
             Return o

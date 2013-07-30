@@ -25,9 +25,11 @@ Public Class frmComponentLookup
             cost = row.QuotePrice
         End If
 
-        Product = New Product( _
+        Dim data As ProductBuildData = ProductDB.Load( _
             num, cost, "", False, _
             Nothing, View.Row)
+        Product = New Model.Product(Data)
+        
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click

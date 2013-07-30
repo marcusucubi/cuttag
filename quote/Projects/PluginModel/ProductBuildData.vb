@@ -2,15 +2,15 @@
 
 Public Structure ProductBuildData
     
-    Private _Code As String
-    Private _Gage As String
+    Private _Code As String 
+    Private _Gage As String 
     Private _CopperWeightPer1000Feet As Decimal
     Private _UnitCost As Decimal
     Private _MachineTime As Decimal
     Private _IsWire As Boolean
-    Private _Description As String
+    Private _Description As String 
     Private _LeadTime As Integer
-    Private _Vendor As String
+    Private _Vendor As String 
     Private _MinimumQty As Decimal
     Private _MinimumDollar As Decimal
     Private _UnitOfMeasure As String
@@ -123,9 +123,21 @@ Public Structure ProductBuildData
         End Set
     End Property
     
-    Public Overrides Function Equals(obj As Object) As Boolean
-        Return Object.Equals(obj, Me)
+    Public Overrides Function GetHashCode() As Integer
+        Return 0
     End Function
+    
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Return True
+    End Function
+
+    Public Shared Operator =(left As ProductBuildData, right As ProductBuildData) As Boolean
+        Return Object.Equals(left, right)
+    End Operator
+    
+    Public Shared Operator <>(left As ProductBuildData, right As ProductBuildData) As Boolean
+        Return Not Object.Equals(left, right)
+    End Operator
     
 End Structure
 

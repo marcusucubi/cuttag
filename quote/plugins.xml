@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <plugins>
   
+  <plugin path="PluginModel.dll" />
   <plugin path="PluginCompare.dll" />
   <plugin path="PluginExport.dll" />
   <plugin path="PluginImport.dll" />

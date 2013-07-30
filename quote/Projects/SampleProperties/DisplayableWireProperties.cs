@@ -98,7 +98,7 @@ namespace SampleProperties
         }
 
         [DisplayName("Unit Of Measure"), 
-        TypeConverter(typeof(UOMConverter)), 
+        TypeConverter(typeof(UomConverter)), 
         CategoryAttribute("Detail")]
         public string UnitOfMeasure 
         {

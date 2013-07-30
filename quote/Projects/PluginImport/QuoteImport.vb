@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Windows.Forms
-
 Imports DB.QuoteDataBaseTableAdapters
+Imports Model
 
 Public Class QuoteImport
     Private _OldUnitCost As Decimal
@@ -263,21 +263,29 @@ Public Class QuoteImport
                 If IsNothing(dsQuoteDataBase.WireComponentSource.FindByWireComponentSourceID(detailRow.SourceID)) _
                     OrElse dsQuoteDataBase.WireComponentSource.FindByWireComponentSourceID(detailRow.SourceID).PartNumber = "MISSING" Then
                     Console.WriteLine("   Failure finding component source for " + detailRow.PartNumber)
-                    pProduct = New Model.Product(detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                    
+                    Dim data As ProductBuildData = ProductDB.Load( _
+                        detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                    pProduct = New Model.Product(Data)
+                    
                 Else 'It is a component and wirecomponentsource.partnumber <> "MISSING"
                     pProduct = New Model.Product(detailRow.SourceID, False, dsQuoteDataBase)
                 End If
             Else 'It is a wire
                 If dsQuoteDataBase.WireSource.FindByWireSourceID(detailRow.SourceID).PartNumber = "MISSING" Then
                     Console.WriteLine("   Failure finding source for " + detailRow.PartNumber)
-                    pProduct = New Model.Product(detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                    
+                    Dim data As ProductBuildData = ProductDB.Load( _
+                        detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                    pProduct = New Model.Product(Data)
+                    
                 Else 'wiresource.partnumber <> "MISSING"
                     pProduct = New Model.Product(detailRow.SourceID, True, dsQuoteDataBase)
                 End If
-                pProduct.CopperWeightPer1000Ft = _
+                pProduct.CopperWeightPer1000Feet = _
                     daWire.GetWirePoundsPer1000Ft(detailRow.SourceID, ignore)
                 'detail.UpdateComponentProperties(pProduct)
-                If pProduct.CopperWeightPer1000Ft = 0 Then
+                If pProduct.CopperWeightPer1000Feet = 0 Then
                     Console.WriteLine("   Zero weight for " + detailRow.PartNumber)
                 End If
             End If
@@ -394,10 +402,10 @@ Public Class QuoteImport
             detail.SourceID = row.WireSourceID
             Dim lookup As New DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter
             Dim ignore As String = ""
-            product.CopperWeightPer1000Ft = _
+            product.CopperWeightPer1000Feet = _
                 lookup.GetWirePoundsPer1000Ft(row.WireSourceID, ignore)
             detail.UpdateComponentProperties(product)
-            If product.CopperWeightPer1000Ft = 0 Then
+            If product.CopperWeightPer1000Feet = 0 Then
                 Console.WriteLine("   Zero weight for " + detailRow.PartNumber)
             End If
         Else
