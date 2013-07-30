@@ -36,7 +36,7 @@ Public Class QuoteSaver
         Dim o As Model.Template.PrimaryPropeties = q.PrimaryProperties
 
         Dim newId As Integer
-        Dim id As Integer = o.CommonID
+        Dim id As Integer = o.CommonId
         If IsQuote Then
             id = 0
         End If
@@ -46,7 +46,7 @@ Public Class QuoteSaver
             adaptor.Update( _
                 o.Customer.Name, info.RFQ, info.PartNumber, _
                 False, q.ID, o.Initials, q.PrimaryProperties.CommonCreatedDate, _
-                Date.Now, o.Customer.ID, o.CommonID, o.CommonID)
+                Date.Now, o.Customer.ID, o.CommonId, o.CommonId)
             newId = id
         Else
             adaptor.Connection.Open()

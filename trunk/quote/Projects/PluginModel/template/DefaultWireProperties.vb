@@ -8,8 +8,8 @@ Namespace Template
     Public Class DefaultWireProperties
         Inherits Template.WireProperties
 
-        Public Sub New(ByVal QuoteDetail As Model.Template.Detail)
-            MyBase.New(QuoteDetail)
+        Public Sub New(ByVal quoteDetail As Model.Template.Detail)
+            MyBase.New(quoteDetail)
         End Sub
 
     End Class

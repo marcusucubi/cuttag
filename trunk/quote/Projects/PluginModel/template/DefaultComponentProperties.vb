@@ -8,9 +8,9 @@ Namespace Template
 
         Private _QuoteDetail As Template.Detail
 
-        Public Sub New(ByVal QuoteDetail As Template.Detail)
-            MyBase.New(QuoteDetail)
-            _QuoteDetail = QuoteDetail
+        Public Sub New(ByVal quoteDetail As Template.Detail)
+            MyBase.New(quoteDetail)
+            _QuoteDetail = quoteDetail
         End Sub
 
         Protected Overloads Sub SendEvents()

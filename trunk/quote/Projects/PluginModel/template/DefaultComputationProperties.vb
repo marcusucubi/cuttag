@@ -7,8 +7,8 @@ Namespace Template
     Public NotInheritable Class DefaultComputationProperties
         Inherits Template.ComputationProperties
 
-        Public Sub New(ByVal Header As Template.Header)
-            MyBase.New(Header)
+        Public Sub New(ByVal header As Template.Header)
+            MyBase.New(header)
         End Sub
 
     End Class

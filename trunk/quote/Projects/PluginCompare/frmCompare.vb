@@ -226,15 +226,15 @@ Public Class frmCompare
 
         Dim s As String = ""
         If _Header2.IsQuote Then
-            s += "Quote " & _Header2.PrimaryProperties.CommonID
+            s += "Quote " & _Header2.PrimaryProperties.CommonId
         Else
-            s += "Template " & _Header2.PrimaryProperties.CommonID
+            s += "Template " & _Header2.PrimaryProperties.CommonId
         End If
         s += " to "
         If _Header1.IsQuote Then
-            s += "Quote " & _Header1.PrimaryProperties.CommonID
+            s += "Quote " & _Header1.PrimaryProperties.CommonId
         Else
-            s += "Template " & _Header1.PrimaryProperties.CommonID
+            s += "Template " & _Header1.PrimaryProperties.CommonId
         End If
 
         Me.Text = s

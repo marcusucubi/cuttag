@@ -4,15 +4,15 @@ Namespace Common
     Public MustInherit Class Header
         Inherits SaveableProperties
 
-        Protected _PrimaryProperties As Common.PrimaryPropeties
-        Protected _OtherProperties As Common.OtherProperties
-        Protected _ComputationProperties As Common.ComputationProperties
-        Protected _CustomProperties As New Common.SaveableProperties
-        Protected _NoteProperties As New Common.NoteProperties
+        Private _PrimaryProperties As Common.PrimaryPropeties
+        Private _OtherProperties As Common.OtherProperties
+        Private _ComputationProperties As Common.ComputationProperties
+        Private _CustomProperties As New Common.SaveableProperties
+        Private _NoteProperties As New Common.NoteProperties
 
         Protected WithEvents _Details As DetailCollection(Of Common.Detail)
 
-        Public Property ID As Integer
+        Public Property Id As Integer
         Public Property IsQuote As Boolean
 
         Public Sub New()
@@ -74,15 +74,35 @@ Namespace Common
                 Else
                     s = "Template"
                 End If
-                If Me.PrimaryProperties.CommonID = 0 Then
+                If Me.PrimaryProperties.CommonId = 0 Then
                     Return "New " + s
                 End If
-                Return s & " " & Me.PrimaryProperties.CommonID
+                Return s & " " & Me.PrimaryProperties.CommonId
             End Get
         End Property
 
         Public MustOverride Function NewDetail(ByVal product As Model.Product) As Detail
 
+        Protected Sub SetPrimaryProperties(ByVal value As Object)
+            Me._PrimaryProperties = value
+        End Sub
+        
+        Protected Sub SetComputationProperties(ByVal value As Object)
+            Me._ComputationProperties = value
+        End Sub
+
+        Protected Sub SetOtherProperties(ByVal value As Object)
+            Me._OtherProperties = value
+        End Sub
+
+        Protected Sub SetCustomProperties(ByVal value As Object)
+            Me._CustomProperties = value
+        End Sub
+
+        Protected Sub SetNoteProperties(ByVal value As Object)
+            Me._NoteProperties = value
+        End Sub
+        
     End Class
 
 End Namespace

@@ -98,7 +98,7 @@ Public Class frmMain
         Dim result As Boolean
         If Me._ActiveHeader.Header IsNot Nothing Then
             Dim id As Integer
-            id = Me._ActiveHeader.Header.PrimaryProperties.CommonID
+            id = Me._ActiveHeader.Header.PrimaryProperties.CommonId
             Dim IsQuote As Boolean = Me._ActiveHeader.Header.IsQuote
             Dim IsDirty As Boolean = Me._ActiveHeader.Header.Dirty
             If id > 0 And Not IsQuote And Not IsDirty Then
@@ -209,7 +209,7 @@ Public Class frmMain
         Dim q As Model.Common.Header
 
         q = loader.Load(id)
-        If q.PrimaryProperties.CommonID = 0 Then
+        If q.PrimaryProperties.CommonId = 0 Then
             MsgBox("Not Found")
         Else
             Dim ChildForm As New frmDocumentA(q)
@@ -234,7 +234,7 @@ Public Class frmMain
         Dim loader As New QuoteLoader
         Dim q As Header
         q = loader.Load(id)
-        If q.PrimaryProperties.CommonID = 0 Then
+        If q.PrimaryProperties.CommonId = 0 Then
             MsgBox("Not Found")
         Else
             Dim ChildForm As New frmDocumentA(q)
@@ -256,7 +256,7 @@ Public Class frmMain
             Dim w As frmDocumentA
             w = child
 
-            Dim test = w.QuoteHeader.PrimaryProperties.CommonID
+            Dim test = w.QuoteHeader.PrimaryProperties.CommonId
             If id = test Then
                 w.Activate()
                 result = True

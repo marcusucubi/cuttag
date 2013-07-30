@@ -12,7 +12,7 @@ Public Class frmNewQuote
     Private Sub frmNewQuote_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim q As Header
         q = ActiveHeader.ActiveHeader.Header
-        Me.txtTemplateNumber.Text = q.PrimaryProperties.CommonID
+        Me.txtTemplateNumber.Text = q.PrimaryProperties.CommonId
         Header = q
         Me.txtPartNumber.Text = q.PrimaryProperties.CommonPartNumber
         Me.txtRFQ.Text = q.PrimaryProperties.CommonRequestForQuoteNumber

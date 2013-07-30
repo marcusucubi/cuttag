@@ -20,7 +20,7 @@ Public Class TemplateSaver
         Dim o As PrimaryPropeties = q.PrimaryProperties
 
         Dim newId As Integer
-        Dim id As Integer = o.CommonID
+        Dim id As Integer = o.CommonId
 
         Dim adaptor As New QuoteDataBaseTableAdapters._QuoteTableAdapter
         If id > 0 Then
@@ -31,7 +31,7 @@ Public Class TemplateSaver
                 o.PartNumber, False, Nothing, _
                 o.CommonInitials, o.CommonCreatedDate, _
                 o.LastModified, o.Customer.ID, _
-                o.CommonID, o.CommonID)
+                o.CommonId, o.CommonId)
             adaptor.Connection.Close()
             newId = id
         Else

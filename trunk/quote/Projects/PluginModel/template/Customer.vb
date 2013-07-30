@@ -21,13 +21,13 @@ Namespace Template
             _Name = name
         End Sub
 
-        Public ReadOnly Property ID As String
+        Public ReadOnly Property Id As String
             Get
                 Return _ID
             End Get
         End Property
 
-        Public Sub SetID(id As Integer)
+        Public Sub SetId(id As Integer)
             _ID = id
         End Sub
 

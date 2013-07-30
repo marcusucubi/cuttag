@@ -104,7 +104,7 @@ Public Class TemplateLoader
     Public Shared Sub LoadComponents(ByVal q As Model.Common.Header)
 
         Dim adaptor As New _QuoteDetailTableAdapter
-        Dim id As Integer = q.PrimaryProperties.CommonID
+        Dim id As Integer = q.PrimaryProperties.CommonId
         Dim table As _QuoteDetailDataTable = adaptor.GetDataByQuoteID(id)
         For Each row As _QuoteDetailRow In table.Rows
 

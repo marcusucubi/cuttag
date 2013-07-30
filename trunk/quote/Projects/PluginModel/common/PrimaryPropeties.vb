@@ -30,13 +30,13 @@ Namespace Common
         Public Property CommonInitials As String
 
         <Browsable(False)> _
-        Public ReadOnly Property CommonID As Integer
+        Public ReadOnly Property CommonId As Integer
             Get
                 Return _ID
             End Get
         End Property
 
-        Public Sub SetID(ByVal id As Integer)
+        Public Sub SetId(ByVal id As Integer)
             Me._ID = id
             SendEvents()
         End Sub
