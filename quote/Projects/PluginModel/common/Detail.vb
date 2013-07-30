@@ -6,16 +6,24 @@ Namespace Common
     Public Class Detail
         Inherits SaveableProperties
 
-        Protected _Quantity As Decimal = 1
-        Protected _Product As Model.Product
-        Protected _QuoteDetailProperties As Object
-        Protected _SequenceNumber As Integer = 1
-        Protected _SourceID As Guid
-        Protected _IsWire As Boolean
-        Protected _UOM As String
-        Public Sub New()
+        Private _Quantity As Decimal = 1
+        Private _Product As Model.Product
+        Private _QuoteDetailProperties As Object
+        Private _SequenceNumber As Integer = 1
+        Private _SourceId As Guid
+        Private _IsWire As Boolean
+        Private _UOM As String
+        
+        Public Sub New( _
+            Optional product As Model.Product = Nothing, _
+            Optional unitOfMeasure As String = "", _
+            Optional quantity As Decimal = 1)
 
+            _Quantity = quantity
+            _Product = product
+            _UOM = unitOfMeasure
         End Sub
+        
         Public Shadows Property Qty() As Decimal
             Get
                 Return Me._Quantity
@@ -64,14 +72,16 @@ Namespace Common
                 End If
             End Set
         End Property
-        Public Property SourceID As Guid
+        
+        Public Property SourceId As Guid
             Get
-                Return _SourceID
+                Return _SourceId
             End Get
             Set(ByVal value As Guid)
-                _SourceID = value
+                _SourceId = value
             End Set
         End Property
+        
         Public Property IsWire As Boolean
             Get
                 Return _IsWire
@@ -82,6 +92,7 @@ Namespace Common
                 End If
             End Set
         End Property
+        
         Public Property MachineTime As Decimal
             Get
                 Return Product.MachineTime
@@ -139,5 +150,21 @@ Namespace Common
             End Get
         End Property
 
+        Protected Sub SetPrivateQty(value As Decimal)
+            _Quantity = value
+        End Sub
+        
+        Protected Function PrivateQty() As Decimal
+            Return _Quantity
+        End Function
+        
+        Protected Sub SetPrivateUnitOfMeasure(value As String)
+            Me._UOM = value
+        End Sub
+        
+        Protected Sub SetProduct(value As Model.Product)
+            Me._Product = value
+        End Sub
+        
     End Class
 End Namespace

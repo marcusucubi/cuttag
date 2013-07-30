@@ -9,7 +9,6 @@ Public NotInheritable Class ShippingDB
     
     Public Shared Sub InitializeShipping()
         
-        Dim ds As QuoteDataBase = New QuoteDataBase()
         Dim table As QuoteDataBase._ShippingDataTable = New QuoteDataBase._ShippingDataTable()
         Dim adapter As QuoteDataBaseTableAdapters._ShippingTableAdapter = New QuoteDataBaseTableAdapters._ShippingTableAdapter()
         adapter.Fill(table)
@@ -22,7 +21,7 @@ Public NotInheritable Class ShippingDB
             i += 1
         Next
         
-        Shipping.Descriptions = New ReadOnlyCollection(Of String)(a)
+        Shipping.SetupDescriptions(New ReadOnlyCollection(Of String)(a))
     End Sub
     
 End Class

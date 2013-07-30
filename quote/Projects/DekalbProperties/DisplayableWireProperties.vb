@@ -103,7 +103,7 @@ Public Class DisplayableWireProperties
     End Property
 
     <DisplayName("Unit Of Measure"), _
-    TypeConverter(GetType(UomConverter)), _
+    TypeConverter(GetType(UnitOfMeasureConverter)), _
     CategoryAttribute("Detail")> _
     Public Property UnitOfMeasure As String
         Get

@@ -9,8 +9,8 @@ Namespace Common
 
         Private _Header As Common.Header
 
-        Public Sub New(ByVal pHeader As Common.Header)
-            _Header = pHeader
+        Public Sub New(ByVal header As Common.Header)
+            _Header = header
         End Sub
 
         Private _IsSorted As Boolean = False

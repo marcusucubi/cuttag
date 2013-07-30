@@ -1,4 +1,4 @@
-﻿Public Class Plugin
+﻿Public Class PlugIn
     Implements Host.IInit
     
     Public Sub Init() Implements Host.IInit.Init 

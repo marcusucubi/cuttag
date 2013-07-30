@@ -10,11 +10,13 @@ Namespace Quote
 
         Private _Properties As New Common.SaveableProperties
 
-        Friend Sub New(ByVal header As Common.Header, _
-                       ByVal product As Product)
+        Friend Sub New( _ 
+            ByVal header As Common.Header, _
+            ByVal product As Product)
+            
+            MyBase.New(product)
+            
             Me.QuoteHeader = header
-            Me._Product = product
-            Me._Quantity = 1
         End Sub
 
         <BrowsableAttribute(False)>
@@ -33,12 +35,12 @@ Namespace Quote
 
         Public Overloads Property Qty() As Decimal
             Get
-                Return Me._Quantity
+                Return MyBase.PrivateQty()
             End Get
 
             Set(ByVal value As Decimal)
-                If Not (value = _Quantity) Then
-                    Me._Quantity = value
+                If Not (value = MyBase.PrivateQty()) Then
+                    MyBase.SetPrivateQty(value)
                     SendEvents()
                 End If
             End Set
