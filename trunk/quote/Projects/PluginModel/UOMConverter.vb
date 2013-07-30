@@ -2,7 +2,7 @@
 
 Imports DB
 
-Public Class UomConverter : Inherits StringConverter
+Public Class UnitOfMeasureConverter : Inherits StringConverter
 
     Public Overloads Overrides Function _
         GetStandardValues(ByVal context As  _

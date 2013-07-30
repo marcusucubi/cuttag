@@ -336,7 +336,7 @@ Public NotInheritable Class DekalbComputationProperties
             Dim result As Integer
             If _QuoteType = QuoteTypeList.Production Then
                 result = Me._MinimumOrderQuantity
-            ElseIf _QuoteType = QuoteTypeList.SingleDefinate Then
+            ElseIf _QuoteType = QuoteTypeList.SingleDefinite Then
                 result = Me._SingleDefQuantity
             Else
                 result = Me._OrderQuantity
