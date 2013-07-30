@@ -6,11 +6,9 @@ Imports Model
 
 Namespace Quote
 
-    Public Class PrimaryPropeties
-        Inherits Common.PrimaryPropeties
+    Public Class PrimaryProperties
+        Inherits Common.PrimaryProperties
 
-        Private _QuoteHeader As Header
-        Private _CustomerName As String
         Private _RequestForQuoteNumber As String
         Private _PartNumber As String
         Private _TemplateID As Long
@@ -18,18 +16,14 @@ Namespace Quote
         Private _CreatedDate As DateTime
         Private _LastModified As DateTime
 
-        Public Sub New(ByVal quoteHeader As Header, _
-                       ByVal id As Long, _
-                       ByVal customerName As String, _
+        Public Sub New(ByVal id As Long, _
                        ByVal requestForQuoteNumber As String, _
                        ByVal partNumber As String, _
                        ByVal initials As String, _
                        ByVal createdDate As DateTime, _
                        ByVal lastModified As DateTime
 )
-            _QuoteHeader = quoteHeader
             Me.SetId(id)
-            Me._CustomerName = customerName
             Me._RequestForQuoteNumber = requestForQuoteNumber
             Me._PartNumber = partNumber
             Me._Initials = initials

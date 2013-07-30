@@ -16,7 +16,7 @@ Imports DCS.SharedMethods
 Public Class frmDocumentA
     Inherits DockContent
     Private WithEvents _Header As Header
-    Private WithEvents _PrimaryProperties As PrimaryPropeties
+    Private WithEvents _PrimaryProperties As PrimaryProperties
     Private WithEvents _DetailCollection As Model.Common.DetailCollection(Of Model.Common.Detail)
     Private WithEvents _ActiveDetail As ActiveDetail
 

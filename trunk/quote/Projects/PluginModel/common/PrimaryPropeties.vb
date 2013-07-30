@@ -6,7 +6,7 @@ Imports Model.Template
 
 Namespace Common
 
-    Public Class PrimaryPropeties
+    Public Class PrimaryProperties
         Inherits SaveableProperties
 
         Private _ID As Integer

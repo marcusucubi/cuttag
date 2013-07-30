@@ -180,7 +180,7 @@ Public Class QuoteImport
     End Function
     Private Sub TransferHeader4PartsList(ByVal row As ImportDataSet.HQ_GetParts4LookupRow, _
                            ByVal header As Model.Template.Header, ByVal Initials As String)
-        Dim primary As Model.Template.PrimaryPropeties = header.PrimaryProperties
+        Dim primary As Model.Template.PrimaryProperties = header.PrimaryProperties
         primary.Customer = Model.Template.Customer.GetByID(row.CustomerID)
         primary.PartNumber = row.Display
         primary.CommonInitials = Initials
@@ -190,7 +190,7 @@ Public Class QuoteImport
 
         Dim customer As String = row.ContactName
 
-        Dim primary As Model.Template.PrimaryPropeties = header.PrimaryProperties
+        Dim primary As Model.Template.PrimaryProperties = header.PrimaryProperties
         primary.PartNumber = row.PartNumber
         primary.RequestForQuoteNumber = row.RFQ
         primary.CommonInitials = "Import: " & row.CreatedBy

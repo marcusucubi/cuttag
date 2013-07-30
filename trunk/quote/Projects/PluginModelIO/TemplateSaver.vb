@@ -17,7 +17,7 @@ Public Class TemplateSaver
         ' Ensure the properies are updated
         Host.App.MainForm.Focus()
 
-        Dim o As PrimaryPropeties = q.PrimaryProperties
+        Dim o As PrimaryProperties = q.PrimaryProperties
 
         Dim newId As Integer
         Dim id As Integer = o.CommonId

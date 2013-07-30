@@ -38,7 +38,7 @@ Public Class QuoteLoader
             If Not row.IsTemplateIDNull Then
                 templateID = row.TemplateID
             End If
-            q = New Header(row.id, customerObj.Name, rfq, part, templateID, _
+            q = New Header(row.id, rfq, part, templateID, _
                 row.Initials, row.CreatedDate, row.LastModifedDate)
             
             Dim Initials As String = ""
