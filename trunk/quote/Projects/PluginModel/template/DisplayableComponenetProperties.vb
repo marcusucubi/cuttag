@@ -78,7 +78,7 @@ Namespace Template
         End Property
 
         <DisplayName("Unit Of Measure"), _
-        TypeConverter(GetType(UOMConverter)), _
+        TypeConverter(GetType(UomConverter)), _
         CategoryAttribute("Detail")> _
         Public Property UnitOfMeasure As String
             Get

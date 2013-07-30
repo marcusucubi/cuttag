@@ -6,7 +6,7 @@ Public Class Product
 
     Private m_code As String
     Private m_gage As String
-    Private m_CopperWeightPer1000Ft As Decimal
+    Private m_CopperWeightPer1000Feet As Decimal
     Private m_unitCost As Decimal
     Private m_machineTime As Decimal
     Private m_isWire As Boolean
@@ -23,28 +23,33 @@ Public Class Product
            ByVal unitCost As Decimal,
            ByVal machineTime As Decimal,
            ByVal isWire As Boolean,
-           ByVal Description As String,
-           ByVal LeadTime As Integer,
-           ByVal Vendor As String,
-           ByVal MinimumQty As Decimal,
-           ByVal MinimumDollar As Decimal
+           ByVal description As String,
+           ByVal leadTime As Integer,
+           ByVal vendor As String,
+           ByVal minimumQty As Decimal,
+           ByVal minimumDollar As Decimal
             )
         Me.m_code = code
         Me.m_gage = gage
         Me.m_unitCost = unitCost
         Me.m_machineTime = machineTime
         Me.m_isWire = isWire
-        Me.m_Description = Description
-        Me.m_LeadTime = LeadTime
-        Me.m_Vendor = Vendor
-        Me.m_MinimumQty = MinimumQty
-        Me.m_MinimumDollar = MinimumDollar
+        Me.m_Description = description
+        Me.m_LeadTime = leadTime
+        Me.m_Vendor = vendor
+        Me.m_MinimumQty = minimumQty
+        Me.m_MinimumDollar = minimumDollar
     End Sub
 
+    Public Sub New()
+        m_code = ""
+        m_gage = ""
+    End Sub
+    
     Public Sub New(data As ProductBuildData)
         m_code = data.Code
         m_gage = data.Gage
-        m_CopperWeightPer1000Ft = data.CopperWeightPer1000Feet
+        m_CopperWeightPer1000Feet = data.CopperWeightPer1000Feet
         m_unitCost = data.UnitCost
         m_machineTime = data.MachineTime
         m_isWire = data.IsWire
@@ -57,46 +62,9 @@ Public Class Product
     End Sub
 
     Public Sub New( _
-            ByVal Code As String, _
-            ByVal UnitCost As Decimal, _
-            ByVal Gage As String, _
-            ByVal IsWire As Boolean, _
-            ByVal WireRow As DB.QuoteDataBase.WireSourceRow, _
-            ByVal PartRow As DB.QuoteDataBase.WireComponentSourceRow, _
-            Optional ByVal UnitOfMeasure As String = "", _
-            Optional ByVal CopperWeightPer1000Ft As Decimal = 0
-            )
-        Me.m_code = Code
-        Me.m_unitCost = UnitCost
-        Me.m_gage = Gage
-        Me.m_isWire = IsWire
-        Me.m_UnitOfMeasure = UnitOfMeasure
-        If WireRow IsNot Nothing Then
-            Me.m_CopperWeightPer1000Ft = CopperWeightPer1000Ft
-        End If
-        If PartRow IsNot Nothing Then
-            Me.m_Description = PartRow.Description
-            If Not PartRow.IsLeadTimeNull Then
-                Me.m_LeadTime = PartRow.LeadTime
-            End If
-            If Not PartRow.IsVendorNull Then
-                Me.m_Vendor = PartRow.Vendor
-            End If
-            If Not PartRow.IsMachineTimeNull Then
-                Me.m_machineTime = PartRow.MachineTime
-            End If
-            If Not PartRow.IsMinimumQtyNull Then
-                Me.m_MinimumQty = PartRow.MinimumQty
-            End If
-            If Not PartRow.IsMinimumDollarNull Then
-                Me.m_MinimumDollar = PartRow.MinimumDollar
-            End If
-        End If
-    End Sub
-    Public Sub New( _
-             ByVal SourceID As Guid, _
-             ByVal IsWire As Boolean, _
-             ByVal PartLookupDataSource As DB.QuoteDataBase
+             ByVal sourceId As Guid, _
+             ByVal isWire As Boolean, _
+             ByVal partLookupDataSource As DB.QuoteDataBase
              )
         Dim sGage As String = ""
         Dim dCost As Decimal = 0
@@ -117,7 +85,7 @@ Public Class Product
                 End If
                 Dim qWeight As New DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter
                 Dim sMessage As String = "" 'dd_ToDo 12/31/11 change sp GetWirePoundsPer1000Ft to return how wt computed and present to as wireproperty
-                Me.m_CopperWeightPer1000Ft = qWeight.GetWirePoundsPer1000Ft(.WireSourceID, sMessage)
+                Me.m_CopperWeightPer1000Feet = qWeight.GetWirePoundsPer1000Ft(.WireSourceID, sMessage)
             End With
         Else
             Dim drSource As DB.QuoteDataBase.WireComponentSourceRow = _
@@ -163,12 +131,12 @@ Public Class Product
         End Set
     End Property
 
-    Property CopperWeightPer1000Ft As String
+    Property CopperWeightPer1000Feet As String
         Get
-            Return m_CopperWeightPer1000Ft
+            Return m_CopperWeightPer1000Feet
         End Get
         Set(ByVal Value As String)
-            m_CopperWeightPer1000Ft = Value
+            m_CopperWeightPer1000Feet = Value
         End Set
     End Property
 

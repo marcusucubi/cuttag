@@ -46,9 +46,11 @@ Public Class CommonLoader
                 If Not part.IsQuotePriceNull Then
                     price = part.QuotePrice
                 End If
-                Dim partObj As New Model.Product( _
+                
+                Dim data As ProductBuildData = ProductDB.Load( _
                     part.PartNumber, price, _
                     0, False, Nothing, part)
+                Dim partObj As New Model.Product(Data)
 
                 detail = q.NewDetail(partObj)
             End If
@@ -70,10 +72,11 @@ Public Class CommonLoader
                 If Not wire.IsQuotePriceNull Then
                     price = wire.QuotePrice
                 End If
-                Dim wireObj As Model.Product
-                wireObj = New Model.Product( _
+                
+                Dim data As ProductBuildData = ProductDB.Load( _
                     wire.PartNumber, price, _
                     gage, True, wire, Nothing)
+                Dim wireObj As New Model.Product(Data)
 
                 detail = q.NewDetail(wireObj)
             End If

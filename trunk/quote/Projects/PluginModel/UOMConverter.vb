@@ -2,7 +2,7 @@
 
 Imports DB
 
-Public Class UOMConverter : Inherits StringConverter
+Public Class UomConverter : Inherits StringConverter
 
     Public Overloads Overrides Function _
         GetStandardValues(ByVal context As  _

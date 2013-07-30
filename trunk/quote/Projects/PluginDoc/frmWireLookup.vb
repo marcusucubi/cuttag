@@ -30,9 +30,12 @@ Public Class frmWireLookup
             Dim gageRow As GageRow = gageTable.Rows(0)
             gage = gageRow.Gage
         End If
-        Product = New Product( _
+        
+        Dim data As ProductBuildData = ProductDB.Load( _
             num, cost, gage, True, _
             row, Nothing)
+        Product = New Model.Product(Data)
+        
     End Sub
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click

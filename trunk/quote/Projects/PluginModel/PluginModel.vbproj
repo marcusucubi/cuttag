@@ -80,7 +80,10 @@
     <Compile Include="common\WireProperties.vb" />
     <Compile Include="CustomerConverter.vb" />
     <Compile Include="DetailSortComparer.vb" />
+    <Compile Include="Plugin.vb" />
     <Compile Include="ProductBuildData.vb" />
+    <Compile Include="ProductDB.vb" />
+    <Compile Include="ShippingDB.vb" />
     <Compile Include="template\DefaultComponentProperties.vb" />
     <Compile Include="template\DefaultWireProperties.vb" />
     <Compile Include="template\DisplayableComponenetProperties.vb" />
