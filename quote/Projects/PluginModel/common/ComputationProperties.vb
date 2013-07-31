@@ -6,7 +6,7 @@ Imports Model
 Namespace Common
 
     Public Class ComputationProperties
-        Inherits SaveableProperties
+        Inherits SavableProperties
 
 
     End Class

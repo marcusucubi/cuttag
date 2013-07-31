@@ -134,7 +134,9 @@ Public Class frmDocumentA
         ActiveHeader.ActiveHeader.Header = Me._Header
     End Sub
 
-    Private Sub _Header_SavableChange(ByVal subject As SaveableProperties) Handles _Header.SavableChange
+    Private Sub _Header_SavableChange(ByVal subject As SavableProperties, _
+                                      args As EventArgs) _ 
+                                      Handles _Header.SavableChange
         UpdateText()
     End Sub
 

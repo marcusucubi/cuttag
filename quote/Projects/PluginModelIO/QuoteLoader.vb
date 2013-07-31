@@ -189,7 +189,7 @@ Public Class QuoteLoader
                 .IsWire = row.IsWire
                 If Not row.IsSourceIDNull Then .SourceID = row.SourceID
                 .SequenceNumber = row.SequenceNumber
-                .UOM = row.UOM
+                .UnitOfMeasure = row.UOM
             End With
 
             Dim o1 As Object = LoadProperties(id, row.id, detail.QuoteDetailProperties)

@@ -7,9 +7,9 @@ Namespace Template
 
         Private _QuoteDetail As Model.Template.Detail
 
-        Public Sub New(ByVal QuoteDetail As Model.Template.Detail)
+        Public Sub New(ByVal quoteDetail As Model.Template.Detail)
             MyBase.New()
-            _QuoteDetail = QuoteDetail
+            _QuoteDetail = quoteDetail
             If _QuoteDetail.Product IsNot Nothing Then
             End If
         End Sub
@@ -64,10 +64,10 @@ Namespace Template
 
         Public Property UnitOfMeasure() As String
             Get
-                Return _QuoteDetail.UOM
+                Return _QuoteDetail.UnitOfMeasure
             End Get
             Set(ByVal value As String)
-                _QuoteDetail.UOM = value
+                _QuoteDetail.UnitOfMeasure = value
             End Set
         End Property
 

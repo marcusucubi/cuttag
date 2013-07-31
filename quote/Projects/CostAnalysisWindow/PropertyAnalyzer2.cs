@@ -18,10 +18,10 @@
             get { return new ReadOnlyCollection<PropertyElement>(this.nodes); }
         }
         
-        public static Model.Common.SaveableProperties BuildComputationProperties()
+        public static Model.Common.SavableProperties BuildComputationProperties()
         {
             Model.Template.Header header = new Model.Template.Header();
-            Model.Common.SaveableProperties computationProperties =
+            Model.Common.SavableProperties computationProperties =
                 Model.Template.PropertyFactory.CreateComputationProperties(header, 1);
             Model.Template.IComputationWrapper wrapper =
                 computationProperties as Model.Template.IComputationWrapper;
@@ -60,7 +60,7 @@
 
         public void Init()
         {
-            Model.Common.SaveableProperties computationProperties = 
+            Model.Common.SavableProperties computationProperties = 
                 BuildComputationProperties();
 
             Type computationPropertiesType = computationProperties.GetType();

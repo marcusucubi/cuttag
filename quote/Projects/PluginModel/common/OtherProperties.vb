@@ -2,7 +2,7 @@
 Namespace Common
 
     Public Class OtherProperties
-        Inherits SaveableProperties
+        Inherits SavableProperties
 
     End Class
 

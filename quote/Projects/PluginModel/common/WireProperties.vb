@@ -6,7 +6,7 @@ Imports Model
 Namespace Common
 
     Public MustInherit Class WireProperties
-        Inherits SaveableProperties
+        Inherits SavableProperties
     End Class
 
 End Namespace

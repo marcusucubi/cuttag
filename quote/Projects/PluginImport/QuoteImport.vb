@@ -329,7 +329,7 @@ Public Class QuoteImport
             Dim detail As New Model.Template.Detail(header, product)
             If product.IsWire Then
                 LookupWirePart(detailRow, detail, product, errors)
-                detail.UOM = "Decimeter"
+                detail.UnitOfMeasure = "Decimeter"
             Else
                 LookupWireComponentPart(detailRow, detail, product)
             End If
@@ -369,7 +369,7 @@ Public Class QuoteImport
             If IsNothing(sUOM) Then
                 Console.WriteLine("   UOM is Null " + detailRow.PartNumber)
             Else
-                detail.UOM = Trim(sUOM)
+                detail.UnitOfMeasure = Trim(sUOM)
             End If
         Else
             Console.WriteLine("   Component not Found " + detailRow.PartNumber)

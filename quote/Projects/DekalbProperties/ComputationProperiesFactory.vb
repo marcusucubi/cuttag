@@ -6,7 +6,7 @@ Public Class ComputationPropertiesFactory
 
     Public Function CreateComputationProperties(header As Model.Template.Header, _
                                                 id As Integer) _
-                                            As Model.Common.SaveableProperties _
+                                            As Model.Common.SavableProperties _
                                             Implements Model.Template.Ext.IComputationPropertiesFactory.CreateComputationProperties
         Return New DisplayableComputationProperties(New DekalbComputationProperties(header))
     End Function

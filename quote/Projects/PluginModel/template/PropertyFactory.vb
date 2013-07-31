@@ -6,12 +6,16 @@ Imports Host
 Namespace Template
 
     Public Class PropertyFactory
+    
+        Private Sub New()
+        
+        End Sub
 
         Public Shared Function CreateOtherProperties(header As Header, _
                                               id As Integer) _
-                                              As SaveableProperties
+                                              As SavableProperties
 
-            Dim result As SaveableProperties = Nothing
+            Dim result As SavableProperties = Nothing
 
             If App.RegisteredClasses.ContainsKey(GetType(IOtherPropertiesFactory)) Then
 
@@ -33,9 +37,9 @@ Namespace Template
 
         Public Shared Function CreateComputationProperties(header As Header, _
                                                     id As Integer) _
-                                                    As SaveableProperties
+                                                    As SavableProperties
 
-            Dim result As SaveableProperties = Nothing
+            Dim result As SavableProperties = Nothing
 
             If App.RegisteredClasses.ContainsKey(GetType(IComputationPropertiesFactory)) Then
 
@@ -58,9 +62,9 @@ Namespace Template
         End Function
 
         Public Shared Function CreateComponentProperties(detail As Template.Detail) _
-                                                  As SaveableProperties
+                                                  As SavableProperties
 
-            Dim result As SaveableProperties = Nothing
+            Dim result As SavableProperties = Nothing
 
             If App.RegisteredClasses.ContainsKey(GetType(IComponentPropertiesFactory)) Then
 
@@ -83,9 +87,9 @@ Namespace Template
         End Function
 
         Public Shared Function CreateWireProperties(detail As Template.Detail) _
-                                             As SaveableProperties
+                                             As SavableProperties
 
-            Dim result As SaveableProperties = Nothing
+            Dim result As SavableProperties = Nothing
 
             If App.RegisteredClasses.ContainsKey(GetType(IWirePropertiesFactory)) Then
 

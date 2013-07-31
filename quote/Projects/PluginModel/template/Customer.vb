@@ -101,7 +101,12 @@ Namespace Template
             Dim customer As New Template.Customer
             If left.Length > 0 Then
                 Dim id As Integer
-                Integer.TryParse(left, id)
+                
+                Dim parseOk = Integer.TryParse(left, id)
+                If (Not parseOk) Then
+                    id = 0
+                End If
+                
                 Dim name As String = right.Trim()
 
                 customer.SetID(id)
