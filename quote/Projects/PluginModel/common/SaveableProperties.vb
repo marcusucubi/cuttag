@@ -3,8 +3,6 @@ Imports System.Reflection
 
 Namespace Common
     
-    Public Delegate Sub SavableChangeEventHandler(ByVal sender As SavableProperties, args As EventArgs)
-
     Public Class SavableProperties
         Implements INotifyPropertyChanged, ICloneable
 
@@ -13,7 +11,7 @@ Namespace Common
 
         Private _IsDirty As Boolean
 
-        Public Event SavableChange As SavableChangeEventHandler
+        Public Event SavableChange As EventHandler
 
         <Browsable(False)> _
         Public Property Subject As Object
@@ -40,9 +38,11 @@ Namespace Common
         End Sub
 
         Protected Sub RemoveDependent(ByVal subject As SavableProperties)
-            RemoveHandler subject.SavableChange, AddressOf OnSavableChanged
+            Dim address As EventHandler = AddressOf OnSavableChanged
+            RemoveHandler subject.SavableChange, address
         End Sub
 
+        <System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId := "args")> _
         Protected Sub OnSavableChanged(ByVal subject As SavableProperties, _
                                        args As EventArgs) _
                                        Handles Me.SavableChange

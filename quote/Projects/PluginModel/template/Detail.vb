@@ -10,7 +10,7 @@ Namespace Template
         Private _ComponentProperties As Common.ComponentProperties
 
         Public Sub New(ByVal header As Header, ByVal product As Product)
-            MyBase.New(product, product.UnitOfMeasure)
+            MyBase.New(product, product.UnitOfMeasure, 1)
     
             Me.Header = header
             Me.IsWire = product.IsWire

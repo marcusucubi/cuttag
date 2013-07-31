@@ -14,10 +14,14 @@ Namespace Common
         Private _IsWire As Boolean
         Private _UOM As String
         
+        Public Sub New()
+            
+        End Sub
+        
         Public Sub New( _
-            Optional product As Model.Product = Nothing, _
-            Optional unitOfMeasure As String = "", _
-            Optional quantity As Decimal = 1)
+            product As Model.Product, _
+            unitOfMeasure As String, _
+            quantity As Decimal)
 
             _Quantity = quantity
             _Product = product

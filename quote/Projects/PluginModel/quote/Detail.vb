@@ -14,7 +14,7 @@ Namespace Quote
             ByVal header As Common.Header, _
             ByVal product As Product)
             
-            MyBase.New(product)
+            MyBase.New(product, "", 1)
             
             Me.QuoteHeader = header
         End Sub

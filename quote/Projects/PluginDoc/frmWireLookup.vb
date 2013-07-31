@@ -33,7 +33,7 @@ Public Class frmWireLookup
         
         Dim data As ProductBuildData = ProductDB.Load( _
             num, cost, gage, True, _
-            row, Nothing)
+            row, Nothing, "", 0)
         Product = New Model.Product(Data)
         
     End Sub

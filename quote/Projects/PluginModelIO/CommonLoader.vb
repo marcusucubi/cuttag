@@ -49,7 +49,7 @@ Public Class CommonLoader
                 
                 Dim data As ProductBuildData = ProductDB.Load( _
                     part.PartNumber, price, _
-                    0, False, Nothing, part)
+                    0, False, Nothing, part, "", 0)
                 Dim partObj As New Model.Product(Data)
 
                 detail = q.NewDetail(partObj)
@@ -75,7 +75,7 @@ Public Class CommonLoader
                 
                 Dim data As ProductBuildData = ProductDB.Load( _
                     wire.PartNumber, price, _
-                    gage, True, wire, Nothing)
+                    gage, True, wire, Nothing, "", 0)
                 Dim wireObj As New Model.Product(Data)
 
                 detail = q.NewDetail(wireObj)

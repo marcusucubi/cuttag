@@ -27,7 +27,7 @@ Public Class frmComponentLookup
 
         Dim data As ProductBuildData = ProductDB.Load( _
             num, cost, "", False, _
-            Nothing, View.Row)
+            Nothing, View.Row, "", 0)
         Product = New Model.Product(Data)
         
     End Sub

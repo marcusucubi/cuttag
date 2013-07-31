@@ -5,14 +5,14 @@
     End Sub
     
     Public Shared Function Load( _
-            Optional ByVal code As String = "", _
-            Optional ByVal unitCost As Decimal = 0, _
-            Optional ByVal gage As String = "", _
-            Optional ByVal isWire As Boolean = False, _
-            Optional ByVal wireRow As DB.QuoteDataBase.WireSourceRow = Nothing, _
-            Optional ByVal partRow As DB.QuoteDataBase.WireComponentSourceRow = Nothing, _
-            Optional ByVal unitOfMeasure As String = "", _
-            Optional ByVal copperWeightPer1000Feet As Decimal = 0
+            ByVal code As String, _
+            ByVal unitCost As Decimal, _
+            ByVal gage As String, _
+            ByVal isWire As Boolean, _
+            ByVal wireRow As DB.QuoteDataBase.WireSourceRow, _
+            ByVal partRow As DB.QuoteDataBase.WireComponentSourceRow, _
+            ByVal unitOfMeasure As String, _
+            ByVal copperWeightPer1000Feet As Decimal
             ) As ProductBuildData
         
         Dim result as new ProductBuildData
