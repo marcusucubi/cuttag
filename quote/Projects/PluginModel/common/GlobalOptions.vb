@@ -7,7 +7,7 @@ Namespace Common
     ''' <remarks></remarks>
     Public Class GlobalOptions
 
-        Public Event Changed As Action
+        Public Event Changed As EventHandler
 
         Private Shared _Instance As New GlobalOptions
         Private Shared _DecimalPointsToDisplay As Integer = 4
@@ -31,7 +31,7 @@ Namespace Common
         End Property
 
         Private Sub FireChanged()
-            RaiseEvent Changed()
+            RaiseEvent Changed(Me, New EventArgs())
         End Sub
 
     End Class

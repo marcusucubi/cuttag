@@ -27,9 +27,13 @@ Public Class DisplayableComputationProperties
         Me.SendEvents()
     End Sub
 
-    Public Function GetComputationProperties() As Model.Template.ComputationProperties Implements Model.Template.IComputationWrapper.GetComputationProperties
-        Return _Subject
-    End Function
+    <BrowsableAttribute(false)>
+    Public ReadOnly Property ComputationProperties As Model.Template.ComputationProperties _
+        Implements Model.Template.IComputationWrapper.ComputationProperties
+        Get
+            Return _Subject
+        End Get
+    End Property
 
 #Region " Variables "
     Private _Subject As DekalbComputationProperties

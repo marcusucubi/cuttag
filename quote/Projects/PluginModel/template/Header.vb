@@ -21,11 +21,11 @@ Namespace Template
     
             _Details = MyBase.Details
 
-            MyBase.SetPrimaryProperties(New PrimaryProperties(Me, id))
+            MyBase.SetPrimaryProperties(New PrimaryProperties(id))
 
             MyBase.SetOtherProperties(PropertyFactory.CreateOtherProperties(Me, id))
             MyBase.SetComputationProperties(PropertyFactory.CreateComputationProperties(Me, id))
-            MyBase.SetNoteProperties(New NoteProperties(Me))
+            MyBase.SetNoteProperties(New NoteProperties())
             
             MyBase.AddDependent(MyBase.ComputationProperties)
             MyBase.AddDependent(MyBase.OtherProperties)

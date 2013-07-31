@@ -3,7 +3,7 @@ Namespace Template
 
     Public Interface IComputationWrapper
 
-        Function GetComputationProperties() As ComputationProperties
+        ReadOnly Property ComputationProperties As ComputationProperties
 
     End Interface
 

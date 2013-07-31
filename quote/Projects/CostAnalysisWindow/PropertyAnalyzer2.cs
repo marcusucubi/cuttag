@@ -28,7 +28,7 @@
 
             if (wrapper != null)
             {
-                computationProperties = wrapper.GetComputationProperties();
+                computationProperties = wrapper.ComputationProperties;
             }
 
             return computationProperties;
