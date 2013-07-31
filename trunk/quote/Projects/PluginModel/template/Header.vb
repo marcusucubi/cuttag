@@ -71,7 +71,7 @@ Namespace Template
             SendEvents()
         End Sub
 
-        Private Overloads Sub SendEvents()
+        Public Overloads Sub SendEvents()
             Me.ComputationProperties.SendEvents()
         End Sub
 

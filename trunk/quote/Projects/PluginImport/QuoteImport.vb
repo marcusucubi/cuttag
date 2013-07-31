@@ -265,7 +265,7 @@ Public Class QuoteImport
                     Console.WriteLine("   Failure finding component source for " + detailRow.PartNumber)
                     
                     Dim data As ProductBuildData = ProductDB.Load( _
-                        detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                        detailRow.PartNumber, 0, "", False, Nothing, Nothing, "", 0)
                     pProduct = New Model.Product(Data)
                     
                 Else 'It is a component and wirecomponentsource.partnumber <> "MISSING"
@@ -276,7 +276,7 @@ Public Class QuoteImport
                     Console.WriteLine("   Failure finding source for " + detailRow.PartNumber)
                     
                     Dim data As ProductBuildData = ProductDB.Load( _
-                        detailRow.PartNumber, 0, "", False, Nothing, Nothing)
+                        detailRow.PartNumber, 0, "", False, Nothing, Nothing, "", 0)
                     pProduct = New Model.Product(Data)
                     
                 Else 'wiresource.partnumber <> "MISSING"

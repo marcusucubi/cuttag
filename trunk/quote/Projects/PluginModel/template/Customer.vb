@@ -73,8 +73,8 @@ Namespace Template
             Dim table As QuoteDataBase.CustomerDataTable
             table = adaptor.GetData()
             For Each row As QuoteDataBase.CustomerRow In table.Rows
-                Dim cname As String = row.CustomerName.ToLowerInvariant().Trim()
-                If cname = name.Trim() Then
+                Dim cname As String = row.CustomerName.ToUpperInvariant().Trim()
+                If cname = name.ToUpperInvariant().Trim() Then
                     customer.SetName(row.CustomerName.Trim())
                     customer.SetID(row.CustomerID)
                     Return customer
@@ -87,7 +87,7 @@ Namespace Template
         Public Shared Function CreateFromString(value As String) As Customer
 
             Dim index As Integer
-            index = value.IndexOf(" ")
+            index = value.IndexOf(" ", StringComparison.CurrentCulture)
 
             If index = -1 Then
                 Dim c As New Customer
