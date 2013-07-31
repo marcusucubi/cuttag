@@ -183,7 +183,7 @@ Partial Class WireAndComponentView
         '
         'UnitOfMeasure
         '
-        Me.UnitOfMeasure.DataPropertyName = "UOM"
+        Me.UnitOfMeasure.DataPropertyName = "UnitOfMeasure"
         Me.UnitOfMeasure.HeaderText = "UOM"
         Me.UnitOfMeasure.Name = "UnitOfMeasure"
         Me.UnitOfMeasure.ReadOnly = True
