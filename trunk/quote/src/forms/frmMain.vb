@@ -9,7 +9,7 @@ Imports Host
 Public Class frmMain
 
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _SaveableProperties As Model.Common.SaveableProperties
+    Private WithEvents _SaveableProperties As Model.Common.SavableProperties
     Public Shared Property frmMain As frmMain
 
     Public Sub New()
@@ -70,7 +70,7 @@ Public Class frmMain
     Private Sub LoadQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteButton.Click
         LoadQuote()
     End Sub
-    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SaveableProperties) Handles _SaveableProperties.SavableChange
+    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SavableProperties, ByVal e As System.EventArgs) Handles _SaveableProperties.SavableChange
         EnableButtons()
     End Sub
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click

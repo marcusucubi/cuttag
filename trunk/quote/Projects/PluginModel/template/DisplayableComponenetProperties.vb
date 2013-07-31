@@ -6,7 +6,7 @@ Imports Model.Template
 
 Namespace Template
 
-    Public Class DisplayableComponenetProperties
+    Public Class DisplayableComponentProperties
         Inherits Common.ComponentProperties
 
         Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance

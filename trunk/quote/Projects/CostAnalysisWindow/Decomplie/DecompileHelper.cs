@@ -40,7 +40,7 @@
         
         public void Init3()
         {
-            Model.Common.SaveableProperties computationProperties = 
+            Model.Common.SavableProperties computationProperties = 
                 PropertyAnalyzer2.BuildComputationProperties();
 
             Type computationPropertiesType = computationProperties.GetType();

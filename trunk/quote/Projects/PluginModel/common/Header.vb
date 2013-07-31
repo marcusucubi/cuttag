@@ -2,20 +2,20 @@
 Namespace Common
 
     Public MustInherit Class Header
-        Inherits SaveableProperties
+        Inherits SavableProperties
 
         Private _PrimaryProperties As Common.PrimaryProperties
         Private _OtherProperties As Common.OtherProperties
         Private _ComputationProperties As Common.ComputationProperties
-        Private _CustomProperties As New Common.SaveableProperties
+        Private _CustomProperties As New Common.SavableProperties
         Private _NoteProperties As New Common.NoteProperties
 
-        Protected WithEvents _Details As DetailCollection(Of Common.Detail)
+        Private WithEvents _Details As DetailCollection(Of Common.Detail)
 
         Public Property Id As Integer
         Public Property IsQuote As Boolean
 
-        Public Sub New()
+        Protected Sub New()
             _Details = New DetailCollection(Of Common.Detail)(Me)
         End Sub
 
@@ -37,7 +37,7 @@ Namespace Common
             End Get
         End Property
 
-        Public ReadOnly Property CustomProperties As Common.SaveableProperties
+        Public ReadOnly Property CustomProperties As Common.SavableProperties
             Get
                 Return _CustomProperties
             End Get

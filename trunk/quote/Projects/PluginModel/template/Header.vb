@@ -2,18 +2,24 @@
 Imports System.Reflection
 
 Imports Model
+Imports Model.Common
 
 Namespace Template
 
     Public Class Header
         Inherits Common.Header
 
+        Private WithEvents _Details As DetailCollection(Of Common.Detail)
+
         Public Sub New()
             Me.New(0)
+            _Details = MyBase.Details
             Me.SendEvents()
         End Sub
 
         Public Sub New(ByVal id As Long)
+    
+            _Details = MyBase.Details
 
             MyBase.SetPrimaryProperties(New PrimaryProperties(Me, id))
 
@@ -27,6 +33,7 @@ Namespace Template
             MyBase.AddDependent(MyBase.NoteProperties)
         End Sub
 
+        <System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")> _
         Public Overloads ReadOnly Property IsQuote As Boolean
             Get
                 Return False

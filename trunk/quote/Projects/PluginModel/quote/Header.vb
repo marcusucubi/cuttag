@@ -29,7 +29,7 @@ Namespace Quote
             MyBase.IsQuote = True
         End Sub
 
-        Public Shadows ReadOnly Property ID As Integer
+        Public Shadows ReadOnly Property Id As Integer
             Get
                 Return PrimaryProperties.CommonId
             End Get

@@ -4,7 +4,7 @@ Imports System.Reflection
 Namespace Common
 
     Public Class Detail
-        Inherits SaveableProperties
+        Inherits SavableProperties
 
         Private _Quantity As Decimal = 1
         Private _Product As Model.Product
@@ -49,7 +49,7 @@ Namespace Common
             End Set
         End Property
 
-        Public Property UOM As String
+        Public Property UnitOfMeasure As String
             Get
                 Return _UOM
             End Get

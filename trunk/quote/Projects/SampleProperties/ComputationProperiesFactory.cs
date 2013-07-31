@@ -9,7 +9,7 @@ namespace SampleProperties
     public class ComputationProperiesFactory : IComputationPropertiesFactory
     {
 
-        public Model.Common.SaveableProperties CreateComputationProperties(
+        public Model.Common.SavableProperties CreateComputationProperties(
             Model.Template.Header header, int id)
         {
             return new DisplayableComputationProperties(new SampleComputationProperties(header));

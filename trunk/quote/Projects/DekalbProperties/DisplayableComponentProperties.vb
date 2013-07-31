@@ -4,7 +4,7 @@ Imports System.Reflection
 Imports Model
 
 Public Class DisplayableComponentProperties
-    Inherits Model.Template.DisplayableComponenetProperties
+    Inherits Model.Template.DisplayableComponentProperties
 
     Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 

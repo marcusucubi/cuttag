@@ -8,7 +8,7 @@ Namespace Quote
     Public Class Detail
         Inherits Common.Detail
 
-        Private _Properties As New Common.SaveableProperties
+        Private _Properties As New Common.SavableProperties
 
         Friend Sub New( _ 
             ByVal header As Common.Header, _
@@ -29,7 +29,7 @@ Namespace Quote
             End Get
         End Property
 
-        Public Sub SetProperties(ByVal props As Common.SaveableProperties)
+        Public Sub SetProperties(ByVal props As Common.SavableProperties)
             Me._Properties = props
         End Sub
 

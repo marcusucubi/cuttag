@@ -1,7 +1,7 @@
 ﻿Namespace Common
 
     Public Class NoteProperties
-        Inherits SaveableProperties
+        Inherits SavableProperties
 
     End Class
 

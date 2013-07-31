@@ -5,7 +5,7 @@ Imports Model.Template.Ext
 Public Class WirePropertiesFactory
     Implements IWirePropertiesFactory
 
-    Public Function CreateWireProperties(detail As Model.Template.Detail) As Model.Common.SaveableProperties _ 
+    Public Function CreateWireProperties(detail As Model.Template.Detail) As Model.Common.SavableProperties _ 
         Implements IWirePropertiesFactory.CreateWireProperties
         
         Return New DisplayableWireProperties(New DekalbWireProperties(detail))

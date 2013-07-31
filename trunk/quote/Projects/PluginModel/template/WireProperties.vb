@@ -89,10 +89,10 @@ Namespace Template
 
         Public Overridable Property UnitOfMeasure() As String
             Get
-                Return _QuoteDetail.UOM
+                Return _QuoteDetail.UnitOfMeasure
             End Get
             Set(ByVal value As String)
-                _QuoteDetail.UOM = value
+                _QuoteDetail.UnitOfMeasure = value
             End Set
         End Property
 
