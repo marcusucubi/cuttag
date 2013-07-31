@@ -84,8 +84,9 @@ Public Class QuoteLoader
 
     Public Function LookupCustomer(row As DB.QuoteDataBase._QuoteRow) As Model.Template.Customer
 
-        Dim customer As String = row.CustomerName
+        Dim customer As String
         Dim customerID As Integer
+
         If row.IsCustomerIDNull Then
             If Not row.IsCustomerNameNull Then
                 Dim temp As Model.Template.Customer
@@ -96,6 +97,12 @@ Public Class QuoteLoader
             End If
         Else
             customerID = row.CustomerID
+        End If
+        
+        If row.IsCustomerNameNull Then
+            customer = ""
+        Else
+            customer = row.CustomerName
         End If
 
         Dim customerObj As New Model.Template.Customer
