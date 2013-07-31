@@ -123,7 +123,7 @@
             List<CustomTreeNode> nodes, 
             IComputationWrapper wrapper)
         {
-            ComputationProperties comp = wrapper.GetComputationProperties();
+            ComputationProperties comp = wrapper.ComputationProperties;
             Type type = comp.GetType();
             PropertyInfo[] props = type.GetProperties();
             foreach (PropertyInfo prop in props) 

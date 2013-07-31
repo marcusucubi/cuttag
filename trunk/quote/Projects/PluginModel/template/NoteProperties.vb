@@ -5,12 +5,11 @@ Namespace Template
     Public Class NoteProperties
         Inherits Common.NoteProperties
 
-        Private _QuoteHeader As Header
         Private _Note As String
         Private _Note2Customer As String
 
-        Public Sub New(ByVal QuoteHeader As Header)
-            _QuoteHeader = QuoteHeader
+        Public Sub New()
+    
         End Sub
 
         <DisplayName("Note-Internal"), _

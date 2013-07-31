@@ -17,17 +17,21 @@ namespace SampleProperties
         {
             _Subject = subject;
             base.Subject = subject;
-            _Options.Changed +=new Action(_Options_Changed);
+            _Options.Changed += new EventHandler(_Options_Changed);
         }
 
-        private void _Options_Changed()
+        private void _Options_Changed(object sender, EventArgs args)
         {
             SendEvents();
         }
 
-        public Model.Template.ComputationProperties GetComputationProperties()
+        [BrowsableAttribute(false)]
+        public Model.Template.ComputationProperties ComputationProperties
         {
-            return _Subject;
+            get
+            {
+                return _Subject;
+            }
         }
 
 #region Shipping

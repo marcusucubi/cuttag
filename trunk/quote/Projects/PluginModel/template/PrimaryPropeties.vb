@@ -8,10 +8,7 @@ Namespace Template
     Public NotInheritable Class PrimaryProperties
         Inherits Common.PrimaryProperties
 
-        Private _QuoteHeader As Header
-
-        Public Sub New(ByVal QuoteHeader As Header, ByVal id As Long)
-            _QuoteHeader = QuoteHeader
+        Public Sub New(ByVal id As Long)
             Me.SetId(id)
         End Sub
 

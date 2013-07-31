@@ -5,7 +5,7 @@ Imports Host
 
 Namespace Template
 
-    Public Class PropertyFactory
+    Public NotInheritable Class PropertyFactory
     
         Private Sub New()
         

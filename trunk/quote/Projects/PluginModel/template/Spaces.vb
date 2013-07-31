@@ -1,4 +1,8 @@
-﻿Public Class Spaces
+﻿Public NotInheritable Class Spaces
+    
+    Private Sub New()
+        '
+    End Sub
 
     Public Const SortedSpaces1 = "          "
     Public Const SortedSpaces2 = "          "
