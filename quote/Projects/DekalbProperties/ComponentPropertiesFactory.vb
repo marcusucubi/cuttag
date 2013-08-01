@@ -4,7 +4,8 @@
 Public Class ComponentPropertiesFactory
     Implements Model.Template.Ext.IComponentPropertiesFactory
 
-    Public Function CreateComponentProperties(detail As Model.Template.Detail) As Model.Common.SavableProperties Implements Model.Template.Ext.IComponentPropertiesFactory.CreateComponentProperties
+Public Function CreateComponentProperties(detail As Model.Template.Detail) As Model.Common.ComponentProperties _ 
+    Implements Model.Template.Ext.IComponentPropertiesFactory.CreateComponentProperties
         Return New DisplayableComponentProperties(New DekalbComponentProperties(detail))
     End Function
 

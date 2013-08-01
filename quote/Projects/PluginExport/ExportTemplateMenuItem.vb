@@ -19,13 +19,13 @@ Public Class ExportTemplateMenuItem
     Public Sub Execute() Implements IMenuAction.Execute
 
         Dim export As New ExportBOM
-        export.Export(ActiveHeader.ActiveHeader.Header)
+        export.Export(ActiveHeader.Instance.Header)
 
     End Sub
 
     Public Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
 
-        m_Watch = Model.ActiveHeader.ActiveHeader
+        m_Watch = Model.ActiveHeader.Instance
         m_ToolStripItem = menu
         menu.Enabled = False
 
@@ -40,7 +40,7 @@ Public Class ExportTemplateMenuItem
 
     Private Sub m_Watch_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles m_Watch.PropertyChanged
 
-        If (TypeOf ActiveHeader.ActiveHeader.Header Is Model.Template.Header) Then
+        If (TypeOf ActiveHeader.Instance.Header Is Model.Template.Header) Then
             m_ToolStripItem.Enabled = True
             m_Button.Enabled = True
         Else

@@ -8,17 +8,17 @@ Public Class MainFormStatusStrip
 
     Public Sub New()
         InitializeComponent()
-        Me._ActiveHeader = ActiveHeader.ActiveHeader
+        Me._ActiveHeader = ActiveHeader.Instance
     End Sub
 
     Private Sub _ActiveHeader_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
-        If (Me._PrimaryPropeties IsNot ActiveHeader.ActiveHeader.Header) Then
-            If ActiveHeader.ActiveHeader.Header Is Nothing Then
+        If (Me._PrimaryPropeties IsNot ActiveHeader.Instance.Header) Then
+            If ActiveHeader.Instance.Header Is Nothing Then
                 Me._PrimaryPropeties = Nothing
                 Me._OtherPropeties = Nothing
             Else
-                Me._PrimaryPropeties = ActiveHeader.ActiveHeader.Header.PrimaryProperties
-                Me._OtherPropeties = ActiveHeader.ActiveHeader.Header.OtherProperties
+                Me._PrimaryPropeties = ActiveHeader.Instance.Header.PrimaryProperties
+                Me._OtherPropeties = ActiveHeader.Instance.Header.OtherProperties
             End If
             UpdateStatusBar()
         End If

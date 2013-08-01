@@ -1,19 +1,18 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSQuote", "DCSQuote.vbproj", "{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSDataCommon", "DCSDataCommon\DCSDataCommon.vbproj", "{9A59AF91-9074-4358-AD27-41D9C9D50986}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSDataGrid", "DCSDataGrid\DCSDataGrid.vbproj", "{B3093DDF-04C2-47AB-8E5B-99D151AA1C53}"
-EndProject
+# SharpDevelop 4.3
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diff", "Diff", "{BCA0E7A7-7C4B-4570-BCA6-E1ACD5437A43}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiffCalc", "Projects\DiffCalc\DiffCalc.csproj", "{CA9B6FA7-9A52-49E9-9387-22C82B0F8962}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferenceEngine", "Projects\DifferenceEngine\DifferenceEngine.csproj", "{8AE4897A-EA74-49B1-BA55-D892C27AF9C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{8B21018A-1DFA-4F82-AFBC-69B5FD2852E8}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugPlugin", "Projects\DebugPlugin\DebugPlugin.csproj", "{B3C5260D-B56B-4A24-AF02-768C1FF11370}"
 EndProject
@@ -21,13 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginOutputView", "Project
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHost", "Projects\PluginHost\PluginHost.csproj", "{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginModel", "Projects\PluginModel\PluginModel.vbproj", "{657BD9B0-FCA0-4574-A57C-1F9743697EBB}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginModel", "Projects\PluginModel\PluginModel.csproj", "{657BD9B0-FCA0-4574-A57C-1F9743697EBB}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginDB", "Projects\PluginDB\PluginDB.vbproj", "{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginModelIO", "Projects\PluginModelIO\PluginModelIO.vbproj", "{7973E603-E061-4D17-A51A-FDEBFF5369A9}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginImport", "Projects\PluginImport\PluginImport.vbproj", "{BF61B213-FE92-4AEC-A88A-4890B9A99FA4}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginExport", "Projects\PluginExport\PluginExport.vbproj", "{FF0D83A2-DB65-4697-8555-2E1F5461A34C}"
 EndProject
@@ -37,13 +34,23 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginDoc", "Projects\Plugi
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginPropertyView", "Projects\PluginPropertyView\PluginPropertyView.vbproj", "{31F83BBE-46CA-4596-AA8A-F4E6F5040E1C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom", "Custom", "{B120F490-0BA0-4A24-ADA5-5DBF56B9295C}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleProperties", "Projects\SampleProperties\SampleProperties.csproj", "{D75A9F8C-8B5A-40B1-9CAE-A57D3A291007}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Custom", "Custom", "{B120F490-0BA0-4A24-ADA5-5DBF56B9295C}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PluginImport", "Projects\PluginImport\PluginImport.vbproj", "{BF61B213-FE92-4AEC-A88A-4890B9A99FA4}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DekalbProperties", "Projects\DekalbProperties\DekalbProperties.vbproj", "{BF18B4F1-0B84-470A-B6CF-00931F2677D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostAnalysisWindow", "Projects\CostAnalysisWindow\CostAnalysisWindow.csproj", "{C97D64C1-0368-4AE0-98D5-00248EC22095}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSQuote", "DCSQuote.vbproj", "{2A0B4E0A-4616-48F7-99FA-5A237EE94A9F}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSDataCommon", "DCSDataCommon\DCSDataCommon.vbproj", "{9A59AF91-9074-4358-AD27-41D9C9D50986}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DCSDataGrid", "DCSDataGrid\DCSDataGrid.vbproj", "{B3093DDF-04C2-47AB-8E5B-99D151AA1C53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,7 +12,7 @@ namespace SampleProperties
         {
         }
 
-        public Model.Common.SavableProperties CreateOtherProperties(
+        public Model.Common.OtherProperties CreateOtherProperties(
             Header header, int id)
         {
             return new SampleOtherProperties(header);

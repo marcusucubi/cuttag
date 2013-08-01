@@ -91,7 +91,7 @@
             List<CustomTreeNode> nodes = this.GetAllNodes(treeView1);
             
             Model.Template.Header header =
-                Model.ActiveHeader.ActiveHeader.Header as Model.Template.Header;
+                Model.ActiveHeader.Instance.Header as Model.Template.Header;
             
             if (header != null)
             {

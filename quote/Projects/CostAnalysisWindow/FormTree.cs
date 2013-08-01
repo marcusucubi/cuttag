@@ -31,7 +31,7 @@
         {
             this.InitializeComponent();
 
-            Model.ActiveHeader.ActiveHeader.PropertyChanged += this.ActiveHeader_PropertyChanged;
+            Model.ActiveHeader.Instance.PropertyChanged += this.ActiveHeader_PropertyChanged;
             this.Display();
             this.updater.DisplayValues(this.treeView1);
             this.WatchProperties();
@@ -63,7 +63,7 @@
                 this.header.ComputationProperties.PropertyChanged -= this.Header_PropertyChanged;
             }
 
-            this.header = Model.ActiveHeader.ActiveHeader.Header;
+            this.header = Model.ActiveHeader.Instance.Header;
             if (this.header != null) 
             {
                 this.header.ComputationProperties.PropertyChanged += this.Header_PropertyChanged;
