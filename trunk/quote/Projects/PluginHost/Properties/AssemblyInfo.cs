@@ -1,4 +1,10 @@
-﻿using System.Reflection;
+﻿// <summary>
+// Contains the Assembly Information.
+// </summary>
+// <copyright file="AssemblyInfo.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the IHasIcon class.
+// </summary>
+// <copyright file="IHasIcon.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
     using System.Drawing;

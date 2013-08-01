@@ -1,4 +1,10 @@
-﻿namespace Host.Internal
+﻿// <summary>
+// Contains the UIBuilder class.
+// </summary>
+// <copyright file="UIBuilder.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host.Internal
 {
     using System;
     using System.Collections.Generic;

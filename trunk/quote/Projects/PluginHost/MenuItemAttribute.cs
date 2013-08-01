@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the MenuItemAttribute class.
+// </summary>
+// <copyright file="MenuItemAttribute.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
     using NDepend.Attributes;

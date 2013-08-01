@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the RegisterAttribute class.
+// </summary>
+// <copyright file="RegisterAttribute.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
 

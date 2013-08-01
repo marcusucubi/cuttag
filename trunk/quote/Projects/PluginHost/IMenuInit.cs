@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the IMenuInit class.
+// </summary>
+// <copyright file="IMenuInit.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
     using System.Windows.Forms;

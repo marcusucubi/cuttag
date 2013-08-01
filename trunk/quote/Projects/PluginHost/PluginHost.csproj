@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IHasIcon.cs" />
-    <Compile Include="IClientInit.cs" />
+    <Compile Include="IInit.cs" />
     <Compile Include="IMenuInit.cs" />
     <Compile Include="NDepend\Attributes\CannotDecreaseVisibilityAttribute.cs" />
     <Compile Include="IMenuAction.cs" />

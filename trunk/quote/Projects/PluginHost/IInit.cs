@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the <c>IInit</c> interface.
+// </summary>
+// <copyright file="IInit.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
 
