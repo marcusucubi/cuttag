@@ -84,7 +84,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RegisterAttribute.cs" />
-    <Compile Include="ResourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lib\WeifenLuo.WinFormsUI.Docking.dll" />

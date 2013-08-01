@@ -9,8 +9,14 @@
     using System.Windows.Forms;
     using System.Xml;
     
+    /// <summary> 
+    /// Responsible for loading plugins that are in plugins.xml.
+    /// </summary> 
     internal static class Loader
     {
+        /// <summary> 
+        /// Loads all plugins.
+        /// </summary> 
         internal static PluginCollection Load()
         {
             PluginCollection result = new PluginCollection();
@@ -25,6 +31,9 @@
             return result;
         }
 
+        /// <summary> 
+        /// Returns the file names contained in plugins.xml.
+        /// </summary> 
         private static List<string> LoadPaths()
         {
             List<string> paths = new List<string>();
@@ -51,6 +60,9 @@
             return paths;
         }
 
+        /// <summary> 
+        /// Loads the input plugin.
+        /// </summary> 
         private static void ProcessPlugin(
             PluginCollection collection,
             string path)
@@ -85,6 +97,9 @@
             }
         }
 
+        /// <summary> 
+        /// Returns a list of menu item contained in the plugin.
+        /// </summary> 
         private static List<PluginMenuItem> FindMenuItems(Assembly a)
         {
             List<PluginMenuItem> result = new List<PluginMenuItem>();
@@ -103,6 +118,9 @@
             return result;
         }
 
+        /// <summary> 
+        /// Updates App.RegisteredClasses.
+        /// </summary> 
         private static void FindRegisteredClasses(Assembly a)
         {
             Type[] types = a.GetTypes();
@@ -121,6 +139,9 @@
             }
         }
 
+        /// <summary> 
+        /// Returns all classes that implment IInit.
+        /// </summary> 
         private static List<IInit> FindInits(Assembly a)
         {
             List<IInit> result = new List<IInit>();
@@ -141,6 +162,9 @@
             return result;
         }
 
+        /// <summary> 
+        /// Builds a PluginMenuItem for the input type.
+        /// </summary> 
         private static PluginMenuItem BuildMenuItem(Type t)
         {
             MenuItemAttribute[] mias = (MenuItemAttribute[])
