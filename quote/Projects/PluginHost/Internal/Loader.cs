@@ -17,6 +17,7 @@
         /// <summary> 
         /// Loads all plugins.
         /// </summary> 
+        /// <returns>A collection of plugins.</returns>
         internal static PluginCollection Load()
         {
             PluginCollection result = new PluginCollection();
@@ -34,6 +35,7 @@
         /// <summary> 
         /// Returns the file names contained in plugins.xml.
         /// </summary> 
+        /// <returns>The file names contained in plugins.xml.</returns>
         private static List<string> LoadPaths()
         {
             List<string> paths = new List<string>();
@@ -63,6 +65,8 @@
         /// <summary> 
         /// Loads the input plugin.
         /// </summary> 
+        /// <param name="collection" >A collection of plugins.</param>
+        /// <param name="path" >The path of the assembly file.</param>
         private static void ProcessPlugin(
             PluginCollection collection,
             string path)
@@ -100,11 +104,13 @@
         /// <summary> 
         /// Returns a list of menu item contained in the plugin.
         /// </summary> 
-        private static List<PluginMenuItem> FindMenuItems(Assembly a)
+        /// <param name="assembly">The plugin's assembly.</param>
+        /// <returns>A collection of menu items.</returns>
+        private static List<PluginMenuItem> FindMenuItems(Assembly assembly)
         {
             List<PluginMenuItem> result = new List<PluginMenuItem>();
 
-            Type[] types = a.GetTypes();
+            Type[] types = assembly.GetTypes();
             foreach (Type t in types)
             {
                 PluginMenuItem item = BuildMenuItem(t);
@@ -121,9 +127,10 @@
         /// <summary> 
         /// Updates App.RegisteredClasses.
         /// </summary> 
-        private static void FindRegisteredClasses(Assembly a)
+        /// <param name="assembly">The plugin's assembly.</param>
+        private static void FindRegisteredClasses(Assembly assembly)
         {
-            Type[] types = a.GetTypes();
+            Type[] types = assembly.GetTypes();
             foreach (Type t in types)
             {
                 RegisterAttribute[] mias = (RegisterAttribute[])
@@ -140,13 +147,15 @@
         }
 
         /// <summary> 
-        /// Returns all classes that implment IInit.
+        /// Returns all classes that implement <c>IInit</c>.
         /// </summary> 
-        private static List<IInit> FindInits(Assembly a)
+        /// <param name="assembly">The plugin's assembly.</param>
+        /// <returns>A collection of <c>IInit's</c>.</returns>
+        private static List<IInit> FindInits(Assembly assembly)
         {
             List<IInit> result = new List<IInit>();
 
-            Type[] types = a.GetTypes();
+            Type[] types = assembly.GetTypes();
             foreach (Type t in types)
             {
                 if (!typeof(IInit).IsAssignableFrom(t))
@@ -165,10 +174,12 @@
         /// <summary> 
         /// Builds a PluginMenuItem for the input type.
         /// </summary> 
-        private static PluginMenuItem BuildMenuItem(Type t)
+        /// <param name="menuItemType">The type of the menu item.</param>
+        /// <returns>A plugin menu item.</returns>
+        private static PluginMenuItem BuildMenuItem(Type menuItemType)
         {
             MenuItemAttribute[] mias = (MenuItemAttribute[])
-                t.GetCustomAttributes(typeof(MenuItemAttribute), false);
+                menuItemType.GetCustomAttributes(typeof(MenuItemAttribute), false);
             if (mias.Length == 0)
             {
                 return null;
@@ -176,7 +187,7 @@
 
             MenuItemAttribute mia = mias[0];
             IMenuAction target =
-                Activator.CreateInstance(t) as IMenuAction;
+                Activator.CreateInstance(menuItemType) as IMenuAction;
 
             PluginMenuItem.BuildData data = new PluginMenuItem.BuildData();
 
@@ -186,7 +197,7 @@
             }
 
             MenuItemAttribute[] ppms = (MenuItemAttribute[])
-                t.GetCustomAttributes(typeof(MenuItemAttribute), false);
+                menuItemType.GetCustomAttributes(typeof(MenuItemAttribute), false);
             if (ppms.Length > 0)
             {
                 MenuItemAttribute ppm = ppms[0];

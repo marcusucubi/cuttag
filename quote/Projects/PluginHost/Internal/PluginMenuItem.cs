@@ -40,8 +40,9 @@
         private readonly IMenuAction action;
 
         /// <summary> 
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="PluginMenuItem" /> class.
         /// </summary> 
+        /// <param name="data">The data for the menu item.</param>
         internal PluginMenuItem(BuildData data)
         {
             this.text = data.Text;
@@ -52,40 +53,45 @@
         }
 
         /// <summary> 
-        /// The menu text.
-        /// </summary> 
+        /// Gets the menu text.
+        /// </summary>
+        /// <value>The menu text.</value>
         internal string Text
         {
             get { return this.text; }
         }
 
         /// <summary> 
-        /// The menu name.
-        /// </summary> 
+        /// Gets the menu name.
+        /// </summary>
+        /// <value>The menu name.</value>
         internal string MenuName
         {
             get { return this.menuName; }
         }
 
         /// <summary> 
-        /// Show in the tool bar.
+        /// Gets a value indicating whether a tool bar button is created.
         /// </summary> 
+        /// <value>A value indicating whether a tool bar button is created.</value>
         internal bool ShowInToolbar
         {
             get { return this.showInToolbar; }
         }
 
         /// <summary> 
-        /// Menu item image.
-        /// </summary> 
+        /// Gets the menu item image.
+        /// </summary>
+        /// <value>The menu item image.</value>
         internal Image Image
         {
             get { return this.image; }
         }
 
         /// <summary> 
-        /// Called on click.
+        /// Gets the menu item action.
         /// </summary> 
+        /// <value>The menu item action.</value>
         internal IMenuAction Action
         {
             get { return this.action; }
@@ -94,6 +100,8 @@
         /// <summary> 
         /// Used for sorting.
         /// </summary> 
+        /// <param name="other">The other <c>PluginMenuItem</c></param>
+        /// <returns>A value indicating the result of the compare.</returns>
         public int CompareTo(PluginMenuItem other)
         {
             return string.Compare(other.Text, this.Text, true, CultureInfo.CurrentCulture);
@@ -105,27 +113,27 @@
         internal sealed class BuildData
         {
             /// <summary> 
-            /// Menu item text.
+            /// Gets or sets the menu item text.
             /// </summary> 
             internal string Text { get; set; }
             
             /// <summary> 
-            /// Menu item name.
+            /// Gets or sets the menu item name.
             /// </summary> 
             internal string MenuName { get; set; }
             
             /// <summary> 
-            /// Show in toolbar.
+            /// Gets or sets a value indicating whether or not to show in toolbar.
             /// </summary> 
             internal bool ShowInToolbar { get; set; }
             
             /// <summary> 
-            /// Menu image.
+            /// Gets or sets the menu image.
             /// </summary> 
             internal Image Image { get; set; }
             
             /// <summary> 
-            /// Menu action.
+            /// Gets or sets the menu action.
             /// </summary> 
             internal IMenuAction Action { get; set; }
         }

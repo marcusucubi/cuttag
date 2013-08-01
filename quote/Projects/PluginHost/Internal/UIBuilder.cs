@@ -14,6 +14,9 @@
         /// <summary> 
         /// Adds menu items for the input plugins.
         /// </summary> 
+        /// <param name="collection">A collection of plugins.</param>
+        /// <param name="menu">The menu strip to use.</param>
+        /// <param name="toolStrip">The tool strip to use.</param>
         internal static void BuildUI(
             PluginCollection collection,
             MenuStrip menu,
@@ -27,7 +30,10 @@
 
         /// <summary> 
         /// Adds menu items for the input plugin.
-        /// </summary> 
+        /// </summary>
+        /// <param name="plugin">The plugin.</param>
+        /// <param name="menu">The menu strip.</param>
+        /// <param name="toolStrip">The tool strip.</param>
         private static void BuildUI(
             PluginProxy plugin,
             MenuStrip menu,
@@ -39,11 +45,12 @@
         }
 
         /// <summary> 
-        /// Calls init.
+        /// Calls <c>init</c> on all classes.
         /// </summary> 
+        /// <param name="plugin">The plugin.</param>
         private static void DoInit(PluginProxy plugin)
         {
-            foreach (IInit init in plugin.Plugins)
+            foreach (IInit init in plugin.ClassesToInit)
             {
                 init.Init();
             }
@@ -52,6 +59,8 @@
         /// <summary> 
         /// Adds the menu items for the plugin.
         /// </summary> 
+        /// <param name="plugin">The plugin.</param>
+        /// <param name="menuStrip">The menu strip.</param>
         private static void AssignMenuItems(
             PluginProxy plugin,
             MenuStrip menuStrip)
@@ -79,6 +88,8 @@
         /// <summary> 
         /// Adds the toolbar buttons for the plugin.
         /// </summary> 
+        /// <param name="plugin">The plugin.</param>
+        /// <param name="toolStrip">The tool strip.</param>
         private static void AssignButtonItems(
             PluginProxy plugin,
             ToolStrip toolStrip)
@@ -95,6 +106,9 @@
         /// <summary> 
         /// Adds the toolbar buttons for the plugin.
         /// </summary> 
+        /// <param name="item">The menu item.</param>
+        /// <param name="toolStrip">The tool strip.</param>
+        /// <param name="plugin"> The plugin.</param>
         private static void AddToolItem(
             PluginMenuItem item,
             ToolStrip toolStrip,
@@ -130,6 +144,9 @@
         /// <summary> 
         /// Adds the menu item for the plugin.
         /// </summary> 
+        /// <param name="plugin">The plugin.</param>
+        /// <param name="item">The menu item.</param>
+        /// <param name="items">The tool strip.</param>
         private static void AddMenuItem(
             PluginProxy plugin,
             PluginMenuItem item,
@@ -164,6 +181,9 @@
         /// <summary> 
         /// Finds the menu item with the input name.
         /// </summary> 
+        /// <param name="menuStrip">The menu strip.</param>
+        /// <param name="name">The name to find.</param>
+        /// <returns>A menu item or null.</returns>
         private static ToolStripMenuItem FindParentMenu(
             MenuStrip menuStrip, 
             string name)
@@ -193,6 +213,9 @@
         /// <summary> 
         /// Find the index of position the new menu item should use.
         /// </summary> 
+        /// <param name="collection">The tool strip collection.</param>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns>The index the menu item should use.</returns>
         private static int FindIndex(
             ToolStripItemCollection collection,
             PluginProxy plugin)

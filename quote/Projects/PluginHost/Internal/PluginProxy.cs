@@ -17,9 +17,9 @@
         private readonly List<PluginMenuItem> pluginMenuItems = new List<PluginMenuItem>();
         
         /// <summary> 
-        /// Classes to init on startup.
+        /// Classes to setup on startup.
         /// </summary> 
-        private readonly List<IInit> plugins = new List<IInit>();
+        private readonly List<IInit> classesToInit = new List<IInit>();
         
         /// <summary> 
         /// The assemble.
@@ -27,20 +27,23 @@
         private readonly Assembly assembly;
 
         /// <summary> 
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="PluginProxy" /> class..
         /// </summary> 
+        /// <param name="pluginMenuItems">The menu items for the plugin.</param>
+        /// <param name="classesToInit">The classes to setup.</param>
+        /// <param name="assembly">The assembly of the plugin.</param>
         internal PluginProxy(
             List<PluginMenuItem> pluginMenuItems,
-            List<IInit> plugins,
+            List<IInit> classesToInit,
             Assembly assembly)
         {
             this.pluginMenuItems = pluginMenuItems;
-            this.plugins = plugins;
+            this.classesToInit = classesToInit;
             this.assembly = assembly;
         }
 
         /// <summary> 
-        /// The menu items.
+        /// Gets the menu items.
         /// </summary> 
         internal PluginMenuItem[] PluginMenuItems 
         {
@@ -48,15 +51,15 @@
         }
 
         /// <summary> 
-        /// Classes to init on startup.
+        /// Gets the classes to setup on startup.
         /// </summary> 
-        internal IInit[] Plugins
+        internal IInit[] ClassesToInit
         {
-            get { return this.plugins.ToArray(); }
+            get { return this.classesToInit.ToArray(); }
         }
 
         /// <summary> 
-        /// The assembly.
+        /// Gets the assembly of the plugin.
         /// </summary> 
         internal Assembly Assembly
         {
