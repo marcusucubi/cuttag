@@ -6,7 +6,7 @@ namespace Model.Quote
     public class Header : Common.Header
     {
         public Header() 
-            : this(0, string.Empty, string.Empty, string.Empty, System.DateTime.Now, System.DateTime.Now)
+            : this(0, string.Empty, string.Empty, string.Empty, System.DateTime.Now, System.DateTime.Now, 0)
         {
         }
 
@@ -16,10 +16,12 @@ namespace Model.Quote
             string partNumber, 
             string initials, 
             DateTime createdDate, 
-            DateTime lastModifiedDate)
+            DateTime lastModifiedDate,
+            int templateId)
             : base(true)
         {
-            Quote.PrimaryProperties p = new Quote.PrimaryProperties(id, requestForQuoteNumber, partNumber, initials, createdDate, lastModifiedDate);
+            Quote.PrimaryProperties p = new Quote.PrimaryProperties(
+                id, requestForQuoteNumber, partNumber, initials, createdDate, lastModifiedDate, templateId);
             this.SetPrimaryProperties(p);
             this.SetComputationProperties(new Common.ComputationProperties());
             this.SetOtherProperties(new Common.OtherProperties());

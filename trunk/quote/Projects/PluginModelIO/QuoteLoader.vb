@@ -39,7 +39,7 @@ Public Class QuoteLoader
                 templateID = row.TemplateID
             End If
             q = New Header(row.id, rfq, part, _
-                row.Initials, row.CreatedDate, row.LastModifedDate)
+                row.Initials, row.CreatedDate, row.LastModifedDate, templateID)
             
             Dim Initials As String = ""
             If Not row.IsInitialsNull Then
