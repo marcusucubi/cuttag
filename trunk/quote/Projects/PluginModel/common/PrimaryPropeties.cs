@@ -16,8 +16,8 @@ namespace Model.Common
         
         public PrimaryProperties()
         {
-            commonCreatedDate = DateTime.Now;
-            commonLastModified = DateTime.Now;
+            this.commonCreatedDate = DateTime.Now;
+            this.commonLastModified = DateTime.Now;
         }
         
         [Browsable(false)]
@@ -32,15 +32,15 @@ namespace Model.Common
         [Browsable(false)]
         public DateTime CommonCreatedDate 
         {
-            get { return commonCreatedDate; }
-            set { commonCreatedDate=value; }
+            get { return this.commonCreatedDate; }
+            set { this.commonCreatedDate = value; }
         }
 
         [Browsable(false)]
         public DateTime CommonLastModified 
         { 
-            get { return commonLastModified; }
-            set { commonLastModified=value; }
+            get { return this.commonLastModified; }
+            set { this.commonLastModified = value; }
         }
 
         [Browsable(false)]
