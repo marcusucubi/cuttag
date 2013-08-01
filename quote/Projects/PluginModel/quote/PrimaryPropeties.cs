@@ -26,7 +26,8 @@ namespace Model.Quote
             string partNumber, 
             string initials, 
             DateTime createdDate, 
-            DateTime lastModified)
+            DateTime lastModified,
+            int templateId)
         {
             this.SetId(id);
             this.requestForQuoteNumber = requestForQuoteNumber;
@@ -34,6 +35,7 @@ namespace Model.Quote
             this.initials = initials;
             this.createdDate = createdDate;
             this.lastModified = lastModified;
+            this.templateID = templateId;
         }
 
         [CategoryAttribute(Spaces.SortedSpaces1 + "Date"), DisplayName("CreatedDate"), DescriptionAttribute("Created Date")]
