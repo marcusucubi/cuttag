@@ -1,4 +1,10 @@
-﻿namespace Host.Internal
+﻿// <summary>
+// Contains the Loader class.
+// </summary>
+// <copyright file="Loader.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host.Internal
 {
     using System;
     using System.Collections.Generic;

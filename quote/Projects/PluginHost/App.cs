@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the App class.
+// </summary>
+// <copyright file="App.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
     using System.Collections.Generic;

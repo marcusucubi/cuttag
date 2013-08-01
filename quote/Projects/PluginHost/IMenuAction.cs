@@ -1,4 +1,10 @@
-﻿namespace Host
+﻿// <summary>
+// Contains the IMenuAction interface.
+// </summary>
+// <copyright file="IMenuAction.cs" company="Davis Computer Services">
+//  No copyright information.
+// </copyright>
+namespace Host
 {
     using System;
     using NDepend.Attributes;
