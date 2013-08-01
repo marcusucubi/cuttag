@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PluginModel</name>
+    </assembly>
+    <members>
+        <member name="T:Model.Common.GlobalOptions">
+            <summary>
+            Holds the data displayed in the options form.
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Model.Product">
+            <summary>
+            Represent a product
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Model.Template.Customer">
+            <summary>
+            Represents the customer
+            </summary>
+            <remarks></remarks>
+        </member>
+    </members>
+</doc>
