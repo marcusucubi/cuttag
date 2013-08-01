@@ -48,7 +48,7 @@ Public Class frmDocumentA
             Me._PrimaryProperties = _Header.PrimaryProperties
         End If
         _DetailCollection = _Header.Details
-        Me._ActiveDetail = ActiveDetail.ActiveDetail
+        Me._ActiveDetail = ActiveDetail.Instance
         UpdateText()
     End Sub
 
@@ -106,13 +106,13 @@ Public Class frmDocumentA
     End Sub
 
     Private Sub Me_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Activated
-        ActiveHeader.ActiveHeader.Header = Me._Header
+        ActiveHeader.Instance.Header = Me._Header
         EnableButtons()
     End Sub
 
     Private Sub Me_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Deactivate
-        ActiveHeader.ActiveHeader.Header = Nothing
-        ActiveDetail.ActiveDetail.Detail = Nothing
+        ActiveHeader.Instance.Header = Nothing
+        ActiveDetail.Instance.Detail = Nothing
         EnableButtons()
     End Sub
 
@@ -131,7 +131,7 @@ Public Class frmDocumentA
     End Sub
 
     Private Sub frmQuoteA_MdiChildActivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MdiChildActivate
-        ActiveHeader.ActiveHeader.Header = Me._Header
+        ActiveHeader.Instance.Header = Me._Header
     End Sub
 
     Private Sub _Header_SavableChange(ByVal subject As SavableProperties, _
@@ -146,8 +146,8 @@ Public Class frmDocumentA
 
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
         Dim details As DetailCollection(Of Model.Common.Detail)
-        details = ActiveHeader.ActiveHeader.Header.Details
-        details.Remove(ActiveDetail.ActiveDetail.Detail)
+        details = ActiveHeader.Instance.Header.Details
+        details.Remove(ActiveDetail.Instance.Detail)
     End Sub
 
     Private Sub _ActiveDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveDetail.PropertyChanged
@@ -170,7 +170,7 @@ Public Class frmDocumentA
     End Sub
 
     Private Sub EnableButtons()
-        If ActiveDetail.ActiveDetail.Detail Is Nothing Then
+        If ActiveDetail.Instance.Detail Is Nothing Then
             Me.btnDelete.Enabled = False
         Else
             Me.btnDelete.Enabled = True
@@ -182,8 +182,8 @@ Public Class frmDocumentA
     End Sub
     Public Sub DeleteItem()
         Dim details As DetailCollection(Of Model.Common.Detail)
-        details = ActiveHeader.ActiveHeader.Header.Details
-        details.Remove(ActiveDetail.ActiveDetail.Detail)
+        details = ActiveHeader.Instance.Header.Details
+        details.Remove(ActiveDetail.Instance.Detail)
 
     End Sub
     Public Sub AddItem()

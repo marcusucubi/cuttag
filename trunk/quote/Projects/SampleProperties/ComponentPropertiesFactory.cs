@@ -8,7 +8,7 @@ namespace SampleProperties
     [Register(Key = typeof(Model.Template.Ext.IComponentPropertiesFactory))]
     public class ComponentPropertiesFactory : Model.Template.Ext.IComponentPropertiesFactory
     {
-        public SavableProperties CreateComponentProperties(Model.Template.Detail detail)
+        public Model.Common.ComponentProperties CreateComponentProperties(Model.Template.Detail detail)
         {
             return new SampleComponentProperties(detail);
         }

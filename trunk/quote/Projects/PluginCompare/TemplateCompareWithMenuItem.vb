@@ -23,7 +23,7 @@ Public Class TemplateCompareWithMenuItem
 
     Public Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
 
-        m_Watch = Model.ActiveHeader.ActiveHeader
+        m_Watch = Model.ActiveHeader.Instance
         m_Menu = menu
         menu.Enabled = False
         menu.Image = My.Resources.Scales
@@ -45,7 +45,7 @@ Public Class TemplateCompareWithMenuItem
 
     Private Sub m_Watch_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles m_Watch.PropertyChanged
 
-        If (TypeOf ActiveHeader.ActiveHeader.Header Is Model.Template.Header) Then
+        If (TypeOf ActiveHeader.Instance.Header Is Model.Template.Header) Then
             m_Menu.Enabled = True
         Else
             m_Menu.Enabled = False
@@ -70,7 +70,7 @@ Public Class TemplateCompareWithMenuItem
 
             Dim doc As frmDocumentA = d
 
-            If Model.ActiveHeader.ActiveHeader.Header Is doc.QuoteHeader Then
+            If Model.ActiveHeader.Instance.Header Is doc.QuoteHeader Then
                 Continue For
             End If
 
@@ -89,7 +89,7 @@ Public Class TemplateCompareWithMenuItem
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
         Dim frmCompare As frmCompare
-        frmCompare = New frmCompare(Model.ActiveHeader.ActiveHeader.Header, menu.Header)
+        frmCompare = New frmCompare(Model.ActiveHeader.Instance.Header, menu.Header)
         frmCompare.MdiParent = Host.App.MainForm
         frmCompare.Show(Host.App.DockPanel)
 

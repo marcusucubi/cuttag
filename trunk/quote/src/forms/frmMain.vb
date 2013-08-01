@@ -16,7 +16,7 @@ Public Class frmMain
         InitializeComponent()
 
         frmMain = Me
-        Me._ActiveHeader = ActiveHeader.ActiveHeader
+        Me._ActiveHeader = ActiveHeader.Instance
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
@@ -35,7 +35,7 @@ Public Class frmMain
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveHeader.PropertyChanged
         EnableButtons()
-        Me._SaveableProperties = ActiveHeader.ActiveHeader.Header
+        Me._SaveableProperties = ActiveHeader.Instance.Header
     End Sub
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         CreateNewTemplate()

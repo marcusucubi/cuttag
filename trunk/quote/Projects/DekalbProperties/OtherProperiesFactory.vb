@@ -7,7 +7,7 @@ Public Class OtherProperiesFactory
 
     Public Function CreateOtherProperties(header As Model.Template.Header, _
                                           id As Integer) As  _
-                                      Model.Common.SavableProperties _
+                                      Model.Common.OtherProperties _
                                       Implements IOtherPropertiesFactory.CreateOtherProperties
         Return New DekalbOtherProperties(header)
     End Function

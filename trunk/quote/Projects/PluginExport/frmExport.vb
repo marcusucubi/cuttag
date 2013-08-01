@@ -37,7 +37,7 @@ Public Class frmExport
     Private Sub Export()
         Dim export As New Export
         Dim file As String = _FilePath & "\" & Me.ComboBox1.Text
-        export.Export(Model.ActiveHeader.ActiveHeader.Header, file)
+        export.Export(Model.ActiveHeader.Instance.Header, file)
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click

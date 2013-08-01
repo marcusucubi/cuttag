@@ -10,7 +10,7 @@ Public Class frmNoteProperties
     Private WithEvents _Notes As Model.Common.NoteProperties
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveHeader.ActiveHeader
+        _ActiveQuote = ActiveHeader.Instance
         If (_ActiveQuote.Header IsNot Nothing) Then
             _Notes = _ActiveQuote.Header.NoteProperties
         End If
@@ -25,7 +25,7 @@ Public Class frmNoteProperties
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveHeader.ActiveHeader
+        _ActiveQuote = ActiveHeader.Instance
         If (_ActiveQuote.Header IsNot Nothing) Then
             _Notes = _ActiveQuote.Header.NoteProperties
         Else

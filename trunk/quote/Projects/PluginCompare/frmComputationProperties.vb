@@ -23,16 +23,16 @@ Public Class frmComputationProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveHeader.ActiveHeader
+        _ActiveQuote = ActiveHeader.Instance
         UpdateProperties()
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
+        If ActiveHeader.Instance.Header IsNot Nothing Then
             Me.PropertyGrid1.SelectedObject = _
-                ActiveHeader.ActiveHeader.Header.ComputationProperties
+                ActiveHeader.Instance.Header.ComputationProperties
             _Properties = _
-                ActiveHeader.ActiveHeader.Header.ComputationProperties
+                ActiveHeader.Instance.Header.ComputationProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
             'dd_Added 11/23/11
@@ -41,7 +41,7 @@ Public Class frmComputationProperties
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveHeader.ActiveHeader
+        _ActiveQuote = ActiveHeader.Instance
         UpdateProperties()
     End Sub
 

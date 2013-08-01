@@ -24,7 +24,7 @@ Public Class ExportQuoteMenuItem
 
     Public Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
 
-        m_Watch = Model.ActiveHeader.ActiveHeader
+        m_Watch = Model.ActiveHeader.Instance
         m_ToolStripItem = menu
         menu.Enabled = False
 
@@ -39,7 +39,7 @@ Public Class ExportQuoteMenuItem
 
     Private Sub m_Watch_PropertyChanged(sender As Object, e As System.ComponentModel.PropertyChangedEventArgs) Handles m_Watch.PropertyChanged
 
-        If (TypeOf ActiveHeader.ActiveHeader.Header Is Model.Quote.Header) Then
+        If (TypeOf ActiveHeader.Instance.Header Is Model.Quote.Header) Then
             m_ToolStripItem.Enabled = True
             m_Button.Enabled = True
         Else

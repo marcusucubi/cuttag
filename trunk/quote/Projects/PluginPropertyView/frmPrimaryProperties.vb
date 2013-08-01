@@ -20,15 +20,15 @@ Public Class frmPrimaryProperties
     End Sub
 
     Private Sub _Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _ActiveQuote = ActiveHeader.ActiveHeader
+        _ActiveQuote = ActiveHeader.Instance
         UpdateProperties()
         UpdateButton()
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveHeader.ActiveHeader.Header IsNot Nothing Then
-            Me.PropertyGrid1.SelectedObject = ActiveHeader.ActiveHeader.Header.PrimaryProperties
-            _Properties = ActiveHeader.ActiveHeader.Header.PrimaryProperties
+        If ActiveHeader.Instance.Header IsNot Nothing Then
+            Me.PropertyGrid1.SelectedObject = ActiveHeader.Instance.Header.PrimaryProperties
+            _Properties = ActiveHeader.Instance.Header.PrimaryProperties
         Else
             Me.PropertyGrid1.SelectedObject = Nothing
             _Properties = Nothing
@@ -36,7 +36,7 @@ Public Class frmPrimaryProperties
     End Sub
 
     Private Sub _ActiveQuote_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _ActiveQuote.PropertyChanged
-        _ActiveQuote = ActiveHeader.ActiveHeader
+        _ActiveQuote = ActiveHeader.Instance
         UpdateProperties()
     End Sub
 

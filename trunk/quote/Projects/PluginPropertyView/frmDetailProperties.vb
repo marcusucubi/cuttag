@@ -13,7 +13,7 @@ Public Class frmDetailProperties
     Private Sub _ActiveQuoteDetail_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _Active.PropertyChanged
 
         Dim detail As Detail
-        detail = ActiveDetail.ActiveDetail.Detail
+        detail = ActiveDetail.Instance.Detail
         If detail IsNot Nothing Then
             Dim o = detail.QuoteDetailProperties
             If TypeOf o Is Template.WireProperties Then
@@ -38,7 +38,7 @@ Public Class frmDetailProperties
     End Sub
 
     Private Sub _frmForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        _Active = ActiveDetail.ActiveDetail
+        _Active = ActiveDetail.Instance
         UpdateProperties()
     End Sub
 
@@ -51,9 +51,9 @@ Public Class frmDetailProperties
     End Sub
 
     Private Sub UpdateProperties()
-        If ActiveDetail.ActiveDetail.Detail IsNot Nothing Then
+        If ActiveDetail.Instance.Detail IsNot Nothing Then
 
-            Dim o = ActiveDetail.ActiveDetail.Detail.QuoteDetailProperties
+            Dim o = ActiveDetail.Instance.Detail.QuoteDetailProperties
             If TypeOf o Is WireProperties Then
                 _WireProperties = o
                 _ComponentProperties = Nothing

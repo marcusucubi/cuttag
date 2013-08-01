@@ -47,7 +47,7 @@ Public Class ObjectWrapper
 
     Public Function GetProperties(ByVal attributes As Attribute()) As PropertyDescriptorCollection Implements ICustomTypeDescriptor.GetProperties
 
-        If TypeOf Model.ActiveHeader.ActiveHeader.Header Is Model.Quote.Header Then
+        If TypeOf Model.ActiveHeader.Instance.Header Is Model.Quote.Header Then
             Return TypeDescriptor.GetProperties(m_Target, attributes, True)
         End If
 

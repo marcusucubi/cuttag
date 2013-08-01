@@ -38,7 +38,7 @@ Public Class QuoteLoader
             If Not row.IsTemplateIDNull Then
                 templateID = row.TemplateID
             End If
-            q = New Header(row.id, rfq, part, templateID, _
+            q = New Header(row.id, rfq, part, _
                 row.Initials, row.CreatedDate, row.LastModifedDate)
             
             Dim Initials As String = ""
@@ -68,9 +68,6 @@ Public Class QuoteLoader
             Dim o2 = LoadProperties(id, _
               CommonSaver.OTHER_PROPERTIES_ID, q.OtherProperties)
             q.SetPublicOtherProperties(o2)
-            Dim o3 = LoadProperties(id, _
-              CommonSaver.CUSTOM_PROPERTIES_ID, q.CustomProperties)
-            q.SetPublicCustomProperties(o3)
             Dim o4 = LoadProperties(id, _
                 CommonSaver.NOTE_PROPERTIES_ID, q.NoteProperties)
             q.SetPublicNoteProperties(o4)
