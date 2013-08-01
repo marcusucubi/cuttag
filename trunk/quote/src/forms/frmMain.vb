@@ -37,54 +37,71 @@ Public Class frmMain
         EnableButtons()
         Me._SaveableProperties = ActiveHeader.Instance.Header
     End Sub
+    
     Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
         CreateNewTemplate()
     End Sub
+    
     Private Sub menuNewQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles menuNewQuote.Click
         CreateNewTemplate()
     End Sub
+    
     Private Sub NewQuoteMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteMenuItem.Click
         CreateNewQuote()
     End Sub
+    
     Private Sub NewQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewQuoteButton.Click
         CreateNewQuote()
     End Sub
+    
     Private Sub SaveToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripMenuItem.Click
         SaveTemplate()
     End Sub
+    
     Private Sub Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolButton.Click
         SaveTemplate()
     End Sub
+    
     Private Sub CopyToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CopyToolStripMenuItem.Click
         CopyTemplate()
     End Sub
+    
     Private Sub LoadToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadToolStripMenuItem.Click
         LoadTemplate()
     End Sub
+    
     Private Sub LoadButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadButton.Click
         LoadTemplate()
     End Sub
+    
     Private Sub LoadQuote_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteItem1.Click
         LoadQuote()
     End Sub
+    
     Private Sub LoadQuoteButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoadQuoteButton.Click
         LoadQuote()
     End Sub
+    
     Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SavableProperties, ByVal e As System.EventArgs) Handles _SaveableProperties.SavableChange
         EnableButtons()
     End Sub
+    
     Private Sub SearchToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchToolStripMenuItem.Click
         frmQuoteSearch.ShowDialog(Me)
     End Sub
+    
     Private Sub SearchTemplateMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SearchTemplateMenuItem1.Click
         frmTemplateSearch.ShowDialog(Me)
     End Sub
+    
     Private Sub ToolSearchTemplates_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchTemplates.Click
         frmTemplateSearch.ShowDialog(Me)
     End Sub
+    
     Private Sub ToolSearchQuotes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolSearchQuotes.Click
         frmQuoteSearch.ShowDialog(Me)
     End Sub
+    
     Private Sub ToolStripTemplate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripTemplate.Click
         Me.Cursor = Cursors.WaitCursor
         My.Application.DoEvents()
@@ -94,6 +111,7 @@ Public Class frmMain
         End If
         Me.Cursor = Cursors.Default
     End Sub
+    
     Private Function CanCreateQuote() As Boolean
         Dim result As Boolean
         If Me._ActiveHeader.Header IsNot Nothing Then
@@ -107,6 +125,7 @@ Public Class frmMain
         End If
         Return result
     End Function
+    
     Private Sub CreateNewQuote()
 
         Dim frm As New frmNewQuote
