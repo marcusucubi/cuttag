@@ -9,10 +9,11 @@
     public sealed class RegisterAttribute : Attribute
     {
         /// <summary> 
-        /// The type for which the class is keyed.
+        /// Gets or sets the type for which the class is keyed.
         /// </summary> 
+        /// <value>The type for which the class is keyed.</value>
         /// <remarks>
-        /// Custom properties are registered with IComputationPropertiesFactory
+        /// Custom properties are registered with IComputationPropertiesFactory.
         /// </remarks>
         public Type Key
         {

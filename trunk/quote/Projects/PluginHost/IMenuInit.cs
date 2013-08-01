@@ -9,13 +9,15 @@
     public interface IMenuInit
     {
         /// <summary> 
-        /// Provide custom setup of the menu.
+        /// Provides custom setup of the menu.
         /// </summary> 
+        /// <param name="menu" >The menu to setup.</param>
         void InitMenu(ToolStripItem menu);
 
         /// <summary> 
-        /// Provide custom setup of the tool button.
+        /// Provides custom setup of the tool button.
         /// </summary> 
+        /// <param name="button" >The button to setup.</param>
         void InitButton(ToolStripButton button);
     }
 }

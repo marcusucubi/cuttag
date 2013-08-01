@@ -10,8 +10,9 @@
     public sealed class MenuItemAttribute : Attribute
     {
         /// <summary> 
-        /// The menu item's text.
+        /// Gets or sets the menu item's text.
         /// </summary> 
+        /// <value>The menu item's text.</value>
         public string Text
         {
             get;
@@ -19,8 +20,9 @@
         }
 
         /// <summary> 
-        /// Name of the parent menu item. exmaple: View
+        /// Gets or sets the name of the parent menu item. For example: View.
         /// </summary> 
+        /// <value>The name of the parent menu item.</value>
         public string Parent
         {
             get;
@@ -28,8 +30,9 @@
         }
 
         /// <summary> 
-        /// If true, adds the item to the tool bar also.
+        /// Gets or sets a value indicating whether the item is added to the tool bar.
         /// </summary> 
+        /// <value>The item is added to the tool bar.</value>
         public bool ShowInToolBar
         {
             get;

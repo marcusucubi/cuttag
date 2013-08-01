@@ -42,13 +42,14 @@
         private static ToolTip statusStripToolTip;
         
         /// <summary> 
-        /// Classes with the RegisterAtribute.
+        /// Classes with the RegisterAttribute.
         /// </summary> 
         private static Dictionary<Type, Type> registeredClasses = new Dictionary<Type, Type>();
 
         /// <summary> 
-        /// Classes with the RegisterAtribute.
+        /// Gets classes with the RegisterAttribute.
         /// </summary> 
+        /// <value>Classes with the RegisterAttribute.</value>
         [CannotDecreaseVisibility]
         public static Dictionary<Type, Type> RegisteredClasses
         {
@@ -56,17 +57,19 @@
         }
 
         /// <summary> 
-        /// The menu of the main form.
+        /// Gets the menu of the main form.
         /// </summary> 
+        /// <value>Menu of the main form.</value>
         [CannotDecreaseVisibility]
         public static MenuStrip Menu
         {
             get { return menu; }
         }
 
-        /// <summary> 
-        /// The only dock panel.
-        /// </summary> 
+        /// <summary>
+        /// Gets the dock panel in the main form.
+        /// </summary>
+        /// <value>The dock panel in the main form.</value>
         [CannotDecreaseVisibility]
         public static DockPanel DockPanel
         {
@@ -74,8 +77,9 @@
         }
 
         /// <summary> 
-        /// The main form.
+        /// Gets the main form.
         /// </summary> 
+        /// <value>The main form.</value>
         [CannotDecreaseVisibility]
         public static Form MainForm
         {
@@ -83,8 +87,9 @@
         }
 
         /// <summary> 
-        /// The status strip displayed an the bottom of the main form.
+        /// Gets the status strip displayed an the bottom of the main form.
         /// </summary> 
+        /// <value>The status strip displayed an the bottom of the main form.</value>
         [CannotDecreaseVisibility]
         public static FlowLayoutPanel StatusStripPanel
         {
@@ -92,8 +97,9 @@
         }
 
         /// <summary> 
-        /// Tool tip control of the status strip.
+        /// Gets the tool tip control of the status strip.
         /// </summary> 
+        /// <value>The tool tip control of the status strip.</value>
         [CannotDecreaseVisibility]
         public static ToolTip StatusStripToolTip
         {
@@ -103,6 +109,12 @@
         /// <summary> 
         /// Called from the main form's OnLoad.
         /// </summary> 
+        /// <param name="mainForm">The main form.</param>
+        /// <param name="dockPanel">The dock panel.</param>
+        /// <param name="menu">The main menu.</param>
+        /// <param name="toolStrip">The tool button control.</param>
+        /// <param name="statusStripPanel">The status strip panel.</param>
+        /// <param name="statusStripToolTip">The status strip tool tip control.</param>
         [CannotDecreaseVisibility]
         public static void Init(
             Form mainForm, 
