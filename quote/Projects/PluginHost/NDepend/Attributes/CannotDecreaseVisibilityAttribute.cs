@@ -2,9 +2,9 @@
 {
     using System;
 
-    /**
-     * Used with NDepend code analysis tool
-     */
+    /// <summary> 
+    /// Used with NDepend code analysis tool.
+    /// </summary> 
     internal sealed class CannotDecreaseVisibilityAttribute : Attribute
     {
     }

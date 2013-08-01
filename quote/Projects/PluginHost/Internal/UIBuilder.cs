@@ -6,8 +6,14 @@
     using System.Reflection;
     using System.Windows.Forms;
 
+    /// <summary> 
+    /// Creates the menu for the plugin.
+    /// </summary> 
     internal static class UIBuilder
     {
+        /// <summary> 
+        /// Adds menu items for the input plugins.
+        /// </summary> 
         internal static void BuildUI(
             PluginCollection collection,
             MenuStrip menu,
@@ -19,6 +25,9 @@
             }
         }
 
+        /// <summary> 
+        /// Adds menu items for the input plugin.
+        /// </summary> 
         private static void BuildUI(
             PluginProxy plugin,
             MenuStrip menu,
@@ -29,6 +38,9 @@
             AssignButtonItems(plugin, toolStrip);
         }
 
+        /// <summary> 
+        /// Calls init.
+        /// </summary> 
         private static void DoInit(PluginProxy plugin)
         {
             foreach (IInit init in plugin.Plugins)
@@ -37,6 +49,9 @@
             }
         }
 
+        /// <summary> 
+        /// Adds the menu items for the plugin.
+        /// </summary> 
         private static void AssignMenuItems(
             PluginProxy plugin,
             MenuStrip menuStrip)
@@ -61,6 +76,9 @@
             }
         }
 
+        /// <summary> 
+        /// Adds the toolbar buttons for the plugin.
+        /// </summary> 
         private static void AssignButtonItems(
             PluginProxy plugin,
             ToolStrip toolStrip)
@@ -74,6 +92,9 @@
             }
         }
 
+        /// <summary> 
+        /// Adds the toolbar buttons for the plugin.
+        /// </summary> 
         private static void AddToolItem(
             PluginMenuItem item,
             ToolStrip toolStrip,
@@ -106,6 +127,9 @@
             toolStrip.Items.Insert(index, i1);
         }
 
+        /// <summary> 
+        /// Adds the menu item for the plugin.
+        /// </summary> 
         private static void AddMenuItem(
             PluginProxy plugin,
             PluginMenuItem item,
@@ -137,6 +161,9 @@
             items.Insert(index, i1);
         }
 
+        /// <summary> 
+        /// Finds the menu item with the input name.
+        /// </summary> 
         private static ToolStripMenuItem FindParentMenu(
             MenuStrip menuStrip, 
             string name)
@@ -163,6 +190,9 @@
             return menuItem;
         }
 
+        /// <summary> 
+        /// Find the index of position the new menu item should use.
+        /// </summary> 
         private static int FindIndex(
             ToolStripItemCollection collection,
             PluginProxy plugin)
