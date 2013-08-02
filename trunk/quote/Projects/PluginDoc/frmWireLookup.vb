@@ -31,10 +31,9 @@ Public Class frmWireLookup
             gage = gageRow.Gage
         End If
         
-        Dim data As ProductBuildData = ProductDB.Load( _
+        Product = ProductDB.Load( _
             num, cost, gage, True, _
             row, Nothing, "", 0)
-        Product = New Model.Product(Data)
         
     End Sub
 

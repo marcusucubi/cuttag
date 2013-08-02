@@ -33,30 +33,6 @@ namespace Model
 
         private string unitOfMeasure;
         
-        public Product(
-            string code, 
-            string gage, 
-            decimal unitCost, 
-            decimal machineTime, 
-            bool wire, 
-            string description, 
-            int leadTime, 
-            string vendor, 
-            decimal minimumQty, 
-            decimal minimumDollar)
-        {
-            this.code = code;
-            this.gage = gage;
-            this.unitCost = unitCost;
-            this.machineTime = machineTime;
-            this.wire = wire;
-            this.description = description;
-            this.leadTime = leadTime;
-            this.vendor = vendor;
-            this.minimumQty = minimumQty;
-            this.minimumDollar = minimumDollar;
-        }
-
         public Product()
         {
             this.code = string.Empty;
@@ -77,92 +53,6 @@ namespace Model
             this.minimumQty = data.MinimumQty;
             this.minimumDollar = data.MinimumDollar;
             this.unitOfMeasure = data.UnitOfMeasure;
-        }
-
-        public Product(Guid sourceId, bool wire, DB.QuoteDataBase partLookupDataSource)
-        {
-            string gage = string.Empty;
-            decimal cost = 0;
-            string unitOfMeasure = string.Empty;
-            DB.QuoteDataBase._UnitOfMeasureRow unitOfMeasureRow = null;
-            
-            if (wire) 
-            {
-                DB.QuoteDataBase.WireSourceRow source = partLookupDataSource.WireSource.FindByWireSourceID(sourceId);
-                var with1 = source;
-                this.code = with1.PartNumber;
-                this.description = with1.Description;
-                unitOfMeasure = "Decimeter";
-                
-                DB.QuoteDataBase.GageRow gageRow = null;
-                gageRow = partLookupDataSource.Gage.FindByOrganizationIDGageID(10, with1.GageID);
-                
-                if (gage != null)
-                {
-                    gage = gageRow.Gage;
-                }
-                
-                if (!source.IsQuotePriceNull()) 
-                {
-                    cost = with1.QuotePrice;
-                }
-                
-                // dd_ToDo 12/31/11 change sp GetWirePoundsPer1000Ft to return how wt 
-                // computed and present to as wireproperty
-                DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter weight = new DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter();
-                string message = string.Empty;
-                
-                this.copperWeightPer1000Feet = (decimal)weight.GetWirePoundsPer1000Ft(with1.WireSourceID, ref message);
-            } 
-            else 
-            {
-                DB.QuoteDataBase.WireComponentSourceRow source = partLookupDataSource.WireComponentSource.FindByWireComponentSourceID(sourceId);
-                var with2 = source;
-                this.code = with2.PartNumber;
-                this.description = with2.Description;
-                unitOfMeasureRow = partLookupDataSource._UnitOfMeasure.FindByID(source.UnitOfMeasureID);
-                
-                if (unitOfMeasureRow != null)
-                {
-                    unitOfMeasure = unitOfMeasureRow.Name;
-                }
-                
-                if (!source.IsQuotePriceNull()) 
-                {
-                    cost = with2.QuotePrice;
-                }
-                
-                gage = string.Empty;
-                if (!with2.IsMachineTimeNull()) 
-                {
-                    this.machineTime = with2.MachineTime;
-                }
-                
-                if (!with2.IsLeadTimeNull()) 
-                {
-                    this.leadTime = with2.LeadTime;
-                }
-                
-                if (!with2.IsVendorNull()) 
-                {
-                    this.vendor = with2.Vendor;
-                }
-                
-                if (!with2.IsMinimumQtyNull()) 
-                {
-                    this.minimumQty = with2.MinimumQty;
-                }
-                
-                if (!with2.IsMinimumDollarNull()) 
-                {
-                    this.minimumDollar = with2.MinimumDollar;
-                }
-            }
-            
-            this.gage = gage;
-            this.unitCost = cost;
-            this.wire = wire;
-            this.unitOfMeasure = unitOfMeasure;
         }
 
         public string Code 

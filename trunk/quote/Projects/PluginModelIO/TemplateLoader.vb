@@ -110,18 +110,15 @@ Public Class TemplateLoader
 
             Dim temp As New TempObj
             CommonLoader.LoadProperties(id, row.id, temp)
-
-            Dim product As New Model.Product( _
-              row.ProductCode, _
-              temp.Gage, _
-              0, _
-              0, _
-              row.IsWire, _
-              "", _
-              0,
-              "", _
-              0, _
-              0)
+            
+            Dim data As New ProductBuildData 
+            data.Code = row.ProductCode
+            data.Gage = temp.Gage
+            data.IsWire = row.IsWire
+            data.Vendor = ""
+            data.Description = ""
+            Dim product As New Model.Product(data)
+            
             Dim detail As Model.Common.Detail = q.NewDetail(product)
             detail.Qty = row.Qty
             With detail
