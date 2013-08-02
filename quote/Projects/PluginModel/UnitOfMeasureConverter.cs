@@ -9,7 +9,7 @@ namespace Model
     {
         public override TypeConverter.StandardValuesCollection GetStandardValues(System.ComponentModel.ITypeDescriptorContext context)
         {
-            List<string> l = UnitOfMeasure.Collection.ToList();
+            List<string> l = UnitOfMeasureList.Collection.ToList();
 
             l.Sort();
 

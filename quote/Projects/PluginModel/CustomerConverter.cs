@@ -9,27 +9,6 @@ namespace Model
 
     public class CustomerConverter : ExpandableObjectConverter
     {
-        private ArrayList values;
-        
-        public CustomerConverter()
-        {
-            DB.QuoteDataBaseTableAdapters.CustomerTableAdapter adaptor = new DB.QuoteDataBaseTableAdapters.CustomerTableAdapter();
-            DB.QuoteDataBase.CustomerDataTable table = null;
-            table = adaptor.GetData();
-            this.values = new ArrayList();
-            
-            foreach (DB.QuoteDataBase.CustomerRow row in table.Rows) 
-            {
-                if (row.CustomerID > 0) 
-                {
-                    Customer c = new Customer();
-                    c.SetId(row.CustomerID);
-                    c.SetName(row.CustomerName.Trim());
-                    this.values.Add(c);
-                }
-            }
-        }
-
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
             return true;
@@ -42,7 +21,8 @@ namespace Model
 
         public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            StandardValuesCollection svc = new StandardValuesCollection(this.values);
+            StandardValuesCollection svc = 
+                new StandardValuesCollection(CustomerList.Collection);
             return svc;
         }
 

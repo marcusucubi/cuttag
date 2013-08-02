@@ -9,6 +9,7 @@ namespace Model
         {
             Model.ShippingDB.Initialize();
             Model.UnitOfMeasureDB.Initialize();
+            Model.CustomerDB.Initialize();
         }
     }
 }
