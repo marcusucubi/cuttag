@@ -170,46 +170,16 @@ Public Class WireAndComponentView
                 Dim oDetail As Model.Template.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, Model.Template.Detail)
                 oDetail.IsWire = drLookup.IsWire
                 oDetail.SourceID = drLookup.SourceID
-                Dim pProduct As New Model.Product(gSourceID, drLookup.IsWire, _PartLookupDataSource)
-                '-----------Moved to Product to share code with QuoteImport 5/26/2012------------
-                'Dim pProduct As Model.Product
-                'Dim dCost As Decimal
-                'Dim sUOM As String = ""
-                'Dim drUOM As QuoteDataBase._UnitOfMeasureRow
-                'If drLookup.IsWire Then
-                '    Dim drSource As QuoteDataBase.WireSourceRow = _PartLookupDataSource.WireSource.FindByWireSourceID(gSourceID)
-                '    'dd_Added 12/30/11
-                '    Dim qWeight As New QuoteDataBaseTableAdapters.WireSourceTableAdapter
-                '    Dim sMessage As String = "" 'dd_ToDo 12/31/11 change sp GetWirePoundsPer1000Ft to return how wt computed and present to as wireproperty
-                '    Dim dCopperWeightPer1000Ft As Decimal = qWeight.GetWirePoundsPer1000Ft(drSource.WireSourceID, sMessage)
-                '    'dd_Added End
-                '    Dim sGage As String = ""
-                '    Dim drGage As QuoteDataBase.GageRow
-                '    drGage = _PartLookupDataSource.Gage.FindByOrganizationIDGageID(10, drSource.GageID) 'ddFix organizationid
-                '    If drGage IsNot Nothing Then sGage = drGage.Gage
-                '    dCost = 0
-                '    If Not drSource.IsQuotePriceNull Then
-                '        dCost = drSource.QuotePrice
-                '    End If
-                '    sUOM = "Decimeter" 'dd_ToDo 12/31/11 implement and handle wiresource.unitofmeasureid
-                '    pProduct = New DCS.Quote.Model.Product( _
-                '    sPartNumber, dCost, sGage, True, _
-                '    drSource, Nothing, sUOM, dCopperWeightPer1000Ft) 'dd_Added Wt 12/30/11
-
-                'Else
-                '    Dim drSource As QuoteDataBase.WireComponentSourceRow = _PartLookupDataSource.WireComponentSource.FindByWireComponentSourceID(gSourceID)
-                '    drUOM = _PartLookupDataSource._UnitOfMeasure.FindByID(drSource.UnitOfMeasureID)
-                '    If drUOM IsNot Nothing Then sUOM = drUOM.Name
-                '    dCost = drSource.QuotePrice
-                '    pProduct = New DCS.Quote.Model.Product( _
-                '     sPartNumber, dCost, "", False, _
-                '     Nothing, drSource, sUOM)
-                'End If
+                
+                Dim pProduct As Model.Product = _
+                    ProductDB.Load(gSourceID, drLookup.IsWire, _PartLookupDataSource)
+                
                 With oDetail
                     .UpdateComponentProperties(pProduct)
                     .MakeDirty()
                     .SendEvents()
                 End With
+                
             ElseIf _PartNumberSave = "" Then 'must be new row with no search item chosen 
                 '	dgvQuoteDetail.CurrentCell = Nothing
                 'Dim oDetail As DCS.Quote.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, DCS.Quote.BOM.Detail)

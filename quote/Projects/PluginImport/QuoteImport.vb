@@ -264,24 +264,23 @@ Public Class QuoteImport
                     OrElse dsQuoteDataBase.WireComponentSource.FindByWireComponentSourceID(detailRow.SourceID).PartNumber = "MISSING" Then
                     Console.WriteLine("   Failure finding component source for " + detailRow.PartNumber)
                     
-                    Dim data As ProductBuildData = ProductDB.Load( _
+                    pProduct = ProductDB.Load( _
                         detailRow.PartNumber, 0, "", False, Nothing, Nothing, "", 0)
-                    pProduct = New Model.Product(Data)
                     
                 Else 'It is a component and wirecomponentsource.partnumber <> "MISSING"
-                    pProduct = New Model.Product(detailRow.SourceID, False, dsQuoteDataBase)
+                    pProduct = ProductDB.Load(detailRow.SourceID, False, dsQuoteDataBase)
                 End If
             Else 'It is a wire
                 If dsQuoteDataBase.WireSource.FindByWireSourceID(detailRow.SourceID).PartNumber = "MISSING" Then
                     Console.WriteLine("   Failure finding source for " + detailRow.PartNumber)
                     
-                    Dim data As ProductBuildData = ProductDB.Load( _
+                    pProduct = ProductDB.Load( _
                         detailRow.PartNumber, 0, "", False, Nothing, Nothing, "", 0)
-                    pProduct = New Model.Product(Data)
                     
                 Else 'wiresource.partnumber <> "MISSING"
-                    pProduct = New Model.Product(detailRow.SourceID, True, dsQuoteDataBase)
+                    pProduct = ProductDB.Load(detailRow.SourceID, True, dsQuoteDataBase)
                 End If
+                
                 pProduct.CopperWeightPer1000Feet = _
                     daWire.GetWirePoundsPer1000Ft(detailRow.SourceID, ignore)
                 'detail.UpdateComponentProperties(pProduct)
@@ -315,17 +314,17 @@ Public Class QuoteImport
             If (Not detailRow.IsGageNull) Then
                 gage = detailRow.Gage.Trim()
             End If
-            Dim product As New Model.Product( _
-                detailRow.PartNumber, _
-                gage, _
-                detailRow.UnitCost, _
-                time, _
-                detailRow.IsWire, _
-                "", _
-                0,
-                "", _
-                0, _
-                0)
+            
+            Dim data As New ProductBuildData 
+            data.Code = detailRow.PartNumber
+            data.Gage = gage
+            data.UnitCost = detailRow.UnitCost
+            data.MachineTime = time
+            data.IsWire = detailRow.IsWire
+            data.Vendor = ""
+            data.Description = ""
+            Dim product As New Model.Product(data)
+            
             Dim detail As New Model.Template.Detail(header, product)
             If product.IsWire Then
                 LookupWirePart(detailRow, detail, product, errors)

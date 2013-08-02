@@ -28,7 +28,7 @@ namespace Model
         private decimal minimumDollar;
         
         private string unitOfMeasure;
-
+        
         public string Code 
         {
             get { return this.code; }
