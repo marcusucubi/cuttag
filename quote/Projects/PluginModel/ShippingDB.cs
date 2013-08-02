@@ -10,7 +10,7 @@ namespace Model
         {
         }
 
-        public static void InitializeShipping()
+        public static void Initialize()
         {
             DB.QuoteDataBase._ShippingDataTable table = new DB.QuoteDataBase._ShippingDataTable();
             DB.QuoteDataBaseTableAdapters._ShippingTableAdapter adapter = new DB.QuoteDataBaseTableAdapters._ShippingTableAdapter();

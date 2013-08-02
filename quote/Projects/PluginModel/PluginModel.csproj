@@ -111,6 +111,8 @@
     <Compile Include="template\PropertyFactory.cs" />
     <Compile Include="template\Spaces.cs" />
     <Compile Include="template\WireProperties.cs" />
+    <Compile Include="UnitOfMeasureDB.cs" />
+    <Compile Include="UnitOfMeasure.cs" />
     <Compile Include="UOMConverter.cs" />
   </ItemGroup>
   <ItemGroup>

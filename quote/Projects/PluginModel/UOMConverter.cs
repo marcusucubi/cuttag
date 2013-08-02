@@ -9,15 +9,8 @@ namespace Model
     {
         public override TypeConverter.StandardValuesCollection GetStandardValues(System.ComponentModel.ITypeDescriptorContext context)
         {
-            List<string> l = new List<string>();
+            List<string> l = UnitOfMeasure.Collection.ToList();
 
-            DB.QuoteDataBase._UnitOfMeasureDataTable table = null;
-            table = new DB.QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter().GetData();
-            foreach (DB.QuoteDataBase._UnitOfMeasureRow row in table.Rows) 
-            {
-                l.AddRange(new string[] { row.Name });
-            }
-            
             l.Sort();
 
             return new StandardValuesCollection(l);

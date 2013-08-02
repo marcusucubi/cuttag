@@ -7,7 +7,8 @@ namespace Model
     {
         public void Init()
         {
-            Model.ShippingDB.InitializeShipping();
+            Model.ShippingDB.Initialize();
+            Model.UnitOfMeasureDB.Initialize();
         }
     }
 }
