@@ -3,7 +3,7 @@
     using System;
     using System.Collections.ObjectModel;
 
-    public static class UnitOfMeasure
+    public static class UnitOfMeasureList
     {
         private static string[] arrayOfUnitOfMeasure;
         
@@ -13,13 +13,13 @@
             {
                 System.Diagnostics.Debug.Assert(arrayOfUnitOfMeasure != null, "UnitOfMeasure not initialized");
                 
-                return new ReadOnlyCollection<string>(UnitOfMeasure.arrayOfUnitOfMeasure);
+                return new ReadOnlyCollection<string>(UnitOfMeasureList.arrayOfUnitOfMeasure);
             }
         }
         
         public static void Init(string[] list)
         {
-            UnitOfMeasure.arrayOfUnitOfMeasure = list;
+            UnitOfMeasureList.arrayOfUnitOfMeasure = list;
         }
     }
 }

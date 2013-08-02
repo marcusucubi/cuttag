@@ -21,7 +21,7 @@
             
             l.Sort();
             
-            UnitOfMeasure.Init(l.ToArray());
+            UnitOfMeasureList.Init(l.ToArray());
         }
     }
 }

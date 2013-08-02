@@ -70,6 +70,8 @@
     <Compile Include="common\SaveableProperties.cs" />
     <Compile Include="common\WireProperties.cs" />
     <Compile Include="CustomerConverter.cs" />
+    <Compile Include="CustomerDB.cs" />
+    <Compile Include="CustomerList.cs" />
     <Compile Include="DetailSortComparer.cs" />
     <Compile Include="ModelEventArgs.cs" />
     <Compile Include="ModelEvents.cs" />
@@ -112,8 +114,8 @@
     <Compile Include="template\Spaces.cs" />
     <Compile Include="template\WireProperties.cs" />
     <Compile Include="UnitOfMeasureDB.cs" />
-    <Compile Include="UnitOfMeasure.cs" />
-    <Compile Include="UOMConverter.cs" />
+    <Compile Include="UnitOfMeasureList.cs" />
+    <Compile Include="UnitOfMeasureConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
