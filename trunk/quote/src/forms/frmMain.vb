@@ -132,8 +132,9 @@ Public Class frmMain
 
         Dim result As DialogResult = frm.ShowDialog()
         If result = DialogResult.OK Then
-            Dim saver As New Model.IO.QuoteSaver
-            Dim id As Integer = saver.Save(frm.Header, frm.QuoteInfo, True)
+            
+            Dim id As Integer = Model.IO.QuoteSaver.Save(frm.Header, frm.QuoteInfo, True)
+            
             If (id > 0) Then
                 LoadQuote(id)
             End If
@@ -189,21 +190,27 @@ Public Class frmMain
     End Sub
 
     Private Sub SaveTemplate()
+    
         If Not Me._ActiveHeader.Header.IsQuote Then
-            Dim saver As New TemplateSaver
-            saver.Save(Me._ActiveHeader.Header)
+            TemplateSaver.Save(Me._ActiveHeader.Header)
         End If
+        
         EnableButtons()
     End Sub
 
     Private Sub CopyTemplate()
+    
         If Not Me._ActiveHeader.Header.IsQuote Then
+            
             Dim frm As New frmCopyTemplate
             Dim result As DialogResult = frm.ShowDialog()
+            
             If result.HasFlag(DialogResult.OK) Then
+                
                 SaveTemplate()
-                Dim copy As New TemplateCopier
-                Dim id = copy.Copy(Me._ActiveHeader.Header)
+                
+                Dim id = TemplateCopier.Copy(Me._ActiveHeader.Header)
+                
                 LoadTemplate(id)
             End If
         End If
@@ -224,10 +231,9 @@ Public Class frmMain
             Return
         End If
 
-        Dim loader As New TemplateLoader
         Dim q As Model.Common.Header
 
-        q = loader.Load(id)
+        q = TemplateLoader.Load(id)
         If q.PrimaryProperties.CommonId = 0 Then
             MsgBox("Not Found")
         Else

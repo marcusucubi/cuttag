@@ -7,7 +7,7 @@ Imports Model.IO
 Public Class frmNewQuote
 
     Public Property Header As Header
-    Public Property QuoteInfo As New QuoteSaver.QuoteInfoClass
+    Public Property QuoteInfo As New QuoteSaverQuoteInfoClass
 
     Private Sub frmNewQuote_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim q As Header
@@ -21,7 +21,7 @@ Public Class frmNewQuote
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         QuoteInfo.PartNumber = Me.txtPartNumber.Text
-        QuoteInfo.RFQ = Me.txtRFQ.Text
+        QuoteInfo.RequestForQuote = Me.txtRFQ.Text
         QuoteInfo.Initials = Me.txtInitials.Text
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()

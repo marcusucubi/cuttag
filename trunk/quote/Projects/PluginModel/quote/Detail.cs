@@ -4,6 +4,8 @@ namespace Model.Quote
     using System.ComponentModel;
     using System.Linq;
 
+    using Model.Common;
+
     public class Detail : Common.Detail
     {
         private Common.SavableProperties properties = new Common.SavableProperties();
@@ -17,7 +19,7 @@ namespace Model.Quote
         public Header QuoteHeader { get; set; }
 
         [BrowsableAttribute(false)]
-        public override object QuoteDetailProperties 
+        public override Model.Common.SavableProperties QuoteDetailProperties 
         {
             get { return this.properties; }
         }

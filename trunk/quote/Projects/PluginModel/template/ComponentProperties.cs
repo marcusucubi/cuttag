@@ -3,7 +3,8 @@ namespace Model.Template
     using System;
     using System.Linq;
 
-    public class ComponentProperties : Common.ComponentProperties
+    public class ComponentProperties 
+        : Common.ComponentProperties, Common.IHasTotalMachineTime
     {
         private Model.Template.Detail quoteDetail;
         

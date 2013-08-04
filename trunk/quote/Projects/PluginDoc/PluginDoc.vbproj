@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -173,8 +173,8 @@
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PluginModelIO\PluginModelIO.vbproj">
-      <Project>{7973E603-E061-4D17-A51A-FDEBFF5369A9}</Project>
+    <ProjectReference Include="..\PluginModelIO\PluginModelIO.csproj">
+      <Project>{DF097FFD-6321-44FE-9054-A9CED555785B}</Project>
       <Name>PluginModelIO</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginModel\PluginModel.csproj">
