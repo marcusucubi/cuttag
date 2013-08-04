@@ -83,7 +83,7 @@ namespace Model.Common
 
         private void ApplySort2Detail(DetailSortComparer comparer)
         {
-            List<T> listRef = new List<T>(this.Items);
+            List<T> listRef = this.Items as List<T>;
             if (listRef != null)
             {
                 listRef.Sort(comparer);
