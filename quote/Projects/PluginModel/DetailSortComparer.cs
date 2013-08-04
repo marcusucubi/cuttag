@@ -42,20 +42,20 @@ namespace Model.Common
         {
             int retValue = 0;
             
-            if (IsNumeric(x.ToString()) & IsNumeric(y.ToString())) 
-            {
-                double left = Convert.ToDouble(x, CultureInfo.CurrentCulture);
-                double right = Convert.ToDouble(y, CultureInfo.CurrentCulture);
-                
-                retValue = left.CompareTo(right);
-            } 
-            else if (x == null) 
+            if (x == null) 
             {
                 retValue = 0;
             } 
             else if (y == null) 
             {
                 retValue = 0;
+            }
+            else if (IsNumeric(x.ToString()) & IsNumeric(y.ToString())) 
+            {
+                double left = Convert.ToDouble(x, CultureInfo.CurrentCulture);
+                double right = Convert.ToDouble(y, CultureInfo.CurrentCulture);
+                
+                retValue = left.CompareTo(right);
             } 
             else 
             {
