@@ -1,4 +1,4 @@
-namespace Model.Template
+namespace Model.Template.Ext
 {
     using System;
     using System.Linq;

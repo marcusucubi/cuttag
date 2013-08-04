@@ -22,9 +22,9 @@
         {
             Model.Template.Header header = new Model.Template.Header();
             Model.Common.SavableProperties computationProperties =
-                Model.Template.PropertyFactory.CreateComputationProperties(header, 1);
-            Model.Template.IComputationWrapper wrapper =
-                computationProperties as Model.Template.IComputationWrapper;
+                Model.Template.Ext.PropertyFactory.CreateComputationProperties(header, 1);
+            Model.Template.Ext.IComputationWrapper wrapper =
+                computationProperties as Model.Template.Ext.IComputationWrapper;
 
             if (wrapper != null)
             {

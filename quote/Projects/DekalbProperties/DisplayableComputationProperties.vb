@@ -3,6 +3,7 @@ Imports System.Reflection
 Imports System.Math
 
 Imports Model
+Imports Model.Template.Ext
 
 ''' <summary>
 ''' Adds display attributes and rounding to ComputationProperties.
@@ -14,7 +15,7 @@ Imports Model
 ''' </remarks>
 Public Class DisplayableComputationProperties
     Inherits Common.ComputationProperties
-    Implements Template.IComputationWrapper
+    Implements IComputationWrapper
 
     Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
@@ -29,7 +30,7 @@ Public Class DisplayableComputationProperties
 
     <BrowsableAttribute(false)>
     Public ReadOnly Property ComputationProperties As Model.Template.ComputationProperties _
-        Implements Model.Template.IComputationWrapper.ComputationProperties
+        Implements Model.Template.Ext.IComputationWrapper.ComputationProperties
         Get
             Return _Subject
         End Get
@@ -469,7 +470,7 @@ Public Class DisplayableComputationProperties
     <DescriptionAttribute("Description of the Shipping Container"), _
     DisplayName("Shipping Container"), _
     CategoryAttribute(Spaces.SortedSpaces9 + "Shipping"), _
-    TypeConverter(GetType(ShippingList))> _
+    TypeConverter(GetType(ShippingConverter))> _
     Public Property ShippingContainer() As String
         Get
             Return _Subject.ShippingContainer

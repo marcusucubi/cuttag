@@ -3,6 +3,8 @@ namespace Model.Template
     using System;
     using System.ComponentModel;
     using System.Linq;
+    
+    using Model.Template.Ext;
 
     public class Detail : Common.Detail
     {
