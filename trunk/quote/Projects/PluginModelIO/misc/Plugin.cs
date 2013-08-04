@@ -6,7 +6,6 @@
     {
         public void Init()
         {
-            Model.IO.Misc.ShippingDB.Initialize();
             Model.IO.Misc.UnitOfMeasureDB.Initialize();
             Model.IO.Misc.CustomerDB.Initialize();
         }

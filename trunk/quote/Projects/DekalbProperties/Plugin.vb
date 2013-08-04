@@ -6,6 +6,8 @@
         Dim s As New StatusBarUpdater
         s.Init()
 
+        ShippingDB.Initialize()
+
     End Sub
 
 End Class

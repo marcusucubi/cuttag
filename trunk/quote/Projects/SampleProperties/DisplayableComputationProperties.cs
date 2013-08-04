@@ -48,20 +48,6 @@ namespace SampleProperties
             }
         }
 
-        [DescriptionAttribute("Description of the Shipping Container"), 
-        DisplayName("Shipping Container"), 
-        CategoryAttribute(Spaces.SortedSpaces9 + "Shipping"), 
-        TypeConverter(typeof(ShippingConverter))]
-        public string ShippingContainer
-        {
-            get { return _Subject.ShippingContainer; }
-            set
-            {
-                _Subject.ShippingContainer = value;
-                base.SendEvents();
-            }
-        }
-
         [DescriptionAttribute("Cost of the Shipping Container\n(Dollars)"), 
         DisplayName("Shipping Container Cost"), 
         CategoryAttribute(Spaces.SortedSpaces9 + "Shipping")]

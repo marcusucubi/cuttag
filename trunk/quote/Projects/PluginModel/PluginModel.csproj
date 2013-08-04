@@ -80,8 +80,6 @@
     <Compile Include="quote\Detail.cs" />
     <Compile Include="quote\Header.cs" />
     <Compile Include="quote\PrimaryPropeties.cs" />
-    <Compile Include="Shipping.cs" />
-    <Compile Include="ShippingConverter.cs" />
     <Compile Include="template\ComponentProperties.cs" />
     <Compile Include="template\ComputationProperties.cs" />
     <Compile Include="template\DefaultComponentProperties.cs" />
