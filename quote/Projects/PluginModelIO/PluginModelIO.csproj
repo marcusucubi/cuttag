@@ -62,7 +62,6 @@
     <Compile Include="misc\CustomerDB.cs" />
     <Compile Include="misc\Plugin.cs" />
     <Compile Include="misc\ProductDB.cs" />
-    <Compile Include="misc\ShippingDB.cs" />
     <Compile Include="misc\UnitOfMeasureDB.cs" />
     <Compile Include="My Project\AssemblyInfo.cs" />
     <Compile Include="ObjectGenerator.cs" />

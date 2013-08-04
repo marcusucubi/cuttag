@@ -93,6 +93,9 @@
     <Compile Include="OtherProperiesFactory.vb" />
     <Compile Include="Plugin.vb" />
     <Compile Include="QuoteTypeConverter.vb" />
+    <Compile Include="Shipping.vb" />
+    <Compile Include="ShippingConverter.vb" />
+    <Compile Include="ShippingDB.vb" />
     <Compile Include="StatusBarUpdater.vb" />
     <Compile Include="Weights.vb" />
     <Compile Include="WirePropertiesFactory.vb" />
@@ -117,6 +120,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
+      <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
+      <Name>PluginDB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>
