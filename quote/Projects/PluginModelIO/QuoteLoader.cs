@@ -24,7 +24,7 @@ namespace Model.IO
                 if (!row.IsCustomerNameNull()) 
                 {
                     Model.Template.Customer temp = null;
-                    temp = Model.Template.Customer.GetByName(row.CustomerName);
+                    temp = Model.IO.Misc.CustomerDB.GetByName(row.CustomerName);
                     if (temp != null) 
                     {
                         customerID = temp.Id;

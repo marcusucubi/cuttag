@@ -1,8 +1,8 @@
 ﻿Imports System.Windows.Forms
-
-Imports Model
 Imports DB.QuoteDataBase
 Imports DB.QuoteDataBaseTableAdapters
+Imports Model
+Imports Model.IO.Misc
 
 Public Class frmWireLookup
 

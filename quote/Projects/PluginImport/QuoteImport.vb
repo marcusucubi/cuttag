@@ -2,6 +2,7 @@
 Imports System.Windows.Forms
 Imports DB.QuoteDataBaseTableAdapters
 Imports Model
+Imports Model.IO.Misc
 
 Public Class QuoteImport
     Private _OldUnitCost As Decimal
@@ -180,7 +181,7 @@ Public Class QuoteImport
     Private Sub TransferHeader4PartsList(ByVal row As ImportDataSet.HQ_GetParts4LookupRow, _
                            ByVal header As Model.Template.Header, ByVal Initials As String)
         Dim primary As Model.Template.PrimaryProperties = header.PrimaryProperties
-        primary.Customer = Model.Template.Customer.GetByID(row.CustomerID)
+        primary.Customer = Model.IO.Misc.CustomerDB.GetByID(row.CustomerID)
         primary.PartNumber = row.Display
         primary.CommonInitials = Initials
     End Sub

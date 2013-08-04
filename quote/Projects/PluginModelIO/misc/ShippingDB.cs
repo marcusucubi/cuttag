@@ -1,4 +1,4 @@
-namespace Model
+namespace Model.IO.Misc
 {
     using System;
     using System.Collections.ObjectModel;
