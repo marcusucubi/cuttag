@@ -1,6 +1,6 @@
-﻿Imports Model
-
-Imports DB.QuoteDataBase
+﻿Imports DB.QuoteDataBase
+Imports Model
+Imports Model.IO.Misc
 
 Public Class WireAndComponentView
     Private WithEvents _DetailCollection As Model.Common.DetailCollection(Of Model.Common.Detail)

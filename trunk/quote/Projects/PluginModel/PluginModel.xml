@@ -10,15 +10,15 @@
             </summary>
             <remarks></remarks>
         </member>
-        <member name="T:Model.Product">
-            <summary>
-            Represent a product
-            </summary>
-            <remarks></remarks>
-        </member>
         <member name="T:Model.Template.Customer">
             <summary>
             Represents the customer
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:Model.Product">
+            <summary>
+            Represent a product
             </summary>
             <remarks></remarks>
         </member>

@@ -70,8 +70,8 @@
     <Compile Include="common\PrimaryPropeties.cs" />
     <Compile Include="common\SaveableProperties.cs" />
     <Compile Include="common\WireProperties.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="CustomerConverter.cs" />
-    <Compile Include="CustomerDB.cs" />
     <Compile Include="CustomerList.cs" />
     <Compile Include="DetailSortComparer.cs" />
     <Compile Include="ModelEventArgs.cs" />
@@ -82,20 +82,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Plugin.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductBuildData.cs" />
-    <Compile Include="ProductDB.cs" />
     <Compile Include="QuoteTypeList.cs" />
     <Compile Include="quote\Detail.cs" />
     <Compile Include="quote\Header.cs" />
     <Compile Include="quote\PrimaryPropeties.cs" />
     <Compile Include="Shipping.cs" />
-    <Compile Include="ShippingDB.cs" />
     <Compile Include="ShippingList.cs" />
     <Compile Include="template\ComponentProperties.cs" />
     <Compile Include="template\ComputationProperties.cs" />
-    <Compile Include="template\Customer.cs" />
     <Compile Include="template\DefaultComponentProperties.cs" />
     <Compile Include="template\DefaultComputationProperties.cs" />
     <Compile Include="template\DefaultOtherProperties.cs" />
@@ -114,9 +110,8 @@
     <Compile Include="template\PropertyFactory.cs" />
     <Compile Include="template\Spaces.cs" />
     <Compile Include="template\WireProperties.cs" />
-    <Compile Include="UnitOfMeasureDB.cs" />
-    <Compile Include="UnitOfMeasureList.cs" />
     <Compile Include="UnitOfMeasureConverter.cs" />
+    <Compile Include="UnitOfMeasureList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -140,10 +135,6 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginDB\PluginDB.vbproj">
-      <Project>{0B82E589-0317-41B2-9B96-2BE5F0B7D5CF}</Project>
-      <Name>PluginDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>

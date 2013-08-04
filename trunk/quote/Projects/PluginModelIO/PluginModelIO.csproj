@@ -59,6 +59,11 @@
   <ItemGroup>
     <Compile Include="CommonLoader.cs" />
     <Compile Include="CommonSaver.cs" />
+    <Compile Include="misc\CustomerDB.cs" />
+    <Compile Include="misc\Plugin.cs" />
+    <Compile Include="misc\ProductDB.cs" />
+    <Compile Include="misc\ShippingDB.cs" />
+    <Compile Include="misc\UnitOfMeasureDB.cs" />
     <Compile Include="My Project\AssemblyInfo.cs" />
     <Compile Include="ObjectGenerator.cs" />
     <Compile Include="ObjectGeneratorException.cs" />
@@ -95,6 +100,9 @@
       <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
       <Name>PluginModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="misc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

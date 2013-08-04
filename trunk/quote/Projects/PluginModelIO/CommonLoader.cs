@@ -7,6 +7,8 @@ namespace Model.IO
     using DB;
     using DB.QuoteDataBaseTableAdapters;
 
+    using Model.IO.Misc;
+
     public static class CommonLoader
     {
         public static void LoadNoteProperties(int id, object target)
