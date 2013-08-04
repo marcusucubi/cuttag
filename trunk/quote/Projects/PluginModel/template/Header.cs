@@ -5,6 +5,7 @@ namespace Model.Template
     using System.Linq;
     
     using Model.Common;
+    using Model.Template.Ext;
 
     public class Header : Common.Header
     {

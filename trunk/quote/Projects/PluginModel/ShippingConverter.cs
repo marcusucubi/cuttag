@@ -3,7 +3,7 @@ namespace Model
     using System;
     using System.Linq;
 
-    public class ShippingList : System.ComponentModel.StringConverter
+    public class ShippingConverter : System.ComponentModel.StringConverter
     {
         public override System.ComponentModel.TypeConverter.StandardValuesCollection GetStandardValues(System.ComponentModel.ITypeDescriptorContext context)
         {

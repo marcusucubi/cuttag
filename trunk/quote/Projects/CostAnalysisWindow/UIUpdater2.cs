@@ -10,6 +10,7 @@
     using CostAnalysisWindow.Elements;
     
     using Model.Template;
+    using Model.Template.Ext;
 
     internal class UIUpdater2
     {
