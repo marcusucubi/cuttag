@@ -4,7 +4,8 @@ namespace Model.Template
     using System.ComponentModel;
     using System.Linq;
 
-    public class DisplayableComponentProperties : Common.ComponentProperties
+    public class DisplayableComponentProperties 
+        : Common.ComponentProperties, Common.IHasTotalMachineTime
     {
         private ComponentProperties subject;
         
@@ -17,7 +18,12 @@ namespace Model.Template
         [DisplayName("Total Machine Time"), Browsable(false)]
         public decimal TotalMachineTime 
         {
-            get { return Math.Round(this.subject.TotalMachineTime, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get 
+            { 
+                return Math.Round(
+                    this.subject.TotalMachineTime, 
+                    Model.Common.GlobalOptions.DecimalPointsToDisplay);
+            }
         }
 
         [DisplayName("Machine Time"), CategoryAttribute("Detail")]

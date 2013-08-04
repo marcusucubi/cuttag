@@ -161,7 +161,7 @@ namespace Model.Common
             get { return this.product; }
         }
 
-        public abstract object QuoteDetailProperties 
+        public abstract SavableProperties QuoteDetailProperties 
         {
             get;
         }

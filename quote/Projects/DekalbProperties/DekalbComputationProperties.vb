@@ -477,7 +477,8 @@ Public NotInheritable Class DekalbComputationProperties
         Dim result As Decimal
         For Each detail As Model.Template.Detail In _Header.Details
             If detail.Product.IsWire = IsWire Then
-                result += detail.QuoteDetailProperties.TotalMachineTime
+                Dim c As Model.Common.IHasTotalMachineTime = detail.QuoteDetailProperties
+                result += c.TotalMachineTime
             End If
         Next
         Return result

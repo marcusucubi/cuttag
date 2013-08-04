@@ -64,6 +64,7 @@
     <Compile Include="common\DetailCollection.cs" />
     <Compile Include="common\GlobalOptions.cs" />
     <Compile Include="common\Header.cs" />
+    <Compile Include="common\IHasTotalMachineTime.cs" />
     <Compile Include="common\NoteProperties.cs" />
     <Compile Include="common\OtherProperties.cs" />
     <Compile Include="common\PrimaryPropeties.cs" />
