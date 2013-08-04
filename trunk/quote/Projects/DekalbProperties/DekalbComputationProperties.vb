@@ -334,9 +334,9 @@ Public NotInheritable Class DekalbComputationProperties
     Public ReadOnly Property FunctionalQuantity As Integer
         Get
             Dim result As Integer
-            If _QuoteType = QuoteTypeList.Production Then
+            If _QuoteType = QuoteTypeConverter.Production Then
                 result = Me._MinimumOrderQuantity
-            ElseIf _QuoteType = QuoteTypeList.SingleDefinite Then
+            ElseIf _QuoteType = QuoteTypeConverter.SingleDefinite Then
                 result = Me._SingleDefQuantity
             Else
                 result = Me._OrderQuantity
