@@ -406,7 +406,7 @@ Public Class DisplayableComputationProperties
     <DescriptionAttribute("The type of quote"), _
     DisplayName("Quote Type"), _
     CategoryAttribute(Spaces.SortedSpaces9 + "Shipping"), _
-    TypeConverter(GetType(QuoteTypeList))> _
+    TypeConverter(GetType(QuoteTypeConverter))> _
     Public Property QuoteType As String
         Get
             Return _Subject.QuoteType
