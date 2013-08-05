@@ -22,7 +22,6 @@ Public NotInheritable Class DekalbOtherProperties
     Private _IsNew As Boolean = True
 
     Public Sub New(ByVal QuoteHeader As Header)
-        MyBase.New(QuoteHeader)
         _QuoteHeader = QuoteHeader
     End Sub
 
