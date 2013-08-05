@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 
-using PluginHost;
-
 using Model.Template;
 
 namespace SampleProperties
@@ -14,7 +12,6 @@ namespace SampleProperties
         private DateTime m_DueDate;
 
         public SampleOtherProperties(Header header)
-            : base(header)
         {
             
         }
