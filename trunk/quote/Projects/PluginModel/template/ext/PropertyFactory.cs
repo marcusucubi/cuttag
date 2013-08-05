@@ -14,7 +14,9 @@ namespace Model.Template.Ext
             // Only use static methods
         }
 
-        public static Model.Common.OtherProperties CreateOtherProperties(Header header, int id)
+        public static Model.Common.OtherProperties CreateOtherProperties(
+            Header header, 
+            int id)
         {
             Model.Common.OtherProperties result = null;
 
@@ -31,13 +33,15 @@ namespace Model.Template.Ext
 
             if (result == null) 
             {
-                result = new DefaultOtherProperties(header);
+                result = new DefaultOtherProperties();
             }
 
             return result;
         }
 
-        public static Model.Common.ComputationProperties CreateComputationProperties(Header header, int id)
+        public static Model.Common.ComputationProperties CreateComputationProperties(
+            Header header, 
+            int id)
         {
             Model.Common.ComputationProperties result = null;
 
@@ -61,7 +65,8 @@ namespace Model.Template.Ext
             return result;
         }
 
-        public static Model.Common.ComponentProperties CreateComponentProperties(Template.Detail detail)
+        public static Model.Common.ComponentProperties CreateComponentProperties(
+            Template.Detail detail)
         {
             Model.Common.ComponentProperties result = null;
 
@@ -71,7 +76,8 @@ namespace Model.Template.Ext
 
                 if (v != null)
                 {
-                    IComponentPropertiesFactory o = Activator.CreateInstance(v) as IComponentPropertiesFactory;
+                    IComponentPropertiesFactory o = 
+                        Activator.CreateInstance(v) as IComponentPropertiesFactory;
 
                     result = o.CreateComponentProperties(detail);
                 }
@@ -85,7 +91,8 @@ namespace Model.Template.Ext
             return result;
         }
 
-        public static Model.Common.WireProperties CreateWireProperties(Template.Detail detail)
+        public static Model.Common.WireProperties CreateWireProperties(
+            Template.Detail detail)
         {
             Model.Common.WireProperties result = null;
 
