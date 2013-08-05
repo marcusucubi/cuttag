@@ -19,6 +19,9 @@ namespace Model.Template
             this.componentProperties = PropertyFactory.CreateComponentProperties(this);
             this.wireProperties = PropertyFactory.CreateWireProperties(this);
             this.SequenceNumber = this.Header.NextSequenceNumber;
+            
+            this.AddDependent(this.componentProperties);
+            this.AddDependent(this.wireProperties);
         }
 
         [BrowsableAttribute(false)]
