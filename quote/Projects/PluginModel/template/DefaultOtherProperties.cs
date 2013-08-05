@@ -5,7 +5,7 @@ namespace Model.Template
 
     public sealed class DefaultOtherProperties : OtherProperties
     {
-        public DefaultOtherProperties(Header quoteHeader) : base(quoteHeader)
+        public DefaultOtherProperties()
         {
             // Base class
         }
