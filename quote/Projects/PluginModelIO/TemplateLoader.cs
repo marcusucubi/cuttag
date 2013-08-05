@@ -75,8 +75,15 @@ namespace Model.IO
             q.OtherProperties.ClearDirty();
             q.PrimaryProperties.ClearDirty();
             q.NoteProperties.ClearDirty();
-            q.ClearDirty();
+            
+            foreach(Model.Common.Detail detail in q.Details)
+            {
+                detail.QuoteDetailProperties.ClearDirty();
+                detail.ClearDirty();
+            }
 
+            q.ClearDirty();
+            
             System.Windows.Forms.Cursor.Current = Cursors.Default;
 
             return q;
