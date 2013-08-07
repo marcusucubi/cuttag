@@ -10,7 +10,7 @@ namespace Host
     using System.Drawing;
 
     /// <summary> 
-    /// For classes the have the MenuItemAttribute.
+    /// For classes that have the MenuItemAttribute.
     /// </summary> 
     public interface IHasIcon
     {
