@@ -17,6 +17,8 @@ namespace Model.Common
 
         private DetailCollection<Common.Detail> details;
         
+        private int nextSequenceNumber = 1;
+        
         private bool quote;
         
         protected Header(bool quote)
@@ -65,19 +67,15 @@ namespace Model.Common
         public int NextSequenceNumber 
         {
             get 
-            {
-                int max = 0;
-                foreach (Detail detail in this.details) 
+            { 
+                return nextSequenceNumber++; 
+            }
+            set 
+            { 
+                if (value > nextSequenceNumber)
                 {
-                    if (detail.SequenceNumber > max)
-                    {
-                        max = detail.SequenceNumber;
-                    }
+                    nextSequenceNumber = value; 
                 }
-                
-                max += 1;
-                
-                return max;
             }
         }
 
