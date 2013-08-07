@@ -12,17 +12,25 @@ Public Class WireAndComponentView
         Get
             Return _DetailCollection
         End Get
+        
         Set(ByVal value As Model.Common.DetailCollection(Of Model.Common.Detail))
+            
             _DetailCollection = value
-            Me.dgvQuoteDetail.DataSource = Me._DetailCollection
-            With dgvQuoteDetail_Lookup
-                .SearchGrid.DataSource = _PartLookupDataSource
-                .SearchGrid.DataMember = _PartLookupDataMember
-            End With
-            'Sync()
+            
+            If value IsNot Nothing Then
+                
+                Dim list As New DetailBindingList(value)
+                Me.dgvQuoteDetail.DataSource = list
+                
+                With dgvQuoteDetail_Lookup
+                    .SearchGrid.DataSource = _PartLookupDataSource
+                    .SearchGrid.DataMember = _PartLookupDataMember
+                End With
+                
+            End If
         End Set
     End Property
-    'dd_Added 10/4/11
+    
     Public Property PartLookupDataSource As DataSet
         Get
             Return _PartLookupDataSource
@@ -39,16 +47,14 @@ Public Class WireAndComponentView
             _PartLookupDataMember = value
         End Set
     End Property
-    'dd_Added end
+    
     Public Sub New()
         InitializeComponent()
         InitComponent()
     End Sub
     Private Sub InitComponent()
-        'dd_Added 9/29/2011
         Me.dgvQuoteDetail.AutoGenerateColumns = False
         dgvQuoteDetail_Lookup.SearchGrid = New WireAndComponentViewSearchGrid
-        'dd_Added end
     End Sub
     Private Sub ListView1_ColumnClick(ByVal sender As Object, _
      ByVal e As System.Windows.Forms.ColumnClickEventArgs) _
@@ -67,9 +73,6 @@ Public Class WireAndComponentView
         ListView1.ListViewItemSorter = _Sorter
         ListView1.Sort()
     End Sub
-    Private Sub ListView1_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles ListView1.GotFocus
-        '		SelectDetail()
-    End Sub
     Private Sub dgvQuoteDetail_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvQuoteDetail.GotFocus
         SelectDetail()
     End Sub
@@ -78,9 +81,6 @@ Public Class WireAndComponentView
     End Sub
     Private Sub ListView1_ItemSelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.ListViewItemSelectionChangedEventArgs) Handles ListView1.ItemSelectionChanged
         SelectDetail()
-    End Sub
-    Private Sub _DetailCollection_ListChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ListChangedEventArgs) Handles _DetailCollection.ListChanged
-        '		Sync()
     End Sub
     Private Sub WireAndComponentView_Resize(ByVal sender As Object, _
    ByVal e As System.EventArgs) _
@@ -108,62 +108,17 @@ Public Class WireAndComponentView
         If Me._DetailCollection Is Nothing Then
             Return
         End If
-        'Dim addList As New List(Of Common.Detail)
-        'Dim removeList As New List(Of WireAndComponentItem)
-        'For Each o As Common.Detail In Me._DetailCollection
-        '	Dim test As Common.Detail = Nothing
-        '	For Each item As ListViewItem In Me.ListView1.Items
-        '		If item.Tag Is o Then
-        '			test = item.Tag
-        '		End If
-        '	Next
-        '	If test Is Nothing Then
-        '		addList.Add(o)
-        '	End If
-        'Next
-        'For Each o As Common.Detail In addList
-        '	Dim i As New WireAndComponentItem(o)
-        '	ListView1.BeginUpdate()
-        '	ListView1.Items.Add(i)
-        '	ListView1.SelectedItems.Clear()
-        '	ListView1.SelectedIndices.Add(ListView1.Items.IndexOf(i))
-        '	ListView1.EndUpdate()
-        'Next
-        'For Each item As ListViewItem In Me.ListView1.Items
-        '	Dim test As Common.Detail = Nothing
-        '	For Each o As Common.Detail In Me._DetailCollection
-        '		If item.Tag Is o Then
-        '			test = item.Tag
-        '		End If
-        '	Next
-        '	If test Is Nothing Then
-        '		removeList.Add(item)
-        '	End If
-        'Next
-        'For Each o As WireAndComponentItem In removeList
-        '	ListView1.BeginUpdate()
-        '	ListView1.Items.Remove(o)
-        '	ListView1.EndUpdate()
-        'Next
-        'ListView1.Refresh()
-
-        'dd_Added 9/1/11
-        ''dd_Added end
-
     End Sub
     Private Sub dgvQuoteDetail_CellBeginEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellCancelEventArgs) Handles dgvQuoteDetail.CellBeginEdit
         Debug.WriteLine("Cell Begin Edit")
-        'dd_Added 10/4/11
         If e.ColumnIndex = dgvQuoteDetail_Lookup.Index Then
             _PartNumberSave = dgvQuoteDetail.CurrentCell.Value
         End If
     End Sub
     Private Sub dgvQuoteDetail_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvQuoteDetail.CellEndEdit
-        Debug.WriteLine("Cell End Edit-Lookup col indext" + dgvQuoteDetail_Lookup.Index.ToString)
-        'dd_Added 10/4/11
-        If e.ColumnIndex = dgvQuoteDetail_Lookup.Index Then
+       Debug.WriteLine("Cell End Edit-Lookup col indext" + dgvQuoteDetail_Lookup.Index.ToString)
+       If e.ColumnIndex = dgvQuoteDetail_Lookup.Index Then
             If Not _PartNumberSave = dgvQuoteDetail.CurrentCell.Value Then
-                'Dim sPartNumber As String = dgvQuoteDetail.CurrentCell.Value
                 Dim drLookup As DB.QuoteDataBase.ItemSourceLookupListRow = CType(dgvQuoteDetail_Lookup.SearchGrid.GetCurrentRow, DB.QuoteDataBase.ItemSourceLookupListRow)
                 Dim sPartNumber As String = drLookup.PartNumber
                 Dim gSourceID As Guid = drLookup.SourceID
@@ -181,38 +136,19 @@ Public Class WireAndComponentView
                 End With
                 
             ElseIf _PartNumberSave = "" Then 'must be new row with no search item chosen 
-                '	dgvQuoteDetail.CurrentCell = Nothing
-                'Dim oDetail As DCS.Quote.BOM.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, DCS.Quote.BOM.Detail)
-                'dgvQuoteDetail.CurrentCell = Nothing
-                'oDetail.Header.Details.Remove(oDetail)
             End If
         End If
     End Sub
     Private Sub dgvQuoteDetail_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dgvQuoteDetail.EditingControlShowing
         Debug.WriteLine("Edit Control Showing")
     End Sub
-    'Private Sub dgvQuoteDetail_RowEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvQuoteDetail.RowEnter
-    '       Debug.WriteLine("dgvTest_RowEnter")
-    '       'With dgvQuoteDetail
-    '       '    If Not IsNothing(.CurrentCell) AndAlso .Rows(e.RowIndex).IsNewRow Then
-    '       '        '  .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, e.RowIndex)
-    '       '        '        .BeginEdit(False)
-    '       '        '    End If
-    '       '        'If Not IsNothing(.CurrentRow) AndAlso .CurrentRow.IsNewRow Then
-    '       '        '    .CurrentCell = dgvQuoteDetail(.Columns("dgvQuoteDetail_Lookup").Index, .RowCount - 1)
-    '       '        '    .BeginEdit(False)
-    '       '    End If
-    '       'End With
-    '   End Sub
     Private Sub dgvQuoteDetail_SelectionChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dgvQuoteDetail.SelectionChanged
         Debug.WriteLine("dgvTest_SelectionChanged RowCount = : " + dgvQuoteDetail.RowCount.ToString)
         If CType(sender, LookupDataGridView).Focused Then
-            '            Me.Sync()
             SelectDetail()
         End If
     End Sub
     Private Sub dgvQuoteDetail_UserDeletedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles dgvQuoteDetail.UserDeletedRow
-        '       Sync()
         SelectDetail()
     End Sub
     Private Sub dgvQuoteDetail_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles dgvQuoteDetail.UserDeletingRow

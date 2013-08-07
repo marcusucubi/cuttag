@@ -75,6 +75,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetailBindingList.vb" />
+    <Compile Include="DetailSortComparer.vb" />
     <Compile Include="frmDocumentA.Designer.vb">
       <DependentUpon>frmDocumentA.vb</DependentUpon>
     </Compile>

@@ -1,6 +1,7 @@
 namespace Model.Template
 {
     using System;
+    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Linq;
     
@@ -44,14 +45,14 @@ namespace Model.Template
             {
                 if (this.withEventsFieldDetails != null) 
                 {
-                    this.withEventsFieldDetails.ListChanged -= this._col_ListChanged;
+                    this.withEventsFieldDetails.CollectionChanged -= this._col_ListChanged;
                 }
                 
                 this.withEventsFieldDetails = value;
                 
                 if (this.withEventsFieldDetails != null) 
                 {
-                    this.withEventsFieldDetails.ListChanged += this._col_ListChanged;
+                    this.withEventsFieldDetails.CollectionChanged += this._col_ListChanged;
                 }
             }
         }
@@ -83,7 +84,7 @@ namespace Model.Template
             this.ComputationProperties.SendEvents();
         }
         
-        private void _col_ListChanged(object sender, ListChangedEventArgs e)
+        private void _col_ListChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             this.SendEvents();
         }
