@@ -212,11 +212,6 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\DataSources\DCS.Quote.Common.Detail.datasource" />
-    <None Include="My Project\DataSources\DCS.Quote.Common.Header.datasource" />
-    <None Include="My Project\DataSources\DCS.Quote.Model.EditableQuoteHeader.datasource" />
-    <None Include="My Project\DataSources\DCS.Quote.Model.Product.datasource" />
-    <None Include="My Project\DataSources\frmSimilarBOM.SimilarQuotes.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
