@@ -156,6 +156,7 @@ namespace Model.IO
                 }
                 
                 detail.SequenceNumber = row.SequenceNumber;
+                header.NextSequenceNumber = detail.SequenceNumber + 1;
                 
                 CommonLoader.LoadProperties(id, (int)row.id, detail.QuoteDetailProperties);
             }
