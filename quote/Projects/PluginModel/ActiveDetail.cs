@@ -14,7 +14,7 @@ namespace Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static object Instance 
+        public static ActiveDetail Instance 
         {
             get { return instance; }
         }
