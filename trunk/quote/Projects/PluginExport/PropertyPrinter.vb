@@ -23,8 +23,8 @@ Public Class PropertyPrinter
         Handles _Processor.NextPropertyEvent
 
         _Writer.WriteLine("Property")
-        If TypeOf Prop.Value Is Customer Then
-            Dim c As Customer = Prop.Value
+        If TypeOf Prop.Value Is Model.Customer Then
+            Dim c As Model.Customer = Prop.Value
             _Writer.WriteLine("  Name : CustomerName")
             _Writer.WriteLine("  Type : String")
             _Writer.WriteLine("  Value : " & c.Name)

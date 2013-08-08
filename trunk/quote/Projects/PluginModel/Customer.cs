@@ -1,4 +1,4 @@
-namespace Model.Template
+namespace Model
 {
     using System;
     using System.Linq;
@@ -38,7 +38,7 @@ namespace Model.Template
             string left = value.Substring(0, index);
             string right = value.Substring(index);
 
-            Template.Customer customer = new Template.Customer();
+            Customer customer = new Customer();
             if (left.Length > 0) 
             {
                 int id = 0;

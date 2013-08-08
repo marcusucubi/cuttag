@@ -81,8 +81,8 @@ Public Class ExcellWriter
         cell2 = row.CreateCell(1)
 
         Dim excelName As String
-        If TypeOf Prop.Value Is Model.Template.Customer Then
-            Dim c As Model.Template.Customer = Prop.Value
+        If TypeOf Prop.Value Is Model.Customer Then
+            Dim c As Model.Customer = Prop.Value
             cell.SetCellValue("CustomerName")
             cell2.SetCellValue(c.Name.Trim())
             excelName = "CustomerName"
