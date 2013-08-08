@@ -100,25 +100,5 @@ namespace Model
             get { return this.unitOfMeasure; }
             set { this.unitOfMeasure = value; }
         }
-
-        public static bool operator ==(ProductBuildData left, ProductBuildData right)
-        {
-            return object.Equals(left, right);
-        }
-
-        public static bool operator !=(ProductBuildData left, ProductBuildData right)
-        {
-            return !object.Equals(left, right);
-        }
-        
-        public override int GetHashCode()
-        {
-            return 0;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return true;
-        }
     }
 }
