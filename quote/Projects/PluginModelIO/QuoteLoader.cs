@@ -14,7 +14,7 @@ namespace Model.IO
     {
         private ObjectGenerator propertyLoader = new ObjectGenerator();
         
-        public static Model.Template.Customer LookupCustomer(DB.QuoteDataBase._QuoteRow row)
+        public static Model.Customer LookupCustomer(DB.QuoteDataBase._QuoteRow row)
         {
             string customer = null;
             int customerID = 0;
@@ -23,7 +23,7 @@ namespace Model.IO
             {
                 if (!row.IsCustomerNameNull()) 
                 {
-                    Model.Template.Customer temp = null;
+                    Model.Customer temp = null;
                     temp = Model.IO.Misc.CustomerDB.GetByName(row.CustomerName);
                     if (temp != null) 
                     {
@@ -45,7 +45,7 @@ namespace Model.IO
                 customer = row.CustomerName;
             }
 
-            Model.Template.Customer customerObj = new Model.Template.Customer();
+            Model.Customer customerObj = new Model.Customer();
             customerObj.SetName(customer);
             customerObj.SetId(customerID);
 
@@ -61,7 +61,7 @@ namespace Model.IO
             DB.QuoteDataBase._QuoteDataTable table = new DB.QuoteDataBase._QuoteDataTable();
             Header q = new Header();
 
-            Model.Template.Customer customerObj = null;
+            Model.Customer customerObj = null;
 
             adaptor.FillByByQuoteID(table, (decimal)Convert.ToDouble(id));
             if (table.Rows.Count > 0) 

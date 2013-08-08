@@ -10,7 +10,7 @@
             </summary>
             <remarks></remarks>
         </member>
-        <member name="T:Model.Template.Customer">
+        <member name="T:Model.Customer">
             <summary>
             Represents the customer
             </summary>
