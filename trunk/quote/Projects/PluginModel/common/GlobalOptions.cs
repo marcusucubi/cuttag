@@ -20,7 +20,7 @@ namespace Model.Common
             get { return instance; }
         }
 
-        public static int DecimalPointsToDisplay 
+        public int DecimalPointsToDisplay 
         {
             get 
             { 

@@ -5,25 +5,25 @@ namespace Model
     
     public sealed class ModelEvents
     {
-        private static ModelEvents activeEvents = new ModelEvents();
+        private static ModelEvents instance = new ModelEvents();
         
         private ModelEvents()
         {
-            // Use static members only
+            // Singleton class
         }
 
-        public static event EventHandler<ModelEventArgs> TemplateCreated;
-
-        public static event EventHandler TemplateViewed;
-
-        public static event EventHandler QuoteViewed;
-
-        public static ModelEvents ActiveEvents 
+        public static ModelEvents Instance
         {
-            get { return activeEvents; }
+            get { return instance; }
         }
 
-        public static void NotifyTemplateCreated(int id)
+        public event EventHandler<ModelEventArgs> TemplateCreated;
+
+        public event EventHandler TemplateViewed;
+
+        public event EventHandler QuoteViewed;
+
+        public void NotifyTemplateCreated(int id)
         {
             ModelEventArgs args = new ModelEventArgs();
             args.Id = id;
@@ -33,7 +33,7 @@ namespace Model
             }
         }
 
-        public static void NotifyTemplateViewed()
+        public void NotifyTemplateViewed()
         {
             if (TemplateViewed != null) 
             {
@@ -41,7 +41,7 @@ namespace Model
             }
         }
 
-        public static void NotifyQuoteViewed()
+        public void NotifyQuoteViewed()
         {
             if (QuoteViewed != null) 
             {

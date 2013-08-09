@@ -4,7 +4,7 @@
     Private WithEvents m_Events As Model.ModelEvents
 
     Public Sub Init() Implements Host.IInit.Init
-        m_Events = Model.ModelEvents.ActiveEvents
+        m_Events = Model.ModelEvents.Instance
     End Sub
 
     Private Sub m_Events_QuoteViewed(sender As Object, e As System.EventArgs) Handles m_Events.QuoteViewed

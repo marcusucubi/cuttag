@@ -25,7 +25,7 @@ Public Class frmMain
             Me.ToolStrip1, Me.MainFormStatusStrip1.FlowLayoutPanel1, _
             Me.MainFormStatusStrip1.ToolTip1)
 
-        AddHandler Model.ModelEvents.TemplateCreated, AddressOf OnNewQuote
+        AddHandler Model.ModelEvents.Instance.TemplateCreated, AddressOf OnNewQuote
 
     End Sub
 
@@ -152,7 +152,7 @@ Public Class frmMain
             ChildForm.Show(Me.DockPanel1)
         End If
 
-        Model.ModelEvents.NotifyTemplateViewed()
+        Model.ModelEvents.Instance.NotifyTemplateViewed()
     End Sub
 
     Private Sub EnableButtons()
@@ -241,7 +241,7 @@ Public Class frmMain
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
         End If
-        Model.ModelEvents.NotifyTemplateViewed()
+        Model.ModelEvents.Instance.NotifyTemplateViewed()
         EnableButtons()
     End Sub
 
@@ -266,7 +266,7 @@ Public Class frmMain
             ChildForm.MdiParent = Me
             ChildForm.Show(Me.DockPanel1)
         End If
-        Model.ModelEvents.NotifyQuoteViewed()
+        Model.ModelEvents.Instance.NotifyQuoteViewed()
         EnableButtons()
     End Sub
 

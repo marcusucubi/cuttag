@@ -45,7 +45,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces1 + "Copper")> _
     Public ReadOnly Property CopperWeight As Decimal
         Get
-            Return Math.Round(_Subject.CopperWeight, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.CopperWeight, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -54,7 +54,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces1 + "Copper")> _
     Public Property PercentCopperScrap As Decimal
         Get
-            Return Math.Round(_Subject.PercentCopperScrap, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.PercentCopperScrap, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.PercentCopperScrap = value
@@ -67,7 +67,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces1 + "Copper")> _
     Public ReadOnly Property CopperScrapWeight As Decimal
         Get
-            Return Math.Round(_Subject.CopperScrapWeight, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.CopperScrapWeight, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -76,7 +76,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces1 + "Copper")> _
     Public Property CopperPrice As Decimal
         Get
-            Return Math.Round(_Subject.CopperPrice, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.CopperPrice, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.CopperPrice = value
@@ -90,7 +90,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces1 + "Copper")> _
     Public ReadOnly Property CopperScrapCost As Decimal
         Get
-            Return Math.Round(_Subject.CopperScrapCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.CopperScrapCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -110,7 +110,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces2 + "Wire")> _
     Public ReadOnly Property WireLength() As Decimal
         Get
-            Return Math.Round(_Subject.WireLength, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.WireLength, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -119,7 +119,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces2 + "Wire")> _
     Public ReadOnly Property WireLengthFeet() As Decimal
         Get
-            Return Math.Round(_Subject.WireLengthFeet, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.WireLengthFeet, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -131,7 +131,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces3 + "Material Cost")> _
     Public ReadOnly Property ComponentMaterialCost() As Decimal
         Get
-            Return Math.Round(_Subject.ComponentMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.ComponentMaterialCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -140,7 +140,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces3 + "Material Cost")> _
     Public ReadOnly Property WireMaterialCost() As Decimal
         Get
-            Return Math.Round(_Subject.WireMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.WireMaterialCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -149,7 +149,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces3 + "Material Cost")> _
     Public ReadOnly Property TotalMaterialCost() As Decimal
         Get
-            Return Math.Round(_Subject.TotalMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalMaterialCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -158,7 +158,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces3 + "Material Cost")> _
     Public Property MaterialMarkUp As Decimal
         Get
-            Return Math.Round(_Subject.MaterialMarkUp, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.MaterialMarkUp, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.MaterialMarkUp = value
@@ -171,7 +171,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces3 + "Material Cost")> _
     Public ReadOnly Property AdjustedTotalMaterialCost As Decimal
         Get
-            Return Math.Round(_Subject.AdjustedTotalMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.AdjustedTotalMaterialCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -181,7 +181,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces3 + "Material Cost")> _
     Public ReadOnly Property TotalVariableMaterialCost() As Decimal
         Get
-            Return Math.Round(_Subject.TotalVariableMaterialCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalVariableMaterialCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -207,7 +207,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces4 + "Twisted Wire")> _
     Public ReadOnly Property TwistedPairsMachineTime As Decimal
         Get
-            Return Math.Round(_Subject.TwistedPairsMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TwistedPairsMachineTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -229,7 +229,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")> _
     Public Property ComponentSetupTime() As Decimal
         Get
-            Return Math.Round(_Subject.ComponentSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.ComponentSetupTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.ComponentSetupTime = value
@@ -242,7 +242,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")> _
     Public Property WireSetupTime As Decimal
         Get
-            Return Math.Round(_Subject.WireSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.WireSetupTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.WireSetupTime = value
@@ -269,7 +269,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")> _
     Public ReadOnly Property TotalWireSetupTime As Decimal
         Get
-            Return Math.Round(_Subject.TotalWireSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalWireSetupTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -280,7 +280,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces5 + "Setup Time")> _
     Public ReadOnly Property TotalSetupTime() As Decimal
         Get
-            Return Math.Round(_Subject.TotalSetupTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalSetupTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -292,7 +292,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")> _
     Public ReadOnly Property TotalComponentMachineTime As Decimal
         Get
-            Return Math.Round(_Subject.TotalComponentMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalComponentMachineTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -301,7 +301,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")> _
     Public ReadOnly Property TotalWireMachineTime As Decimal
         Get
-            Return Math.Round(_Subject.TotalWireMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalWireMachineTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -310,7 +310,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")> _
     Public Property WireMachineTime As Decimal
         Get
-            Return Math.Round(_Subject.WireMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.WireMachineTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             Me._Subject.WireMachineTime = value
@@ -324,7 +324,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces6 + "Run Time")> _
     Public ReadOnly Property TotalMachineTime As Decimal
         Get
-            Return Math.Round(_Subject.TotalMachineTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalMachineTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -338,7 +338,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces7 + "Time Summary")> _
     Public ReadOnly Property TotalLaborTime() As Decimal
         Get
-            Return Math.Round(_Subject.TotalLaborTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalLaborTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -347,7 +347,7 @@ Public Class DisplayableComputationProperties
      CategoryAttribute(Spaces.SortedSpaces7 + "Time Summary")> _
     Public Property TimeMultiplier As Decimal
         Get
-            Return Math.Round(_Subject.TimeMultiplier, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TimeMultiplier, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             Me._Subject.TimeMultiplier = value
@@ -360,7 +360,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces7 + "Time Summary")> _
     Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
         Get
-            Return Math.Round(_Subject.AdjustedTotalLaborTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.AdjustedTotalLaborTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -369,7 +369,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces7 + "Time Summary")> _
     Public ReadOnly Property AdjustedTotalLaborTimeHours() As Decimal
         Get
-            Return Math.Round(_Subject.AdjustedTotalLaborTimeHours, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.AdjustedTotalLaborTimeHours, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -382,7 +382,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces8 + "Labor")> _
     Public Property LaborRate As Decimal
         Get
-            Return Math.Round(_Subject.LaborRate, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.LaborRate, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal Value As Decimal)
             _Subject.LaborRate = Value
@@ -395,7 +395,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces8 + "Labor")> _
     Public ReadOnly Property LaborCost As Decimal
         Get
-            Return Math.Round(_Subject.LaborCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.LaborCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -486,7 +486,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces9 + "Shipping")> _
     Public ReadOnly Property ShippingContainerCost As Decimal
         Get
-            Return Math.Round(_Subject.ShippingContainerCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.ShippingContainerCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -495,7 +495,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces9 + "Shipping")> _
     Public ReadOnly Property ShippingContainerCostPerOrder As Decimal
         Get
-            Return Math.Round(_Subject.ShippingContainerCostPerOrder, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.ShippingContainerCostPerOrder, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -504,7 +504,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces9 + "Shipping")> _
     Public Property ShippingCost() As Decimal
         Get
-            Return Math.Round(_Subject.ShippingCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.ShippingCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal Value As Decimal)
             _Subject.ShippingCost = Value
@@ -557,7 +557,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces10 + "ExecutiveSummary")> _
     Public Property SummaryAdjustment As Decimal
         Get
-            Return Math.Round(_Subject.SummaryAdjustment, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.SummaryAdjustment, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.SummaryAdjustment = value
@@ -593,7 +593,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces11 + "Total")> _
     Public ReadOnly Property TotalUnitCost() As Decimal
         Get
-            Return Math.Round(_Subject.TotalUnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalUnitCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -602,7 +602,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces11 + "Total")> _
     Public Property ManufacturingMarkup As Decimal
         Get
-            Return Math.Round(_Subject.ManufacturingMarkup, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.ManufacturingMarkup, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.ManufacturingMarkup = value
@@ -615,7 +615,7 @@ Public Class DisplayableComputationProperties
     CategoryAttribute(Spaces.SortedSpaces11 + "Total")> _
     Public ReadOnly Property AdjustedTotalUnitCost() As Decimal
         Get
-            Return Math.Round(_Subject.AdjustedTotalUnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.AdjustedTotalUnitCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
