@@ -24,7 +24,7 @@ Public Class QuoteImport
                 ImportAll()
             Else
                 Dim id As Integer = Import(frm.QuoteNumber)
-                Model.ModelEvents.NotifyTemplateCreated(id)
+                Model.ModelEvents.Instance.NotifyTemplateCreated(id)
             End If
 
             System.Windows.Forms.Cursor.Current = Cursors.Default
@@ -120,7 +120,7 @@ Public Class QuoteImport
                 Dim header As Model.Template.Header = BuildHeader4PartsList(dr, sInitials, frmInitials.rbComputed.Checked)
                 Dim id As Integer = Save(header)
                 Console.WriteLine("----- Finished")
-                Model.ModelEvents.NotifyTemplateCreated(id)
+                Model.ModelEvents.Instance.NotifyTemplateCreated(id)
             Catch ex As Exception
                 MsgBox("Problem getting Parts List from Wire Harness Control.  Please report the problem: " + ex.Message)
             End Try

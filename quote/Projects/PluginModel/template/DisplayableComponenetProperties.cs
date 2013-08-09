@@ -22,7 +22,7 @@ namespace Model.Template
             { 
                 return Math.Round(
                     this.subject.TotalMachineTime, 
-                    Model.Common.GlobalOptions.DecimalPointsToDisplay);
+                    Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay);
             }
         }
 
@@ -31,7 +31,9 @@ namespace Model.Template
         {
             get 
             { 
-                return Math.Round(this.subject.MachineTime, Model.Common.GlobalOptions.DecimalPointsToDisplay); 
+                return Math.Round(
+                    this.subject.MachineTime, 
+                    Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay);
             }
             
             set 
@@ -46,7 +48,9 @@ namespace Model.Template
         {
             get 
             { 
-                return Math.Round(this.subject.Quantity, Model.Common.GlobalOptions.DecimalPointsToDisplay); 
+                return Math.Round(
+                    this.subject.Quantity, 
+                    Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay);
             }
             
             set 
@@ -106,7 +110,9 @@ namespace Model.Template
         {
             get 
             { 
-                return Math.Round(this.subject.UnitCost, Model.Common.GlobalOptions.DecimalPointsToDisplay); 
+                return Math.Round(
+                    this.subject.UnitCost, 
+                    Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay);
             }
             
             set 

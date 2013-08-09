@@ -36,7 +36,7 @@ Public Class frmSimilarQuotes
 
         System.Windows.Forms.Cursor.Current = Cursors.WaitCursor
 
-        Model.ModelEvents.NotifyTemplateCreated(id)
+        Model.ModelEvents.Instance.NotifyTemplateCreated(id)
 
         System.Windows.Forms.Cursor.Current = Cursors.Default
 

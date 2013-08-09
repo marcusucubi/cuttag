@@ -43,7 +43,7 @@ Public Class DisplayableWireProperties
     CategoryAttribute("Detail")> _
     Public ReadOnly Property Length As Decimal
         Get
-            Return Math.Round(_Subject.Length, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.Length, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -52,7 +52,7 @@ Public Class DisplayableWireProperties
     CategoryAttribute("Detail")> _
     Public ReadOnly Property LengthFeet As Decimal
         Get
-            Return Math.Round(_Subject.LengthFeet, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.LengthFeet, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -60,7 +60,7 @@ Public Class DisplayableWireProperties
     CategoryAttribute("Copper Weight")> _
     Public Property PoundsPer1000Feet As Decimal
         Get
-            Return Math.Round(_Subject.PoundsPer1000Feet, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.PoundsPer1000Feet, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.PoundsPer1000Feet = value
@@ -72,7 +72,7 @@ Public Class DisplayableWireProperties
     CategoryAttribute("Copper Weight")> _
     Public ReadOnly Property TotalWeight As Decimal
         Get
-            Return Math.Round(_Subject.TotalWeight, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.TotalWeight, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
     End Property
 
@@ -81,7 +81,7 @@ Public Class DisplayableWireProperties
     CategoryAttribute("Detail")> _
     Public Property Quantity As Decimal
         Get
-            Return Math.Round(_Subject.Quantity, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.Quantity, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.Quantity = value
@@ -94,7 +94,7 @@ Public Class DisplayableWireProperties
     CategoryAttribute("Detail")> _
     Public Property UnitCost As Decimal
         Get
-            Return Math.Round(_Subject.UnitCost, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.UnitCost, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.UnitCost = value

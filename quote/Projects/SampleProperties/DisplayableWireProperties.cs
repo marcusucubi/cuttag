@@ -41,7 +41,7 @@ namespace SampleProperties
         CategoryAttribute("Detail")]
         public decimal Length
         {
-            get { return Math.Round(_Subject.Length, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.Length, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
     
         [DescriptionAttribute("Length / 3.048"),
@@ -49,14 +49,14 @@ namespace SampleProperties
         CategoryAttribute("Detail")]
         public decimal LengthFeet
         {
-            get { return Math.Round(_Subject.LengthFeet, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.LengthFeet, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Pounds per 1000 feet"), 
         CategoryAttribute("Copper Weight")]
         public decimal PoundsPer1000Feet
         {
-            get { return Math.Round(_Subject.PoundsPer1000Feet, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.PoundsPer1000Feet, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.PoundsPer1000Feet = value;
@@ -68,7 +68,7 @@ namespace SampleProperties
         CategoryAttribute("Copper Weight")]
         public decimal TotalWeight 
         {
-            get { return Math.Round(_Subject.TotalWeight, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.TotalWeight, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Number of Decimeters"), 
@@ -76,7 +76,7 @@ namespace SampleProperties
         CategoryAttribute("Detail")]
         public decimal Quantity 
         {
-            get { return Math.Round(_Subject.Quantity, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.Quantity, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.Quantity = value;
@@ -89,7 +89,7 @@ namespace SampleProperties
         CategoryAttribute("Detail")]
         public decimal UnitCost 
         {
-            get { return Math.Round(_Subject.UnitCost, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.UnitCost, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.UnitCost = value;

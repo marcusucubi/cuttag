@@ -54,7 +54,7 @@ namespace SampleProperties
         public  decimal ShippingContainerCost
         {
             get { return Math.Round(_Subject.ShippingContainerCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("ShippingContainerCost / FunctionalQuantity\n(Dollars)"), 
@@ -63,7 +63,7 @@ namespace SampleProperties
         public decimal ShippingContainerCostPerOrder 
         {
             get { return Math.Round(_Subject.ShippingContainerCostPerOrder, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Shipping Cost\n(Dollars)"), 
@@ -72,7 +72,7 @@ namespace SampleProperties
         public decimal ShippingCost
         {
             get { return Math.Round(_Subject.ShippingCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.ShippingCost = value;
@@ -89,7 +89,7 @@ namespace SampleProperties
         CategoryAttribute(Spaces.SortedSpaces1 + "Copper")]
         public decimal CopperWeight 
         {
-            get { return Math.Round(_Subject.CopperWeight, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.CopperWeight, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Percent of Scrap Copper. \n(Percent)"), 
@@ -98,7 +98,7 @@ namespace SampleProperties
         public decimal PercentCopperScrap 
         {
             get { return Math.Round(_Subject.PercentCopperScrap, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.PercentCopperScrap = value;
@@ -112,7 +112,7 @@ namespace SampleProperties
         public decimal CopperScrapWeight
         {
             get { return Math.Round(_Subject.CopperScrapWeight, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Copper Price\n(Dollars Per Pounds)"), 
@@ -120,7 +120,7 @@ namespace SampleProperties
         CategoryAttribute(Spaces.SortedSpaces1 + "Copper")]
         public decimal CopperPrice
         {
-            get { return Math.Round(_Subject.CopperPrice, Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+            get { return Math.Round(_Subject.CopperPrice, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set 
             {
                 _Subject.CopperPrice = value;
@@ -134,7 +134,7 @@ namespace SampleProperties
         public decimal CopperScrapCost 
         {
             get { return Math.Round(_Subject.CopperScrapCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         #endregion
@@ -147,7 +147,7 @@ namespace SampleProperties
         public decimal ComponentMaterialCost
         {
             get { return Math.Round(_Subject.ComponentMaterialCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Sum(UnitCost * Quantity)\n(Dollar)"), 
@@ -156,7 +156,7 @@ namespace SampleProperties
         public decimal WireMaterialCost
         {
             get { return Math.Round(_Subject.WireMaterialCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); } 
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); } 
         }
 
         [DescriptionAttribute("ComponentMaterialCost + WireMaterialCost + ShippingContainerCostPerOrder\n(Dollar)"), 
@@ -165,7 +165,7 @@ namespace SampleProperties
         public decimal TotalMaterialCost
         {
             get { return Math.Round(_Subject.TotalMaterialCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Material Markup"), 
@@ -174,7 +174,7 @@ namespace SampleProperties
         public decimal MaterialMarkUp 
         {
             get { return Math.Round(_Subject.MaterialMarkUp, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.MaterialMarkUp = value;
@@ -188,7 +188,7 @@ namespace SampleProperties
         public decimal AdjustedTotalMaterialCost 
         {
             get { return Math.Round(_Subject.AdjustedTotalMaterialCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("(TotalMaterialCost * MaterialMarkup)" + 
@@ -198,7 +198,7 @@ namespace SampleProperties
         public decimal TotalVariableMaterialCost
         {
             get { return Math.Round(_Subject.TotalVariableMaterialCost, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
 #endregion
@@ -219,7 +219,7 @@ namespace SampleProperties
         public decimal ComponentSetupTime
         {
             get { return Math.Round(_Subject.ComponentSetupTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set 
             {
                 _Subject.ComponentSetupTime = value;
@@ -233,7 +233,7 @@ namespace SampleProperties
         public decimal WireSetupTime
         {
             get { return Math.Round(_Subject.WireSetupTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.WireSetupTime = value;
@@ -261,7 +261,7 @@ namespace SampleProperties
         public decimal TotalWireSetupTime 
         {
             get { return Math.Round(_Subject.TotalWireSetupTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("(TotalWireSetupTime + ComponentSetupTime) " + 
@@ -274,7 +274,7 @@ namespace SampleProperties
             {
                 decimal c = (TotalWireSetupTime + ComponentSetupTime)
                     / OrderQuantity;
-                return Math.Round(c, Model.Common.GlobalOptions.DecimalPointsToDisplay); 
+                return Math.Round(c, Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); 
             }
         }
 
@@ -288,7 +288,7 @@ namespace SampleProperties
         public decimal TotalComponentMachineTime
         {
             get { return Math.Round(_Subject.TotalComponentMachineTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("WireLengthFeet * WireMachineTime \n(Seconds)"),
@@ -297,7 +297,7 @@ namespace SampleProperties
         public decimal TotalWireMachineTime 
         {
             get { return Math.Round(_Subject.TotalWireMachineTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
         [DescriptionAttribute("Used with TotalWireMachineTime \n(Seconds)"), 
@@ -306,7 +306,7 @@ namespace SampleProperties
         public decimal WireMachineTime
         {
             get { return Math.Round(_Subject.WireMachineTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
             set
             {
                 _Subject.WireMachineTime = value;
@@ -321,7 +321,7 @@ namespace SampleProperties
         public decimal TotalMachineTime 
         {
             get { return Math.Round(_Subject.TotalMachineTime, 
-                Model.Common.GlobalOptions.DecimalPointsToDisplay); }
+                Model.Common.GlobalOptions.Instance.DecimalPointsToDisplay); }
         }
 
 #endregion

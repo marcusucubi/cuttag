@@ -24,7 +24,7 @@ Public Class DisplayableComponentProperties
     CategoryAttribute("Vendor")> _
     Public Overloads Property MinimumQty As Decimal
         Get
-            Return Math.Round(_Subject.MinimumQty, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.MinimumQty, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.MinimumQty = value
@@ -36,7 +36,7 @@ Public Class DisplayableComponentProperties
     CategoryAttribute("Vendor")> _
     Public Overloads Property MinimumDollar As Decimal
         Get
-            Return Math.Round(_Subject.MinimumDollar, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.MinimumDollar, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Decimal)
             _Subject.MinimumDollar = value
@@ -48,7 +48,7 @@ Public Class DisplayableComponentProperties
     CategoryAttribute("Vendor")> _
     Public Property LeadTime As Integer
         Get
-            Return Math.Round(_Subject.LeadTime, Common.GlobalOptions.DecimalPointsToDisplay)
+            Return Math.Round(_Subject.LeadTime, Common.GlobalOptions.Instance.DecimalPointsToDisplay)
         End Get
         Set(ByVal value As Integer)
             _Subject.LeadTime = value
