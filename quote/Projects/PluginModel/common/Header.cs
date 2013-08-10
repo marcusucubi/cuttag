@@ -68,13 +68,14 @@ namespace Model.Common
         {
             get 
             { 
-                return nextSequenceNumber++; 
+                return this.nextSequenceNumber++; 
             }
+            
             set 
             { 
-                if (value > nextSequenceNumber)
+                if (value > this.nextSequenceNumber)
                 {
-                    nextSequenceNumber = value; 
+                    this.nextSequenceNumber = value; 
                 }
             }
         }

@@ -3,7 +3,7 @@ namespace Model
     using System;
     using System.Linq;
 
-    public struct ProductBuildData
+    public class ProductBuildData
     {
         private string code;
         

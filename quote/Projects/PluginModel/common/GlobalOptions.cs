@@ -20,6 +20,7 @@ namespace Model.Common
             get { return instance; }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Ignore")]
         public int DecimalPointsToDisplay 
         {
             get 
