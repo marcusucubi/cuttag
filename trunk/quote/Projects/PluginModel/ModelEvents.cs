@@ -12,40 +12,40 @@ namespace Model
             // Singleton class
         }
 
-        public static ModelEvents Instance
-        {
-            get { return instance; }
-        }
-
         public event EventHandler<ModelEventArgs> TemplateCreated;
 
         public event EventHandler TemplateViewed;
 
         public event EventHandler QuoteViewed;
 
+        public static ModelEvents Instance
+        {
+            get { return instance; }
+        }
+
         public void NotifyTemplateCreated(int id)
         {
             ModelEventArgs args = new ModelEventArgs();
             args.Id = id;
-            if (TemplateCreated != null) 
+            if (this.TemplateCreated != null) 
             {
-                TemplateCreated(null, args);
+                this.TemplateCreated(null, args);
             }
         }
 
         public void NotifyTemplateViewed()
         {
-            if (TemplateViewed != null) 
+            if (this.TemplateViewed != null) 
             {
-                TemplateViewed(null, new EventArgs());
+                this.TemplateViewed(null, new EventArgs());
             }
         }
 
         public void NotifyQuoteViewed()
         {
-            if (QuoteViewed != null) 
+            if (this.QuoteViewed != null) 
             {
-                QuoteViewed(null, new EventArgs());
+                this.QuoteViewed(null, new EventArgs());
             }
         }
     }

@@ -7,13 +7,8 @@ namespace Model.Template.Ext
     
     using Model.Template.Ext;
 
-    public sealed class PropertyFactory
+    public static class PropertyFactory
     {
-        private PropertyFactory()
-        {
-            // Only use static methods
-        }
-
         public static Model.Common.OtherProperties CreateOtherProperties(
             Header header, 
             int id)
@@ -22,11 +17,19 @@ namespace Model.Template.Ext
 
             if (App.RegisteredClasses.ContainsKey(typeof(IOtherPropertiesFactory))) 
             {
-                var v = App.RegisteredClasses[typeof(IOtherPropertiesFactory)];
+                Type v = App.RegisteredClasses[typeof(IOtherPropertiesFactory)];
 
                 if (v != null)
                 {
                     IOtherPropertiesFactory o = Activator.CreateInstance(v) as IOtherPropertiesFactory;
+                    
+                    if (o == null)
+                    {
+                        string text = "Class registered as a IOtherPropertiesFactory, " + 
+                            "is not a IOtherPropertiesFactory";
+                        throw new ModelException(text);
+                    }
+                    
                     result = o.CreateOtherProperties(header, id);
                 }
             }
