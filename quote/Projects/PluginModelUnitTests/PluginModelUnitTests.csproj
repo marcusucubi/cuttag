@@ -78,9 +78,12 @@
     <Compile Include="template\ext\CustomComponentPropertiesFactory.cs" />
     <Compile Include="template\ext\CustomOtherProperties.cs" />
     <Compile Include="template\ext\CustomOtherPropertiesFactory.cs" />
+    <Compile Include="template\ext\CustomWireProperties.cs" />
+    <Compile Include="template\ext\CustomWirePropertiesFactory.cs" />
     <Compile Include="template\NotePropertiesTest.cs" />
     <Compile Include="template\OtherPropertiesTest.cs" />
     <Compile Include="template\PrimaryPropertiesTest.cs" />
+    <Compile Include="template\WirePropertiesTest.cs" />
     <Compile Include="TestContext.cs" />
     <Compile Include="UnitOfMeasureListTest.cs" />
   </ItemGroup>
