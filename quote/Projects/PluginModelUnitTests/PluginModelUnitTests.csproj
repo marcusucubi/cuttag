@@ -63,19 +63,24 @@
   <ItemGroup>
     <Compile Include="ActiveDetailTest.cs" />
     <Compile Include="ActiveHeaderTest.cs" />
-    <Compile Include="ComponentPropertiesTest.cs" />
     <Compile Include="CustomerConverterTest.cs" />
     <Compile Include="CustomerListTest.cs" />
     <Compile Include="CustomerTest.cs" />
-    <Compile Include="CustomOtherProperties.cs" />
-    <Compile Include="CustomOtherPropertiesFactory.cs" />
     <Compile Include="GlobalOptionsTest.cs" />
     <Compile Include="ModelEventsTest.cs" />
+    <Compile Include="ModelExceptionTest.cs" />
     <Compile Include="ModelTest.cs" />
-    <Compile Include="OtherPropertiesTest.cs" />
     <Compile Include="ProductTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="template\ComponentPropertiesTest.cs" />
+    <Compile Include="template\ext\CustomComponentProperties.cs" />
+    <Compile Include="template\ext\CustomComponentPropertiesFactory.cs" />
+    <Compile Include="template\ext\CustomOtherProperties.cs" />
+    <Compile Include="template\ext\CustomOtherPropertiesFactory.cs" />
+    <Compile Include="template\NotePropertiesTest.cs" />
+    <Compile Include="template\OtherPropertiesTest.cs" />
+    <Compile Include="template\PrimaryPropertiesTest.cs" />
     <Compile Include="TestContext.cs" />
     <Compile Include="UnitOfMeasureListTest.cs" />
   </ItemGroup>
@@ -88,6 +93,10 @@
       <Project>{657BD9B0-FCA0-4574-A57C-1F9743697EBB}</Project>
       <Name>PluginModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="template" />
+    <Folder Include="template\ext" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
