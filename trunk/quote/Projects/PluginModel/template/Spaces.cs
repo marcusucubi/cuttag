@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    public sealed class Spaces
+    public static class Spaces
     {
         public const string SortedSpaces1 = "          ";
         public const string SortedSpaces2 = "          ";
@@ -16,10 +16,5 @@
         public const string SortedSpaces9 = "          ";
         public const string SortedSpaces10 = "          ";
         public const string SortedSpaces11 = "          ";
-        
-        private Spaces()
-        {
-            // Only using static members
-        }
     }
 }
