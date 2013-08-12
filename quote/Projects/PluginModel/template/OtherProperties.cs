@@ -5,8 +5,5 @@ namespace Model.Template
 
     public abstract class OtherProperties : Common.OtherProperties
     {
-        public OtherProperties()
-        {
-        }
     }
 }

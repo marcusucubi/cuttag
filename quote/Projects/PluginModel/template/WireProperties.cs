@@ -9,7 +9,7 @@ namespace Model.Template
         
         private Model.Template.Detail withEventsFieldQuoteDetail;
         
-        public WireProperties(Model.Template.Detail detail)
+        protected WireProperties(Model.Template.Detail detail)
         {
             this._QuoteDetail = detail;
         }
