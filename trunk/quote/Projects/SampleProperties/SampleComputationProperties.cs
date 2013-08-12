@@ -27,10 +27,9 @@ namespace SampleProperties
         private int _NumberOfCuts;
 
         public SampleComputationProperties(Header header)
-            : base(header)
         {
             _Header = header;
-       }
+        }
 
 #region Shipping
 

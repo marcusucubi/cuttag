@@ -5,7 +5,7 @@ namespace Model.Template
 
     public sealed class DefaultComputationProperties : Template.ComputationProperties
     {
-        public DefaultComputationProperties(Template.Header header) : base(header)
+        public DefaultComputationProperties()
         {
             // Base class
         }

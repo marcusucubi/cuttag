@@ -4,7 +4,7 @@ namespace Model.Template
     using System.ComponentModel;
     using System.Linq;
 
-    public class NoteProperties : Common.NoteProperties
+    public sealed class NoteProperties : Common.NoteProperties
     {
         private string note;
 

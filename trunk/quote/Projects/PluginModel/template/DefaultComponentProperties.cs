@@ -3,7 +3,7 @@ namespace Model.Template
     using System;
     using System.Linq;
 
-    public class DefaultComponentProperties : Template.ComponentProperties
+    public sealed class DefaultComponentProperties : Template.ComponentProperties
     {
         private Template.Detail quoteDetail;
         
