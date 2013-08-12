@@ -19,7 +19,12 @@
             Model.Product product = new Model.Product();
             Model.Template.Detail detail = new Model.Template.Detail(header, product);
             
-            Model.Template.ComponentProperties component = detail.QuoteDetailProperties as Model.Template.ComponentProperties;
+            Model.Template.DisplayableComponentProperties displayable = 
+                detail.QuoteDetailProperties as Model.Template.DisplayableComponentProperties;
+            Assert.IsNotNull(displayable);
+            
+            Model.Template.ComponentProperties component = 
+                displayable.Subject as Model.Template.ComponentProperties;
             Assert.IsNotNull(component);
             
             component.MachineTime = 1;

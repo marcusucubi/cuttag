@@ -88,7 +88,7 @@ namespace Model.Template.Ext
 
             if (result == null) 
             {
-                result = new DefaultComponentProperties(detail);
+                result = new DisplayableComponentProperties(new DefaultComponentProperties(detail));
             }
 
             return result;
