@@ -62,7 +62,7 @@ namespace Model.Template.Ext
 
             if (result == null) 
             {
-                result = new DefaultComputationProperties(header);
+                result = new DefaultComputationProperties();
             }
 
             return result;

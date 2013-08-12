@@ -3,7 +3,7 @@ namespace Model.Template
     using System;
     using System.Linq;
 
-    public class WireProperties : Common.WireProperties
+    public abstract class WireProperties : Common.WireProperties
     {
         private decimal copperWeightPer1000Ft;
         

@@ -2,7 +2,7 @@
 Imports System.Reflection
 
 Public Class DekalbWireProperties
-    Inherits Model.Template.DefaultWireProperties
+    Inherits Model.Template.WireProperties
 
     Private _QuoteDetail As Model.Template.Detail
 

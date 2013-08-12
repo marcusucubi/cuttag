@@ -17,7 +17,6 @@ Public NotInheritable Class DekalbComputationProperties
     Inherits Model.Template.ComputationProperties
 
     Public Sub New(ByVal Header As Model.Template.Header)
-        MyBase.New(Header)
         _Header = Header
     End Sub
 #Region " Variables "
