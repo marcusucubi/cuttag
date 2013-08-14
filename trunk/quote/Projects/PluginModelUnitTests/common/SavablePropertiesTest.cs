@@ -16,11 +16,19 @@
             bool flag = false;
             properties.Dirty += delegate { flag = true; };
             
+            bool clean = false;
+            properties.Clean += delegate { clean = true; };
+            
             properties.SampleProperty = true;
             
             Assert.That(properties.SampleProperty, Is.True);
             Assert.That(flag, Is.True);
             Assert.That(properties.IsDirty, Is.True);
+            
+            properties.IsDirty = false;
+            
+            Assert.That(properties.IsDirty, Is.False);
+            Assert.That(clean, Is.True);
         }
         
         [Test]

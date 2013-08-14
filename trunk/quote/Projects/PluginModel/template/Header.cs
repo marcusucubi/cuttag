@@ -16,7 +16,7 @@ namespace Model.Template
 
         public Header(int id) : base(false)
         {
-            this.AddDependent(this.Details);
+            this.AddChildProperty(this.Details);
 
             this.SetPrimaryProperties(new PrimaryProperties(id));
 
@@ -24,10 +24,10 @@ namespace Model.Template
             this.SetComputationProperties(PropertyFactory.CreateComputationProperties(this, id));
             this.SetNoteProperties(new NoteProperties());
 
-            this.AddDependent(this.ComputationProperties);
-            this.AddDependent(this.OtherProperties);
-            this.AddDependent(this.PrimaryProperties);
-            this.AddDependent(this.NoteProperties);
+            this.AddChildProperty(this.ComputationProperties);
+            this.AddChildProperty(this.OtherProperties);
+            this.AddChildProperty(this.PrimaryProperties);
+            this.AddChildProperty(this.NoteProperties);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Uppercase is alright")]

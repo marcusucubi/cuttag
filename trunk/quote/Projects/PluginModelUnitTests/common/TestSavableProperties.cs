@@ -29,12 +29,12 @@
         
         public void Add(ISavableProperties subject)
         {
-            base.AddDependent(subject);
+            base.AddChildProperty(subject);
         }
         
         public void Remove(ISavableProperties subject)
         {
-            base.RemoveDependent(subject);
+            base.RemoveChildProperty(subject);
         }
     }
 }
