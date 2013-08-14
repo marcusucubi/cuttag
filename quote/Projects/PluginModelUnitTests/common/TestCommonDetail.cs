@@ -5,7 +5,6 @@
     public class TestCommonDetail : Model.Common.Detail
     {
         public TestCommonDetail()
-            : base(new Model.Product(), "test", 1)
         {
         }
         

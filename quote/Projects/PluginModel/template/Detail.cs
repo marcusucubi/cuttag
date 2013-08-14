@@ -15,7 +15,6 @@ namespace Model.Template
         public Detail(Header header, Product product) : base(product, product.UnitOfMeasure, 1)
         {
             this.Header = header;
-            this.IsWire = product.IsWire;
             this.componentProperties = PropertyFactory.CreateComponentProperties(this);
             this.wireProperties = PropertyFactory.CreateWireProperties(this);
             this.SequenceNumber = this.Header.NextSequenceNumber;

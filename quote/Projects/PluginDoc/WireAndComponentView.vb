@@ -123,7 +123,6 @@ Public Class WireAndComponentView
                 Dim sPartNumber As String = drLookup.PartNumber
                 Dim gSourceID As Guid = drLookup.SourceID
                 Dim oDetail As Model.Template.Detail = CType(dgvQuoteDetail.CurrentRow.DataBoundItem, Model.Template.Detail)
-                oDetail.IsWire = drLookup.IsWire
                 oDetail.SourceID = drLookup.SourceID
                 
                 Dim pProduct As Model.Product = _

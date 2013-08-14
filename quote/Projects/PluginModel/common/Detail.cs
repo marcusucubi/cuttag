@@ -24,11 +24,15 @@ namespace Model.Common
             // Needed for grid view
         }
 
-        protected Detail(Model.Product product, string unitOfMeasure, decimal quantity)
+        protected Detail(
+            Model.Product product, 
+            string unitOfMeasure, 
+            decimal quantity)
         {
             this.quantity = quantity;
             this.product = product;
             this.unitOfMeasure = unitOfMeasure;
+            this.wire = product.IsWire;
         }
 
         public virtual decimal Qty 
@@ -107,18 +111,7 @@ namespace Model.Common
 
         public bool IsWire 
         {
-            get 
-            { 
-                return this.wire; 
-            }
-            
-            set 
-            {
-                if (!(value == this.wire)) 
-                {
-                    this.wire = value;
-                }
-            }
+            get { return this.wire; }
         }
 
         public decimal MachineTime 
@@ -205,6 +198,7 @@ namespace Model.Common
         protected void SetProduct(Model.Product value)
         {
             this.product = value;
+            this.wire = value.IsWire;
         }
     }
 }
