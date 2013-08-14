@@ -71,17 +71,6 @@ namespace Model.IO
                 LoadComponents(q);
             }
 
-            q.ComputationProperties.IsDirty = false;
-            q.OtherProperties.IsDirty = false;
-            q.PrimaryProperties.IsDirty = false;
-            q.NoteProperties.IsDirty = false;
-            
-            foreach(Model.Common.Detail detail in q.Details)
-            {
-                detail.QuoteDetailProperties.IsDirty = false;
-                detail.IsDirty = false;
-            }
-
             q.IsDirty = false;
             
             System.Windows.Forms.Cursor.Current = Cursors.Default;

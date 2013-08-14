@@ -87,9 +87,6 @@ namespace Model.IO
             CommonSaver.SaveComponents(header, newId, true);
             adaptor.Connection.Close();
 
-            header.ComputationProperties.IsDirty = false;
-            header.OtherProperties.IsDirty = false;
-            header.PrimaryProperties.IsDirty = false;
             header.IsDirty = false;
 
             System.Windows.Forms.Cursor.Current = Cursors.Default;

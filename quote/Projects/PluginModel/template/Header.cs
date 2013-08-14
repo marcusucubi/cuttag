@@ -10,16 +10,13 @@ namespace Model.Template
 
     public class Header : Common.Header
     {
-        private DetailCollection<Common.Detail> withEventsFieldDetails;
-        
         public Header() : this(0)
         {
-            this._Details = this.Details;
         }
 
         public Header(int id) : base(false)
         {
-            this._Details = this.Details;
+            this.AddDependent(this.Details);
 
             this.SetPrimaryProperties(new PrimaryProperties(id));
 
@@ -39,32 +36,10 @@ namespace Model.Template
             get { return PrimaryProperties.CommonId; }
         }
 
-        private DetailCollection<Common.Detail> _Details 
-        {
-            set 
-            {
-                if (this.withEventsFieldDetails != null) 
-                {
-                    this.withEventsFieldDetails.CollectionChanged -= this._col_ListChanged;
-                }
-                
-                this.withEventsFieldDetails = value;
-                
-                if (this.withEventsFieldDetails != null) 
-                {
-                    this.withEventsFieldDetails.CollectionChanged += this._col_ListChanged;
-                }
-            }
-        }
-        
         public override Common.Detail NewDetail(Product product)
         {
             Detail oo = new Detail(this, product);
-
             this.Details.Add(oo);
-            this.AddDependent(oo);
-            this.OnPropertyChanged();
-
             return oo;
         }
 
@@ -73,20 +48,7 @@ namespace Model.Template
             if (detail != null) 
             {
                 this.Details.Remove(detail);
-
-                this.RemoveDependent(detail);
-                this.OnPropertyChanged();
             }
-        }
-
-        protected override void OnPropertyChanged()
-        {
-            base.OnPropertyChanged();
-        }
-        
-        private void _col_ListChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            this.OnPropertyChanged();
         }
     }
 }
