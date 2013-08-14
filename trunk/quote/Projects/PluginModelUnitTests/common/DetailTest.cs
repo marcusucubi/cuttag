@@ -56,15 +56,15 @@
         [Test]
         public void TestWire()
         {
+            TestCommonDetail detail2 = new TestCommonDetail();
+            
             Model.ProductBuildData data = new Model.ProductBuildData();
             data.IsWire = true;
             Model.Product wire = new Model.Product(data);
-            TestCommonDetail detail = new TestCommonDetail();
-            detail.IsWire = true;
+            TestCommonDetail detail = new TestCommonDetail(wire);
 
             detail.ProductCode = "test";
             Assert.AreEqual("test", detail.ProductCode);
-            
             Assert.AreEqual("Wire", detail.DisplayableProductClass);
             
             detail.SequenceNumber = 1;

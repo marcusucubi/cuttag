@@ -138,7 +138,6 @@ namespace Model.IO
                 Model.Common.Detail detail = header.NewDetail(product);
                 detail.Qty = row.Qty;
                 
-                detail.IsWire = row.IsWire;
                 if (!row.IsSourceIDNull())
                 {
                     detail.SourceId = row.SourceID;

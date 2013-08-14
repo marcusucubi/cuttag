@@ -171,7 +171,6 @@ namespace Model.IO
                 Model.Quote.Detail detail = header.NewDetail(product) as Model.Quote.Detail;
                 
                 detail.Qty = row.Qty;
-                detail.IsWire = row.IsWire;
                 
                 if (!row.IsSourceIDNull())
                 {
