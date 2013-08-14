@@ -1,87 +1,87 @@
 namespace Model.Common
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
 
-    public class SavableProperties : INotifyPropertyChanged, ICloneable
+    public abstract class SavableProperties : INotifyPropertyChanged
     {
         private bool dirty;
         
-        public SavableProperties()
+        private List<SavableProperties> dependents = new List<SavableProperties>();
+        
+        protected SavableProperties()
         {
-            this.SavableChange += this.OnSavableChanged;
         }
         
-        public event PropertyChangedEventHandler PropertyChanged;
+        public virtual event PropertyChangedEventHandler PropertyChanged;
 
-        public event EventHandler SavableChange;
+        public virtual event EventHandler Dirty;
 
+        public virtual event EventHandler Clean;
+        
         [Browsable(false)]
-        public object Subject { get; set; }
-
-        [Browsable(false)]
-        public bool Dirty 
+        public bool IsDirty 
         {
-            get { return this.dirty; }
-        }
-
-        public virtual void MakeDirty()
-        {
-            this.dirty = true;
+            get 
+            { 
+                return this.dirty; 
+            }
             
-            if (this.SavableChange != null) 
+            set
             {
-                this.SavableChange(this, new EventArgs());
+                if (value == true)
+                {
+                    this.dirty = true;
+                    
+                    if (this.Dirty != null) 
+                    {
+                        this.Dirty(this, new EventArgs());
+                    }
+                }
+                else
+                {
+                    this.dirty = false;
+                    
+                    foreach (SavableProperties dependant in this.dependents)
+                    {
+                        dependant.IsDirty = false;
+                    }
+                    
+                    if (this.Clean != null) 
+                    {
+                        this.Clean(this, new EventArgs());
+                    }
+                }
             }
         }
 
-        public virtual void ClearDirty()
+        protected void AddDependent(SavableProperties subject)
         {
-            this.dirty = false;
-            if (this.SavableChange != null) 
-            {
-                this.SavableChange(this, new EventArgs());
-            }
+            subject.Dirty += this.OnDependentDirty;
+            this.dependents.Add(subject);
         }
 
-        public virtual void SendEvents()
+        protected void RemoveDependent(SavableProperties subject)
+        {
+            subject.Dirty -= this.OnDependentDirty;
+            this.dependents.Remove(subject);
+        }
+
+        protected virtual void OnPropertyChanged()
         {
             if (this.PropertyChanged != null) 
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs("sp"));
             }
             
-            this.MakeDirty();
-        }
-
-        public object Clone()
-        {
-            return this.MemberwiseClone();
+            this.IsDirty = true;
         }
         
-        protected void AddDependent(SavableProperties subject)
+        private void OnDependentDirty(object source, EventArgs args)
         {
-            subject.SavableChange += this.OnSavableChanged;
-        }
-
-        protected void RemoveDependent(SavableProperties subject)
-        {
-            EventHandler address = this.OnSavableChanged;
-            subject.SavableChange -= address;
-        }
-
-        protected void OnSavableChanged(object subject, EventArgs args)
-        {
-            SavableProperties savable = subject as SavableProperties;
-            if (savable.Dirty != this.Dirty) 
-            {
-                this.dirty = true;
-                if (this.SavableChange != null) 
-                {
-                    this.SavableChange(this, new EventArgs());
-                }
-            }
+            this.IsDirty = true;
         }
     }
 }

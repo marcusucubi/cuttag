@@ -1,4 +1,4 @@
-﻿namespace PluginModelUnitTests
+﻿namespace PluginModelUnitTests.Template
 {
     using System;
     

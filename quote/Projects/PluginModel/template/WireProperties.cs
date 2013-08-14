@@ -39,7 +39,7 @@ namespace Model.Template
             set 
             {
                 this._QuoteDetail.Product.Description = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -58,7 +58,7 @@ namespace Model.Template
             set 
             {
                 this.copperWeightPer1000Ft = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -77,7 +77,7 @@ namespace Model.Template
             set 
             {
                 this._QuoteDetail.Qty = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -91,7 +91,7 @@ namespace Model.Template
             set 
             {
                 this._QuoteDetail.UnitCost = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -124,15 +124,14 @@ namespace Model.Template
             }
         }
         
-        public override void SendEvents()
+        protected override void OnPropertyChanged()
         {
-            base.SendEvents();
-            this._QuoteDetail.Header.ComputationProperties.SendEvents();
+            base.OnPropertyChanged();
         }
         
         private void _QuoteDetail_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.SendEvents();
+            this.OnPropertyChanged();
         }
     }
 }

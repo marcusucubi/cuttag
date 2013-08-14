@@ -26,7 +26,7 @@ Public Class DekalbComponentProperties
         Set(ByVal value As Decimal)
             If Not (value = _MinimumQty) Then
                 Me._MinimumQty = value
-                SendEvents()
+                OnPropertyChanged()
             End If
         End Set
     End Property
@@ -38,7 +38,7 @@ Public Class DekalbComponentProperties
         Set(ByVal value As Decimal)
             If Not (value = _MinimumDollar) Then
                 Me._MinimumDollar = value
-                SendEvents()
+                OnPropertyChanged()
             End If
         End Set
     End Property
@@ -49,7 +49,7 @@ Public Class DekalbComponentProperties
         End Get
         Set(ByVal value As Integer)
             _QuoteDetail.Product.LeadTime = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 

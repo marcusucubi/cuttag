@@ -21,11 +21,10 @@ Public Class DisplayableComputationProperties
 
     Public Sub New(ByVal subject As DekalbComputationProperties)
         _Subject = subject
-        MyBase.Subject = subject
     End Sub
 
     Private Sub _Options_Changed() Handles _Options.Changed
-        Me.SendEvents()
+        Me.OnPropertyChanged()
     End Sub
 
     <BrowsableAttribute(false)>
@@ -58,7 +57,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.PercentCopperScrap = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -80,7 +79,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.CopperPrice = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -162,7 +161,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.MaterialMarkUp = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -198,7 +197,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Integer)
             _Subject.NumberOfTwistedPairs = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -233,7 +232,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.ComponentSetupTime = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -246,7 +245,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.WireSetupTime = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -260,7 +259,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Integer)
             _Subject.NumberOfCuts = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -314,7 +313,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._Subject.WireMachineTime = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -351,7 +350,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._Subject.TimeMultiplier = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -386,7 +385,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal Value As Decimal)
             _Subject.LaborRate = Value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -413,7 +412,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As String)
             _Subject.QuoteType = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -425,7 +424,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal Value As Integer)
             _Subject.MinimumOrderQuantity = Value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -437,7 +436,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal Value As Integer)
             _Subject.SingleDefiniteQuantity = Value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -449,7 +448,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal Value As Integer)
             _Subject.OrderQuantity = Value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -477,7 +476,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal Value As String)
             _Subject.ShippingContainer = Value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -508,7 +507,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal Value As Decimal)
             _Subject.ShippingCost = Value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -561,7 +560,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.SummaryAdjustment = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 
@@ -606,7 +605,7 @@ Public Class DisplayableComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.ManufacturingMarkup = value
-            MyBase.SendEvents()
+            MyBase.OnPropertyChanged()
         End Set
     End Property
 

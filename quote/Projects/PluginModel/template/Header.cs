@@ -63,7 +63,7 @@ namespace Model.Template
 
             this.Details.Add(oo);
             this.AddDependent(oo);
-            this.SendEvents();
+            this.OnPropertyChanged();
 
             return oo;
         }
@@ -75,18 +75,18 @@ namespace Model.Template
                 this.Details.Remove(detail);
 
                 this.RemoveDependent(detail);
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
-        public override void SendEvents()
+        protected override void OnPropertyChanged()
         {
-            this.ComputationProperties.SendEvents();
+            base.OnPropertyChanged();
         }
         
         private void _col_ListChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.SendEvents();
+            this.OnPropertyChanged();
         }
     }
 }

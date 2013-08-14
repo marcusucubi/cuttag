@@ -71,7 +71,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._PercentCopperScrap = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property CopperScrapWeight As Decimal
@@ -86,7 +86,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._CopperPrice = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property CopperScrapCost As Decimal
@@ -141,7 +141,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._MaterialMarkup = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property AdjustedTotalMaterialCost As Decimal
@@ -165,7 +165,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Integer)
             Me._NumberOfTwistedPairs = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property TwistedPairsMachineTime As Decimal
@@ -186,7 +186,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _ComponentSetupTime = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public Property WireSetupTime As Decimal
@@ -195,7 +195,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _WireSetupTime = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public Property NumberOfCuts() As Integer
@@ -204,7 +204,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Integer)
             _NumberOfCuts = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property TotalWireSetupTime As Decimal
@@ -240,7 +240,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._WireMachineTime = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property TotalMachineTime As Decimal
@@ -262,7 +262,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._TimeMultiplier = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property AdjustedTotalLaborTime() As Decimal
@@ -284,7 +284,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal Value As Decimal)
             _LaborRate = Value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property LaborCost As Decimal
@@ -300,7 +300,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As String)
             _QuoteType = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public Property MinimumOrderQuantity As Integer
@@ -309,7 +309,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal Value As Integer)
             _MinimumOrderQuantity = Value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public Property SingleDefiniteQuantity As Integer
@@ -318,7 +318,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal Value As Integer)
             _SingleDefQuantity = Value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public Property OrderQuantity As Integer
@@ -327,7 +327,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal Value As Integer)
             _OrderQuantity = Value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property FunctionalQuantity As Integer
@@ -349,7 +349,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal Value As String)
             _ShippingBox = Value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property ShippingContainerCost As Decimal
@@ -374,7 +374,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal Value As Decimal)
             _ShippingCost = Value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 #End Region
@@ -406,7 +406,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             _SummaryAdjustmentMultiplyer = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property SummaryCostAdjustment As Decimal
@@ -450,7 +450,7 @@ Public NotInheritable Class DekalbComputationProperties
         End Get
         Set(ByVal value As Decimal)
             Me._ManufacturingMarkup = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
     Public ReadOnly Property AdjustedTotalUnitCost() As Decimal

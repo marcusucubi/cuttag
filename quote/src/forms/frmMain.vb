@@ -82,7 +82,8 @@ Public Class frmMain
         LoadQuote()
     End Sub
     
-    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SavableProperties, ByVal e As System.EventArgs) Handles _SaveableProperties.SavableChange
+    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SavableProperties, ByVal e As System.EventArgs) _
+        Handles _SaveableProperties.Dirty
         EnableButtons()
     End Sub
     
@@ -118,7 +119,7 @@ Public Class frmMain
             Dim id As Integer
             id = Me._ActiveHeader.Header.PrimaryProperties.CommonId
             Dim IsQuote As Boolean = Me._ActiveHeader.Header.IsQuote
-            Dim IsDirty As Boolean = Me._ActiveHeader.Header.Dirty
+            Dim IsDirty As Boolean = Me._ActiveHeader.Header.IsDirty
             If id > 0 And Not IsQuote And Not IsDirty Then
                 result = True
             End If
@@ -169,7 +170,7 @@ Public Class frmMain
                 SaveToolStripMenuItem.Enabled = False
                 ToolStripTemplate.Enabled = True
             Else
-                If Me._ActiveHeader.Header.Dirty Then
+                If Me._ActiveHeader.Header.IsDirty Then
                     SaveToolButton.Enabled = True
                     SaveToolStripMenuItem.Enabled = True
                     CopyToolStripMenuItem.Enabled = False

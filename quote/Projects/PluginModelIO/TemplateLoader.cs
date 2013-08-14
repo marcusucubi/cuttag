@@ -71,18 +71,18 @@ namespace Model.IO
                 LoadComponents(q);
             }
 
-            q.ComputationProperties.ClearDirty();
-            q.OtherProperties.ClearDirty();
-            q.PrimaryProperties.ClearDirty();
-            q.NoteProperties.ClearDirty();
+            q.ComputationProperties.IsDirty = false;
+            q.OtherProperties.IsDirty = false;
+            q.PrimaryProperties.IsDirty = false;
+            q.NoteProperties.IsDirty = false;
             
             foreach(Model.Common.Detail detail in q.Details)
             {
-                detail.QuoteDetailProperties.ClearDirty();
-                detail.ClearDirty();
+                detail.QuoteDetailProperties.IsDirty = false;
+                detail.IsDirty = false;
             }
 
-            q.ClearDirty();
+            q.IsDirty = false;
             
             System.Windows.Forms.Cursor.Current = Cursors.Default;
 

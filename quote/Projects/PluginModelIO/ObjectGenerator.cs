@@ -112,7 +112,6 @@ namespace Model.IO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Ok to ignore")]
         private object CompileCode(string sourceFile)
         {
-            System.Diagnostics.Debug.WriteLine(sourceFile);
             Common.SavableProperties result = null;
             
             VBCodeProvider provider = new VBCodeProvider();
@@ -146,7 +145,8 @@ namespace Model.IO
                     result = Activator.CreateInstance(t) as Common.SavableProperties;
                     if (this.InitObject != null) 
                     {
-                        result.Subject = this.InitObject;
+                        // TODO
+                        //result.Subject = this.InitObject;
                     }
                 }
             }

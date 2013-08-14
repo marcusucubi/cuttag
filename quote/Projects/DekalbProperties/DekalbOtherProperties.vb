@@ -34,7 +34,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As DateTime)
             _DueDate = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -47,7 +47,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As DateTime)
             _QuoteDate = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -95,7 +95,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As Integer)
             _EstimatedAnnualUnits = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -108,7 +108,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As Integer)
             _LeadTimeInitial = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -121,7 +121,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As Integer)
             _LeadTimeStandard = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -134,7 +134,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As Decimal)
             _Tooling = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -147,7 +147,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As Decimal)
             _FormBoardCost = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -160,7 +160,7 @@ Public NotInheritable Class DekalbOtherProperties
         End Get
         Set(ByVal value As Boolean)
             _IsNew = value
-            Me.SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 

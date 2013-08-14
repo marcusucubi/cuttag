@@ -32,7 +32,7 @@ namespace SampleProperties
             set
             {
                 _Subject.Description = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -60,7 +60,7 @@ namespace SampleProperties
             set
             {
                 _Subject.PoundsPer1000Feet = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -80,7 +80,7 @@ namespace SampleProperties
             set
             {
                 _Subject.Quantity = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -93,7 +93,7 @@ namespace SampleProperties
             set
             {
                 _Subject.UnitCost = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -106,9 +106,8 @@ namespace SampleProperties
             set
             {
                 _Subject.UnitOfMeasure = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
-
     }
 }

@@ -129,11 +129,8 @@ Public Class WireAndComponentView
                 Dim pProduct As Model.Product = _
                     ProductDB.Load(gSourceID, drLookup.IsWire, _PartLookupDataSource)
                 
-                With oDetail
-                    .UpdateComponentProperties(pProduct)
-                    .MakeDirty()
-                    .SendEvents()
-                End With
+                oDetail.UpdateComponentProperties(pProduct)
+                oDetail.IsDirty = True
                 
             ElseIf _PartNumberSave = "" Then 'must be new row with no search item chosen 
             End If

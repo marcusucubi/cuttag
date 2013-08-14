@@ -55,7 +55,7 @@ namespace Model.Common
         public void SetId(int id)
         {
             this.id = id;
-            this.SendEvents();
+            this.OnPropertyChanged();
         }
     }
 }
