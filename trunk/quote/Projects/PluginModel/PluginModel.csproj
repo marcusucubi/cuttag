@@ -83,10 +83,11 @@
     <Compile Include="common\GlobalOptions.cs" />
     <Compile Include="common\Header.cs" />
     <Compile Include="common\IHasTotalMachineTime.cs" />
+    <Compile Include="common\ISavableProperties.cs" />
     <Compile Include="common\NoteProperties.cs" />
     <Compile Include="common\OtherProperties.cs" />
     <Compile Include="common\PrimaryPropeties.cs" />
-    <Compile Include="common\SaveableProperties.cs" />
+    <Compile Include="common\DefaultSaveableProperties.cs" />
     <Compile Include="common\WireProperties.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerConverter.cs" />

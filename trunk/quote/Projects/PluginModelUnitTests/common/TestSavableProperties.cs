@@ -6,7 +6,7 @@
     
     using Model.Common;
 
-    public class TestSavableProperties : SavableProperties
+    public class TestSavableProperties : DefaultSavableProperties
     {
         private bool sampleProperty;
        
@@ -27,12 +27,12 @@
             }
         }
         
-        public void Add(SavableProperties subject)
+        public void Add(ISavableProperties subject)
         {
             base.AddDependent(subject);
         }
         
-        public void Remove(SavableProperties subject)
+        public void Remove(ISavableProperties subject)
         {
             base.RemoveDependent(subject);
         }

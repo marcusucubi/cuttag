@@ -133,13 +133,13 @@ Public Class frmDocumentA
         ActiveHeader.Instance.Header = Me._Header
     End Sub
 
-    Private Sub _Header_SavableChange(ByVal subject As SavableProperties, _
+    Private Sub _Header_SavableChange(ByVal subject As ISavableProperties, _
                                       args As EventArgs) _ 
                                       Handles _Header.Dirty
         UpdateText()
     End Sub
 
-    Private Sub _Header_SavableClean(ByVal subject As SavableProperties, _
+    Private Sub _Header_SavableClean(ByVal subject As ISavableProperties, _
                                       args As EventArgs) _ 
                                       Handles _Header.Clean
         UpdateText()

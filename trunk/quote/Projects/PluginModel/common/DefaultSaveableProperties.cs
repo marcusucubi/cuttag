@@ -5,13 +5,13 @@ namespace Model.Common
     using System.ComponentModel;
     using System.Linq;
 
-    public abstract class SavableProperties : INotifyPropertyChanged
+    public abstract class DefaultSavableProperties : ISavableProperties
     {
         private bool dirty;
         
-        private List<SavableProperties> dependents = new List<SavableProperties>();
+        private List<ISavableProperties> dependents = new List<ISavableProperties>();
         
-        protected SavableProperties()
+        protected DefaultSavableProperties()
         {
         }
         
@@ -44,7 +44,7 @@ namespace Model.Common
                 {
                     this.dirty = false;
                     
-                    foreach (SavableProperties dependant in this.dependents)
+                    foreach (ISavableProperties dependant in this.dependents)
                     {
                         dependant.IsDirty = false;
                     }
@@ -57,13 +57,13 @@ namespace Model.Common
             }
         }
 
-        protected void AddDependent(SavableProperties subject)
+        protected void AddDependent(ISavableProperties subject)
         {
             subject.Dirty += this.OnDependentDirty;
             this.dependents.Add(subject);
         }
 
-        protected void RemoveDependent(SavableProperties subject)
+        protected void RemoveDependent(ISavableProperties subject)
         {
             subject.Dirty -= this.OnDependentDirty;
             this.dependents.Remove(subject);

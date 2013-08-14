@@ -181,14 +181,14 @@ namespace Model.IO
                 detail.SequenceNumber = row.SequenceNumber;
                 detail.UnitOfMeasure = row.UOM;
 
-                Common.SavableProperties o1 = null;
+                Common.ISavableProperties o1 = null;
                 if (detail.IsWire)
                 {
                     o1 = this.LoadProperties(
                         id, 
                         (int)row.id,
                         detail.QuoteDetailProperties) 
-                        as Common.SavableProperties;
+                        as Common.ISavableProperties;
                 }
                 else
                 {
@@ -196,7 +196,7 @@ namespace Model.IO
                         id, 
                         (int)row.id,
                         detail.QuoteDetailProperties) 
-                        as Common.SavableProperties;
+                        as Common.ISavableProperties;
                 }
                 
                 if (this.propertyLoader.NameList.Contains("MachineTime"))

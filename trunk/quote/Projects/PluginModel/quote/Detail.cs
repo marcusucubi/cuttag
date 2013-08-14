@@ -8,7 +8,7 @@ namespace Model.Quote
 
     public class Detail : Common.Detail
     {
-        private Common.SavableProperties properties = new DefaultSavableProperties();
+        private Common.ISavableProperties properties = new QuoteSavableProperties();
 
         internal Detail(Common.Header header, Product product) : base(product, string.Empty, 1)
         {
@@ -19,7 +19,7 @@ namespace Model.Quote
         public Header QuoteHeader { get; set; }
 
         [BrowsableAttribute(false)]
-        public override Model.Common.SavableProperties QuoteDetailProperties 
+        public override Model.Common.ISavableProperties QuoteDetailProperties 
         {
             get { return this.properties; }
         }
@@ -41,7 +41,7 @@ namespace Model.Quote
             }
         }
         
-        public void SetProperties(Common.SavableProperties props)
+        public void SetProperties(Common.ISavableProperties props)
         {
             this.properties = props;
         }

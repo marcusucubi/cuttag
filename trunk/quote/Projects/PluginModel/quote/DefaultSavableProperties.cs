@@ -3,7 +3,7 @@
     using System;
     using Model.Common;
 
-    public class DefaultSavableProperties : SavableProperties 
+    public class QuoteSavableProperties : DefaultSavableProperties 
     {
     }
 }
