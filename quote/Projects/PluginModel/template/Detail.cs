@@ -20,8 +20,8 @@ namespace Model.Template
             this.wireProperties = PropertyFactory.CreateWireProperties(this);
             this.SequenceNumber = this.Header.NextSequenceNumber;
             
-            this.AddDependent(this.componentProperties);
-            this.AddDependent(this.wireProperties);
+            this.AddChildProperty(this.componentProperties);
+            this.AddChildProperty(this.wireProperties);
         }
 
         [BrowsableAttribute(false)]

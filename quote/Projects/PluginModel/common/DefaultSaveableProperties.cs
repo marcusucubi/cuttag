@@ -9,7 +9,7 @@ namespace Model.Common
     {
         private bool dirty;
         
-        private List<ISavableProperties> dependents = new List<ISavableProperties>();
+        private List<ISavableProperties> children = new List<ISavableProperties>();
         
         protected DefaultSavableProperties()
         {
@@ -44,7 +44,7 @@ namespace Model.Common
                 {
                     this.dirty = false;
                     
-                    foreach (ISavableProperties dependant in this.dependents)
+                    foreach (ISavableProperties dependant in this.children)
                     {
                         dependant.IsDirty = false;
                     }
@@ -57,16 +57,16 @@ namespace Model.Common
             }
         }
 
-        protected void AddDependent(ISavableProperties subject)
+        protected void AddChildProperty(ISavableProperties child)
         {
-            subject.Dirty += this.OnDependentDirty;
-            this.dependents.Add(subject);
+            child.Dirty += this.OnChildDirty;
+            this.children.Add(child);
         }
 
-        protected void RemoveDependent(ISavableProperties subject)
+        protected void RemoveChildProperty(ISavableProperties child)
         {
-            subject.Dirty -= this.OnDependentDirty;
-            this.dependents.Remove(subject);
+            child.Dirty -= this.OnChildDirty;
+            this.children.Remove(child);
         }
 
         protected virtual void OnPropertyChanged()
@@ -79,7 +79,7 @@ namespace Model.Common
             this.IsDirty = true;
         }
         
-        private void OnDependentDirty(object source, EventArgs args)
+        private void OnChildDirty(object source, EventArgs args)
         {
             this.IsDirty = true;
         }

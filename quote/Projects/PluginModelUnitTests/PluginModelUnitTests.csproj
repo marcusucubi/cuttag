@@ -63,7 +63,9 @@
   <ItemGroup>
     <Compile Include="ActiveDetailTest.cs" />
     <Compile Include="ActiveHeaderTest.cs" />
+    <Compile Include="common\DetailTest.cs" />
     <Compile Include="common\SavablePropertiesTest.cs" />
+    <Compile Include="common\TestCommonDetail.cs" />
     <Compile Include="common\TestSavableProperties.cs" />
     <Compile Include="CustomerConverterTest.cs" />
     <Compile Include="CustomerListTest.cs" />
