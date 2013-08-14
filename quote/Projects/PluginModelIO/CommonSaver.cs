@@ -20,22 +20,22 @@ namespace Model.IO
         public static readonly int CustomPropertiesId = -3;
         public static readonly int NotePropertiesId = -4;
         
-        public static void SaveNoteProperties(int id, SavableProperties obj)
+        public static void SaveNoteProperties(int id, ISavableProperties obj)
         {
             SaveProperties(id, NotePropertiesId, obj, true);
         }
 
-        public static void SaveCustomProperties(int id, SavableProperties obj)
+        public static void SaveCustomProperties(int id, ISavableProperties obj)
         {
             SaveProperties(id, CustomPropertiesId, obj, true);
         }
 
-        public static void SaveOtherProperties(int id, SavableProperties obj, bool saveAll)
+        public static void SaveOtherProperties(int id, ISavableProperties obj, bool saveAll)
         {
             SaveProperties(id, OtherPropertiesId, obj, saveAll);
         }
 
-        public static void SaveComputationProperties(int id, SavableProperties obj, bool saveAll)
+        public static void SaveComputationProperties(int id, ISavableProperties obj, bool saveAll)
         {
             SaveProperties(id, ComputationPropertiesId, obj, saveAll);
         }
@@ -100,7 +100,7 @@ namespace Model.IO
         private static void SaveProperties(
             int id, 
             int childId, 
-            SavableProperties obj, 
+            ISavableProperties obj, 
             bool saveAll)
         {
             PropertyInfo[] props = obj.GetType().GetProperties();

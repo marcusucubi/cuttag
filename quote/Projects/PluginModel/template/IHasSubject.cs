@@ -6,7 +6,7 @@
     public interface IHasSubject
     {
         [Browsable(false)]
-        Model.Common.SavableProperties Subject
+        Model.Common.ISavableProperties Subject
         {
             get;
         }

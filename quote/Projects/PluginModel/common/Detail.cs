@@ -5,7 +5,7 @@ namespace Model.Common
     using System.Linq;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1012:AbstractTypesShouldNotHaveConstructors", Justification = "Ignore")]
-    public abstract class Detail : SavableProperties
+    public abstract class Detail : DefaultSavableProperties
     {
         private decimal quantity = 1;
         
@@ -161,7 +161,7 @@ namespace Model.Common
             get { return this.product; }
         }
 
-        public abstract SavableProperties QuoteDetailProperties 
+        public abstract ISavableProperties QuoteDetailProperties 
         {
             get;
         }

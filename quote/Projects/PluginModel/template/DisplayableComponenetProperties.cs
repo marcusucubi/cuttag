@@ -15,7 +15,7 @@ namespace Model.Template
         }
 
         [Browsable(false)]
-        public Model.Common.SavableProperties Subject 
+        public Model.Common.ISavableProperties Subject 
         {
             get { return this.subject; }
         }

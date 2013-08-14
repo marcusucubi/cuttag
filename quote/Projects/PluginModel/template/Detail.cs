@@ -28,7 +28,7 @@ namespace Model.Template
         public Header Header { get; set; }
 
         [BrowsableAttribute(false)]
-        public override Common.SavableProperties QuoteDetailProperties 
+        public override Common.ISavableProperties QuoteDetailProperties 
         {
             get 
             {

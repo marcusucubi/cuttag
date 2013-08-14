@@ -9,7 +9,7 @@ Imports Host
 Public Class frmMain
 
     Private WithEvents _ActiveHeader As ActiveHeader
-    Private WithEvents _SaveableProperties As Model.Common.SavableProperties
+    Private WithEvents _SaveableProperties As Model.Common.ISavableProperties
     Public Shared Property frmMain As frmMain
 
     Public Sub New()
@@ -82,7 +82,7 @@ Public Class frmMain
         LoadQuote()
     End Sub
     
-    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.SavableProperties, ByVal e As System.EventArgs) _
+    Private Sub _SaveableProperties_SavableChange(ByVal subject As Model.Common.ISavableProperties, ByVal e As System.EventArgs) _
         Handles _SaveableProperties.Dirty
         EnableButtons()
     End Sub

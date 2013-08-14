@@ -3,7 +3,7 @@ namespace Model.Common
     using System;
     using System.Linq;
 
-    public class ComputationProperties : SavableProperties
+    public class ComputationProperties : DefaultSavableProperties
     {
         // Default base class
     }

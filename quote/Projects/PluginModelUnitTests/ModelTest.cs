@@ -35,7 +35,7 @@
             Model.Template.Detail detail = new Model.Template.Detail(header, product);
             header.Details.Add(detail);
             
-            SavableProperties props = detail.QuoteDetailProperties;
+            ISavableProperties props = detail.QuoteDetailProperties;
             WireProperties wire = props as WireProperties;
             
             Assert.NotNull(wire);
@@ -54,7 +54,7 @@
             Model.Template.Detail detail = new Model.Template.Detail(header, product);
             header.Details.Add(detail);
             
-            SavableProperties props = detail.QuoteDetailProperties;
+            ISavableProperties props = detail.QuoteDetailProperties;
             ComponentProperties component = props as ComponentProperties;
             
             Assert.NotNull(component);

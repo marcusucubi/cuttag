@@ -6,7 +6,7 @@ namespace Model.Common
     
     using Model.Template;
 
-    public class PrimaryProperties : SavableProperties
+    public class PrimaryProperties : DefaultSavableProperties
     {
         private int id;
         
