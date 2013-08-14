@@ -25,7 +25,7 @@ namespace SampleProperties
             set
             {
                 m_DueDate = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -38,7 +38,7 @@ namespace SampleProperties
             set
             {
                 m_Note = value;
-                base.MakeDirty();
+                base.OnPropertyChanged();
             }
         }
 

@@ -30,7 +30,7 @@ namespace Model.Template
                 if (!(value == this.quoteDetail.MachineTime)) 
                 {
                     this.quoteDetail.MachineTime = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace Model.Template
             set 
             {
                 this.quoteDetail.Qty = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -59,7 +59,7 @@ namespace Model.Template
             set 
             {
                 this.quoteDetail.Product.Description = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -73,7 +73,7 @@ namespace Model.Template
             set 
             {
                 this.quoteDetail.Product.Vendor = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -93,7 +93,7 @@ namespace Model.Template
             set 
             {
                 this.quoteDetail.UnitCost = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
     }

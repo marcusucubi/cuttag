@@ -39,7 +39,7 @@ namespace SampleProperties
             set
             {
                 _OrderQuantity = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -49,7 +49,7 @@ namespace SampleProperties
             set
             {
                 _ShippingBox = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -85,7 +85,7 @@ namespace SampleProperties
             set
             {
                 _ShippingCost = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -104,7 +104,7 @@ namespace SampleProperties
             set
             {
                 _PercentCopperScrap = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -123,7 +123,7 @@ namespace SampleProperties
             set
             {
                 _CopperPrice = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -158,7 +158,7 @@ namespace SampleProperties
         set
         {
             _MaterialMarkup = value;
-            SendEvents();
+            OnPropertyChanged();
         }
     }
 
@@ -253,7 +253,7 @@ namespace SampleProperties
             set
             {
                 _ComponentSetupTime = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -263,7 +263,7 @@ namespace SampleProperties
             set
             {
                 _WireSetupTime = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -273,7 +273,7 @@ namespace SampleProperties
             set
             {
                 _NumberOfCuts = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -335,7 +335,7 @@ namespace SampleProperties
             set 
             {
                 _WireMachineTime = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 

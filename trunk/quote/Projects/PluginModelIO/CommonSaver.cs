@@ -11,6 +11,7 @@ namespace Model.IO
     using DB.QuoteDataBaseTableAdapters;
     
     using Model.Common;
+    using Model.Template;
 
     public static class CommonSaver
     {
@@ -92,7 +93,7 @@ namespace Model.IO
                 adaptor.Connection.Close();
 
                 SaveProperties(quoteId, id, detail.QuoteDetailProperties, saveAll);
-                detail.ClearDirty();
+                detail.IsDirty = false;
             }
         }
         
@@ -107,11 +108,12 @@ namespace Model.IO
                 new DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter();
             PropertyInfo nonDisplayable = null;
             
+            IHasSubject hasSubject = obj as IHasSubject;
             foreach (PropertyInfo p in props) 
             {
-                if (obj.GetType().GetProperty("Subject").GetValue(obj, null) != null)
+                if (hasSubject != null)
                 {
-                    nonDisplayable = obj.Subject.GetType().GetProperty(p.Name);
+                    nonDisplayable = hasSubject.Subject.GetType().GetProperty(p.Name);
                 }
                 
                 if (saveAll == false) 
@@ -163,7 +165,7 @@ namespace Model.IO
                 } 
                 else
                 {
-                    o = nonDisplayable.GetValue(obj.Subject, null);
+                    o = nonDisplayable.GetValue(hasSubject.Subject, null);
                 }
                 
                 if (o is int) 

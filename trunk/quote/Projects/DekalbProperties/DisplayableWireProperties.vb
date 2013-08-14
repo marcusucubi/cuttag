@@ -10,15 +10,15 @@ Public Class DisplayableWireProperties
     Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
     Private Sub _Options_Changed() Handles _Options.Changed
-        Me.SendEvents()
+        Me.OnPropertyChanged()
     End Sub
 
     Private ReadOnly _Subject As DekalbWireProperties
 
     Public Sub New(ByVal subject As DekalbWireProperties)
         _Subject = subject
-        MyBase.Subject = subject
     End Sub
+    
     <CategoryAttribute("Detail")> _
     Public ReadOnly Property Gage As String
         Get
@@ -34,7 +34,7 @@ Public Class DisplayableWireProperties
         End Get
         Set(ByVal value As String)
             _Subject.Description = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 
@@ -64,7 +64,7 @@ Public Class DisplayableWireProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.PoundsPer1000Feet = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 
@@ -85,7 +85,7 @@ Public Class DisplayableWireProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.Quantity = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 
@@ -98,7 +98,7 @@ Public Class DisplayableWireProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.UnitCost = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 
@@ -111,7 +111,7 @@ Public Class DisplayableWireProperties
         End Get
         Set(ByVal value As String)
             _Subject.UnitOfMeasure = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 

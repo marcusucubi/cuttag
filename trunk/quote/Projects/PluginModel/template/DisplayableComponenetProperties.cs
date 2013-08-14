@@ -5,16 +5,21 @@ namespace Model.Template
     using System.Linq;
 
     public class DisplayableComponentProperties 
-        : Common.ComponentProperties, Common.IHasTotalMachineTime
+        : Common.ComponentProperties, Common.IHasTotalMachineTime, Model.Template.IHasSubject
     {
         private ComponentProperties subject;
         
         public DisplayableComponentProperties(ComponentProperties subject)
         {
             this.subject = subject;
-            this.Subject = subject;
         }
 
+        [Browsable(false)]
+        public Model.Common.SavableProperties Subject 
+        {
+            get { return this.subject; }
+        }
+        
         [DisplayName("Total Machine Time"), Browsable(false)]
         public decimal TotalMachineTime 
         {
@@ -39,7 +44,7 @@ namespace Model.Template
             set 
             {
                 this.subject.MachineTime = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -56,7 +61,7 @@ namespace Model.Template
             set 
             {
                 this.subject.Quantity = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -71,7 +76,7 @@ namespace Model.Template
             set 
             {
                 this.subject.Description = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -86,7 +91,7 @@ namespace Model.Template
             set 
             {
                 this.subject.Vendor = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -101,7 +106,7 @@ namespace Model.Template
             set 
             {
                 this.subject.UnitOfMeasure = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -118,7 +123,7 @@ namespace Model.Template
             set 
             {
                 this.subject.UnitCost = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
     }

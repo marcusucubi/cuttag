@@ -5,11 +5,12 @@ Imports Model
 
 Public Class DisplayableComponentProperties
     Inherits Model.Template.DisplayableComponentProperties
+    Implements Model.Template.IHasSubject 
 
     Private WithEvents _Options As Common.GlobalOptions = Common.GlobalOptions.Instance
 
     Private Sub _Options_Changed() Handles _Options.Changed
-        Me.SendEvents()
+        Me.OnPropertyChanged()
     End Sub
 
     Private _Subject As DekalbComponentProperties
@@ -17,7 +18,6 @@ Public Class DisplayableComponentProperties
     Public Sub New(ByVal subject As DekalbComponentProperties)
         MyBase.New(subject)
         _Subject = subject
-        MyBase.Subject = subject
     End Sub
 
     <DisplayName("Minimum Qty"), _
@@ -28,7 +28,7 @@ Public Class DisplayableComponentProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.MinimumQty = value
-            SendEvents()
+            Me.OnPropertyChanged()
         End Set
     End Property
 
@@ -40,7 +40,7 @@ Public Class DisplayableComponentProperties
         End Get
         Set(ByVal value As Decimal)
             _Subject.MinimumDollar = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 
@@ -52,7 +52,7 @@ Public Class DisplayableComponentProperties
         End Get
         Set(ByVal value As Integer)
             _Subject.LeadTime = value
-            SendEvents()
+            OnPropertyChanged()
         End Set
     End Property
 

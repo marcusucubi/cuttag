@@ -1,11 +1,9 @@
-﻿namespace PluginModelUnitTests
+﻿using PluginModelUnitTests.Template.Ext;
+namespace PluginModelUnitTests.Template
 {
     using System;
     using Model.Common;
-    
     using NUnit.Framework;
-    
-    using PluginModelUnitTests.template.ext;
 
     [TestFixture]
     public class ComponentPropertiesTest
@@ -58,7 +56,8 @@
             Model.Product product = new Model.Product();
             Model.Template.Detail detail = new Model.Template.Detail(header, product);
             
-            CustomComponentProperties component = detail.QuoteDetailProperties as CustomComponentProperties;
+            CustomComponentProperties component = 
+                detail.QuoteDetailProperties as CustomComponentProperties;
             Assert.IsNotNull(component);
             
             component.MachineTime = 1;

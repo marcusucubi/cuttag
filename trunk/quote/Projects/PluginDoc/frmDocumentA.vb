@@ -117,7 +117,7 @@ Public Class frmDocumentA
     End Sub
 
     Private Sub frmQuoteA_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        If Me.QuoteHeader.Dirty Then
+        If Me.QuoteHeader.IsDirty Then
             Dim msg As String
             msg = "Save changes from " + Me.QuoteHeader.DisplayName + "?"
             Dim r As MsgBoxResult = MsgBox(msg, MsgBoxStyle.YesNoCancel)
@@ -135,10 +135,16 @@ Public Class frmDocumentA
 
     Private Sub _Header_SavableChange(ByVal subject As SavableProperties, _
                                       args As EventArgs) _ 
-                                      Handles _Header.SavableChange
+                                      Handles _Header.Dirty
         UpdateText()
     End Sub
 
+    Private Sub _Header_SavableClean(ByVal subject As SavableProperties, _
+                                      args As EventArgs) _ 
+                                      Handles _Header.Clean
+        UpdateText()
+    End Sub
+    
     Private Sub _PrimaryProperties_PropertyChanged(ByVal sender As Object, ByVal e As System.ComponentModel.PropertyChangedEventArgs) Handles _PrimaryProperties.PropertyChanged
         UpdateText()
     End Sub
@@ -163,7 +169,7 @@ Public Class frmDocumentA
         Else
             Me.Text = "New Template"
         End If
-        If Me._Header.Dirty Then
+        If Me._Header.IsDirty Then
             Me.Text = Me.Text + " *"
         End If
     End Sub

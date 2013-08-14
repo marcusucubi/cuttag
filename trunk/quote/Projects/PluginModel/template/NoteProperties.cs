@@ -27,7 +27,7 @@ namespace Model.Template
                 if (this.note != value) 
                 {
                     this.note = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace Model.Template
                 if (this.note2Customer != value) 
                 {
                     this.note2Customer = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }

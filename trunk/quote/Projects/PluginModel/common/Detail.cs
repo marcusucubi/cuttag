@@ -43,7 +43,7 @@ namespace Model.Common
                 if (!(value == this.quantity)) 
                 {
                     this.quantity = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace Model.Common
                 if (!(value == this.Product.Code)) 
                 {
                     this.Product.Code = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace Model.Common
                 if (!(this.unitOfMeasure == value)) 
                 {
                     this.unitOfMeasure = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -94,7 +94,7 @@ namespace Model.Common
                 if (!(value == this.sequenceNumber)) 
                 {
                     this.sequenceNumber = value;
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }
@@ -131,7 +131,7 @@ namespace Model.Common
             set 
             {
                 this.Product.MachineTime = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -145,7 +145,7 @@ namespace Model.Common
             set 
             {
                 this.Product.UnitCost = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 

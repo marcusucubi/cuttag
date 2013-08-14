@@ -8,7 +8,7 @@ namespace Model.Quote
 
     public class Detail : Common.Detail
     {
-        private Common.SavableProperties properties = new Common.SavableProperties();
+        private Common.SavableProperties properties = new DefaultSavableProperties();
 
         internal Detail(Common.Header header, Product product) : base(product, string.Empty, 1)
         {
@@ -36,7 +36,7 @@ namespace Model.Quote
                 if (!(value == this.PrivateQty())) 
                 {
                     this.SetPrivateQty(value);
-                    this.SendEvents();
+                    this.OnPropertyChanged();
                 }
             }
         }

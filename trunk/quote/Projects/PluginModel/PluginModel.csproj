@@ -97,6 +97,7 @@
     <Compile Include="My Project\AssemblyInfo.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductBuildData.cs" />
+    <Compile Include="quote\DefaultSavableProperties.cs" />
     <Compile Include="quote\Detail.cs" />
     <Compile Include="quote\Header.cs" />
     <Compile Include="quote\PrimaryPropeties.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="template\ext\IWirePropertiesFactory.cs" />
     <Compile Include="template\ext\PropertyFactory.cs" />
     <Compile Include="template\Header.cs" />
+    <Compile Include="template\IHasSubject.cs" />
     <Compile Include="template\NoteProperties.cs" />
     <Compile Include="template\OtherProperties.cs" />
     <Compile Include="template\PrimaryPropeties.cs" />

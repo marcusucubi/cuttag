@@ -16,13 +16,12 @@ namespace SampleProperties
         public DisplayableComputationProperties(SampleComputationProperties subject)
         {
             _Subject = subject;
-            base.Subject = subject;
             _Options.Changed += new EventHandler(_Options_Changed);
         }
 
         private void _Options_Changed(object sender, EventArgs args)
         {
-            SendEvents();
+            OnPropertyChanged();
         }
 
         [BrowsableAttribute(false)]
@@ -44,7 +43,7 @@ namespace SampleProperties
             set
             {
                 _Subject.OrderQuantity = value;
-                base.SendEvents();
+                base.OnPropertyChanged();
             }
         }
 
@@ -76,7 +75,7 @@ namespace SampleProperties
             set
             {
                 _Subject.ShippingCost = value;
-                base.SendEvents();
+                base.OnPropertyChanged();
             }
         }
 
@@ -102,7 +101,7 @@ namespace SampleProperties
             set
             {
                 _Subject.PercentCopperScrap = value;
-                base.SendEvents();
+                base.OnPropertyChanged();
             }
         }
 
@@ -124,7 +123,7 @@ namespace SampleProperties
             set 
             {
                 _Subject.CopperPrice = value;
-                base.SendEvents();
+                base.OnPropertyChanged();
             }
         }
 
@@ -178,7 +177,7 @@ namespace SampleProperties
             set
             {
                 _Subject.MaterialMarkUp = value;
-                base.SendEvents();
+                base.OnPropertyChanged();
             }
         }
 
@@ -223,7 +222,7 @@ namespace SampleProperties
             set 
             {
                 _Subject.ComponentSetupTime = value;
-                base.SendEvents();
+                base.OnPropertyChanged();
             }
         }
 
@@ -237,7 +236,7 @@ namespace SampleProperties
             set
             {
                 _Subject.WireSetupTime = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -251,7 +250,7 @@ namespace SampleProperties
             set
             {
                 _Subject.NumberOfCuts = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 
@@ -310,7 +309,7 @@ namespace SampleProperties
             set
             {
                 _Subject.WireMachineTime = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
 

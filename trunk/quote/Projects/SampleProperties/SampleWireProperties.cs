@@ -26,15 +26,8 @@ namespace SampleProperties
             set
             {
                 m_ProductCode = value;
-                SendEvents();
+                OnPropertyChanged();
             }
         }
-
-        public new void SendEvents()
-        {
-            base.SendEvents();
-            m_Detail.Header.ComputationProperties.SendEvents();
-        }
-
     }
 }

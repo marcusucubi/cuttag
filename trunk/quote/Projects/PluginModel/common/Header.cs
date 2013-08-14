@@ -11,8 +11,6 @@ namespace Model.Common
         
         private Common.ComputationProperties computationProperties;
         
-        private Common.SavableProperties customProperties = new Common.SavableProperties();
-
         private Common.NoteProperties noteProperties = new Common.NoteProperties();
 
         private DetailCollection<Common.Detail> details;
@@ -47,11 +45,6 @@ namespace Model.Common
         public Common.PrimaryProperties PrimaryProperties 
         {
             get { return this.primaryProperties; }
-        }
-
-        public Common.SavableProperties CustomProperties 
-        {
-            get { return this.customProperties; }
         }
 
         public Common.NoteProperties NoteProperties 

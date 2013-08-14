@@ -47,7 +47,7 @@ namespace Model.Template
             set 
             {
                 this.CommonCustomer = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -62,7 +62,7 @@ namespace Model.Template
             set 
             {
                 this.CommonPartNumber = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
 
@@ -77,7 +77,7 @@ namespace Model.Template
             set 
             {
                 this.CommonRequestForQuoteNumber = value;
-                this.SendEvents();
+                this.OnPropertyChanged();
             }
         }
     }

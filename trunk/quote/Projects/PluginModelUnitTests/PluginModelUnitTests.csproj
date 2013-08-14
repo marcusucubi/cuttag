@@ -4,7 +4,7 @@
     <ProjectGuid>{7CE09D34-569F-464E-B4BB-D6B847276E55}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>PluginModelUnitTests</RootNamespace>
     <AssemblyName>PluginModelUnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="ActiveDetailTest.cs" />
     <Compile Include="ActiveHeaderTest.cs" />
+    <Compile Include="common\SavablePropertiesTest.cs" />
+    <Compile Include="common\TestSavableProperties.cs" />
     <Compile Include="CustomerConverterTest.cs" />
     <Compile Include="CustomerListTest.cs" />
     <Compile Include="CustomerTest.cs" />
@@ -87,6 +89,8 @@
     <Compile Include="template\NotePropertiesTest.cs" />
     <Compile Include="template\OtherPropertiesTest.cs" />
     <Compile Include="template\PrimaryPropertiesTest.cs" />
+    <Compile Include="template\TemplateDetailTest.cs" />
+    <Compile Include="template\TemplateHeaderTest.cs" />
     <Compile Include="template\WirePropertiesTest.cs" />
     <Compile Include="TestContext.cs" />
     <Compile Include="UnitOfMeasureListTest.cs" />
@@ -102,6 +106,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="common" />
     <Folder Include="template" />
     <Folder Include="template\ext" />
   </ItemGroup>

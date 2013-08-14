@@ -1,4 +1,4 @@
-﻿namespace PluginModelUnitTests.template.ext
+﻿namespace PluginModelUnitTests.Template.Ext
 {
     using System;
 
