@@ -80,6 +80,9 @@
     <Compile Include="ProductTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quote\QuoteDetailTest.cs" />
+    <Compile Include="quote\QuoteHeaderTest.cs" />
+    <Compile Include="quote\QuotePrimaryPropertiesTest.cs" />
     <Compile Include="template\ComponentPropertiesTest.cs" />
     <Compile Include="template\ComputationPropertiesTest.cs" />
     <Compile Include="template\DirtyTest.cs" />
@@ -113,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="common" />
+    <Folder Include="quote" />
     <Folder Include="template" />
     <Folder Include="template\ext" />
   </ItemGroup>
