@@ -18,7 +18,6 @@ namespace Model.Quote
             DateTime createdDate, 
             DateTime lastModifiedDate,
             int templateId)
-            : base(true)
         {
             Quote.PrimaryProperties p = new Quote.PrimaryProperties(
                 id, requestForQuoteNumber, partNumber, initials, createdDate, lastModifiedDate, templateId);
@@ -31,6 +30,16 @@ namespace Model.Quote
         public new int Id 
         {
             get { return PrimaryProperties.CommonId; }
+        }
+
+        public override bool IsQuote
+        { 
+            get { return true; }
+        }
+
+        public override string DisplayName 
+        {
+            get { return "Quote " + this.PrimaryProperties.CommonId; }
         }
 
         public override Common.Detail NewDetail(Model.Product product)

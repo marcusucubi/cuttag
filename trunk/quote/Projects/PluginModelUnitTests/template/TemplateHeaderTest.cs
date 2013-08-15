@@ -20,6 +20,18 @@
             Model.Common.Detail detail = header.NewDetail(product);
             
             header.Remove(detail as Model.Template.Detail);
+            
+            Assert.That(header.IsQuote, Is.False);
+        }
+        
+        [Test]
+        public void TestNextSequence()
+        {
+            Model.Template.Header quote = new Model.Template.Header();
+            
+            quote.NextSequenceNumber = 10;
+            Assert.That(quote.NextSequenceNumber, Is.EqualTo(10));
+            Assert.That(quote.NextSequenceNumber, Is.EqualTo(11));
         }
     }
 }
