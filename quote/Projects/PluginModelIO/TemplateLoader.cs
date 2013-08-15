@@ -114,7 +114,7 @@ namespace Model.IO
             return customerObj;
         }
 
-        public static void LoadComponents(Model.Common.Header header)
+        public static void LoadComponents(Model.Template.Header header)
         {
             _QuoteDetailTableAdapter adaptor = new _QuoteDetailTableAdapter();
             

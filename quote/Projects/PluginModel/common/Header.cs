@@ -15,23 +15,17 @@ namespace Model.Common
 
         private DetailCollection<Common.Detail> details;
         
-        private int nextSequenceNumber = 1;
-        
-        private bool quote;
-        
-        protected Header(bool quote)
+        protected Header()
         {
             this.details = new DetailCollection<Common.Detail>(this);
-            this.quote = quote;
         }
+
+        public abstract bool IsQuote { get; }
+
+        public abstract string DisplayName { get; }
 
         public int Id { get; set; }
         
-        public bool IsQuote
-        { 
-            get { return this.quote; }
-        }
-
         public Common.ComputationProperties ComputationProperties 
         {
             get { return this.computationProperties; }
@@ -55,46 +49,6 @@ namespace Model.Common
         public DetailCollection<Common.Detail> Details 
         {
             get { return this.details; }
-        }
-
-        public int NextSequenceNumber 
-        {
-            get 
-            { 
-                return this.nextSequenceNumber++; 
-            }
-            
-            set 
-            { 
-                if (value > this.nextSequenceNumber)
-                {
-                    this.nextSequenceNumber = value; 
-                }
-            }
-        }
-
-        public string DisplayName 
-        {
-            get 
-            {
-                string s = null;
-                
-                if (this.IsQuote) 
-                {
-                    s = "Quote";
-                } 
-                else 
-                {
-                    s = "Template";
-                }
-                
-                if (this.PrimaryProperties.CommonId == 0) 
-                {
-                    return "New " + s;
-                }
-                
-                return s + " " + this.PrimaryProperties.CommonId;
-            }
         }
 
         public abstract Detail NewDetail(Model.Product product);
