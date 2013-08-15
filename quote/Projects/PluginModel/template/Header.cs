@@ -32,12 +32,6 @@ namespace Model.Template
             this.AddChildProperty(this.NoteProperties);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "ID", Justification = "Uppercase is alright")]
-        public int ID 
-        {
-            get { return PrimaryProperties.CommonId; }
-        }
-        
         public override bool IsQuote
         { 
             get { return false; }
