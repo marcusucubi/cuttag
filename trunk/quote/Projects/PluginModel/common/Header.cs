@@ -24,8 +24,12 @@ namespace Model.Common
 
         public abstract string DisplayName { get; }
 
-        public int Id { get; set; }
-        
+        public int Id 
+        {
+            get { return PrimaryProperties.CommonId; }
+            set { PrimaryProperties.CommonId = value; }
+        }
+
         public Common.ComputationProperties ComputationProperties 
         {
             get { return this.computationProperties; }

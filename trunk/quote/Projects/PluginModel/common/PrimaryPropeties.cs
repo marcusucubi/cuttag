@@ -49,7 +49,16 @@ namespace Model.Common
         [Browsable(false)]
         public int CommonId 
         {
-            get { return this.id; }
+            get 
+            { 
+                return this.id; 
+            }
+            
+            internal set
+            { 
+                this.id = value; 
+                this.OnPropertyChanged(); 
+            }
         }
 
         public void SetId(int id)

@@ -14,8 +14,6 @@
             header.Id = 1;
             Assert.AreEqual(header.Id, 1);
             
-            Assert.AreEqual(header.ID, 0);
-            
             Model.Product product = new Model.Product();
             Model.Common.Detail detail = header.NewDetail(product);
             
@@ -32,6 +30,18 @@
             quote.NextSequenceNumber = 10;
             Assert.That(quote.NextSequenceNumber, Is.EqualTo(10));
             Assert.That(quote.NextSequenceNumber, Is.EqualTo(11));
+        }
+        
+        [Test]
+        public void TestDisplayName()
+        {
+            Model.Template.Header header = new Model.Template.Header();
+            
+            Assert.That(header.DisplayName, Is.EqualTo("New Template"));
+            
+            header.Id = 5;
+            
+            Assert.That(header.DisplayName, Is.EqualTo("Template 5"));
         }
     }
 }

@@ -24,12 +24,6 @@ namespace Model.Quote
             this.SetPrimaryProperties(p);
             this.SetComputationProperties(new Common.ComputationProperties());
             this.SetOtherProperties(new Common.OtherProperties());
-            base.Id = id;
-        }
-
-        public new int Id 
-        {
-            get { return PrimaryProperties.CommonId; }
         }
 
         public override bool IsQuote
