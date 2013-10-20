@@ -13,7 +13,7 @@
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <NoWin32Manifest>False</NoWin32Manifest>
-    <SourceAnalysisOverrideSettingsFile>C:\sandbox\workspaces\cuttag32\Projects\PluginModel\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <SourceAnalysisOverrideSettingsFile>C:\sandbox\workspaces\cuttag42\Projects\PluginModel\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>

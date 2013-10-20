@@ -6,19 +6,38 @@ namespace Model
     
     using Model.Common;
 
+    /// <summary>
+    /// Holds the <c>detail</c> that is currently active. 
+    /// This is a singleton class.
+    /// </summary>
     public class ActiveDetail : INotifyPropertyChanged
     {
+        /// <summary>
+        /// The only instance.
+        /// </summary>
         private static ActiveDetail instance = new ActiveDetail();
 
+        /// <summary>
+        /// The active detail.
+        /// </summary>
         private Detail detail;
 
+        /// <summary>
+        /// Event that signals the detail has changed.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Gets the singleton instance.
+        /// </summary>
         public static ActiveDetail Instance 
         {
             get { return instance; }
         }
 
+        /// <summary>
+        /// Gets or sets the active <c>detail</c>.
+        /// </summary>
         public Detail Detail 
         {
             get 

@@ -4,6 +4,68 @@
         <name>PluginModel</name>
     </assembly>
     <members>
+        <member name="T:Model.ActiveDetail">
+            <summary>
+            Holds the <c>detail</c> that is currently active. 
+            This is a singleton class.
+            </summary>
+        </member>
+        <member name="F:Model.ActiveDetail.instance">
+            <summary>
+            The only instance.
+            </summary>
+        </member>
+        <member name="F:Model.ActiveDetail.detail">
+            <summary>
+            The active detail.
+            </summary>
+        </member>
+        <member name="E:Model.ActiveDetail.PropertyChanged">
+            <summary>
+            Event that signals the detail has changed.
+            </summary>
+        </member>
+        <member name="P:Model.ActiveDetail.Instance">
+            <summary>
+            Gets the singleton instance.
+            </summary>
+        </member>
+        <member name="P:Model.ActiveDetail.Detail">
+            <summary>
+            Gets or sets the active <c>detail</c>.
+            </summary>
+        </member>
+        <member name="T:Model.ActiveHeader">
+            <summary>
+            Holds the <c>header</c> that is currently active.
+            The class is a singleton.
+            </summary>
+        </member>
+        <member name="F:Model.ActiveHeader.instance">
+            <summary>
+            The only instance.
+            </summary>
+        </member>
+        <member name="F:Model.ActiveHeader.header">
+            <summary>
+            The active header.
+            </summary>
+        </member>
+        <member name="E:Model.ActiveHeader.PropertyChanged">
+            <summary>
+            Event used to signal the header has changed.
+            </summary>
+        </member>
+        <member name="P:Model.ActiveHeader.Instance">
+            <summary>
+            Get the singleton.
+            </summary>
+        </member>
+        <member name="P:Model.ActiveHeader.Header">
+            <summary>
+            Gets the active <c>header</c>.
+            </summary>
+        </member>
         <member name="T:Model.Common.GlobalOptions">
             <summary>
             Holds the data displayed in the options form.
@@ -15,6 +77,190 @@
             Represents the customer
             </summary>
             <remarks></remarks>
+        </member>
+        <member name="F:Model.Customer.name">
+            <summary>
+            The name.
+            </summary>
+        </member>
+        <member name="F:Model.Customer.id">
+            <summary>
+            The ID.
+            </summary>
+        </member>
+        <member name="M:Model.Customer.CreateFromString(System.String)">
+            <summary>
+            Creates a <c>customer</c> from the input string.
+            </summary>
+            <param name="value">A string that contains the id and name.</param>
+            <returns>Returns a cusomter object.</returns>
+        </member>
+        <member name="M:Model.Customer.SetName(System.String)">
+            <summary>
+            Sets the name.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:Model.Customer.SetId(System.Int32)">
+            <summary>
+            Sets the ID.
+            </summary>
+            <param name="id">The id.</param>
+        </member>
+        <member name="M:Model.Customer.GetHashCode">
+            <summary>
+            The hashtag of the ID.
+            </summary>
+            <returns>The hashtag of the ID.</returns>
+        </member>
+        <member name="M:Model.Customer.Equals(System.Object)">
+            <summary>
+            True if the IDs are the same.
+            </summary>
+            <param name="obj">The other customer.</param>
+            <returns>Returns true if the IDs are the same.</returns>
+        </member>
+        <member name="M:Model.Customer.ToString">
+            <summary>
+            For debugging.
+            </summary>
+            <returns>A description of the customer.</returns>
+        </member>
+        <member name="P:Model.Customer.Name">
+            <summary>
+            Gets the name.
+            </summary>
+        </member>
+        <member name="P:Model.Customer.Id">
+            <summary>
+            Gets the ID.
+            </summary>
+        </member>
+        <member name="T:Model.CustomerConverter">
+            <summary>
+            Provides UI support to display the customers in a dropdown list.
+            </summary>
+        </member>
+        <member name="M:Model.CustomerConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Always returns true.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>Returns true.</returns>
+        </member>
+        <member name="M:Model.CustomerConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Always returns true.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>Returns true.</returns>
+        </member>
+        <member name="M:Model.CustomerConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Returns the customers in the CustomerList.
+            </summary>
+            <param name="context">The Context.</param>
+            <returns>The customers in the CustomerList.</returns>
+        </member>
+        <member name="M:Model.CustomerConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns true for strings.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="sourceType">The source type.</param>
+            <returns>Returns true for strings.</returns>
+        </member>
+        <member name="M:Model.CustomerConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Returns a customer object.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="culture">The culture.</param>
+            <param name="value">The string.</param>
+            <returns>Returns a customer object.</returns>
+        </member>
+        <member name="T:Model.CustomerList">
+            <summary>
+            Contains a list of all customers.
+            </summary>
+        </member>
+        <member name="F:Model.CustomerList.arrayCustomers">
+            <summary>
+            Holds all of the customers.
+            </summary>
+        </member>
+        <member name="M:Model.CustomerList.Init(Model.Customer[])">
+            <summary>
+            Sets the customers.
+            </summary>
+            <param name="list">An array of customer objects.</param>
+        </member>
+        <member name="P:Model.CustomerList.Collection">
+            <summary>
+            Gets a collection of all customers.
+            </summary>
+        </member>
+        <member name="T:Model.ModelEventArgs">
+            <summary>
+            Used to signal changes to the model.
+            </summary>
+        </member>
+        <member name="P:Model.ModelEventArgs.Id">
+            <summary>
+            The ID of the model object.
+            </summary>
+        </member>
+        <member name="T:Model.ModelEvents">
+            <summary>
+            Used to signal changes to the model.  Like when a quote is loaded.
+            This is a singleton class.
+            </summary>
+        </member>
+        <member name="F:Model.ModelEvents.instance">
+            <summary>
+            The only instance.
+            </summary>
+        </member>
+        <member name="M:Model.ModelEvents.#ctor">
+            <summary>
+            Prevent the class from being created.
+            </summary>
+        </member>
+        <member name="M:Model.ModelEvents.NotifyTemplateCreated(System.Int32)">
+            <summary>
+            Signal that a template has been created.
+            </summary>
+            <param name="id">The ID.</param>
+        </member>
+        <member name="M:Model.ModelEvents.NotifyTemplateViewed">
+            <summary>
+            Signal that a template has been viewed.
+            </summary>
+        </member>
+        <member name="M:Model.ModelEvents.NotifyQuoteViewed">
+            <summary>
+            Signal that a quote has been viewed.
+            </summary>
+        </member>
+        <member name="E:Model.ModelEvents.TemplateCreated">
+            <summary>
+            Signals when a template is created.
+            </summary>
+        </member>
+        <member name="E:Model.ModelEvents.TemplateViewed">
+            <summary>
+            Signals when a templated is viewed.
+            </summary>
+        </member>
+        <member name="E:Model.ModelEvents.QuoteViewed">
+            <summary>
+            Signals when a quote is viewed.
+            </summary>
+        </member>
+        <member name="P:Model.ModelEvents.Instance">
+            <summary>
+            Gets the instance.
+            </summary>
         </member>
         <member name="T:Model.Product">
             <summary>
