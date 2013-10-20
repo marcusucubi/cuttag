@@ -26,8 +26,8 @@ namespace Model.Common
 
         public int Id 
         {
-            get { return PrimaryProperties.CommonId; }
-            set { PrimaryProperties.CommonId = value; }
+            get { return this.PrimaryProperties.CommonId; }
+            set { this.PrimaryProperties.CommonId = value; }
         }
 
         public Common.ComputationProperties ComputationProperties 
