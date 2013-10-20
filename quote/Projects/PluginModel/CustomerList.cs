@@ -5,10 +5,19 @@
     
     using Model.Template;
     
+    /// <summary>
+    /// Contains a list of all customers.
+    /// </summary>
     public static class CustomerList
     {
+        /// <summary>
+        /// Holds all of the customers.
+        /// </summary>
         private static Customer[] arrayCustomers;
         
+        /// <summary>
+        /// Gets a collection of all customers.
+        /// </summary>
         public static ReadOnlyCollection<Customer> Collection
         {
             get
@@ -19,6 +28,10 @@
             }
         }
         
+        /// <summary>
+        /// Sets the customers.
+        /// </summary>
+        /// <param name="list">An array of customer objects.</param>
         public static void Init(Customer[] list)
         {
             CustomerList.arrayCustomers = list;

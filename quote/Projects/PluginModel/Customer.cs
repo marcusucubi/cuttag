@@ -9,20 +9,37 @@ namespace Model
     /// <remarks></remarks>
     public class Customer
     {
+        /// <summary>
+        /// The name.
+        /// </summary>
         private string name;
 
+        /// <summary>
+        /// The ID.
+        /// </summary>
         private int id;
         
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
         public string Name 
         {
             get { return this.name; }
         }
 
+        /// <summary>
+        /// Gets the ID.
+        /// </summary>
         public int Id 
         {
             get { return this.id; }
         }
 
+        /// <summary>
+        /// Creates a <c>customer</c> from the input string.
+        /// </summary>
+        /// <param name="value">A string that contains the id and name.</param>
+        /// <returns>Returns a cusomter object.</returns>
         public static Customer CreateFromString(string value)
         {
             int index = 0;
@@ -62,27 +79,48 @@ namespace Model
             return customer;
         }
         
+        /// <summary>
+        /// Sets the name.
+        /// </summary>
+        /// <param name="name">The name.</param>
         public void SetName(string name)
         {
             this.name = name;
         }
 
+        /// <summary>
+        /// Sets the ID.
+        /// </summary>
+        /// <param name="id">The id.</param>
         public void SetId(int id)
         {
             this.id = id;
         }
 
+        /// <summary>
+        /// The hashtag of the ID.
+        /// </summary>
+        /// <returns>The hashtag of the ID.</returns>
         public override int GetHashCode()
         {
             return this.id.GetHashCode();
         }
 
+        /// <summary>
+        /// True if the IDs are the same.
+        /// </summary>
+        /// <param name="obj">The other customer.</param>
+        /// <returns>Returns true if the IDs are the same.</returns>
         public override bool Equals(object obj)
         {
             Customer other = obj as Customer;
             return this.id == other.id;
         }
 
+        /// <summary>
+        /// For debugging.
+        /// </summary>
+        /// <returns>A description of the customer.</returns>
         public override string ToString()
         {
             if (this.id == 0) 
