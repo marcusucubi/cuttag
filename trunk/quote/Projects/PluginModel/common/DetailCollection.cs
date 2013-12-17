@@ -5,20 +5,36 @@ namespace Model.Common
     using System.ComponentModel;
     using System.Linq;
 
+    /// <summary>
+    /// A collection of detail objects.
+    /// </summary>
     public class DetailCollection<T> : 
         System.Collections.ObjectModel.ObservableCollection<T>,
         ISavableProperties
         where T : Model.Common.Detail
     {
+        /// <summary>
+        /// True when any item in the collection is dirty.
+        /// </summary>
         private bool dirty;
-        
+
+        /// <summary>
+        /// The header.
+        /// </summary>
         private Common.Header header;
-        
+
+        /// <summary>
+        /// Creates a new collection.
+        /// </summary>
+        /// <param name="header">The header.</param>
         public DetailCollection(Common.Header header)
         {
             this.header = header;
         }
 
+        /// <summary>
+        /// Fires when the collection is dirty.
+        /// </summary>
         public event EventHandler Dirty;
 
         public event EventHandler Clean;
