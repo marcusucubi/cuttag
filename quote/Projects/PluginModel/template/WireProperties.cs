@@ -21,7 +21,15 @@ namespace Model.Template
 
         public virtual string Gage 
         {
-            get { return this._QuoteDetail.Product.Gage.Trim(); }
+            get 
+            {
+                if (this._QuoteDetail.Product.Gage == null)
+                {
+                    return "";
+                }
+                
+                return this._QuoteDetail.Product.Gage.Trim(); 
+            }
         }
 
         public virtual decimal Length 
