@@ -3,8 +3,6 @@
     using System;
     using System.Collections.ObjectModel;
     
-    using Model.Template;
-    
     /// <summary>
     /// Contains a list of all customers.
     /// </summary>
