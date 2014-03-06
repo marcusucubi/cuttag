@@ -90,5 +90,28 @@
             
             Assert.AreEqual(wire.Gage, "gage");
         }
+        
+        [Test]
+        public void TestOneProduct2()
+        {
+            Host.App.RegisteredClasses.Clear();
+                
+            Host.App.RegisteredClasses.Add(
+                typeof(Model.Template.Ext.IWirePropertiesFactory), 
+                typeof(CustomWirePropertiesFactory));
+            
+            Model.Template.Header header = new Model.Template.Header();
+            
+            Model.ProductBuildData data = new Model.ProductBuildData();
+            data.IsWire = true;
+            Model.Product product = new Model.Product(data);
+            
+            Model.Template.Detail detail = new Model.Template.Detail(header, product);
+            
+            CustomWireProperties wire = detail.QuoteDetailProperties as CustomWireProperties;
+            Assert.IsNotNull(wire);
+            
+            Assert.AreEqual(wire.Gage, "");
+        }
     }
 }
