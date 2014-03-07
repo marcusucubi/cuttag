@@ -11,10 +11,10 @@ namespace Model
     public class UnitOfMeasureConverter : StringConverter
     {
         /// <summary>
-        /// Returns the standard values
+        /// Returns the standard values.
         /// </summary>
-        /// <param name="context">the context</param>
-        /// <returns>The standard values</returns>
+        /// <param name="context">The context object.</param>
+        /// <returns>The standard values.</returns>
         public override TypeConverter.StandardValuesCollection 
             GetStandardValues(System.ComponentModel.ITypeDescriptorContext context)
         {
@@ -26,20 +26,20 @@ namespace Model
         }
 
         /// <summary>
-        /// Returns the stadard values
+        /// Returns the standard values.
         /// </summary>
-        /// <param name="context">the context</param>
-        /// <returns>the standard values</returns>
+        /// <param name="context">The context object.</param>
+        /// <returns>The standard values.</returns>
         public override bool GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext context)
         {
             return false;
         }
 
         /// <summary>
-        /// Returns true if supported
+        /// Always returns true.
         /// </summary>
-        /// <param name="context">the context</param>
-        /// <returns>Returns true if supported</returns>
+        /// <param name="context">The context object.</param>
+        /// <returns>Returns true if supported.</returns>
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
         {
             return true;

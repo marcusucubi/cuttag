@@ -29,11 +29,13 @@
             <summary>
             Gets the singleton instance.
             </summary>
+            <value>The instance.</value>
         </member>
         <member name="P:Model.ActiveDetail.Detail">
             <summary>
             Gets or sets the active <c>detail</c>.
             </summary>
+            <value>The detail.</value>
         </member>
         <member name="T:Model.ActiveHeader">
             <summary>
@@ -58,12 +60,248 @@
         </member>
         <member name="P:Model.ActiveHeader.Instance">
             <summary>
-            Get the singleton.
+            Gets the singleton.
             </summary>
+            <value>The active header.</value>
         </member>
         <member name="P:Model.ActiveHeader.Header">
             <summary>
-            Gets the active <c>header</c>.
+            Gets or sets the active <c>header</c>.
+            </summary>
+            <value>The header.</value>
+        </member>
+        <member name="T:Model.Common.ComponentProperties">
+            <summary>
+            This class is extended to add properties
+            for a component.
+            </summary>
+        </member>
+        <member name="T:Model.Common.DefaultSavableProperties">
+            <summary>
+            Provides default implementation for <code>ISavableProperties</code>.
+            </summary>
+        </member>
+        <member name="F:Model.Common.DefaultSavableProperties.dirty">
+            <summary>
+            Indicates if the properties have been changed.
+            </summary>
+        </member>
+        <member name="F:Model.Common.DefaultSavableProperties.children">
+            <summary>
+            A list of child properties.
+            </summary>
+        </member>
+        <member name="M:Model.Common.DefaultSavableProperties.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Model.Common.DefaultSavableProperties.AddChildProperty(Model.Common.ISavableProperties)">
+            <summary>
+            Adds a child property.
+            </summary>
+            <param name="child">The child properties.</param>
+        </member>
+        <member name="M:Model.Common.DefaultSavableProperties.RemoveChildProperty(Model.Common.ISavableProperties)">
+            <summary>
+            Removes the child property.
+            </summary>
+            <param name="child">The child property.</param>
+        </member>
+        <member name="M:Model.Common.DefaultSavableProperties.OnPropertyChanged">
+            <summary>
+            Called when a child property is changed.
+            </summary>
+        </member>
+        <member name="M:Model.Common.DefaultSavableProperties.OnChildDirty(System.Object,System.EventArgs)">
+            <summary>
+            Called when a child is dirty.
+            </summary>
+            <param name="source">The child property.</param>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="E:Model.Common.DefaultSavableProperties.PropertyChanged">
+            <summary>
+            Fires when a property changes.
+            </summary>
+        </member>
+        <member name="E:Model.Common.DefaultSavableProperties.Dirty">
+            <summary>
+            Fires the first time a property is changed.
+            </summary>
+        </member>
+        <member name="E:Model.Common.DefaultSavableProperties.Clean">
+            <summary>
+            Fires when the properties are saved.
+            </summary>
+        </member>
+        <member name="P:Model.Common.DefaultSavableProperties.IsDirty">
+            <summary>
+            Returns true if the properties have been changed.
+            </summary>
+        </member>
+        <member name="T:Model.Common.ComputationProperties">
+            <summary>
+            This class is extended to add properties
+            for the computation of the quote.
+            </summary>
+        </member>
+        <member name="T:Model.Common.Detail">
+            <summary>
+            Represents a component or a wire.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Detail.quantity">
+            <summary>
+            The quantity or length.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Detail.product">
+            <summary>
+            The product.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Detail.sequenceNumber">
+            <summary>
+            A unique number for the detail item.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Detail.sourceId">
+            <summary>
+            A unique id stored in the database.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Detail.wire">
+            <summary>
+            True if it is a wire.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Detail.unitOfMeasure">
+            <summary>
+            Identifies the unit of measure.
+            </summary>
+        </member>
+        <member name="M:Model.Common.Detail.#ctor(Model.Product,System.String,System.Decimal)">
+            <summary>
+            Creates a detail.
+            </summary>
+            <param name="product">The product.</param>
+            <param name="unitOfMeasure">The unit of measure.</param>
+            <param name="quantity">The quantity.</param>
+        </member>
+        <member name="M:Model.Common.Detail.SetPrivateQty(System.Decimal)">
+            <summary>
+            Allows base classes to set the quantity.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Model.Common.Detail.PrivateQty">
+            <summary>
+            Returns the quantity.
+            </summary>
+            <returns>Returns the quantity.</returns>
+        </member>
+        <member name="M:Model.Common.Detail.SetPrivateUnitOfMeasure(System.String)">
+            <summary>
+            Allows base classes to set the unit of measure.
+            </summary>
+            <param name="value">The new value.</param>
+        </member>
+        <member name="M:Model.Common.Detail.SetProduct(Model.Product)">
+            <summary>
+            Allows a base class to set the product.
+            </summary>
+            <param name="value">The new product.</param>
+        </member>
+        <member name="P:Model.Common.Detail.Qty">
+            <summary>
+            Gets or sets the quantity.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.ProductCode">
+            <summary>
+            Gets or sets the product code.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.UnitOfMeasure">
+            <summary>
+            Gets or sets the unit of measure.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.SequenceNumber">
+            <summary>
+            Gets or sets the sequence number.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.SourceId">
+            <summary>
+            Gets or sets the source id.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.IsWire">
+            <summary>
+            Returns true if a wire.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.MachineTime">
+            <summary>
+            Gets or sets the machine time.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.UnitCost">
+            <summary>
+            Gets or sets the unit cost.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.LengthFeet">
+            <summary>
+            Returns the length in feet.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.Product">
+            <summary>
+            Returns the product.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.QuoteDetailProperties">
+            <summary>
+            Returns an object that holds the properties.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.DisplayableProductClass">
+            <summary>
+            Returns 'Wire or 'Component'.
+            </summary>
+        </member>
+        <member name="P:Model.Common.Detail.TotalCost">
+            <summary>
+            Calculates the total cost.
+            </summary>
+        </member>
+        <member name="T:Model.Common.DetailCollection`1">
+            <summary>
+            A collection of detail objects.
+            </summary>
+        </member>
+        <member name="F:Model.Common.DetailCollection`1.dirty">
+            <summary>
+            True when any item in the collection is dirty.
+            </summary>
+        </member>
+        <member name="F:Model.Common.DetailCollection`1.header">
+            <summary>
+            The header.
+            </summary>
+        </member>
+        <member name="M:Model.Common.DetailCollection`1.#ctor(Model.Common.Header)">
+            <summary>
+            Creates a new collection.
+            </summary>
+            <param name="header">The header.</param>
+        </member>
+        <member name="E:Model.Common.DetailCollection`1.Dirty">
+            <summary>
+            Fires when the collection is dirty.
             </summary>
         </member>
         <member name="T:Model.Common.GlobalOptions">
@@ -74,18 +312,17 @@
         </member>
         <member name="T:Model.Customer">
             <summary>
-            Represents the customer
+            Represents the customer.
             </summary>
-            <remarks></remarks>
         </member>
         <member name="F:Model.Customer.name">
             <summary>
-            The name.
+            The name of the customer.
             </summary>
         </member>
         <member name="F:Model.Customer.id">
             <summary>
-            The ID.
+            The ID of the customer.
             </summary>
         </member>
         <member name="M:Model.Customer.CreateFromString(System.String)">
@@ -93,25 +330,25 @@
             Creates a <c>customer</c> from the input string.
             </summary>
             <param name="value">A string that contains the id and name.</param>
-            <returns>Returns a cusomter object.</returns>
+            <returns>Returns a customer object.</returns>
         </member>
         <member name="M:Model.Customer.SetName(System.String)">
             <summary>
             Sets the name.
             </summary>
-            <param name="name">The name.</param>
+            <param name="name">The name of the customer.</param>
         </member>
         <member name="M:Model.Customer.SetId(System.Int32)">
             <summary>
             Sets the ID.
             </summary>
-            <param name="id">The id.</param>
+            <param name="id">The id of the customer.</param>
         </member>
         <member name="M:Model.Customer.GetHashCode">
             <summary>
-            The hashtag of the ID.
+            The hash of the ID.
             </summary>
-            <returns>The hashtag of the ID.</returns>
+            <returns>Returns the hash of the ID.</returns>
         </member>
         <member name="M:Model.Customer.Equals(System.Object)">
             <summary>
@@ -130,11 +367,13 @@
             <summary>
             Gets the name.
             </summary>
+            <value>The name of the customer.</value>
         </member>
         <member name="P:Model.Customer.Id">
             <summary>
             Gets the ID.
             </summary>
+            <value>The id of the customer.</value>
         </member>
         <member name="T:Model.CustomerConverter">
             <summary>
@@ -164,7 +403,7 @@
         </member>
         <member name="M:Model.CustomerConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
             <summary>
-            Returns true for strings.
+            Returns true if the type can be converted.
             </summary>
             <param name="context">The context.</param>
             <param name="sourceType">The source type.</param>
@@ -172,7 +411,7 @@
         </member>
         <member name="M:Model.CustomerConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
             <summary>
-            Returns a customer object.
+            Returns a converted object.
             </summary>
             <param name="context">The context.</param>
             <param name="culture">The culture.</param>
@@ -199,6 +438,7 @@
             <summary>
             Gets a collection of all customers.
             </summary>
+            <value>A collection of customer objects.</value>
         </member>
         <member name="T:Model.ModelEventArgs">
             <summary>
@@ -207,8 +447,9 @@
         </member>
         <member name="P:Model.ModelEventArgs.Id">
             <summary>
-            The ID of the model object.
+            Gets or sets the ID of the model object.
             </summary>
+            <value>The id of the object.</value>
         </member>
         <member name="T:Model.ModelEvents">
             <summary>
@@ -223,14 +464,14 @@
         </member>
         <member name="M:Model.ModelEvents.#ctor">
             <summary>
-            Prevent the class from being created.
+            Prevents a default instance of the <see cref="T:Model.ModelEvents"/> class from being created.
             </summary>
         </member>
         <member name="M:Model.ModelEvents.NotifyTemplateCreated(System.Int32)">
             <summary>
             Signal that a template has been created.
             </summary>
-            <param name="id">The ID.</param>
+            <param name="id">The id of the model object.</param>
         </member>
         <member name="M:Model.ModelEvents.NotifyTemplateViewed">
             <summary>
@@ -249,7 +490,7 @@
         </member>
         <member name="E:Model.ModelEvents.TemplateViewed">
             <summary>
-            Signals when a templated is viewed.
+            Signals when a template is viewed.
             </summary>
         </member>
         <member name="E:Model.ModelEvents.QuoteViewed">
@@ -261,12 +502,370 @@
             <summary>
             Gets the instance.
             </summary>
+            <value>The static instance.</value>
+        </member>
+        <member name="T:Model.ModelException">
+            <summary>
+            An exception for the model project.
+            </summary>
+        </member>
+        <member name="M:Model.ModelException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.ModelException"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.ModelException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.ModelException"/> class.
+            </summary>
+            <param name="message">A short description.</param>
+        </member>
+        <member name="M:Model.ModelException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.ModelException"/> class.
+            </summary>
+            <param name="message">A short description.</param>
+            <param name="innerException">The exception to wrap.</param>
+        </member>
+        <member name="M:Model.ModelException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.ModelException"/> class.
+            </summary>
+            <param name="info">The info object.</param>
+            <param name="context">The context object.</param>
         </member>
         <member name="T:Model.Product">
             <summary>
-            Represent a product
+            Represents a product.
             </summary>
-            <remarks></remarks>
+        </member>
+        <member name="F:Model.Product.code">
+            <summary>
+            The product code.
+            </summary>
+        </member>
+        <member name="F:Model.Product.gage">
+            <summary>
+            The gage of the product.
+            </summary>
+        </member>
+        <member name="F:Model.Product.copperWeightPer1000Feet">
+            <summary>
+            The copper weight per 1000 feet.
+            </summary>
+        </member>
+        <member name="F:Model.Product.unitCost">
+            <summary>
+            The unit cost.
+            </summary>
+        </member>
+        <member name="F:Model.Product.machineTime">
+            <summary>
+            The machine time.
+            </summary>
+        </member>
+        <member name="F:Model.Product.wire">
+            <summary>
+            True if it is a wire.
+            </summary>
+        </member>
+        <member name="F:Model.Product.description">
+            <summary>
+            The description.
+            </summary>
+        </member>
+        <member name="F:Model.Product.leadTime">
+            <summary>
+            The lead time.
+            </summary>
+        </member>
+        <member name="F:Model.Product.vendor">
+            <summary>
+            The vendor.
+            </summary>
+        </member>
+        <member name="F:Model.Product.minimumQty">
+            <summary>
+            The minimum quantity.
+            </summary>
+        </member>
+        <member name="F:Model.Product.minimumDollar">
+            <summary>
+            The minimum dollar amount.
+            </summary>
+        </member>
+        <member name="F:Model.Product.unitOfMeasure">
+            <summary>
+            The unit of measure.
+            </summary>
+        </member>
+        <member name="M:Model.Product.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Product"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.Product.#ctor(Model.ProductBuildData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Product"/> class.
+            </summary>
+            <param name="data">The data used to build the product.</param>
+        </member>
+        <member name="P:Model.Product.Code">
+            <summary>
+            Gets or sets the product code.
+            </summary>
+            <value>The code of the product.</value>
+        </member>
+        <member name="P:Model.Product.CopperWeightPer1000Feet">
+            <summary>
+            Gets or sets the copper weight per 1000 feet.
+            </summary>
+            <value>The copper weight per 1000 feet.</value>
+        </member>
+        <member name="P:Model.Product.Gage">
+            <summary>
+            Gets the gage of the wire.
+            </summary>
+            <value>The gage of the wire.</value>
+        </member>
+        <member name="P:Model.Product.UnitCost">
+            <summary>
+            Gets or sets the unit cost.
+            </summary>
+            <value>The unit cost of the product.</value>
+        </member>
+        <member name="P:Model.Product.IsWire">
+            <summary>
+            Gets a value indicating whether the product is a wire.
+            </summary>
+            <value>True if the product is a wire.</value>
+        </member>
+        <member name="P:Model.Product.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description of the product.</value>
+        </member>
+        <member name="P:Model.Product.LeadTime">
+            <summary>
+            Gets or sets the lead time.
+            </summary>
+            <value>The lead time of the product.</value>
+        </member>
+        <member name="P:Model.Product.Vendor">
+            <summary>
+            Gets or sets the vendor name.
+            </summary>
+            <value>The vendor of the product.</value>
+        </member>
+        <member name="P:Model.Product.MachineTime">
+            <summary>
+            Gets or sets the machine time.
+            </summary>
+            <value>The machine time of the product.</value>
+        </member>
+        <member name="P:Model.Product.MinimumQty">
+            <summary>
+            Gets or sets the minimum quantity.
+            </summary>
+            <value>The minimum quantity of the product.</value>
+        </member>
+        <member name="P:Model.Product.MinimumDollar">
+            <summary>
+            Gets or sets the minimum dollar amount.
+            </summary>
+            <value>The minimum dollar amount of the product.</value>
+        </member>
+        <member name="P:Model.Product.UnitOfMeasure">
+            <summary>
+            Gets or sets the unit of measure.
+            </summary>
+            <value>The unit of measure for the quantity of the product.</value>
+        </member>
+        <member name="T:Model.ProductBuildData">
+            <summary>
+            A mutable object used to create a product.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.code">
+            <summary>
+            The product code.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.gage">
+            <summary>
+            The wire gage.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.copperWeightPer1000Feet">
+            <summary>
+            The copper weight per 1000 feet.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.unitCost">
+            <summary>
+            The unit cost.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.machineTime">
+            <summary>
+            The machine time.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.wire">
+            <summary>
+            True if is a wire.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.description">
+            <summary>
+            The description.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.leadTime">
+            <summary>
+            The lead time.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.vendor">
+            <summary>
+            The vendor.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.minimumQty">
+            <summary>
+            The minimum quantity.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.minimumDollar">
+            <summary>
+            The minimum dollar.
+            </summary>
+        </member>
+        <member name="F:Model.ProductBuildData.unitOfMeasure">
+            <summary>
+            The unit or measure.
+            </summary>
+        </member>
+        <member name="P:Model.ProductBuildData.Code">
+            <summary>
+            Gets or sets the product code.
+            </summary>
+            <value>The product code of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.Gage">
+            <summary>
+            Gets or sets the wire gage.
+            </summary>
+            <value>The gage of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.CopperWeightPer1000Feet">
+            <summary>
+            Gets or sets the copper weight per 1000 feet.
+            </summary>
+            <value>The copper weight per 1000 feet of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.UnitCost">
+            <summary>
+            Gets or sets the unit cost.
+            </summary>
+            <value>The unit cost of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.MachineTime">
+            <summary>
+            Gets or sets the machine time.
+            </summary>
+            <value>The machine time of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.IsWire">
+            <summary>
+            Gets or sets a value indicating whether the product is a wire.
+            </summary>
+            <value>True if the product is a wire.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.LeadTime">
+            <summary>
+            Gets or sets the lead time.
+            </summary>
+            <value>The lead time of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.Vendor">
+            <summary>
+            Gets or sets the vendor name.
+            </summary>
+            <value>The vendor of the product.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.MinimumQty">
+            <summary>
+            Gets or sets the minimum quantity.
+            </summary>
+            <value>The minimum quantity.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.MinimumDollar">
+            <summary>
+            Gets or sets the minimum dollar amount.
+            </summary>
+            <value>The minimum dollar amount.</value>
+        </member>
+        <member name="P:Model.ProductBuildData.UnitOfMeasure">
+            <summary>
+            Gets or sets the unit of measure.
+            </summary>
+            <value>The unit of measure for the quantity.</value>
+        </member>
+        <member name="T:Model.UnitOfMeasureConverter">
+            <summary>
+            Converts a unit of measure to a string.
+            </summary>
+        </member>
+        <member name="M:Model.UnitOfMeasureConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Returns the standard values.
+            </summary>
+            <param name="context">The context object.</param>
+            <returns>The standard values.</returns>
+        </member>
+        <member name="M:Model.UnitOfMeasureConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Returns the standard values.
+            </summary>
+            <param name="context">The context object.</param>
+            <returns>The standard values.</returns>
+        </member>
+        <member name="M:Model.UnitOfMeasureConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Always returns true.
+            </summary>
+            <param name="context">The context object.</param>
+            <returns>Returns true if supported.</returns>
+        </member>
+        <member name="T:Model.UnitOfMeasureList">
+            <summary>
+            Provides all of the unit of measure values.
+            </summary>
+        </member>
+        <member name="F:Model.UnitOfMeasureList.arrayOfUnitOfMeasure">
+            <summary>
+            An array of the unit of measure values.
+            </summary>
+        </member>
+        <member name="M:Model.UnitOfMeasureList.Init(System.String[])">
+            <summary>
+            Sets the values of unit of measures.
+            </summary>
+            <param name="list">An array of unit of measure strings.</param>
+        </member>
+        <member name="P:Model.UnitOfMeasureList.Collection">
+            <summary>
+            Gets a collection of unit of measure.
+            </summary>
+            <value>A collection of unit of measure objects.</value>
         </member>
     </members>
 </doc>

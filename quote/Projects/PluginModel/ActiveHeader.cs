@@ -28,16 +28,18 @@ namespace Model
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Get the singleton.
+        /// Gets the singleton.
         /// </summary>
+        /// <value>The active header.</value>
         public static ActiveHeader Instance 
         {
             get { return instance; }
         }
 
         /// <summary>
-        /// Gets the active <c>header</c>.
+        /// Gets or sets the active <c>header</c>.
         /// </summary>
+        /// <value>The header.</value>
         public Header Header 
         {
             get 

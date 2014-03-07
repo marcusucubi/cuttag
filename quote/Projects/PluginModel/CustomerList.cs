@@ -16,6 +16,7 @@
         /// <summary>
         /// Gets a collection of all customers.
         /// </summary>
+        /// <value>A collection of customer objects.</value>
         public static ReadOnlyCollection<Customer> Collection
         {
             get

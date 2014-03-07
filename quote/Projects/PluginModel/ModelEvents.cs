@@ -15,7 +15,7 @@ namespace Model
         private static ModelEvents instance = new ModelEvents();
         
         /// <summary>
-        /// Prevent the class from being created.
+        /// Prevents a default instance of the <see cref="ModelEvents"/> class from being created.
         /// </summary>
         private ModelEvents()
         {
@@ -28,7 +28,7 @@ namespace Model
         public event EventHandler<ModelEventArgs> TemplateCreated;
 
         /// <summary>
-        /// Signals when a templated is viewed.
+        /// Signals when a template is viewed.
         /// </summary>
         public event EventHandler TemplateViewed;
 
@@ -40,6 +40,7 @@ namespace Model
         /// <summary>
         /// Gets the instance.
         /// </summary>
+        /// <value>The static instance.</value>
         public static ModelEvents Instance
         {
             get { return instance; }
@@ -48,7 +49,7 @@ namespace Model
         /// <summary>
         /// Signal that a template has been created.
         /// </summary>
-        /// <param name="id">The ID.</param>
+        /// <param name="id">The id of the model object.</param>
         public void NotifyTemplateCreated(int id)
         {
             ModelEventArgs args = new ModelEventArgs();

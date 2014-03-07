@@ -30,6 +30,7 @@ namespace Model
         /// <summary>
         /// Gets the singleton instance.
         /// </summary>
+        /// <value>The instance.</value>
         public static ActiveDetail Instance 
         {
             get { return instance; }
@@ -38,6 +39,7 @@ namespace Model
         /// <summary>
         /// Gets or sets the active <c>detail</c>.
         /// </summary>
+        /// <value>The detail.</value>
         public Detail Detail 
         {
             get 

@@ -10,34 +10,34 @@
     public class ModelException : Exception, ISerializable
     {
         /// <summary>
-        /// The default constructor
+        /// Initializes a new instance of the <see cref="ModelException" /> class.
         /// </summary>
         public ModelException()
         {
         }
 
         /// <summary>
-        /// A Constructor with a message
+        /// Initializes a new instance of the <see cref="ModelException" /> class.
         /// </summary>
-        /// <param name="message">A short description</param>
+        /// <param name="message">A short description.</param>
         public ModelException(string message) : base(message)
         {
         }
 
         /// <summary>
-        /// A wrapping constructor
+        /// Initializes a new instance of the <see cref="ModelException" /> class.
         /// </summary>
-        /// <param name="message">A short description</param>
-        /// <param name="innerException">The exception to wrap</param>
+        /// <param name="message">A short description.</param>
+        /// <param name="innerException">The exception to wrap.</param>
         public ModelException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
         /// <summary>
-        /// Used for serialization
+        /// Initializes a new instance of the <see cref="ModelException" /> class.
         /// </summary>
-        /// <param name="info">The info</param>
-        /// <param name="context">The context</param>
+        /// <param name="info">The info object.</param>
+        /// <param name="context">The context object.</param>
         protected ModelException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
