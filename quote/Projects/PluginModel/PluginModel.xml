@@ -81,6 +81,34 @@
             Provides default implementation for <code>ISavableProperties</code>.
             </summary>
         </member>
+        <member name="T:Model.Common.ISavableProperties">
+            <summary>
+            Extends the <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface to 
+            provide state information.
+            </summary>
+        </member>
+        <member name="E:Model.Common.ISavableProperties.Dirty">
+            <summary>
+            Notifies clients when the properties become dirty.
+            The event is triggered whenever a change to 
+            the properties occurs, even if the properties 
+            are already dirty.
+            </summary>
+        </member>
+        <member name="E:Model.Common.ISavableProperties.Clean">
+            <summary>
+            Notifies clients when the properties become clean.
+            The properties are clean when IsDirty is set
+            to false.
+            </summary>
+        </member>
+        <member name="P:Model.Common.ISavableProperties.IsDirty">
+            <summary>
+            Gets or sets a value indicating whether the properties
+            have been changed.
+            </summary>
+            <value>If true the properties have been changed.</value>
+        </member>
         <member name="F:Model.Common.DefaultSavableProperties.dirty">
             <summary>
             Indicates if the properties have been changed.
@@ -315,7 +343,7 @@
         </member>
         <member name="M:Model.Common.DetailCollection`1.#ctor(Model.Common.Header)">
             <summary>
-            Initializes a new instance of the <see cref="!:&lt;DetailCollection&gt;"/> class.
+            Initializes a new instance of the <see cref="T:Model.Common.DetailCollection`1"/> class.
             </summary>
             <param name="header">The header.</param>
         </member>
@@ -365,7 +393,259 @@
             <summary>
             Holds the data displayed in the options form.
             </summary>
-            <remarks></remarks>
+        </member>
+        <member name="F:Model.Common.GlobalOptions.instance">
+            <summary>
+            The static instance of options.
+            </summary>
+        </member>
+        <member name="F:Model.Common.GlobalOptions.decimalPointsToDisplay">
+            <summary>
+            The number of decimal digits to round.
+            </summary>
+        </member>
+        <member name="M:Model.Common.GlobalOptions.FireChanged">
+            <summary>
+            Triggers the changed event.
+            </summary>
+        </member>
+        <member name="E:Model.Common.GlobalOptions.Changed">
+            <summary>
+            Notifies clients when the options are changed.
+            </summary>
+        </member>
+        <member name="P:Model.Common.GlobalOptions.Instance">
+            <summary>
+            Gets the options object.
+            </summary>
+            <value>The global options data object.</value>
+        </member>
+        <member name="P:Model.Common.GlobalOptions.DecimalPointsToDisplay">
+            <summary>
+            Gets or sets the number of digits to round decimal values to.
+            </summary>
+            <value>The number of digits to round to.</value>
+        </member>
+        <member name="T:Model.Common.Header">
+            <summary>
+            The header object for the quote.  It is the
+            main object used to access the properties 
+            of the quote.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Header.primaryProperties">
+            <summary>
+            The primary properties map to database fields. 
+            They are searchable but not customizable.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Header.otherProperties">
+            <summary>
+            The other properties are customizable properties.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Header.computationProperties">
+            <summary>
+            The computation properties contain all computed values.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Header.noteProperties">
+            <summary>
+            The note properties contain text values.
+            </summary>
+        </member>
+        <member name="F:Model.Common.Header.details">
+            <summary>
+            The details collection contains the wires or components for the quote.
+            </summary>
+        </member>
+        <member name="M:Model.Common.Header.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Common.Header"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.Common.Header.NewDetail(Model.Product)">
+            <summary>
+            A factory method used by the quote or template classes to create a detail object.
+            </summary>
+            <param name="product">The wire or component for the detail.</param>
+            <returns>A new detail object.</returns>
+        </member>
+        <member name="M:Model.Common.Header.SetPrimaryProperties(Model.Common.PrimaryProperties)">
+            <summary>
+            Used by a derived class to set the property.
+            </summary>
+            <param name="value">The new property object.</param>
+        </member>
+        <member name="M:Model.Common.Header.SetComputationProperties(Model.Common.ComputationProperties)">
+            <summary>
+            Used by a derived class to set the property.
+            </summary>
+            <param name="value">The new property object.</param>
+        </member>
+        <member name="M:Model.Common.Header.SetOtherProperties(Model.Common.OtherProperties)">
+            <summary>
+            Used by a derived class to set the property.
+            </summary>
+            <param name="value">The new property object.</param>
+        </member>
+        <member name="M:Model.Common.Header.SetNoteProperties(Model.Common.NoteProperties)">
+            <summary>
+            Used by a derived class to set the property.
+            </summary>
+            <param name="value">The new property object.</param>
+        </member>
+        <member name="P:Model.Common.Header.IsQuote">
+            <summary>
+            Gets a value indicating whether the header is for a quote or a template.
+            Quotes are frozen and can not be changed.
+            </summary>
+            <value>True if the header is for a quote.</value>
+        </member>
+        <member name="P:Model.Common.Header.DisplayName">
+            <summary>
+            Gets the display name which is shown in the window title.
+            </summary>
+            <value>The display name of the header.</value>
+        </member>
+        <member name="P:Model.Common.Header.Id">
+            <summary>
+            Gets or sets the id number for the header.
+            </summary>
+            <value>The id of the header.</value>
+        </member>
+        <member name="P:Model.Common.Header.ComputationProperties">
+            <summary>
+            Gets the computation properties for the header.
+            </summary>
+            <value>The computation properties.</value>
+        </member>
+        <member name="P:Model.Common.Header.OtherProperties">
+            <summary>
+            Gets the other properties for the header.
+            </summary>
+            <value>The other properties.</value>
+        </member>
+        <member name="P:Model.Common.Header.PrimaryProperties">
+            <summary>
+            Gets the primary properties for the header.
+            </summary>
+            <value>The primary properties.</value>
+        </member>
+        <member name="P:Model.Common.Header.NoteProperties">
+            <summary>
+            Gets the note properties for the header.
+            </summary>
+            <value>The note properties.</value>
+        </member>
+        <member name="P:Model.Common.Header.Details">
+            <summary>
+            Gets the detail collection.
+            </summary>
+            <value>A collection of detail objects which holds the wires or components.</value>
+        </member>
+        <member name="T:Model.Common.IHasTotalMachineTime">
+            <summary>
+            Used by the component properties object.
+            </summary>
+        </member>
+        <member name="P:Model.Common.IHasTotalMachineTime.TotalMachineTime">
+            <summary>
+            Gets the total machine time for the component.
+            </summary>
+            <value>The machine time for the component.</value>
+        </member>
+        <member name="T:Model.Common.NoteProperties">
+            <summary>
+            Base class for the note properties.  The notes
+            are text properties.
+            </summary>
+        </member>
+        <member name="T:Model.Common.OtherProperties">
+            <summary>
+            Base class for the other properties 
+            which are customizable properties.
+            </summary>
+        </member>
+        <member name="T:Model.Common.PrimaryProperties">
+            <summary>
+            The primary properties for the quote or template.
+            The primary properties are not customizable and
+            are mapped to database fields.
+            </summary>
+        </member>
+        <member name="F:Model.Common.PrimaryProperties.id">
+            <summary>
+            The id of the quote or template.
+            </summary>
+        </member>
+        <member name="F:Model.Common.PrimaryProperties.commonCreatedDate">
+            <summary>
+            The create date from the database.
+            </summary>
+        </member>
+        <member name="F:Model.Common.PrimaryProperties.commonLastModified">
+            <summary>
+            The last modified date from the database.
+            </summary>
+        </member>
+        <member name="M:Model.Common.PrimaryProperties.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Common.PrimaryProperties"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.Common.PrimaryProperties.SetId(System.Int32)">
+            <summary>
+            Sets the id of the quote.
+            </summary>
+            <param name="id">The quote id.</param>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonCustomer">
+            <summary>
+            Gets or sets the customer object.
+            </summary>
+            <value>The customer object.</value>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonRequestForQuoteNumber">
+            <summary>
+            Gets or sets the request for quote number.
+            </summary>
+            <value>The request for quote number.</value>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonPartNumber">
+            <summary>
+            Gets or sets the part number.
+            </summary>
+            <value>The part number.</value>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonCreatedDate">
+            <summary>
+            Gets or sets the create date.
+            </summary>
+            <value>The create date.</value>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonLastModified">
+            <summary>
+            Gets or sets the last modified date.
+            </summary>
+            <value>The last modified date.</value>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonInitials">
+            <summary>
+            Gets or sets the initials of the person creating the quote.
+            </summary>
+            <value>The initials of the person creating the quote.</value>
+        </member>
+        <member name="P:Model.Common.PrimaryProperties.CommonId">
+            <summary>
+            Gets the id of the quote.
+            </summary>
+            <value>The id of the quote.</value>
+        </member>
+        <member name="T:Model.Common.WireProperties">
+            <summary>
+            A base class for the wire properties.
+            </summary>
         </member>
         <member name="T:Model.Customer">
             <summary>
