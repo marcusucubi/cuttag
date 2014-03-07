@@ -8,6 +8,7 @@ namespace Model.Common
     /// <summary>
     /// A collection of detail objects.
     /// </summary>
+    /// <typeparam name="T" >Must be a detail type.</typeparam>
     public class DetailCollection<T> : 
         System.Collections.ObjectModel.ObservableCollection<T>,
         ISavableProperties
@@ -24,7 +25,7 @@ namespace Model.Common
         private Common.Header header;
 
         /// <summary>
-        /// Creates a new collection.
+        /// Initializes a new instance of the <see cref="{DetailCollection}" /> class.
         /// </summary>
         /// <param name="header">The header.</param>
         public DetailCollection(Common.Header header)
@@ -37,8 +38,15 @@ namespace Model.Common
         /// </summary>
         public event EventHandler Dirty;
 
+        /// <summary>
+        /// Indicates when the dirty flag is cleared.
+        /// </summary>
         public event EventHandler Clean;
         
+        /// <summary>
+        /// Gets or sets a value indicating whether the object needs to be saved.
+        /// </summary>
+        /// <value>Indicates whether the object needs to be saved.</value>
         public bool IsDirty 
         { 
             get 
@@ -74,11 +82,20 @@ namespace Model.Common
             }
         }
         
+        /// <summary>
+        /// Gets the header object.
+        /// </summary>
+        /// <value>A header object.</value>
         public Common.Header Header
         {
             get { return this.header; }
         }
         
+        /// <summary>
+        /// Called when an item is added.
+        /// </summary>
+        /// <param name="index">The index of the new item.</param>
+        /// <param name="item">The item being added.</param>
         protected override void InsertItem(int index, T item)
         {
             base.InsertItem(index, item);
@@ -86,6 +103,10 @@ namespace Model.Common
             this.IsDirty = true;
         }
         
+        /// <summary>
+        /// Called when an item is removed.
+        /// </summary>
+        /// <param name="index">The index of the item being removed.</param>
         protected override void RemoveItem(int index)
         {
             ISavableProperties item = this.Items[index];
@@ -94,6 +115,11 @@ namespace Model.Common
             this.IsDirty = true;
         }
         
+        /// <summary>
+        /// Called when an object is changed.
+        /// </summary>
+        /// <param name="source">The item that was changed.</param>
+        /// <param name="args">The arguments for the item being changed.</param>
         private void OnDependentDirty(object source, EventArgs args)
         {
             this.IsDirty = true;

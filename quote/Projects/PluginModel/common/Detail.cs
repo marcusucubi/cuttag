@@ -41,13 +41,16 @@ namespace Model.Common
         /// </summary>
         private string unitOfMeasure;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Detail" /> class.
+        /// </summary>
         public Detail()
         {
             // Needed for grid view
         }
 
         /// <summary>
-        /// Creates a detail.
+        /// Initializes a new instance of the <see cref="Detail" /> class.
         /// </summary>
         /// <param name="product">The product.</param>
         /// <param name="unitOfMeasure">The unit of measure.</param>
@@ -66,6 +69,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the quantity.
         /// </summary>
+        /// <value>The quantity of the product.</value>
         public virtual decimal Qty 
         {
             get 
@@ -86,6 +90,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the product code.
         /// </summary>
+        /// <value>The product code for the item.</value>
         public string ProductCode 
         {
             get 
@@ -106,6 +111,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the unit of measure.
         /// </summary>
+        /// <value>The unit of measure for the quantity.</value>
         public string UnitOfMeasure 
         {
             get 
@@ -126,6 +132,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the sequence number.
         /// </summary>
+        /// <value>A unique number assigned to the detail item.</value>
         public int SequenceNumber
         {
             get 
@@ -146,6 +153,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the source id.
         /// </summary>
+        /// <value>A unique database id of the source product.</value>
         public Guid SourceId 
         {
             get { return this.sourceId; }
@@ -153,8 +161,9 @@ namespace Model.Common
         }
 
         /// <summary>
-        /// Returns true if a wire.
+        /// Gets a value indicating whether the item is a wire.
         /// </summary>
+        /// <value>Indicates whether the item is a wire or a product.</value>
         public bool IsWire 
         {
             get { return this.wire; }
@@ -163,6 +172,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the machine time.
         /// </summary>
+        /// <value>The machine time of the product.</value>
         public decimal MachineTime 
         {
             get 
@@ -180,6 +190,7 @@ namespace Model.Common
         /// <summary>
         /// Gets or sets the unit cost.
         /// </summary>
+        /// <value>The unit cost of the product.</value>
         public decimal UnitCost 
         {
             get 
@@ -195,8 +206,9 @@ namespace Model.Common
         }
 
         /// <summary>
-        /// Returns the length in feet.
+        /// Gets the length in feet.
         /// </summary>
+        /// <value>The length in feet of the wire.</value>
         [Browsable(false)]
         public decimal LengthFeet 
         {
@@ -204,8 +216,9 @@ namespace Model.Common
         }
 
         /// <summary>
-        /// Returns the product.
+        /// Gets the product.
         /// </summary>
+        /// <value>The product of the item.</value>
         [BrowsableAttribute(false)]
         public Model.Product Product 
         {
@@ -213,16 +226,18 @@ namespace Model.Common
         }
 
         /// <summary>
-        /// Returns an object that holds the properties.
+        /// Gets an object that holds the properties.
         /// </summary>
+        /// <value>An object that holds the properties.</value>
         public abstract ISavableProperties QuoteDetailProperties 
         {
             get;
         }
 
         /// <summary>
-        /// Returns 'Wire or 'Component'.
+        /// Gets a string of 'Wire or 'Component'.
         /// </summary>
+        /// <value>A string of wire of component.</value>
         [BrowsableAttribute(true), DisplayName("Type")]
         public string DisplayableProductClass 
         {
@@ -230,8 +245,9 @@ namespace Model.Common
         }
 
         /// <summary>
-        /// Calculates the total cost.
+        /// Gets the total cost.
         /// </summary>
+        /// <value>The total cost of the item.</value>
         public decimal TotalCost 
         {
             get 
@@ -259,7 +275,7 @@ namespace Model.Common
         /// <summary>
         /// Returns the quantity.
         /// </summary>
-        /// <returns>Returns the quantity.</returns>
+        /// <returns>The quantity of the item.</returns>
         protected decimal PrivateQty()
         {
             return this.quantity;

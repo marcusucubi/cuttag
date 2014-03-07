@@ -93,7 +93,7 @@
         </member>
         <member name="M:Model.Common.DefaultSavableProperties.#ctor">
             <summary>
-            Default constructor
+            Initializes a new instance of the <see cref="T:Model.Common.DefaultSavableProperties"/> class.
             </summary>
         </member>
         <member name="M:Model.Common.DefaultSavableProperties.AddChildProperty(Model.Common.ISavableProperties)">
@@ -137,8 +137,9 @@
         </member>
         <member name="P:Model.Common.DefaultSavableProperties.IsDirty">
             <summary>
-            Returns true if the properties have been changed.
+            Gets or sets a value indicating whether the properties have been changed.
             </summary>
+            <value>True if the properties have changed.</value>
         </member>
         <member name="T:Model.Common.ComputationProperties">
             <summary>
@@ -181,9 +182,14 @@
             Identifies the unit of measure.
             </summary>
         </member>
+        <member name="M:Model.Common.Detail.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Common.Detail"/> class.
+            </summary>
+        </member>
         <member name="M:Model.Common.Detail.#ctor(Model.Product,System.String,System.Decimal)">
             <summary>
-            Creates a detail.
+            Initializes a new instance of the <see cref="T:Model.Common.Detail"/> class.
             </summary>
             <param name="product">The product.</param>
             <param name="unitOfMeasure">The unit of measure.</param>
@@ -199,7 +205,7 @@
             <summary>
             Returns the quantity.
             </summary>
-            <returns>Returns the quantity.</returns>
+            <returns>The quantity of the item.</returns>
         </member>
         <member name="M:Model.Common.Detail.SetPrivateUnitOfMeasure(System.String)">
             <summary>
@@ -217,71 +223,85 @@
             <summary>
             Gets or sets the quantity.
             </summary>
+            <value>The quantity of the product.</value>
         </member>
         <member name="P:Model.Common.Detail.ProductCode">
             <summary>
             Gets or sets the product code.
             </summary>
+            <value>The product code for the item.</value>
         </member>
         <member name="P:Model.Common.Detail.UnitOfMeasure">
             <summary>
             Gets or sets the unit of measure.
             </summary>
+            <value>The unit of measure for the quantity.</value>
         </member>
         <member name="P:Model.Common.Detail.SequenceNumber">
             <summary>
             Gets or sets the sequence number.
             </summary>
+            <value>A unique number assigned to the detail item.</value>
         </member>
         <member name="P:Model.Common.Detail.SourceId">
             <summary>
             Gets or sets the source id.
             </summary>
+            <value>A unique database id of the source product.</value>
         </member>
         <member name="P:Model.Common.Detail.IsWire">
             <summary>
-            Returns true if a wire.
+            Gets a value indicating whether the item is a wire.
             </summary>
+            <value>Indicates whether the item is a wire or a product.</value>
         </member>
         <member name="P:Model.Common.Detail.MachineTime">
             <summary>
             Gets or sets the machine time.
             </summary>
+            <value>The machine time of the product.</value>
         </member>
         <member name="P:Model.Common.Detail.UnitCost">
             <summary>
             Gets or sets the unit cost.
             </summary>
+            <value>The unit cost of the product.</value>
         </member>
         <member name="P:Model.Common.Detail.LengthFeet">
             <summary>
-            Returns the length in feet.
+            Gets the length in feet.
             </summary>
+            <value>The length in feet of the wire.</value>
         </member>
         <member name="P:Model.Common.Detail.Product">
             <summary>
-            Returns the product.
+            Gets the product.
             </summary>
+            <value>The product of the item.</value>
         </member>
         <member name="P:Model.Common.Detail.QuoteDetailProperties">
             <summary>
-            Returns an object that holds the properties.
+            Gets an object that holds the properties.
             </summary>
+            <value>An object that holds the properties.</value>
         </member>
         <member name="P:Model.Common.Detail.DisplayableProductClass">
             <summary>
-            Returns 'Wire or 'Component'.
+            Gets a string of 'Wire or 'Component'.
             </summary>
+            <value>A string of wire of component.</value>
         </member>
         <member name="P:Model.Common.Detail.TotalCost">
             <summary>
-            Calculates the total cost.
+            Gets the total cost.
             </summary>
+            <value>The total cost of the item.</value>
         </member>
         <member name="T:Model.Common.DetailCollection`1">
             <summary>
             A collection of detail objects.
             </summary>
+            <typeparam name="T" >Must be a detail type.</typeparam>
         </member>
         <member name="F:Model.Common.DetailCollection`1.dirty">
             <summary>
@@ -295,14 +315,51 @@
         </member>
         <member name="M:Model.Common.DetailCollection`1.#ctor(Model.Common.Header)">
             <summary>
-            Creates a new collection.
+            Initializes a new instance of the <see cref="!:&lt;DetailCollection&gt;"/> class.
             </summary>
             <param name="header">The header.</param>
+        </member>
+        <member name="M:Model.Common.DetailCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Called when an item is added.
+            </summary>
+            <param name="index">The index of the new item.</param>
+            <param name="item">The item being added.</param>
+        </member>
+        <member name="M:Model.Common.DetailCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Called when an item is removed.
+            </summary>
+            <param name="index">The index of the item being removed.</param>
+        </member>
+        <member name="M:Model.Common.DetailCollection`1.OnDependentDirty(System.Object,System.EventArgs)">
+            <summary>
+            Called when an object is changed.
+            </summary>
+            <param name="source">The item that was changed.</param>
+            <param name="args">The arguments for the item being changed.</param>
         </member>
         <member name="E:Model.Common.DetailCollection`1.Dirty">
             <summary>
             Fires when the collection is dirty.
             </summary>
+        </member>
+        <member name="E:Model.Common.DetailCollection`1.Clean">
+            <summary>
+            Indicates when the dirty flag is cleared.
+            </summary>
+        </member>
+        <member name="P:Model.Common.DetailCollection`1.IsDirty">
+            <summary>
+            Gets or sets a value indicating whether the object needs to be saved.
+            </summary>
+            <value>Indicates whether the object needs to be saved.</value>
+        </member>
+        <member name="P:Model.Common.DetailCollection`1.Header">
+            <summary>
+            Gets the header object.
+            </summary>
+            <value>A header object.</value>
         </member>
         <member name="T:Model.Common.GlobalOptions">
             <summary>
