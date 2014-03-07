@@ -27,17 +27,22 @@ Public Class DisplayableComputationProperties
         Me.OnPropertyChanged()
     End Sub
 
+    Private Sub _Subject_Changed() Handles _Subject.PropertyChanged
+        Me.OnPropertyChanged()
+    End Sub
+
     <BrowsableAttribute(false)>
     Public ReadOnly Property ComputationProperties As Model.Template.ComputationProperties _
-        Implements Model.Template.Ext.IComputationWrapper.ComputationProperties
+    Implements Model.Template.Ext.IComputationWrapper.ComputationProperties
         Get
             Return _Subject
         End Get
     End Property
 
 #Region " Variables "
-    Private _Subject As DekalbComputationProperties
+    Private WithEvents _Subject As DekalbComputationProperties
 #End Region
+    
 #Region "1 Copper "
     <DescriptionAttribute("Weight of Copper. " + Chr(10) + "(Pounds)"), _
     DisplayName("Copper Weight"), _

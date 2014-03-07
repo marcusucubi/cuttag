@@ -18,7 +18,14 @@ Public NotInheritable Class DekalbComputationProperties
 
     Public Sub New(ByVal Header As Model.Template.Header)
         _Header = Header
+        
+        Dim lamda = Sub()
+                MyBase.OnPropertyChanged()
+        End Sub
+        
+        AddHandler _Header.Details.Dirty, lamda
     End Sub
+    
 #Region " Variables "
 
     Private _Header As Header
