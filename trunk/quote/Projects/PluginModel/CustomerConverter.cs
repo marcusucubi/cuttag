@@ -45,7 +45,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Returns true for strings.
+        /// Returns true if the type can be converted.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="sourceType">The source type.</param>
@@ -63,7 +63,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Returns a customer object.
+        /// Returns a converted object.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="culture">The culture.</param>

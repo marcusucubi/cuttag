@@ -4,24 +4,24 @@ namespace Model
     using System.Linq;
 
     /// <summary>
-    /// Represents the customer
+    /// Represents the customer.
     /// </summary>
-    /// <remarks></remarks>
     public class Customer
     {
         /// <summary>
-        /// The name.
+        /// The name of the customer.
         /// </summary>
         private string name;
 
         /// <summary>
-        /// The ID.
+        /// The ID of the customer.
         /// </summary>
         private int id;
         
         /// <summary>
         /// Gets the name.
         /// </summary>
+        /// <value>The name of the customer.</value>
         public string Name 
         {
             get { return this.name; }
@@ -30,6 +30,7 @@ namespace Model
         /// <summary>
         /// Gets the ID.
         /// </summary>
+        /// <value>The id of the customer.</value>
         public int Id 
         {
             get { return this.id; }
@@ -39,7 +40,7 @@ namespace Model
         /// Creates a <c>customer</c> from the input string.
         /// </summary>
         /// <param name="value">A string that contains the id and name.</param>
-        /// <returns>Returns a cusomter object.</returns>
+        /// <returns>Returns a customer object.</returns>
         public static Customer CreateFromString(string value)
         {
             int index = 0;
@@ -82,7 +83,7 @@ namespace Model
         /// <summary>
         /// Sets the name.
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="name">The name of the customer.</param>
         public void SetName(string name)
         {
             this.name = name;
@@ -91,16 +92,16 @@ namespace Model
         /// <summary>
         /// Sets the ID.
         /// </summary>
-        /// <param name="id">The id.</param>
+        /// <param name="id">The id of the customer.</param>
         public void SetId(int id)
         {
             this.id = id;
         }
 
         /// <summary>
-        /// The hashtag of the ID.
+        /// The hash of the ID.
         /// </summary>
-        /// <returns>The hashtag of the ID.</returns>
+        /// <returns>Returns the hash of the ID.</returns>
         public override int GetHashCode()
         {
             return this.id.GetHashCode();

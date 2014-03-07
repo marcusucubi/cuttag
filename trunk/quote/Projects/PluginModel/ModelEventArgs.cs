@@ -8,8 +8,9 @@
     public class ModelEventArgs : EventArgs
     {
         /// <summary>
-        /// The ID of the model object.
+        /// Gets or sets the ID of the model object.
         /// </summary>
+        /// <value>The id of the object.</value>
         public object Id { get; set; }
     }
 }
