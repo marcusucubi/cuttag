@@ -77,5 +77,54 @@ namespace PluginModelUnitTests.Template
             Assert.AreEqual(component.Vendor, "test");
             Assert.AreEqual(component.UnitOfMeasure, "test");
         }
+        
+        [Test]
+        public void TestChangeEvent()
+        {
+            Host.App.RegisteredClasses.Clear();
+                
+            Host.App.RegisteredClasses.Add(
+                typeof(Model.Template.Ext.IWirePropertiesFactory), 
+                typeof(CustomWirePropertiesFactory));
+            
+            Host.App.RegisteredClasses.Add(
+                typeof(Model.Template.Ext.IComputationPropertiesFactory), 
+                typeof(CustomComputationPropertiesFactory));
+            
+            Model.Template.Header header = new Model.Template.Header();
+            
+            CustomComputationProperties computation = 
+                header.ComputationProperties as CustomComputationProperties;
+            
+            Model.ProductBuildData data = new Model.ProductBuildData();
+            data.IsWire = false;
+            Model.Product product = new Model.Product(data);
+            
+            Model.Template.Detail detail = new Model.Template.Detail(header, product);
+            header.Details.Add(detail);
+            
+            Model.Template.DisplayableComponentProperties wire = 
+                detail.QuoteDetailProperties as Model.Template.DisplayableComponentProperties;
+            Assert.IsNotNull(wire);
+            
+            wire.Quantity = 1;
+            wire.UnitCost = 1;
+            
+            decimal cost = computation.ComponentMaterialCost;
+            Assert.AreEqual(cost, 1);
+            
+            bool flag = false;
+            computation.Dirty += delegate { flag = true; };
+            
+            Assert.IsFalse(flag);
+            
+            wire.Quantity = 2;
+            wire.UnitCost = 1;
+            
+            cost = computation.ComponentMaterialCost;
+            Assert.AreEqual(cost, 2);
+            
+            Assert.IsTrue(flag);
+        }
     }
 } 
