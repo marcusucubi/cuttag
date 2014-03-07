@@ -25,7 +25,7 @@ namespace Model.Common
         private Common.Header header;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="{DetailCollection}" /> class.
+        /// Initializes a new instance of the <see cref="DetailCollection{T}" /> class.
         /// </summary>
         /// <param name="header">The header.</param>
         public DetailCollection(Common.Header header)
