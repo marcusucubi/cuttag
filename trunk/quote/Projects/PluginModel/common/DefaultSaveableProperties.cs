@@ -21,7 +21,7 @@ namespace Model.Common
         private List<ISavableProperties> children = new List<ISavableProperties>();
         
         /// <summary>
-        /// Default constructor
+        /// Initializes a new instance of the <see cref="DefaultSavableProperties" /> class.
         /// </summary>
         protected DefaultSavableProperties()
         {
@@ -43,8 +43,9 @@ namespace Model.Common
         public virtual event EventHandler Clean;
         
         /// <summary>
-        /// Returns true if the properties have been changed.
+        /// Gets or sets a value indicating whether the properties have been changed.
         /// </summary>
+        /// <value>True if the properties have changed.</value>
         [Browsable(false)]
         public bool IsDirty 
         {
