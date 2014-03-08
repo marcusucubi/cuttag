@@ -1156,6 +1156,388 @@
             </summary>
             <value>The unit of measure for the quantity.</value>
         </member>
+        <member name="T:Model.Quote.QuoteSavableProperties">
+            <summary>
+            A default object used by the quote header.
+            </summary>
+        </member>
+        <member name="T:Model.Quote.Detail">
+            <summary>
+            A detail object for a quote.  It can not be changed.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.Detail.properties">
+            <summary>
+            The properties for the quote.
+            </summary>
+        </member>
+        <member name="M:Model.Quote.Detail.#ctor(Model.Common.Header,Model.Product)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Quote.Detail"/> class.
+            </summary>
+            <param name="header">The parent header.</param>
+            <param name="product">The product.</param>
+        </member>
+        <member name="M:Model.Quote.Detail.SetProperties(Model.Common.ISavableProperties)">
+            <summary>
+            Sets the properties.
+            </summary>
+            <param name="props">The new properties.</param>
+        </member>
+        <member name="P:Model.Quote.Detail.QuoteHeader">
+            <summary>
+            Gets or sets the header for the detail.
+            </summary>
+            <value>The quote header.</value>
+        </member>
+        <member name="P:Model.Quote.Detail.QuoteDetailProperties">
+            <summary>
+            Gets or sets the detail properties.
+            </summary>
+            <value>The detail properties.</value>
+        </member>
+        <member name="P:Model.Quote.Detail.Qty">
+            <summary>
+            Gets or sets the quantity for the detail item.
+            </summary>
+            <value>The quantity for the detail item.</value>
+        </member>
+        <member name="T:Model.Quote.Header">
+            <summary>
+            The header for a quote object.
+            </summary>
+        </member>
+        <member name="M:Model.Quote.Header.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Quote.Header"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.Quote.Header.#ctor(System.Int32,System.String,System.String,System.String,System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Quote.Header"/> class.
+            </summary>
+            <param name="id">The id of the quote.</param>
+            <param name="requestForQuoteNumber">The request for quote number.</param>
+            <param name="partNumber">The part number.</param>
+            <param name="initials">The initials of the person who created initials.</param>
+            <param name="createdDate">The create date of the quote.</param>
+            <param name="lastModifiedDate">The last modified date.</param>
+            <param name="templateId">The template id.</param>
+        </member>
+        <member name="M:Model.Quote.Header.NewDetail(Model.Product)">
+            <summary>
+            Creates a new detail item.
+            </summary>
+            <param name="product">The product for the new detail object.</param>
+            <returns>The new detail object.</returns>
+        </member>
+        <member name="M:Model.Quote.Header.SetPublicPrimaryProperties(Model.Common.PrimaryProperties)">
+            <summary>
+            Sets the primary properties object.
+            </summary>
+            <param name="value">The new properties object.</param>
+        </member>
+        <member name="M:Model.Quote.Header.SetPublicComputationProperties(Model.Common.ComputationProperties)">
+            <summary>
+            Sets the properties object.
+            </summary>
+            <param name="value">The new properties object.</param>
+        </member>
+        <member name="M:Model.Quote.Header.SetPublicOtherProperties(Model.Common.OtherProperties)">
+            <summary>
+            Sets the properties object.
+            </summary>
+            <param name="value">The new properties object.</param>
+        </member>
+        <member name="M:Model.Quote.Header.SetPublicNoteProperties(Model.Common.NoteProperties)">
+            <summary>
+            Sets the properties object.
+            </summary>
+            <param name="value">The new properties object.</param>
+        </member>
+        <member name="P:Model.Quote.Header.IsQuote">
+            <summary>
+            Gets a value indicating whether the header is a quote.
+            </summary>
+            <value>True is always returned.</value>
+        </member>
+        <member name="P:Model.Quote.Header.DisplayName">
+            <summary>
+            Gets the display name for the quote.
+            </summary>
+            <value>Quote plus the id.</value>
+        </member>
+        <member name="T:Model.Quote.PrimaryProperties">
+            <summary>
+            The primary properties of a quote.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.PrimaryProperties.requestForQuoteNumber">
+            <summary>
+            The request for quote number.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.PrimaryProperties.partNumber">
+            <summary>
+            The part number of the quote.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.PrimaryProperties.templateID">
+            <summary>
+            The template id.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.PrimaryProperties.initials">
+            <summary>
+            The initials of the person who created the quote.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.PrimaryProperties.createdDate">
+            <summary>
+            The create date of the quote.
+            </summary>
+        </member>
+        <member name="F:Model.Quote.PrimaryProperties.lastModified">
+            <summary>
+            The last modified date of the quote.
+            </summary>
+        </member>
+        <member name="M:Model.Quote.PrimaryProperties.#ctor(System.Int32,System.String,System.String,System.String,System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Quote.PrimaryProperties"/> class.
+            </summary>
+            <param name="id">The quote id.</param>
+            <param name="requestForQuoteNumber">The request for quote number.</param>
+            <param name="partNumber">The part number.</param>
+            <param name="initials">The initials.</param>
+            <param name="createdDate">The create date.</param>
+            <param name="lastModified">The last modified date.</param>
+            <param name="templateId">The template id.</param>
+        </member>
+        <member name="M:Model.Quote.PrimaryProperties.SetTemplateId(System.Int32)">
+            <summary>
+            Sets the template id.
+            </summary>
+            <param name="id">The template id.</param>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.CreatedDate">
+            <summary>
+            Gets the create date.
+            </summary>
+            <value>The create date.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.LastModified">
+            <summary>
+            Gets the last modified date.
+            </summary>
+            <value>The last modified date.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.QuoteNumber">
+            <summary>
+            Gets the quote number.
+            </summary>
+            <value>The quote number.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.Initials">
+            <summary>
+            Gets the initials of the person who created the quote.
+            </summary>
+            <value>The initials.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.Customer">
+            <summary>
+            Gets the customer object.
+            </summary>
+            <value>The customer object.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.PartNumber">
+            <summary>
+            Gets the part number.
+            </summary>
+            <value>The part number.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.RequestForQuoteNumber">
+            <summary>
+            Gets the request for quote number.
+            </summary>
+            <value>The request for quote number.</value>
+        </member>
+        <member name="P:Model.Quote.PrimaryProperties.TemplateNumber">
+            <summary>
+            Gets the template number.
+            </summary>
+            <value>The template number.</value>
+        </member>
+        <member name="T:Model.Template.ComponentProperties">
+            <summary>
+            The component properties for the template.
+            </summary>
+        </member>
+        <member name="F:Model.Template.ComponentProperties.quoteDetail">
+            <summary>
+            The template detail object.
+            </summary>
+        </member>
+        <member name="M:Model.Template.ComponentProperties.#ctor(Model.Template.Detail)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.ComponentProperties"/> class.
+            </summary>
+            <param name="quoteDetail">The quote detail.</param>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.TotalMachineTime">
+            <summary>
+            Gets the total machine time.
+            </summary>
+            <value>The total machine time.</value>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.MachineTime">
+            <summary>
+            Gets or sets the machine time.
+            </summary>
+            <value>The machine time.</value>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.Quantity">
+            <summary>
+            Gets or sets the quantity for the detail.
+            </summary>
+            <value>The quantity for the detail.</value>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.Description">
+            <summary>
+            Gets or sets the description for the component.
+            </summary>
+            <value>The description for the component.</value>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.Vendor">
+            <summary>
+            Gets or sets the vendor of the product.
+            </summary>
+            <value>The name of the vendor.</value>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.UnitOfMeasure">
+            <summary>
+            Gets or sets the unit of measure.
+            </summary>
+            <value>The unit of measure.</value>
+        </member>
+        <member name="P:Model.Template.ComponentProperties.UnitCost">
+            <summary>
+            Gets or sets the unit cost.
+            </summary>
+            <value>The unit of cost.</value>
+        </member>
+        <member name="T:Model.Template.ComputationProperties">
+            <summary>
+            The computation properties for the template.
+            </summary>
+        </member>
+        <member name="M:Model.Template.ComputationProperties.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.ComputationProperties"/> class.
+            </summary>
+        </member>
+        <member name="T:Model.Template.DefaultComponentProperties">
+            <summary>
+            The default component properties.
+            </summary>
+        </member>
+        <member name="M:Model.Template.DefaultComponentProperties.#ctor(Model.Template.Detail)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.DefaultComponentProperties"/> class.
+            </summary>
+            <param name="quoteDetail">The detail object.</param>
+        </member>
+        <member name="T:Model.Template.DefaultComputationProperties">
+            <summary>
+            Get default computation properties.
+            </summary>
+        </member>
+        <member name="M:Model.Template.DefaultComputationProperties.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.DefaultComputationProperties"/> class.
+            </summary>
+        </member>
+        <member name="T:Model.Template.DefaultOtherProperties">
+            <summary>
+            The default other properties.
+            </summary>
+        </member>
+        <member name="M:Model.Template.DefaultOtherProperties.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.DefaultOtherProperties"/> class.
+            </summary>
+        </member>
+        <member name="T:Model.Template.DefaultWireProperties">
+            <summary>
+            The default wire properties.
+            </summary>
+        </member>
+        <member name="M:Model.Template.DefaultWireProperties.#ctor(Model.Template.Detail)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.DefaultWireProperties"/> class.
+            </summary>
+            <param name="quoteDetail">A quote detail object.</param>
+        </member>
+        <member name="T:Model.Spaces">
+            <summary>
+            A helper object used to pad spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces1">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces2">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces3">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces4">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces5">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces6">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces7">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces8">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces9">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces10">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
+        <member name="F:Model.Spaces.SortedSpaces11">
+            <summary>
+            A group of spaces.
+            </summary>
+        </member>
         <member name="T:Model.UnitOfMeasureConverter">
             <summary>
             Converts a unit of measure to a string.
