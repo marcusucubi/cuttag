@@ -1462,6 +1462,12 @@
             The default other properties.
             </summary>
         </member>
+        <member name="T:Model.Template.OtherProperties">
+            <summary>
+            Class the holds the other properties of the quote.
+            The properties are added in the custom project.
+            </summary>
+        </member>
         <member name="M:Model.Template.DefaultOtherProperties.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Model.Template.DefaultOtherProperties"/> class.
@@ -1472,11 +1478,367 @@
             The default wire properties.
             </summary>
         </member>
+        <member name="T:Model.Template.WireProperties">
+            <summary>
+            Contains the wire properties for a detail object.
+            </summary>
+        </member>
+        <member name="F:Model.Template.WireProperties.copperWeightPer1000Ft">
+            <summary>
+            The cooper weight per 1000 feet.
+            </summary>
+        </member>
+        <member name="F:Model.Template.WireProperties.withEventsFieldQuoteDetail">
+            <summary>
+            The detail object.
+            </summary>
+        </member>
+        <member name="M:Model.Template.WireProperties.#ctor(Model.Template.Detail)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.WireProperties"/> class.
+            </summary>
+            <param name="detail">The detail object.</param>
+        </member>
+        <member name="M:Model.Template.WireProperties.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Model.Template.WireProperties"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.Template.WireProperties.OnPropertyChanged">
+            <summary>
+            Called when a property is changed on the detail object.
+            </summary>
+        </member>
+        <member name="M:Model.Template.WireProperties._QuoteDetail_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            Called when a property is changed on the detail object.
+            </summary>
+            <param name="sender">The sender object.</param>
+            <param name="e">The arguments for the event.</param>
+        </member>
+        <member name="P:Model.Template.WireProperties.Gage">
+            <summary>
+            Gets the gage.
+            </summary>
+            <value>The gage of the wire.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.Length">
+            <summary>
+            Gets the wire length.
+            </summary>
+            <value>The wire length.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.Description">
+            <summary>
+            Gets or sets the wire description.
+            </summary>
+            <value>The wire description.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.LengthFeet">
+            <summary>
+            Gets the wire length in feet.
+            </summary>
+            <value>The wire length in feet.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.PoundsPer1000Feet">
+            <summary>
+            Gets or sets the wire weight for 1000 feet.
+            </summary>
+            <value>The wire weight.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.TotalWeight">
+            <summary>
+            Gets the total wire weight.
+            </summary>
+            <value>The total wire weight.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.Quantity">
+            <summary>
+            Gets or sets the quantity.
+            </summary>
+            <value>The quantity.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.UnitCost">
+            <summary>
+            Gets or sets the unit cost.
+            </summary>
+            <value>The unit cost.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties.UnitOfMeasure">
+            <summary>
+            Gets or sets the unit of measure.
+            </summary>
+            <value>The unit of measure.</value>
+        </member>
+        <member name="P:Model.Template.WireProperties._QuoteDetail">
+            <summary>
+            Gets or sets the detail.
+            </summary>
+            <value>The detail object.</value>
+        </member>
         <member name="M:Model.Template.DefaultWireProperties.#ctor(Model.Template.Detail)">
             <summary>
             Initializes a new instance of the <see cref="T:Model.Template.DefaultWireProperties"/> class.
             </summary>
             <param name="quoteDetail">A quote detail object.</param>
+        </member>
+        <member name="T:Model.Template.Detail">
+            <summary>
+            The detail for a template.
+            </summary>
+        </member>
+        <member name="F:Model.Template.Detail.wireProperties">
+            <summary>
+            Contains properties if the detail has a wire.
+            </summary>
+        </member>
+        <member name="F:Model.Template.Detail.componentProperties">
+            <summary>
+            Contains properties if the detail has a component.
+            </summary>
+        </member>
+        <member name="M:Model.Template.Detail.#ctor(Model.Template.Header,Model.Product)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.Detail"/> class.
+            </summary>
+            <param name="header">The header.</param>
+            <param name="product">The product.</param>
+        </member>
+        <member name="M:Model.Template.Detail.UpdateComponentProperties(Model.Product)">
+            <summary>
+            Sets the product for this detail.
+            </summary>
+            <param name="product">The new product.</param>
+        </member>
+        <member name="P:Model.Template.Detail.Header">
+            <summary>
+            Gets or sets the header.
+            </summary>
+            <value>The header.</value>
+        </member>
+        <member name="P:Model.Template.Detail.QuoteDetailProperties">
+            <summary>
+            Gets the properties for the product. 
+            </summary>
+            <value>The wire or component properties.</value>
+        </member>
+        <member name="T:Model.Template.DisplayableComponentProperties">
+            <summary>
+            A decorator class for the component properties 
+            that adds rounding. This class should only be 
+            concerned with display issus.
+            </summary>
+        </member>
+        <member name="T:Model.Template.IHasSubject">
+            <summary>
+            Adds a subject to an object.  Used by some
+            decorator classes such as <see cref="T:Model.Template.DisplayableComponentProperties"/>
+            </summary>
+        </member>
+        <member name="P:Model.Template.IHasSubject.Subject">
+            <summary>
+            Gets the subject object of the decorator.
+            </summary>
+            <value>The subject object.</value>
+        </member>
+        <member name="F:Model.Template.DisplayableComponentProperties.subject">
+            <summary>
+            The object we are decorating.
+            </summary>
+        </member>
+        <member name="M:Model.Template.DisplayableComponentProperties.#ctor(Model.Template.ComponentProperties)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.DisplayableComponentProperties"/> class.
+            </summary>
+            <param name="subject">The component properties.</param>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.Subject">
+            <summary>
+            Gets the object we are decorating.
+            </summary>
+            <value>The subject.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.TotalMachineTime">
+            <summary>
+            Gets the total machine time.
+            </summary>
+            <value>The total machine time.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.MachineTime">
+            <summary>
+            Gets or sets the machine time.
+            </summary>
+            <value>The machine time.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.Quantity">
+            <summary>
+            Gets or sets the quantity.
+            </summary>
+            <value>The quantity.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>The description.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.Vendor">
+            <summary>
+            Gets or sets the vendor.
+            </summary>
+            <value>The vendor.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.UnitOfMeasure">
+            <summary>
+            Gets or sets the unit of measure.
+            </summary>
+            <value>The unit of measure.</value>
+        </member>
+        <member name="P:Model.Template.DisplayableComponentProperties.UnitCost">
+            <summary>
+            Gets or sets the unit cost.
+            </summary>
+            <value>The unit of cost.</value>
+        </member>
+        <member name="T:Model.Template.Header">
+            <summary>
+            The header for a template.
+            </summary>
+        </member>
+        <member name="F:Model.Template.Header.nextSequenceNumber">
+            <summary>
+            Used to assign a unique number to the detail.
+            </summary>
+        </member>
+        <member name="M:Model.Template.Header.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.Header"/> class.
+            </summary>
+        </member>
+        <member name="M:Model.Template.Header.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.Header"/> class.
+            </summary>
+            <param name="id">A unique id for the quote.</param>
+        </member>
+        <member name="M:Model.Template.Header.NewDetail(Model.Product)">
+            <summary>
+            Factory method used to create a new detail.
+            </summary>
+            <param name="product">The product.</param>
+            <returns>A new detail object.</returns>
+        </member>
+        <member name="M:Model.Template.Header.Remove(Model.Template.Detail)">
+            <summary>
+            Removes the input detail from the detail collection.
+            </summary>
+            <param name="detail">The detail to remove.</param>
+        </member>
+        <member name="P:Model.Template.Header.IsQuote">
+            <summary>
+            Gets a value indicating whether the header is for a quote.
+            </summary>
+            <value>Indicates whether the header is for a quote.</value>
+        </member>
+        <member name="P:Model.Template.Header.DisplayName">
+            <summary>
+            Gets the display name.
+            </summary>
+            <value>The display name.</value>
+        </member>
+        <member name="P:Model.Template.Header.NextSequenceNumber">
+            <summary>
+            Gets or sets a number used to assign a unique number to the detail items.
+            </summary>
+            <value>A sequence number.</value>
+        </member>
+        <member name="T:Model.Template.NoteProperties">
+            <summary>
+            A class that contains properties for the notes 
+            of the quote.
+            </summary>
+        </member>
+        <member name="F:Model.Template.NoteProperties.note">
+            <summary>
+            The note string.
+            </summary>
+        </member>
+        <member name="F:Model.Template.NoteProperties.note2Customer">
+            <summary>
+            The note for the customer.
+            </summary>
+        </member>
+        <member name="M:Model.Template.NoteProperties.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.NoteProperties"/> class.
+            </summary>
+        </member>
+        <member name="P:Model.Template.NoteProperties.Note">
+            <summary>
+            Gets or sets the text for the note.
+            </summary>
+            <value>The text of the internal note.</value>
+        </member>
+        <member name="P:Model.Template.NoteProperties.Note2Customer">
+            <summary>
+            Gets or sets the note to the customer.
+            </summary>
+            <value>The text of the note to the customer.</value>
+        </member>
+        <member name="T:Model.Template.PrimaryProperties">
+            <summary>
+            The class contains the primary properties.
+            The primary properties are saved to fields 
+            in the database and are not customized.
+            </summary>
+        </member>
+        <member name="M:Model.Template.PrimaryProperties.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Model.Template.PrimaryProperties"/> class.
+            </summary>
+            <param name="id">The id of the primary properties.</param>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.CreatedDate">
+            <summary>
+            Gets the creation date.
+            </summary>
+            <value>The creation date.</value>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.LastModified">
+            <summary>
+            Gets the last modified date.
+            </summary>
+            <value>The last modified date.</value>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.QuoteNumber">
+            <summary>
+            Gets the quote number.
+            </summary>
+            <value>The quote number.</value>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.Initials">
+            <summary>
+            Gets the initials of the person who created the quote.
+            </summary>
+            <value>The initials of the person who created the quote.</value>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.Customer">
+            <summary>
+            Gets or sets the customer object.
+            </summary>
+            <value>The customer object.</value>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.PartNumber">
+            <summary>
+            Gets or sets the part number.
+            </summary>
+            <value>The part number.</value>
+        </member>
+        <member name="P:Model.Template.PrimaryProperties.RequestForQuoteNumber">
+            <summary>
+            Gets or sets the request for quote number.
+            </summary>
+            <value>The request for quote number.</value>
         </member>
         <member name="T:Model.Spaces">
             <summary>
