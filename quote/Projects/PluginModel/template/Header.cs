@@ -8,14 +8,27 @@ namespace Model.Template
     using Model.Common;
     using Model.Template.Ext;
 
+    /// <summary>
+    /// The header for a template.
+    /// </summary>
     public class Header : Common.Header
     {
+        /// <summary>
+        /// Used to assign a unique number to the detail.
+        /// </summary>
         private int nextSequenceNumber = 1;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Header" /> class.
+        /// </summary>
         public Header() : this(0)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Header" /> class.
+        /// </summary>
+        /// <param name="id">A unique id for the quote.</param>
         public Header(int id)
         {
             this.AddChildProperty(this.Details);
@@ -32,11 +45,19 @@ namespace Model.Template
             this.AddChildProperty(this.NoteProperties);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the header is for a quote.
+        /// </summary>
+        /// <value>Indicates whether the header is for a quote.</value>
         public override bool IsQuote
         { 
             get { return false; }
         }
 
+        /// <summary>
+        /// Gets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
         public override string DisplayName 
         {
             get 
@@ -52,6 +73,10 @@ namespace Model.Template
             }
         }
 
+        /// <summary>
+        /// Gets or sets a number used to assign a unique number to the detail items.
+        /// </summary>
+        /// <value>A sequence number.</value>
         public int NextSequenceNumber 
         {
             get 
@@ -68,6 +93,11 @@ namespace Model.Template
             }
         }
 
+        /// <summary>
+        /// Factory method used to create a new detail.
+        /// </summary>
+        /// <param name="product">The product.</param>
+        /// <returns>A new detail object.</returns>
         public override Common.Detail NewDetail(Product product)
         {
             Detail oo = new Detail(this, product);
@@ -75,6 +105,10 @@ namespace Model.Template
             return oo;
         }
 
+        /// <summary>
+        /// Removes the input detail from the detail collection.
+        /// </summary>
+        /// <param name="detail">The detail to remove.</param>
         public void Remove(Detail detail)
         {
             if (detail != null) 
