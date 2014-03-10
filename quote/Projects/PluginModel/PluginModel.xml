@@ -1700,6 +1700,126 @@
             </summary>
             <value>The unit of cost.</value>
         </member>
+        <member name="T:Model.Template.Ext.IComponentPropertiesFactory">
+            <summary>
+            Provides a way for clients to customize the component properties.
+            For example:
+            <code>
+            [Register(Key = typeof(Model.Template.Ext.IComponentPropertiesFactory))]
+            public class ComponentPropertiesFactory : Model.Template.Ext.IComponentPropertiesFactory
+            </code>
+            </summary>
+        </member>
+        <member name="M:Model.Template.Ext.IComponentPropertiesFactory.CreateComponentProperties(Model.Template.Detail)">
+            <summary>
+            Creates a custom properties.
+            </summary>
+            <param name="detail">The detail object.</param>
+            <returns>A custom component properties object.</returns>
+        </member>
+        <member name="T:Model.Template.Ext.IComputationPropertiesFactory">
+            <summary>
+            Provides a way for clients to customize the computation properties.
+            For example:
+            <code>
+            [Register(Key = typeof(Model.Template.Ext.IComputationPropertiesFactory))]
+            public class ComputationProperiesFactory : IComputationPropertiesFactory
+            </code>
+            </summary>
+        </member>
+        <member name="M:Model.Template.Ext.IComputationPropertiesFactory.CreateComputationProperties(Model.Template.Header,System.Int32)">
+            <summary>
+            Creates a custom computation properties object.
+            </summary>
+            <param name="header">The header object.</param>
+            <param name="id">The header id.</param>
+            <returns>The custom computation object.</returns>
+        </member>
+        <member name="T:Model.Template.Ext.IComputationWrapper">
+            <summary>
+            Implemented by the display decorator classes.
+            This interface is used by the CostAnalysisWindow
+            project.  It can probably be removed somehow.
+            </summary>
+        </member>
+        <member name="P:Model.Template.Ext.IComputationWrapper.ComputationProperties">
+            <summary>
+            Gets the decorated computation properties object.
+            </summary>
+            <value>The decorated computation properties object.</value>
+        </member>
+        <member name="T:Model.Template.Ext.IOtherPropertiesFactory">
+            <summary>
+            Provides a way for clients to customize the other properties.
+            For example:
+            <code>
+            [Register(Key = typeof(Model.Template.Ext.IOtherPropertiesFactory))]
+            public class OtherPropertiesFactory : Model.Template.Ext.IOtherPropertiesFactory 
+            </code>
+            </summary>
+        </member>
+        <member name="M:Model.Template.Ext.IOtherPropertiesFactory.CreateOtherProperties(Model.Template.Header,System.Int32)">
+            <summary>
+            Creates a custom other properties object.
+            </summary>
+            <param name="header">The header object.</param>
+            <param name="id">The quote id.</param>
+            <returns>The custom other properties object.</returns>
+        </member>
+        <member name="T:Model.Template.Ext.IWirePropertiesFactory">
+            <summary>
+            Provides a way for clients to customize the wire properties.
+            For example:
+            <code>
+            [Register(Key = typeof(Model.Template.Ext.IWirePropertiesFactory))]
+            public class WirePropertiesFactory : Model.Template.Ext.IWirePropertiesFactory 
+            </code>
+            </summary>
+        </member>
+        <member name="M:Model.Template.Ext.IWirePropertiesFactory.CreateWireProperties(Model.Template.Detail)">
+            <summary>
+            Creates a custom wire properties object.
+            </summary>
+            <param name="detail">The detail object.</param>
+            <returns>The custom wire properties object.</returns>
+        </member>
+        <member name="T:Model.Template.Ext.PropertyFactory">
+            <summary>
+            A utility class used to create each of the property objects.
+            It checks if the factory interface has been registered,
+            and if it has, the custom factory is created.
+            </summary>
+        </member>
+        <member name="M:Model.Template.Ext.PropertyFactory.CreateOtherProperties(Model.Template.Header,System.Int32)">
+            <summary>
+            Creates the property object.
+            </summary>
+            <param name="header">The header object.</param>
+            <param name="id">The quote id.</param>
+            <returns>The new property object.</returns>
+        </member>
+        <member name="M:Model.Template.Ext.PropertyFactory.CreateComputationProperties(Model.Template.Header,System.Int32)">
+            <summary>
+            Creates the property object.
+            </summary>
+            <param name="header">The header object.</param>
+            <param name="id">The quote id.</param>
+            <returns>The new property object.</returns>
+        </member>
+        <member name="M:Model.Template.Ext.PropertyFactory.CreateComponentProperties(Model.Template.Detail)">
+            <summary>
+            Creates the property object.
+            </summary>
+            <param name="detail">The detail object.</param>
+            <returns>The new property object.</returns>
+        </member>
+        <member name="M:Model.Template.Ext.PropertyFactory.CreateWireProperties(Model.Template.Detail)">
+            <summary>
+            Creates the property object.
+            </summary>
+            <param name="detail">The detail object.</param>
+            <returns>The new property object.</returns>
+        </member>
         <member name="T:Model.Template.Header">
             <summary>
             The header for a template.

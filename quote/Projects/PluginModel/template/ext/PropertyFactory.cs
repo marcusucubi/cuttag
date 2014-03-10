@@ -7,8 +7,19 @@ namespace Model.Template.Ext
     
     using Model.Template.Ext;
 
+    /// <summary>
+    /// A utility class used to create each of the property objects.
+    /// It checks if the factory interface has been registered,
+    /// and if it has, the custom factory is created.
+    /// </summary>
     public static class PropertyFactory
     {
+        /// <summary>
+        /// Creates the property object.
+        /// </summary>
+        /// <param name="header">The header object.</param>
+        /// <param name="id">The quote id.</param>
+        /// <returns>The new property object.</returns>
         public static Model.Common.OtherProperties CreateOtherProperties(
             Header header, 
             int id)
@@ -42,6 +53,12 @@ namespace Model.Template.Ext
             return result;
         }
 
+        /// <summary>
+        /// Creates the property object.
+        /// </summary>
+        /// <param name="header">The header object.</param>
+        /// <param name="id">The quote id.</param>
+        /// <returns>The new property object.</returns>
         public static Model.Common.ComputationProperties CreateComputationProperties(
             Header header, 
             int id)
@@ -68,6 +85,11 @@ namespace Model.Template.Ext
             return result;
         }
 
+        /// <summary>
+        /// Creates the property object.
+        /// </summary>
+        /// <param name="detail">The detail object.</param>
+        /// <returns>The new property object.</returns>
         public static Model.Common.ComponentProperties CreateComponentProperties(
             Template.Detail detail)
         {
@@ -94,6 +116,11 @@ namespace Model.Template.Ext
             return result;
         }
 
+        /// <summary>
+        /// Creates the property object.
+        /// </summary>
+        /// <param name="detail">The detail object.</param>
+        /// <returns>The new property object.</returns>
         public static Model.Common.WireProperties CreateWireProperties(
             Template.Detail detail)
         {
