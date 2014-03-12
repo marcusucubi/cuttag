@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -164,6 +164,10 @@
     <ProjectReference Include="..\PluginExport\PluginExport.vbproj">
       <Project>{FF0D83A2-DB65-4697-8555-2E1F5461A34C}</Project>
       <Name>PluginExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginHostUI\PluginHostUI.csproj">
+      <Project>{0EA17F39-28A4-47FB-A51F-052430EB1BD5}</Project>
+      <Name>PluginHostUI</Name>
     </ProjectReference>
     <ProjectReference Include="..\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>

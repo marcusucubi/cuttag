@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
 
-using Host;
+using Host.UI;
 
 namespace PluginOutputView
 {

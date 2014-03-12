@@ -4,8 +4,6 @@ using System.ComponentModel;
 using Model;
 using Model.Template;
 
-using PluginHost;
-
 namespace SampleProperties
 {
     public class SampleComputationProperties : Model.Template.ComputationProperties 

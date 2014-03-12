@@ -4,21 +4,17 @@
 // <copyright file="PluginMenuItem.cs" company="Davis Computer Services">
 //  No copyright information.
 // </copyright>
-namespace Host.Internal
+namespace Host.UI
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
     using System.Globalization;
-    using System.Text;
-    using System.Windows.Forms;
     
-    using Host;
-
     /// <summary> 
     /// Represents a menu item.
     /// </summary> 
-    internal sealed class PluginMenuItem : IComparable<PluginMenuItem>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1036:OverrideMethodsOnComparableTypes", Justification = "We can ignore this.")]
+    public sealed class PlugInMenuItem : IComparable<PlugInMenuItem>
     {
         /// <summary> 
         /// Menu item text.
@@ -46,23 +42,23 @@ namespace Host.Internal
         private readonly IMenuAction action;
 
         /// <summary> 
-        /// Initializes a new instance of the <see cref="PluginMenuItem" /> class.
+        /// Initializes a new instance of the <see cref="PlugInMenuItem" /> class.
         /// </summary> 
         /// <param name="data">The data for the menu item.</param>
-        internal PluginMenuItem(BuildData data)
+        internal PlugInMenuItem(BuildData data)
         {
             this.text = data.Text;
             this.menuName = data.MenuName;
             this.image = data.Image;
             this.action = data.Action;
-            this.showInToolbar = data.ShowInToolbar;
+            this.showInToolbar = data.ShowInToolBar;
         }
 
         /// <summary> 
         /// Gets the menu text.
         /// </summary>
         /// <value>The menu text.</value>
-        internal string Text
+        public string Text
         {
             get { return this.text; }
         }
@@ -71,7 +67,7 @@ namespace Host.Internal
         /// Gets the menu name.
         /// </summary>
         /// <value>The menu name.</value>
-        internal string MenuName
+        public string MenuName
         {
             get { return this.menuName; }
         }
@@ -80,7 +76,7 @@ namespace Host.Internal
         /// Gets a value indicating whether a tool bar button is created.
         /// </summary> 
         /// <value>A value indicating whether a tool bar button is created.</value>
-        internal bool ShowInToolbar
+        public bool ShowInToolBar
         {
             get { return this.showInToolbar; }
         }
@@ -89,7 +85,7 @@ namespace Host.Internal
         /// Gets the menu item image.
         /// </summary>
         /// <value>The menu item image.</value>
-        internal Image Image
+        public Image Image
         {
             get { return this.image; }
         }
@@ -98,7 +94,7 @@ namespace Host.Internal
         /// Gets the menu item action.
         /// </summary> 
         /// <value>The menu item action.</value>
-        internal IMenuAction Action
+        public IMenuAction Action
         {
             get { return this.action; }
         }
@@ -108,7 +104,7 @@ namespace Host.Internal
         /// </summary> 
         /// <param name="other">The other <c>PluginMenuItem</c></param>
         /// <returns>A value indicating the result of the compare.</returns>
-        public int CompareTo(PluginMenuItem other)
+        public int CompareTo(PlugInMenuItem other)
         {
             return string.Compare(other.Text, this.Text, true, CultureInfo.CurrentCulture);
         }
@@ -121,27 +117,27 @@ namespace Host.Internal
             /// <summary> 
             /// Gets or sets the menu item text.
             /// </summary> 
-            internal string Text { get; set; }
+            public string Text { get; set; }
             
             /// <summary> 
             /// Gets or sets the menu item name.
             /// </summary> 
-            internal string MenuName { get; set; }
+            public string MenuName { get; set; }
             
             /// <summary> 
             /// Gets or sets a value indicating whether or not to show in toolbar.
             /// </summary> 
-            internal bool ShowInToolbar { get; set; }
+            public bool ShowInToolBar { get; set; }
             
             /// <summary> 
             /// Gets or sets the menu image.
             /// </summary> 
-            internal Image Image { get; set; }
+            public Image Image { get; set; }
             
             /// <summary> 
             /// Gets or sets the menu action.
             /// </summary> 
-            internal IMenuAction Action { get; set; }
+            public IMenuAction Action { get; set; }
         }
     }
 }

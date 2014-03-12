@@ -32,7 +32,7 @@ namespace Model.Template.Ext
 
                 if (v != null)
                 {
-                    IOtherPropertiesFactory o = Activator.CreateInstance(v) as IOtherPropertiesFactory;
+                    var o = Activator.CreateInstance(v) as IOtherPropertiesFactory;
                     
                     if (o == null)
                     {
@@ -71,7 +71,7 @@ namespace Model.Template.Ext
 
                 if (v != null)
                 {
-                    IComputationPropertiesFactory o = Activator.CreateInstance(v) as IComputationPropertiesFactory;
+                    var o = Activator.CreateInstance(v) as IComputationPropertiesFactory;
 
                     result = o.CreateComputationProperties(header, id);
                 }
@@ -101,8 +101,7 @@ namespace Model.Template.Ext
 
                 if (v != null)
                 {
-                    IComponentPropertiesFactory o = 
-                        Activator.CreateInstance(v) as IComponentPropertiesFactory;
+                    var o = Activator.CreateInstance(v) as IComponentPropertiesFactory;
 
                     result = o.CreateComponentProperties(detail);
                 }
@@ -132,8 +131,8 @@ namespace Model.Template.Ext
 
                 if (v != null)
                 {
-                    IWirePropertiesFactory o = Activator.CreateInstance(v) as IWirePropertiesFactory;
-
+                    var o = Activator.CreateInstance(v) as IWirePropertiesFactory;
+                    
                     result = o.CreateWireProperties(detail);
                 }
             }

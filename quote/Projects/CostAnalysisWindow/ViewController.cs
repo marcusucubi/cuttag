@@ -46,11 +46,11 @@
             this.tree = null;
         }
         
-        private static void InitChild(DockContent frm)
+        static void InitChild(DockContent frm)
         {
-            Host.App.DockPanel.SuspendLayout(true);
-            frm.Show(Host.App.DockPanel, DockState.DockLeft);
-            Host.App.DockPanel.ResumeLayout(true, true);
+            Host.UI.UIApp.DockPanel.SuspendLayout(true);
+            frm.Show(Host.UI.UIApp.DockPanel, DockState.DockLeft);
+            Host.UI.UIApp.DockPanel.ResumeLayout(true, true);
         }
     }
 }

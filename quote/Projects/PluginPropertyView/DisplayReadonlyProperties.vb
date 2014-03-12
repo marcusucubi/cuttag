@@ -2,7 +2,7 @@
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-Imports Host
+Imports Host.UI
 Imports Model
 
 <MenuItem( _
@@ -29,9 +29,9 @@ Public Class DisplayReadonlyProperties
     End Sub
 
     Private Sub InitChild(ByVal frm As DockContent)
-        Host.App.DockPanel.SuspendLayout(True)
-        frm.Show(Host.App.DockPanel, DockState.DockRight)
-        Host.App.DockPanel.ResumeLayout(True, True)
+        Host.UI.UIApp.DockPanel.SuspendLayout(True)
+        frm.Show(Host.UI.UIApp.DockPanel, DockState.DockRight)
+        Host.UI.UIApp.DockPanel.ResumeLayout(True, True)
     End Sub
 
     Public Overridable Sub InitMenu(menu As ToolStripItem) Implements IMenuInit.InitMenu
@@ -47,9 +47,9 @@ Public Class DisplayReadonlyProperties
     End Sub
 
     Private Sub InitChild(ByVal frm As DockContent, ByVal state As DockState)
-        Host.App.DockPanel.SuspendLayout(True)
-        frm.Show(Host.App.DockPanel, state)
-        Host.App.DockPanel.ResumeLayout(True, True)
+        Host.UI.UIApp.DockPanel.SuspendLayout(True)
+        frm.Show(Host.UI.UIApp.DockPanel, state)
+        Host.UI.UIApp.DockPanel.ResumeLayout(True, True)
     End Sub
 
     Private Sub UpdateMenu()

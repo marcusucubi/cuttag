@@ -115,6 +115,12 @@
     <Folder Include="Elements" />
     <Folder Include="Decomplie" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginHostUI\PluginHostUI.csproj">
+      <Project>{0EA17F39-28A4-47FB-A51F-052430EB1BD5}</Project>
+      <Name>PluginHostUI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -15,16 +15,15 @@ namespace Model.IO
             System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
 
             // Ensure the properies are updated
-            Host.App.MainForm.Focus();
+            Host.UI.UIApp.MainForm.Focus();
 
             PrimaryProperties o = header.PrimaryProperties as Model.Template.PrimaryProperties;
 
             int newId = 0;
 
-            DB.QuoteDataBaseTableAdapters._QuoteTableAdapter adaptor = 
-                new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
+            var adaptor = new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
             adaptor.Connection.Open();
-            DB.QuoteTableProxy helper = new DB.QuoteTableProxy(adaptor);
+            var helper = new DB.QuoteTableProxy(adaptor);
             helper.Transaction = adaptor.Connection.BeginTransaction();
             
             adaptor.Insert(
@@ -38,7 +37,7 @@ namespace Model.IO
                 System.DateTime.Now, 
                 o.Customer.Id);
             
-            SqlCommand cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
+            var cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
             cmd.Transaction = helper.Transaction;
             
             newId = Convert.ToInt32(cmd.ExecuteScalar(), CultureInfo.CurrentCulture);
@@ -54,7 +53,7 @@ namespace Model.IO
             CommonSaver.SaveComponents(header, newId, true);
             adaptor.Connection.Close();
 
-            System.Windows.Forms.Cursor.Current = Cursors.Default;
+            Cursor.Current = Cursors.Default;
 
             return newId;
         }

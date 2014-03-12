@@ -4,12 +4,11 @@
 // <copyright file="UIBuilder.cs" company="Davis Computer Services">
 //  No copyright information.
 // </copyright>
-namespace Host.Internal
+namespace Host.UI
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Reflection;
     using System.Windows.Forms;
 
     /// <summary> 
@@ -24,11 +23,11 @@ namespace Host.Internal
         /// <param name="menu">The menu strip to use.</param>
         /// <param name="toolStrip">The tool strip to use.</param>
         internal static void BuildUI(
-            PluginCollection collection,
+            ICollection<PlugInProxy2> collection,
             MenuStrip menu,
             ToolStrip toolStrip)
         {
-            foreach (PluginProxy plugin in collection)
+            foreach (PlugInProxy2 plugin in collection)
             {
                 BuildUI(plugin, menu, toolStrip);
             }
@@ -41,7 +40,7 @@ namespace Host.Internal
         /// <param name="menu">The menu strip.</param>
         /// <param name="toolStrip">The tool strip.</param>
         private static void BuildUI(
-            PluginProxy plugin,
+            PlugInProxy2 plugin,
             MenuStrip menu,
             ToolStrip toolStrip)
         {
@@ -54,7 +53,7 @@ namespace Host.Internal
         /// Calls <c>init</c> on all classes.
         /// </summary> 
         /// <param name="plugin">The plugin.</param>
-        private static void DoInit(PluginProxy plugin)
+        private static void DoInit(PlugInProxy plugin)
         {
             foreach (IInit init in plugin.ClassesToInit)
             {
@@ -68,14 +67,14 @@ namespace Host.Internal
         /// <param name="plugin">The plugin.</param>
         /// <param name="menuStrip">The menu strip.</param>
         private static void AssignMenuItems(
-            PluginProxy plugin,
+            PlugInProxy2 plugin,
             MenuStrip menuStrip)
         {
-            List<PluginMenuItem> sortedItems = new List<PluginMenuItem>();
-            sortedItems.AddRange(plugin.PluginMenuItems);
+            List<PlugInMenuItem> sortedItems = new List<PlugInMenuItem>();
+            sortedItems.AddRange(plugin.PlugInMenuItems);
             sortedItems.Sort();
 
-            foreach (PluginMenuItem item in sortedItems)
+            foreach (PlugInMenuItem item in sortedItems)
             {
                 if (item.MenuName.Length > 0)
                 {
@@ -97,12 +96,12 @@ namespace Host.Internal
         /// <param name="plugin">The plugin.</param>
         /// <param name="toolStrip">The tool strip.</param>
         private static void AssignButtonItems(
-            PluginProxy plugin,
+            PlugInProxy2 plugin,
             ToolStrip toolStrip)
         {
-            foreach (PluginMenuItem item in plugin.PluginMenuItems)
+            foreach (PlugInMenuItem item in plugin.PlugInMenuItems)
             {
-                if (item.ShowInToolbar)
+                if (item.ShowInToolBar)
                 {
                     AddToolItem(item, toolStrip, plugin);
                 }
@@ -116,9 +115,9 @@ namespace Host.Internal
         /// <param name="toolStrip">The tool strip.</param>
         /// <param name="plugin"> The plugin.</param>
         private static void AddToolItem(
-            PluginMenuItem item,
+            PlugInMenuItem item,
             ToolStrip toolStrip,
-            PluginProxy plugin)
+            PlugInProxy plugin)
         {
             var i1 = new ToolStripButton();
             i1.Text = item.Text;
@@ -154,8 +153,8 @@ namespace Host.Internal
         /// <param name="item">The menu item.</param>
         /// <param name="items">The tool strip.</param>
         private static void AddMenuItem(
-            PluginProxy plugin,
-            PluginMenuItem item,
+            PlugInProxy plugin,
+            PlugInMenuItem item,
             ToolStripItemCollection items)
         {
             var i1 = new ToolStripMenuItem();
@@ -224,7 +223,7 @@ namespace Host.Internal
         /// <returns>The index the menu item should use.</returns>
         private static int FindIndex(
             ToolStripItemCollection collection,
-            PluginProxy plugin)
+            PlugInProxy plugin)
         {
             int result = -1;
 

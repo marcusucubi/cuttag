@@ -70,6 +70,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PluginHostUI\PluginHostUI.csproj">
+      <Project>{0EA17F39-28A4-47FB-A51F-052430EB1BD5}</Project>
+      <Name>PluginHostUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginHost\PluginHost.csproj">
       <Project>{EE92FDB2-BAC7-4D6F-8675-EB6002960CF5}</Project>
       <Name>PluginHost</Name>

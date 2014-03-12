@@ -1,7 +1,7 @@
 ﻿Imports System
 Imports System.Windows.Forms
 
-Imports Host
+Imports Host.UI
 Imports PluginOutputView
 
 <MenuItem( _
