@@ -1,10 +1,8 @@
 ﻿namespace CostAnalysisWindow
 {
     using System;
-    using System.Collections.Specialized;
-    using System.Configuration;
     
-    using Host;
+    using Host.UI;
 
     [
     MenuItem(Text = "Cost Analysis", Parent = "View"),

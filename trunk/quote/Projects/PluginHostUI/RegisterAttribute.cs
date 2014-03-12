@@ -4,16 +4,12 @@
 // <copyright file="RegisterAttribute.cs" company="Davis Computer Services">
 //  No copyright information.
 // </copyright>
-namespace Host
+namespace Host.UI
 {
     using System;
 
     /// <summary> 
     /// Adds the class to the App.RegisteredClasses collection.
-    /// <code>
-    /// [Register(Key = typeof(Model.Template.Ext.IOtherPropertiesFactory))]
-    /// public class OtherProperiesFactory : Model.Template.Ext.IOtherPropertiesFactory
-    /// </code>
     /// </summary> 
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class RegisterAttribute : Attribute

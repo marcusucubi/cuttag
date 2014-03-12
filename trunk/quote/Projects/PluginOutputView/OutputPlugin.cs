@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
-using Host;
+using Host.UI;
 
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -17,9 +15,9 @@ namespace PluginOutputView
             if (_Output == null) 
             {
                 _Output = new FrmOutputView();
-                Host.App.DockPanel.SuspendLayout(true);
-                _Output.Show(Host.App.DockPanel, DockState.DockLeft);
-                Host.App.DockPanel.ResumeLayout(true, true);
+                UIApp.DockPanel.SuspendLayout(true);
+                _Output.Show(UIApp.DockPanel, DockState.DockLeft);
+                UIApp.DockPanel.ResumeLayout(true, true);
             }
             if (_Output.IsHidden || _Output.IsDisposed) 
             {
@@ -30,16 +28,16 @@ namespace PluginOutputView
 
         private static void InitChild(DockContent frm)
         {
-            Host.App.DockPanel.SuspendLayout(true);
-            frm.Show(Host.App.DockPanel, DockState.DockRight);
-            Host.App.DockPanel.ResumeLayout(true, true);
+            UIApp.DockPanel.SuspendLayout(true);
+            frm.Show(UIApp.DockPanel, DockState.DockRight);
+            UIApp.DockPanel.ResumeLayout(true, true);
         }
 
         private static void InitChild(DockContent frm, DockState state)
         {
-            Host.App.DockPanel.SuspendLayout(true);
-            frm.Show(Host.App.DockPanel, state);
-            Host.App.DockPanel.ResumeLayout(true, true);
+            UIApp.DockPanel.SuspendLayout(true);
+            frm.Show(UIApp.DockPanel, state);
+            UIApp.DockPanel.ResumeLayout(true, true);
         }
         
     }

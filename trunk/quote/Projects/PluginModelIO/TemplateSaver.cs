@@ -8,25 +8,21 @@ namespace Model.IO
     
     using DB;
     
-    using Model.Template;
-
     public static class TemplateSaver
     {
         public static int Save(Common.Header header)
         {
-            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
+            Cursor.Current = Cursors.WaitCursor;
 
             // Ensure the properies are updated
-            Host.App.MainForm.Focus();
+            Host.UI.UIApp.MainForm.Focus();
 
-            Model.Template.PrimaryProperties o = 
-                header.PrimaryProperties as Model.Template.PrimaryProperties;
+            var o = header.PrimaryProperties as Model.Template.PrimaryProperties;
 
             int newId = 0;
             int id = o.CommonId;
 
-            DB.QuoteDataBaseTableAdapters._QuoteTableAdapter adaptor = 
-                new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
+            var adaptor = new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
             
             if (id > 0) 
             {
@@ -52,7 +48,7 @@ namespace Model.IO
             else 
             {
                 adaptor.Connection.Open();
-                QuoteTableProxy proxy = new QuoteTableProxy(adaptor);
+                var proxy = new QuoteTableProxy(adaptor);
                 proxy.Transaction = adaptor.Connection.BeginTransaction();
                 
                 adaptor.Insert(
@@ -62,11 +58,11 @@ namespace Model.IO
                     false, 
                     0, 
                     o.CommonInitials, 
-                    System.DateTime.Now, 
-                    System.DateTime.Now, 
+                    DateTime.Now, 
+                    DateTime.Now, 
                     o.Customer.Id);
                 
-                SqlCommand cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
+                var cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
                 cmd.Transaction = proxy.Transaction;
                 newId = Convert.ToInt32(cmd.ExecuteScalar(), CultureInfo.CurrentCulture);
                 proxy.Transaction.Commit();

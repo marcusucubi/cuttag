@@ -4,7 +4,7 @@
 // <copyright file="PluginCollection.cs" company="Davis Computer Services">
 //  No copyright information.
 // </copyright>
-namespace Host.Internal
+namespace Host
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace Host.Internal
     /// <summary> 
     /// List of plugins.
     /// </summary> 
-    internal sealed class PluginCollection : List<PluginProxy>
+    public sealed class PlugInCollection : List<PlugInProxy>
     {
     }
 }

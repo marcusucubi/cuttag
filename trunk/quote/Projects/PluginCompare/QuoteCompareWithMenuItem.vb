@@ -2,7 +2,7 @@
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-Imports Host
+Imports Host.UI
 Imports Model
 Imports Doc
 
@@ -62,7 +62,7 @@ Public Class QuoteCompareWithMenuItem
 
     Private Sub AddMenuItemsForOpenQuotes(menu As ToolStripMenuItem)
         menu.DropDownItems.Clear()
-        For Each d As DockContent In Host.App.DockPanel.Documents
+        For Each d As DockContent In Host.UI.UIApp.DockPanel.Documents
 
             If Not (TypeOf d Is frmDocumentA) Then
                 Continue For
@@ -90,8 +90,8 @@ Public Class QuoteCompareWithMenuItem
 
         Dim frmCompare As frmCompare
         frmCompare = New frmCompare(Model.ActiveHeader.Instance.Header, menu.Header)
-        frmCompare.MdiParent = Host.App.MainForm
-        frmCompare.Show(Host.App.DockPanel)
+        frmCompare.MdiParent = Host.UI.UIApp.MainForm
+        frmCompare.Show(Host.UI.UIApp.DockPanel)
 
         System.Windows.Forms.Cursor.Current = Cursors.Default
     End Sub

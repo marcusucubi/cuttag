@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 
-Imports Host
+Imports Host.UI
 
 Imports WeifenLuo.WinFormsUI.Docking
 

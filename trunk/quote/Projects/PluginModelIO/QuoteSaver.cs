@@ -23,10 +23,9 @@ namespace Model.IO
             System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
 
             // Ensure the properies are updated
-            Host.App.MainForm.Focus();
+            Host.UI.UIApp.MainForm.Focus();
 
-            Model.Template.PrimaryProperties o = 
-                header.PrimaryProperties as Model.Template.PrimaryProperties;
+            var o = header.PrimaryProperties as Model.Template.PrimaryProperties;
 
             int newId = 0;
             int id = o.CommonId;
@@ -36,8 +35,7 @@ namespace Model.IO
                 id = 0;
             }
 
-            DB.QuoteDataBaseTableAdapters._QuoteTableAdapter adaptor = 
-                new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
+            var adaptor = new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
             
             if (id > 0) 
             {

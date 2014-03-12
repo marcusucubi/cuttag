@@ -2,7 +2,7 @@
 
 Imports WeifenLuo.WinFormsUI.Docking
 
-Imports Host
+Imports Host.UI
 Imports Model
 Imports Doc
 
@@ -22,7 +22,7 @@ Public Class QuoteFindSimilarMenuItem
 
         Dim frm As frmSimilarQuotes
         frm = New frmSimilarQuotes(ActiveHeader.Instance.Header.PrimaryProperties.CommonId)
-        frm.ShowDialog(Host.App.MainForm)
+        frm.ShowDialog(Host.UI.UIApp.MainForm)
 
         System.Windows.Forms.Cursor.Current = Cursors.Default
     End Sub

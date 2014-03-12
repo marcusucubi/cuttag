@@ -1,7 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 Imports Model
-Imports Host
+Imports Host.UI
 
 <MenuItem( _
     Text:="Export Quote", _
