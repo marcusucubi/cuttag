@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IInit.cs" />
+    <Compile Include="IStartup.cs" />
     <Compile Include="PluginLoader.cs" />
     <Compile Include="App.cs" />
     <Compile Include="PluginCollection.cs" />

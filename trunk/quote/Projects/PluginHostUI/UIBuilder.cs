@@ -53,11 +53,11 @@ namespace Host.UI
         /// Calls <c>init</c> on all classes.
         /// </summary> 
         /// <param name="plugin">The plugin.</param>
-        private static void DoInit(PlugInProxy plugin)
+        private static void DoInit(PlugInProxy2 plugin)
         {
-            foreach (IInit init in plugin.ClassesToInit)
+            foreach (IStartup2 init in plugin.InitializeUIItems)
             {
-                init.Init();
+                init.InitializeUI();
             }
         }
 

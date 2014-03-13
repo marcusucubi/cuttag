@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IStartup2.cs" />
     <Compile Include="PluginMenuItem.cs" />
     <Compile Include="PluginProxy2.cs" />
     <Compile Include="UIApp.cs" />

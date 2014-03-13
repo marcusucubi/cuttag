@@ -19,7 +19,7 @@ namespace Host
         /// <summary> 
         /// Classes to setup on startup.
         /// </summary> 
-        private readonly ICollection<IInit> classesToInit = new List<IInit>();
+        private readonly ICollection<IStartup> classesToInit = new List<IStartup>();
         
         /// <summary> 
         /// The assemble.
@@ -40,12 +40,12 @@ namespace Host
         /// Gets the classes to setup on startup.
         /// </summary> 
         /// <value>A collection of objects.</value>
-        public ReadOnlyCollection<IInit> ClassesToInit
+        public ReadOnlyCollection<IStartup> ClassesToInit
         {
             get 
             { 
-                return new ReadOnlyCollection<IInit>(
-                    new List<IInit>(this.classesToInit));
+                return new ReadOnlyCollection<IStartup>(
+                    new List<IStartup>(this.classesToInit));
             }
         }
 

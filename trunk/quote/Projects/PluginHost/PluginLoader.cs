@@ -1,5 +1,4 @@
-﻿using System.Xml;
-// <summary>
+﻿// <summary>
 // Contains the Loader class.
 // </summary>
 // <copyright file="Loader.cs" company="Davis Computer Services">
@@ -11,6 +10,7 @@ namespace Host
     using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
+    using System.Xml;
     
     /// <summary> 
     /// Responsible for loading plugins that are in plugins.xml.
@@ -30,10 +30,12 @@ namespace Host
             foreach (string path in paths)
             {
                 PlugInProxyBuildData data = CreateBuildData(path);
-                PlugInProxy proxy = new PlugInProxy(data);
+                var proxy = new PlugInProxy(data);
                 
                 result.Add(proxy);
             }
+            
+            InitializePlugIns(result);
 
             return result;
         }
@@ -74,7 +76,7 @@ namespace Host
         /// <returns>A build data object.</returns>
         public static PlugInProxyBuildData CreateBuildData(string path)
         {
-            PlugInProxyBuildData result = new PlugInProxyBuildData();
+            var result = new PlugInProxyBuildData();
             
             string fullPath = Path.GetFullPath(path);
             string fileName = Path.GetFileName(path);
@@ -85,12 +87,27 @@ namespace Host
             Assembly a = Assembly.LoadFile(localFullName);
 
             FindRegisteredClasses(a);
-            List<IInit> inits = FindInits(a);
+            List<IStartup> inits = FindInits(a);
             
             result.Assembly = a;
             result.SetInitList(inits);
             
             return result;
+        }
+        
+        /// <summary>
+        /// Calls the initialize method on each plug in.
+        /// </summary>
+        /// <param name="plugins">The collection of plug ins.</param>
+        public static void InitializePlugIns(ICollection<PlugInProxy> plugins)
+        {
+            foreach (PlugInProxy proxy in plugins)
+            {
+                foreach (IStartup init in proxy.ClassesToInit)
+                {
+                    init.Initialize();
+                }
+            }
         }
         
         /// <summary> 
@@ -120,19 +137,19 @@ namespace Host
         /// </summary> 
         /// <param name="assembly">The plugin's assembly.</param>
         /// <returns>A collection of <c>IInit's</c>.</returns>
-        private static List<IInit> FindInits(Assembly assembly)
+        private static List<IStartup> FindInits(Assembly assembly)
         {
-            var result = new List<IInit>();
+            var result = new List<IStartup>();
 
             Type[] types = assembly.GetTypes();
             foreach (Type t in types)
             {
-                if (!typeof(IInit).IsAssignableFrom(t))
+                if (!typeof(IStartup).IsAssignableFrom(t))
                 {
                     continue;
                 }
 
-                var target = Activator.CreateInstance(t) as IInit;
+                var target = Activator.CreateInstance(t) as IStartup;
 
                 result.Add(target);
             }

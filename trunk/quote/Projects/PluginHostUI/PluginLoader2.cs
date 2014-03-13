@@ -30,15 +30,34 @@ namespace Host.UI
             {
                 PlugInProxyBuildData data = PlugInLoader.CreateBuildData(path);
                 List<PlugInMenuItem> menus = FindMenuItems(data.Assembly);
+                List<IStartup2> startup2s = FindStartup2s(data.Assembly);
             
-                PlugInProxy2 proxy = new PlugInProxy2(data, menus);
+                var proxy = new PlugInProxy2(data, menus, startup2s);
                 
                 result.Add(proxy);
             }
+            
+            InitializePlugIns(result);
 
             return result;
         }
 
+        /// <summary>
+        /// Calls the initialize method on each plug in.
+        /// </summary>
+        /// <param name="plugins">The collection of plug ins.</param>
+        public static void InitializePlugIns(ICollection<PlugInProxy2> plugins)
+        {
+            List<PlugInProxy> list = new List<PlugInProxy>();
+            
+            foreach (PlugInProxy2 proxy in plugins)
+            {
+                list.Add(proxy);
+            }
+            
+            PlugInLoader.InitializePlugIns(list);
+        }
+        
         /// <summary> 
         /// Returns a list of menu item contained in the plugin.
         /// </summary> 
@@ -57,6 +76,31 @@ namespace Host.UI
                 {
                     result.Add(item);
                 }
+            }
+
+            return result;
+        }
+        
+        /// <summary>
+        /// Find the classes that implement <see cref="IStartup2" />.
+        /// </summary>
+        /// <param name="assembly">The assembly to use.</param>
+        /// <returns>A collection of <see cref="IStartup2" /></returns>
+        private static List<IStartup2> FindStartup2s(Assembly assembly)
+        {
+            var result = new List<IStartup2>();
+
+            Type[] types = assembly.GetTypes();
+            foreach (Type t in types)
+            {
+                if (!typeof(IStartup2).IsAssignableFrom(t))
+                {
+                    continue;
+                }
+
+                var target = Activator.CreateInstance(t) as IStartup2;
+
+                result.Add(target);
             }
 
             return result;

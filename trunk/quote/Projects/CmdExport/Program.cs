@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using System.Xml;
 
 using Model.IO;
-using Model.Template;
 using Model.Template.Ext;
 
 namespace CmdExport
@@ -14,19 +13,19 @@ namespace CmdExport
         {
             Console.WriteLine("Connecting...");
             
-            Host.App.Init();
+            Host.App.Initialize();
             
-            SqlConnection c = DB.CuttagDatabaseConnection.Connection;
+            //SqlConnection c = DB.CuttagDatabaseConnection.Connection;
             
             Console.WriteLine("Loading...");
             
-            DB.QuoteDataBaseTableAdapters._QuoteTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
-            DB.QuoteDataBase._QuoteDataTable table = new DB.QuoteDataBase._QuoteDataTable();
+            var table = new DB.QuoteDataBase._QuoteDataTable();
 
             adaptor.FillByWithQuotes(table);
             
-            using (XmlTextWriter writer = new XmlTextWriter(Console.Out))
+            using (var writer = new XmlTextWriter(Console.Out))
             {
                 writer.Formatting = Formatting.Indented;
                 writer.WriteStartDocument();
@@ -35,15 +34,15 @@ namespace CmdExport
                 for(int i = 0; i < table.Rows.Count; i++)
                 {
                     writer.WriteStartElement("Quote");
-                    DB.QuoteDataBase._QuoteRow row = table.Rows[i] as DB.QuoteDataBase._QuoteRow;
+                    var row = table.Rows[i] as DB.QuoteDataBase._QuoteRow;
                     
                     Model.Template.Header header = TemplateLoader.Load((int) row.id);
                     
-                    DekalbProperties.DisplayableComputationProperties comp = 
+                    var comp = 
                         header.ComputationProperties as DekalbProperties.DisplayableComputationProperties;
                     
                     IComputationWrapper wrapper = comp;
-                    DekalbProperties.DekalbComputationProperties realComp =
+                    var realComp =
                         wrapper.ComputationProperties as DekalbProperties.DekalbComputationProperties;
                     
                     writer.WriteElementString("ID", row.id.ToString());
