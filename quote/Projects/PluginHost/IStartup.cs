@@ -6,16 +6,17 @@
 // </copyright>
 namespace Host
 {
-    using System;
-
     /// <summary> 
     /// This will be called on start.  Any class can implement.
+    /// See <see cref="IStartup2.InitializeUI"/> for user interface
+    /// initialization.
     /// </summary> 
-    public interface IInit
+    public interface IStartup
     {
-        /// <summary> 
-        /// Called on startup.
+        /// <summary>
+        /// Called on startup by <see cref="App.Initialize" />.
+        /// Use to setup database code.
         /// </summary> 
-        void Init();
+        void Initialize();
     }
 }

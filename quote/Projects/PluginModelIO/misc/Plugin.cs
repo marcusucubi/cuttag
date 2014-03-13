@@ -2,12 +2,12 @@
 {
     using System;
 
-    public class PlugIn : Host.IInit
+    public class PlugIn : Host.IStartup
     {
-        public void Init()
+        public void Initialize()
         {
-            Model.IO.Misc.UnitOfMeasureDB.Initialize();
-            Model.IO.Misc.CustomerDB.Initialize();
+            UnitOfMeasureDB.Initialize();
+            CustomerDB.Initialize();
         }
     }
 }

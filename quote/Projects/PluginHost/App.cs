@@ -8,7 +8,6 @@ namespace Host
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     
     /// <summary> 
     /// Central class used to access common application properties.
@@ -30,12 +29,14 @@ namespace Host
         }
 
         /// <summary> 
-        /// Called from the main form's OnLoad.
+        /// Loads and initializes the plugins using plugins.xml.
         /// </summary> 
         /// <returns>A collection of plug in objects.</returns>
-        public static ICollection<PlugInProxy> Init()
+        public static ICollection<PlugInProxy> Initialize()
         {
-            return Host.PlugInLoader.Load();
+            ICollection<PlugInProxy> result = PlugInLoader.Load();
+            
+            return result;
         }
     }
 }

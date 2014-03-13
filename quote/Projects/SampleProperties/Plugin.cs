@@ -6,9 +6,9 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace SampleProperties
 {
-    public class Plugin : Host.IInit
+    public class Plugin : Host.IStartup
     {
-        public void Init() 
+        public void Initialize() 
         {
         }
     }

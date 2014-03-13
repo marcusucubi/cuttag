@@ -1,9 +1,9 @@
 ﻿Public Class Plugin
-    Implements Host.IInit
+    Implements Host.UI.IStartup2
 
     Private WithEvents m_Events As Model.ModelEvents
 
-    Public Sub Init() Implements Host.IInit.Init
+    Public Sub InitUI() Implements Host.UI.IStartup2.InitializeUI
         m_Events = Model.ModelEvents.Instance
     End Sub
 
