@@ -42,7 +42,7 @@ namespace Model.IO
 
         public static void DeleteComponents(int id)
         {
-            _QuoteDetailTableAdapter adaptor = new _QuoteDetailTableAdapter();
+            var adaptor = new _QuoteDetailTableAdapter();
             DB.QuoteDataBase._QuoteDetailDataTable table = null;
             table = adaptor.GetDataByQuoteID(id);
             
@@ -54,7 +54,7 @@ namespace Model.IO
 
         public static void DeleteProperties(int quoteId)
         {
-            DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter();
             DB.QuoteDataBase._QuotePropertiesDataTable table = adaptor.GetDataByQuoteID(quoteId);
             
@@ -69,12 +69,12 @@ namespace Model.IO
             int quoteId, 
             bool saveAll)
         {
-            _QuoteDetailTableAdapter adaptor = new _QuoteDetailTableAdapter();
+            var adaptor = new _QuoteDetailTableAdapter();
             
             foreach (Model.Common.Detail detail in header.Details) 
             {
                 adaptor.Connection.Open();
-                DB.DetailTableProxy proxy = new DB.DetailTableProxy(adaptor);
+                var proxy = new DB.DetailTableProxy(adaptor);
                 proxy.Transaction = adaptor.Connection.BeginTransaction();
                 
                 adaptor.Insert(
@@ -86,7 +86,7 @@ namespace Model.IO
                     detail.IsWire, 
                     detail.UnitOfMeasure);
                 
-                SqlCommand cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
+                var cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
                 cmd.Transaction = proxy.Transaction;
                 int id = Convert.ToInt32(cmd.ExecuteScalar(), CultureInfo.CurrentCulture);
                 proxy.Transaction.Commit();
@@ -104,11 +104,11 @@ namespace Model.IO
             bool saveAll)
         {
             PropertyInfo[] props = obj.GetType().GetProperties();
-            DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter();
             PropertyInfo nonDisplayable = null;
             
-            IHasSubject hasSubject = obj as IHasSubject;
+            var hasSubject = obj as IHasSubject;
             foreach (PropertyInfo p in props) 
             {
                 if (hasSubject != null)
@@ -125,7 +125,7 @@ namespace Model.IO
                 }
 
                 string cat = "Misc";
-                CategoryAttribute[] oa = 
+                var oa = 
                     p.GetCustomAttributes(typeof(CategoryAttribute), false) as CategoryAttribute[];
                 if (oa.Length > 0) 
                 {
@@ -133,7 +133,7 @@ namespace Model.IO
                 }
 
                 string desc = string.Empty;
-                DescriptionAttribute[] oa2 = 
+                var oa2 = 
                     p.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
                 if (oa2.Length > 0) 
                 {
@@ -141,7 +141,7 @@ namespace Model.IO
                 }
 
                 bool browsable = true;
-                BrowsableAttribute[] oa3 = 
+                var oa3 = 
                     p.GetCustomAttributes(typeof(BrowsableAttribute), false) as BrowsableAttribute[];
                 if (oa3.Length > 0) 
                 {
@@ -176,7 +176,7 @@ namespace Model.IO
                 
                 if (o is string) 
                 {
-                    DB.QuoteDataBase._QuotePropertiesDataTable t = 
+                    var t = 
                         new DB.QuoteDataBase._QuotePropertiesDataTable();
                     var max = t.PropertyStringValueColumn.MaxLength;
                     s = Convert.ToString(o, CultureInfo.CurrentCulture);

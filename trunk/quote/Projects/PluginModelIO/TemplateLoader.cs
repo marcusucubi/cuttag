@@ -15,15 +15,15 @@ namespace Model.IO
         {
             System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
 
-            DB.QuoteDataBaseTableAdapters._QuoteTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
-            DB.QuoteDataBase._QuoteDataTable table = new DB.QuoteDataBase._QuoteDataTable();
-            Header q = new Header();
+            var table = new DB.QuoteDataBase._QuoteDataTable();
+            var q = new Header();
 
             adaptor.FillByByQuoteID(table, id);
             if (table.Rows.Count > 0) 
             {
-                DB.QuoteDataBase._QuoteRow row = table.Rows[0] as DB.QuoteDataBase._QuoteRow;
+                var row = table.Rows[0] as DB.QuoteDataBase._QuoteRow;
                 q = new Header((int)row.id);
 
                 string rfq = string.Empty;
@@ -107,7 +107,7 @@ namespace Model.IO
                 customerID = (int)row.CustomerID;
             }
 
-            Customer customerObj = new Customer();
+            var customerObj = new Customer();
             customerObj.SetName(customer);
             customerObj.SetId(customerID);
 
@@ -116,7 +116,7 @@ namespace Model.IO
 
         public static void LoadComponents(Model.Template.Header header)
         {
-            _QuoteDetailTableAdapter adaptor = new _QuoteDetailTableAdapter();
+            var adaptor = new _QuoteDetailTableAdapter();
             
             int id = header.PrimaryProperties.CommonId;
             
@@ -124,16 +124,16 @@ namespace Model.IO
 
             foreach (DB.QuoteDataBase._QuoteDetailRow row in table.Rows) 
             {
-                TemplateLoaderTempObj temp = new TemplateLoaderTempObj();
+                var temp = new TemplateLoaderTempObj();
                 CommonLoader.LoadProperties(id, (int)row.id, temp);
 
-                ProductBuildData data = new ProductBuildData();
+                var data = new ProductBuildData();
                 data.Code = row.ProductCode;
                 data.Gage = temp.Gage;
                 data.IsWire = row.IsWire;
                 data.Vendor = string.Empty;
                 data.Description = string.Empty;
-                Model.Product product = new Model.Product(data);
+                var product = new Model.Product(data);
 
                 Model.Common.Detail detail = header.NewDetail(product);
                 detail.Qty = row.Qty;

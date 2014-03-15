@@ -48,7 +48,7 @@ namespace Model
 
             if (index == -1) 
             {
-                Customer c = new Customer();
+                var c = new Customer();
                 c.SetName(value);
                 return c;
             }
@@ -56,7 +56,7 @@ namespace Model
             string left = value.Substring(0, index);
             string right = value.Substring(index);
 
-            Customer customer = new Customer();
+            var customer = new Customer();
             if (left.Length > 0) 
             {
                 int id = 0;
@@ -114,7 +114,7 @@ namespace Model
         /// <returns>Returns true if the IDs are the same.</returns>
         public override bool Equals(object obj)
         {
-            Customer other = obj as Customer;
+            var other = obj as Customer;
             return this.id == other.id;
         }
 

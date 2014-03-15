@@ -39,7 +39,7 @@ namespace Model
         /// <returns>The customers in the CustomerList.</returns>
         public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            StandardValuesCollection svc = 
+            var svc = 
                 new StandardValuesCollection(CustomerList.Collection);
             return svc;
         }

@@ -45,7 +45,7 @@ namespace Model.IO
                 customer = row.CustomerName;
             }
 
-            Model.Customer customerObj = new Model.Customer();
+            var customerObj = new Model.Customer();
             customerObj.SetName(customer);
             customerObj.SetId(customerID);
 
@@ -56,17 +56,17 @@ namespace Model.IO
         {
             System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
 
-            DB.QuoteDataBaseTableAdapters._QuoteTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuoteTableAdapter();
-            DB.QuoteDataBase._QuoteDataTable table = new DB.QuoteDataBase._QuoteDataTable();
-            Header q = new Header();
+            var table = new DB.QuoteDataBase._QuoteDataTable();
+            var q = new Header();
 
             Model.Customer customerObj = null;
 
             adaptor.FillByByQuoteID(table, (decimal)Convert.ToDouble(id));
             if (table.Rows.Count > 0) 
             {
-                DB.QuoteDataBase._QuoteRow row = table.Rows[0] as DB.QuoteDataBase._QuoteRow;
+                var row = table.Rows[0] as DB.QuoteDataBase._QuoteRow;
                 customerObj = LookupCustomer(row);
 
                 string rfq = string.Empty;
@@ -123,20 +123,20 @@ namespace Model.IO
                 
                 this.LoadComponents(q);
 
-                Common.ComputationProperties o1 = this.LoadProperties(
+                var o1 = this.LoadProperties(
                     id,
                     CommonSaver.ComputationPropertiesId, 
                     q.ComputationProperties) as Common.ComputationProperties;
                 
                 q.SetPublicComputationProperties(o1);
                 
-                Common.OtherProperties o2 = this.LoadProperties(
+                var o2 = this.LoadProperties(
                     id, 
                     CommonSaver.OtherPropertiesId, 
                     q.OtherProperties) as Common.OtherProperties;
                 q.SetPublicOtherProperties(o2);
                 
-                Common.NoteProperties o4 = this.LoadProperties(
+                var o4 = this.LoadProperties(
                     id, 
                     CommonSaver.NotePropertiesId, 
                     q.NoteProperties) as Common.NoteProperties;
@@ -150,25 +150,25 @@ namespace Model.IO
 
         public void LoadComponents(Model.Common.Header header)
         {
-            _QuoteDetailTableAdapter adaptor = new _QuoteDetailTableAdapter();
+            var adaptor = new _QuoteDetailTableAdapter();
             
             int id = header.PrimaryProperties.CommonId;
             DB.QuoteDataBase._QuoteDetailDataTable table = adaptor.GetDataByQuoteID(id);
 
             foreach (DB.QuoteDataBase._QuoteDetailRow row in table.Rows) 
             {
-                QuoteLoaderTempObj temp = new QuoteLoaderTempObj();
+                var temp = new QuoteLoaderTempObj();
                 CommonLoader.LoadProperties(id, (int)row.id, temp);
 
-                ProductBuildData data = new ProductBuildData();
+                var data = new ProductBuildData();
                 data.Code = row.ProductCode;
                 data.Gage = temp.Gage;
                 data.IsWire = row.IsWire;
                 data.Vendor = string.Empty;
                 data.Description = string.Empty;
-                Product product = new Product(data);
+                var product = new Product(data);
 
-                Model.Quote.Detail detail = header.NewDetail(product) as Model.Quote.Detail;
+                var detail = header.NewDetail(product) as Model.Quote.Detail;
                 
                 detail.Qty = row.Qty;
                 
@@ -228,7 +228,7 @@ namespace Model.IO
             object obj,
             Type interfaceToImplement = null)
         {
-            DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter();
 
             this.propertyLoader = new ObjectGenerator();
@@ -255,7 +255,7 @@ namespace Model.IO
 
         private void AddNode(DB.QuoteDataBase._QuotePropertiesRow row)
         {
-            ObjectGeneratorPropertyInfo node = new ObjectGeneratorPropertyInfo();
+            var node = new ObjectGeneratorPropertyInfo();
             node.Name = row.PropertyName;
             
             if (!row.IsPropertyStringValueNull()) 

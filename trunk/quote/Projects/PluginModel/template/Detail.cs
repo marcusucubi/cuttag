@@ -77,7 +77,7 @@ namespace Model.Template
 
             if (this.wireProperties is DefaultWireProperties) 
             {
-                DefaultWireProperties w = this.wireProperties as DefaultWireProperties;
+                var w = this.wireProperties as DefaultWireProperties;
                 w.PoundsPer1000Feet = product.CopperWeightPer1000Feet;
             }
         }

@@ -19,7 +19,7 @@ namespace Model.IO.Misc
             string unitOfMeasure, 
             decimal copperWeightPer1000Feet)
         {
-            ProductBuildData data = new ProductBuildData();
+            var data = new ProductBuildData();
 
             data.Code = code;
             data.UnitCost = unitCost;
@@ -70,7 +70,7 @@ namespace Model.IO.Misc
             bool wire, 
             DB.QuoteDataBase partLookupDataSource)
         {
-            ProductBuildData data = new ProductBuildData();
+            var data = new ProductBuildData();
             
             string gage = string.Empty;
             decimal cost = 0;
@@ -101,7 +101,7 @@ namespace Model.IO.Misc
                 // dd_ToDo 12/31/11 
                 // change sp GetWirePoundsPer1000Ft to return how wt
                 // computed and present to as wireproperty
-                DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter weight = 
+                var weight = 
                     new DB.QuoteDataBaseTableAdapters.WireSourceTableAdapter();
                 string message = string.Empty;
                 
