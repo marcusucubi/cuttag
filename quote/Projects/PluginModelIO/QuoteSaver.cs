@@ -57,7 +57,7 @@ namespace Model.IO
             else 
             {
                 adaptor.Connection.Open();
-                DB.QuoteTableProxy proxy = new DB.QuoteTableProxy(adaptor);
+                var proxy = new DB.QuoteTableProxy(adaptor);
                 proxy.Transaction = adaptor.Connection.BeginTransaction();
                 
                 adaptor.Insert(
@@ -71,7 +71,7 @@ namespace Model.IO
                     System.DateTime.Now, 
                     o.Customer.Id);
                 
-                SqlCommand cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
+                var cmd = new SqlCommand("SELECT @@IDENTITY", adaptor.Connection);
                 cmd.Transaction = proxy.Transaction;
                 newId = Convert.ToInt32(cmd.ExecuteScalar(), CultureInfo.CurrentCulture);
                 

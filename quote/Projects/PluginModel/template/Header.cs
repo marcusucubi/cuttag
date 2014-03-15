@@ -100,7 +100,7 @@ namespace Model.Template
         /// <returns>A new detail object.</returns>
         public override Common.Detail NewDetail(Product product)
         {
-            Detail oo = new Detail(this, product);
+            var oo = new Detail(this, product);
             this.Details.Add(oo);
             return oo;
         }

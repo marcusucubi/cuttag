@@ -47,8 +47,8 @@ namespace Model.IO
 
         internal object Generate()
         {
-            CodeCompileUnit compileUnit = new CodeCompileUnit();
-            CodeNamespace samples = new CodeNamespace("Generated");
+            var compileUnit = new CodeCompileUnit();
+            var samples = new CodeNamespace("Generated");
 
             samples.Imports.Add(new CodeNamespaceImport("System"));
             samples.Imports.Add(new CodeNamespaceImport("System.ComponentModel"));
@@ -56,7 +56,7 @@ namespace Model.IO
             samples.Imports.Add(new CodeNamespaceImport("Model.Common"));
             
             compileUnit.Namespaces.Add(samples);
-            CodeTypeDeclaration class1 = new CodeTypeDeclaration(this.ClassName);
+            var class1 = new CodeTypeDeclaration(this.ClassName);
             samples.Types.Add(class1);
             
             if (this.BaseTypeName.Length > 0) 
@@ -95,12 +95,12 @@ namespace Model.IO
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "Ok to ignore")]
         private static string GenerateCode(CodeCompileUnit compileunit)
         {
-            VBCodeProvider provider = new VBCodeProvider();
+            var provider = new VBCodeProvider();
             string sourceFile = null;
 
-            using (StringWriter sw = new StringWriter(CultureInfo.CurrentCulture)) 
+            using (var sw = new StringWriter(CultureInfo.CurrentCulture)) 
             {
-                IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
+                var tw = new IndentedTextWriter(sw, "    ");
                 provider.GenerateCodeFromCompileUnit(compileunit, tw, new CodeGeneratorOptions());
                 tw.Close();
                 sourceFile = sw.ToString();
@@ -114,8 +114,8 @@ namespace Model.IO
         {
             Common.ISavableProperties result = null;
             
-            VBCodeProvider provider = new VBCodeProvider();
-            CompilerParameters cp = new CompilerParameters();
+            var provider = new VBCodeProvider();
+            var cp = new CompilerParameters();
 
             cp.ReferencedAssemblies.Add("System.dll");
             cp.ReferencedAssemblies.Add("PluginModel.dll");
@@ -126,7 +126,7 @@ namespace Model.IO
 
             if (cr.Errors.Count > 0) 
             {
-                StringWriter writer = new StringWriter(CultureInfo.CurrentCulture);
+                var writer = new StringWriter(CultureInfo.CurrentCulture);
                 foreach (CompilerError ce in cr.Errors) 
                 {
                     writer.WriteLine("{0}", ce.ToString());
@@ -168,7 +168,7 @@ namespace Model.IO
             string category = "", 
             string desc = "")
         {
-            CodeMemberProperty property1 = new CodeMemberProperty();
+            var property1 = new CodeMemberProperty();
             property1.Name = name;
             property1.Type = new CodeTypeReference(typeName);
             property1.Attributes = MemberAttributes.Public;
@@ -207,11 +207,11 @@ namespace Model.IO
                 {
                     foreach (System.Reflection.PropertyInfo node in this.InitObject.GetType().GetProperties()) 
                     {
-                        CodePropertyReferenceExpression variableRef1 = 
+                        var variableRef1 = 
                             new CodePropertyReferenceExpression(new CodeThisReferenceExpression(), "Subject");
-                        CodePropertyReferenceExpression propertyRef = 
+                        var propertyRef = 
                             new CodePropertyReferenceExpression(variableRef1, node.Name);
-                        CodeVariableDeclarationStatement variableDeclaration = 
+                        var variableDeclaration = 
                             new CodeVariableDeclarationStatement(node.PropertyType, node.Name, propertyRef);
                         
                         property1.GetStatements.Add(variableDeclaration);

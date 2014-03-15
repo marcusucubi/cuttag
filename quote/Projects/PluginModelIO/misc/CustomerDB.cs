@@ -9,19 +9,19 @@
     {
         public static void Initialize()
         {
-            DB.QuoteDataBaseTableAdapters.CustomerTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters.CustomerTableAdapter();
             DB.QuoteDataBase.CustomerDataTable table = null;
             
             table = adaptor.GetData();
             
-            List<Customer> list = new List<Customer>();
+            var list = new List<Customer>();
             
             foreach (DB.QuoteDataBase.CustomerRow row in table.Rows) 
             {
                 if (row.CustomerID > 0) 
                 {
-                    Customer c = new Customer();
+                    var c = new Customer();
                     c.SetId(row.CustomerID);
                     c.SetName(row.CustomerName.Trim());
                     list.Add(c);
@@ -33,8 +33,8 @@
         
         public static Customer GetById(int id)
         {
-            Customer customer = new Customer();
-            DB.QuoteDataBaseTableAdapters.CustomerTableAdapter adaptor = new DB.QuoteDataBaseTableAdapters.CustomerTableAdapter();
+            var customer = new Customer();
+            var adaptor = new DB.QuoteDataBaseTableAdapters.CustomerTableAdapter();
             DB.QuoteDataBase.CustomerDataTable table = null;
             table = adaptor.GetData();
 
@@ -53,8 +53,8 @@
 
         public static Customer GetByName(string name)
         {
-            Customer customer = new Customer();
-            DB.QuoteDataBaseTableAdapters.CustomerTableAdapter adaptor = new DB.QuoteDataBaseTableAdapters.CustomerTableAdapter();
+            var customer = new Customer();
+            var adaptor = new DB.QuoteDataBaseTableAdapters.CustomerTableAdapter();
             DB.QuoteDataBase.CustomerDataTable table = null;
             table = adaptor.GetData();
             

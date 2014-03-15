@@ -28,10 +28,10 @@ namespace Model.IO
 
         public static void LoadComponents(Model.Common.Header header)
         {
-            _QuoteDetailTableAdapter adaptor = new _QuoteDetailTableAdapter();
-            WireComponentSourceTableAdapter partAdaptor = new WireComponentSourceTableAdapter();
-            WireSourceTableAdapter wireAdaptor = new WireSourceTableAdapter();
-            GageTableAdapter gageAdaptor = new GageTableAdapter();
+            var adaptor = new _QuoteDetailTableAdapter();
+            var partAdaptor = new WireComponentSourceTableAdapter();
+            var wireAdaptor = new WireSourceTableAdapter();
+            var gageAdaptor = new GageTableAdapter();
             
             int id = header.PrimaryProperties.CommonId;
             
@@ -82,7 +82,7 @@ namespace Model.IO
                     gageTable = gageAdaptor.GetDataByGageID(wire.GageID);
                     if (gageTable != null) 
                     {
-                        DB.QuoteDataBase.GageRow gageRow = gageTable.Rows[0] as DB.QuoteDataBase.GageRow;
+                        var gageRow = gageTable.Rows[0] as DB.QuoteDataBase.GageRow;
                         gage = gageRow.Gage;
                     }
 
@@ -120,7 +120,7 @@ namespace Model.IO
         {
             PropertyInfo[] props = target.GetType().GetProperties();
             
-            DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter adaptor = 
+            var adaptor = 
                 new DB.QuoteDataBaseTableAdapters._QuotePropertiesTableAdapter();
 
             foreach (PropertyInfo p in props) 
@@ -130,7 +130,7 @@ namespace Model.IO
 
                 if (table.Rows.Count > 0) 
                 {
-                    DB.QuoteDataBase._QuotePropertiesRow row = 
+                    var row = 
                         table.Rows[0] as DB.QuoteDataBase._QuotePropertiesRow;
                     
                     if (!row.IsPropertyStringValueNull()) 

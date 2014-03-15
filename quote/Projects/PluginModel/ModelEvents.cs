@@ -52,7 +52,7 @@ namespace Model
         /// <param name="id">The id of the model object.</param>
         public void NotifyTemplateCreated(int id)
         {
-            ModelEventArgs args = new ModelEventArgs();
+            var args = new ModelEventArgs();
             args.Id = id;
             if (this.TemplateCreated != null) 
             {

@@ -10,7 +10,7 @@
     {
         public static void Initialize()
         {
-            List<string> l = new List<string>();
+            var l = new List<string>();
 
             DB.QuoteDataBase._UnitOfMeasureDataTable table = null;
             table = new DB.QuoteDataBaseTableAdapters._UnitOfMeasureTableAdapter().GetData();
