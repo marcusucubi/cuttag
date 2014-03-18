@@ -876,64 +876,14 @@
             Represents a product.
             </summary>
         </member>
-        <member name="F:Model.Product.code">
-            <summary>
-            The product code.
-            </summary>
-        </member>
         <member name="F:Model.Product.gage">
             <summary>
             The gage of the product.
             </summary>
         </member>
-        <member name="F:Model.Product.copperWeightPer1000Feet">
-            <summary>
-            The copper weight per 1000 feet.
-            </summary>
-        </member>
-        <member name="F:Model.Product.unitCost">
-            <summary>
-            The unit cost.
-            </summary>
-        </member>
-        <member name="F:Model.Product.machineTime">
-            <summary>
-            The machine time.
-            </summary>
-        </member>
         <member name="F:Model.Product.wire">
             <summary>
             True if it is a wire.
-            </summary>
-        </member>
-        <member name="F:Model.Product.description">
-            <summary>
-            The description.
-            </summary>
-        </member>
-        <member name="F:Model.Product.leadTime">
-            <summary>
-            The lead time.
-            </summary>
-        </member>
-        <member name="F:Model.Product.vendor">
-            <summary>
-            The vendor.
-            </summary>
-        </member>
-        <member name="F:Model.Product.minimumQty">
-            <summary>
-            The minimum quantity.
-            </summary>
-        </member>
-        <member name="F:Model.Product.minimumDollar">
-            <summary>
-            The minimum dollar amount.
-            </summary>
-        </member>
-        <member name="F:Model.Product.unitOfMeasure">
-            <summary>
-            The unit of measure.
             </summary>
         </member>
         <member name="M:Model.Product.#ctor">
@@ -1022,66 +972,6 @@
         <member name="T:Model.ProductBuildData">
             <summary>
             A mutable object used to create a product.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.code">
-            <summary>
-            The product code.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.gage">
-            <summary>
-            The wire gage.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.copperWeightPer1000Feet">
-            <summary>
-            The copper weight per 1000 feet.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.unitCost">
-            <summary>
-            The unit cost.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.machineTime">
-            <summary>
-            The machine time.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.wire">
-            <summary>
-            True if is a wire.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.description">
-            <summary>
-            The description.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.leadTime">
-            <summary>
-            The lead time.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.vendor">
-            <summary>
-            The vendor.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.minimumQty">
-            <summary>
-            The minimum quantity.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.minimumDollar">
-            <summary>
-            The minimum dollar.
-            </summary>
-        </member>
-        <member name="F:Model.ProductBuildData.unitOfMeasure">
-            <summary>
-            The unit or measure.
             </summary>
         </member>
         <member name="P:Model.ProductBuildData.Code">
